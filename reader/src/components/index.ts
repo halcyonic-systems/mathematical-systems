@@ -10,6 +10,7 @@
  * enforces that. This directory is the sanctioned home for raw layout, exactly
  * as tokens.ts is the sanctioned home for raw colour.
  */
+export { Editorial } from "./Editorial";
 export { Section } from "./Section";
 export { Passage, InPage } from "./Passage";
 export { Field, FieldGrid, FieldHeadings } from "./Field";

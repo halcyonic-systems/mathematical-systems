@@ -1,7 +1,5 @@
 import { create } from "zustand";
-
-/** Always ends in "/". "/" on a custom domain, "/mathematical-systems/" on a project page. */
-const BASE = import.meta.env.BASE_URL;
+import { BASE, go, parse, type Route } from "./route";
 import type { Atlas, Reasoning } from "./types";
 
 export type View = "read" | "compare" | "census" | "ledger" | "commitments";
@@ -16,67 +14,98 @@ type State = {
   reading: string | null;
   /** The entries shown side by side in Compare. */
   compared: string[];
-  /** Which import closure the commitments panel is reporting on. */
+  /** Which import closure the entailments view is reporting on. */
   variant: "shipped" | "full";
   load: () => Promise<void>;
   setView: (v: View) => void;
   read: (iri: string) => void;
-  syncFromPath: () => void;
-  _fromPath: (entries: { iri: string; id: string }[]) => string | null;
   toggle: (iri: string) => void;
   setVariant: (v: "shipped" | "full") => void;
+  /** Re-derive state from the address bar, for back/forward. */
+  syncFromPath: () => void;
 };
 
-export const useStore = create<State>((set, get) => ({
-  atlas: null,
-  reasoning: null,
-  error: null,
-  view: "read",
-  reading: null,
-  compared: [],
-  variant: "shipped",
+const idOf = (iri: string) => iri.split("/").pop() ?? "";
 
-  /** `/entry/klir-2001-eq-1-1` -> that entry's IRI, if it exists. */
-  _fromPath: (entries: { iri: string; id: string }[]) => {
-    const path = window.location.pathname.startsWith(BASE)
-      ? window.location.pathname.slice(BASE.length - 1)
-      : window.location.pathname;
-    const m = /^\/entry\/(.+?)\/?$/.exec(path);
-    return m ? (entries.find((e) => e.id === decodeURIComponent(m[1]))?.iri ?? null) : null;
-  },
+export const useStore = create<State>((set, get) => {
+  /** The URL that describes the current state. */
+  const route = (over: Partial<Route> = {}): Route => {
+    const s = get();
+    return {
+      view: s.view,
+      entry: s.reading ? idOf(s.reading) : undefined,
+      entries: s.compared.map(idOf),
+      closure: s.variant,
+      ...over,
+    };
+  };
 
-  load: async () => {
-    try {
-      const [a, r] = await Promise.all([
-        // Absolute, not relative: from /entry/<id> a relative path resolves to
-        // /entry/data/... which the SPA fallback answers with index.html, and
-        // the JSON parse then fails on a doctype.
-        fetch(`${BASE}data/atlas.json`).then((x) => x.json()),
-        fetch(`${BASE}data/reasoning.json`).then((x) => x.json()),
-      ]);
-      const iris = a.entries.map((e: { iri: string }) => e.iri);
-      const deep = get()._fromPath(a.entries);
-      set({ atlas: a, reasoning: r, reading: deep ?? iris[0] ?? null, compared: iris });
-    } catch (e) {
-      set({ error: e instanceof Error ? e.message : String(e) });
-    }
-  },
+  /** Apply a parsed route to state, resolving ids against the loaded catalogue. */
+  const apply = (r: Route, atlas: Atlas | null) => {
+    const entries = atlas?.entries ?? [];
+    const byId = (id: string) => entries.find((e) => e.id === id)?.iri;
+    const reading = (r.entry && byId(r.entry)) || entries[0]?.iri || null;
+    const compared = r.entries?.map(byId).filter((x): x is string => !!x);
+    return {
+      view: r.view,
+      reading,
+      ...(compared?.length ? { compared } : {}),
+      ...(r.closure ? { variant: r.closure } : {}),
+    };
+  };
 
-  setView: (view) => set({ view }),
-  read: (iri) => {
-    // Entries get their own URL so a citation can point at one. This is what an
-    // IRI resolves THROUGH: w3id → math.systems/entry/<id> → this entry.
-    const id = iri.split("/").pop() ?? "";
-    window.history.pushState({}, "", `${BASE}entry/${encodeURIComponent(id)}`);
-    set({ reading: iri, view: "read" });
-  },
-  syncFromPath: () => {
-    const a = get().atlas;
-    if (a) set({ reading: get()._fromPath(a.entries) ?? a.entries[0]?.iri ?? null, view: "read" });
-  },
-  toggle: (iri) => {
-    const cur = get().compared;
-    set({ compared: cur.includes(iri) ? cur.filter((x) => x !== iri) : [...cur, iri] });
-  },
-  setVariant: (variant) => set({ variant }),
-}));
+  return {
+    atlas: null,
+    reasoning: null,
+    error: null,
+    view: "read",
+    reading: null,
+    compared: [],
+    variant: "shipped",
+
+    load: async () => {
+      try {
+        const [a, r] = await Promise.all([
+          // Absolute, not relative: from /entry/<id> a relative path resolves to
+          // /entry/data/... which the SPA fallback answers with index.html, and
+          // the JSON parse then fails on a doctype.
+          fetch(`${BASE}data/atlas.json`).then((x) => x.json()),
+          fetch(`${BASE}data/reasoning.json`).then((x) => x.json()),
+        ]);
+        const parsed = parse();
+        set({
+          atlas: a,
+          reasoning: r,
+          compared: a.entries.map((e: { iri: string }) => e.iri),
+          ...apply(parsed, a),
+        });
+      } catch (e) {
+        set({ error: e instanceof Error ? e.message : String(e) });
+      }
+    },
+
+    setView: (view) => {
+      set({ view });
+      go(route({ view }));
+    },
+
+    read: (iri) => {
+      set({ reading: iri, view: "read" });
+      go(route({ view: "read", entry: idOf(iri) }));
+    },
+
+    toggle: (iri) => {
+      const cur = get().compared;
+      const compared = cur.includes(iri) ? cur.filter((x) => x !== iri) : [...cur, iri];
+      set({ compared });
+      go(route({ entries: compared.map(idOf) }), "replace");
+    },
+
+    setVariant: (variant) => {
+      set({ variant });
+      go(route({ closure: variant }));
+    },
+
+    syncFromPath: () => set(apply(parse(), get().atlas)),
+  };
+});

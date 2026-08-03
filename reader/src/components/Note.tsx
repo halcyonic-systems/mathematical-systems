@@ -16,6 +16,7 @@
  * `boundary` notes are also open questions. They render here quietly and are
  * collected into the entry's open block, rather than being duplicated by hand.
  */
+import { Editorial } from "./Editorial";
 import { warrantClass } from "./warrant";
 
 export type NoteKind = "finding" | "decision" | "boundary";
@@ -55,7 +56,9 @@ export function Note({
           {title}
         </h3>
       )}
-      <p className={`${warrantClass[kind === "boundary" ? "open" : "decided"]} m-0`}>{children}</p>
+      <p className={`${warrantClass[kind === "boundary" ? "open" : "decided"]} m-0`}>
+        <Editorial>{children}</Editorial>
+      </p>
     </div>
   );
 }

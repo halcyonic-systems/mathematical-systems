@@ -18,6 +18,7 @@
  * different claim from REFUTED.
  */
 import { useState, type ReactNode } from "react";
+import { Editorial } from "./Editorial";
 
 export type Verdict = "holds" | "bounded" | "fails" | "note";
 
@@ -51,7 +52,7 @@ export function Derivation({
           {GLYPH[verdict]}
         </span>
         <span className="font-semibold" style={{ color: "var(--text-primary)" }}>
-          {claim}
+          <Editorial>{claim}</Editorial>
         </span>
       </p>
       {because && (

@@ -204,6 +204,15 @@ body {
 
 .section-note { color: var(--text-muted); }
 
+/* Inline code in our own prose. Never applied to a transcription. */
+.editorial-code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--bg-surface);
+  padding: 0 0.25em;
+  border-radius: var(--radius-sm);
+}
+
 /* One line of orientation per view. A tab bar is the only place a reader
    arriving from a citation can learn what the catalogue contains. */
 .view-about {
