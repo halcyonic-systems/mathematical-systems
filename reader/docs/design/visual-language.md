@@ -94,6 +94,17 @@ view rather than as a prop on every part.
    with the digitisation's markup cleaned off. Cleaning a *rendering* of the source is
    permitted; altering the *transcription* is not.
 
+## Known gap — density
+
+Pages carry a lot of prose, and the Overview carries the most. Every section is legible on
+its own and the page as a whole is more than a reader can take in at once. The register is
+right; the amount of text set in it is not yet tuned.
+
+Two directions when this is addressed, neither taken yet: let warrant carry more of the load
+so `decided` and `open` recede further from `source`, and give long sections a summary line
+that a reader can stop at. Deliberately deferred — it is a styling and editing problem, not a
+structural one, and the vocabulary makes it cheap to revisit.
+
 ## The gate
 
 `npm run check:tokens` fails the build on: **any inline style outside `src/components/`** —

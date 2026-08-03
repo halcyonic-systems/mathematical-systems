@@ -187,7 +187,7 @@ body {
 /* Density is ambient: the same primitives serve a document and an instrument. */
 [data-density="dense"] .w-source { font-size: 1.05rem; max-width: none; }
 [data-density="dense"] .pad-block { padding: 0.5rem 0.75rem; }
-[data-density="generous"] .pad-block { padding: 1rem 1.25rem; }
+[data-density="generous"] .pad-block { padding: 1.25rem 1.25rem; }
 
 /* Structure has to be visible from arm's length on a 3,000px page. */
 .rule-top { border-top: 1px solid var(--border); }
@@ -227,12 +227,16 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+/* Section titles are the only wayfinding inside an entry that runs to nearly
+   three thousand pixels, and at 11px they did not read as headings from arm's
+   length. Case stays uppercase per the register — uppercase is for fixed UI
+   copy — but size and ink carry the weight. */
 .section-title {
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
   margin: 0;
 }
 

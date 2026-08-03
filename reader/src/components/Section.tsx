@@ -29,7 +29,7 @@ export function Section({
   const Heading = level === 2 ? "h2" : "h3";
   return (
     <section className={`mb-6 ${cardClass[warrant]}`}>
-      <div className={`${stripClass[warrant]} px-5 py-2 flex items-baseline gap-3 flex-wrap`}>
+      <div className={`${stripClass[warrant]} px-5 py-2.5 flex items-baseline gap-3 flex-wrap`}>
         <Heading className="section-title">{title}</Heading>
         {note && <span className="text-xs section-note">{note}</span>}
       </div>
