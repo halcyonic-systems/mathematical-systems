@@ -54,6 +54,23 @@ All reasoning data crosses one seam (`Reasoning` in `src/types.ts`). Swapping pr
 for live — a Tauri sidecar, or rustdl-wasm once `rayon`/`dashmap`/`walkdir` are
 feature-gated — is one module, not a rewrite.
 
+### The transcription gate
+
+`atlas:HVP` asserts a human checked a verbatim against the primary text. The vault carries
+the full text of every source the catalogue cites — `operations/systems-science/klir/`,
+`/bunge/`, and so on — so that assertion is **checked by machine on every build**, and the
+surrounding passage is carried back with it.
+
+The comparison is not a string match. The Bunge edition is LaTeX
+(`\(\sigma=\langle C, E, S\rangle\)`), the transcription is Unicode (`σ = ⟨C, E, S⟩`), and the
+Klir edition drops a running page header into the middle of a sentence. Both are faithful to
+the book; neither is byte-equal to the other. So the locator normalises notation and layout —
+and **reports what it ignored**, because a gate that normalises until things match proves
+nothing.
+
+`prove_the_gate_can_fail()` corrupts a verbatim that just verified, two ways, and requires
+the locator to refuse both. A check nothing can fail is not a check.
+
 ### The build refuses
 
 `build-data.py` exits non-zero if both variants report the same commitments. If the minimal
@@ -64,7 +81,7 @@ neutrality claim quietly becoming false again.
 
 | | |
 |---|---|
-| **Read** | One entry as a critical edition — verbatim set for reading, source location, what it posits, what it admits and refuses, provenance, and the encoder's apparatus parsed into its own sections. |
+| **Read** | One entry as a critical edition — verbatim set for reading, **the passage in context in the book**, what it posits, what it admits and refuses, provenance, and the encoder's apparatus parsed into its own sections. |
 | **Compare** | Definitions side by side. `S = (T, R)` beside `σ = ⟨C, E, S⟩` beside Def. 1.1, aligned row by row. |
 | **Census** | Entries × primitives. Lexical until the atlas types primitives — and it says so. |
 | **Admits / Refuses** | Every recorded example, by stance. Derived conflicts separated from authored ones. |
@@ -85,8 +102,11 @@ renderer. KaTeX is reserved for reasoner output, which is ours to typeset.
   reads roles via `skos:broader`; when they land, the census becomes a signature comparison
   with no code change.
 - **No derived conflicts.** The atlas asserts one — Bunge refusing "a collection of events,
-  even if ordered" against Klir — but Klir's side of it lives in Bunge's annotation, not in
-  Klir's entry, so it cannot be computed. The ledger says this rather than hiding it.
+  even if ordered" against Klir — but Klir's side of it lives in Bunge's annotation rather
+  than in Klir's entry, so it cannot be computed. The ledger says so instead of hiding it.
+  The context view makes it *visible* regardless: Klir's ordered-books example sits four
+  sentences past eq. (1.1) and is now readable in place, so the gap in the record is
+  something you can see rather than something you have to be told.
 - Mapping layer (`mappings/*.md`) not yet rendered. Generic ingest, profile card, and graph
   view not yet built.
 

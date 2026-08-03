@@ -21,6 +21,30 @@ export const proof = {
   refuted: "#c2352c",
 } as const;
 
+/** Transcription — what the build found when it looked in the primary text. */
+export const transcript = {
+  located: "#1f7351",
+  partial: "#8a5c08",
+  absent: "#c2352c",
+} as const;
+
+export type TranscriptStatus =
+  | "located" | "partial" | "not-found"
+  | "no-source-registered" | "source-missing" | "no-verbatim";
+
+export const transcriptColor = (s: TranscriptStatus) =>
+  s === "located" ? transcript.located : s === "partial" ? transcript.partial : transcript.absent;
+
+/** Deliberately plain: the badge states what was done, not that all is well. */
+export const transcriptLabel: Record<TranscriptStatus, string> = {
+  located: "Verified against the source",
+  partial: "Partially located in the source",
+  "not-found": "Not found in the source",
+  "no-source-registered": "No source text registered",
+  "source-missing": "Source text unavailable",
+  "no-verbatim": "No verbatim recorded",
+};
+
 export type EvidenceId = keyof typeof evidence;
 export type ProofStatus = "entailed" | "not-proven" | "refuted";
 

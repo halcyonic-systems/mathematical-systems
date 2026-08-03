@@ -1,4 +1,4 @@
-import { Block, Chip, EvidenceBadge, ProofBadge, Verbatim, localName } from "./chrome";
+import { Block, Chip, EvidenceBadge, InContext, ProofBadge, TranscriptBadge, Verbatim, localName } from "./chrome";
 import { useStore } from "./store";
 import type { Atlas, Entry, Reasoning } from "./types";
 
@@ -16,10 +16,19 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
   const entry = atlas.entries.find((e) => e.iri === reading) ?? atlas.entries[0];
   const bearer = byIri(atlas.bearers).get(entry.statedIn ?? "");
   const prims = byIri(atlas.primitives);
+  const t = atlas.transcription[entry.iri];
 
   return (
     <>
-      <Block title="The passage" note={bearer?.label ?? undefined}>
+      <Block
+        title="The passage"
+        note={
+          <span className="flex items-center gap-2">
+            <TranscriptBadge t={t} />
+            {bearer?.label}
+          </span>
+        }
+      >
         <Verbatim text={entry.verbatim} location={entry.sourceLocation} />
         {entry.authorCaveat && (
           <div className="mt-5 pt-4" style={{ borderTop: "1px solid var(--hairline)" }}>
@@ -33,6 +42,20 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
           </div>
         )}
       </Block>
+
+      {t?.context && (
+        <Block
+          title="In the source"
+          note={`${t.source} · ${t.matchedChars}/${t.verbatimChars} characters located`}
+        >
+          <InContext t={t} />
+          {t.normalisations?.length ? (
+            <p className="mt-4 mb-0 text-xs" style={{ color: "var(--text-muted)" }}>
+              Ignored when matching: {t.normalisations.join("; ")}.
+            </p>
+          ) : null}
+        </Block>
+      )}
 
       <Block
         title="What it posits"

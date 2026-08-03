@@ -50,6 +50,9 @@ const RESERVED = {
   entailed: "--proof-entailed",
   notProven: "--proof-not-proven",
   refuted: "--proof-refuted",
+  located: "--transcript-located",
+  partial: "--transcript-partial",
+  absent: "--transcript-absent",
 };
 
 const problems = [];

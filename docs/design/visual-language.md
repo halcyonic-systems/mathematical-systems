@@ -32,21 +32,27 @@ the filled masthead band. Authored case survives: `font-variant-caps: small-caps
      the first as the second, or as a green check, is the one lie this instrument must never
      tell.
 
-3. **The verbatim is set for reading, and never converted.** Cormorant Garamond at 1.35rem,
+3. **Three reserved channels, not two.** Transcription status (`--transcript-*`) joins
+   evidence grade and proof status. Evidence records *who checked*; transcription records
+   *what the build verified*. Same three-state discipline — `partial` is not `absent`.
+
+4. **The verbatim is set for reading, and never converted.** Cormorant Garamond at 1.35rem,
    held to `--measure-verbatim`, `white-space: pre-wrap`, rendered byte-identical to the
    source. The Unicode mathematics — `σ = ⟨C, E, S⟩`, `C ∩ E = ∅`, `T ⊆ Θ`, `𝒯 = ⟨P, B, ⊢⟩` —
    came out of the book that way and stays that way. Verified rendering with no fallback
    tofu, 2026-08-02.
 
-4. **KaTeX is for generated content only.** Reasoner output — DL axioms, entailments — is
+5. **KaTeX is for generated content only.** Reasoner output — DL axioms, entailments — is
    ours to typeset. A transcription is not. Never run the verbatim through a formula
    renderer: it is the only thing every downstream encoding is checkable against, and
    "improving" it breaks the atlas's central discipline.
 
-5. **Derived and authored are visually distinct.** A conflict computed from the data and a
+6. **Derived and authored are visually distinct.** A conflict computed from the data and a
    conflict asserted in an encoder's annotation are different epistemic objects and are
    labelled as such. Annotation blocks live under "Encoder's apparatus — written into the
-   entry, not derived."
+   entry, not derived." The source-context block is a third category again: the book itself,
+   with the digitisation's markup cleaned off. Cleaning a *rendering* of the source is
+   permitted; altering the *transcription* is not.
 
 ## The gate
 

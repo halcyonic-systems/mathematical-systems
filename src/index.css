@@ -54,6 +54,14 @@
   --proof-not-proven: #8a5c08;
   --proof-refuted: #c2352c;
 
+  /* RESERVED CHANNEL — transcription. Whether a verbatim was found in the
+     primary text at build time. Parallel to evidence grade but distinct from it:
+     evidence records who checked, this records what the build verified. Three
+     states again — located / partial / absent — and `partial` is not `absent`. */
+  --transcript-located: #1f7351;
+  --transcript-partial: #8a5c08;
+  --transcript-absent: #c2352c;
+
   --border: #d3d7e2;
   --hairline: #e6e9f0;
 

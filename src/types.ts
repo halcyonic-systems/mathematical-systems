@@ -50,7 +50,22 @@ export type Conflict = {
   refusedBy: { entry: string; text: string }[];
 };
 
+export type Transcription = {
+  status:
+    | "located" | "partial" | "not-found"
+    | "no-source-registered" | "source-missing" | "no-verbatim";
+  source?: string;
+  /** What the comparison had to ignore. Shown, never hidden — a gate that
+      normalises until things match proves nothing. */
+  normalisations?: string[];
+  matchedChars?: number;
+  verbatimChars?: number;
+  /** The passage as it sits in the book: what precedes it, the match, what follows. */
+  context?: { before: string; match: string; after: string };
+};
+
 export type Atlas = {
+  transcription: Record<string, Transcription>;
   source: { repo: string; coreLabel: string | null };
   entries: Entry[];
   bearers: Bearer[];

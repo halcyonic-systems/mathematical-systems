@@ -33,7 +33,11 @@ import argparse
 import json
 import pathlib
 import re
+import sys
 import warnings
+
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+from transcription import locate  # noqa: E402
 
 from rdflib import Graph, Namespace, OWL, RDF, RDFS, URIRef
 from rdflib.namespace import DCTERMS, SKOS
@@ -270,6 +274,78 @@ def asserted_profile(g):
     }
 
 
+# Bearer -> the full text of that work in the vault. Explicit rather than
+# fuzzy-matched: a wrong pairing would "verify" a transcription against the wrong
+# book, which is worse than not checking at all.
+BEARER_SOURCES = {
+    "https://halcyonic.systems/atlas/bearer/klir-2001-facets": "klir/klir-facets.md",
+    "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4": (
+        "bunge/Bunge - 1979 - Treatise on Basic Philosophy.md"
+    ),
+}
+
+
+def check_transcriptions(entries, vault):
+    """Verify every verbatim against the primary text, and pull its context.
+
+    HVP asserts a human checked the transcription. This checks it again, by
+    machine, every build -- and carries back the surrounding passage so a reader
+    can see what the entry left out. Klir's ordered-books example sits four
+    sentences after eq. (1.1) and is invisible in the entry alone.
+    """
+    cache, report = {}, {}
+    for e in entries:
+        rel = BEARER_SOURCES.get(e["statedIn"] or "")
+        if not rel:
+            report[e["iri"]] = {"status": "no-source-registered"}
+            continue
+        path = vault / rel
+        if not path.is_file():
+            report[e["iri"]] = {"status": "source-missing", "path": str(path)}
+            continue
+        if rel not in cache:
+            cache[rel] = path.read_text(errors="ignore")
+        result = locate(e["verbatim"], cache[rel])
+        result["source"] = path.name
+        report[e["iri"]] = result
+    return report
+
+
+def prove_the_gate_can_fail(entries, vault):
+    """A check nothing can fail proves nothing (SSF #35).
+
+    Corrupt a verbatim that just verified and confirm the locator refuses it. If
+    this ever passes, the gate has degenerated into normalising until it matches.
+    """
+    for e in entries:
+        rel = BEARER_SOURCES.get(e["statedIn"] or "")
+        if not rel or not (vault / rel).is_file() or not e["verbatim"]:
+            continue
+        raw = (vault / rel).read_text(errors="ignore")
+        if locate(e["verbatim"], raw)["status"] != "located":
+            continue
+        words = e["verbatim"].split()
+        if len(words) < 8:
+            continue
+        # Two corruptions: an inserted token, and a single altered word -- the
+        # shape a real transcription slip takes. Both must be refused. Each is
+        # asserted to actually change the string, because the first version of
+        # this test substituted words that were not in the passage and so
+        # "verified" an unmodified string.
+        for name, bad in (
+            ("inserted token", " ".join(words[: len(words) // 2] + ["ZZQX"] + words[len(words) // 2 :])),
+            ("altered word", " ".join(["ZZQX" if i == len(words) // 2 else w for i, w in enumerate(words)])),
+        ):
+            assert bad != e["verbatim"], f"tamper '{name}' was a no-op"
+            if locate(bad, raw)["status"] == "located":
+                raise SystemExit(
+                    f"GATE INVALID: a verbatim corrupted by {name} still verifies. "
+                    "The normaliser is too permissive to catch a real transcription error."
+                )
+        return True
+    return False
+
+
 def merge_variant(sources, dest):
     g = Graph()
     for s in sources:
@@ -338,6 +414,12 @@ def main():
         default=pathlib.Path.home() / "Desktop/halcyonic-projects/active/definition-atlas",
     )
     ap.add_argument("--out", type=pathlib.Path, default=pathlib.Path(__file__).parent.parent / "public" / "data")
+    ap.add_argument(
+        "--vault",
+        type=pathlib.Path,
+        default=pathlib.Path.home() / "Desktop/halcyonic/operations/systems-science",
+        help="where the primary texts live",
+    )
     ap.add_argument("--skip-reasoning", action="store_true")
     args = ap.parse_args()
 
@@ -348,7 +430,17 @@ def main():
 
     g = load_atlas(atlas_root)
     entries = extract_entries(g)
+
+    vault = args.vault.expanduser().resolve()
+    transcription = check_transcriptions(entries, vault)
+    gate_live = prove_the_gate_can_fail(entries, vault)
+    tally = {}
+    for r in transcription.values():
+        tally[r["status"]] = tally.get(r["status"], 0) + 1
+    print(f"transcription {tally}  gate-can-fail={gate_live}")
+
     catalogue = {
+        "transcription": transcription,
         "source": {"repo": atlas_root.name, "coreLabel": one(g, ATLAS["atlas-core"], RDFS.label)},
         "entries": entries,
         "bearers": extract_bearers(g),

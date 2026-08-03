@@ -40,10 +40,10 @@
         }
       ],
       "labels": {
-        "ont00000958": "Information Content Entity",
-        "FormalSystemDefinition": "Formal System Definition",
         "BFO_0000001": "entity",
-        "ont00000853": "Descriptive Information Content Entity"
+        "ont00000958": "Information Content Entity",
+        "ont00000853": "Descriptive Information Content Entity",
+        "FormalSystemDefinition": "Formal System Definition"
       }
     },
     "full": {
@@ -74,7 +74,7 @@
           "sub": "https://halcyonic.systems/atlas/FormalSystemDefinition",
           "sup": "https://www.commoncoreontologies.org/ont00000958",
           "axioms": [
-            "<https://www.commoncoreontologies.org/ont00000853> EquivalentTo <https://www.commoncoreontologies.org/ont00000958> and (<https://www.commoncoreontologies.org/ont00001982> some <http://purl.obolibrary.org/obo/BFO_0000001>)",
+            "<https://www.commoncoreontologies.org/ont00000853> SubClassOf <https://www.commoncoreontologies.org/ont00000958>",
             "<https://halcyonic.systems/atlas/FormalSystemDefinition> SubClassOf <https://www.commoncoreontologies.org/ont00000853>"
           ]
         },
@@ -82,17 +82,17 @@
           "sub": "https://www.commoncoreontologies.org/ont00000853",
           "sup": "https://www.commoncoreontologies.org/ont00000958",
           "axioms": [
-            "<https://www.commoncoreontologies.org/ont00000853> SubClassOf <https://www.commoncoreontologies.org/ont00000958>"
+            "<https://www.commoncoreontologies.org/ont00000853> EquivalentTo <https://www.commoncoreontologies.org/ont00000958> and (<https://www.commoncoreontologies.org/ont00001982> some <http://purl.obolibrary.org/obo/BFO_0000001>)"
           ]
         }
       ],
       "labels": {
-        "ont00001808": "is about",
-        "ont00000958": "Information Content Entity",
-        "ont00001982": "describes",
-        "FormalSystemDefinition": "Formal System Definition",
         "BFO_0000001": "entity",
-        "ont00000853": "Descriptive Information Content Entity"
+        "ont00000958": "Information Content Entity",
+        "ont00000853": "Descriptive Information Content Entity",
+        "ont00001982": "describes",
+        "ont00001808": "is about",
+        "FormalSystemDefinition": "Formal System Definition"
       }
     }
   }

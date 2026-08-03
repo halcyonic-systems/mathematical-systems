@@ -5,7 +5,8 @@
  * nowhere is not a block. Colour arrives as a filled region with an edge.
  */
 import type { ReactNode } from "react";
-import { evidence, proofColor, proofLabel, type ProofStatus } from "./tokens";
+import { evidence, proofColor, proofLabel, transcriptColor, transcriptLabel, type ProofStatus } from "./tokens";
+import type { Transcription } from "./types";
 
 export function Masthead({ eyebrow, title, count }: { eyebrow: string; title: string; count?: string }) {
   return (
@@ -117,6 +118,56 @@ export function Verbatim({ text, location }: { text: string | null; location?: s
         {text}
       </blockquote>
     </figure>
+  );
+}
+
+/** What the build found when it went looking in the primary text. */
+export function TranscriptBadge({ t }: { t: Transcription | undefined }) {
+  if (!t) return null;
+  const short =
+    t.status === "located" ? "Verified" : t.status === "partial" ? "Partial" : "Unverified";
+  return (
+    <span
+      style={{
+        background: transcriptColor(t.status),
+        color: "var(--text-on-accent)",
+        borderRadius: "var(--radius-sm)",
+      }}
+      className="px-2 py-0.5 text-xs font-semibold"
+      title={
+        transcriptLabel[t.status] +
+        (t.source ? ` — ${t.source}` : "") +
+        (t.normalisations?.length ? `\nIgnored: ${t.normalisations.join("; ")}` : "")
+      }
+    >
+      {short}
+    </span>
+  );
+}
+
+/**
+ * The passage in its place in the book.
+ *
+ * The entry records one sentence; the page around it holds the author's own
+ * examples, hedges and self-assessments. Klir's ordered-books example — the
+ * separating instance against Bunge — sits four sentences after eq. (1.1) and is
+ * invisible from the entry alone. Showing the surround turns "adjacent material,
+ * not yet entered" from a note the encoder wrote into something you can see.
+ */
+export function InContext({ t }: { t: Transcription | undefined }) {
+  if (!t?.context) return null;
+  const { before, match, after } = t.context;
+  return (
+    <div style={{ fontFamily: "var(--font-display)" }} className="text-lg leading-relaxed">
+      <span style={{ color: "var(--text-muted)" }}>…{before}</span>
+      <mark
+        style={{ background: "var(--accent-soft)", color: "var(--text-primary)" }}
+        className="px-0.5"
+      >
+        {match}
+      </mark>
+      <span style={{ color: "var(--text-muted)" }}>{after}…</span>
+    </div>
   );
 }
 
