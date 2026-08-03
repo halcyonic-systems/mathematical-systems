@@ -204,6 +204,23 @@ body {
 
 .section-note { color: var(--text-muted); }
 
+/* Section titles are links to themselves. The marker stays out of the way until
+   the heading is hovered or focused, so the page does not look like a wiki. */
+.section-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+.anchor-mark {
+  margin-left: 0.4em;
+  opacity: 0;
+  color: var(--accent);
+  transition: opacity var(--transition-base);
+}
+.section-anchor:hover .anchor-mark,
+.section-anchor:focus-visible .anchor-mark {
+  opacity: 1;
+}
+
 /* Inline code in our own prose. Never applied to a transcription. */
 .editorial-code {
   font-family: var(--font-mono);

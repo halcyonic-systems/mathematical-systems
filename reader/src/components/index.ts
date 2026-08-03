@@ -11,7 +11,7 @@
  * as tokens.ts is the sanctioned home for raw colour.
  */
 export { Editorial } from "./Editorial";
-export { Section } from "./Section";
+export { Section, slug } from "./Section";
 export { Passage, InPage } from "./Passage";
 export { Field, FieldGrid, FieldHeadings } from "./Field";
 export { Matrix, type CellState } from "./Matrix";

@@ -13,6 +13,13 @@
 import type { ReactNode } from "react";
 import { cardClass, stripClass, warrantClass, type Warrant } from "./warrant";
 
+/** "What it posits" -> "what-it-posits". Stable across builds, so a link keeps working. */
+export const slug = (title: string) =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
 export function Section({
   title,
   warrant,
@@ -27,10 +34,20 @@ export function Section({
   children: ReactNode;
 }) {
   const Heading = level === 2 ? "h2" : "h3";
+  const id = slug(title);
   return (
-    <section className={`mb-6 ${cardClass[warrant]}`}>
+    <section className={`mb-6 scroll-mt-16 ${cardClass[warrant]}`}>
       <div className={`${stripClass[warrant]} px-5 py-2.5 flex items-baseline gap-3 flex-wrap`}>
-        <Heading className="section-title">{title}</Heading>
+        <Heading className="section-title" id={id}>
+          {/* A real anchor, so a section can be cited and not merely scrolled to.
+              The document previously contained no links at all. */}
+          <a href={`#${id}`} className="section-anchor">
+            {title}
+            <span aria-hidden className="anchor-mark">
+              #
+            </span>
+          </a>
+        </Heading>
         {note && <span className="text-xs section-note">{note}</span>}
       </div>
       <div className={`pad-block ${warrantClass[warrant]}`}>{children}</div>

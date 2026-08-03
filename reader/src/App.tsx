@@ -61,6 +61,15 @@ export default function App() {
     return () => window.removeEventListener("popstate", onPop);
   }, [load, syncFromPath]);
 
+  // A cold load with a fragment lands before the sections exist, so the browser
+  // finds nothing to scroll to. Once the catalogue is in, honour it — this is
+  // what makes /entry/<id>#apparatus a citable address rather than a near miss.
+  useEffect(() => {
+    if (!atlas) return;
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }));
+  }, [atlas, view, reading]);
+
   if (error)
     return (
       <main className="p-10">
