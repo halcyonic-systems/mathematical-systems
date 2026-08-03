@@ -12,11 +12,15 @@ const TABS: { id: View; label: string }[] = [
 ];
 
 export default function App() {
-  const { atlas, reasoning, error, view, setView, load } = useStore();
+  const { atlas, reasoning, error, view, setView, load, syncFromPath } = useStore();
 
   useEffect(() => {
     void load();
-  }, [load]);
+    // Back/forward should move between entries, not out of the app.
+    const onPop = () => syncFromPath();
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [load, syncFromPath]);
 
   if (error)
     return (

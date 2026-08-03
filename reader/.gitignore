@@ -1,9 +1,11 @@
 node_modules/
 dist/
 public/.build/
-# Generated, and the context field quotes copyrighted source text.
-# Regenerate with `npm run data`; never commit.
-public/data/
+# public/data/ IS committed. It is the output of a verification run that can
+# only happen on a machine holding the primary texts, so CI cannot regenerate
+# it — the verified result has to travel. Safe to commit because the default
+# build is publishable by construction (bounded quotation, sentence-cut), and
+# both prepublish.sh and the deploy workflow refuse anything marked otherwise.
 .DS_Store
 __pycache__/
 .venv/

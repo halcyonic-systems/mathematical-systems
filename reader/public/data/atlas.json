@@ -1,0 +1,434 @@
+{
+  "publishable": true,
+  "contextChars": 800,
+  "shapes": {
+    "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1": {
+      "status": "none"
+    },
+    "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple": {
+      "file": "ShapeBunge.lean",
+      "title": "Shape Category for Bunge's CES Framework",
+      "moduleDoc": "# Shape Category for Bunge's CES Framework\n\nThe *shape category* `I_Bunge` encodes the dependency structure of Bunge's\nsystem definition σ = ⟨C, E, S⟩ (Treatise on Basic Philosophy Vol. 4, Def 1.2, 1979).\n\n## Construction\n\nWe define a quiver with 3 vertices (the tuple positions) and 3 generating arrows\n(the structural dependencies), then take the free category via `Paths`.\n\n## Arrow Direction Convention\n\nArrows point from the *dependent* to what it *depends on*. This makes a system-as-diagram\n(a functor from the shape category to a data category) covariant.\n\n- S → C: structure is defined over composition\n- S → E: structure is defined over environment\n- E → C: environment acts on composition (Bunge's interaction axiom)",
+      "positionType": "BungePosition",
+      "shape": "BungeShape",
+      "positions": [
+        {
+          "name": "composition",
+          "doc": "C(σ,t) — the set of components"
+        },
+        {
+          "name": "environment",
+          "doc": "E(σ,t) — the set of environmental things"
+        },
+        {
+          "name": "structure'",
+          "doc": "S(σ,t) — the set of relations/bonds among components and environment"
+        }
+      ],
+      "arrows": [
+        {
+          "name": "struct_on_comp",
+          "from": "structure'",
+          "to": "composition",
+          "doc": "S is defined over C (Def 1.2iii: \"relations among the components\")"
+        },
+        {
+          "name": "struct_on_env",
+          "from": "structure'",
+          "to": "environment",
+          "doc": "S is defined over E (Def 1.2iii: \"among them and things in the environment\")"
+        },
+        {
+          "name": "env_acts_on_comp",
+          "from": "environment",
+          "to": "composition",
+          "doc": "E constrains C (Def 1.2ii: things that \"act on or are acted on by components\")"
+        }
+      ],
+      "arrowConvention": "Arrows point from the *dependent* to what it *depends on*. This makes a system-as-diagram",
+      "spec": "Systems/Category/ShapeBunge.lean#BungeShape",
+      "status": "resolved"
+    },
+    "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1": {
+      "file": "ShapeKlir.lean",
+      "title": "Shape Category for Klir's S = (T, R)",
+      "moduleDoc": "# Shape Category for Klir's S = (T, R)\n\nThe *shape category* `I_Klir` encodes the dependency structure of Klir's\nsystem definition S = (T, R) (Facets of Systems Science, 2001, Eq. 1.1).\n\nThis is the simplest non-discrete shape category in the landscape:\n2 objects and 1 generating arrow. It is the common ancestor of both\nBunge's CES triple and Mobus's 8-tuple — the `rfl` proofs of the\ncommuting triangle trace to both authors inheriting T as `Set α` and\nR as `Set (α × α)` from Klir without changing the mathematical type.\n\n## Construction\n\n- `things`: T — the set of things (thinghood)\n- `relation`: R — the set of relations on T (systemhood)\n- `relation_on_things`: R → T — R is defined over T\n\nA thing becomes a system when you specify which of its parts are related.\nThe single arrow captures this: the relation DEPENDS on the things.",
+      "positionType": "KlirPosition",
+      "shape": "KlirShape",
+      "positions": [
+        {
+          "name": "things",
+          "doc": "T — the set of things that constitute the system"
+        },
+        {
+          "name": "relation",
+          "doc": "R — the set of relations among those things"
+        }
+      ],
+      "arrows": [
+        {
+          "name": "relation_on_things",
+          "from": "relation",
+          "to": "things",
+          "doc": "R depends on T — the relation is defined over the set of things."
+        }
+      ],
+      "arrowConvention": "",
+      "spec": "Systems/Category/ShapeKlir.lean#KlirShape",
+      "status": "resolved"
+    }
+  },
+  "transcription": {
+    "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 108,
+      "verbatimChars": 108,
+      "context": {
+        "before": "So, the total set of relations among the components of a complex entity may be decomposed into its bondage B A and the set B A of nonbonding relations.\n\nWe can now introduce the notion of the A -environment of a thing x with A -composition 𝒞 A(x) . It will be defined as the set of all things, other than those in 𝒞 A(x) , that act on or are acted upon the latter:\n\\[\nℰ A(x)= y ∈ Θ | (y ∈ 𝒞 A(x) ) &(∃ z)(z ⊏ x &(y ▷ z ∨ z ▷ y)) \\ .\n\\]\n\nFinally the structure of a thing will be defined as the set of all the relations among the thing's components as well as among these and the things in the thing's environment.\n\nWe now have all we need to define the notion of a concrete system:",
+        "match": "definition 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
+        "after": "Fig. 1.1. Two systems with the same composition but different structures and environments.\n\nExample A molecule, a coral reef, a family and a factory are systems. On the other hand a set of states of a thing and a collection of events, even if ordered, are not concrete systems. Symbol: Σ .\n\nAnd now the three characteristics of any system:\ndefinition 1.2 Let σ ∈ Σ be a concrete system and A ⊂ Θ a class of things. Then\n(i) the A -composition of σ at a given time t is the set of its A -parts at t :\n\\[\n𝒞 A(σ, t)= x ∈ A | x ⊏ σ\\ ;\n\\]\n(ii) the A -environment of σ at time t is the set of all things of kind A , not components of σ , that act or are acted on by components of σ at t :\n ℰ A(σ, t)= x ∈ A | x ∉ 𝒞 A(σ, t) &(∃ y) (y ∈ 𝒞 A(σ, t) &(x ▷ y ∨ y ▷ x) ) ; . \n(iii) t"
+      },
+      "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
+    },
+    "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 422,
+      "verbatimChars": 422,
+      "context": {
+        "before": "The merger of these three items is a propositional system, i.e. a system 𝒯 composed of a set P of propositions, embedded in a certain conceptual body B , and glued together by the relation ⊢ of entailment: in short, 𝒯=⟨ P, B, ⊢⟩ . And the composition of a school is the union of its staff and pupils; the environment is the natural and social milieu, and the structure consists of the relations of teaching and learning, managed and being managed, and others. The environment must be included in the description of a system because the behavior of the latter depends critically on the nature of its milieu. But of course in the case of the universe the environment is empty, and so it is in the case of the important fiction known as the free particle (or field).",
+        "match": "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ=⟨ C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E=∅ ), and S is a nonempty set of relations on the union of C and E . The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.",
+        "after": "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.\n\n 1.2. Concrete System: Definition\n\nLet us start by defining the composition of a system. A social system is a set of socially linked animals. The brains of such individuals are parts of the latter but do not qualify as members or components of a social system because they do not enter independently into social relations: only entire animals can hold social relations. In other words, the composition of a social system is not the collection of its parts but just the set of its atoms, i.e. those parts that are socially connectible. This particular notion of composition is that of atomic composition or A-composition for short."
+      },
+      "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
+    },
+    "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 252,
+      "verbatimChars": 252,
+      "context": {
+        "before": "But systemhood is different from both setness and from\nthinghood: it is an independent category.\n \nTo begin our search for a meaningful definition of the term \"system\" from a\nbroad perspective, let us consult a standard dictionary. We are likely to find that a\nsystem is \"a set or arrangement of things so related or connected as to form a unity\n\nor organic whole\" (Webster's New World Dictionary), although different dictionar-\nies may contain stylistic variations of this particular formulation. It follows from\nthis common-sense definition that the term \"system\" stands, in general, for a set of\nsome things and a relation among the things. Formally, we have\n\n\n \nWhat Is Systems Science? 5",
+        "match": "S = (T, R), (1.1)\n \nwhere S, T, R denote, respectively, a system, a set of things distinguished within S,\nand a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood\nand systemhood properties of S reside in T and R, respectively.",
+        "after": "The common-sense definition of a system, expressed by Eq. (1.1), is rather\nprimitive. This, paradoxically, is its weakness as well as its strength. The definition\nis weak because it is too general and, consequently, of little pragmatic value. It is\nstrong because it encompasses all other, more specific definitions of systems. In\nthis regard, this most general definition of systems provides us with a criterion by\nwhich we can determine whether any given object is a system or not: an object is\na system if and only if it can be described in a form that conforms to Eq. (1.1).\nFor example, a collection of books is not a system, only a set. However, when\nwe organize the books in some way, the collection becomes a system. When we\norder them, for instance, by authors' names, we obtain a system since any ordering\nof a set is a relation defined on the set."
+      },
+      "source": "klir-facets.md"
+    }
+  },
+  "source": {
+    "repo": "atlas",
+    "coreLabel": "Definition Atlas — Core"
+  },
+  "entries": [
+    {
+      "iri": "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1",
+      "id": "bunge-1979-def-1-1",
+      "label": "Bunge (1979), Definition 1.1: concrete system",
+      "statedIn": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "sourceLocation": "ch. 1, Definition 1.1",
+      "verbatim": "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
+      "authorCaveat": null,
+      "includedExamples": [
+        "a molecule, a coral reef, a family, a factory"
+      ],
+      "excludedExamples": [
+        "a collection of events, even if ordered",
+        "a set of states of a thing"
+      ],
+      "primitives": [
+        "https://halcyonic.systems/atlas/primitive/action",
+        "https://halcyonic.systems/atlas/primitive/bond",
+        "https://halcyonic.systems/atlas/primitive/part",
+        "https://halcyonic.systems/atlas/primitive/thing"
+      ],
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedBy": "Shingai Thornton (Claude-assisted)",
+      "encodedOn": "2026-08-01",
+      "formalisedAs": null,
+      "annotation": [
+        {
+          "kind": "flag",
+          "title": "THE SEPARATING INSTANCE, IN BUNGE'S OWN WORDS",
+          "body": "His excluded example is\n\"a collection of events, EVEN IF ORDERED\". Klir, on the passage recorded in entry\n001, holds that ordering a collection is exactly what makes it a system: \"any\nordering of a set is a relation defined on the set\". Two founders, both verbatim,\ndisagreeing about whether an ordered collection is a system. This is the highest-\nvalue datum in the catalogue so far and it was found by reading, not by inference."
+        },
+        {
+          "kind": "section",
+          "title": "MACHINERY BEHIND THE REFUSAL",
+          "body": "(Definition 1.2, encoded here as primitives rather\nthan as its own entry, because it defines composition/environment/structure and\nnot \"system\"):\n  𝒞_A(σ,t) = {x ∈ A | x ⊏ σ}\n  ℰ_A(σ,t) = {x ∈ A | x ∉ 𝒞_A(σ,t) & ∃y (y ∈ 𝒞_A(σ,t) & (x ▷ y ∨ y ▷ x))}\n  𝒮_A(σ,t) = relations, in particular bonds, on 𝒞_A(σ,t) ∪ ℰ_A(σ,t), with the\n             bonding set 𝔅_A(σ,t) ≠ ∅\nThe nonempty-bonding requirement is what does the refusing, and it is encoded in\nsystems-science-foundations as ConcreteSystem.bondage_nonempty over the ActsOn\nclass (Bunge's ▷). The two encodings agree; that agreement should be recorded as\na mapping claim once the mapping layer exists, not asserted here."
+        },
+        {
+          "kind": "section",
+          "title": "RELATION TO ENTRY 002",
+          "body": "Bunge presents 002 first and then disowns it as \"not a\ndefinition proper\". 003 is the definition proper. They are not alternative\nphrasings of one claim and must not be merged."
+        }
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
+      "id": "bunge-1979-ces-triple",
+      "label": "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩",
+      "statedIn": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "sourceLocation": "ch. 1, §1.1 (the general concept of a system)",
+      "verbatim": "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.",
+      "authorCaveat": "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.",
+      "includedExamples": [
+        "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢ (Bunge's own worked conceptual-system example)"
+      ],
+      "excludedExamples": [],
+      "primitives": [
+        "https://halcyonic.systems/atlas/primitive/composition",
+        "https://halcyonic.systems/atlas/primitive/environment",
+        "https://halcyonic.systems/atlas/primitive/relation",
+        "https://halcyonic.systems/atlas/primitive/set",
+        "https://halcyonic.systems/atlas/primitive/structure",
+        "https://halcyonic.systems/atlas/primitive/thing"
+      ],
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedBy": "Shingai Thornton (Claude-assisted)",
+      "encodedOn": "2026-08-01",
+      "formalisedAs": "Systems/Category/ShapeBunge.lean#BungeShape",
+      "annotation": [
+        {
+          "kind": "flag",
+          "title": null,
+          "body": "\"is (or represents)\". Bunge's own parenthetical hedges between the triple\nBEING a system and REPRESENTING one, and he resolves it later in the same chapter\nby calling the triple \"the minimal model of system σ at time t\". This is direct\nprimary-text evidence on the is-versus-represents question — the distinction the\nLean encodings do not type. Klir's (T,R) IS the system; Bunge's ⟨C,E,S⟩ is a model\nOF a thing. Same shape, different ontological status."
+        },
+        {
+          "kind": "flag",
+          "title": null,
+          "body": "NOT the same triple as the informal gloss. The fuller form Bunge actually works\nwith is relativised to a class A of things and indexed by time: s_A(σ,t) =\n⟨𝒞_A(σ,t), ℰ_A(σ,t), 𝒮_A(σ,t)⟩. Anyone citing \"Bunge's CES triple\" as a bare\n3-tuple is citing the informal version."
+        },
+        {
+          "kind": "flag",
+          "title": "CES, NOT CESM",
+          "body": "Mechanism is not a coordinate here. The string \"CESM\" does not\noccur in the 1979 text; mechanism becomes central in later Bunge (see How Does It\nWork, 2004). Any citation pairing \"1979\" with \"CESM\" is an anachronism."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "cco:ont00001808 (is about). Bunge is a realist and\nwould endorse the reading; asserting it anyway would still break the catalogue's\nneutrality, which must not depend on which tradition an entry belongs to."
+        }
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1",
+      "id": "klir-2001-eq-1-1",
+      "label": "Klir (2001), Facets of Systems Science, eq. (1.1)",
+      "statedIn": "https://halcyonic.systems/atlas/bearer/klir-2001-facets",
+      "sourceLocation": "ch. 1, eq. (1.1), p. 5",
+      "verbatim": "S = (T, R),   (1.1)\n\nwhere S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.",
+      "authorCaveat": null,
+      "includedExamples": [],
+      "excludedExamples": [],
+      "primitives": [
+        "https://halcyonic.systems/atlas/primitive/relation",
+        "https://halcyonic.systems/atlas/primitive/set",
+        "https://halcyonic.systems/atlas/primitive/systemhood",
+        "https://halcyonic.systems/atlas/primitive/thing",
+        "https://halcyonic.systems/atlas/primitive/thinghood"
+      ],
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedBy": "Shingai Thornton (Claude-assisted)",
+      "encodedOn": "2026-08-01",
+      "formalisedAs": "Systems/Category/ShapeKlir.lean#KlirShape",
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "VERIFIED",
+          "body": "verbatim transcribed from the primary text, not paraphrased."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "cco:ont00001808 (is about). Klir is an avowed\nconstructivist — on his account the relation R is defined by the modeller, not\ndiscovered. Asserting what this definition is *about* would commit the catalogue\nto a realist reading Klir does not hold. The neutrality is the point."
+        },
+        {
+          "kind": "section",
+          "title": "CENSUS NOTE",
+          "body": "Klir's own gloss splits the definition's two slots into named\nproperties — thinghood in T, systemhood in R. Recorded as separate primitives\nrather than folded into `thing` and `relation`, because whether they are distinct\nprimitives is a question the census should answer, not one the encoding should\nprejudge."
+        },
+        {
+          "kind": "section",
+          "title": "ADJACENT MATERIAL, NOT YET ENTERED",
+          "body": "Klir's self-assessment on the same page (the\ndefinition is \"too general and, consequently, of little pragmatic value\" but\n\"encompasses all other, more specific definitions of systems\") is a claim ABOUT\nthis definition's relation to others. It belongs in the mapping layer, not in\nthis entry."
+        },
+        {
+          "kind": "section",
+          "title": "NEXT TIER",
+          "body": "the dependency quiver (tier 1) for this definition already exists in\nLean as ShapeKlir in systems-science-foundations. The two encodings must be\nchecked against each other before either is cited."
+        }
+      ]
+    }
+  ],
+  "bearers": [
+    {
+      "iri": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "label": "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)",
+      "creator": "Mario Bunge",
+      "date": "1979",
+      "identifiers": [
+        "doi:10.1007/978-94-009-9392-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/bearer/klir-2001-facets",
+      "label": "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)",
+      "creator": "George J. Klir",
+      "date": "2001",
+      "identifiers": [
+        "ISBN 978-1-4613-5501-4",
+        "doi:10.1007/978-1-4615-1331-5"
+      ]
+    }
+  ],
+  "primitives": [
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/thing",
+      "label": "thing",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
+        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1",
+        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/relation",
+      "label": "relation",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
+        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/set",
+      "label": "set",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
+        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/action",
+      "label": "action",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/bond",
+      "label": "bond",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/composition",
+      "label": "composition",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/environment",
+      "label": "environment",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/part",
+      "label": "part",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/structure",
+      "label": "structure",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/systemhood",
+      "label": "systemhood",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/thinghood",
+      "label": "thinghood",
+      "role": null,
+      "usedBy": [
+        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/primitive/time",
+      "label": "time",
+      "role": null,
+      "usedBy": []
+    }
+  ],
+  "evidenceCodes": [
+    {
+      "iri": "https://halcyonic.systems/atlas/HVP",
+      "id": "HVP",
+      "label": "human-verified against primary text",
+      "definition": "A human read the primary source and confirmed the verbatim text and the encoding against it."
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/MDHC",
+      "id": "MDHC",
+      "label": "model-drafted, human-checked",
+      "definition": "A model produced the encoding; a human checked it against the verbatim text."
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/MDU",
+      "id": "MDU",
+      "label": "model-drafted, unchecked",
+      "definition": "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."
+    },
+    {
+      "iri": "https://halcyonic.systems/atlas/PROP",
+      "id": "PROP",
+      "label": "propagated from another entry",
+      "definition": "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."
+    }
+  ],
+  "conflicts": [],
+  "primitiveSchemeScopeNote": "LEXICAL, NOT SEMANTIC. A primitive here records that an author uses a WORD as\na primitive. Two entries linked to prim:thing are not thereby claimed to mean the same\nthing by it — Klir's \"thing\" is unrestricted, Bunge's ranges over concrete entities in\nTheta, and whether those are one primitive or two is a census question this vocabulary\nmust not prejudge.\n\nThe consequence: recurrence counts computed over this scheme are a FIRST-PASS LEXICAL\nmeasure. Semantic co-reference is a mapping-layer claim and owes evidence like any\nother. Minting a separate primitive per author would make recurrence trivially zero;\nmerging them by hand would make it trivially high. Lexical recurrence is the honest\nstarting point, and its limits are stated here rather than discovered later.",
+  "profile": {
+    "counts": {
+      "subClassOf": 1,
+      "domain": 2,
+      "range": 2,
+      "classes": 2
+    },
+    "verdict": "A taxonomy. Nothing is entailed beyond transitive closure of the asserted tree."
+  }
+}

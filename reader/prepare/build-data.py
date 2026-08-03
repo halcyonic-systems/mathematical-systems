@@ -518,6 +518,15 @@ def main():
     }
     (args.out / "atlas.json").write_text(json.dumps(catalogue, indent=2, ensure_ascii=False))
 
+    # Serve the catalogue as RDF too. An ontology IRI is expected to hand Turtle
+    # to a machine and HTML to a person; without this the content-negotiated
+    # branch of the w3id redirect would point at nothing.
+    for name in ("definition-atlas.ttl", "definition-atlas.owl"):
+        src = atlas_root / "dist" / name
+        if src.is_file():
+            (args.out / name.replace("definition-atlas", "atlas")).write_bytes(src.read_bytes())
+            print(f"served       {name}")
+
     print(f"atlas.json  {len(entries)} entries, {len(catalogue['bearers'])} bearers, "
           f"{len(catalogue['primitives'])} primitives, {len(catalogue['conflicts'])} conflicts")
 
