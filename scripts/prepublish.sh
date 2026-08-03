@@ -46,15 +46,20 @@ big=$(git ls-files -z | xargs -0 -I{} sh -c 'test -f "{}" && wc -c <"{}" | tr -d
 # Places a source title legitimately appears: the entries themselves, the merged
 # artifact generated from them, the mappings (where quotation IS the method), and
 # the notices. Anywhere else, a passage may have been pasted in without provenance.
-grep -rlI 'Facets of Systems Science' --include='*.md' --include='*.ttl' . 2>/dev/null \
-  | grep -vE 'entries/|atlas/dist/|mappings/|THIRD_PARTY|README|CITATION|CONTRIBUTING|node_modules' \
+# Only TRACKED files matter: build output and node_modules are never published
+# from the repository, and scanning them just produces noise that trains you to
+# ignore the check.
+git ls-files -- '*.md' '*.ttl' '*.json' | xargs grep -lI 'Facets of Systems Science' 2>/dev/null \
+  | grep -vE 'entries/|atlas/dist/|reader/public/data/|mappings/|THIRD_PARTY|README|CITATION|CONTRIBUTING' \
   | head -1 | grep -q . \
   && soft "a source title appears outside entries/, dist/, mappings/ and notices — check it carries provenance" \
   || ok "source passages confined to entries, the artifact built from them, and the mapping layer"
 
 echo
 echo "Tracked-file hygiene"
-for pat in node_modules 'public/data' __pycache__ '\.venv' '\.env' '\.DS_Store'; do
+# public/data IS tracked, deliberately — see .github/workflows/README.md. Its
+# safety is checked above by the publishable flag, not by absence.
+for pat in node_modules __pycache__ '\.venv' '\.env' '\.DS_Store'; do
   if git ls-files | grep -qE "$pat"; then bad "tracked: $pat"; else ok "not tracked: $pat"; fi
 done
 
