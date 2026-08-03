@@ -120,6 +120,85 @@ body {
   color: var(--text-primary);
 }
 
+/* ---------------------------------------------------------------------------
+   WARRANT — how well established a claim is, rendered as weight and typeface.
+
+   Not colour: --evidence-*, --proof-* and --transcript-* are reserved
+   contractual channels and a fourth would collide with them. Warrant varies by
+   size, ink and family only, which also makes the serif/sans doctrine automatic
+   -- `source` is the one warrant that gets the display face, so "the author said
+   this" and "we say this" can never be set alike by accident.
+
+   The scale is derived from data (evidence codes, derived-vs-authored, absent
+   pointers), never assigned by eye. See docs/design/visual-language.md.
+   --------------------------------------------------------------------------- */
+.w-source {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  max-width: var(--measure-verbatim);
+}
+.w-derived {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+  max-width: 46rem;
+}
+.w-decided {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 44rem;
+}
+.w-open {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 44rem;
+}
+
+/* Section header strips. `source` carries the most surface; `open` the least. */
+.strip-source  { background: var(--accent-soft); border-bottom: 1px solid var(--border); }
+.strip-derived { background: var(--accent-soft); border-bottom: 1px solid var(--border); }
+.strip-decided { background: var(--bg-surface);  border-bottom: 1px solid var(--hairline); }
+.strip-open    { background: transparent;        border-bottom: 1px dashed var(--border); }
+
+/* Density is ambient: the same primitives serve a document and an instrument. */
+[data-density="dense"] .w-source { font-size: 1.05rem; max-width: none; }
+[data-density="dense"] .pad-block { padding: 0.5rem 0.75rem; }
+[data-density="generous"] .pad-block { padding: 1rem 1.25rem; }
+
+/* Structure has to be visible from arm's length on a 3,000px page. */
+.rule-top { border-top: 1px solid var(--border); }
+
+/* Prose holds a measure; instruments are allowed the full width. Left-flushed
+   content on a wide screen reads as an accident rather than a choice. */
+.measure { max-width: 72rem; margin-inline: auto; }
+.measure-wide { max-width: 96rem; margin-inline: auto; }
+
+/* The rail is sticky under the tab bar and scrolls on its own; an entry runs to
+   nearly three thousand pixels and navigation that scrolls away is navigation
+   you do not have. */
+.rail { position: sticky; top: 3rem; max-height: calc(100vh - 3rem); overflow-y: auto; }
+
+.section-title {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Keyboard users get the same affordances as everyone else. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 /* KaTeX inherits the surrounding colour rather than KaTeX's own default ink. */
 .katex {
   color: inherit;

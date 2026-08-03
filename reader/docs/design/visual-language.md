@@ -16,6 +16,46 @@ rule. Discrete rows with a tinted gutter and a numeral. Colour with surface area
 the filled masthead band. Authored case survives: `font-variant-caps: small-caps` for names,
 `text-transform: uppercase` only for fixed UI copy.
 
+## The warrant scale
+
+Every piece of content carries one of four warrants, and the warrant decides its weight.
+The scale is **derived from data** — evidence codes, derived-vs-authored, absent pointers —
+never assigned by eye, so "how prominent should this be" is a fact about the content rather
+than a taste question that gets re-argued.
+
+| warrant | means | rendered |
+|---|---|---|
+| `source` | the author wrote this | display serif · largest · darkest · most space |
+| `derived` | computed, and it can show its work | sans · full ink · carries a disclosure |
+| `decided` | an encoder chose this, and said why | sans · secondary ink · narrower measure |
+| `open` | not done, and we say so | terse in place, collected into one block |
+
+**Warrant never uses colour.** The three colour channels are contractual and a fourth would
+collide with them. It varies by size, ink and family only — which makes the serif/sans
+doctrine automatic, since `source` is the one warrant that gets the display face.
+
+Two assignments are deliberately uncomfortable and say something true. **"What it posits" is
+`decided`, not `source`**: the primitives were chosen by an encoder reading the passage, and
+the primitive scheme's own scope note says a primitive records that an author uses a *word*.
+**"As formalised" splits** — the quiver is `derived`, the pointer to it is `decided`.
+
+`derived` outranks `decided` only because derivations are held to being legible. `Derivation`
+requires a plain-language claim before any mechanism; a raw axiom count outranking human
+judgement while being harder to read than one would be indefensible.
+
+## The component vocabulary
+
+`src/components/` holds eight primitives, each named for *when* to use it rather than what it
+looks like. A part called `Card` or `Panel` describes an appearance, and a vocabulary of
+appearances is how a single `Block` came to be the only shape a page could take — 51 inline
+style objects in one view file, and no way to change a section's weight centrally.
+
+`Section` · `Passage` · `Field` · `Matrix` · `Note` · `Badge` · `Derivation` · `Absence`
+
+**Density is ambient, warrant is per-element.** Entries are documents and comparisons are
+instruments; the same eight primitives serve both, with density set once by whoever wraps a
+view rather than as a prop on every part.
+
 ## What legend adds
 
 1. **Indigo, not teal.** bert-lenses holds teal; the per-tradition hues (klir, bunge, mobus)
@@ -56,7 +96,9 @@ the filled masthead band. Authored case survives: `font-variant-caps: small-caps
 
 ## The gate
 
-`npm run check:tokens` fails the build on: a reserved-channel hex drifting between
+`npm run check:tokens` fails the build on: **any inline style outside `src/components/`** —
+views compose primitives and carry no layout, exactly as `tokens.ts` is the only home for raw
+colour; a reserved-channel hex drifting between
 `index.css` and `tokens.ts`; any raw colour literal outside `tokens.ts`; radius above 8px;
 any `boxShadow` outside the two `--shadow-card` tokens; any Tailwind `shadow-*` utility; any
 gradient; and `uppercase` applied outside an eyebrow or label.

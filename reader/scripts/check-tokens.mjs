@@ -67,6 +67,12 @@ for (const [key, cssVar] of Object.entries(RESERVED)) {
 
 const TOKEN_HOMES = new Set(["tokens.ts"]);
 
+// Raw layout belongs in the component vocabulary, exactly as raw colour belongs
+// in tokens.ts. When views hand-rolled their own layout there were 51 inline
+// style objects in one file, so changing how a section looked meant editing
+// every call site and the design could not be governed centrally.
+const LAYOUT_HOMES = /^components\//;
+
 function srcFiles(dir = SRC) {
   const out = [];
   for (const name of readdirSync(dir)) {
@@ -93,6 +99,15 @@ for (const file of srcFiles()) {
   }
   for (const m of src.matchAll(/\b(rgba?|hsla?)\(/g)) {
     problems.push(`${rel}:${lineOf(src, m.index)} raw ${m[1]}() — use var(--x) or a tokens.ts export`);
+  }
+
+  // (0) Views compose primitives; they carry no layout.
+  if (!LAYOUT_HOMES.test(rel.replace(/\\/g, "/"))) {
+    for (const m of src.matchAll(/style=\{\{/g)) {
+      problems.push(
+        `${rel}:${lineOf(src, m.index)} inline style outside src/components/ — compose a primitive instead`,
+      );
+    }
   }
 
   // Corner radius: large radii read as web cards, not instrument.
