@@ -26,6 +26,10 @@ Until 2026-08-02 the disciplines in this README were prose: a malformed entry co
 
 Verified by a separating instance: a deliberately malformed entry produces **six violations** and fails the build.
 
+## Before you add entries
+
+**`docs/open-decisions.md` lists six unsettled decisions, ordered by cost of deferral.** D1 (the primitive scheme) is unresolved and every entry added accrues debt against it, so read that first. D3 names the next entry to encode and why.
+
 ## Layout
 
 | Path | |
@@ -35,6 +39,7 @@ Verified by a separating instance: a deliberately malformed entry produces **six
 | `mappings/` | relations *between* entries — the point of the catalogue |
 | `shapes/atlas-shapes.ttl` | **the refusal conditions** — SHACL; the build fails if an entry violates them |
 | `docs/adding-an-entry.md` | how to add one, and what must never go in an entry |
+| `docs/open-decisions.md` | **what is unsettled, in cost-of-deferral order** — read before bulk entry |
 | `imports/cco-bfo-reference.ttl` | generated: **minimal** extract — the 9 external terms we use, nothing else |
 | `imports/full/` | generated: complete vendored BFO 2020 + CCO closure (337 classes), reference only |
 | `catalog-v001.xml` | generated: Protégé import resolution |
@@ -99,9 +104,11 @@ Extraction can be delegated to a model. **Verification cannot.** N is set by the
 
 ## Known gaps
 
+*Technical gaps only. Unresolved **design decisions** live in `docs/open-decisions.md`.*
+
 - **Tier 1 not modelled.** The dependency quiver for Klir already exists in Lean as `ShapeKlir` (`systems-science-foundations`). The two encodings must be reconciled before either is cited.
 - **`atlas:statedIn` is standalone**, not yet aligned to the inverse of `obo:BFO_0000101` (`carrier of`). Declared honestly rather than aligned wrongly.
-- **No Bunge, Mobus, Myers, Troncale entries yet.** Per-tradition RDFs for Bunge, Mobus and Troncale already exist, abandoned, in `archive/apps/onto-viz/ontologies/` — they import nothing and need recovery + audit, not rewriting. Klir was the gap, which is why Klir is entry 001.
+- **No Mobus, Myers, Troncale entries yet.** Per-tradition RDFs for Bunge, Mobus and Troncale already exist, abandoned, in `archive/apps/onto-viz/ontologies/` — they import nothing and need recovery + audit, not rewriting. **Myers is the one to encode next**, and not for coverage: see `docs/open-decisions.md` D3.
 - **Mapping layer is prose, not RDF.** `mappings/` holds evidence documents; the TTL vocabulary waits until three or four mappings show what it needs to say.
 - **M001's key instantiation is not written in Lean.** Both halves are in `systems-science-foundations` and the hypothesis discharges by inspection, but the one-line theorem does not yet compile. Until it does, M001 is human-checked, not machine-checked.
 - **No reasoner run.** `build.py` validates syntax and that the import chain resolves. Nobody has run HermiT/ELK over the merged graph to check consistency. Do that before trusting any inference.
