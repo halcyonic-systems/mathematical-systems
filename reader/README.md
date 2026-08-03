@@ -1,6 +1,6 @@
-# legend
+# Reader
 
-An instrument for **reading** ontologies. Not for writing them.
+The instrument for **reading** the Atlas. Not for writing it.
 
 > Protégé shows you what an ontology says. This shows you what it means.
 
@@ -10,7 +10,7 @@ definitions of "system" (Klir, Bunge, …), aligned to BFO/CCO.
 ```bash
 npm install
 npm run data     # extract the atlas + precompute reasoning (needs uv)
-npm run dev      # http://localhost:5190
+npm run dev      # http://localhost:5192
 ```
 
 ## Why this exists
@@ -34,7 +34,7 @@ Two axioms, in two files, one of them a *property* axiom. Not findable by readin
 Static site. No backend, no reasoner in the page.
 
 ```
-definition-atlas/          SSOT — read-only. Nothing here ever writes to it.
+../atlas/                  SSOT — read-only. Nothing here ever writes to it.
       │
       ▼
 prepare/build-data.py      merge → two variants → rustdl → JSON

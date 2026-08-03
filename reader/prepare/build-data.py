@@ -411,14 +411,17 @@ def main():
     ap.add_argument(
         "--atlas",
         type=pathlib.Path,
-        default=pathlib.Path.home() / "Desktop/halcyonic-projects/active/definition-atlas",
+        # Repo-relative: the dataset is a sibling directory, not a machine path.
+        # This is what consolidating the two repos bought.
+        default=pathlib.Path(__file__).parent.parent.parent / "atlas",
     )
     ap.add_argument("--out", type=pathlib.Path, default=pathlib.Path(__file__).parent.parent / "public" / "data")
     ap.add_argument(
         "--vault",
         type=pathlib.Path,
         default=pathlib.Path.home() / "Desktop/halcyonic/operations/systems-science",
-        help="where the primary texts live",
+        help="where the primary texts live. Genuinely external and deliberately so: "
+        "these are full copyrighted books and must never be vendored into this repo.",
     )
     ap.add_argument("--skip-reasoning", action="store_true")
     ap.add_argument(
@@ -439,6 +442,8 @@ def main():
     entries = extract_entries(g)
 
     vault = args.vault.expanduser().resolve()
+    if not vault.is_dir():
+        print(f"no primary texts at {vault} — transcription unverified (pass --vault)")
     transcription = check_transcriptions(entries, vault)
     if args.public:
         # The verdict survives; the quoted passage does not. A public build can

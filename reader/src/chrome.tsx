@@ -8,7 +8,17 @@ import type { ReactNode } from "react";
 import { evidence, proofColor, proofLabel, transcriptColor, transcriptLabel, type ProofStatus } from "./tokens";
 import type { Transcription } from "./types";
 
-export function Masthead({ eyebrow, title, count }: { eyebrow: string; title: string; count?: string }) {
+export function Masthead({
+  eyebrow,
+  title,
+  subtitle,
+  count,
+}: {
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+  count?: string;
+}) {
   return (
     <header
       style={{ background: "var(--accent-strong)", color: "var(--text-on-accent)" }}
@@ -21,6 +31,14 @@ export function Masthead({ eyebrow, title, count }: { eyebrow: string; title: st
         <h1 style={{ fontFamily: "var(--font-display)" }} className="text-4xl font-medium mt-1">
           {title}
         </h1>
+        {subtitle && (
+          <p
+            style={{ fontFamily: "var(--font-display)", color: "var(--accent-soft)" }}
+            className="m-0 mt-1 text-lg italic"
+          >
+            {subtitle}
+          </p>
+        )}
       </div>
       {count && (
         <div style={{ fontFamily: "var(--font-display)" }} className="text-3xl tabular-nums opacity-80">

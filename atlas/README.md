@@ -1,4 +1,6 @@
-# Definition Atlas
+# Atlas
+
+**Formal definitions of "system," and the maps between them.**
 
 An auditable catalogue of formal mathematical definitions of **"system"** — each transcribed verbatim from its primary source, stamped with how it was verified, and placed so that relations between definitions can be stated and checked.
 

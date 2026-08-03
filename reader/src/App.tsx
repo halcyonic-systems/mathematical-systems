@@ -31,8 +31,9 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Masthead
-        eyebrow="Definition Atlas · a catalogue of formal definitions of “system”"
-        title="Legend"
+        eyebrow="Mathematical Systems"
+        title="Atlas"
+        subtitle="Formal definitions of “system,” and the maps between them"
         count={`${atlas.entries.length} entries`}
       />
 
