@@ -3,7 +3,12 @@ import tailwindcss from "@tailwindcss/vite";
 import { copyFileSync } from "node:fs";
 import { defineConfig } from "vite";
 
+// Served from the repository root on a custom domain, and from /<repo>/ on a
+// GitHub project page. Everything that builds a URL reads import.meta.env.BASE_URL
+// rather than assuming "/", so the same build works under either and moving
+// between them is a config change, not a rewrite.
 export default defineConfig({
+  base: process.env.BASE_PATH ?? "/",
   plugins: [
     react(),
     tailwindcss(),

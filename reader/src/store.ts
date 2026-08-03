@@ -1,4 +1,7 @@
 import { create } from "zustand";
+
+/** Always ends in "/". "/" on a custom domain, "/mathematical-systems/" on a project page. */
+const BASE = import.meta.env.BASE_URL;
 import type { Atlas, Reasoning } from "./types";
 
 export type View = "read" | "compare" | "census" | "ledger" | "commitments";
@@ -35,7 +38,10 @@ export const useStore = create<State>((set, get) => ({
 
   /** `/entry/klir-2001-eq-1-1` -> that entry's IRI, if it exists. */
   _fromPath: (entries: { iri: string; id: string }[]) => {
-    const m = /^\/entry\/(.+?)\/?$/.exec(window.location.pathname);
+    const path = window.location.pathname.startsWith(BASE)
+      ? window.location.pathname.slice(BASE.length - 1)
+      : window.location.pathname;
+    const m = /^\/entry\/(.+?)\/?$/.exec(path);
     return m ? (entries.find((e) => e.id === decodeURIComponent(m[1]))?.iri ?? null) : null;
   },
 
@@ -45,8 +51,8 @@ export const useStore = create<State>((set, get) => ({
         // Absolute, not relative: from /entry/<id> a relative path resolves to
         // /entry/data/... which the SPA fallback answers with index.html, and
         // the JSON parse then fails on a doctype.
-        fetch("/data/atlas.json").then((x) => x.json()),
-        fetch("/data/reasoning.json").then((x) => x.json()),
+        fetch(`${BASE}data/atlas.json`).then((x) => x.json()),
+        fetch(`${BASE}data/reasoning.json`).then((x) => x.json()),
       ]);
       const iris = a.entries.map((e: { iri: string }) => e.iri);
       const deep = get()._fromPath(a.entries);
@@ -61,7 +67,7 @@ export const useStore = create<State>((set, get) => ({
     // Entries get their own URL so a citation can point at one. This is what an
     // IRI resolves THROUGH: w3id → math.systems/entry/<id> → this entry.
     const id = iri.split("/").pop() ?? "";
-    window.history.pushState({}, "", `/entry/${encodeURIComponent(id)}`);
+    window.history.pushState({}, "", `${BASE}entry/${encodeURIComponent(id)}`);
     set({ reading: iri, view: "read" });
   },
   syncFromPath: () => {

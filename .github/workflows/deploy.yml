@@ -44,8 +44,13 @@ jobs:
         working-directory: reader
       - run: npx tsc --noEmit
         working-directory: reader
+      # A GitHub project page serves from /<repo>/. When math.systems is wired up
+      # as the custom domain the site moves to the root — delete this env block
+      # then, and nothing else changes.
       - run: npm run build
         working-directory: reader
+        env:
+          BASE_PATH: /mathematical-systems/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
