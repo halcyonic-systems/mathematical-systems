@@ -58,6 +58,11 @@ Two defects, both flagged by both councils.
 
 **Cost of deferral:** retrofitting at 50 entries means re-auditing all 50.
 
+**It is already binding.** `proposals/P1-klir-examples.md` holds four triples, drafted from
+the primary text and deliberately not applied, because entry 001 carries a single entry-level
+`HVP` that would silently extend to cover them. The Scope defect stopped a real addition at
+three entries, not fifty.
+
 ---
 
 ## D5 — IRI and deprecation policy

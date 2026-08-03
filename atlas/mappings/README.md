@@ -32,6 +32,7 @@ step where a reader has to reconstruct your path and may not.
 | Mapping | Verdict |
 |---|---|
 | [`klir-encompassing.md`](klir-encompassing.md) | Klir's claim that (T,R) "encompasses all other, more specific definitions" — **true and vacuous on his own reading; false on the reading that would make it informative** |
+| [`ordered-collection.md`](ordered-collection.md) | Klir and Bunge on a collection ordered by a non-bonding relation — **they disagree, and about bonding rather than about ordering.** ⚠ DRAFT: one witness is not yet in the catalogue (see `../docs/proposals/P1-klir-examples.md`) |
 
 ## Not yet encoded in RDF
 
