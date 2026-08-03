@@ -1,0 +1,14 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Copyright (c) 2026 Shingai Thornton / Halcyonic Systems
+
+Applies to the ontology and entry files authored in this repository
+(ontology/, entries/, docs/, build.py).
+
+NOT covered by this licence:
+  - imports/  — vendored third-party ontologies, redistributed under their own
+    terms: BFO 2020 (CC BY 4.0, BFO-ontology project) and the Common Core
+    Ontologies (BSD-3-Clause, CommonCoreOntology project). See each file header.
+  - Verbatim quotations from primary sources in entries/, which are quoted under
+    fair use for scholarship and attributed in place.

@@ -1,0 +1,477 @@
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dcterms:created a owl:AnnotationProperty .
+
+dcterms:creator a owl:AnnotationProperty .
+
+dcterms:rights a owl:AnnotationProperty .
+
+skos:editorialNote a owl:AnnotationProperty .
+
+cco:ExtendedRelationOntology a owl:Ontology ;
+    rdfs:label "Extended Relation Ontology"@en ;
+    dcterms:license "BSD 3-Clause: https://github.com/CommonCoreOntology/CommonCoreOntologies/blob/master/LICENSE"@en ;
+    dcterms:rights "CUBRC Inc., see full license."@en ;
+    rdfs:comment "This ontology is designed to represent many of the relations (i.e. object properties) that hold between entities at the level of the mid-level Common Core Ontologies."@en ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo/2020/bfo-core.ttl> ;
+    owl:versionIRI <https://www.commoncoreontologies.org/2026-04-04/ExtendedRelationOntology> ;
+    owl:versionInfo "Version 2.1"@en .
+
+cco:ont00001735 a owl:AnnotationProperty ;
+    rdfs:label "query text"@en ;
+    skos:definition "The text of a query that is associated with a class"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001737 a owl:AnnotationProperty ;
+    rdfs:label "doctrinal definition"@en ;
+    rdfs:subPropertyOf skos:definition ;
+    skos:definition "A Definition that is taken directly from a Doctrinal Source."@en ;
+    skos:scopeNote "There is only one definition for any given term in an ontology; however, a Doctrinal Definition may be provided in addition to the asserted Definition if the preservation of this information is important. When both a Definition and a Doctrinal Definition are provided for a term, the Definition takes precedence."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001739 a owl:AnnotationProperty ;
+    rdfs:label "ordinal measurement annotation"@en ;
+    rdfs:subPropertyOf cco:ont00001746 ;
+    skos:definition "An ordinal measurement value of an instance of a quality, realizable or process profile"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001741 a owl:AnnotationProperty ;
+    rdfs:label "nominal measurement annotation"@en ;
+    rdfs:subPropertyOf cco:ont00001746 ;
+    skos:definition "A nominal measurement value of an instance of a quality, realizable or process profile"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001742 a owl:AnnotationProperty ;
+    rdfs:label "term creator"@en ;
+    rdfs:subPropertyOf cco:ont00001762 ;
+    skos:definition "The name of the Term Editor who added the term to the ontology."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001743 a owl:AnnotationProperty ;
+    rdfs:label "content license"@en ;
+    skos:definition "The name and description of the license under which the ideas, concepts and other informational content expressed in the .owl file are released."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001744 a owl:AnnotationProperty ;
+    rdfs:label "copyright"@en ;
+    skos:definition "An assertion of copyright"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001745 a owl:AnnotationProperty ;
+    rdfs:label "doctrinal source"@en ;
+    rdfs:subPropertyOf cco:ont00001754 ;
+    skos:definition "A Definition Source that consists of a formalized doctrine in which the term is authoritatively defined."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001747 a owl:AnnotationProperty ;
+    rdfs:label "ratio measurement annotation"@en ;
+    rdfs:subPropertyOf cco:ont00001746 ;
+    skos:definition "A ratio measurement value of an instance of a quality, realizable or process profile"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001748 a owl:AnnotationProperty ;
+    rdfs:label "doctrinal label"@en ;
+    rdfs:subPropertyOf skos:altLabel ;
+    skos:definition "An Alternative Label that consists of the preferred term or phrase used by a Doctrinal Source to denote the entity."@en ;
+    skos:scopeNote "When the cco:doctrinal_label is identical to the rdfs:label, the cco:doctrinal_label annotation is superfluous. As a subclass of 'alternative label', 'doctrinal label' is intended to be used to provide additional information about the entity when its preferred doctrinal designator is ambiguous or otherwise inappropriate for use as the rdfs:label."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001749 a owl:AnnotationProperty ;
+    rdfs:label "doctrinal acronym"@en ;
+    rdfs:subPropertyOf cco:ont00001753 ;
+    skos:definition "An Acronym that is used by a Doctrinal Source to denote the entity."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001752 a owl:AnnotationProperty ;
+    rdfs:label "has token unit"@en ;
+    skos:definition "A relation between an information content entity and a widely used measurement unit of the token used to express it."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001756 a owl:AnnotationProperty ;
+    rdfs:label "interval measurement annotation"@en ;
+    rdfs:subPropertyOf cco:ont00001746 ;
+    skos:definition "A interval measurement value of an instance of a quality, realizable or process profile "@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001757 a owl:AnnotationProperty ;
+    rdfs:label "designator annotation"@en ;
+    skos:definition "A name or other identifier that is used to designate an individual."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001758 a owl:AnnotationProperty ;
+    rdfs:label "http query string"@en ;
+    skos:definition "The text of an HTTP request that can be sent to a SPARQL Protocol service."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001759 a owl:AnnotationProperty ;
+    rdfs:label "code license"@en ;
+    skos:definition "The name and description of the license under which the .owl file is released."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001760 a owl:AnnotationProperty ;
+    rdfs:label "is curated in ontology"@en ;
+    skos:definition "An annotation property that links a class, property, or named individual to the URI of the ontology where it is located."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001761 a owl:AnnotationProperty ;
+    rdfs:label "is tokenized by"@en ;
+    skos:definition "A relation between an information content entity and a widely used token used to express it."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001775 a owl:ObjectProperty ;
+    rdfs:label "is successor of"@en ;
+    rdfs:domain obo:BFO_0000004 ;
+    rdfs:range obo:BFO_0000004 ;
+    owl:inverseOf cco:ont00001928 ;
+    skos:definition "x is successor of y =Def y is predecessor of x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001777 a owl:ObjectProperty ;
+    rdfs:label "has process part"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf obo:BFO_0000117 ;
+    owl:inverseOf cco:ont00001857 ;
+    skos:definition "x has process part y =Def y is part of process x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001778 a owl:ObjectProperty ;
+    rdfs:label "has object"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:subPropertyOf obo:BFO_0000057 ;
+    owl:inverseOf cco:ont00001936 ;
+    skos:definition "x has object y =Def y is object of x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001782 a owl:ObjectProperty ;
+    rdfs:label "has all members located in"@en ;
+    rdfs:domain obo:BFO_0000027 ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                        owl:complementOf obo:BFO_0000006 ] ) ] ;
+    rdfs:subPropertyOf cco:ont00001832 ;
+    skos:definition "x has all members located in y iff x is an instance of Object Aggregate and y is an instance of independent continuant but not a spatial region, and every member of x is located in y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001799 a owl:ObjectProperty ;
+    rdfs:label "role of aggregate"@en ;
+    rdfs:domain obo:BFO_0000023 ;
+    rdfs:range obo:BFO_0000027 ;
+    rdfs:subPropertyOf cco:ont00001809 ;
+    skos:definition "x role_of_aggregate y iff y is an instance of Object Aggregate and x is an instance of Role, and x inheres_in_aggregate y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001805 a owl:ObjectProperty ;
+    rdfs:label "is disrupted by"@en ;
+    dcterms:created "2022-12-30T21:32:27-05:00"^^xsd:dateTime ;
+    dcterms:creator "https://cubrc.org"^^xsd:anyURI ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    owl:inverseOf cco:ont00001888 ;
+    skos:definition "x is disrupted by y =Def y disrupts x" ;
+    skos:prefLabel "is disrupted by"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001816 a owl:ObjectProperty ;
+    rdfs:label "is output of"@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf obo:BFO_0000056 ;
+    owl:inverseOf cco:ont00001986 ;
+    skos:definition "x is output of y =Def x participates in y, x is an Independent Continuant (but not a Spatial Region), y is a Process, and the presence of x at the end of y is a necessary condition for the completion of y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001829 a owl:ObjectProperty ;
+    rdfs:label "disposition of aggregate"@en ;
+    rdfs:domain obo:BFO_0000016 ;
+    rdfs:range obo:BFO_0000027 ;
+    rdfs:subPropertyOf cco:ont00001809 ;
+    owl:inverseOf cco:ont00001956 ;
+    skos:definition "x disposition_of_aggregate y iff y is an instance of Object Aggregate and x is an instance of Disposition, and x inheres_in_aggregate y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001834 a owl:ObjectProperty ;
+    rdfs:label "affects"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:subPropertyOf obo:BFO_0000057 ;
+    owl:inverseOf cco:ont00001886 ;
+    skos:definition "x affects y =Def y is affected by x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001841 a owl:ObjectProperty ;
+    rdfs:label "is input of"@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf obo:BFO_0000056 ;
+    owl:inverseOf cco:ont00001921 ;
+    skos:definition "x is input of y =Def x participates in y, x is an Independent Continuant (but not a Spatial Region), y is a Process, and the presence of x at the beginning of y is a necessary condition for the start of y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001845 a owl:ObjectProperty ;
+    rdfs:label "is site of"@en ;
+    rdfs:domain obo:BFO_0000029 ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf obo:BFO_0000183 ;
+    owl:inverseOf cco:ont00001918 ;
+    skos:definition "x is site of y =Def y occurs at x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001901 a owl:ObjectProperty ;
+    rdfs:label "aggregate has role"@en ;
+    rdfs:domain obo:BFO_0000027 ;
+    rdfs:range obo:BFO_0000023 ;
+    rdfs:subPropertyOf cco:ont00001836 ;
+    skos:definition "x aggregate_has_role y iff x is an instance of Object Aggregate and y is an instance of Role, such that x aggregate_bearer_of y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001907 a owl:ObjectProperty ;
+    rdfs:label "aggregate has quality"@en ;
+    rdfs:domain obo:BFO_0000027 ;
+    rdfs:range obo:BFO_0000019 ;
+    rdfs:subPropertyOf cco:ont00001836 ;
+    skos:definition "x aggregate_has_quality y iff x is an instance of Object Aggregate and y is an instance of Quality, such that x aggregate_bearer_of y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001933 a owl:ObjectProperty ;
+    rdfs:label "process starts"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf cco:ont00001803 ;
+    owl:inverseOf cco:ont00001962 ;
+    skos:definition "x process_starts y iff x and y are instances of processes, and x is_cause_of y, and i is an instance of a temporal instant, and r is an instance of a temporal interval, and y has starting instance i, and x occupies temporal region r, and r has inside instant i."@en ;
+    skos:scopeNote "A process x starts another process y when x causes y while x is still occurring."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001947 a owl:ObjectProperty ;
+    rdfs:label "quality of aggregate"@en ;
+    rdfs:domain obo:BFO_0000019 ;
+    rdfs:range obo:BFO_0000027 ;
+    rdfs:subPropertyOf cco:ont00001809 ;
+    skos:definition "x quality_of_aggregate y iff y is an instance of Object Aggregate and x is an instance of Quality, and x inheres_in_aggregate y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001959 a owl:ObjectProperty ;
+    rdfs:label "inhibits"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    owl:inverseOf cco:ont00001970 ;
+    skos:definition "x inhibits y =Def y is inhibited by x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001753 a owl:AnnotationProperty ;
+    rdfs:label "acronym"@en ;
+    rdfs:subPropertyOf skos:altLabel ;
+    skos:definition "An Alternative Label that consists of a shortened or abbreviated form of the rdfs:label and is used to denote the entity."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001754 a owl:AnnotationProperty ;
+    rdfs:label "definition source"@en ;
+    skos:definition "A citation of where all or some of the information used to create the term's Definition was acquired from."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001762 a owl:AnnotationProperty ;
+    rdfs:label "term editor"@en ;
+    skos:definition "The name of a person who contributed to the development or enhancement of the term."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001803 a owl:ObjectProperty ;
+    rdfs:label "is cause of"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    owl:inverseOf cco:ont00001819 ;
+    skos:definition "x is_cause_of y iff x and y are instances of Process, and y is a consequence of x."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001832 a owl:ObjectProperty ;
+    rdfs:label "has some member located in"@en ;
+    rdfs:domain obo:BFO_0000027 ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                        owl:complementOf obo:BFO_0000006 ] ) ] ;
+    skos:definition "x has some member located in y iff x is an instance of Object Aggregate and y is an instance of independent continuant but not a spatial region, and at least one member of x is located in y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001857 a owl:ObjectProperty ;
+    rdfs:label "is part of process"@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:intersectionOf ( obo:BFO_0000015 [ a owl:Restriction ;
+                        owl:onProperty obo:BFO_0000199 ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:intersectionOf ( obo:BFO_0000008 [ a owl:Restriction ;
+                                            owl:onProperty obo:BFO_0000132 ;
+                                            owl:someValuesFrom [ a owl:Class ;
+                                                    owl:intersectionOf ( obo:BFO_0000202 [ a owl:Restriction ;
+                                                                owl:onProperty cco:ont00001874 ;
+                                                                owl:someValuesFrom obo:BFO_0000015 ] ) ] ] ) ] ] ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:intersectionOf ( obo:BFO_0000015 [ a owl:Restriction ;
+                        owl:onProperty obo:BFO_0000199 ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:intersectionOf ( obo:BFO_0000202 [ a owl:Restriction ;
+                                            owl:onProperty obo:BFO_0000117 ;
+                                            owl:someValuesFrom [ a owl:Class ;
+                                                    owl:intersectionOf ( obo:BFO_0000008 [ a owl:Restriction ;
+                                                                owl:onProperty [ owl:inverseOf obo:BFO_0000199 ] ;
+                                                                owl:someValuesFrom obo:BFO_0000015 ] ) ] ] ) ] ] ) ] ;
+    rdfs:subPropertyOf obo:BFO_0000132 ;
+    skos:definition "x is part of process y iff x is occurrent part of y, x and y are Processes, and x occupies a temporal region that is a proper occurrent part of the temporal interval of y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001886 a owl:ObjectProperty ;
+    rdfs:label "is affected by"@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf obo:BFO_0000056 ;
+    skos:definition "x is affected by y =Def x participates in y, x is an Independent Continuant (but not a Spatial Region), y is a Process, and y influences x in some manner, most often by producing a change in x."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001888 a owl:ObjectProperty ;
+    rdfs:label "disrupts"@en ;
+    dcterms:created "2022-12-30T21:32:27-05:00"^^xsd:dateTime ;
+    dcterms:creator "https://cubrc.org"^^xsd:anyURI ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    skos:definition "A relation where one process disrupts another process from occurring as it would have."@en ;
+    skos:editorialNote "To lower the grade of a process is to lower the quality of a process according to some standard, for example when realizing a capability or a function."@en ;
+    skos:prefLabel "disrupts"@en ;
+    skos:scopeNote "A process can disrupt another process from occurring as it would have by 1) preventing a disposition or role from being realized by that process, 2) lowering the grade of the process, or 3) stopping the process from continuing to occur."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001918 a owl:ObjectProperty ;
+    rdfs:label "occurs at"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000029 ;
+    rdfs:subPropertyOf obo:BFO_0000066 ;
+    skos:definition "x occurs_at y iff x is an instance of Process and y is an instance of Site, such that x occurs in y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001921 a owl:ObjectProperty ;
+    rdfs:label "has input"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:subPropertyOf obo:BFO_0000057 ;
+    skos:definition "x has input y =Def y is input of x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001928 a owl:ObjectProperty ;
+    rdfs:label "is predecessor of"@en ;
+    rdfs:domain obo:BFO_0000004 ;
+    rdfs:range obo:BFO_0000004 ;
+    skos:definition "x is_predecessor_of y iff x and y are both instances of Independent Continuant and there is some process p and x is an input to p and y is an output of p."@en ;
+    skos:scopeNote "More informally, x is_predecessor_of y iff y follows or replaces x."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001936 a owl:ObjectProperty ;
+    rdfs:label "is object of"@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf obo:BFO_0000056 ;
+    skos:definition "x is object of y =Def x participates in y, x is an Independent Continuant (but not a Spatial Region), y is a Process, and y is performed by Agent z and x is part of the projected state that z intends to achieve by performing y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001956 a owl:ObjectProperty ;
+    rdfs:label "aggregate has disposition"@en ;
+    rdfs:domain obo:BFO_0000027 ;
+    rdfs:range obo:BFO_0000016 ;
+    rdfs:subPropertyOf cco:ont00001836 ;
+    skos:definition "x aggregate has disposition y =Def y disposition of aggregate x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001962 a owl:ObjectProperty ;
+    rdfs:label "process started by"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    rdfs:subPropertyOf cco:ont00001819 ;
+    skos:definition "x process started by y =Def y process starts x"@en ;
+    skos:scopeNote "A process x is started by another process y when y causes x while y is still occurring."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001970 a owl:ObjectProperty ;
+    rdfs:label "inhibited by"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:BFO_0000015 ;
+    skos:definition "y inhibited_by x iff x and y are non-identical Processes, d is a Decrease of Realizable Entity, and x is_cause_of d, and r is a Realizable Entity, and d has_participant r, and r realized_in y."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001986 a owl:ObjectProperty ;
+    rdfs:label "has output"@en ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 [ a owl:Class ;
+                        owl:intersectionOf ( obo:BFO_0000004 [ a owl:Class ;
+                                    owl:complementOf obo:BFO_0000006 ] ) ] ) ] ;
+    rdfs:subPropertyOf obo:BFO_0000057 ;
+    skos:definition "x has output y =Def y is output of x"@en ;
+    cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=IPO_model&oldid=1024398398"^^xsd:anyURI ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001819 a owl:ObjectProperty ;
+    rdfs:label "caused by"@en ;
+    rdfs:domain obo:BFO_0000003 ;
+    rdfs:range obo:BFO_0000003 ;
+    skos:definition "x caused by y =Def y is cause of x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001874 a owl:ObjectProperty ;
+    rdfs:label "is temporal region of"@en ;
+    rdfs:domain obo:BFO_0000008 ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000015 obo:BFO_0000035 ) ] ;
+    skos:definition "x is temporal region of y =Def y occupies temporal region x"@en ;
+    skos:editorialNote "Leaving this is in ERO for now since BFO2020 has no inverse of occupies-temporal-region yet."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+obo:BFO_0000199 owl:inverseOf cco:ont00001874 .
+
+cco:ont00001809 a owl:ObjectProperty ;
+    rdfs:label "inheres in aggregate"@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 ) ] ;
+    rdfs:range obo:BFO_0000027 ;
+    owl:inverseOf cco:ont00001836 ;
+    skos:definition "x inheres_in_aggregate y iff x is an instance of Specifically Dependent Continuant or Generically Dependent Continuant and y is an instance of Object Aggregate and y aggregate_bearer_of x."@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001746 a owl:AnnotationProperty ;
+    rdfs:label "measurement annotation"@en ;
+    skos:definition "A measurement value of an instance of a quality, realizable or process profile"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+cco:ont00001836 a owl:ObjectProperty ;
+    rdfs:label "aggregate bearer of"@en ;
+    rdfs:domain obo:BFO_0000027 ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( obo:BFO_0000020 obo:BFO_0000031 ) ] ;
+    skos:definition "x aggregate bearer of y =Def y inheres in aggregate x"@en ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+

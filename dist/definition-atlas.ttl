@@ -1,0 +1,376 @@
+@prefix atlas: <https://halcyonic.systems/atlas/> .
+@prefix bearer: <https://halcyonic.systems/atlas/bearer/> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix entry: <https://halcyonic.systems/atlas/entry/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prim: <https://halcyonic.systems/atlas/primitive/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+atlas:MDHC a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, human-checked"@en ;
+    skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
+
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
+atlas:PROP a atlas:EvidenceCode ;
+    rdfs:label "propagated from another entry"@en ;
+    skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
+
+atlas:atlas-core rdfs:label "Definition Atlas — Core"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment """Scaffold for a catalogue of formal mathematical definitions of "system".
+
+WHAT THIS ONTOLOGY ASSERTS: that certain DEFINITIONS exist, are borne by certain
+documents, and invoke certain terms.
+
+WHAT IT DOES NOT ASSERT: that the systems those definitions purport to define
+exist. CCO's `is about` (cco:ont00001808) is deliberately left unasserted on
+entries. This keeps the catalogue neutral between realist traditions (Bunge) and
+constructivist ones (Klir), which is the whole point of the exercise: a merged or
+realism-committed vocabulary would erase the very disagreements being catalogued.
+
+WHY CCO: a definition is a generically dependent continuant that is about
+something — exactly what BFO's GDC category and CCO's Information Content Entity
+were introduced for. Alignment is therefore at the ANNOTATION layer only. The
+per-tradition vocabularies (Klir's, Bunge's, Mobus's...) are the CONTENT of these
+ICEs and are NOT re-parented as BFO domain ontologies.
+
+TIER: this file supports tier 0 (bibliographic + verbatim + primitives invoked).
+Tier 1 (dependency quiver) and above are not yet modelled here.
+
+Spec: strategy/phd/definition-atlas-spec.md in the Halcyonic vault."""@en ;
+    owl:versionIRI <https://halcyonic.systems/atlas/2026-08-01/atlas-core> .
+
+atlas:authorCaveat a owl:AnnotationProperty ;
+    rdfs:label "author caveat"@en ;
+    skos:definition "A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources."@en .
+
+atlas:definition-atlas a owl:Ontology .
+
+atlas:encodedBy a owl:AnnotationProperty ;
+    rdfs:label "encoded by"@en .
+
+atlas:encodedOn a owl:AnnotationProperty ;
+    rdfs:label "encoded on"@en .
+
+<https://halcyonic.systems/atlas/entries/bunge-1979-treatise> rdfs:label "Atlas entries — Bunge 1979, Treatise on Basic Philosophy vol. 4"@en ;
+    rdfs:comment """Entries 002 and 003.
+
+TWO entries from one source, deliberately. Bunge gives a general CHARACTERISATION
+of system as an ordered triple, then explicitly says it is "not a definition
+proper" and supplies a separate DEFINITION of concrete system. Collapsing them
+into one entry would misrepresent him and would erase the caveat he himself
+insisted on. The distinction is his, not ours."""@en .
+
+<https://halcyonic.systems/atlas/entries/klir-2001-facets> rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
+    rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
+
+entry:bunge-1979-ces-triple a atlas:FormalSystemDefinition ;
+    rdfs:label "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩"@en ;
+    rdfs:comment """⚑ "is (or represents)". Bunge's own parenthetical hedges between the triple
+BEING a system and REPRESENTING one, and he resolves it later in the same chapter
+by calling the triple "the minimal model of system σ at time t". This is direct
+primary-text evidence on the is-versus-represents question — the distinction the
+Lean encodings do not type. Klir's (T,R) IS the system; Bunge's ⟨C,E,S⟩ is a model
+OF a thing. Same shape, different ontological status.
+
+⚑ NOT the same triple as the informal gloss. The fuller form Bunge actually works
+with is relativised to a class A of things and indexed by time: s_A(σ,t) =
+⟨𝒞_A(σ,t), ℰ_A(σ,t), 𝒮_A(σ,t)⟩. Anyone citing "Bunge's CES triple" as a bare
+3-tuple is citing the informal version.
+
+⚑ CES, NOT CESM. Mechanism is not a coordinate here. The string "CESM" does not
+occur in the 1979 text; mechanism becomes central in later Bunge (see How Does It
+Work, 2004). Any citation pairing "1979" with "CESM" is an anachronism.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Bunge is a realist and
+would endorse the reading; asserting it anyway would still break the catalogue's
+neutrality, which must not depend on which tradition an entry belongs to."""@en ;
+    atlas:authorCaveat "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing." ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:includedExample "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢ (Bunge's own worked conceptual-system example)" ;
+    atlas:invokesPrimitive prim:composition,
+        prim:environment,
+        prim:relation,
+        prim:set,
+        prim:structure,
+        prim:thing ;
+    atlas:sourceLocation "ch. 1, §1.1 (the general concept of a system)" ;
+    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
+    atlas:verbatim "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things." .
+
+entry:bunge-1979-def-1-1 a atlas:FormalSystemDefinition ;
+    rdfs:label "Bunge (1979), Definition 1.1: concrete system"@en ;
+    rdfs:comment """⚑ THE SEPARATING INSTANCE, IN BUNGE'S OWN WORDS. His excluded example is
+"a collection of events, EVEN IF ORDERED". Klir, on the passage recorded in entry
+001, holds that ordering a collection is exactly what makes it a system: "any
+ordering of a set is a relation defined on the set". Two founders, both verbatim,
+disagreeing about whether an ordered collection is a system. This is the highest-
+value datum in the catalogue so far and it was found by reading, not by inference.
+
+MACHINERY BEHIND THE REFUSAL (Definition 1.2, encoded here as primitives rather
+than as its own entry, because it defines composition/environment/structure and
+not "system"):
+  𝒞_A(σ,t) = {x ∈ A | x ⊏ σ}
+  ℰ_A(σ,t) = {x ∈ A | x ∉ 𝒞_A(σ,t) & ∃y (y ∈ 𝒞_A(σ,t) & (x ▷ y ∨ y ▷ x))}
+  𝒮_A(σ,t) = relations, in particular bonds, on 𝒞_A(σ,t) ∪ ℰ_A(σ,t), with the
+             bonding set 𝔅_A(σ,t) ≠ ∅
+The nonempty-bonding requirement is what does the refusing, and it is encoded in
+systems-science-foundations as ConcreteSystem.bondage_nonempty over the ActsOn
+class (Bunge's ▷). The two encodings agree; that agreement should be recorded as
+a mapping claim once the mapping layer exists, not asserted here.
+
+RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
+definition proper". 003 is the definition proper. They are not alternative
+phrasings of one claim and must not be merged."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:excludedExample "a collection of events, even if ordered",
+        "a set of states of a thing" ;
+    atlas:includedExample "a molecule, a coral reef, a family, a factory" ;
+    atlas:invokesPrimitive prim:action,
+        prim:bond,
+        prim:part,
+        prim:thing ;
+    atlas:sourceLocation "ch. 1, Definition 1.1" ;
+    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
+    atlas:verbatim "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things." .
+
+entry:klir-2001-eq-1-1 a atlas:FormalSystemDefinition ;
+    rdfs:label "Klir (2001), Facets of Systems Science, eq. (1.1)"@en ;
+    rdfs:comment """VERIFIED: verbatim transcribed from the primary text, not paraphrased.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Klir is an avowed
+constructivist — on his account the relation R is defined by the modeller, not
+discovered. Asserting what this definition is *about* would commit the catalogue
+to a realist reading Klir does not hold. The neutrality is the point.
+
+CENSUS NOTE: Klir's own gloss splits the definition's two slots into named
+properties — thinghood in T, systemhood in R. Recorded as separate primitives
+rather than folded into `thing` and `relation`, because whether they are distinct
+primitives is a question the census should answer, not one the encoding should
+prejudge.
+
+ADJACENT MATERIAL, NOT YET ENTERED: Klir's self-assessment on the same page (the
+definition is "too general and, consequently, of little pragmatic value" but
+"encompasses all other, more specific definitions of systems") is a claim ABOUT
+this definition's relation to others. It belongs in the mapping layer, not in
+this entry.
+
+NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
+Lean as ShapeKlir in systems-science-foundations. The two encodings must be
+checked against each other before either is cited."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:invokesPrimitive prim:relation,
+        prim:set,
+        prim:systemhood,
+        prim:thing,
+        prim:thinghood ;
+    atlas:sourceLocation "ch. 1, eq. (1.1), p. 5" ;
+    atlas:statedIn bearer:klir-2001-facets ;
+    atlas:verbatim """S = (T, R),   (1.1)
+
+where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.""" .
+
+atlas:evidenceCode a owl:AnnotationProperty ;
+    rdfs:label "evidence code"@en ;
+    skos:definition "Which atlas:EvidenceCode individual applies to this encoding."@en .
+
+atlas:excludedExample a owl:AnnotationProperty ;
+    rdfs:label "excluded example"@en ;
+    skos:definition "Something the author explicitly says is NOT a system on this definition. The separating-instance data, captured at tier 0: where two definitions disagree about the same object is exactly where the loss catalogue comes from."@en .
+
+<https://halcyonic.systems/atlas/imports/cco-bfo-reference> rdfs:label "CCO/BFO reference module (minimal extract)"@en ;
+    rdfs:comment "Generated by build.py. Only the external terms the Definition Atlas actually uses, plus their named ancestors. Equivalent-class axioms, restrictions and disjointness from the source ontologies are NOT preserved -- this places terms and renders labels, it does not reproduce CCO/BFO semantics. Do not edit by hand."@en .
+
+atlas:includedExample a owl:AnnotationProperty ;
+    rdfs:label "included example"@en ;
+    skos:definition "Something the author explicitly offers as a system on this definition."@en .
+
+atlas:invokesPrimitive a owl:ObjectProperty ;
+    rdfs:label "invokes primitive"@en ;
+    rdfs:comment "Range is skos:Concept, not an OWL class, deliberately. A primitive here is a TERM USED IN A DEFINITION, not a kind of thing in the world. SKOS is about concepts; using it avoids smuggling realism into constructivist traditions."@en ;
+    rdfs:domain atlas:FormalSystemDefinition ;
+    rdfs:range skos:Concept ;
+    skos:definition "Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one."@en .
+
+prim:time a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "time"@en ;
+    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence."@en .
+
+atlas:sourceLocation a owl:AnnotationProperty ;
+    rdfs:label "source location"@en ;
+    skos:definition "Where in the bearer the verbatim text appears — equation number, page, section."@en .
+
+atlas:statedIn a owl:ObjectProperty ;
+    rdfs:label "stated in"@en ;
+    rdfs:comment "TODO: align to the inverse of obo:BFO_0000101 (carrier of) once the CCO carrier chain has been read in full. Declared standalone for now rather than asserted wrongly."@en ;
+    rdfs:domain atlas:FormalSystemDefinition ;
+    rdfs:range cco:ont00000253 ;
+    skos:definition "Relates a definition to the document that carries it."@en .
+
+atlas:verbatim a owl:AnnotationProperty ;
+    rdfs:label "verbatim"@en ;
+    skos:definition "The definition exactly as written in the source, transcribed without paraphrase. The thing every downstream encoding must be checkable against."@en .
+
+obo:BFO_0000001 a owl:Class ;
+    rdfs:label "entity"@en ;
+    skos:definition "(Elucidation) An entity is anything that exists or has existed or will exist"@en .
+
+obo:BFO_0000004 a owl:Class ;
+    rdfs:label "independent continuant"@en ;
+    rdfs:subClassOf obo:BFO_0000002 ;
+    skos:definition "b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c"@en .
+
+obo:BFO_0000030 a owl:Class ;
+    rdfs:label "object"@en ;
+    rdfs:subClassOf obo:BFO_0000040 ;
+    skos:definition "(Elucidation) An object is a material entity which manifests causal unity & is of a type instances of which are maximal relative to the sort of causal unity manifested"@en .
+
+obo:BFO_0000031 a owl:Class ;
+    rdfs:label "generically dependent continuant"@en ;
+    rdfs:subClassOf obo:BFO_0000002 ;
+    skos:definition "(Elucidation) A generically dependent continuant is an entity that exists in virtue of the fact that there is at least one of what may be multiple copies which is the content or the pattern that multiple copies would share"@en .
+
+obo:BFO_0000040 a owl:Class ;
+    rdfs:label "material entity"@en ;
+    rdfs:subClassOf obo:BFO_0000004 ;
+    skos:definition "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en .
+
+skos:ConceptScheme a owl:Class ;
+    rdfs:label "Concept Scheme"@en ;
+    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+
+bearer:klir-2001-facets a cco:ont00000253 ;
+    rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
+    dcterms:creator "George J. Klir" ;
+    dcterms:date "2001"^^xsd:gYear ;
+    dcterms:identifier "ISBN 978-1-4613-5501-4",
+        "doi:10.1007/978-1-4615-1331-5" .
+
+prim:action a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "action"@en ;
+    skos:scopeNote "Bunge's acts-on relation, written x |> y."@en .
+
+prim:bond a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "bond"@en ;
+    skos:scopeNote "A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing."@en .
+
+prim:composition a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "composition"@en ;
+    skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en .
+
+prim:environment a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "environment"@en ;
+    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components."@en .
+
+prim:part a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "part"@en ;
+    skos:scopeNote "Bunge's part-of relation, written x [ y."@en .
+
+prim:structure a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "structure"@en ;
+    skos:scopeNote "Bunge's S. Relations among components and between components and environment, partitioned into bonding and nonbonding."@en .
+
+prim:systemhood a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "systemhood"@en ;
+    skos:scopeNote "Klir's term, paired with thinghood."@en .
+
+prim:thinghood a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "thinghood"@en ;
+    skos:scopeNote "Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en .
+
+cco:ont00000853 a owl:Class ;
+    rdfs:label "Descriptive Information Content Entity"@en ;
+    rdfs:subClassOf cco:ont00000958 ;
+    skos:definition "An Information Content Entity that consists of a set of propositions that describe some Entity."@en .
+
+cco:ont00000958 a owl:Class ;
+    rdfs:label "Information Content Entity"@en ;
+    rdfs:subClassOf obo:BFO_0000031 ;
+    skos:definition "A Generically Dependent Continuant that generically depends on some Information Bearing Entity and stands in relation of aboutness to some Entity."@en .
+
+obo:BFO_0000002 a owl:Class ;
+    rdfs:label "continuant"@en ;
+    rdfs:subClassOf obo:BFO_0000001 ;
+    skos:definition "(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity"@en .
+
+bearer:bunge-1979-treatise-vol4 a cco:ont00000253 ;
+    rdfs:label "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)"@en ;
+    dcterms:creator "Mario Bunge" ;
+    dcterms:date "1979"^^xsd:gYear ;
+    dcterms:identifier "doi:10.1007/978-94-009-9392-1" .
+
+prim:relation a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "relation"@en .
+
+prim:set a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "set"@en .
+
+atlas:HVP a atlas:EvidenceCode ;
+    rdfs:label "human-verified against primary text"@en ;
+    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
+
+prim:thing a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "thing"@en .
+
+cco:ont00000253 a owl:Class ;
+    rdfs:label "Information Bearing Entity"@en ;
+    rdfs:subClassOf obo:BFO_0000030 ;
+    skos:definition "An Object upon which an Information Content Entity generically depends."@en .
+
+atlas:EvidenceCode a owl:Class ;
+    rdfs:label "Evidence Code"@en ;
+    skos:definition "How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones."@en .
+
+atlas:FormalSystemDefinition a owl:Class ;
+    rdfs:label "Formal System Definition"@en ;
+    rdfs:comment "Inclusion criteria are stated in the spec, §5. Borderline cases are adjudicated there, not here."@en ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition """A Descriptive Information Content Entity that defines the
+term "system" formally: it introduces named components with types or sorts, and
+fixes at least one relation, function, or constraint among them, in symbols or in
+prose precise enough to be transcribed to symbols without adding content."""@en .
+
+atlas:PrimitiveScheme a skos:ConceptScheme ;
+    rdfs:label "Systems-definition primitive vocabulary"@en ;
+    skos:definition "Controlled vocabulary of terms used as primitives in formal definitions of system. Deliberately flat and deliberately not an ontology of the world."@en ;
+    skos:scopeNote """LEXICAL, NOT SEMANTIC. A primitive here records that an author uses a WORD as
+a primitive. Two entries linked to prim:thing are not thereby claimed to mean the same
+thing by it — Klir's "thing" is unrestricted, Bunge's ranges over concrete entities in
+Theta, and whether those are one primitive or two is a census question this vocabulary
+must not prejudge.
+
+The consequence: recurrence counts computed over this scheme are a FIRST-PASS LEXICAL
+measure. Semantic co-reference is a mapping-layer claim and owes evidence like any
+other. Minting a separate primitive per author would make recurrence trivially zero;
+merging them by hand would make it trivially high. Lexical recurrence is the honest
+starting point, and its limits are stated here rather than discovered later."""@en .
+
+skos:Concept a owl:Class ;
+    rdfs:label "Concept"@en ;
+    skos:definition "An idea or notion; a unit of thought."@en .
+

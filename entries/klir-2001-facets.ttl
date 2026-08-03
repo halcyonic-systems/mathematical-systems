@@ -1,0 +1,78 @@
+@prefix atlas:   <https://halcyonic.systems/atlas/> .
+@prefix prim:    <https://halcyonic.systems/atlas/primitive/> .
+@prefix entry:   <https://halcyonic.systems/atlas/entry/> .
+@prefix bearer:  <https://halcyonic.systems/atlas/bearer/> .
+@prefix cco:     <https://www.commoncoreontologies.org/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://halcyonic.systems/atlas/entries/klir-2001-facets>
+    a owl:Ontology ;
+    owl:imports <https://halcyonic.systems/atlas/atlas-core> ;
+    rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
+    rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
+
+
+##############################################################################
+# Bearer
+##############################################################################
+
+bearer:klir-2001-facets
+    a cco:ont00000253 ;   # Information Bearing Entity
+    rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
+    dcterms:creator "George J. Klir" ;
+    dcterms:date "2001"^^xsd:gYear ;
+    dcterms:identifier "ISBN 978-1-4613-5501-4" ;
+    dcterms:identifier "doi:10.1007/978-1-4615-1331-5" .
+
+
+##############################################################################
+# Entry 001 — Klir's common-sense definition
+##############################################################################
+
+entry:klir-2001-eq-1-1
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Klir (2001), Facets of Systems Science, eq. (1.1)"@en ;
+
+    atlas:statedIn bearer:klir-2001-facets ;
+    atlas:sourceLocation "ch. 1, eq. (1.1), p. 5" ;
+
+    atlas:verbatim """S = (T, R),   (1.1)
+
+where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.""" ;
+
+    atlas:invokesPrimitive prim:thing ,
+                           prim:relation ,
+                           prim:set ,
+                           prim:thinghood ,
+                           prim:systemhood ;
+
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+
+    rdfs:comment """VERIFIED: verbatim transcribed from the primary text, not paraphrased.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Klir is an avowed
+constructivist — on his account the relation R is defined by the modeller, not
+discovered. Asserting what this definition is *about* would commit the catalogue
+to a realist reading Klir does not hold. The neutrality is the point.
+
+CENSUS NOTE: Klir's own gloss splits the definition's two slots into named
+properties — thinghood in T, systemhood in R. Recorded as separate primitives
+rather than folded into `thing` and `relation`, because whether they are distinct
+primitives is a question the census should answer, not one the encoding should
+prejudge.
+
+ADJACENT MATERIAL, NOT YET ENTERED: Klir's self-assessment on the same page (the
+definition is "too general and, consequently, of little pragmatic value" but
+"encompasses all other, more specific definitions of systems") is a claim ABOUT
+this definition's relation to others. It belongs in the mapping layer, not in
+this entry.
+
+NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
+Lean as ShapeKlir in systems-science-foundations. The two encodings must be
+checked against each other before either is cited."""@en .

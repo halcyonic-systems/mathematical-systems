@@ -1,0 +1,133 @@
+@prefix atlas:   <https://halcyonic.systems/atlas/> .
+@prefix prim:    <https://halcyonic.systems/atlas/primitive/> .
+@prefix entry:   <https://halcyonic.systems/atlas/entry/> .
+@prefix bearer:  <https://halcyonic.systems/atlas/bearer/> .
+@prefix cco:     <https://www.commoncoreontologies.org/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://halcyonic.systems/atlas/entries/bunge-1979-treatise>
+    a owl:Ontology ;
+    owl:imports <https://halcyonic.systems/atlas/atlas-core> ;
+    rdfs:label "Atlas entries — Bunge 1979, Treatise on Basic Philosophy vol. 4"@en ;
+    rdfs:comment """Entries 002 and 003.
+
+TWO entries from one source, deliberately. Bunge gives a general CHARACTERISATION
+of system as an ordered triple, then explicitly says it is "not a definition
+proper" and supplies a separate DEFINITION of concrete system. Collapsing them
+into one entry would misrepresent him and would erase the caveat he himself
+insisted on. The distinction is his, not ours."""@en .
+
+
+##############################################################################
+# Bearer
+##############################################################################
+
+bearer:bunge-1979-treatise-vol4
+    a cco:ont00000253 ;
+    rdfs:label "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)"@en ;
+    dcterms:creator "Mario Bunge" ;
+    dcterms:date "1979"^^xsd:gYear ;
+    dcterms:identifier "doi:10.1007/978-94-009-9392-1" .
+
+
+##############################################################################
+# Entry 002 — the ordered-triple characterisation
+##############################################################################
+
+entry:bunge-1979-ces-triple
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩"@en ;
+
+    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
+    atlas:sourceLocation "ch. 1, §1.1 (the general concept of a system)" ;
+
+    atlas:verbatim """One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.""" ;
+
+    atlas:authorCaveat """However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.""" ;
+
+    atlas:includedExample "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢ (Bunge's own worked conceptual-system example)" ;
+
+    atlas:invokesPrimitive prim:composition ,
+                           prim:environment ,
+                           prim:structure ,
+                           prim:set ,
+                           prim:relation ,
+                           prim:thing ;
+
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+
+    rdfs:comment """⚑ "is (or represents)". Bunge's own parenthetical hedges between the triple
+BEING a system and REPRESENTING one, and he resolves it later in the same chapter
+by calling the triple "the minimal model of system σ at time t". This is direct
+primary-text evidence on the is-versus-represents question — the distinction the
+Lean encodings do not type. Klir's (T,R) IS the system; Bunge's ⟨C,E,S⟩ is a model
+OF a thing. Same shape, different ontological status.
+
+⚑ NOT the same triple as the informal gloss. The fuller form Bunge actually works
+with is relativised to a class A of things and indexed by time: s_A(σ,t) =
+⟨𝒞_A(σ,t), ℰ_A(σ,t), 𝒮_A(σ,t)⟩. Anyone citing "Bunge's CES triple" as a bare
+3-tuple is citing the informal version.
+
+⚑ CES, NOT CESM. Mechanism is not a coordinate here. The string "CESM" does not
+occur in the 1979 text; mechanism becomes central in later Bunge (see How Does It
+Work, 2004). Any citation pairing "1979" with "CESM" is an anachronism.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Bunge is a realist and
+would endorse the reading; asserting it anyway would still break the catalogue's
+neutrality, which must not depend on which tradition an entry belongs to."""@en .
+
+
+##############################################################################
+# Entry 003 — Definition 1.1, concrete system
+##############################################################################
+
+entry:bunge-1979-def-1-1
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Bunge (1979), Definition 1.1: concrete system"@en ;
+
+    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
+    atlas:sourceLocation "ch. 1, Definition 1.1" ;
+
+    atlas:verbatim """DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.""" ;
+
+    atlas:includedExample "a molecule, a coral reef, a family, a factory" ;
+    atlas:excludedExample "a set of states of a thing" ;
+    atlas:excludedExample "a collection of events, even if ordered" ;
+
+    atlas:invokesPrimitive prim:thing ,
+                           prim:part ,
+                           prim:bond ,
+                           prim:action ;
+
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+
+    rdfs:comment """⚑ THE SEPARATING INSTANCE, IN BUNGE'S OWN WORDS. His excluded example is
+"a collection of events, EVEN IF ORDERED". Klir, on the passage recorded in entry
+001, holds that ordering a collection is exactly what makes it a system: "any
+ordering of a set is a relation defined on the set". Two founders, both verbatim,
+disagreeing about whether an ordered collection is a system. This is the highest-
+value datum in the catalogue so far and it was found by reading, not by inference.
+
+MACHINERY BEHIND THE REFUSAL (Definition 1.2, encoded here as primitives rather
+than as its own entry, because it defines composition/environment/structure and
+not "system"):
+  𝒞_A(σ,t) = {x ∈ A | x ⊏ σ}
+  ℰ_A(σ,t) = {x ∈ A | x ∉ 𝒞_A(σ,t) & ∃y (y ∈ 𝒞_A(σ,t) & (x ▷ y ∨ y ▷ x))}
+  𝒮_A(σ,t) = relations, in particular bonds, on 𝒞_A(σ,t) ∪ ℰ_A(σ,t), with the
+             bonding set 𝔅_A(σ,t) ≠ ∅
+The nonempty-bonding requirement is what does the refusing, and it is encoded in
+systems-science-foundations as ConcreteSystem.bondage_nonempty over the ActsOn
+class (Bunge's ▷). The two encodings agree; that agreement should be recorded as
+a mapping claim once the mapping layer exists, not asserted here.
+
+RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
+definition proper". 003 is the definition proper. They are not alternative
+phrasings of one claim and must not be merged."""@en .

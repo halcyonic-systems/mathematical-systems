@@ -1,0 +1,115 @@
+@prefix atlas: <https://halcyonic.systems/atlas/> .
+@prefix cco:   <https://www.commoncoreontologies.org/> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+<https://halcyonic.systems/atlas/shapes>
+    a owl:Ontology ;
+    rdfs:label "Definition Atlas — validation shapes"@en ;
+    rdfs:comment """The atlas's refusal conditions.
+
+Until these existed, the disciplines in README.md and docs/adding-an-entry.md were
+prose: a malformed entry could be added and nothing would object. A catalogue whose
+whole doctrine is that an instrument should be able to refuse could not itself refuse
+anything. These shapes are that fix.
+
+Run with `python build.py` — the build fails if any entry violates them."""@en .
+
+
+##############################################################################
+# Entry shape — every FormalSystemDefinition must be checkable by a second reader
+##############################################################################
+
+atlas:EntryShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:FormalSystemDefinition ;
+    rdfs:label "Entry well-formedness"@en ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every entry needs a human-readable label." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:verbatim ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minLength 20 ;
+        sh:message "Every entry needs exactly one verbatim transcription. It is the only thing every downstream encoding is checkable against; without it the entry is an assertion, not a record." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:sourceLocation ;
+        sh:minCount 1 ;
+        sh:message "Every entry needs a source location. 'It's in the book' is not auditable." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:statedIn ;
+        sh:minCount 1 ;
+        sh:class cco:ont00000253 ;
+        sh:message "Every entry must point at an Information Bearing Entity (the document carrying it)." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:evidenceCode ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( atlas:HVP atlas:MDHC atlas:MDU atlas:PROP ) ;
+        sh:message "Every entry needs exactly one evidence code from the controlled set. An unstamped encoding silently reads as verified." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:invokesPrimitive ;
+        sh:minCount 1 ;
+        sh:class skos:Concept ;
+        sh:message "Every entry must invoke at least one primitive, and primitives must be skos:Concepts in the scheme." ;
+    ] ;
+
+    # ---- THE INVARIANT ----
+    sh:property [
+        sh:path cco:ont00001808 ;
+        sh:maxCount 0 ;
+        sh:message "NEUTRALITY INVARIANT: an entry must not assert cco:is_about. CCO's Descriptive ICE is equivalent to (GDC and is_about some Entity), so asserting it directly commits the catalogue to a realist reading of traditions that reject one (Klir). See README. ⚠ If the intensional-targets proposal is adopted, this shape is REPLACED — not deleted — by one requiring is_about to point at a construct-typed target. Do not simply remove it." ;
+    ] .
+
+
+##############################################################################
+# Bearer shape
+##############################################################################
+
+atlas:BearerShape
+    a sh:NodeShape ;
+    sh:targetClass cco:ont00000253 ;
+    rdfs:label "Bearer well-formedness"@en ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every bearer needs a citable label." ;
+    ] .
+
+
+##############################################################################
+# Primitive shape — keeps the scheme from silently accumulating orphans
+##############################################################################
+
+atlas:PrimitiveShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf atlas:invokesPrimitive ;
+    rdfs:label "Primitive well-formedness"@en ;
+
+    sh:property [
+        sh:path skos:inScheme ;
+        sh:hasValue atlas:PrimitiveScheme ;
+        sh:minCount 1 ;
+        sh:message "A primitive must be declared in atlas:PrimitiveScheme. Ad-hoc primitives invented at entry-authoring time are how a lexical scheme becomes unauditable." ;
+    ] ;
+
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Every primitive needs a preferred label." ;
+    ] .
