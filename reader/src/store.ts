@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { BASE, go, parse, type Route } from "./route";
 import type { Atlas, Reasoning } from "./types";
 
-export type View = "read" | "compare" | "census" | "ledger" | "commitments";
+export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments";
 
 type State = {
   atlas: Atlas | null;
@@ -58,7 +58,7 @@ export const useStore = create<State>((set, get) => {
     atlas: null,
     reasoning: null,
     error: null,
-    view: "read",
+    view: "overview",
     reading: null,
     compared: [],
     variant: "shipped",

@@ -91,6 +91,18 @@ and requires refusal, and the first version of that routine substituted words ab
 the passage, so it "verified" an unmodified string and failed the build. That is the
 failure mode this rule exists to catch.
 
+## Entry ids are part of the contract
+
+An entry's id is the last segment of its IRI and the path the reader serves it at, so it is
+what a citation points to. **Renaming one breaks every link to it**, including any that have
+been written into a paper, a mapping document, or the permanent identifier namespace. Choose
+`author-year-locus` carefully once; if a rename is genuinely required it needs a redirect and
+a note, not a quiet edit.
+
+The same holds for the view paths (`/compare`, `/primitives`, `/cases`, `/entailments`). They
+are named for what a reader sees rather than what the code calls them, and they are public
+surface.
+
 ## Tone
 
 Corrections are the point of the exercise. If you find that a transcription is wrong, a

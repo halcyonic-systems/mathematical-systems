@@ -31,6 +31,7 @@ instead of accidental. A build reporting the same verdict for both is broken.
 
 import argparse
 import json
+import subprocess
 import pathlib
 import re
 import sys
@@ -368,6 +369,51 @@ def resolve_shapes(entries, foundations):
     return shapes
 
 
+def read_open_decisions(atlas_root):
+    """The catalogue-wide open items, already cost-of-deferral ordered.
+
+    docs/open-decisions.md exists so someone working in the repo knows what is
+    unsettled. A reader deserves the same, and duplicating the list into the
+    interface would guarantee the two drift, so this parses the file rather than
+    restating it.
+    """
+    path = atlas_root / "docs" / "open-decisions.md"
+    if not path.is_file():
+        return []
+    out = []
+    for block in re.split(r"^## ", path.read_text(), flags=re.M)[1:]:
+        head, _, body = block.partition("\n")
+        if not re.match(r"D\d", head):  # the file also carries non-decision sections
+            continue
+        problem = re.search(r"\*\*The problem\.\*\*\s*(.+?)(?:\n\n|$)", body, re.S)
+        fix = re.search(r"\*\*Candidate fix[^*]*\.?\*\*\s*(.+?)(?:\n\n|$)", body, re.S)
+        out.append(
+            {
+                "title": re.sub(r"\s*\*\(.*?\)\*", "", head).strip(),
+                "blocking": "blocks" in head,
+                "problem": re.sub(r"\s+", " ", problem.group(1)).strip() if problem else "",
+                "fix": re.sub(r"\s+", " ", fix.group(1)).strip() if fix else "",
+            }
+        )
+    return out
+
+
+def provenance(atlas_root):
+    """What this build was made from. Commits rather than a clock: a timestamp
+    would make every rebuild a diff in a tracked file, and says less."""
+
+    def head(path):
+        try:
+            return subprocess.run(
+                ["git", "-C", str(path), "rev-parse", "--short", "HEAD"],
+                capture_output=True, text=True, check=True,
+            ).stdout.strip()
+        except Exception:
+            return None
+
+    return {"atlasCommit": head(atlas_root), "repoCommit": head(atlas_root.parent)}
+
+
 def merge_variant(sources, dest):
     g = Graph()
     for s in sources:
@@ -498,6 +544,8 @@ def main():
         raise SystemExit("BROKEN LEAN POINTER — fix the spec or the checkout (--foundations).")
 
     catalogue = {
+        "openDecisions": read_open_decisions(atlas_root),
+        "provenance": provenance(atlas_root),
         # Read by scripts/prepublish.sh. Making publishability a property of the
         # DATA rather than a flag someone has to remember is what keeps a
         # generous local build from being deployed by accident.

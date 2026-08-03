@@ -83,15 +83,49 @@ build time.
 
 ---
 
+## Every finding has an address
+
+The reader's state lives in the URL. Not just which entry — which definitions are being
+compared, and which import closure a verdict was read under. That turns a claim about the
+catalogue into something you can hand to someone.
+
+```
+/                                                    what this is, and what it refuses
+/entry/klir-2001-eq-1-1                              one definition in full
+/compare?entries=klir-2001-eq-1-1,bunge-1979-def-1-1 two definitions, aligned
+/primitives                                          which terms each takes as primitive
+/cases                                               what each author admits and refuses
+/entailments?closure=full                            what follows, under the full CCO closure
+```
+
+**Why this matters more than it sounds.** A catalogue whose thesis is *check the source
+yourself* cannot ask readers to take findings on trust. Before, a finding could be described
+and not pointed at.
+
+- **Findings become demonstrable.** "Bunge refuses ordered collections where Klir admits them"
+  is a sentence someone must reconstruct by hand. A link puts them in front of the evidence.
+- **A claim in a paper can cite a view, not a conclusion.** Footnote
+  `/entailments?closure=full` and the reader sees the reasoner's verdict on both closures,
+  with the axiom chain. That is citing reproducible evidence rather than an assertion about it.
+- **Mapping claims get to point.** `atlas/mappings/README.md` requires a witness for every
+  claim of loss; a mapping can now cite the comparison that exhibits it.
+- **It is the precondition for the permanent identifiers.** `w3id.org/…/atlas/entry/<id>`
+  resolves *through* these paths. Without them the namespace would have one destination.
+
+Two limits worth knowing. URLs carry view state, not scroll position or which disclosures are
+open, so "look at this axiom chain" still takes a click. And section anchors within an entry
+are not built yet.
+
 ## The reader, view by view
 
 | view | what it is for |
 |---|---|
-| **Read** | one entry as a critical edition — the passage, the passage *in the book*, what it posits, how it was formalised, what it admits and refuses, provenance, the encoder's apparatus |
-| **Compare** | definitions side by side. `S = (T, R)` beside `σ = ⟨C, E, S⟩` beside Def. 1.1 |
-| **Census** | entries × primitives. Lexical until primitives are typed — and it says so |
-| **Admits / Refuses** | every recorded example by stance; derived conflicts kept separate from authored ones |
-| **Commitments** | what the entries are entailed to under each import closure, with the axiom chain |
+| **Overview** | the landing page: what the catalogue is, what it has reached, what the build refuses, what is unsettled — all counted from the data, never written by hand |
+| **Definitions** | one entry as a critical edition — the passage, the passage *in the book*, what it posits, how it was formalised, what it admits and refuses, provenance, the encoder's apparatus |
+| **Compare** | definitions side by side, row-aligned. `S = (T, R)` beside `σ = ⟨C, E, S⟩` beside Def. 1.1 |
+| **Primitives** | entries × primitives. Lexical until primitives are typed — and it says so |
+| **Cases** | every recorded example by stance; derived conflicts kept separate from authored ones |
+| **Entailments** | what the entries are entailed to under each import closure, with the axiom chain |
 
 ## What the build refuses
 

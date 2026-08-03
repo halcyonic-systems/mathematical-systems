@@ -25,6 +25,7 @@ export type Route = {
 };
 
 const SEGMENT: Record<View, string> = {
+  overview: "",
   read: "entry",
   compare: "compare",
   census: "primitives",
@@ -41,7 +42,7 @@ function relative(pathname: string) {
 
 export function parse(url: URL = new URL(window.location.href)): Route {
   const [, head, tail] = relative(url.pathname).split("/");
-  const view = VIEW_OF[head ?? ""] ?? "read";
+  const view = VIEW_OF[head ?? ""] ?? "overview";
   const q = url.searchParams;
   return {
     view,
@@ -55,6 +56,7 @@ export function href(r: Route): string {
   const seg = SEGMENT[r.view];
   let path = `${BASE}${seg}`;
   if (r.view === "read") path = r.entry ? `${BASE}entry/${encodeURIComponent(r.entry)}` : BASE;
+  if (r.view === "overview") path = BASE;
 
   // Only the parameters a view actually reads, so a shared link carries no noise
   // and two links to the same state are the same string. Built by hand rather

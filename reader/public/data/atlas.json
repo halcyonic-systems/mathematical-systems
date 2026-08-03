@@ -1,4 +1,46 @@
 {
+  "openDecisions": [
+    {
+      "title": "D1 — The primitive scheme",
+      "blocking": true,
+      "problem": "`prim:*` concepts are populated *jointly with the entries*. So \"these traditions cover the distinct primitives\" reduces to \"the entries I selected cover the primitives those entries introduced.\" Circular by construction, and it undermines the census, which is the atlas's whole downstream purpose. Every frontier panelist ranked this first or second in the 2026-08-02 review.",
+      "fix": "Take the primitive vocabulary from **model theory's signature notion** — sorts, operations, relations, constants, axioms. That is external, prior, standard, and demonstrably not derived from the corpus, so the circularity dissolves. Recurrence becomes a real question: how many traditions posit two sorts, how many a relation rather than a function. If everything collapses to \"sorts and relations,\" that is itself a finding — the signature-level echo of the K≅2 result."
+    },
+    {
+      "title": "D2 — Intensional targets, and the `is_about` question",
+      "blocking": false,
+      "problem": "",
+      "fix": "BFO has no `Concept` class by design, but an ICE may be about another ICE, since generically dependent continuants are Entities. So Klir's definition targets a *construct*; Bunge's targets concrete things in Θ, which his own text states. The realist/constructivist split stops being a silence and becomes the atlas's most interesting queryable field."
+    },
+    {
+      "title": "D3 — The architectural fork: annotation spine vs computable representation",
+      "blocking": false,
+      "problem": "",
+      "fix": ""
+    },
+    {
+      "title": "D4 — Evidence code scope and first-classness",
+      "blocking": false,
+      "problem": "",
+      "fix": ""
+    },
+    {
+      "title": "D5 — IRI and deprecation policy",
+      "blocking": false,
+      "problem": "",
+      "fix": ""
+    },
+    {
+      "title": "D6 — BFO/CCO alignment vs a bibliographic ontology",
+      "blocking": false,
+      "problem": "",
+      "fix": ""
+    }
+  ],
+  "provenance": {
+    "atlasCommit": "8c0b62f",
+    "repoCommit": "8c0b62f"
+  },
   "publishable": true,
   "contextChars": 800,
   "shapes": {

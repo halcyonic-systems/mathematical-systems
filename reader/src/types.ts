@@ -77,7 +77,11 @@ export type Shape = {
   error?: string;
 };
 
+export type OpenDecision = { title: string; blocking: boolean; problem: string; fix: string };
+
 export type Atlas = {
+  openDecisions: OpenDecision[];
+  provenance: { atlasCommit: string | null; repoCommit: string | null };
   shapes: Record<string, Shape>;
   transcription: Record<string, Transcription>;
   source: { repo: string; coreLabel: string | null };

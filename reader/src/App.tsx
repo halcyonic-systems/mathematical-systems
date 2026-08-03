@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { EntryRail, Masthead, OpenQuestions, Register, Tabs } from "./components";
 import { useStore, type View } from "./store";
+import { FrontMatter } from "./FrontMatter";
 import { CensusView, CommitmentsView, CompareView, LedgerView, ReadView } from "./views";
 
 /**
@@ -11,6 +12,11 @@ import { CensusView, CommitmentsView, CompareView, LedgerView, ReadView } from "
  * what this catalogue contains.
  */
 const TABS: { id: View; label: string; about: string }[] = [
+  {
+    id: "overview",
+    label: "Overview",
+    about: "What this catalogue is, what it has reached, what its build refuses, and what is still unsettled.",
+  },
   {
     id: "read",
     label: "Definitions",
@@ -42,7 +48,7 @@ const TABS: { id: View; label: string; about: string }[] = [
  * Entries are documents; comparisons are instruments. Same eight primitives,
  * different density, set once here rather than threaded through every part.
  */
-const DENSITY = { read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous" } as const;
+const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous" } as const;
 
 export default function App() {
   const { atlas, reasoning, error, view, setView, load, syncFromPath, reading, read } = useStore();
@@ -89,11 +95,12 @@ export default function App() {
             onSelect={read}
           />
         )}
-        <main className={`flex-1 px-8 py-6 min-w-0 ${view === "read" ? "measure" : "measure-wide"}`}>
+        <main className={`flex-1 px-8 py-6 min-w-0 ${view === "read" || view === "overview" ? "measure" : "measure-wide"}`}>
           {/* The collector is keyed per entry so opening another one starts a fresh
               set of open questions rather than accumulating the previous entry's. */}
           <Register density={DENSITY[view]}>
             <OpenQuestions key={`${view}:${reading}`}>
+              {view === "overview" && <FrontMatter atlas={atlas} reasoning={reasoning} />}
               {view === "read" && <ReadView atlas={atlas} />}
               {view === "compare" && <CompareView atlas={atlas} />}
               {view === "census" && <CensusView atlas={atlas} />}
