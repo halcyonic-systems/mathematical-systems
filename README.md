@@ -8,7 +8,9 @@ An auditable catalogue of formal mathematical definitions of **"system"** — ea
 
 ## Load it
 
-**Just want to open something?** `dist/definition-atlas.owl` — 207 triples, 11 classes, RDF/XML, no imports to resolve, opens in Protégé as-is. Entry 001 appears under *Descriptive Information Content Entity*.
+**Just want to open something?** `dist/definition-atlas.ttl` — 213 triples, 13 classes, no imports to resolve, opens in Protégé as-is. Entries appear under *Descriptive Information Content Entity*.
+
+`build.py` also writes `dist/definition-atlas.owl` (RDF/XML) for tools that need it, but that file is **gitignored**: rdflib's RDF/XML serialisation orders namespaces and elements non-deterministically, so committing it churns on every build. The Turtle is byte-stable.
 
 **Working on it?** Edit the `.ttl` sources, then rebuild:
 

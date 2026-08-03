@@ -1,2 +1,8 @@
 __pycache__/
 .venv/
+
+# RDF/XML serialisation ordering is non-deterministic in rdflib (namespace and
+# element order vary run to run), so committing it produces churn on every build.
+# The Turtle in dist/ IS stable and Protege reads it natively — that is the
+# committed open-and-go artifact. Run build.py if you specifically need RDF/XML.
+dist/definition-atlas.owl
