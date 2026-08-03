@@ -421,6 +421,13 @@ def main():
         help="where the primary texts live",
     )
     ap.add_argument("--skip-reasoning", action="store_true")
+    ap.add_argument(
+        "--public",
+        action="store_true",
+        help="drop source context from the output. The context view quotes ~2.6k characters "
+        "of a copyrighted book PER ENTRY; that is fine on a private machine and is "
+        "republishing anywhere else. Any build that leaves this machine wants this flag.",
+    )
     args = ap.parse_args()
 
     atlas_root = args.atlas.expanduser().resolve()
@@ -433,6 +440,12 @@ def main():
 
     vault = args.vault.expanduser().resolve()
     transcription = check_transcriptions(entries, vault)
+    if args.public:
+        # The verdict survives; the quoted passage does not. A public build can
+        # still say "verified against the source" without reproducing the source.
+        for r in transcription.values():
+            r.pop("context", None)
+        print("public build — source context dropped from output")
     gate_live = prove_the_gate_can_fail(entries, vault)
     tally = {}
     for r in transcription.values():
