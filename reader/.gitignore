@@ -1,0 +1,7 @@
+node_modules/
+dist/
+public/.build/
+# Generated, and the context field quotes copyrighted source text.
+# Regenerate with `npm run data`; never commit.
+public/data/
+.DS_Store
