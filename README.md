@@ -11,8 +11,8 @@ actually say, how they relate, and what a translation between them costs.
 | | answered by | state |
 |---|---|---|
 | How does each tradition define *system*, in its own words? | `atlas/` — verbatim, sourced, provenance-graded | **3 entries, 2 authors** |
-| How do the definitions relate to each other, precisely? | `atlas/mappings/` + the Lean shape categories | 1 mapping, 2 entries bridged |
-| What do we gain and lose translating between them? | the silence lists, and the loss catalogue | emerging — see below |
+| How do the definitions relate to each other, precisely? | `atlas/mappings/` + the Lean shape categories | **2 mappings**, 2 entries bridged |
+| What do we gain and lose translating between them? | the silence lists, and the loss catalogue | **first separating instance recorded** — see below |
 | What does this imply for teaching systems science as one discipline? | downstream: the lens ladder in `bert-lenses` | not started |
 
 The third question is the live one. The fourth is why it matters.
@@ -184,24 +184,43 @@ from a library outside this repository, so it cannot run on a CI machine and nev
 The verdicts travel; the books do not. That shapes the flow: gates run where the sources
 are, the deployed site carries what they found.
 
+## The first separating instance
+
+Bunge's Definition 1.1 refuses *"a collection of events, **even if ordered**"*. Klir's worked
+example is a collection of books ordered by author, admitted because *"any ordering of a set is
+a relation defined on the set"*. Both are now recorded on their own entries, each quoted from
+its own primary text.
+
+The clash is sharper than ordering. Bunge requires **bonding**, not merely relation — Def. 1.2
+requires a nonempty bonding set — so he refuses ordered *books* for the same reason he refuses
+ordered *events*. The case is **a collection ordered by a non-bonding relation**.
+
+And the two refusals are not the same act. Bunge refuses ontically: no bonds, therefore not a
+system. Klir does not refuse at all — on his criterion an object is a system iff it *can be
+described* as conforming, and a bare collection can be. He is reporting that no relation has
+been distinguished yet. `atlas/mappings/ordered-collection.md` states the asymmetry;
+`atlas/docs/proposals/P3-stance-axes.md` is why it matters.
+
 ## Where the work goes next
 
-**Atlas, ordered by cost of deferral:**
+Four proposals in `atlas/docs/proposals/`, one applied and three awaiting decisions:
 
-1. **Klir's examples.** The source is in hand and verified: *"a collection of books is not a
-   system, only a set"* (refuses) and books ordered by author (admits, because *"any ordering
-   of a set is a relation defined on the set"*). Entry 001 records neither.
-2. **A test-object vocabulary.** Klir's ordered books and Bunge's ordered events will never
-   string-match, so the conflict cannot be derived from example text. `excludedExample`'s own
-   definition names the requirement — disagreement *about the same object* — without a
-   mechanism for it. `atlas:instantiates testobj:…`, parallel to the primitive scheme.
-3. **Type the primitives** via `skos:broader` onto a signature vocabulary. The reader already
-   reads roles; the census becomes a signature comparison with no code change.
-4. **Mapping M002** — the ordered-collection clash. Its sharpest form is a result, not a
-   restatement: Bunge Def. 1.1 requires *bonding*, not merely relation, so he refuses ordered
-   books for the same reason he refuses ordered events. **A collection ordered by a
-   non-bonding relation** — Klir admits it, Bunge refuses it.
-5. **IRI / deprecation policy.** Cheap now, impossible at fifty.
+| | | |
+|---|---|---|
+| **P1** | Klir's examples | ✔ applied 2026-08-03 |
+| **P4** | resolving D4 — evidence per assertion | **decision needed**; blocks P2 |
+| **P2** | a test-object vocabulary, so the clash *derives* instead of being asserted | waits on P4 |
+| **P3** | stance is two axes, not one | waits on P4 |
+
+**P4 is the bottleneck.** Five independent problems converge on one missing structure —
+examples as individuals rather than string literals. Found from four directions: matching
+examples across authors, the design review's cases matrix, case-versus-reason concatenation,
+and Bunge's examples sitting outside the `sourceLocation` his entry claims. It also records
+that **D4 and D5 are coupled**: any migration renames properties, and renaming an IRI is D5's
+business.
+
+Also open: **type the primitives** via `skos:broader` (the reader already reads roles, so the
+census becomes a signature comparison with no code change), and the **IRI policy** itself.
 
 **Reader:**
 

@@ -15,6 +15,7 @@ apart, and at least one author holds opposite positions on them:
 | **Bunge** | real | **nothing** — no act required; bonds are there or they are not |
 | **Klir** | systemhood is distinguished by us | **constitutes** — distinguishing is necessary *and sufficient* |
 | **Mobus** | **real** | **selects** — designates which real system to study |
+| **Bertalanffy** | **isomorphic within tolerance** — categories are ours and species-relative, but cannot be arbitrary | *not established* — no passage found |
 
 Mobus occupies a cell neither of the others do: **realist about the world, perspectivist
 about the model.** Reading him on one axis alone gets him wrong, and reading him on the
@@ -88,11 +89,45 @@ Different analysts designate different systems of interest over the same world, 
 so without qualification. The boundary is arrived at iteratively (l. 223: *"a system boundary
 is not immediately identifiable until one also starts considering the environment"*).
 
-### Bertalanffy — not checked here
+### Bertalanffy — ontic: a third position, not a midpoint
 
-*General System Theory*, ch. 10, "The Perspectivistic View", is cited in the 2026-08-02
-session as verified. **It has not been read for this document** and no cell is claimed for him
-above. Doing so is the obvious next reading.
+*General System Theory*, ch. 10, "The Perspectivistic View", read 2026-08-03 at
+`bertalanffy/gst-1968-full-text.md:11478–11585`. He is arguing *against* pure relativism,
+having just conceded the biological and cultural relativity of the categories:
+
+> As far as direct experience is concerned, the categories of perception as determined by the
+> biophysiological organization of the species concerned **cannot be completely "wrong,"
+> fortuitous and arbitrary**. Rather they must, in a certain way and to a certain extent,
+> correspond to "reality" — whatever this means in a metaphysical sense.
+
+The argument is evolutionary, not metaphysical: *"Already the fact that animals and human
+beings are still in existence, proves that their forms of experience correspond, to some
+degree, with reality."* Categories that failed to correspond would be eliminated by selection.
+
+And then the precise formulation, which is his own word and is why this matters here:
+
+> As for the connections of these stimuli, i.e., the categories of experience, they **need not
+> mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to
+> it**.
+
+**This is a third ontic position, not a point between the other two.** Bunge holds systems are
+real and our categories track them. Klir holds systemhood is conferred by distinguishing.
+Bertalanffy holds that the categories are ours, species-relative, and *constrained by a
+structural correspondence they must satisfy or the organism dies*. Reality is real; our access
+to it is perspectival; the perspective is not free.
+
+**The observer's act: not established.** No passage was found in which Bertalanffy says a
+system is designated, chosen, or abstracted by an analyst. His definition — "sets of elements
+standing in interaction" (p. 55 area, `:2509`) — does not foreground an observer's act. The
+cell is left empty rather than filled by inference from the ontic column, which is the mistake
+P3 exists to prevent.
+
+**Why the word "isomorphic" is not incidental.** Bertalanffy grounds the relation between a
+category and the world in *structure preservation within tolerance* — the same notion the shape
+categories in `systems-science-foundations` use to ask whether one tradition's definition
+embeds faithfully in another's. He is applying to knowledge itself the relation this project
+applies to formalisations. Whether that is a real connection or a pun is worth a mapping claim,
+not an assertion here.
 
 ## Two consequences
 
@@ -167,7 +202,15 @@ make D4 measurably worse.
 
 ## Open
 
-- **Bertalanffy unread.** Likely a fourth position and possibly a fifth cell.
+- **Bertalanffy's observer cell is empty**, and finding the passage that fills it (or
+  establishing that there is none) is the next reading.
+- **All four authors caveat their own general definition.** Klir: "too general and,
+  consequently, of little pragmatic value". Bunge: "not a definition proper". Bertalanffy: "so
+  general and vague that not much can be learned from it" (`:2508`). Mobus: any definition
+  "must simply accept some ontological (and epistemological) commitments and then get on with
+  it" (`4-a-model-of-system.md:165`). Four traditions, four apologies for the same move. That
+  is a pattern the catalogue should be able to see, and `atlas:authorCaveat` already holds the
+  data for three of them.
 - **Is the ontic axis binary?** Klir's "real world *or* world of ideas" may be a third value
   rather than a point between two.
 - **Is "selects" one value or two?** Mobus's analyst selects a boundary *and* a granularity,

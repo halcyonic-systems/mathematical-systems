@@ -58,6 +58,11 @@ Two defects, both flagged by both councils.
 
 **Cost of deferral:** retrofitting at 50 entries means re-auditing all 50.
 
+**A resolution is drafted** — `proposals/P4-evidence-scope.md`, three options with a
+recommendation (reify the assertions that need grading, scoped to examples first). It also
+records that D4 and **D5 are coupled**: any migration renames properties, and renaming an IRI
+is D5's territory.
+
 **It is already binding.** `proposals/P1-klir-examples.md` holds four triples, drafted from
 the primary text and deliberately not applied, because entry 001 carries a single entry-level
 `HVP` that would silently extend to cover them. The Scope defect stopped a real addition at
@@ -68,6 +73,10 @@ three entries, not fifty.
 ## D5 — IRI and deprecation policy
 
 There is none. `entry:klir-2001-eq-1-1` — what happens when an encoding is corrected, when a second edition is entered, when an entry is withdrawn? OBO practice is never to reuse or silently mutate an IRI. Three entries can be renamed; fifty cannot.
+
+**Coupled to D4.** Resolving evidence scope means renaming properties (`atlas:includedExample` → `atlas:admits`, or similar), which is an IRI change and therefore this decision's business. See `proposals/P4-evidence-scope.md`. Deciding D4 without D5 means migrating twice.
+
+**Now also coupled to the reader.** Entry ids are the paths the reader serves and the segments a `w3id.org` identifier resolves through, so a rename breaks any link written into a paper or a mapping document. `CONTRIBUTING.md` records this; the policy should.
 
 ---
 
