@@ -43,10 +43,19 @@ export function Field({
 }
 
 /** The shared grid. `columns` must match the length of every row's `cells`. */
-export function FieldGrid({ columns, children }: { columns: number; children: ReactNode }) {
+export function FieldGrid({
+  columns,
+  scrollable,
+  children,
+}: {
+  columns: number;
+  /** Scroll sideways rather than reflow: a comparison that stacks is no longer one. */
+  scrollable?: boolean;
+  children: ReactNode;
+}) {
   return (
     <dl
-      className="m-0 grid items-start"
+      className={`m-0 grid items-start ${scrollable ? "scroll-x" : ""}`}
       style={{
         gridTemplateColumns: `max-content repeat(${columns}, minmax(0, 1fr))`,
         columnGap: "1.5rem",

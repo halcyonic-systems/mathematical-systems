@@ -234,7 +234,7 @@ export function CompareView({ atlas }: { atlas: Atlas }) {
       )}
 
       <Section title="Side by side" warrant="source">
-        <FieldGrid columns={Math.max(shown.length, 1)}>
+        <FieldGrid columns={Math.max(shown.length, 1)} scrollable>
           <FieldHeadings headings={shown.map((e) => e.label)} />
           <Field label="Passage" warrant="source" cells={shown.map((e) => e.verbatim ?? "—")} />
           <Field

@@ -268,3 +268,105 @@ body {
 .katex {
   color: inherit;
 }
+
+/* ---------------------------------------------------------------------------
+   RESPONSIVE
+
+   The stylesheet had no breakpoints at all, and a fixed rail beside a
+   three-column grid overflows on a laptop, a tablet, a projector, and any
+   split-screen window — which is realistically how this first gets opened by
+   someone it was sent to.
+   --------------------------------------------------------------------------- */
+@media (max-width: 60rem) {
+  .rail {
+    position: static;
+    width: 100%;
+    max-height: 14rem;
+  }
+  .rail-row {
+    display: flex;
+  }
+  /* Instruments scroll sideways with their label column held, rather than
+     reflowing into something that is no longer a comparison. */
+  .scroll-x {
+    overflow-x: auto;
+  }
+  .measure,
+  .measure-wide {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 40rem) {
+  .w-source {
+    font-size: 1.15rem;
+  }
+  .view-about {
+    padding: 0.625rem 1rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   PRINT
+
+   A knowledge engineer will print this or save it as a PDF, and done properly
+   the printed catalogue is itself a citable document. So: no chrome, every
+   disclosure open, and link targets resolved into the text — a hover tooltip is
+   nothing on paper.
+   --------------------------------------------------------------------------- */
+@media print {
+  nav,
+  .view-about,
+  .anchor-mark {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .card-source,
+  .card-derived,
+  .card-decided,
+  .card-open {
+    box-shadow: none;
+    background: #fff;
+    break-inside: avoid;
+    border-left-width: 2px;
+  }
+
+  /* Warrant survives greyscale: the strips carry no useful tint on paper, so
+     the left rule and the type do the work. */
+  .strip-source,
+  .strip-derived,
+  .strip-decided,
+  .strip-open {
+    background: #fff;
+    border-bottom: 1px solid #000;
+  }
+
+  .section-title {
+    color: #000;
+  }
+
+  /* A reference that only exists as a hover is lost on paper. */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #444;
+  }
+
+  main {
+    max-width: 100% !important;
+  }
+
+  .rail {
+    display: none;
+  }
+
+  /* Capped regions print in full; a scrollbar is not a thing on paper. */
+  .overflow-y-auto {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
