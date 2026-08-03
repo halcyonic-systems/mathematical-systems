@@ -38,7 +38,7 @@ import warnings
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from lean_bridge import resolve as resolve_shape  # noqa: E402
-from transcription import locate  # noqa: E402
+from transcription import PUBLISHABLE_CONTEXT, locate  # noqa: E402
 
 from rdflib import Graph, Namespace, OWL, RDF, RDFS, URIRef
 from rdflib.namespace import DCTERMS, SKOS
@@ -287,7 +287,7 @@ BEARER_SOURCES = {
 }
 
 
-def check_transcriptions(entries, vault):
+def check_transcriptions(entries, vault, context_chars=PUBLISHABLE_CONTEXT):
     """Verify every verbatim against the primary text, and pull its context.
 
     HVP asserts a human checked the transcription. This checks it again, by
@@ -307,7 +307,7 @@ def check_transcriptions(entries, vault):
             continue
         if rel not in cache:
             cache[rel] = path.read_text(errors="ignore")
-        result = locate(e["verbatim"], cache[rel])
+        result = locate(e["verbatim"], cache[rel], context_chars=context_chars)
         result["source"] = path.name
         report[e["iri"]] = result
     return report
@@ -454,11 +454,13 @@ def main():
     )
     ap.add_argument("--skip-reasoning", action="store_true")
     ap.add_argument(
-        "--public",
-        action="store_true",
-        help="drop source context from the output. The context view quotes ~2.6k characters "
-        "of a copyrighted book PER ENTRY; that is fine on a private machine and is "
-        "republishing anywhere else. Any build that leaves this machine wants this flag.",
+        "--context",
+        type=int,
+        default=PUBLISHABLE_CONTEXT,
+        help=f"characters of source quoted either side of a verbatim (default "
+        f"{PUBLISHABLE_CONTEXT}). The default is the PUBLISHABLE window: safe to deploy, "
+        "safe to commit. Widening it produces a local-reading build that is marked "
+        "not-publishable and that scripts/prepublish.sh refuses to ship.",
     )
     args = ap.parse_args()
 
@@ -473,13 +475,10 @@ def main():
     vault = args.vault.expanduser().resolve()
     if not vault.is_dir():
         print(f"no primary texts at {vault} — transcription unverified (pass --vault)")
-    transcription = check_transcriptions(entries, vault)
-    if args.public:
-        # The verdict survives; the quoted passage does not. A public build can
-        # still say "verified against the source" without reproducing the source.
-        for r in transcription.values():
-            r.pop("context", None)
-        print("public build — source context dropped from output")
+    transcription = check_transcriptions(entries, vault, context_chars=args.context)
+    publishable = args.context <= PUBLISHABLE_CONTEXT
+    if not publishable:
+        print(f"context {args.context} > {PUBLISHABLE_CONTEXT} — LOCAL READING BUILD, not publishable")
     gate_live = prove_the_gate_can_fail(entries, vault)
     tally = {}
     for r in transcription.values():
@@ -499,6 +498,11 @@ def main():
         raise SystemExit("BROKEN LEAN POINTER — fix the spec or the checkout (--foundations).")
 
     catalogue = {
+        # Read by scripts/prepublish.sh. Making publishability a property of the
+        # DATA rather than a flag someone has to remember is what keeps a
+        # generous local build from being deployed by accident.
+        "publishable": publishable,
+        "contextChars": args.context,
         "shapes": shapes,
         "transcription": transcription,
         "source": {"repo": atlas_root.name, "coreLabel": one(g, ATLAS["atlas-core"], RDFS.label)},

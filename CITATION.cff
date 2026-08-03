@@ -1,0 +1,61 @@
+cff-version: 1.2.0
+title: >-
+  Mathematical Systems: formal definitions of "system," and the maps between them
+message: >-
+  Cite the Atlas when you rely on a transcription, a provenance grade, or a
+  mapping claim. Cite systems-science-foundations separately when the Lean
+  formalisation is what you are relying on — the two are different artifacts
+  with different warrants, and conflating them overstates both.
+type: dataset
+authors:
+  - given-names: Shingai
+    family-names: Thornton
+    affiliation: Halcyonic Systems
+    orcid: https://orcid.org/0009-0001-8261-1109
+abstract: >-
+  An auditable catalogue of formal mathematical definitions of "system" drawn
+  from the systems theory and systems science traditions. Each entry carries the
+  definition transcribed verbatim from its primary source, the location it was
+  taken from, the terms it uses as primitives, the examples its author admits
+  and refuses, and an evidence code recording how the encoding was established.
+  Entries are aligned to BFO/CCO at the annotation layer only, deliberately
+  leaving unasserted what each definition is *about*, so that realist and
+  constructivist traditions can be catalogued together without the catalogue
+  taking a side. Relations between definitions — what one encompasses, what
+  survives translation into another, and what is lost — are stated in a mapping
+  layer that owes a witness for every claim of loss. Transcriptions are verified
+  against primary texts at build time, and entries link to their dependency
+  quivers in a companion Lean 4 development.
+keywords:
+  - systems science
+  - systems theory
+  - formal ontology
+  - definitions
+  - Klir
+  - Bunge
+  - BFO
+  - Common Core Ontologies
+  - Lean 4
+license: CC-BY-4.0
+license-url: https://creativecommons.org/licenses/by/4.0/
+
+references:
+  - type: software
+    title: >-
+      systems-science-foundations: a Lean 4 formalization of the
+      Klir-Bunge-Mobus common core
+    authors:
+      - given-names: Shingai
+        family-names: Thornton
+        affiliation: Halcyonic Systems
+    repository-code: https://github.com/halcyonic-systems/systems-science-foundations
+    notes: >-
+      The formal counterpart. Entries carry an `atlas:formalisedAs` pointer to a
+      shape category there. That pointer is bibliographic: it records where a
+      formalisation lives, not that the formalisation is faithful to the passage.
+      Faithfulness is a mapping-layer claim and carries its own evidence.
+  - type: generic
+    title: Basic Formal Ontology and the Common Core Ontologies
+    notes: >-
+      Vendored under atlas/imports/ and used for annotation-layer alignment only.
+      Both are CC BY 4.0; see THIRD_PARTY_NOTICES.md for attribution.

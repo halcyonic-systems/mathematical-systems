@@ -145,7 +145,35 @@ def for_display(text):
     return re.sub(r"[ \t]{2,}", " ", text).strip()
 
 
-def locate(verbatim, raw, probe_len=120, context_chars=1200):
+# How much of the book a published page may quote around a definition, per side.
+# Chosen so the surround reaches Klir's ordered-books example -- the separating
+# instance against Bunge sits roughly 500 characters past eq. (1.1) -- while
+# staying short quotation for criticism and comment, with full citation.
+PUBLISHABLE_CONTEXT = 800
+
+
+# The budget is a target, not a cut. Quoting "we obtain a system si" helps nobody
+# and reads as carelessness; a quotation ends where a sentence ends. Up to this
+# many characters of overrun are allowed to reach the stop.
+SENTENCE_OVERRUN = 160
+SENTENCE_END = re.compile(r"[.!?]['\")\]]?\s")
+
+
+def _close_at_sentence(text, start, budget):
+    window = text[start : start + budget + SENTENCE_OVERRUN]
+    ends = [m.end() for m in SENTENCE_END.finditer(window)]
+    past = [e for e in ends if e >= budget]
+    return window[: past[0]] if past else (window[:budget] if ends else window)
+
+
+def _open_at_sentence(text, end, budget):
+    window = text[max(0, end - budget - SENTENCE_OVERRUN) : end]
+    starts = [m.end() for m in SENTENCE_END.finditer(window)]
+    early = [s for s in starts if len(window) - s <= budget]
+    return window[early[0] :] if early else window[-budget:]
+
+
+def locate(verbatim, raw, probe_len=120, context_chars=PUBLISHABLE_CONTEXT):
     """Find `verbatim` in `raw`. Returns a verdict, never a bare boolean."""
     hay, index, latexed = prepare_source(raw)
     needle = canon(verbatim)
@@ -182,8 +210,8 @@ def locate(verbatim, raw, probe_len=120, context_chars=1200):
         "matchedChars": matched,
         "verbatimChars": len(needle),
         "context": {
-            "before": for_display(latexed[max(0, start_raw - context_chars) : start_raw]),
+            "before": for_display(_open_at_sentence(latexed, start_raw, context_chars)),
             "match": for_display(latexed[start_raw:end_raw]),
-            "after": for_display(latexed[end_raw : end_raw + context_chars]),
+            "after": for_display(_close_at_sentence(latexed, end_raw, context_chars)),
         },
     }

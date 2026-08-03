@@ -120,6 +120,36 @@ altering the *transcription* is not.
 
 ---
 
+## Publishing
+
+Intended to be public at **mathematical.systems**. The repository is not public yet, by
+choice: hygiene and contribution standards first, then the switch.
+
+```bash
+./scripts/prepublish.sh      # what must be true before going public, checked not remembered
+```
+
+It verifies the licences and citation metadata exist, that the generated data is a
+publishable build rather than a generous local one, that no source text or machine path
+leaked into tracked files, and that the reader's gates pass.
+
+**Two licences, deliberately.** `atlas/` is CC BY 4.0 — it is data and scholarship.
+Everything else is MIT — it is software. Quoted passages inside entries are neither: they
+are short quotations from copyrighted works, reproduced for criticism with full citation,
+and they stay the property of their rightsholders. `THIRD_PARTY_NOTICES.md` sets this out.
+
+**The published build quotes a bounded window** around each definition — 800 characters
+per side, cut at sentence boundaries so a quotation never ends mid-word. That window was
+chosen to reach Klir's ordered-books example, which is the separating instance against
+Bunge and sits about 500 characters past eq. (1.1). Widening it marks the data
+`publishable: false`, and `prepublish.sh` refuses to ship it. Publishability is a property
+of the data, not a flag anyone has to remember.
+
+**Transcription verification is structurally local-only.** It reads full copyrighted texts
+from a library outside this repository, so it cannot run on a CI machine and never should.
+The verdicts travel; the books do not. That shapes the flow: gates run where the sources
+are, the deployed site carries what they found.
+
 ## Where the work goes next
 
 **Atlas, ordered by cost of deferral:**
