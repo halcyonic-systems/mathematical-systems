@@ -10,12 +10,16 @@ The catalogue's authors differ about what a definition of "system" is *doing*, a
 difference is not a single spectrum from realist to constructivist. Two commitments come
 apart, and at least one author holds opposite positions on them:
 
+**Ontic** means *about what exists, independently of how anyone knows it*, as against
+*epistemic*, about access and knowledge. The first column asks what each author takes to be the
+case; the second asks what an observer's act contributes.
+
 | | **ontic** — are systems real independently of an observer? | **the observer's act** — what does drawing the boundary *do*? |
 |---|---|---|
 | **Bunge** | real | **nothing** — no act required; bonds are there or they are not |
 | **Klir** | systemhood is distinguished by us | **constitutes** — distinguishing is necessary *and sufficient* |
 | **Mobus** | **real** | **selects** — designates which real system to study |
-| **Bertalanffy** | **isomorphic within tolerance** — categories are ours and species-relative, but cannot be arbitrary | *not established* — no passage found |
+| **Bertalanffy** | **perspectivism** (his term) — categories are ours and species-relative, and must be isomorphic to reality within tolerance | *not established* — no passage found |
 
 Mobus occupies a cell neither of the others do: **realist about the world, perspectivist
 about the model.** Reading him on one axis alone gets him wrong, and reading him on the
@@ -89,7 +93,7 @@ Different analysts designate different systems of interest over the same world, 
 so without qualification. The boundary is arrived at iteratively (l. 223: *"a system boundary
 is not immediately identifiable until one also starts considering the environment"*).
 
-### Bertalanffy — ontic: a third position, not a midpoint
+### Bertalanffy — ontic: perspectivism, in his own word
 
 *General System Theory*, ch. 10, "The Perspectivistic View", read 2026-08-03 at
 `bertalanffy/gst-1968-full-text.md:11478–11585`. He is arguing *against* pure relativism,
@@ -110,11 +114,21 @@ And then the precise formulation, which is his own word and is why this matters 
 > mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to
 > it**.
 
-**This is a third ontic position, not a point between the other two.** Bunge holds systems are
-real and our categories track them. Klir holds systemhood is conferred by distinguishing.
-Bertalanffy holds that the categories are ours, species-relative, and *constrained by a
-structural correspondence they must satisfy or the organism dies*. Reality is real; our access
-to it is perspectival; the perspective is not free.
+**He names it himself** — the chapter is titled "The Perspectivistic View" — and his term is
+what the catalogue should carry. An earlier draft of this document called it "a third position"
+and characterised it in my words instead of his, which is backwards for an artefact that
+privileges self-description.
+
+What distinguishes *his* perspectivism, since the label covers a range: it is **constrained**,
+and the constraint is argued rather than asserted. Categories cannot be arbitrary because an
+organism whose categories failed would not survive; and what they must satisfy is stated
+structurally, as isomorphism within tolerance. Nietzschean perspectivism carries no such
+constraint. Giere's perspectival realism is nearer.
+
+That places him as a distinct answer to the ontic question rather than a midpoint between the
+other two. Bunge: systems are real and our categories track them. Klir: systemhood is conferred
+by distinguishing. Bertalanffy: reality is real, our access to it is perspectival, and the
+perspective is not free.
 
 **The observer's act: not established.** No passage was found in which Bertalanffy says a
 system is designated, chosen, or abstracted by an analyst. His definition — "sets of elements
