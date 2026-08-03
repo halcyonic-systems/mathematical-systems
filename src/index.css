@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@import "./fonts.css";
+@import "katex/dist/katex.min.css";
+
+/*
+ * legend — Halcyonic Frost design tokens.
+ *
+ * Inherited from the fleet (bert-lenses / trade-observatory / finance-app /
+ * germen): a cool, faintly indigo-tinted surface, never flat grey, with one
+ * restrained accent. legend takes INDIGO. bert-lenses holds teal, and the
+ * per-tradition hues (klir/bunge/mobus) are spoken for -- legend reads ACROSS
+ * traditions, so it must not wear any one tradition's colour.
+ *
+ * The visual register is documented in docs/design/visual-language.md and gated
+ * by scripts/check-tokens.mjs. Components consume these via var(--x); the JS
+ * mirror for SVG/numeric props lives in src/tokens.ts.
+ */
+:root {
+  color-scheme: light;
+
+  /* surface + text — cool, faintly indigo, not flat grey */
+  --bg-primary: #eef0f5;
+  --bg-secondary: #f9fafc;
+  --bg-surface: #e2e5ec;
+  --text-primary: #1a1e2b;
+  --text-secondary: #414a60;
+  --text-muted: #626b80;
+  --text-on-accent: #ffffff;
+
+  /* accent — indigo leads; slate supports */
+  --accent: #545c93;
+  --accent-strong: #3b4270;
+  --accent-soft: #dcdfec;
+  --accent-slate: #5d6f7b;
+
+  /* RESERVED CHANNEL — evidence grade. Contractual: means how an encoding was
+     established, never decorative, constant across themes. The whole point of
+     the atlas's evidence codes is that unverified work stays visibly unequal to
+     verified work, so this channel must not be reused for anything else.
+     HVP  human-verified against primary text
+     MDHC model-drafted, human-checked
+     MDU  model-drafted, unchecked -- MUST read as a warning, never as neutral
+     PROP propagated from another entry */
+  --evidence-hvp: #1f7351;
+  --evidence-mdhc: #3d6373;
+  --evidence-mdu: #8a5c08;
+  --evidence-prop: #5d6f7b;
+
+  /* RESERVED CHANNEL — proof status. Three states, not two. A sound
+     under-approximation returning "no" means NOT PROVEN, which is a different
+     claim from REFUTED, and rendering the first as the second (or as a green
+     check) is the one lie this instrument must never tell. */
+  --proof-entailed: #1f7351;
+  --proof-not-proven: #8a5c08;
+  --proof-refuted: #c2352c;
+
+  --border: #d3d7e2;
+  --hairline: #e6e9f0;
+
+  /* Straight edges. 8px is the ceiling for anything; chips take 4px; blocks are
+     square. Pill geometry is a different thing and stays allowed. */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 9999px;
+
+  /* Panels sit flat on a rule. This is lift, not elevation. */
+  --shadow-card: 0 1px 2px rgba(26, 30, 43, 0.05);
+  --shadow-card-hover: 0 2px 8px rgba(26, 30, 43, 0.09);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* The critical-edition register: a quoted source is set for READING, at a
+     measure, in the display serif -- not in UI sans and not in monospace. The
+     verbatim is the thing every downstream encoding is checkable against, so it
+     gets the page's best typography, not a code block. */
+  --measure-verbatim: 34rem;
+
+  --transition-base: 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Names are data. small-caps gives an even column without printing "hal" as
+   "HAL"; text-transform: uppercase is forbidden on any name. Uppercase is for
+   fixed UI copy -- eyebrows and section labels -- only. */
+.name-column {
+  font-variant-caps: small-caps;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Quoted source. Cormorant at reading size, held to a measure. */
+.verbatim {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  max-width: var(--measure-verbatim);
+  color: var(--text-primary);
+}
+
+/* KaTeX inherits the surrounding colour rather than KaTeX's own default ink. */
+.katex {
+  color: inherit;
+}
