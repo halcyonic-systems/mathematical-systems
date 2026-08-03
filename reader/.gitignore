@@ -5,3 +5,5 @@ public/.build/
 # Regenerate with `npm run data`; never commit.
 public/data/
 .DS_Store
+__pycache__/
+.venv/
