@@ -11,7 +11,7 @@
  * outline at all.
  */
 import type { ReactNode } from "react";
-import { stripClass, warrantClass, type Warrant } from "./warrant";
+import { cardClass, stripClass, warrantClass, type Warrant } from "./warrant";
 
 export function Section({
   title,
@@ -28,21 +28,10 @@ export function Section({
 }) {
   const Heading = level === 2 ? "h2" : "h3";
   return (
-    <section
-      className="mb-6 border"
-      style={{
-        background: warrant === "open" ? "transparent" : "var(--bg-secondary)",
-        borderColor: "var(--border)",
-        boxShadow: warrant === "open" ? "none" : "var(--shadow-card)",
-      }}
-    >
+    <section className={`mb-6 ${cardClass[warrant]}`}>
       <div className={`${stripClass[warrant]} px-5 py-2 flex items-baseline gap-3 flex-wrap`}>
         <Heading className="section-title">{title}</Heading>
-        {note && (
-          <span className="text-xs" style={{ color: "var(--text-muted)" }}>
-            {note}
-          </span>
-        )}
+        {note && <span className="text-xs section-note">{note}</span>}
       </div>
       <div className={`pad-block ${warrantClass[warrant]}`}>{children}</div>
     </section>

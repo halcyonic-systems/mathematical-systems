@@ -3,12 +3,39 @@ import { EntryRail, Masthead, OpenQuestions, Register, Tabs } from "./components
 import { useStore, type View } from "./store";
 import { CensusView, CommitmentsView, CompareView, LedgerView, ReadView } from "./views";
 
-const TABS: { id: View; label: string }[] = [
-  { id: "read", label: "Read" },
-  { id: "compare", label: "Compare" },
-  { id: "census", label: "Census" },
-  { id: "ledger", label: "Admits / Refuses" },
-  { id: "commitments", label: "Commitments" },
+/**
+ * Labels name what a view holds, not what you do to it. "Read" and "Census"
+ * assume you already know what is being read and what is being counted; a
+ * stranger arriving from a citation does not. Each view also carries one line
+ * of orientation, because a tab bar is the only place a cold reader can learn
+ * what this catalogue contains.
+ */
+const TABS: { id: View; label: string; about: string }[] = [
+  {
+    id: "read",
+    label: "Definitions",
+    about: "One definition of “system” in full — the passage as its author wrote it, what it posits, and how it has been formalised.",
+  },
+  {
+    id: "compare",
+    label: "Compare",
+    about: "Definitions side by side, aligned row by row, with the vocabulary they share and the vocabulary unique to each.",
+  },
+  {
+    id: "census",
+    label: "Primitives",
+    about: "Which terms each definition takes as primitive. A lexical count: two authors using the word “thing” are not thereby claimed to mean the same by it.",
+  },
+  {
+    id: "ledger",
+    label: "Cases",
+    about: "What each author says is a system and what they say is not — their own examples, in their own words. Where two definitions rule differently on one case, that is a finding.",
+  },
+  {
+    id: "commitments",
+    label: "Entailments",
+    about: "What the entries are logically committed to by the ontology they are aligned with — and how that changes when the imported axiom set widens.",
+  },
 ];
 
 /**
@@ -52,6 +79,7 @@ export default function App() {
         count={`${atlas.entries.length} entries`}
       />
       <Tabs tabs={TABS} active={view} onSelect={setView} />
+      <p className="view-about">{TABS.find((t) => t.id === view)?.about}</p>
 
       <div className="flex">
         {view === "read" && (

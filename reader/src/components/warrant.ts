@@ -32,6 +32,17 @@ export const warrantClass: Record<Warrant, string> = {
   open: "w-open",
 };
 
+/**
+ * The whole card: border, ground, lift, and a left edge reinforcing the strip.
+ * A background tint alone is too quiet to separate one section from the next.
+ */
+export const cardClass: Record<Warrant, string> = {
+  source: "card-source",
+  derived: "card-derived",
+  decided: "card-decided",
+  open: "card-open",
+};
+
 export const stripClass: Record<Warrant, string> = {
   source: "strip-source",
   derived: "strip-derived",

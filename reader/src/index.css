@@ -160,10 +160,29 @@ body {
 }
 
 /* Section header strips. `source` carries the most surface; `open` the least. */
+/* Warrant reads down a single accent ramp — strength of the same indigo, not a
+   new hue. The reserved channels (evidence, proof, transcript) are semantic hues
+   on filled marks; this is surface area on chrome, which is the fleet's rule
+   rather than an exception to it. A left edge reinforces the step, because a
+   background tint alone is too quiet to separate one section from the next. */
 .strip-source  { background: var(--accent-soft); border-bottom: 1px solid var(--border); }
-.strip-derived { background: var(--accent-soft); border-bottom: 1px solid var(--border); }
+.strip-derived { background: var(--accent-wash); border-bottom: 1px solid var(--border); }
 .strip-decided { background: var(--bg-surface);  border-bottom: 1px solid var(--hairline); }
 .strip-open    { background: transparent;        border-bottom: 1px dashed var(--border); }
+
+.card-source, .card-derived, .card-decided, .card-open {
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-card);
+}
+.card-source  { border-left: 3px solid var(--accent); }
+.card-derived { border-left: 3px solid var(--accent-slate); }
+.card-decided { border-left: 3px solid var(--border); }
+.card-open {
+  border-left: 3px dashed var(--border);
+  background: transparent;
+  box-shadow: none;
+}
 
 /* Density is ambient: the same primitives serve a document and an instrument. */
 [data-density="dense"] .w-source { font-size: 1.05rem; max-width: none; }
@@ -182,6 +201,22 @@ body {
    nearly three thousand pixels and navigation that scrolls away is navigation
    you do not have. */
 .rail { position: sticky; top: 3rem; max-height: calc(100vh - 3rem); overflow-y: auto; }
+
+.section-note { color: var(--text-muted); }
+
+/* One line of orientation per view. A tab bar is the only place a reader
+   arriving from a citation can learn what the catalogue contains. */
+.view-about {
+  margin: 0;
+  padding: 0.75rem 2rem;
+  max-width: 62rem;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
 
 .section-title {
   text-transform: uppercase;
