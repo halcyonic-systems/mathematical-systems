@@ -37,6 +37,7 @@ import sys
 import warnings
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
+from lean_bridge import resolve as resolve_shape  # noqa: E402
 from transcription import locate  # noqa: E402
 
 from rdflib import Graph, Namespace, OWL, RDF, RDFS, URIRef
@@ -166,6 +167,7 @@ def extract_entries(g):
                 "evidenceCode": str(next(g.objects(s, ATLAS.evidenceCode), "")) or None,
                 "encodedBy": one(g, s, ATLAS.encodedBy),
                 "encodedOn": one(g, s, ATLAS.encodedOn),
+                "formalisedAs": one(g, s, ATLAS.formalisedAs),
                 "annotation": split_annotation(one(g, s, RDFS.comment)),
             }
         )
@@ -346,6 +348,26 @@ def prove_the_gate_can_fail(entries, vault):
     return False
 
 
+def resolve_shapes(entries, foundations):
+    """Read each entry's shape category out of the Lean source.
+
+    An entry with no pointer is reported as such rather than omitted: "no shape
+    category formalises this" is information, and the catalogue has one such
+    entry today (Bunge Def. 1.1, whose formal counterpart is a structure, not a
+    quiver).
+    """
+    shapes = {}
+    for e in entries:
+        spec = e.get("formalisedAs")
+        if not spec:
+            shapes[e["iri"]] = {"status": "none"}
+            continue
+        result = resolve_shape(spec, foundations)
+        result["status"] = "error" if result.get("error") else "resolved"
+        shapes[e["iri"]] = result
+    return shapes
+
+
 def merge_variant(sources, dest):
     g = Graph()
     for s in sources:
@@ -423,6 +445,13 @@ def main():
         help="where the primary texts live. Genuinely external and deliberately so: "
         "these are full copyrighted books and must never be vendored into this repo.",
     )
+    ap.add_argument(
+        "--foundations",
+        type=pathlib.Path,
+        default=pathlib.Path.home() / "Desktop/halcyonic-projects/active/systems-science-foundations",
+        help="checkout of the Lean development. A separate repository by design: it is a "
+        "proof artifact with its own toolchain and release cadence, referenced not vendored.",
+    )
     ap.add_argument("--skip-reasoning", action="store_true")
     ap.add_argument(
         "--public",
@@ -457,7 +486,20 @@ def main():
         tally[r["status"]] = tally.get(r["status"], 0) + 1
     print(f"transcription {tally}  gate-can-fail={gate_live}")
 
+    foundations = args.foundations.expanduser().resolve()
+    shapes = resolve_shapes(entries, foundations)
+    broken = {k: v["error"] for k, v in shapes.items() if v.get("error")}
+    linked = sum(1 for v in shapes.values() if v["status"] == "resolved")
+    print(f"lean bridge   {linked}/{len(entries)} entries linked, {len(broken)} broken")
+    if broken:
+        # A pointer into the formalisation that does not resolve is worse than no
+        # pointer: it asserts a formalisation exists and sends the reader nowhere.
+        for iri, err in broken.items():
+            print(f"  {iri.rsplit('/', 1)[-1]}: {err}")
+        raise SystemExit("BROKEN LEAN POINTER — fix the spec or the checkout (--foundations).")
+
     catalogue = {
+        "shapes": shapes,
         "transcription": transcription,
         "source": {"repo": atlas_root.name, "coreLabel": one(g, ATLAS["atlas-core"], RDFS.label)},
         "entries": entries,

@@ -18,6 +18,7 @@ export type Entry = {
   evidenceCode: string | null;
   encodedBy: string | null;
   encodedOn: string | null;
+  formalisedAs: string | null;
   annotation: AnnotationBlock[];
 };
 
@@ -64,7 +65,20 @@ export type Transcription = {
   context?: { before: string; match: string; after: string };
 };
 
+export type Shape = {
+  status: "resolved" | "error" | "none";
+  spec?: string;
+  file?: string;
+  title?: string;
+  shape?: string;
+  arrowConvention?: string;
+  positions?: { name: string; doc: string }[];
+  arrows?: { name: string; from: string; to: string; doc: string }[];
+  error?: string;
+};
+
 export type Atlas = {
+  shapes: Record<string, Shape>;
   transcription: Record<string, Transcription>;
   source: { repo: string; coreLabel: string | null };
   entries: Entry[];

@@ -6,7 +6,7 @@
  */
 import type { ReactNode } from "react";
 import { evidence, proofColor, proofLabel, transcriptColor, transcriptLabel, type ProofStatus } from "./tokens";
-import type { Transcription } from "./types";
+import type { Shape, Transcription } from "./types";
 
 export function Masthead({
   eyebrow,
@@ -201,5 +201,81 @@ export function Chip({ children, muted }: { children: ReactNode; muted?: boolean
     >
       {children}
     </span>
+  );
+}
+
+/**
+ * The shape category, as Lean has it.
+ *
+ * The quiver is the formal counterpart of the passage: which positions the
+ * definition posits, and which depends on which. Read out of the source file —
+ * nothing here claims the encoding is FAITHFUL to the text. That judgement is a
+ * mapping-layer claim with an evidence code, and the gap between what the text
+ * says and what the quiver records is the point of showing them together.
+ */
+export function Quiver({ shape }: { shape: Shape | undefined }) {
+  if (!shape || shape.status === "none")
+    return (
+      <p className="m-0 text-sm italic" style={{ color: "var(--text-muted)" }}>
+        No shape category formalises this entry. Its formal counterpart in the foundations is a
+        structure rather than a quiver, so there is nothing to bridge to yet.
+      </p>
+    );
+  if (shape.status === "error")
+    return (
+      <p className="m-0 text-sm" style={{ color: "var(--proof-refuted)" }}>
+        {shape.error}
+      </p>
+    );
+
+  return (
+    <>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {shape.positions?.map((p) => (
+          <span
+            key={p.name}
+            title={p.doc}
+            style={{
+              background: "var(--bg-surface)",
+              border: "1px solid var(--accent-slate)",
+              borderRadius: "var(--radius-sm)",
+              fontFamily: "var(--font-mono)",
+            }}
+            className="px-2.5 py-1 text-xs"
+          >
+            {p.name}
+          </span>
+        ))}
+      </div>
+
+      <table className="w-full text-sm border-collapse">
+        <tbody>
+          {shape.arrows?.map((a) => (
+            <tr key={a.name}>
+              <td
+                className="py-2 pr-3 whitespace-nowrap align-top"
+                style={{ borderBottom: "1px solid var(--hairline)", fontFamily: "var(--font-mono)" }}
+              >
+                <span style={{ color: "var(--text-primary)" }}>{a.from}</span>
+                <span style={{ color: "var(--accent)" }}> → </span>
+                <span style={{ color: "var(--text-primary)" }}>{a.to}</span>
+              </td>
+              <td
+                className="py-2 align-top"
+                style={{ borderBottom: "1px solid var(--hairline)", color: "var(--text-secondary)" }}
+              >
+                {a.doc || <span style={{ color: "var(--text-muted)" }}>—</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {shape.arrowConvention && (
+        <p className="mt-3 mb-0 text-xs" style={{ color: "var(--text-muted)" }}>
+          {shape.arrowConvention}
+        </p>
+      )}
+    </>
   );
 }

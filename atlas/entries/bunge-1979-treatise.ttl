@@ -58,6 +58,8 @@ entry:bunge-1979-ces-triple
                            prim:relation ,
                            prim:thing ;
 
+    atlas:formalisedAs "Systems/Category/ShapeBunge.lean#BungeShape" ;
+
     atlas:evidenceCode atlas:HVP ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;

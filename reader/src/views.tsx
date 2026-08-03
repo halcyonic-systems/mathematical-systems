@@ -1,4 +1,4 @@
-import { Block, Chip, EvidenceBadge, InContext, ProofBadge, TranscriptBadge, Verbatim, localName } from "./chrome";
+import { Block, Chip, EvidenceBadge, InContext, ProofBadge, Quiver, TranscriptBadge, Verbatim, localName } from "./chrome";
 import { useStore } from "./store";
 import type { Atlas, Entry, Reasoning } from "./types";
 
@@ -17,6 +17,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
   const bearer = byIri(atlas.bearers).get(entry.statedIn ?? "");
   const prims = byIri(atlas.primitives);
   const t = atlas.transcription[entry.iri];
+  const shape = atlas.shapes[entry.iri];
 
   return (
     <>
@@ -73,6 +74,13 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
             </Chip>
           ))}
         </div>
+      </Block>
+
+      <Block
+        title="As formalised"
+        note={shape?.status === "resolved" ? `${shape.file} · ${shape.shape}` : undefined}
+      >
+        <Quiver shape={shape} />
       </Block>
 
       {(entry.includedExamples.length > 0 || entry.excludedExamples.length > 0) && (

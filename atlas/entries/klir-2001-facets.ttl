@@ -50,6 +50,8 @@ where S, T, R denote, respectively, a system, a set of things distinguished with
                            prim:thinghood ,
                            prim:systemhood ;
 
+    atlas:formalisedAs "Systems/Category/ShapeKlir.lean#KlirShape" ;
+
     atlas:evidenceCode atlas:HVP ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
