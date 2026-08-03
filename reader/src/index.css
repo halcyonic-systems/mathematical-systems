@@ -139,6 +139,17 @@ body {
   color: var(--text-primary);
   max-width: var(--measure-verbatim);
 }
+/* A list of cases is source — the author's own words — but it is not a passage,
+   and setting it at passage size makes a two-column comparison unreadable. Serif
+   is kept, so the warrant still reads; only the scale steps down. */
+.w-source ul,
+.w-source li,
+.w-source ol {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  max-width: none;
+}
+
 .w-derived {
   font-size: 0.875rem;
   line-height: 1.55;

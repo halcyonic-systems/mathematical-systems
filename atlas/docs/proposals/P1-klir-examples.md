@@ -1,7 +1,8 @@
-# P1 — Klir's examples, ready to enter
+# P1 — Klir's examples
 
-**Status: drafted, awaiting one word.** The source was read by a human on 2026-08-03.
-What remains is sign-off on the *encoding*, which involves three judgments that are mine.
+**Status: APPLIED 2026-08-03.** Source read by a human, encoding signed off, three
+`atlas:includedExample` triples and an `EXAMPLES NOTE` entered on entry 001. Kept as the
+record of what was decided and why — particularly why no excluded example was entered.
 
 Entry 001 records Klir's eq. (1.1) and nothing about which objects he says are systems. He
 gives examples four sentences later, and one of them is half of the catalogue's sharpest
@@ -62,7 +63,7 @@ refusal — and would show, in the Cases view, as Klir and Bunge *agreeing* that
 not systems, which is the precise opposite of the finding. It is the same overwriting the
 neutrality invariant exists to prevent, arriving through a different door.
 
-## The three judgments awaiting sign-off
+## The three judgments that were signed off
 
 1. **Grouped into three.** Klir's "etc." licenses it, but the joints are still my reading.
 2. **The third quote is spliced.** That clause is Klir on *a relation* being transferable; it
@@ -83,6 +84,11 @@ separately labelled element outside the location entry 003 claims. Noted, not fi
 
 ## Why it was not applied unilaterally
 
-Entry 001 carries a single entry-level `atlas:HVP`. A model drafted these triples. Applying
-them without sign-off would extend that stamp over an encoding no human has approved — D4's
-Scope defect, at three entries rather than fifty. D4 records this instance.
+Entry 001 carries a single entry-level `atlas:HVP`. A model drafted these triples, so applying
+them without sign-off would have extended that stamp over an encoding no human had approved —
+D4's Scope defect, biting at three entries rather than fifty. D4 records the instance.
+
+The route taken instead: a human read p. 5, then approved the encoding, and only then were the
+triples entered. The `HVP` on entry 001 now covers them because a human did what `HVP`
+asserts. That is the whole procedure D4 will eventually make cheaper, and until it does, this
+is what it costs.

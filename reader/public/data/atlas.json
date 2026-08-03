@@ -38,8 +38,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "8c0b62f",
-    "repoCommit": "8c0b62f"
+    "atlasCommit": "9281a4f",
+    "repoCommit": "9281a4f"
   },
   "publishable": true,
   "contextChars": 800,
@@ -273,7 +273,11 @@
       "sourceLocation": "ch. 1, eq. (1.1), p. 5",
       "verbatim": "S = (T, R),   (1.1)\n\nwhere S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.",
       "authorCaveat": null,
-      "includedExamples": [],
+      "includedExamples": [
+        "a collection of books ordered by authors' names, publication dates, or size — \"any ordering of a set is a relation defined on the set\"",
+        "a collection of books partitioned by subject, publisher, or language — \"every partition of a set emerges from a particular equivalence relation defined on the set\"",
+        "a human population ordered by dates of birth — \"may be applied not only to other sets of books, but also to sets whose elements are not books\""
+      ],
       "excludedExamples": [],
       "primitives": [
         "https://halcyonic.systems/atlas/primitive/relation",
@@ -296,6 +300,11 @@
           "kind": "section",
           "title": "DELIBERATELY NOT ASSERTED",
           "body": "cco:ont00001808 (is about). Klir is an avowed\nconstructivist — on his account the relation R is defined by the modeller, not\ndiscovered. Asserting what this definition is *about* would commit the catalogue\nto a realist reading Klir does not hold. The neutrality is the point."
+        },
+        {
+          "kind": "section",
+          "title": "EXAMPLES NOTE",
+          "body": "Klir gives no excluded example in Bunge's sense. His \"a collection\nof books is not a system, only a set\" (p. 5, same paragraph as the included\nexamples) is the opening move of an argument whose conclusion is that organising\nit *makes* it one, and on his own criterion — an object is a system iff it CAN BE\nDESCRIBED in a form conforming to Eq. (1.1) — a bare collection is not refused but\nmerely not yet distinguished. Recording it as atlas:excludedExample would give it\nthe same form as Bunge's ontic refusal at Definition 1.1 and manufacture a symmetry\nthe two authors do not share; in a cases matrix it would read as agreement where\nthe finding is the opposite. The three included examples are grouped as Klir groups\nthem: his \"etc.\" marks the variants as instances of a kind, not an enumeration of\ncases. Source read 2026-08-03; see docs/proposals/P1-klir-examples.md and\ndocs/proposals/P3-stance-axes.md."
         },
         {
           "kind": "section",

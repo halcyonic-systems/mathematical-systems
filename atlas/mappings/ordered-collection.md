@@ -4,9 +4,10 @@
 NON-BONDING relation. Klir admits it because a relation on a set is all his definition
 requires; Bunge refuses it because a relation is not a bond, and his requires bonds.**
 
-**Status: DRAFT — one witness is not yet in the catalogue.** Klir's half of this lives in
-his book and in an annotation on Bunge's entry, not in Klir's entry. See "What this depends
-on". Do not cite until that is closed.
+**Status: both witnesses are in the catalogue** (2026-08-03). Klir's admission was entered
+as `atlas:includedExample` on entry 001 after the source was read; Bunge's refusal was
+already on entry 003. The clash is still *asserted here* rather than *derived by the reader* —
+that waits on P2. Citable, with the presentation named below.
 
 ---
 
@@ -28,17 +29,15 @@ surrounding text:
 
 > a collection of events, even if ordered
 
-**Klir admits.** *Facets of Systems Science* 2nd ed., ch. 1, p. 5, four sentences after
-eq. (1.1):
+**Klir admits.** Entry 001, `atlas:includedExample` — *Facets of Systems Science* 2nd ed.,
+ch. 1, p. 5, four sentences after eq. (1.1):
 
 > when we order them, for instance, by authors' names, we obtain a system since any ordering
 > of a set is a relation defined on the set
 
-⚠ **This second witness is not in the catalogue.** It is quoted here from the primary text
-and drafted for entry 001 as proposal P1, awaiting a human reading. Until it is entered,
-this mapping cites a passage the catalogue does not hold — which is the defect found on
-2026-08-02 in entry 003's annotation, and repeating it knowingly would be worse than
-finding it once.
+Entered 2026-08-03 after the source was read (P1). Before that this mapping cited a passage
+the catalogue did not hold — the same defect found on 2026-08-02 in entry 003's annotation.
+Both sides are now in the record.
 
 ## The two refusals are not the same act
 
@@ -75,9 +74,9 @@ relation** (see P2).
 
 ## Every "lost" owes a witness
 
-Satisfied, conditionally. There is a concrete object — a shelf of books ordered by author —
-that one definition admits and the other refuses, and each side is quotable from its own
-primary text. The condition is that Klir's side must be *in the catalogue*, not merely true.
+Satisfied. There is a concrete object — a shelf of books ordered by author — that one
+definition admits and the other refuses, and each side is quoted from its own primary text and
+recorded on its own entry.
 
 ## Every "preserved" owes a theorem
 
@@ -107,9 +106,9 @@ open: `KlirArrow` records that R depends on T and says nothing about what R must
 
 | | |
 |---|---|
-| **P1** | Klir's *included* examples entered, so the admission is in the catalogue rather than only in this document. P1 enters no excluded example for Klir, by design |
+| ~~**P1**~~ | ✔ applied 2026-08-03. Klir's included examples are on entry 001; no excluded example, by design |
 | **P3** | stance axes, so "Bunge refuses ontically, Klir does not refuse at all" has somewhere to live besides this paragraph |
 | **P2** | a test object, so the clash can be *derived* by the reader rather than asserted here |
 | **D4** | evidence scope, so the entered examples can carry their own grade |
 
-P1 is a minute of reading. The other two are decisions.
+P1 is closed. The rest are decisions: until P2, the clash is stated here rather than computed.

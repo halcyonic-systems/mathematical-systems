@@ -155,6 +155,19 @@ constructivist — on his account the relation R is defined by the modeller, not
 discovered. Asserting what this definition is *about* would commit the catalogue
 to a realist reading Klir does not hold. The neutrality is the point.
 
+EXAMPLES NOTE: Klir gives no excluded example in Bunge's sense. His "a collection
+of books is not a system, only a set" (p. 5, same paragraph as the included
+examples) is the opening move of an argument whose conclusion is that organising
+it *makes* it one, and on his own criterion — an object is a system iff it CAN BE
+DESCRIBED in a form conforming to Eq. (1.1) — a bare collection is not refused but
+merely not yet distinguished. Recording it as atlas:excludedExample would give it
+the same form as Bunge's ontic refusal at Definition 1.1 and manufacture a symmetry
+the two authors do not share; in a cases matrix it would read as agreement where
+the finding is the opposite. The three included examples are grouped as Klir groups
+them: his "etc." marks the variants as instances of a kind, not an enumeration of
+cases. Source read 2026-08-03; see docs/proposals/P1-klir-examples.md and
+docs/proposals/P3-stance-axes.md.
+
 CENSUS NOTE: Klir's own gloss splits the definition's two slots into named
 properties — thinghood in T, systemhood in R. Recorded as separate primitives
 rather than folded into `thing` and `relation`, because whether they are distinct
@@ -174,6 +187,9 @@ checked against each other before either is cited."""@en ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
     atlas:formalisedAs "Systems/Category/ShapeKlir.lean#KlirShape" ;
+    atlas:includedExample "a collection of books ordered by authors' names, publication dates, or size — \"any ordering of a set is a relation defined on the set\"",
+        "a collection of books partitioned by subject, publisher, or language — \"every partition of a set emerges from a particular equivalence relation defined on the set\"",
+        "a human population ordered by dates of birth — \"may be applied not only to other sets of books, but also to sets whose elements are not books\"" ;
     atlas:invokesPrimitive prim:relation,
         prim:set,
         prim:systemhood,
