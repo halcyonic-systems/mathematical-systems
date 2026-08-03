@@ -10,11 +10,11 @@ The catalogue's authors differ about what a definition of "system" is *doing*, a
 difference is not a single spectrum from realist to constructivist. Two commitments come
 apart, and at least one author holds opposite positions on them:
 
-| | **ontic** — are systems real independently of an observer? | **methodological** — is a system of interest discovered, or designated? |
+| | **ontic** — are systems real independently of an observer? | **the observer's act** — what does drawing the boundary *do*? |
 |---|---|---|
-| **Bunge** | real | discovered |
-| **Klir** | systemhood is distinguished by us | distinguished |
-| **Mobus** | **real** | **designated** |
+| **Bunge** | real | **nothing** — no act required; bonds are there or they are not |
+| **Klir** | systemhood is distinguished by us | **constitutes** — distinguishing is necessary *and sufficient* |
+| **Mobus** | **real** | **selects** — designates which real system to study |
 
 Mobus occupies a cell neither of the others do: **realist about the world, perspectivist
 about the model.** Reading him on one axis alone gets him wrong, and reading him on the
@@ -47,7 +47,7 @@ Corroborated at p. 5, in the criterion itself: *"an object is a system if and on
 be described** in a form that conforms to Eq. (1.1)."* Systemhood is a property of a
 description, not of the object.
 
-### Bunge — ontic: realist. methodological: discovered
+### Bunge — ontic: realist. The observer's act: none
 
 *Treatise* vol. 4, Definition 1.1 and the `Example` block following it: a molecule, a coral
 reef, a family, a factory are systems; a set of states, and a collection of events *even if
@@ -67,7 +67,7 @@ The refusal is ontic. No bonds, therefore not a system, and no act of descriptio
 Note the subject: *this **work***. A property of the book, hedged, not a declaration about the
 author. See "Stance attaches to the entry" below.
 
-### Mobus — methodological: perspectivist
+### Mobus — the observer's act: selective
 
 `mobus/5-introduction-to-process-understanding-systems.md`, l. 155:
 
@@ -96,18 +96,39 @@ above. Doing so is the obvious next reading.
 
 ## Two consequences
 
-### Mobus's differentiation is precise, not a misreading
+### What Mobus takes from Klir is the tuple, and he says so
 
-He calls Klir a "radical constructivist" while inheriting Klir's methodology — "inspired
-originally by Klir". On the axes above that is exactly right: he parts from Klir on the
-**ontic** axis and stands close to him on the **methodological** one. A single realist /
-constructivist axis makes this look like a mischaracterisation. Two axes make it a precise
-placement.
+An earlier draft of this document claimed Mobus "inherits Klir's methodology". That is wrong,
+and his own sentence refutes it (`4-a-model-of-system.md`, l. 194):
+
+> Both of their works were, however, devoted to a purely mathematical approach to defining
+> system and then using the definition and the math to explore the mathematical implications.
+> **However, the approach taken in this book is quite different in purpose.**
+
+He names Klir and Wymore and distances himself. What he takes is the **form** of the
+definition — a tuple — and nothing further.
+
+The methods are not alike. Klir's GSPS is an epistemological hierarchy (source, data,
+generative, structure, metasystem) stratifying what can be *known* about a set of variables.
+Mobus's Deep Systems Analysis is a recursive compositional decomposition of a system of
+interest down to leaf nodes. Stratification of knowledge against decomposition of composition:
+different objects, different outputs.
+
+What they do share is that **an observer draws the boundary** — and pressing on that is what
+produced the second column above. The drawing does different work in each, so "designated"
+was too coarse a value and has been replaced.
 
 Whether "radical" overstates Klir is a separate question, and one this catalogue can hold:
 Klir's own clause permits distinctions on real things, which radical constructivism in von
 Glasersfeld's sense does not. That is a **mapping-layer** claim — one author characterising
 another — and owes a witness like any other.
+
+### The observer's act is not a proxy for ontology
+
+Klir's act is constitutive *because* of his ontic position, but Mobus's is selective while his
+ontology is realist — so the second column cannot be read off the first. That is precisely why
+two columns are needed, and why a single realist/constructivist spectrum places Mobus wrongly
+whichever end it puts him at.
 
 ### D2 keys off the ontic axis only
 
@@ -120,7 +141,7 @@ D2 does not currently draw this distinction. It should, before targets are assig
 
 ## Design
 
-**Two properties, not one.** `atlas:onticStance` and `atlas:methodStance`, each ranging over
+**Two properties, not one.** `atlas:onticStance` and `atlas:observerRole`, each ranging over
 a small SKOS scheme. A single `stance` field would have recorded Mobus as a plain realist on
 the strength of one sentence in ch. 4 while ignoring two chapters of method.
 
@@ -149,6 +170,8 @@ make D4 measurably worse.
 - **Bertalanffy unread.** Likely a fourth position and possibly a fifth cell.
 - **Is the ontic axis binary?** Klir's "real world *or* world of ideas" may be a third value
   rather than a point between two.
+- **Is "selects" one value or two?** Mobus's analyst selects a boundary *and* a granularity,
+  and those may be separable commitments. Wymore and Mesarović would test it.
 - **Mobus's edition problem.** `mobus/README.md` records that ch. 4's 7-tuple is superseded by
   the paper's 8-tuple, and that a reading of ch. 4 without the revision "will reconstruct a
   framework with no environment coordinate". Entering Mobus therefore hits **D6's identity
