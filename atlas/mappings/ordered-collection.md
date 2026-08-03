@@ -40,6 +40,24 @@ this mapping cites a passage the catalogue does not hold — which is the defect
 2026-08-02 in entry 003's annotation, and repeating it knowingly would be worse than
 finding it once.
 
+## The two refusals are not the same act
+
+Sharpened after reading Klir §2.3 and Mobus chs. 5–6 (see `../docs/proposals/P3-stance-axes.md`).
+
+**Bunge refuses ontically.** Definition 1.2 requires 𝔅_A(σ,t) ≠ ∅. No bonds, therefore not a
+system, and no act of description alters it.
+
+**Klir does not refuse at all.** His criterion is that an object is a system iff it *can be
+described* in a form conforming to eq. (1.1). A bare collection can be — supply an ordering and
+it conforms, which is exactly what he does in the next sentence. His "a collection of books is
+not a system, only a set" reports that no relation has been distinguished **yet**.
+
+So the divergence is sharper than admits-versus-refuses. Bunge and Klir are not disagreeing
+about the verdict on one object; they are **making different kinds of claim about it**. Bunge's
+is about the object; Klir's is about the state of a description of it. The catalogue therefore
+records Klir's side only as an admission — P1 deliberately enters no excluded example for him —
+and this mapping is where the asymmetry is stated rather than flattened into a matrix cell.
+
 ## Why the qualifier is load-bearing
 
 Bunge's Definition 1.1 requires "at least two different **connected** things", and
@@ -89,7 +107,8 @@ open: `KlirArrow` records that R depends on T and says nothing about what R must
 
 | | |
 |---|---|
-| **P1** | Klir's examples entered, so the second witness is in the catalogue rather than only in this document |
+| **P1** | Klir's *included* examples entered, so the admission is in the catalogue rather than only in this document. P1 enters no excluded example for Klir, by design |
+| **P3** | stance axes, so "Bunge refuses ontically, Klir does not refuse at all" has somewhere to live besides this paragraph |
 | **P2** | a test object, so the clash can be *derived* by the reader rather than asserted here |
 | **D4** | evidence scope, so the entered examples can carry their own grade |
 

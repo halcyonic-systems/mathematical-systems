@@ -50,7 +50,7 @@ big=$(git ls-files -z | xargs -0 -I{} sh -c 'test -f "{}" && wc -c <"{}" | tr -d
 # from the repository, and scanning them just produces noise that trains you to
 # ignore the check.
 git ls-files -- '*.md' '*.ttl' '*.json' | xargs grep -lI 'Facets of Systems Science' 2>/dev/null \
-  | grep -vE 'entries/|atlas/dist/|reader/public/data/|mappings/|THIRD_PARTY|README|CITATION|CONTRIBUTING' \
+  | grep -vE 'entries/|atlas/dist/|reader/public/data/|mappings/|docs/proposals/|THIRD_PARTY|README|CITATION|CONTRIBUTING' \
   | head -1 | grep -q . \
   && soft "a source title appears outside entries/, dist/, mappings/ and notices — check it carries provenance" \
   || ok "source passages confined to entries, the artifact built from them, and the mapping layer"
