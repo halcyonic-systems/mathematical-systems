@@ -306,8 +306,8 @@ export function CensusView({ atlas }: { atlas: Atlas }) {
         {untyped && (
           <Absence
             id="census:untyped"
-            inline="No primitive carries a signature role."
-            what="The whole scheme is untyped: no primitive carries a signature role."
+            inline="Untyped."
+            what="No primitive in the scheme carries a signature role."
             closes="An external model-theoretic vocabulary attached via skos:broader would also dissolve the charge that the census is self-confirming."
           />
         )}
@@ -474,9 +474,13 @@ export function CommitmentsView({ reasoning }: { reasoning: Reasoning }) {
           <Derivation
             key={i}
             verdict={j.axioms.length ? "holds" : "bounded"}
-            claim={`${v.labels[localName(j.sub)] ?? localName(j.sub)} is a ${
-              v.labels[localName(j.sup)] ?? localName(j.sup)
-            }.`}
+            claim={(() => {
+              const sup = v.labels[localName(j.sup)] ?? localName(j.sup);
+              // The label is data, so the article has to agree with it at render time.
+              return `${v.labels[localName(j.sub)] ?? localName(j.sub)} is ${
+                /^[aeiou]/i.test(sup) ? "an" : "a"
+              } ${sup}.`;
+            })()}
             because={j.axioms.length ? undefined : `Not entailed under this closure${j.note ? ` (${j.note})` : ""}.`}
             detail={
               j.axioms.length ? (
