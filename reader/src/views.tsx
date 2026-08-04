@@ -138,8 +138,8 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
             label="Examples"
             warrant="source"
             cells={[
-              <CaseList key="a" iris={entry.admits} cases={atlas.cases} />,
-              <CaseList key="r" iris={entry.refuses} cases={atlas.cases} />,
+              <CaseList key="a" iris={entry.admits} cases={atlas.cases} stance="admits" />,
+              <CaseList key="r" iris={entry.refuses} cases={atlas.cases} stance="refuses" />,
             ]}
           />
         </FieldGrid>
@@ -245,12 +245,12 @@ export function CompareView({ atlas }: { atlas: Atlas }) {
           <Field
             label="Admits"
             warrant="source"
-            cells={shown.map((e) => <CaseList key={e.iri} iris={e.admits} cases={atlas.cases} />)}
+            cells={shown.map((e) => <CaseList key={e.iri} iris={e.admits} cases={atlas.cases} stance="admits" />)}
           />
           <Field
             label="Refuses"
             warrant="source"
-            cells={shown.map((e) => <CaseList key={e.iri} iris={e.refuses} cases={atlas.cases} />)}
+            cells={shown.map((e) => <CaseList key={e.iri} iris={e.refuses} cases={atlas.cases} stance="refuses" />)}
           />
           <Field label="Author's caveat" warrant="source" cells={shown.map((e) => e.authorCaveat ?? "—")} />
           <Field
@@ -354,12 +354,12 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
                   <ul className="m-0 pl-4">
                     {c.admittedBy.map((a) => (
                       <li key={a.case}>
-                        admits <CaseList iris={[a.case]} cases={atlas.cases} />
+                        admits <CaseList iris={[a.case]} cases={atlas.cases} stance="admits" />
                       </li>
                     ))}
                     {c.refusedBy.map((r) => (
                       <li key={r.case}>
-                        refuses <CaseList iris={[r.case]} cases={atlas.cases} />
+                        refuses <CaseList iris={[r.case]} cases={atlas.cases} stance="refuses" />
                       </li>
                     ))}
                   </ul>
@@ -383,7 +383,7 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
               label={r.stance}
               warrant="source"
               cells={[
-                <CaseList key="c" iris={[r.iri]} cases={atlas.cases} />,
+                <CaseList key="c" iris={[r.iri]} cases={atlas.cases} stance={r.stance} />,
                 <span key="e" className="name-column">{distinguishing(r.entry.label)}</span>,
               ]}
             />

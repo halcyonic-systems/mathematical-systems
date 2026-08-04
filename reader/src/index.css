@@ -255,6 +255,24 @@ body {
 
 .section-note { color: var(--text-muted); }
 
+/* A ruling reads before it is read: ⊨ admits sits flush, ⊭ refuses steps in.
+   Colour is unavailable here — the three channels are contractual — so the
+   asymmetry has to be geometric. Hanging indent, so a wrapped gloss lines up
+   under itself rather than under the glyph. */
+.case-list > li {
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+}
+.ruling-refuses {
+  margin-left: 1rem;
+}
+.ruling-glyph {
+  display: inline-block;
+  width: 1.5rem;
+  text-indent: 0;
+  color: var(--text-muted);
+}
+
 /* A case: our gloss, then the author's own words, then how well established it
    is. The quote is set apart because it is theirs and the gloss is ours. */
 .case-quote { font-family: var(--font-display); color: var(--text-secondary); }
