@@ -20,7 +20,7 @@ export function Chip({
   return (
     <span
       title={title}
-      className="px-2 py-0.5 text-xs whitespace-nowrap"
+      className={`px-2 py-0.5 text-xs whitespace-nowrap${title ? " chip-explained" : ""}`}
       style={{ ...style, borderRadius: "var(--radius-sm)" }}
     >
       {children}
@@ -41,7 +41,7 @@ export function Toggle({
     <button
       onClick={onClick}
       aria-pressed={on}
-      className="px-3 py-1 text-sm cursor-pointer"
+      className="toggle px-3 py-1 text-sm cursor-pointer"
       style={{
         background: on ? "var(--accent)" : "var(--bg-surface)",
         color: on ? "var(--text-on-accent)" : "var(--text-secondary)",

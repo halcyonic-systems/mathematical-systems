@@ -31,6 +31,11 @@
   --accent: #545c93;
   --accent-strong: #3b4270;
   --accent-soft: #dcdfec;
+  /* Between --accent-soft and the page: the second rung of the warrant ramp,
+     for `derived` chrome. It was referenced by .strip-derived before it was
+     ever defined, so derived sections fell back to transparent and read as
+     `open` — a hole in the middle of the scale that encodes epistemic warrant. */
+  --accent-wash: #e8eaf2;
   --accent-slate: #5d6f7b;
 
   /* RESERVED CHANNEL — evidence grade. Contractual: means how an encoding was
@@ -285,6 +290,136 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
+}
+
+/* ---------------------------------------------------------------------------
+   INTERACTION
+
+   Everything that answers the cursor lives here. Before this block the entire
+   stylesheet held ONE :hover rule — the section anchor mark — which is most of
+   why the reader read as a printed document rather than as an instrument you
+   poke at. Two rules govern it:
+
+   Hover is ambient. It steps the surface, never the ink of a reserved channel;
+   an evidence grade or a proof verdict must mean the same thing whether or not
+   a pointer happens to be over it.
+
+   State is structural. What is SELECTED is marked by a rule on the leading
+   edge, so it survives greyscale, print, and a hover happening elsewhere.
+   --------------------------------------------------------------------------- */
+.rail-row {
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base);
+}
+.rail-row:hover {
+  background: var(--bg-surface);
+}
+.rail-row.is-current {
+  background: var(--bg-primary);
+  border-left-color: var(--accent);
+}
+.rail-numeral {
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  transition: color var(--transition-base);
+}
+.rail-row.is-current .rail-numeral {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+.rail-title {
+  color: var(--text-secondary);
+  transition: color var(--transition-base);
+}
+.rail-row.is-current .rail-title {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.rail-locus {
+  color: var(--text-muted);
+}
+
+.tab {
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  transition:
+    color var(--transition-base),
+    background var(--transition-base),
+    border-color var(--transition-base);
+}
+.tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+.tab[aria-selected="true"] {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Disclosures and other quiet controls: the label darkens, and the marker
+   rotates rather than being swapped for a different glyph. */
+.disclosure {
+  color: var(--accent);
+  transition: color var(--transition-base);
+}
+.disclosure:hover {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.chevron {
+  display: inline-block;
+  transition: transform var(--transition-base);
+}
+.disclosure[aria-expanded="true"] .chevron {
+  transform: rotate(90deg);
+}
+
+/* A toggle is pressed or not; hover must not be mistakable for pressed. */
+.toggle {
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base);
+}
+.toggle:hover {
+  border-color: var(--accent);
+}
+.toggle:not([aria-pressed="true"]):hover {
+  background: var(--accent-soft);
+}
+
+/* Chips are mostly labels. Only the ones carrying a title get the cursor. */
+.chip-explained {
+  cursor: help;
+  border-bottom-style: dotted;
+}
+
+/* Keyboard users land on the rail otherwise, and the rail is long. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--accent-strong);
+  color: var(--text-on-accent);
+  z-index: 50;
+}
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* The one place motion is used is state change, so removing it costs nothing. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* KaTeX inherits the surrounding colour rather than KaTeX's own default ink. */

@@ -35,6 +35,7 @@ export function Derivation({
   claim,
   because,
   detail,
+  detailLabel,
 }: {
   verdict: Verdict;
   /** One sentence, in the reader's language, not the reasoner's. */
@@ -43,8 +44,15 @@ export function Derivation({
   because?: ReactNode;
   /** The mechanism. Axioms, counts, normalisations — anything a checker would want. */
   detail?: ReactNode;
+  /**
+   * What is behind the disclosure, named. Four links reading "show the
+   * derivation" on one page tell a reader nothing about which one to open;
+   * "show the two axioms" and "show the 61 dropped axioms" do.
+   */
+  detailLabel?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const label = detailLabel ?? "the derivation";
   return (
     <div className="mb-5 last:mb-0">
       <p className="m-0 flex items-baseline gap-2">
@@ -64,11 +72,13 @@ export function Derivation({
         <div className="pl-6 mt-1.5">
           <button
             onClick={() => setOpen((v) => !v)}
-            className="eyebrow cursor-pointer bg-transparent border-0 p-0"
-            style={{ color: "var(--accent)" }}
+            className="disclosure eyebrow cursor-pointer bg-transparent border-0 p-0"
             aria-expanded={open}
           >
-            {open ? "▾ hide the derivation" : "▸ show the derivation"}
+            <span aria-hidden className="chevron">
+              ▸
+            </span>{" "}
+            {open ? `hide ${label}` : `show ${label}`}
           </button>
           {open && <div className="mt-2">{detail}</div>}
         </div>

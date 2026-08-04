@@ -81,12 +81,7 @@ export function Tabs<T extends string>({
               if (e.key === "ArrowRight") move(1);
               if (e.key === "ArrowLeft") move(-1);
             }}
-            className="px-4 py-3 text-sm cursor-pointer bg-transparent"
-            style={{
-              color: active === t.id ? "var(--text-primary)" : "var(--text-muted)",
-              borderBottom: active === t.id ? "2px solid var(--accent)" : "2px solid transparent",
-              fontWeight: active === t.id ? 600 : 400,
-            }}
+            className="tab px-4 py-3 text-sm cursor-pointer bg-transparent"
           >
             {t.label}
           </button>

@@ -33,25 +33,16 @@ export function EntryRail({
           key={e.iri}
           onClick={() => onSelect(e.iri)}
           aria-current={active === e.iri ? "true" : undefined}
-          className="w-full text-left flex cursor-pointer bg-transparent"
-          style={{
-            borderBottom: "1px solid var(--border)",
-            background: active === e.iri ? "var(--bg-primary)" : "transparent",
-          }}
+          className={`rail-row w-full text-left flex cursor-pointer${
+            active === e.iri ? " is-current" : ""
+          }`}
         >
-          <span
-            className="px-3 py-3 tabular-nums text-xs shrink-0"
-            style={{ background: "var(--accent-soft)", color: "var(--text-muted)" }}
-          >
+          <span className="rail-numeral px-3 py-3 tabular-nums text-xs shrink-0">
             {String(i + 1).padStart(2, "0")}
           </span>
           <span className="px-3 py-3">
-            <span className="name-column text-sm block" style={{ color: "var(--text-primary)" }}>
-              {e.label}
-            </span>
-            <span className="text-xs" style={{ color: "var(--text-muted)" }}>
-              {e.sourceLocation}
-            </span>
+            <span className="rail-title name-column text-sm block">{e.label}</span>
+            <span className="rail-locus text-xs">{e.sourceLocation}</span>
           </span>
         </button>
       ))}

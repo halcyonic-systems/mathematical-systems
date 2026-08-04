@@ -70,6 +70,14 @@ export default function App() {
     if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }));
   }, [atlas, view, reading]);
 
+  // Switching view carried the previous view's scroll position with it, so
+  // arriving at Primitives from halfway down a three-thousand-pixel entry
+  // started you halfway down a table. A fragment is an explicit request to land
+  // somewhere else, so it wins.
+  useEffect(() => {
+    if (!window.location.hash) window.scrollTo({ top: 0 });
+  }, [view]);
+
   if (error)
     return (
       <main className="p-10">
@@ -87,6 +95,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
+      <a href="#catalogue" className="skip-link">
+        Skip to the catalogue
+      </a>
       <Masthead
         eyebrow="Mathematical Systems"
         title="Atlas"
@@ -104,7 +115,11 @@ export default function App() {
             onSelect={read}
           />
         )}
-        <main className={`flex-1 px-8 py-6 min-w-0 ${view === "read" || view === "overview" ? "measure" : "measure-wide"}`}>
+        <main
+          id="catalogue"
+          tabIndex={-1}
+          className={`flex-1 px-8 py-6 min-w-0 ${view === "read" || view === "overview" ? "measure" : "measure-wide"}`}
+        >
           {/* The collector is keyed per entry so opening another one starts a fresh
               set of open questions rather than accumulating the previous entry's. */}
           <Register density={DENSITY[view]}>
