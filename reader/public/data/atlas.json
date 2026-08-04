@@ -1,4 +1,83 @@
 {
+  "cases": {
+    "https://halcyonic.systems/atlas/case/bunge-theory": {
+      "iri": "https://halcyonic.systems/atlas/case/bunge-theory",
+      "id": "bunge-theory",
+      "label": "a theory",
+      "gloss": "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢",
+      "verbatim": null,
+      "sourceLocation": null,
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedOn": "2026-08-01",
+      "note": "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block."
+    },
+    "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory": {
+      "iri": "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory",
+      "id": "bunge-molecule-reef-family-factory",
+      "label": "a molecule, a coral reef, a family, a factory",
+      "gloss": "a molecule, a coral reef, a family, a factory",
+      "verbatim": null,
+      "sourceLocation": null,
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedOn": "2026-08-01",
+      "note": "FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the\nExample block. Splitting them into four would make each separately matchable against other\nauthors, which is what a cases matrix wants; it is also an encoding judgment beyond a\nstructural migration, so it was not made here. Recorded so the decision is visible rather than\ndefaulted."
+    },
+    "https://halcyonic.systems/atlas/case/bunge-states-of-a-thing": {
+      "iri": "https://halcyonic.systems/atlas/case/bunge-states-of-a-thing",
+      "id": "bunge-states-of-a-thing",
+      "label": "a set of states of a thing",
+      "gloss": "a set of states of a thing",
+      "verbatim": null,
+      "sourceLocation": null,
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedOn": "2026-08-01",
+      "note": null
+    },
+    "https://halcyonic.systems/atlas/case/bunge-events-ordered": {
+      "iri": "https://halcyonic.systems/atlas/case/bunge-events-ordered",
+      "id": "bunge-events-ordered",
+      "label": "a collection of events, even if ordered",
+      "gloss": "a collection of events, even if ordered",
+      "verbatim": null,
+      "sourceLocation": null,
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedOn": "2026-08-01",
+      "note": "Half of the catalogue's first separating instance: Klir admits an ordered\ncollection, Bunge refuses one. The refusal is ontic — Definition 1.2 requires a nonempty\nbonding set, and ordering is not bonding — so he refuses ordered BOOKS for the same reason.\nSee mappings/ordered-collection.md.\n\nNO SOURCE LOCATION, DELIBERATELY. These cases come from the labelled Example block that follows\nDefinition 1.1, not from Definition 1.1 itself, so entry 003's \"ch. 1, Definition 1.1\" does not\ncover them. Reifying made that visible. The correct location is readable from the source but\nhas not been human-checked, and asserting it here would put a model-drafted claim under the\nentry's HVP — the defect P4 exists to close."
+    },
+    "https://halcyonic.systems/atlas/case/klir-books-ordered": {
+      "iri": "https://halcyonic.systems/atlas/case/klir-books-ordered",
+      "id": "klir-books-ordered",
+      "label": "a collection of books, ordered",
+      "gloss": "a collection of books ordered by authors' names, publication dates, or size",
+      "verbatim": "any ordering of a set is a relation defined on the set",
+      "sourceLocation": "ch. 1, p. 5",
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedOn": "2026-08-03",
+      "note": null
+    },
+    "https://halcyonic.systems/atlas/case/klir-books-partitioned": {
+      "iri": "https://halcyonic.systems/atlas/case/klir-books-partitioned",
+      "id": "klir-books-partitioned",
+      "label": "a collection of books, partitioned",
+      "gloss": "a collection of books partitioned by subject, publisher, or language",
+      "verbatim": "every partition of a set emerges from a particular equivalence relation defined on the set",
+      "sourceLocation": "ch. 1, p. 5",
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedOn": "2026-08-03",
+      "note": null
+    },
+    "https://halcyonic.systems/atlas/case/klir-population-by-birth": {
+      "iri": "https://halcyonic.systems/atlas/case/klir-population-by-birth",
+      "id": "klir-population-by-birth",
+      "label": "a human population, ordered by dates of birth",
+      "gloss": "a human population ordered by dates of birth",
+      "verbatim": "may be applied not only to other sets of books, but also to sets whose elements are not books",
+      "sourceLocation": "ch. 1, p. 5",
+      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "encodedOn": "2026-08-03",
+      "note": "The quotation licenses this case rather than describing it: Klir is making\na point about a RELATION being transferable to a different carrier set, and the human\npopulation is his instance of it. A splice, recorded as one."
+    }
+  },
   "openDecisions": [
     {
       "title": "D1 — The primitive scheme",
@@ -38,8 +117,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "9281a4f",
-    "repoCommit": "9281a4f"
+    "atlasCommit": "2fa3b3b",
+    "repoCommit": "2fa3b3b"
   },
   "publishable": true,
   "contextChars": 800,
@@ -183,12 +262,12 @@
       "sourceLocation": "ch. 1, Definition 1.1",
       "verbatim": "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
       "authorCaveat": null,
-      "includedExamples": [
-        "a molecule, a coral reef, a family, a factory"
+      "admits": [
+        "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory"
       ],
-      "excludedExamples": [
-        "a collection of events, even if ordered",
-        "a set of states of a thing"
+      "refuses": [
+        "https://halcyonic.systems/atlas/case/bunge-events-ordered",
+        "https://halcyonic.systems/atlas/case/bunge-states-of-a-thing"
       ],
       "primitives": [
         "https://halcyonic.systems/atlas/primitive/action",
@@ -226,10 +305,10 @@
       "sourceLocation": "ch. 1, §1.1 (the general concept of a system)",
       "verbatim": "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.",
       "authorCaveat": "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.",
-      "includedExamples": [
-        "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢ (Bunge's own worked conceptual-system example)"
+      "admits": [
+        "https://halcyonic.systems/atlas/case/bunge-theory"
       ],
-      "excludedExamples": [],
+      "refuses": [],
       "primitives": [
         "https://halcyonic.systems/atlas/primitive/composition",
         "https://halcyonic.systems/atlas/primitive/environment",
@@ -273,12 +352,12 @@
       "sourceLocation": "ch. 1, eq. (1.1), p. 5",
       "verbatim": "S = (T, R),   (1.1)\n\nwhere S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.",
       "authorCaveat": null,
-      "includedExamples": [
-        "a collection of books ordered by authors' names, publication dates, or size — \"any ordering of a set is a relation defined on the set\"",
-        "a collection of books partitioned by subject, publisher, or language — \"every partition of a set emerges from a particular equivalence relation defined on the set\"",
-        "a human population ordered by dates of birth — \"may be applied not only to other sets of books, but also to sets whose elements are not books\""
+      "admits": [
+        "https://halcyonic.systems/atlas/case/klir-books-ordered",
+        "https://halcyonic.systems/atlas/case/klir-books-partitioned",
+        "https://halcyonic.systems/atlas/case/klir-population-by-birth"
       ],
-      "excludedExamples": [],
+      "refuses": [],
       "primitives": [
         "https://halcyonic.systems/atlas/primitive/relation",
         "https://halcyonic.systems/atlas/primitive/set",
@@ -476,9 +555,9 @@
   "profile": {
     "counts": {
       "subClassOf": 1,
-      "domain": 2,
-      "range": 2,
-      "classes": 2
+      "domain": 4,
+      "range": 4,
+      "classes": 3
     },
     "verdict": "A taxonomy. Nothing is entailed beyond transitive closure of the asserted tree."
   }

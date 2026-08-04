@@ -1,5 +1,6 @@
 @prefix atlas: <https://halcyonic.systems/atlas/> .
 @prefix bearer: <https://halcyonic.systems/atlas/bearer/> .
+@prefix case: <https://halcyonic.systems/atlas/case/> .
 @prefix cco: <https://www.commoncoreontologies.org/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix entry: <https://halcyonic.systems/atlas/entry/> .
@@ -21,6 +22,12 @@ atlas:MDU a atlas:EvidenceCode ;
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
     skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
+
+atlas:admits a owl:ObjectProperty ;
+    rdfs:label "admits"@en ;
+    rdfs:domain atlas:FormalSystemDefinition ;
+    rdfs:range atlas:Example ;
+    skos:definition "Relates a definition to a case its author offers as a system."@en .
 
 atlas:atlas-core rdfs:label "Definition Atlas — Core"@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
@@ -92,12 +99,12 @@ Work, 2004). Any citation pairing "1979" with "CESM" is an anachronism.
 DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Bunge is a realist and
 would endorse the reading; asserting it anyway would still break the catalogue's
 neutrality, which must not depend on which tradition an entry belongs to."""@en ;
+    atlas:admits case:bunge-theory ;
     atlas:authorCaveat "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing." ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
     atlas:formalisedAs "Systems/Category/ShapeBunge.lean#BungeShape" ;
-    atlas:includedExample "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢ (Bunge's own worked conceptual-system example)" ;
     atlas:invokesPrimitive prim:composition,
         prim:environment,
         prim:relation,
@@ -132,16 +139,16 @@ a mapping claim once the mapping layer exists, not asserted here.
 RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
 definition proper". 003 is the definition proper. They are not alternative
 phrasings of one claim and must not be merged."""@en ;
+    atlas:admits case:bunge-molecule-reef-family-factory ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
-    atlas:excludedExample "a collection of events, even if ordered",
-        "a set of states of a thing" ;
-    atlas:includedExample "a molecule, a coral reef, a family, a factory" ;
     atlas:invokesPrimitive prim:action,
         prim:bond,
         prim:part,
         prim:thing ;
+    atlas:refuses case:bunge-events-ordered,
+        case:bunge-states-of-a-thing ;
     atlas:sourceLocation "ch. 1, Definition 1.1" ;
     atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
     atlas:verbatim "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things." .
@@ -183,13 +190,13 @@ this entry.
 NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
 Lean as ShapeKlir in systems-science-foundations. The two encodings must be
 checked against each other before either is cited."""@en ;
+    atlas:admits case:klir-books-ordered,
+        case:klir-books-partitioned,
+        case:klir-population-by-birth ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
     atlas:formalisedAs "Systems/Category/ShapeKlir.lean#KlirShape" ;
-    atlas:includedExample "a collection of books ordered by authors' names, publication dates, or size — \"any ordering of a set is a relation defined on the set\"",
-        "a collection of books partitioned by subject, publisher, or language — \"every partition of a set emerges from a particular equivalence relation defined on the set\"",
-        "a human population ordered by dates of birth — \"may be applied not only to other sets of books, but also to sets whose elements are not books\"" ;
     atlas:invokesPrimitive prim:relation,
         prim:set,
         prim:systemhood,
@@ -207,6 +214,8 @@ atlas:evidenceCode a owl:AnnotationProperty ;
 
 atlas:excludedExample a owl:AnnotationProperty ;
     rdfs:label "excluded example"@en ;
+    rdfs:comment "DEPRECATED 2026-08-03. Superseded by atlas:refuses onto an atlas:Example. Retained declared so data written against the old shape stays readable."@en ;
+    owl:deprecated true ;
     skos:definition "Something the author explicitly says is NOT a system on this definition. The separating-instance data, captured at tier 0: where two definitions disagree about the same object is exactly where the loss catalogue comes from."@en .
 
 atlas:formalisedAs a owl:AnnotationProperty ;
@@ -226,11 +235,19 @@ against a configured checkout and fails the build if the declaration is absent."
 definition's dependency structure, as a path relative to that repository plus the
 declaration name: `Systems/Category/ShapeKlir.lean#KlirShape`."""@en .
 
+atlas:gloss a owl:AnnotationProperty ;
+    rdfs:label "gloss"@en ;
+    skos:definition """Our description of a case, in our words. Distinct from atlas:verbatim on
+the same individual, which is the author's. An example carries both: what the case is, and the
+author's own reason for ruling on it as they did."""@en .
+
 <https://halcyonic.systems/atlas/imports/cco-bfo-reference> rdfs:label "CCO/BFO reference module (minimal extract)"@en ;
     rdfs:comment "Generated by build.py. Only the external terms the Definition Atlas actually uses, plus their named ancestors. Equivalent-class axioms, restrictions and disjointness from the source ontologies are NOT preserved -- this places terms and renders labels, it does not reproduce CCO/BFO semantics. Do not edit by hand."@en .
 
 atlas:includedExample a owl:AnnotationProperty ;
     rdfs:label "included example"@en ;
+    rdfs:comment "DEPRECATED 2026-08-03. Superseded by atlas:admits onto an atlas:Example. Retained declared so data written against the old shape stays readable."@en ;
+    owl:deprecated true ;
     skos:definition "Something the author explicitly offers as a system on this definition."@en .
 
 atlas:invokesPrimitive a owl:ObjectProperty ;
@@ -244,6 +261,20 @@ prim:time a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "time"@en ;
     skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence."@en .
+
+atlas:refuses a owl:ObjectProperty ;
+    rdfs:label "refuses"@en ;
+    rdfs:comment """NOT EVERY NEGATIVE IS A REFUSAL. Bunge refuses ontically -- no bonds,
+therefore not a system, and no act of description alters it. Klir's "a collection of books is
+not a system, only a set" is not a refusal at all: on his criterion an object is a system iff
+it CAN BE DESCRIBED as conforming, and a bare collection can be. Recording the second as a
+refusal would manufacture a symmetry the authors do not share. See
+docs/proposals/P3-stance-axes.md."""@en ;
+    rdfs:domain atlas:FormalSystemDefinition ;
+    rdfs:range atlas:Example ;
+    skos:definition """Relates a definition to a case its author says is NOT a system on it.
+The separating-instance data: where two definitions rule differently on the same case is where
+the loss catalogue comes from."""@en .
 
 atlas:sourceLocation a owl:AnnotationProperty ;
     rdfs:label "source location"@en ;
@@ -294,6 +325,80 @@ bearer:klir-2001-facets a cco:ont00000253 ;
     dcterms:date "2001"^^xsd:gYear ;
     dcterms:identifier "ISBN 978-1-4613-5501-4",
         "doi:10.1007/978-1-4615-1331-5" .
+
+case:bunge-events-ordered a atlas:Example ;
+    rdfs:label "a collection of events, even if ordered"@en ;
+    rdfs:comment """Half of the catalogue's first separating instance: Klir admits an ordered
+collection, Bunge refuses one. The refusal is ontic — Definition 1.2 requires a nonempty
+bonding set, and ordering is not bonding — so he refuses ordered BOOKS for the same reason.
+See mappings/ordered-collection.md.
+
+NO SOURCE LOCATION, DELIBERATELY. These cases come from the labelled Example block that follows
+Definition 1.1, not from Definition 1.1 itself, so entry 003's "ch. 1, Definition 1.1" does not
+cover them. Reifying made that visible. The correct location is readable from the source but
+has not been human-checked, and asserting it here would put a model-drafted claim under the
+entry's HVP — the defect P4 exists to close."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a collection of events, even if ordered" .
+
+case:bunge-molecule-reef-family-factory a atlas:Example ;
+    rdfs:label "a molecule, a coral reef, a family, a factory"@en ;
+    rdfs:comment """FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the
+Example block. Splitting them into four would make each separately matchable against other
+authors, which is what a cases matrix wants; it is also an encoding judgment beyond a
+structural migration, so it was not made here. Recorded so the decision is visible rather than
+defaulted."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a molecule, a coral reef, a family, a factory" .
+
+case:bunge-states-of-a-thing a atlas:Example ;
+    rdfs:label "a set of states of a thing"@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a set of states of a thing" .
+
+case:bunge-theory a atlas:Example ;
+    rdfs:label "a theory"@en ;
+    rdfs:comment "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block."@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢" .
+
+case:klir-books-ordered a atlas:Example ;
+    rdfs:label "a collection of books, ordered"@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-03"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a collection of books ordered by authors' names, publication dates, or size" ;
+    atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:verbatim "any ordering of a set is a relation defined on the set" .
+
+case:klir-books-partitioned a atlas:Example ;
+    rdfs:label "a collection of books, partitioned"@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-03"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a collection of books partitioned by subject, publisher, or language" ;
+    atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:verbatim "every partition of a set emerges from a particular equivalence relation defined on the set" .
+
+case:klir-population-by-birth a atlas:Example ;
+    rdfs:label "a human population, ordered by dates of birth"@en ;
+    rdfs:comment """The quotation licenses this case rather than describing it: Klir is making
+a point about a RELATION being transferable to a different carrier set, and the human
+population is his instance of it. A splice, recorded as one."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-03"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a human population ordered by dates of birth" ;
+    atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:verbatim "may be applied not only to other sets of books, but also to sets whose elements are not books" .
 
 prim:action a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -364,10 +469,6 @@ prim:set a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "set"@en .
 
-atlas:HVP a atlas:EvidenceCode ;
-    rdfs:label "human-verified against primary text"@en ;
-    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
-
 prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
@@ -389,6 +490,24 @@ atlas:FormalSystemDefinition a owl:Class ;
 term "system" formally: it introduces named components with types or sorts, and
 fixes at least one relation, function, or constraint among them, in symbols or in
 prose precise enough to be transcribed to symbols without adding content."""@en .
+
+atlas:Example a owl:Class ;
+    rdfs:label "Example"@en ;
+    rdfs:comment """WHY THIS IS A CLASS. Examples were literal strings on the entry until
+2026-08-03, which made four things impossible at once: an example could carry no evidence code
+of its own, so one entry-level code graded a verbatim, five primitives and three examples
+alike; no source location, though Bunge's examples sit outside the location his entry claims;
+no separation of the case from the author's reason for it, concatenated with an em dash; and
+no identity, so two authors ruling on the same object could not be matched. See
+docs/proposals/P4-evidence-scope.md."""@en ;
+    skos:definition """A case an author rules on: something they offer as a system, or refuse as
+one. Reified rather than recorded as a string on the entry, because an example is a thing
+several claims are made about -- where it appears in the source, how the encoding was
+established, and which shared case it instantiates."""@en .
+
+atlas:HVP a atlas:EvidenceCode ;
+    rdfs:label "human-verified against primary text"@en ;
+    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 
 atlas:PrimitiveScheme a skos:ConceptScheme ;
     rdfs:label "Systems-definition primitive vocabulary"@en ;

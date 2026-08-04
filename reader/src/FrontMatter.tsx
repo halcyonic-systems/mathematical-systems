@@ -24,7 +24,9 @@ export function FrontMatter({ atlas, reasoning }: { atlas: Atlas; reasoning: Rea
   const entries = atlas.entries;
   const verified = Object.values(atlas.transcription).filter((t) => t.status === "located").length;
   const formalised = Object.values(atlas.shapes).filter((s) => s.status === "resolved").length;
-  const withExamples = entries.filter((e) => e.includedExamples.length + e.excludedExamples.length > 0).length;
+  const withCases = entries.filter((e) => e.admits.length + e.refuses.length > 0).length;
+  const cases = Object.values(atlas.cases);
+  const casesLocated = cases.filter((c) => c.sourceLocation).length;
   const hvp = entries.filter((e) => (e.evidenceCode ?? "").endsWith("HVP")).length;
   const flipped = reasoning.variants.full.commitments.filter(
     (c) => reasoning.variants.shipped.commitments.find((o) => o.id === c.id)?.verdict !== c.verdict,
@@ -60,9 +62,14 @@ export function FrontMatter({ atlas, reasoning }: { atlas: Atlas; reasoning: Rea
           because="The pointer says a formalisation exists and where. Whether it is faithful to the passage is a mapping claim, and owes its own evidence."
         />
         <Derivation
-          verdict={withExamples < entries.length ? "note" : "holds"}
-          claim={`${withExamples} of ${entries.length} entries record the examples their author gives.`}
+          verdict={withCases < entries.length ? "note" : "holds"}
+          claim={`${withCases} of ${entries.length} entries record the cases their author rules on, ${cases.length} in total.`}
           because="Where two definitions rule differently on the same case, that is a separating instance — the most valuable datum the catalogue can hold."
+        />
+        <Derivation
+          verdict={casesLocated === cases.length ? "holds" : "note"}
+          claim={`${casesLocated} of ${cases.length} cases carry their own source location.`}
+          because="Cases became individuals so each could be graded and located separately from the entry it hangs off. The ones without a location are Bunge's, which sit in a labelled block outside the location his entry claims — a gap reifying them made visible rather than created."
         />
       </Section>
 

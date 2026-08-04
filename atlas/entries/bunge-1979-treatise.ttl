@@ -2,6 +2,7 @@
 @prefix prim:    <https://halcyonic.systems/atlas/primitive/> .
 @prefix entry:   <https://halcyonic.systems/atlas/entry/> .
 @prefix bearer:  <https://halcyonic.systems/atlas/bearer/> .
+@prefix case:    <https://halcyonic.systems/atlas/case/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -49,7 +50,7 @@ entry:bunge-1979-ces-triple
 
     atlas:authorCaveat """However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.""" ;
 
-    atlas:includedExample "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢ (Bunge's own worked conceptual-system example)" ;
+    atlas:admits case:bunge-theory ;
 
     atlas:invokesPrimitive prim:composition ,
                            prim:environment ,
@@ -98,9 +99,9 @@ entry:bunge-1979-def-1-1
 
     atlas:verbatim """DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.""" ;
 
-    atlas:includedExample "a molecule, a coral reef, a family, a factory" ;
-    atlas:excludedExample "a set of states of a thing" ;
-    atlas:excludedExample "a collection of events, even if ordered" ;
+    atlas:admits case:bunge-molecule-reef-family-factory ;
+    atlas:refuses case:bunge-states-of-a-thing ,
+                  case:bunge-events-ordered ;
 
     atlas:invokesPrimitive prim:thing ,
                            prim:part ,
@@ -133,3 +134,57 @@ a mapping claim once the mapping layer exists, not asserted here.
 RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
 definition proper". 003 is the definition proper. They are not alternative
 phrasings of one claim and must not be merged."""@en .
+
+
+##############################################################################
+# Cases — reified 2026-08-03 (P4). Each carries its own grade; see the note on
+# source location below, which is why none of these carries one yet.
+##############################################################################
+
+case:bunge-theory
+    a atlas:Example ;
+    rdfs:label "a theory"@en ;
+    atlas:gloss "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    rdfs:comment "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block."@en .
+
+case:bunge-molecule-reef-family-factory
+    a atlas:Example ;
+    rdfs:label "a molecule, a coral reef, a family, a factory"@en ;
+    atlas:gloss "a molecule, a coral reef, a family, a factory" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    rdfs:comment """FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the
+Example block. Splitting them into four would make each separately matchable against other
+authors, which is what a cases matrix wants; it is also an encoding judgment beyond a
+structural migration, so it was not made here. Recorded so the decision is visible rather than
+defaulted."""@en .
+
+case:bunge-states-of-a-thing
+    a atlas:Example ;
+    rdfs:label "a set of states of a thing"@en ;
+    atlas:gloss "a set of states of a thing" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date .
+
+case:bunge-events-ordered
+    a atlas:Example ;
+    rdfs:label "a collection of events, even if ordered"@en ;
+    atlas:gloss "a collection of events, even if ordered" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    rdfs:comment """Half of the catalogue's first separating instance: Klir admits an ordered
+collection, Bunge refuses one. The refusal is ontic — Definition 1.2 requires a nonempty
+bonding set, and ordering is not bonding — so he refuses ordered BOOKS for the same reason.
+See mappings/ordered-collection.md.
+
+NO SOURCE LOCATION, DELIBERATELY. These cases come from the labelled Example block that follows
+Definition 1.1, not from Definition 1.1 itself, so entry 003's "ch. 1, Definition 1.1" does not
+cover them. Reifying made that visible. The correct location is readable from the source but
+has not been human-checked, and asserting it here would put a model-drafted claim under the
+entry's HVP — the defect P4 exists to close."""@en .

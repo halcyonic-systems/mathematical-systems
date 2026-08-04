@@ -113,3 +113,42 @@ atlas:PrimitiveShape
         sh:minCount 1 ;
         sh:message "Every primitive needs a preferred label." ;
     ] .
+
+
+##############################################################################
+# Example — a case an author rules on. Reified 2026-08-03 (P4).
+##############################################################################
+
+atlas:ExampleShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:Example ;
+
+    sh:property [
+        sh:path atlas:gloss ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Every case needs exactly one gloss — what the case is, in our words. Without it a case is an IRI with a grade attached to nothing." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:evidenceCode ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( atlas:HVP atlas:MDHC atlas:MDU atlas:PROP ) ;
+        sh:message """Every case needs exactly one evidence code. This is the point of reifying
+cases at all: an entry-level code cannot say which of a verbatim, five primitives and three
+examples a human actually checked.""" ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:verbatim ;
+        sh:maxCount 1 ;
+        sh:message """A case may carry at most one verbatim — the author's own words licensing
+the ruling. Optional, because not every author gives one: Klir justifies in the same sentence,
+Bunge justifies structurally by the definition that follows.""" ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:sourceLocation ;
+        sh:maxCount 1 ;
+        sh:message "A case may carry at most one source location, which is its own and need not be the entry's." ;
+    ] .

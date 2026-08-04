@@ -23,6 +23,7 @@ export { Register, OpenQuestions, useDensity, useOpenCollector, type Density } f
 export { warrantClass, warrantMeaning, type Warrant } from "./warrant";
 export { Masthead, Tabs } from "./Masthead";
 export { EntryRail } from "./EntryRail";
+export { CaseItem, CaseList } from "./Case";
 export { Chip } from "./Chip";
 export { Quiver } from "./Quiver";
 export const localName = (iri: string | null) => (iri ?? "").split("/").pop() ?? "";

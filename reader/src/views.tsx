@@ -16,6 +16,7 @@
  */
 import {
   Absence,
+  CaseList,
   Chip,
   Derivation,
   EvidenceBadge,
@@ -47,18 +48,7 @@ const distinguishing = (label: string | null) => (label ?? "").replace(/^[^,]*\(
 /** Source hard-wraps are an artefact of the .ttl, not the author's line breaks. */
 const unwrap = (s: string) => s.replace(/\n(?!\n)/g, " ");
 
-const Lines = ({ xs }: { xs: string[] }) =>
-  xs.length === 0 ? (
-    <span className="w-open">—</span>
-  ) : (
-    <ul className="m-0 pl-4">
-      {xs.map((x) => (
-        <li key={x} className="mb-1">
-          {x}
-        </li>
-      ))}
-    </ul>
-  );
+
 
 /* ------------------------------------------------------------------ read -- */
 
@@ -148,10 +138,13 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
           <Field
             label="Examples"
             warrant="source"
-            cells={[<Lines key="a" xs={entry.includedExamples} />, <Lines key="r" xs={entry.excludedExamples} />]}
+            cells={[
+              <CaseList key="a" iris={entry.admits} cases={atlas.cases} />,
+              <CaseList key="r" iris={entry.refuses} cases={atlas.cases} />,
+            ]}
           />
         </FieldGrid>
-        {entry.includedExamples.length === 0 && entry.excludedExamples.length === 0 && (
+        {entry.admits.length === 0 && entry.refuses.length === 0 && (
           <Absence
             id={`${entry.id}:no-examples`}
             inline="No examples recorded."
@@ -250,8 +243,16 @@ export function CompareView({ atlas }: { atlas: Atlas }) {
               </span>
             ))}
           />
-          <Field label="Admits" warrant="source" cells={shown.map((e) => <Lines key={e.iri} xs={e.includedExamples} />)} />
-          <Field label="Refuses" warrant="source" cells={shown.map((e) => <Lines key={e.iri} xs={e.excludedExamples} />)} />
+          <Field
+            label="Admits"
+            warrant="source"
+            cells={shown.map((e) => <CaseList key={e.iri} iris={e.admits} cases={atlas.cases} />)}
+          />
+          <Field
+            label="Refuses"
+            warrant="source"
+            cells={shown.map((e) => <CaseList key={e.iri} iris={e.refuses} cases={atlas.cases} />)}
+          />
           <Field label="Author's caveat" warrant="source" cells={shown.map((e) => e.authorCaveat ?? "—")} />
           <Field
             label="Evidence"
@@ -320,8 +321,8 @@ export function CensusView({ atlas }: { atlas: Atlas }) {
 
 export function LedgerView({ atlas }: { atlas: Atlas }) {
   const rows = atlas.entries.flatMap((e) => [
-    ...e.includedExamples.map((x) => ({ entry: e, stance: "admits" as const, text: x })),
-    ...e.excludedExamples.map((x) => ({ entry: e, stance: "refuses" as const, text: x })),
+    ...e.admits.map((iri) => ({ entry: e, stance: "admits" as const, iri })),
+    ...e.refuses.map((iri) => ({ entry: e, stance: "refuses" as const, iri })),
   ]);
 
   return (
@@ -358,7 +359,10 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
               key={i}
               label={r.stance}
               warrant="source"
-              cells={[r.text, <span key="e" className="name-column">{distinguishing(r.entry.label)}</span>]}
+              cells={[
+                <CaseList key="c" iris={[r.iri]} cases={atlas.cases} />,
+                <span key="e" className="name-column">{distinguishing(r.entry.label)}</span>,
+              ]}
             />
           ))}
         </FieldGrid>

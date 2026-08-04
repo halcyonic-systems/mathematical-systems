@@ -162,8 +162,10 @@ def extract_entries(g):
                 "sourceLocation": one(g, s, ATLAS.sourceLocation),
                 "verbatim": one(g, s, ATLAS.verbatim),
                 "authorCaveat": one(g, s, ATLAS.authorCaveat),
-                "includedExamples": sorted(literals(g, s, ATLAS.includedExample)),
-                "excludedExamples": sorted(literals(g, s, ATLAS.excludedExample)),
+                # Cases are individuals since 2026-08-03 (P4): each carries its own grade,
+                # its own location, and the author's own words separately from our gloss.
+                "admits": sorted(str(o) for o in g.objects(s, ATLAS.admits)),
+                "refuses": sorted(str(o) for o in g.objects(s, ATLAS.refuses)),
                 "primitives": sorted(str(o) for o in g.objects(s, ATLAS.invokesPrimitive)),
                 "evidenceCode": str(next(g.objects(s, ATLAS.evidenceCode), "")) or None,
                 "encodedBy": one(g, s, ATLAS.encodedBy),
@@ -173,6 +175,30 @@ def extract_entries(g):
             }
         )
     return sorted(entries, key=lambda e: e["label"] or e["iri"])
+
+
+def extract_cases(g):
+    """Every case an author rules on, with what is known about it separately.
+
+    The point of reifying: `evidence` grades this case and not the entry it hangs
+    off, `location` is the case's own (Bunge's sit outside the location his entry
+    claims), and `verbatim` is the author's words for it, kept apart from `gloss`,
+    which is ours.
+    """
+    cases = {}
+    for s in g.subjects(RDF.type, ATLAS.Example):
+        cases[str(s)] = {
+            "iri": str(s),
+            "id": str(s).rsplit("/", 1)[-1],
+            "label": one(g, s, RDFS.label),
+            "gloss": one(g, s, ATLAS.gloss),
+            "verbatim": one(g, s, ATLAS.verbatim),
+            "sourceLocation": one(g, s, ATLAS.sourceLocation),
+            "evidenceCode": str(next(g.objects(s, ATLAS.evidenceCode), "")) or None,
+            "encodedOn": one(g, s, ATLAS.encodedOn),
+            "note": one(g, s, RDFS.comment),
+        }
+    return cases
 
 
 def extract_bearers(g):
@@ -238,7 +264,7 @@ def extract_evidence_codes(g):
     return sorted(codes, key=lambda c: c["id"])
 
 
-def example_conflicts(entries):
+def example_conflicts(entries, cases):
     """Examples one definition admits and another refuses.
 
     A separating instance in the atlas's own sense -- the witness a "lost"
@@ -246,13 +272,15 @@ def example_conflicts(entries):
     restatements and nothing subtler; a near-miss in wording is a mapping-layer
     judgement and does not belong to a string comparison.
     """
-    norm = lambda s: re.sub(r"\s+", " ", s.strip().lower()).rstrip(".")
+    norm = lambda s: re.sub(r"\s+", " ", (s or "").strip().lower()).rstrip(".")
     included, excluded = {}, {}
     for e in entries:
-        for x in e["includedExamples"]:
-            included.setdefault(norm(x), []).append({"entry": e["iri"], "text": x})
-        for x in e["excludedExamples"]:
-            excluded.setdefault(norm(x), []).append({"entry": e["iri"], "text": x})
+        for iri in e["admits"]:
+            g = cases.get(iri, {}).get("gloss")
+            included.setdefault(norm(g), []).append({"entry": e["iri"], "case": iri, "text": g})
+        for iri in e["refuses"]:
+            g = cases.get(iri, {}).get("gloss")
+            excluded.setdefault(norm(g), []).append({"entry": e["iri"], "case": iri, "text": g})
     return [
         {"example": k, "admittedBy": included[k], "refusedBy": excluded[k]}
         for k in sorted(set(included) & set(excluded))
@@ -543,7 +571,9 @@ def main():
             print(f"  {iri.rsplit('/', 1)[-1]}: {err}")
         raise SystemExit("BROKEN LEAN POINTER — fix the spec or the checkout (--foundations).")
 
+    cases = extract_cases(g)
     catalogue = {
+        "cases": cases,
         "openDecisions": read_open_decisions(atlas_root),
         "provenance": provenance(atlas_root),
         # Read by scripts/prepublish.sh. Making publishability a property of the
@@ -558,7 +588,7 @@ def main():
         "bearers": extract_bearers(g),
         "primitives": extract_primitives(g, entries),
         "evidenceCodes": extract_evidence_codes(g),
-        "conflicts": example_conflicts(entries),
+        "conflicts": example_conflicts(entries, cases),
         # Displayed with the census. Without it the matrix silently claims two
         # authors mean the same thing by a shared word, which the scheme denies.
         "primitiveSchemeScopeNote": one(g, ATLAS.PrimitiveScheme, SKOS.scopeNote),

@@ -12,14 +12,31 @@ export type Entry = {
   sourceLocation: string | null;
   verbatim: string | null;
   authorCaveat: string | null;
-  includedExamples: string[];
-  excludedExamples: string[];
+  /** Case IRIs. Cases are individuals since P4 — look them up in `Atlas.cases`. */
+  admits: string[];
+  refuses: string[];
   primitives: string[];
   evidenceCode: string | null;
   encodedBy: string | null;
   encodedOn: string | null;
   formalisedAs: string | null;
   annotation: AnnotationBlock[];
+};
+
+/** A case an author rules on. Its grade, its location and the author's own words are its
+    own, not the entry's — which is the whole point of reifying it. */
+export type Case = {
+  iri: string;
+  id: string;
+  label: string | null;
+  /** What the case is, in our words. */
+  gloss: string | null;
+  /** The author's own words licensing the ruling. Absent where the author gives none. */
+  verbatim: string | null;
+  sourceLocation: string | null;
+  evidenceCode: string | null;
+  encodedOn: string | null;
+  note: string | null;
 };
 
 export type Bearer = {
@@ -47,8 +64,8 @@ export type EvidenceCode = {
 
 export type Conflict = {
   example: string;
-  admittedBy: { entry: string; text: string }[];
-  refusedBy: { entry: string; text: string }[];
+  admittedBy: { entry: string; case: string; text: string | null }[];
+  refusedBy: { entry: string; case: string; text: string | null }[];
 };
 
 export type Transcription = {
@@ -80,6 +97,7 @@ export type Shape = {
 export type OpenDecision = { title: string; blocking: boolean; problem: string; fix: string };
 
 export type Atlas = {
+  cases: Record<string, Case>;
   openDecisions: OpenDecision[];
   provenance: { atlasCommit: string | null; repoCommit: string | null };
   shapes: Record<string, Shape>;

@@ -1,13 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
-  xmlns:dcterms="http://purl.org/dc/terms/"
-  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:atlas="https://halcyonic.systems/atlas/"
   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:dcterms="http://purl.org/dc/terms/"
   xmlns:owl="http://www.w3.org/2002/07/owl#"
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:cco="https://www.commoncoreontologies.org/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
+  <owl:ObjectProperty rdf:about="https://halcyonic.systems/atlas/admits">
+    <rdfs:domain rdf:resource="https://halcyonic.systems/atlas/FormalSystemDefinition"/>
+    <rdfs:range rdf:resource="https://halcyonic.systems/atlas/Example"/>
+    <rdfs:label xml:lang="en">admits</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to a case its author offers as a system.</skos:definition>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://halcyonic.systems/atlas/refuses">
+    <rdfs:domain rdf:resource="https://halcyonic.systems/atlas/FormalSystemDefinition"/>
+    <rdfs:range rdf:resource="https://halcyonic.systems/atlas/Example"/>
+    <rdfs:label xml:lang="en">refuses</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to a case its author says is NOT a system on it.
+The separating-instance data: where two definitions rule differently on the same case is where
+the loss catalogue comes from.</skos:definition>
+    <rdfs:comment xml:lang="en">NOT EVERY NEGATIVE IS A REFUSAL. Bunge refuses ontically -- no bonds,
+therefore not a system, and no act of description alters it. Klir's "a collection of books is
+not a system, only a set" is not a refusal at all: on his criterion an object is a system iff
+it CAN BE DESCRIBED as conforming, and a bare collection can be. Recording the second as a
+refusal would manufacture a symmetry the authors do not share. See
+docs/proposals/P3-stance-axes.md.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://halcyonic.systems/atlas/invokesPrimitive">
+    <rdfs:domain rdf:resource="https://halcyonic.systems/atlas/FormalSystemDefinition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label xml:lang="en">invokes primitive</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one.</skos:definition>
+    <rdfs:comment xml:lang="en">Range is skos:Concept, not an OWL class, deliberately. A primitive here is a TERM USED IN A DEFINITION, not a kind of thing in the world. SKOS is about concepts; using it avoids smuggling realism into constructivist traditions.</rdfs:comment>
+  </owl:ObjectProperty>
+  <rdf:Description rdf:about="https://halcyonic.systems/atlas/atlas-core">
+    <owl:versionIRI rdf:resource="https://halcyonic.systems/atlas/2026-08-01/atlas-core"/>
+    <rdfs:label xml:lang="en">Definition Atlas — Core</rdfs:label>
+    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <rdfs:comment xml:lang="en">Scaffold for a catalogue of formal mathematical definitions of "system".
+
+WHAT THIS ONTOLOGY ASSERTS: that certain DEFINITIONS exist, are borne by certain
+documents, and invoke certain terms.
+
+WHAT IT DOES NOT ASSERT: that the systems those definitions purport to define
+exist. CCO's `is about` (cco:ont00001808) is deliberately left unasserted on
+entries. This keeps the catalogue neutral between realist traditions (Bunge) and
+constructivist ones (Klir), which is the whole point of the exercise: a merged or
+realism-committed vocabulary would erase the very disagreements being catalogued.
+
+WHY CCO: a definition is a generically dependent continuant that is about
+something — exactly what BFO's GDC category and CCO's Information Content Entity
+were introduced for. Alignment is therefore at the ANNOTATION layer only. The
+per-tradition vocabularies (Klir's, Bunge's, Mobus's...) are the CONTENT of these
+ICEs and are NOT re-parented as BFO domain ontologies.
+
+TIER: this file supports tier 0 (bibliographic + verbatim + primitives invoked).
+Tier 1 (dependency quiver) and above are not yet modelled here.
+
+Spec: strategy/phd/definition-atlas-spec.md in the Halcyonic vault.</rdfs:comment>
+  </rdf:Description>
+  <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/MDU">
+    <rdfs:label xml:lang="en">model-drafted, unchecked</rdfs:label>
+    <skos:definition xml:lang="en">A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest.</skos:definition>
+  </atlas:EvidenceCode>
+  <atlas:FormalSystemDefinition rdf:about="https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1">
+    <rdfs:label xml:lang="en">Klir (2001), Facets of Systems Science, eq. (1.1)</rdfs:label>
+    <atlas:statedIn>
+      <cco:ont00000253 rdf:about="https://halcyonic.systems/atlas/bearer/klir-2001-facets">
+        <rdfs:label xml:lang="en">Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)</rdfs:label>
+        <dcterms:creator>George J. Klir</dcterms:creator>
+        <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2001</dcterms:date>
+        <dcterms:identifier>ISBN 978-1-4613-5501-4</dcterms:identifier>
+        <dcterms:identifier>doi:10.1007/978-1-4615-1331-5</dcterms:identifier>
+      </cco:ont00000253>
+    </atlas:statedIn>
+    <atlas:sourceLocation>ch. 1, eq. (1.1), p. 5</atlas:sourceLocation>
+    <atlas:verbatim>S = (T, R),   (1.1)
+
+where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.</atlas:verbatim>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/thing">
+        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">thing</skos:prefLabel>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/relation">
+        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">relation</skos:prefLabel>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/set">
+        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">set</skos:prefLabel>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/thinghood">
+        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">thinghood</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision.</skos:scopeNote>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/systemhood">
+        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">systemhood</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">Klir's term, paired with thinghood.</skos:scopeNote>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:admits>
+      <atlas:Example rdf:about="https://halcyonic.systems/atlas/case/klir-books-ordered">
+        <rdfs:label xml:lang="en">a collection of books, ordered</rdfs:label>
+        <atlas:gloss>a collection of books ordered by authors' names, publication dates, or size</atlas:gloss>
+        <atlas:verbatim>any ordering of a set is a relation defined on the set</atlas:verbatim>
+        <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
+        <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
+      </atlas:Example>
+    </atlas:admits>
+    <atlas:admits>
+      <atlas:Example rdf:about="https://halcyonic.systems/atlas/case/klir-books-partitioned">
+        <rdfs:label xml:lang="en">a collection of books, partitioned</rdfs:label>
+        <atlas:gloss>a collection of books partitioned by subject, publisher, or language</atlas:gloss>
+        <atlas:verbatim>every partition of a set emerges from a particular equivalence relation defined on the set</atlas:verbatim>
+        <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
+        <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
+      </atlas:Example>
+    </atlas:admits>
+    <atlas:admits>
+      <atlas:Example rdf:about="https://halcyonic.systems/atlas/case/klir-population-by-birth">
+        <rdfs:label xml:lang="en">a human population, ordered by dates of birth</rdfs:label>
+        <atlas:gloss>a human population ordered by dates of birth</atlas:gloss>
+        <atlas:verbatim>may be applied not only to other sets of books, but also to sets whose elements are not books</atlas:verbatim>
+        <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
+        <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
+        <rdfs:comment xml:lang="en">The quotation licenses this case rather than describing it: Klir is making
+a point about a RELATION being transferable to a different carrier set, and the human
+population is his instance of it. A splice, recorded as one.</rdfs:comment>
+      </atlas:Example>
+    </atlas:admits>
+    <atlas:formalisedAs>Systems/Category/ShapeKlir.lean#KlirShape</atlas:formalisedAs>
+    <atlas:evidenceCode>
+      <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/HVP">
+        <rdfs:label xml:lang="en">human-verified against primary text</rdfs:label>
+        <skos:definition xml:lang="en">A human read the primary source and confirmed the verbatim text and the encoding against it.</skos:definition>
+      </atlas:EvidenceCode>
+    </atlas:evidenceCode>
+    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
+    <rdfs:comment xml:lang="en">VERIFIED: verbatim transcribed from the primary text, not paraphrased.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Klir is an avowed
+constructivist — on his account the relation R is defined by the modeller, not
+discovered. Asserting what this definition is *about* would commit the catalogue
+to a realist reading Klir does not hold. The neutrality is the point.
+
+EXAMPLES NOTE: Klir gives no excluded example in Bunge's sense. His "a collection
+of books is not a system, only a set" (p. 5, same paragraph as the included
+examples) is the opening move of an argument whose conclusion is that organising
+it *makes* it one, and on his own criterion — an object is a system iff it CAN BE
+DESCRIBED in a form conforming to Eq. (1.1) — a bare collection is not refused but
+merely not yet distinguished. Recording it as atlas:excludedExample would give it
+the same form as Bunge's ontic refusal at Definition 1.1 and manufacture a symmetry
+the two authors do not share; in a cases matrix it would read as agreement where
+the finding is the opposite. The three included examples are grouped as Klir groups
+them: his "etc." marks the variants as instances of a kind, not an enumeration of
+cases. Source read 2026-08-03; see docs/proposals/P1-klir-examples.md and
+docs/proposals/P3-stance-axes.md.
+
+CENSUS NOTE: Klir's own gloss splits the definition's two slots into named
+properties — thinghood in T, systemhood in R. Recorded as separate primitives
+rather than folded into `thing` and `relation`, because whether they are distinct
+primitives is a question the census should answer, not one the encoding should
+prejudge.
+
+ADJACENT MATERIAL, NOT YET ENTERED: Klir's self-assessment on the same page (the
+definition is "too general and, consequently, of little pragmatic value" but
+"encompasses all other, more specific definitions of systems") is a claim ABOUT
+this definition's relation to others. It belongs in the mapping layer, not in
+this entry.
+
+NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
+Lean as ShapeKlir in systems-science-foundations. The two encodings must be
+checked against each other before either is cited.</rdfs:comment>
+  </atlas:FormalSystemDefinition>
+  <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/time">
+    <skos:inScheme>
+      <skos:ConceptScheme rdf:about="https://halcyonic.systems/atlas/PrimitiveScheme">
+        <rdfs:label xml:lang="en">Systems-definition primitive vocabulary</rdfs:label>
+        <skos:definition xml:lang="en">Controlled vocabulary of terms used as primitives in formal definitions of system. Deliberately flat and deliberately not an ontology of the world.</skos:definition>
+        <skos:scopeNote xml:lang="en">LEXICAL, NOT SEMANTIC. A primitive here records that an author uses a WORD as
+a primitive. Two entries linked to prim:thing are not thereby claimed to mean the same
+thing by it — Klir's "thing" is unrestricted, Bunge's ranges over concrete entities in
+Theta, and whether those are one primitive or two is a census question this vocabulary
+must not prejudge.
+
+The consequence: recurrence counts computed over this scheme are a FIRST-PASS LEXICAL
+measure. Semantic co-reference is a mapping-layer claim and owes evidence like any
+other. Minting a separate primitive per author would make recurrence trivially zero;
+merging them by hand would make it trivially high. Lexical recurrence is the honest
+starting point, and its limits are stated here rather than discovered later.</skos:scopeNote>
+      </skos:ConceptScheme>
+    </skos:inScheme>
+    <skos:prefLabel xml:lang="en">time</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence.</skos:scopeNote>
+  </skos:Concept>
   <atlas:FormalSystemDefinition rdf:about="https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple">
     <rdfs:label xml:lang="en">Bunge (1979), general characterisation: σ = ⟨C, E, S⟩</rdfs:label>
     <atlas:statedIn>
@@ -21,7 +227,16 @@
     <atlas:sourceLocation>ch. 1, §1.1 (the general concept of a system)</atlas:sourceLocation>
     <atlas:verbatim>One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.</atlas:verbatim>
     <atlas:authorCaveat>However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.</atlas:authorCaveat>
-    <atlas:includedExample>a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢ (Bunge's own worked conceptual-system example)</atlas:includedExample>
+    <atlas:admits>
+      <atlas:Example rdf:about="https://halcyonic.systems/atlas/case/bunge-theory">
+        <rdfs:label xml:lang="en">a theory</rdfs:label>
+        <atlas:gloss>a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢</atlas:gloss>
+        <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
+        <rdfs:comment xml:lang="en">Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block.</rdfs:comment>
+      </atlas:Example>
+    </atlas:admits>
     <atlas:invokesPrimitive>
       <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/composition">
         <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
@@ -43,31 +258,11 @@
         <skos:scopeNote xml:lang="en">Bunge's S. Relations among components and between components and environment, partitioned into bonding and nonbonding.</skos:scopeNote>
       </skos:Concept>
     </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/set">
-        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">set</skos:prefLabel>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/relation">
-        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">relation</skos:prefLabel>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/thing">
-        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">thing</skos:prefLabel>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive rdf:resource="https://halcyonic.systems/atlas/primitive/set"/>
+    <atlas:invokesPrimitive rdf:resource="https://halcyonic.systems/atlas/primitive/relation"/>
+    <atlas:invokesPrimitive rdf:resource="https://halcyonic.systems/atlas/primitive/thing"/>
     <atlas:formalisedAs>Systems/Category/ShapeBunge.lean#BungeShape</atlas:formalisedAs>
-    <atlas:evidenceCode>
-      <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/HVP">
-        <rdfs:label xml:lang="en">human-verified against primary text</rdfs:label>
-        <skos:definition xml:lang="en">A human read the primary source and confirmed the verbatim text and the encoding against it.</skos:definition>
-      </atlas:EvidenceCode>
-    </atlas:evidenceCode>
+    <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
     <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
     <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
     <rdfs:comment xml:lang="en">⚑ "is (or represents)". Bunge's own parenthetical hedges between the triple
@@ -90,14 +285,85 @@ DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Bunge is a realist and
 would endorse the reading; asserting it anyway would still break the catalogue's
 neutrality, which must not depend on which tradition an entry belongs to.</rdfs:comment>
   </atlas:FormalSystemDefinition>
+  <rdf:Description rdf:about="https://halcyonic.systems/atlas/imports/cco-bfo-reference">
+    <rdfs:label xml:lang="en">CCO/BFO reference module (minimal extract)</rdfs:label>
+    <rdfs:comment xml:lang="en">Generated by build.py. Only the external terms the Definition Atlas actually uses, plus their named ancestors. Equivalent-class axioms, restrictions and disjointness from the source ontologies are NOT preserved -- this places terms and renders labels, it does not reproduce CCO/BFO semantics. Do not edit by hand.</rdfs:comment>
+  </rdf:Description>
+  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/includedExample">
+    <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    <rdfs:label xml:lang="en">included example</rdfs:label>
+    <rdfs:comment xml:lang="en">DEPRECATED 2026-08-03. Superseded by atlas:admits onto an atlas:Example. Retained declared so data written against the old shape stays readable.</rdfs:comment>
+    <skos:definition xml:lang="en">Something the author explicitly offers as a system on this definition.</skos:definition>
+  </owl:AnnotationProperty>
+  <rdf:Description rdf:about="https://halcyonic.systems/atlas/entries/bunge-1979-treatise">
+    <rdfs:label xml:lang="en">Atlas entries — Bunge 1979, Treatise on Basic Philosophy vol. 4</rdfs:label>
+    <rdfs:comment xml:lang="en">Entries 002 and 003.
+
+TWO entries from one source, deliberately. Bunge gives a general CHARACTERISATION
+of system as an ordered triple, then explicitly says it is "not a definition
+proper" and supplies a separate DEFINITION of concrete system. Collapsing them
+into one entry would misrepresent him and would erase the caveat he himself
+insisted on. The distinction is his, not ours.</rdfs:comment>
+  </rdf:Description>
+  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/excludedExample">
+    <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    <rdfs:label xml:lang="en">excluded example</rdfs:label>
+    <rdfs:comment xml:lang="en">DEPRECATED 2026-08-03. Superseded by atlas:refuses onto an atlas:Example. Retained declared so data written against the old shape stays readable.</rdfs:comment>
+    <skos:definition xml:lang="en">Something the author explicitly says is NOT a system on this definition. The separating-instance data, captured at tier 0: where two definitions disagree about the same object is exactly where the loss catalogue comes from.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/gloss">
+    <rdfs:label xml:lang="en">gloss</rdfs:label>
+    <skos:definition xml:lang="en">Our description of a case, in our words. Distinct from atlas:verbatim on
+the same individual, which is the author's. An example carries both: what the case is, and the
+author's own reason for ruling on it as they did.</skos:definition>
+  </owl:AnnotationProperty>
   <atlas:FormalSystemDefinition rdf:about="https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1">
     <rdfs:label xml:lang="en">Bunge (1979), Definition 1.1: concrete system</rdfs:label>
     <atlas:statedIn rdf:resource="https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4"/>
     <atlas:sourceLocation>ch. 1, Definition 1.1</atlas:sourceLocation>
     <atlas:verbatim>DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.</atlas:verbatim>
-    <atlas:includedExample>a molecule, a coral reef, a family, a factory</atlas:includedExample>
-    <atlas:excludedExample>a set of states of a thing</atlas:excludedExample>
-    <atlas:excludedExample>a collection of events, even if ordered</atlas:excludedExample>
+    <atlas:admits>
+      <atlas:Example rdf:about="https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory">
+        <rdfs:label xml:lang="en">a molecule, a coral reef, a family, a factory</rdfs:label>
+        <atlas:gloss>a molecule, a coral reef, a family, a factory</atlas:gloss>
+        <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
+        <rdfs:comment xml:lang="en">FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the
+Example block. Splitting them into four would make each separately matchable against other
+authors, which is what a cases matrix wants; it is also an encoding judgment beyond a
+structural migration, so it was not made here. Recorded so the decision is visible rather than
+defaulted.</rdfs:comment>
+      </atlas:Example>
+    </atlas:admits>
+    <atlas:refuses>
+      <atlas:Example rdf:about="https://halcyonic.systems/atlas/case/bunge-states-of-a-thing">
+        <rdfs:label xml:lang="en">a set of states of a thing</rdfs:label>
+        <atlas:gloss>a set of states of a thing</atlas:gloss>
+        <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
+      </atlas:Example>
+    </atlas:refuses>
+    <atlas:refuses>
+      <atlas:Example rdf:about="https://halcyonic.systems/atlas/case/bunge-events-ordered">
+        <rdfs:label xml:lang="en">a collection of events, even if ordered</rdfs:label>
+        <atlas:gloss>a collection of events, even if ordered</atlas:gloss>
+        <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
+        <rdfs:comment xml:lang="en">Half of the catalogue's first separating instance: Klir admits an ordered
+collection, Bunge refuses one. The refusal is ontic — Definition 1.2 requires a nonempty
+bonding set, and ordering is not bonding — so he refuses ordered BOOKS for the same reason.
+See mappings/ordered-collection.md.
+
+NO SOURCE LOCATION, DELIBERATELY. These cases come from the labelled Example block that follows
+Definition 1.1, not from Definition 1.1 itself, so entry 003's "ch. 1, Definition 1.1" does not
+cover them. Reifying made that visible. The correct location is readable from the source but
+has not been human-checked, and asserting it here would put a model-drafted claim under the
+entry's HVP — the defect P4 exists to close.</rdfs:comment>
+      </atlas:Example>
+    </atlas:refuses>
     <atlas:invokesPrimitive rdf:resource="https://halcyonic.systems/atlas/primitive/thing"/>
     <atlas:invokesPrimitive>
       <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/part">
@@ -146,188 +412,32 @@ RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
 definition proper". 003 is the definition proper. They are not alternative
 phrasings of one claim and must not be merged.</rdfs:comment>
   </atlas:FormalSystemDefinition>
-  <atlas:FormalSystemDefinition rdf:about="https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1">
-    <rdfs:label xml:lang="en">Klir (2001), Facets of Systems Science, eq. (1.1)</rdfs:label>
-    <atlas:statedIn>
-      <cco:ont00000253 rdf:about="https://halcyonic.systems/atlas/bearer/klir-2001-facets">
-        <rdfs:label xml:lang="en">Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)</rdfs:label>
-        <dcterms:creator>George J. Klir</dcterms:creator>
-        <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2001</dcterms:date>
-        <dcterms:identifier>ISBN 978-1-4613-5501-4</dcterms:identifier>
-        <dcterms:identifier>doi:10.1007/978-1-4615-1331-5</dcterms:identifier>
-      </cco:ont00000253>
-    </atlas:statedIn>
-    <atlas:sourceLocation>ch. 1, eq. (1.1), p. 5</atlas:sourceLocation>
-    <atlas:verbatim>S = (T, R),   (1.1)
-
-where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.</atlas:verbatim>
-    <atlas:invokesPrimitive rdf:resource="https://halcyonic.systems/atlas/primitive/thing"/>
-    <atlas:invokesPrimitive rdf:resource="https://halcyonic.systems/atlas/primitive/relation"/>
-    <atlas:invokesPrimitive rdf:resource="https://halcyonic.systems/atlas/primitive/set"/>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/thinghood">
-        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">thinghood</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision.</skos:scopeNote>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/systemhood">
-        <skos:inScheme rdf:resource="https://halcyonic.systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">systemhood</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">Klir's term, paired with thinghood.</skos:scopeNote>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:includedExample>a collection of books ordered by authors' names, publication dates, or size — "any ordering of a set is a relation defined on the set"</atlas:includedExample>
-    <atlas:includedExample>a collection of books partitioned by subject, publisher, or language — "every partition of a set emerges from a particular equivalence relation defined on the set"</atlas:includedExample>
-    <atlas:includedExample>a human population ordered by dates of birth — "may be applied not only to other sets of books, but also to sets whose elements are not books"</atlas:includedExample>
-    <atlas:formalisedAs>Systems/Category/ShapeKlir.lean#KlirShape</atlas:formalisedAs>
-    <atlas:evidenceCode rdf:resource="https://halcyonic.systems/atlas/HVP"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
-    <rdfs:comment xml:lang="en">VERIFIED: verbatim transcribed from the primary text, not paraphrased.
-
-DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Klir is an avowed
-constructivist — on his account the relation R is defined by the modeller, not
-discovered. Asserting what this definition is *about* would commit the catalogue
-to a realist reading Klir does not hold. The neutrality is the point.
-
-EXAMPLES NOTE: Klir gives no excluded example in Bunge's sense. His "a collection
-of books is not a system, only a set" (p. 5, same paragraph as the included
-examples) is the opening move of an argument whose conclusion is that organising
-it *makes* it one, and on his own criterion — an object is a system iff it CAN BE
-DESCRIBED in a form conforming to Eq. (1.1) — a bare collection is not refused but
-merely not yet distinguished. Recording it as atlas:excludedExample would give it
-the same form as Bunge's ontic refusal at Definition 1.1 and manufacture a symmetry
-the two authors do not share; in a cases matrix it would read as agreement where
-the finding is the opposite. The three included examples are grouped as Klir groups
-them: his "etc." marks the variants as instances of a kind, not an enumeration of
-cases. Source read 2026-08-03; see docs/proposals/P1-klir-examples.md and
-docs/proposals/P3-stance-axes.md.
-
-CENSUS NOTE: Klir's own gloss splits the definition's two slots into named
-properties — thinghood in T, systemhood in R. Recorded as separate primitives
-rather than folded into `thing` and `relation`, because whether they are distinct
-primitives is a question the census should answer, not one the encoding should
-prejudge.
-
-ADJACENT MATERIAL, NOT YET ENTERED: Klir's self-assessment on the same page (the
-definition is "too general and, consequently, of little pragmatic value" but
-"encompasses all other, more specific definitions of systems") is a claim ABOUT
-this definition's relation to others. It belongs in the mapping layer, not in
-this entry.
-
-NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
-Lean as ShapeKlir in systems-science-foundations. The two encodings must be
-checked against each other before either is cited.</rdfs:comment>
-  </atlas:FormalSystemDefinition>
-  <owl:ObjectProperty rdf:about="https://halcyonic.systems/atlas/invokesPrimitive">
-    <rdfs:domain rdf:resource="https://halcyonic.systems/atlas/FormalSystemDefinition"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:label xml:lang="en">invokes primitive</rdfs:label>
-    <skos:definition xml:lang="en">Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one.</skos:definition>
-    <rdfs:comment xml:lang="en">Range is skos:Concept, not an OWL class, deliberately. A primitive here is a TERM USED IN A DEFINITION, not a kind of thing in the world. SKOS is about concepts; using it avoids smuggling realism into constructivist traditions.</rdfs:comment>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="https://halcyonic.systems/atlas/atlas-core">
-    <owl:versionIRI rdf:resource="https://halcyonic.systems/atlas/2026-08-01/atlas-core"/>
-    <rdfs:label xml:lang="en">Definition Atlas — Core</rdfs:label>
-    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-    <rdfs:comment xml:lang="en">Scaffold for a catalogue of formal mathematical definitions of "system".
-
-WHAT THIS ONTOLOGY ASSERTS: that certain DEFINITIONS exist, are borne by certain
-documents, and invoke certain terms.
-
-WHAT IT DOES NOT ASSERT: that the systems those definitions purport to define
-exist. CCO's `is about` (cco:ont00001808) is deliberately left unasserted on
-entries. This keeps the catalogue neutral between realist traditions (Bunge) and
-constructivist ones (Klir), which is the whole point of the exercise: a merged or
-realism-committed vocabulary would erase the very disagreements being catalogued.
-
-WHY CCO: a definition is a generically dependent continuant that is about
-something — exactly what BFO's GDC category and CCO's Information Content Entity
-were introduced for. Alignment is therefore at the ANNOTATION layer only. The
-per-tradition vocabularies (Klir's, Bunge's, Mobus's...) are the CONTENT of these
-ICEs and are NOT re-parented as BFO domain ontologies.
-
-TIER: this file supports tier 0 (bibliographic + verbatim + primitives invoked).
-Tier 1 (dependency quiver) and above are not yet modelled here.
-
-Spec: strategy/phd/definition-atlas-spec.md in the Halcyonic vault.</rdfs:comment>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/authorCaveat">
-    <rdfs:label xml:lang="en">author caveat</rdfs:label>
-    <skos:definition xml:lang="en">A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/sourceLocation">
-    <rdfs:label xml:lang="en">source location</rdfs:label>
-    <skos:definition xml:lang="en">Where in the bearer the verbatim text appears — equation number, page, section.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/verbatim">
-    <rdfs:label xml:lang="en">verbatim</rdfs:label>
-    <skos:definition xml:lang="en">The definition exactly as written in the source, transcribed without paraphrase. The thing every downstream encoding must be checkable against.</skos:definition>
-  </owl:AnnotationProperty>
-  <rdf:Description rdf:about="https://halcyonic.systems/atlas/entries/bunge-1979-treatise">
-    <rdfs:label xml:lang="en">Atlas entries — Bunge 1979, Treatise on Basic Philosophy vol. 4</rdfs:label>
-    <rdfs:comment xml:lang="en">Entries 002 and 003.
-
-TWO entries from one source, deliberately. Bunge gives a general CHARACTERISATION
-of system as an ordered triple, then explicitly says it is "not a definition
-proper" and supplies a separate DEFINITION of concrete system. Collapsing them
-into one entry would misrepresent him and would erase the caveat he himself
-insisted on. The distinction is his, not ours.</rdfs:comment>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/excludedExample">
-    <rdfs:label xml:lang="en">excluded example</rdfs:label>
-    <skos:definition xml:lang="en">Something the author explicitly says is NOT a system on this definition. The separating-instance data, captured at tier 0: where two definitions disagree about the same object is exactly where the loss catalogue comes from.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/evidenceCode">
-    <rdfs:label xml:lang="en">evidence code</rdfs:label>
-    <skos:definition xml:lang="en">Which atlas:EvidenceCode individual applies to this encoding.</skos:definition>
-  </owl:AnnotationProperty>
-  <skos:Concept rdf:about="https://halcyonic.systems/atlas/primitive/time">
-    <skos:inScheme>
-      <skos:ConceptScheme rdf:about="https://halcyonic.systems/atlas/PrimitiveScheme">
-        <rdfs:label xml:lang="en">Systems-definition primitive vocabulary</rdfs:label>
-        <skos:definition xml:lang="en">Controlled vocabulary of terms used as primitives in formal definitions of system. Deliberately flat and deliberately not an ontology of the world.</skos:definition>
-        <skos:scopeNote xml:lang="en">LEXICAL, NOT SEMANTIC. A primitive here records that an author uses a WORD as
-a primitive. Two entries linked to prim:thing are not thereby claimed to mean the same
-thing by it — Klir's "thing" is unrestricted, Bunge's ranges over concrete entities in
-Theta, and whether those are one primitive or two is a census question this vocabulary
-must not prejudge.
-
-The consequence: recurrence counts computed over this scheme are a FIRST-PASS LEXICAL
-measure. Semantic co-reference is a mapping-layer claim and owes evidence like any
-other. Minting a separate primitive per author would make recurrence trivially zero;
-merging them by hand would make it trivially high. Lexical recurrence is the honest
-starting point, and its limits are stated here rather than discovered later.</skos:scopeNote>
-      </skos:ConceptScheme>
-    </skos:inScheme>
-    <skos:prefLabel xml:lang="en">time</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence.</skos:scopeNote>
-  </skos:Concept>
-  <rdf:Description rdf:about="https://halcyonic.systems/atlas/imports/cco-bfo-reference">
-    <rdfs:comment xml:lang="en">Generated by build.py. Only the external terms the Definition Atlas actually uses, plus their named ancestors. Equivalent-class axioms, restrictions and disjointness from the source ontologies are NOT preserved -- this places terms and renders labels, it does not reproduce CCO/BFO semantics. Do not edit by hand.</rdfs:comment>
-    <rdfs:label xml:lang="en">CCO/BFO reference module (minimal extract)</rdfs:label>
-  </rdf:Description>
-  <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/PROP">
-    <rdfs:label xml:lang="en">propagated from another entry</rdfs:label>
-    <skos:definition xml:lang="en">Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it.</skos:definition>
-  </atlas:EvidenceCode>
   <rdf:Description rdf:about="https://halcyonic.systems/atlas/entries/klir-2001-facets">
     <rdfs:label xml:lang="en">Atlas entry — Klir 2001, Facets of Systems Science</rdfs:label>
     <rdfs:comment xml:lang="en">Entry 001. The first entry in the catalogue, and the tradition the deck opens with.</rdfs:comment>
   </rdf:Description>
+  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/sourceLocation">
+    <rdfs:label xml:lang="en">source location</rdfs:label>
+    <skos:definition xml:lang="en">Where in the bearer the verbatim text appears — equation number, page, section.</skos:definition>
+  </owl:AnnotationProperty>
+  <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/PROP">
+    <rdfs:label xml:lang="en">propagated from another entry</rdfs:label>
+    <skos:definition xml:lang="en">Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it.</skos:definition>
+  </atlas:EvidenceCode>
+  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/authorCaveat">
+    <rdfs:label xml:lang="en">author caveat</rdfs:label>
+    <skos:definition xml:lang="en">A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:ObjectProperty rdf:about="https://halcyonic.systems/atlas/statedIn">
+    <rdfs:domain rdf:resource="https://halcyonic.systems/atlas/FormalSystemDefinition"/>
+    <rdfs:range rdf:resource="https://www.commoncoreontologies.org/ont00000253"/>
+    <rdfs:label xml:lang="en">stated in</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to the document that carries it.</skos:definition>
+    <rdfs:comment xml:lang="en">TODO: align to the inverse of obo:BFO_0000101 (carrier of) once the CCO carrier chain has been read in full. Declared standalone for now rather than asserted wrongly.</rdfs:comment>
+  </owl:ObjectProperty>
   <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/encodedOn">
     <rdfs:label xml:lang="en">encoded on</rdfs:label>
   </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/includedExample">
-    <rdfs:label xml:lang="en">included example</rdfs:label>
-    <skos:definition xml:lang="en">Something the author explicitly offers as a system on this definition.</skos:definition>
-  </owl:AnnotationProperty>
-  <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/MDHC">
-    <rdfs:label xml:lang="en">model-drafted, human-checked</rdfs:label>
-    <skos:definition xml:lang="en">A model produced the encoding; a human checked it against the verbatim text.</skos:definition>
-  </atlas:EvidenceCode>
   <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/formalisedAs">
     <rdfs:label xml:lang="en">formalised as</rdfs:label>
     <skos:definition xml:lang="en">The shape category in systems-science-foundations that encodes this
@@ -345,25 +455,91 @@ its own release cadence; a resolvable IRI would pin this catalogue to a commit o
 a hosting arrangement neither artifact controls. The reader resolves the path
 against a configured checkout and fails the build if the declaration is absent.</rdfs:comment>
   </owl:AnnotationProperty>
-  <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/MDU">
-    <rdfs:label xml:lang="en">model-drafted, unchecked</rdfs:label>
-    <skos:definition xml:lang="en">A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest.</skos:definition>
+  <atlas:EvidenceCode rdf:about="https://halcyonic.systems/atlas/MDHC">
+    <rdfs:label xml:lang="en">model-drafted, human-checked</rdfs:label>
+    <skos:definition xml:lang="en">A model produced the encoding; a human checked it against the verbatim text.</skos:definition>
   </atlas:EvidenceCode>
+  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/evidenceCode">
+    <rdfs:label xml:lang="en">evidence code</rdfs:label>
+    <skos:definition xml:lang="en">Which atlas:EvidenceCode individual applies to this encoding.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/verbatim">
+    <rdfs:label xml:lang="en">verbatim</rdfs:label>
+    <skos:definition xml:lang="en">The definition exactly as written in the source, transcribed without paraphrase. The thing every downstream encoding must be checkable against.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:Ontology rdf:about="https://halcyonic.systems/atlas/definition-atlas"/>
   <owl:AnnotationProperty rdf:about="https://halcyonic.systems/atlas/encodedBy">
     <rdfs:label xml:lang="en">encoded by</rdfs:label>
   </owl:AnnotationProperty>
-  <owl:ObjectProperty rdf:about="https://halcyonic.systems/atlas/statedIn">
-    <rdfs:domain rdf:resource="https://halcyonic.systems/atlas/FormalSystemDefinition"/>
-    <rdfs:range rdf:resource="https://www.commoncoreontologies.org/ont00000253"/>
-    <rdfs:label xml:lang="en">stated in</rdfs:label>
-    <skos:definition xml:lang="en">Relates a definition to the document that carries it.</skos:definition>
-    <rdfs:comment xml:lang="en">TODO: align to the inverse of obo:BFO_0000101 (carrier of) once the CCO carrier chain has been read in full. Declared standalone for now rather than asserted wrongly.</rdfs:comment>
-  </owl:ObjectProperty>
-  <owl:Ontology rdf:about="https://halcyonic.systems/atlas/definition-atlas"/>
+  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000253">
+    <rdfs:label xml:lang="en">Information Bearing Entity</rdfs:label>
+    <skos:definition xml:lang="en">An Object upon which an Information Content Entity generically depends.</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000030"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000040">
+    <skos:definition xml:lang="en">(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
+    <rdfs:label xml:lang="en">material entity</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000002">
+    <skos:definition xml:lang="en">(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+    <rdfs:label xml:lang="en">continuant</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000853">
+    <rdfs:subClassOf rdf:resource="https://www.commoncoreontologies.org/ont00000958"/>
+    <rdfs:label xml:lang="en">Descriptive Information Content Entity</rdfs:label>
+    <skos:definition xml:lang="en">An Information Content Entity that consists of a set of propositions that describe some Entity.</skos:definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
+    <rdfs:label xml:lang="en">Concept</rdfs:label>
+    <skos:definition xml:lang="en">An idea or notion; a unit of thought.</skos:definition>
+  </owl:Class>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000030">
-    <rdfs:label xml:lang="en">object</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
     <skos:definition xml:lang="en">(Elucidation) An object is a material entity which manifests causal unity &amp; is of a type instances of which are maximal relative to the sort of causal unity manifested</skos:definition>
+    <rdfs:label xml:lang="en">object</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000958">
+    <rdfs:label xml:lang="en">Information Content Entity</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <skos:definition xml:lang="en">A Generically Dependent Continuant that generically depends on some Information Bearing Entity and stands in relation of aboutness to some Entity.</skos:definition>
+  </owl:Class>
+  <owl:Class rdf:about="https://halcyonic.systems/atlas/EvidenceCode">
+    <rdfs:label xml:lang="en">Evidence Code</rdfs:label>
+    <skos:definition xml:lang="en">How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones.</skos:definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000004">
+    <rdfs:label xml:lang="en">independent continuant</rdfs:label>
+    <skos:definition xml:lang="en">b is an independent continuant =Def b is a continuant &amp; there is no c such that b specifically depends on c or b generically depends on c</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme">
+    <skos:definition xml:lang="en">A set of concepts, optionally including statements about semantic relationships between those concepts.</skos:definition>
+    <rdfs:label xml:lang="en">Concept Scheme</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="https://halcyonic.systems/atlas/Example">
+    <rdfs:label xml:lang="en">Example</rdfs:label>
+    <skos:definition xml:lang="en">A case an author rules on: something they offer as a system, or refuse as
+one. Reified rather than recorded as a string on the entry, because an example is a thing
+several claims are made about -- where it appears in the source, how the encoding was
+established, and which shared case it instantiates.</skos:definition>
+    <rdfs:comment xml:lang="en">WHY THIS IS A CLASS. Examples were literal strings on the entry until
+2026-08-03, which made four things impossible at once: an example could carry no evidence code
+of its own, so one entry-level code graded a verbatim, five primitives and three examples
+alike; no source location, though Bunge's examples sit outside the location his entry claims;
+no separation of the case from the author's reason for it, concatenated with an em dash; and
+no identity, so two authors ruling on the same object could not be matched. See
+docs/proposals/P4-evidence-scope.md.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000031">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    <skos:definition xml:lang="en">(Elucidation) A generically dependent continuant is an entity that exists in virtue of the fact that there is at least one of what may be multiple copies which is the content or the pattern that multiple copies would share</skos:definition>
+    <rdfs:label xml:lang="en">generically dependent continuant</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000001">
+    <skos:definition xml:lang="en">(Elucidation) An entity is anything that exists or has existed or will exist</skos:definition>
+    <rdfs:label xml:lang="en">entity</rdfs:label>
   </owl:Class>
   <owl:Class rdf:about="https://halcyonic.systems/atlas/FormalSystemDefinition">
     <rdfs:subClassOf rdf:resource="https://www.commoncoreontologies.org/ont00000853"/>
@@ -373,56 +549,5 @@ term "system" formally: it introduces named components with types or sorts, and
 fixes at least one relation, function, or constraint among them, in symbols or in
 prose precise enough to be transcribed to symbols without adding content.</skos:definition>
     <rdfs:comment xml:lang="en">Inclusion criteria are stated in the spec, §5. Borderline cases are adjudicated there, not here.</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000001">
-    <rdfs:label xml:lang="en">entity</rdfs:label>
-    <skos:definition xml:lang="en">(Elucidation) An entity is anything that exists or has existed or will exist</skos:definition>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000002">
-    <skos:definition xml:lang="en">(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity</skos:definition>
-    <rdfs:label xml:lang="en">continuant</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme">
-    <rdfs:label xml:lang="en">Concept Scheme</rdfs:label>
-    <skos:definition xml:lang="en">A set of concepts, optionally including statements about semantic relationships between those concepts.</skos:definition>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000031">
-    <skos:definition xml:lang="en">(Elucidation) A generically dependent continuant is an entity that exists in virtue of the fact that there is at least one of what may be multiple copies which is the content or the pattern that multiple copies would share</skos:definition>
-    <rdfs:label xml:lang="en">generically dependent continuant</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
-  </owl:Class>
-  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000253">
-    <skos:definition xml:lang="en">An Object upon which an Information Content Entity generically depends.</skos:definition>
-    <rdfs:label xml:lang="en">Information Bearing Entity</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000030"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000004">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
-    <rdfs:label xml:lang="en">independent continuant</rdfs:label>
-    <skos:definition xml:lang="en">b is an independent continuant =Def b is a continuant &amp; there is no c such that b specifically depends on c or b generically depends on c</skos:definition>
-  </owl:Class>
-  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000853">
-    <rdfs:subClassOf rdf:resource="https://www.commoncoreontologies.org/ont00000958"/>
-    <rdfs:label xml:lang="en">Descriptive Information Content Entity</rdfs:label>
-    <skos:definition xml:lang="en">An Information Content Entity that consists of a set of propositions that describe some Entity.</skos:definition>
-  </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000040">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
-    <rdfs:label xml:lang="en">material entity</rdfs:label>
-    <skos:definition xml:lang="en">(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part</skos:definition>
-  </owl:Class>
-  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000958">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
-    <skos:definition xml:lang="en">A Generically Dependent Continuant that generically depends on some Information Bearing Entity and stands in relation of aboutness to some Entity.</skos:definition>
-    <rdfs:label xml:lang="en">Information Content Entity</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
-    <skos:definition xml:lang="en">An idea or notion; a unit of thought.</skos:definition>
-    <rdfs:label xml:lang="en">Concept</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:about="https://halcyonic.systems/atlas/EvidenceCode">
-    <rdfs:label xml:lang="en">Evidence Code</rdfs:label>
-    <skos:definition xml:lang="en">How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones.</skos:definition>
   </owl:Class>
 </rdf:RDF>

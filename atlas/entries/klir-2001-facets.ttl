@@ -2,6 +2,7 @@
 @prefix prim:    <https://halcyonic.systems/atlas/primitive/> .
 @prefix entry:   <https://halcyonic.systems/atlas/entry/> .
 @prefix bearer:  <https://halcyonic.systems/atlas/bearer/> .
+@prefix case:    <https://halcyonic.systems/atlas/case/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -50,9 +51,9 @@ where S, T, R denote, respectively, a system, a set of things distinguished with
                            prim:thinghood ,
                            prim:systemhood ;
 
-    atlas:includedExample "a collection of books ordered by authors' names, publication dates, or size — \"any ordering of a set is a relation defined on the set\"" ;
-    atlas:includedExample "a collection of books partitioned by subject, publisher, or language — \"every partition of a set emerges from a particular equivalence relation defined on the set\"" ;
-    atlas:includedExample "a human population ordered by dates of birth — \"may be applied not only to other sets of books, but also to sets whose elements are not books\"" ;
+    atlas:admits case:klir-books-ordered ,
+                 case:klir-books-partitioned ,
+                 case:klir-population-by-birth ;
 
     atlas:formalisedAs "Systems/Category/ShapeKlir.lean#KlirShape" ;
 
@@ -95,3 +96,41 @@ this entry.
 NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
 Lean as ShapeKlir in systems-science-foundations. The two encodings must be
 checked against each other before either is cited."""@en .
+
+
+##############################################################################
+# Cases — reified 2026-08-03 (P4). Each carries its own location and grade.
+##############################################################################
+
+case:klir-books-ordered
+    a atlas:Example ;
+    rdfs:label "a collection of books, ordered"@en ;
+    atlas:gloss "a collection of books ordered by authors' names, publication dates, or size" ;
+    atlas:verbatim "any ordering of a set is a relation defined on the set" ;
+    atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-03"^^xsd:date .
+
+case:klir-books-partitioned
+    a atlas:Example ;
+    rdfs:label "a collection of books, partitioned"@en ;
+    atlas:gloss "a collection of books partitioned by subject, publisher, or language" ;
+    atlas:verbatim "every partition of a set emerges from a particular equivalence relation defined on the set" ;
+    atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-03"^^xsd:date .
+
+case:klir-population-by-birth
+    a atlas:Example ;
+    rdfs:label "a human population, ordered by dates of birth"@en ;
+    atlas:gloss "a human population ordered by dates of birth" ;
+    atlas:verbatim "may be applied not only to other sets of books, but also to sets whose elements are not books" ;
+    atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-03"^^xsd:date ;
+    rdfs:comment """The quotation licenses this case rather than describing it: Klir is making
+a point about a RELATION being transferable to a different carrier set, and the human
+population is his instance of it. A splice, recorded as one."""@en .

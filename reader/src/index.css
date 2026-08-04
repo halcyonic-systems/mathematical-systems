@@ -215,6 +215,18 @@ body {
 
 .section-note { color: var(--text-muted); }
 
+/* A case: our gloss, then the author's own words, then how well established it
+   is. The quote is set apart because it is theirs and the gloss is ours. */
+.case-quote { font-family: var(--font-display); color: var(--text-secondary); }
+.case-meta {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+  margin-top: 0.3rem;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
 /* Section titles are links to themselves. The marker stays out of the way until
    the heading is hovered or focused, so the page does not look like a wiki. */
 .section-anchor {

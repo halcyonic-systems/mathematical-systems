@@ -53,6 +53,21 @@ prose precise enough to be transcribed to symbols without adding content."""@en 
     rdfs:comment "Inclusion criteria are stated in the spec, §5. Borderline cases are adjudicated there, not here."@en .
 
 
+atlas:Example
+    a owl:Class ;
+    rdfs:label "Example"@en ;
+    skos:definition """A case an author rules on: something they offer as a system, or refuse as
+one. Reified rather than recorded as a string on the entry, because an example is a thing
+several claims are made about -- where it appears in the source, how the encoding was
+established, and which shared case it instantiates."""@en ;
+    rdfs:comment """WHY THIS IS A CLASS. Examples were literal strings on the entry until
+2026-08-03, which made four things impossible at once: an example could carry no evidence code
+of its own, so one entry-level code graded a verbatim, five primitives and three examples
+alike; no source location, though Bunge's examples sit outside the location his entry claims;
+no separation of the case from the author's reason for it, concatenated with an em dash; and
+no identity, so two authors ruling on the same object could not be matched. See
+docs/proposals/P4-evidence-scope.md."""@en .
+
 atlas:EvidenceCode
     a owl:Class ;
     rdfs:label "Evidence Code"@en ;
@@ -70,6 +85,28 @@ atlas:invokesPrimitive
     rdfs:label "invokes primitive"@en ;
     skos:definition "Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one."@en ;
     rdfs:comment "Range is skos:Concept, not an OWL class, deliberately. A primitive here is a TERM USED IN A DEFINITION, not a kind of thing in the world. SKOS is about concepts; using it avoids smuggling realism into constructivist traditions."@en .
+
+atlas:admits
+    a owl:ObjectProperty ;
+    rdfs:domain atlas:FormalSystemDefinition ;
+    rdfs:range atlas:Example ;
+    rdfs:label "admits"@en ;
+    skos:definition "Relates a definition to a case its author offers as a system."@en .
+
+atlas:refuses
+    a owl:ObjectProperty ;
+    rdfs:domain atlas:FormalSystemDefinition ;
+    rdfs:range atlas:Example ;
+    rdfs:label "refuses"@en ;
+    skos:definition """Relates a definition to a case its author says is NOT a system on it.
+The separating-instance data: where two definitions rule differently on the same case is where
+the loss catalogue comes from."""@en ;
+    rdfs:comment """NOT EVERY NEGATIVE IS A REFUSAL. Bunge refuses ontically -- no bonds,
+therefore not a system, and no act of description alters it. Klir's "a collection of books is
+not a system, only a set" is not a refusal at all: on his criterion an object is a system iff
+it CAN BE DESCRIBED as conforming, and a bare collection can be. Recording the second as a
+refusal would manufacture a symmetry the authors do not share. See
+docs/proposals/P3-stance-axes.md."""@en .
 
 atlas:statedIn
     a owl:ObjectProperty ;
@@ -104,14 +141,25 @@ atlas:authorCaveat
     rdfs:label "author caveat"@en ;
     skos:definition "A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources."@en .
 
+atlas:gloss
+    a owl:AnnotationProperty ;
+    rdfs:label "gloss"@en ;
+    skos:definition """Our description of a case, in our words. Distinct from atlas:verbatim on
+the same individual, which is the author's. An example carries both: what the case is, and the
+author's own reason for ruling on it as they did."""@en .
+
 atlas:excludedExample
     a owl:AnnotationProperty ;
+    owl:deprecated true ;
     rdfs:label "excluded example"@en ;
+    rdfs:comment "DEPRECATED 2026-08-03. Superseded by atlas:refuses onto an atlas:Example. Retained declared so data written against the old shape stays readable."@en ;
     skos:definition "Something the author explicitly says is NOT a system on this definition. The separating-instance data, captured at tier 0: where two definitions disagree about the same object is exactly where the loss catalogue comes from."@en .
 
 atlas:includedExample
     a owl:AnnotationProperty ;
+    owl:deprecated true ;
     rdfs:label "included example"@en ;
+    rdfs:comment "DEPRECATED 2026-08-03. Superseded by atlas:admits onto an atlas:Example. Retained declared so data written against the old shape stays readable."@en ;
     skos:definition "Something the author explicitly offers as a system on this definition."@en .
 
 atlas:encodedBy
