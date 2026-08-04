@@ -42,7 +42,9 @@ export function Passage({
       </blockquote>
       {(location || caption) && (
         <figcaption className="passage-caption mt-3 pl-4 flex items-center gap-3 flex-wrap">
-          {location && <span className="eyebrow">{location}</span>}
+          {/* Not .eyebrow: that uppercases, and a source location is data, not
+              fixed UI copy — "ch. 1, eq. (1.1), p. 5" is how the book is cited. */}
+          {location && <span className="passage-locus">{location}</span>}
           {caption}
         </figcaption>
       )}

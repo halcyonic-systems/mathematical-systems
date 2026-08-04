@@ -43,6 +43,25 @@ the primitive scheme's own scope note says a primitive records that an author us
 requires a plain-language claim before any mechanism; a raw axiom count outranking human
 judgement while being harder to read than one would be indefensible.
 
+### The ramp is monotone, and gated
+
+Section chrome tints down one ramp — `--accent-soft` → `--strip-derived` → `--strip-decided`
+→ no fill — and each rung must be **strictly lighter** than the one above it. That is not a
+style preference. If a weaker warrant carries more visual weight, the interface asserts the
+opposite of what the catalogue knows.
+
+Both ways of breaking it had already happened and neither was caught by looking:
+
+- `.strip-derived` referenced `--accent-wash`, which was **never defined**, so derived
+  sections fell back to transparent and rendered as `open`.
+- `.strip-decided` borrowed `--bg-surface`, which is *darker* than any plausible value for
+  the rung above it — an encoder's undefended choice outweighing a derivation that can show
+  its work, which is close to the one lie this instrument must not tell.
+
+`check-tokens.mjs` now computes relative luminance from `:root` and fails on either. It is
+measured rather than hand-ordered, so it survives a retint. Both defects were replayed
+against the check before it was trusted.
+
 ## The component vocabulary
 
 `src/components/` holds eight primitives, each named for *when* to use it rather than what it

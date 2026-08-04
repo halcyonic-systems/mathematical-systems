@@ -135,7 +135,7 @@ export default function App() {
         </main>
       </div>
 
-      <footer className="px-8 py-4 w-open not-italic rule-top">
+      <footer className="px-8 py-4 w-open rule-top">
         Reads <code>{atlas.source.repo}</code>. Reasoning precomputed at build time; this page runs no reasoner.
       </footer>
     </div>

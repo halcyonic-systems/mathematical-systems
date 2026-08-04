@@ -37,7 +37,7 @@ export function Absence({
     collector?.register({ id, what: what ?? inline, closes, origin });
   }, [collector, id, what, inline, closes, origin]);
 
-  return <p className={`${warrantClass.open} m-0`}>{inline}</p>;
+  return <p className={`${warrantClass.open} absence-inline m-0`}>{inline}</p>;
 }
 
 /** The collected block. Renders nothing when there is nothing open, which is itself a claim. */

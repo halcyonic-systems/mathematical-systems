@@ -31,12 +31,23 @@
   --accent: #545c93;
   --accent-strong: #3b4270;
   --accent-soft: #dcdfec;
-  /* Between --accent-soft and the page: the second rung of the warrant ramp,
-     for `derived` chrome. It was referenced by .strip-derived before it was
-     ever defined, so derived sections fell back to transparent and read as
-     `open` — a hole in the middle of the scale that encodes epistemic warrant. */
-  --accent-wash: #e8eaf2;
   --accent-slate: #5d6f7b;
+
+  /* The warrant ramp on section chrome, in one place and monotone by
+     construction: each rung must be strictly lighter than the one above it, or
+     the interface says the opposite of what it means.
+
+     It was neither. `derived` referenced --accent-wash, which was never
+     defined, so it fell back to transparent and rendered as `open`. And
+     `decided` borrowed --bg-surface (#e2e5ec), which is DARKER than any
+     plausible value for the rung above it — so once --accent-wash existed, a
+     human's undefended choice would have carried more visual weight than a
+     derivation that can show its work. Both are properties of this ramp, so
+     the ramp is now a thing rather than three unrelated borrowings.
+
+     source --accent-soft (#dcdfec) > derived > decided > open (no fill) */
+  --strip-derived: #e4e7f1;
+  --strip-decided: #edeff4;
 
   /* RESERVED CHANNEL — evidence grade. Contractual: means how an encoding was
      established, never decorative, constant across themes. The whole point of
@@ -127,6 +138,10 @@ body {
   font-size: 1.7rem;
   line-height: 1.4;
 }
+.passage-locus {
+  font-size: 12px;
+  letter-spacing: 0.01em;
+}
 .passage-caption {
   color: var(--text-muted);
   border-top: 1px solid var(--hairline);
@@ -164,11 +179,14 @@ body {
   max-width: none;
 }
 
+/* One prose measure across the three sans warrants — about 70 characters.
+   They were 46/44/44rem, close enough to look like drift rather than intent
+   when two of them sit in adjacent sections. Tables and instruments opt out. */
 .w-derived {
   font-size: 0.875rem;
   line-height: 1.55;
   color: var(--text-primary);
-  max-width: 46rem;
+  max-width: 44rem;
 }
 .w-decided {
   font-size: 0.875rem;
@@ -176,12 +194,20 @@ body {
   color: var(--text-secondary);
   max-width: 44rem;
 }
+/* `open` was set entirely in italic, which put multi-sentence paragraphs — some
+   of the most substantive prose in the catalogue — into a face meant for a
+   two-word aside. Italic is the register-shift signal, and a signal applied to
+   a sixth of the page is not a signal. Openness is carried by ink, scale and
+   the dashed rules on .card-open / .strip-open instead; italic is kept for the
+   terse in-place absence, where it is doing the job it is for. */
 .w-open {
   font-size: 0.8125rem;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-muted);
-  font-style: italic;
   max-width: 44rem;
+}
+.absence-inline {
+  font-style: italic;
 }
 
 /* Section header strips. `source` carries the most surface; `open` the least. */
@@ -190,10 +216,10 @@ body {
    on filled marks; this is surface area on chrome, which is the fleet's rule
    rather than an exception to it. A left edge reinforces the step, because a
    background tint alone is too quiet to separate one section from the next. */
-.strip-source  { background: var(--accent-soft); border-bottom: 1px solid var(--border); }
-.strip-derived { background: var(--accent-wash); border-bottom: 1px solid var(--border); }
-.strip-decided { background: var(--bg-surface);  border-bottom: 1px solid var(--hairline); }
-.strip-open    { background: transparent;        border-bottom: 1px dashed var(--border); }
+.strip-source  { background: var(--accent-soft);   border-bottom: 1px solid var(--border); }
+.strip-derived { background: var(--strip-derived); border-bottom: 1px solid var(--border); }
+.strip-decided { background: var(--strip-decided); border-bottom: 1px solid var(--hairline); }
+.strip-open    { background: transparent;          border-bottom: 1px dashed var(--border); }
 
 .card-source, .card-derived, .card-decided, .card-open {
   border: 1px solid var(--border);
@@ -212,7 +238,7 @@ body {
 /* Density is ambient: the same primitives serve a document and an instrument. */
 [data-density="dense"] .w-source { font-size: 1.05rem; max-width: none; }
 [data-density="dense"] .pad-block { padding: 0.5rem 0.75rem; }
-[data-density="generous"] .pad-block { padding: 1.25rem 1.25rem; }
+[data-density="generous"] .pad-block { padding: 1.5rem 1.25rem; }
 
 /* Structure has to be visible from arm's length on a 3,000px page. */
 .rule-top { border-top: 1px solid var(--border); }
@@ -342,14 +368,20 @@ body {
 }
 .rail-title {
   color: var(--text-secondary);
+  font-weight: 600;
   transition: color var(--transition-base);
 }
 .rail-row.is-current .rail-title {
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 700;
+}
+.rail-work {
+  color: var(--text-secondary);
+  line-height: 1.35;
 }
 .rail-locus {
   color: var(--text-muted);
+  margin-top: 0.15rem;
 }
 
 .tab {

@@ -37,7 +37,9 @@ export function Section({
   const id = slug(title);
   return (
     <section className={`mb-6 scroll-mt-16 ${cardClass[warrant]}`}>
-      <div className={`${stripClass[warrant]} px-5 py-2.5 flex items-baseline gap-3 flex-wrap`}>
+      {/* The strip was 10px tall on its padding, which crowded a 13px heading
+          against its own rules and is most of why the page read as underaired. */}
+      <div className={`${stripClass[warrant]} px-5 py-3.5 flex items-baseline gap-3 flex-wrap`}>
         <Heading className="section-title" id={id}>
           {/* A real anchor, so a section can be cited and not merely scrolled to.
               The document previously contained no links at all. */}

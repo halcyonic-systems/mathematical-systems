@@ -65,6 +65,58 @@ for (const [key, cssVar] of Object.entries(RESERVED)) {
   if (t && c && t !== c) problems.push(`${key}: tokens.ts ${t} != index.css ${cssVar} ${c}`);
 }
 
+/*
+ * (3) The warrant ramp is monotone.
+ *
+ * Visual weight encodes epistemic warrant, so the four rungs must get strictly
+ * lighter as warrant weakens. Both ways of breaking that had already happened
+ * and neither was visible in review: `derived` referenced a variable that was
+ * never defined and fell back to transparent, and `decided` borrowed a surface
+ * token darker than the rung above it — which would have shown an undefended
+ * human choice carrying more weight than a derivation that can show its work.
+ * Exactly the lie this instrument is not allowed to tell, told in chrome.
+ *
+ * Relative luminance, not a hand-kept ordering, so it stays true under any
+ * future retint. `open` is the floor: it must carry no fill at all.
+ */
+const RAMP = [
+  ["source", "--accent-soft"],
+  ["derived", "--strip-derived"],
+  ["decided", "--strip-decided"],
+];
+
+const luminance = (hex) => {
+  const h = hex.length === 4 ? hex.slice(1).replace(/./g, (c) => c + c) : hex.slice(1, 7);
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+  const lin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+};
+
+const stripDecl = (name) => {
+  const m = new RegExp(`\\.strip-${name}\\s*\\{[^}]*background:\\s*([^;]+);`).exec(stripComments(css));
+  return m ? m[1].trim() : null;
+};
+
+for (const [warrant, cssVar] of RAMP) {
+  const used = stripDecl(warrant);
+  if (used !== `var(${cssVar})`)
+    problems.push(`.strip-${warrant} background is ${used ?? "missing"} — the ramp expects var(${cssVar})`);
+  if (!cssHex[cssVar]) problems.push(`${cssVar} is used by .strip-${warrant} but never defined in :root`);
+}
+if (stripDecl("open") !== "transparent")
+  problems.push(`.strip-open must carry no fill — it is the floor of the warrant ramp`);
+
+for (let i = 1; i < RAMP.length; i++) {
+  const [loWarrant, loVar] = RAMP[i];
+  const [hiWarrant, hiVar] = RAMP[i - 1];
+  if (!cssHex[loVar] || !cssHex[hiVar]) continue;
+  if (luminance(cssHex[loVar]) <= luminance(cssHex[hiVar]))
+    problems.push(
+      `warrant ramp inverted: ${loWarrant} (${cssHex[loVar]}) is not lighter than ${hiWarrant} (${cssHex[hiVar]}) — ` +
+        `weaker warrant must never carry more visual weight`,
+    );
+}
+
 const TOKEN_HOMES = new Set(["tokens.ts"]);
 
 // Raw layout belongs in the component vocabulary, exactly as raw colour belongs
@@ -145,3 +197,4 @@ if (problems.length) {
 }
 console.log(`✓ Reserved channels in sync — ${Object.keys(RESERVED).length} tokens match across index.css and tokens.ts.`);
 console.log(`✓ Instrument register holds — no raw colours, radius ≤ ${MAX_RADIUS_PX}px, flat lift only, no gradients.`);
+console.log(`✓ Warrant ramp monotone — ${RAMP.map(([w]) => w).join(" > ")} > open, by measured luminance.`);

@@ -7,6 +7,20 @@
  * scrollable, because an entry runs to nearly three thousand pixels and
  * navigation that scrolls away is navigation you do not have.
  */
+/**
+ * Split "Klir (2001), Facets of Systems Science, eq. (1.1)" into the part that
+ * identifies the entry at a glance and the part that does not. Degrades to the
+ * whole label as the head when there is no comma, so a label written in another
+ * shape still renders — it just does not get the second line.
+ */
+function cite(label: string | null) {
+  if (!label) return { head: "—", tail: null };
+  const i = label.indexOf(", ");
+  return i === -1
+    ? { head: label, tail: null }
+    : { head: label.slice(0, i), tail: label.slice(i + 2) };
+}
+
 export function EntryRail({
   entries,
   active,
@@ -41,8 +55,15 @@ export function EntryRail({
             {String(i + 1).padStart(2, "0")}
           </span>
           <span className="px-3 py-3">
-            <span className="rail-title name-column text-sm block">{e.label}</span>
-            <span className="rail-locus text-xs">{e.sourceLocation}</span>
+            {/* Author and year lead, roman and bold; the work and the locus fall
+                back. The whole label was previously one small-caps run, which
+                wrapped to three lines and made the rail unscannable — small
+                caps is for an even column of NAMES, and this is a citation. */}
+            <span className="rail-title text-sm block">{cite(e.label).head}</span>
+            {cite(e.label).tail && (
+              <span className="rail-work text-xs block">{cite(e.label).tail}</span>
+            )}
+            <span className="rail-locus text-xs block">{e.sourceLocation}</span>
           </span>
         </button>
       ))}

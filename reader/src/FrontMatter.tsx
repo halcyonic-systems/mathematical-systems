@@ -34,7 +34,13 @@ export function FrontMatter({ atlas, reasoning }: { atlas: Atlas; reasoning: Rea
 
   return (
     <>
-      <Section title="What this is" warrant="source">
+      {/* Not `source`. The warrant scale reserves that for text an author of a
+          catalogued definition wrote; this is the project's own statement of
+          scope, which is a decision we made — and every other editorial section
+          on this page is already `decided`. The mis-set warrant was also what
+          held this paragraph to the 34rem quotation measure, so it ran at about
+          48 characters where the rest of the page runs at 70. */}
+      <Section title="What this is" warrant="decided" note="the catalogue's scope, as its editor states it">
         <p className="m-0">
           A catalogue of formal mathematical definitions of <em>“system”</em> from the systems theory and
           systems science traditions. Each entry records a definition transcribed verbatim from its primary
