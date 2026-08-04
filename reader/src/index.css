@@ -116,13 +116,22 @@ body {
   color: var(--text-muted);
 }
 
-/* Quoted source. Cormorant at reading size, held to a measure. */
-.verbatim {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  line-height: 1.5;
+/* The definition itself: the largest thing on the page, and the only thing on
+   it that is not ours.
+
+   It was set at 1.35rem against body text at 1rem — a 1.35 ratio that Cormorant
+   then gave away, because its x-height is much smaller than Inter's, so at
+   equal nominal size the two read as equal. Serif that quotes a book has to be
+   set larger than the ratio suggests to LOOK larger. */
+.passage-quoted {
+  font-size: 1.7rem;
+  line-height: 1.4;
+}
+.passage-caption {
+  color: var(--text-muted);
+  border-top: 1px solid var(--hairline);
+  padding-top: 0.5rem;
   max-width: var(--measure-verbatim);
-  color: var(--text-primary);
 }
 
 /* ---------------------------------------------------------------------------
@@ -458,6 +467,11 @@ body {
 @media (max-width: 40rem) {
   .w-source {
     font-size: 1.15rem;
+  }
+  /* Stated after .w-source so the quoted passage keeps its lead at every width;
+     it is still the largest thing on the page, just less large. */
+  .passage-quoted {
+    font-size: 1.35rem;
   }
   .view-about {
     padding: 0.625rem 1rem;

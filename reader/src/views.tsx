@@ -66,14 +66,13 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
       <Section
         title="The passage"
         warrant="source"
-        note={
-          <span className="flex items-center gap-2 flex-wrap">
-            <TranscriptBadge status={t?.status ?? "no-verbatim"} source={t?.source} />
-            {bearer?.label}
-          </span>
-        }
+        note={bearer?.label}
       >
-        <Passage text={entry.verbatim} location={entry.sourceLocation} />
+        <Passage
+          text={entry.verbatim}
+          location={entry.sourceLocation}
+          caption={<TranscriptBadge status={t?.status ?? "no-verbatim"} source={t?.source} />}
+        />
         {entry.authorCaveat && (
           <Note kind="finding" title="The author's own caveat">
             {entry.authorCaveat}
