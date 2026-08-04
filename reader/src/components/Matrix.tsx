@@ -26,7 +26,11 @@ const GLYPH: Record<CellState, string> = { yes: "●", no: "✕", silent: "·", 
 const INK: Record<CellState, string> = {
   yes: "var(--accent)",
   no: "var(--proof-refuted)",
-  silent: "var(--hairline)",
+  // Was --hairline, which is the rule colour: the mark was invisible, in the
+  // table and in its own legend entry. So `silent` and a cell we had simply
+  // failed to render looked identical — and `silent` versus `unknown` is the
+  // distinction this matrix exists to draw. Quiet, but present.
+  silent: "var(--text-muted)",
   unknown: "var(--proof-not-proven)",
 };
 const TITLE: Record<CellState, string> = {
@@ -46,9 +50,14 @@ export function Matrix({
   caption?: ReactNode;
 }) {
   return (
-    <>
-      <table className="w-full text-sm border-collapse">
-        {caption && <caption className="text-left w-open pb-3">{caption}</caption>}
+    <div className="instrument">
+      {/* The legend comes BEFORE the glyphs it explains. It was underneath, so
+          the first thing a reader met was a column of dots and question marks
+          with no key — and `silent` versus `unknown` is the distinction this
+          matrix exists to draw. */}
+      {caption && <p className="w-open mt-0 mb-2">{caption}</p>}
+      <MatrixLegend />
+      <table className="w-full text-sm border-collapse mt-3 scroll-x">
         <thead>
           <tr>
             <th className="eyebrow text-left py-2 pr-4" style={{ borderBottom: "2px solid var(--border)" }}>
@@ -64,8 +73,14 @@ export function Matrix({
                 {c}
               </th>
             ))}
-            <th className="eyebrow text-right py-2" style={{ borderBottom: "2px solid var(--border)" }}>
-              n
+            {/* "n" rendered 23px wide and clipped, and asked the reader to
+                guess what was being counted. */}
+            <th
+              className="eyebrow text-right py-2 pl-3 whitespace-nowrap"
+              style={{ borderBottom: "2px solid var(--border)" }}
+              title="How many entries in view posit this"
+            >
+              entries
             </th>
           </tr>
         </thead>
@@ -99,15 +114,14 @@ export function Matrix({
           ))}
         </tbody>
       </table>
-      <MatrixLegend />
-    </>
+    </div>
   );
 }
 
 /** Glyphs carry the meaning; colour only reinforces it. Never colour alone. */
 function MatrixLegend() {
   return (
-    <p className="w-open mt-3 mb-0 flex gap-4 flex-wrap not-italic">
+    <p className="w-open m-0 flex gap-4 flex-wrap">
       {(Object.keys(GLYPH) as CellState[]).map((s) => (
         <span key={s}>
           <span style={{ color: INK[s] }}>{GLYPH[s]}</span> {TITLE[s].toLowerCase()}

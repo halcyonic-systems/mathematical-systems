@@ -243,6 +243,23 @@ body {
 /* Structure has to be visible from arm's length on a 3,000px page. */
 .rule-top { border-top: 1px solid var(--border); }
 
+/* An instrument is not prose and must not inherit prose's measure.
+
+   The warrant classes cap their body at 44rem, which is right for a paragraph
+   and wrong for a table: the census rendered 680px wide inside a 1,436px
+   section because it sat in a `decided` body and took the reading measure with
+   it. A matrix or a comparison grid opts out here, in one place, rather than
+   each caller remembering to. */
+.instrument {
+  max-width: none;
+}
+/* The cap lives on the section BODY, so the instrument has to release its
+   container rather than only itself — resetting the child alone left the census
+   at 680px inside a 1,436px section, which is what shipped. */
+.pad-block:has(.instrument) {
+  max-width: none;
+}
+
 /* Prose holds a measure; instruments are allowed the full width. Left-flushed
    content on a wide screen reads as an accident rather than a choice. */
 .measure { max-width: 72rem; margin-inline: auto; }

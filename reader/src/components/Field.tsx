@@ -55,7 +55,7 @@ export function FieldGrid({
 }) {
   return (
     <dl
-      className={`m-0 grid items-start ${scrollable ? "scroll-x" : ""}`}
+      className={`m-0 grid items-start instrument ${scrollable ? "scroll-x" : ""}`}
       style={{
         gridTemplateColumns: `max-content repeat(${columns}, minmax(0, 1fr))`,
         columnGap: "1.5rem",
