@@ -13,7 +13,7 @@
  * whole label as the head when there is no comma, so a label written in another
  * shape still renders — it just does not get the second line.
  */
-function cite(label: string | null) {
+export function cite(label: string | null) {
   if (!label) return { head: "—", tail: null };
   const i = label.indexOf(", ");
   return i === -1

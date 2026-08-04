@@ -52,40 +52,47 @@ export function Masthead({
 
 export function Tabs<T extends string>({
   tabs,
+  meta = [],
   active,
   onSelect,
 }: {
   tabs: { id: T; label: string }[];
+  /** Views that are about the catalogue rather than of it. Rendered apart, on
+      the right, in the quiet ink — peers for the keyboard, not for the eye. */
+  meta?: { id: T; label: string }[];
   active: T;
   onSelect: (id: T) => void;
 }) {
+  const all = [...tabs, ...meta];
   const move = (delta: number) => {
-    const i = tabs.findIndex((t) => t.id === active);
-    onSelect(tabs[(i + delta + tabs.length) % tabs.length].id);
+    const i = all.findIndex((t) => t.id === active);
+    onSelect(all[(i + delta + all.length) % all.length].id);
   };
+  const button = (t: { id: T; label: string }, extra = "") => (
+    <button
+      key={t.id}
+      role="tab"
+      aria-selected={active === t.id}
+      tabIndex={active === t.id ? 0 : -1}
+      onClick={() => onSelect(t.id)}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") move(1);
+        if (e.key === "ArrowLeft") move(-1);
+      }}
+      className={`tab px-4 py-3 text-sm cursor-pointer bg-transparent${extra}`}
+    >
+      {t.label}
+    </button>
+  );
   return (
     <nav
       aria-label="Views"
       style={{ background: "var(--bg-secondary)", borderBottom: "1px solid var(--border)" }}
       className="px-8 flex gap-1 sticky top-0 z-10"
     >
-      <div role="tablist" className="flex gap-1">
-        {tabs.map((t) => (
-          <button
-            key={t.id}
-            role="tab"
-            aria-selected={active === t.id}
-            tabIndex={active === t.id ? 0 : -1}
-            onClick={() => onSelect(t.id)}
-            onKeyDown={(e) => {
-              if (e.key === "ArrowRight") move(1);
-              if (e.key === "ArrowLeft") move(-1);
-            }}
-            className="tab px-4 py-3 text-sm cursor-pointer bg-transparent"
-          >
-            {t.label}
-          </button>
-        ))}
+      <div role="tablist" className="flex gap-1 flex-1">
+        {tabs.map((t) => button(t))}
+        {meta.map((t) => button(t, " tab-meta"))}
       </div>
     </nav>
   );

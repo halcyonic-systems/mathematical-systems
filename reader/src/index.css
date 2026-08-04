@@ -504,6 +504,178 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
+   FOYER — the front page.
+
+   One thesis line, the shelf of entries, the disagreement, one trust line.
+   The page's job is invitation, so the material leads: the largest type on the
+   ground is the authors' own words, set in the display serif exactly as the
+   passage register sets them inside an entry. Everything editorial around them
+   is smaller than what it introduces.
+   --------------------------------------------------------------------------- */
+.thesis {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+  max-width: 40rem;
+  margin: 1.5rem 0 0.5rem;
+}
+.thesis-sub {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  max-width: 44rem;
+  margin: 0 0 2.5rem;
+}
+
+/* The shelf: each definition is a source-warrant object — same left accent rule
+   and ground as the passage register — that happens to be a door. Hover answers
+   with lift and a darkened edge, never with new colour: the reserved channels
+   stay contractual on the badges inside. */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+.shelf-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+.shelf-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--accent);
+}
+.shelf-strip {
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--border);
+  padding: 0.625rem 1rem;
+}
+.shelf-head {
+  display: block;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+.shelf-tail {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin-top: 0.1rem;
+}
+/* The verbatim inside a card is the passage register at shelf scale: display
+   serif, never re-spaced. Long passages clamp visibly and say so in the cue —
+   an ellipsis that pretends the passage ends there would be a lie about the one
+   thing this catalogue promises not to lie about. */
+.shelf-verbatim {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  /* Margin, not padding: a clamped -webkit-box paints overflow into its own
+     padding, which showed a sliced eighth line under the cue. */
+  margin: 1rem 1rem 0.75rem;
+  padding: 0;
+}
+.shelf-verbatim.is-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.shelf-cue {
+  padding: 0 1rem 0.625rem;
+  font-size: 12px;
+}
+.shelf-meta {
+  margin-top: auto;
+  padding: 0.625rem 1rem 0.75rem;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* The disagreement: two rulings on one object, side by side. The glyphs are the
+   ledger's own (⊨ admits, ⊭ refuses); colour stays on the evidence badge where
+   it is contractual. */
+.verdicts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.verdict-ruling {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+}
+.verdict-glyph {
+  color: var(--text-muted);
+  margin-right: 0.375rem;
+}
+
+/* One line of trust, then the door to the full apparatus. */
+.trust-line {
+  border-top: 1px solid var(--border);
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.trust-glyph-ok {
+  color: var(--transcript-located);
+}
+.trust-glyph-partial {
+  color: var(--transcript-partial);
+}
+.trust-counts {
+  color: var(--text-muted);
+}
+
+/* The reading key: a folded legend at the top of an entry, for the moment a
+   tier or a warrant first puzzles a reader. Quiet until asked. */
+.reading-key {
+  margin-bottom: 1.25rem;
+}
+.reading-key-body {
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--border);
+  background: var(--bg-secondary);
+  padding: 1rem 1.25rem;
+  margin-top: 0.5rem;
+}
+
+/* The About tab is a peer view but not peer material — it is the methods, not
+   the catalogue — so it sits apart on the right, in the quiet ink. */
+.tab-meta {
+  margin-left: auto;
+}
+
+@media (max-width: 64rem) {
+  .shelf {
+    grid-template-columns: 1fr;
+  }
+  .verdicts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------------------
    RESPONSIVE
 
    The stylesheet had no breakpoints at all, and a fixed rail beside a

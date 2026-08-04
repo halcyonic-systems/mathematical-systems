@@ -31,6 +31,7 @@ const SEGMENT: Record<View, string> = {
   census: "primitives",
   ledger: "cases",
   commitments: "entailments",
+  about: "about",
 };
 
 const VIEW_OF = Object.fromEntries(Object.entries(SEGMENT).map(([v, s]) => [s, v as View])) as Record<string, View>;

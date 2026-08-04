@@ -30,6 +30,7 @@ import {
   Passage,
   ProofBadge,
   Quiver,
+  ReadingKey,
   Section,
   Toggle,
   TranscriptBadge,
@@ -38,6 +39,7 @@ import {
   type CellState,
 } from "./components";
 import { useStore } from "./store";
+import { TIERS } from "./About";
 import type { Atlas, Reasoning } from "./types";
 
 const byIri = <T extends { iri: string }>(xs: T[]) => new Map(xs.map((x) => [x.iri, x]));
@@ -63,6 +65,8 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
 
   return (
     <>
+      <ReadingKey tiers={TIERS} />
+
       <Section
         title="The passage"
         warrant="source"

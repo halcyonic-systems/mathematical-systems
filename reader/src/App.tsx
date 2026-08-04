@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { EntryRail, Masthead, OpenQuestions, Register, Tabs } from "./components";
 import { useStore, type View } from "./store";
 import { FrontMatter } from "./FrontMatter";
+import { AboutView } from "./About";
 import { CensusView, CommitmentsView, CompareView, LedgerView, ReadView } from "./views";
 
 /**
@@ -15,7 +16,7 @@ const TABS: { id: View; label: string; about: string }[] = [
   {
     id: "overview",
     label: "Overview",
-    about: "What this catalogue is, what it has reached, what its build refuses, and what is still unsettled.",
+    about: "Formal definitions of “system,” in their authors' own words — and the case on which two of them disagree.",
   },
   {
     id: "read",
@@ -44,11 +45,20 @@ const TABS: { id: View; label: string; about: string }[] = [
   },
 ];
 
+/** About the catalogue rather than of it: the methods, set apart on the right. */
+const META_TABS: { id: View; label: string; about: string }[] = [
+  {
+    id: "about",
+    label: "About",
+    about: "The methods: what the catalogue has reached, what its build refuses, what is unsettled, and where this build came from.",
+  },
+];
+
 /**
  * Entries are documents; comparisons are instruments. Same eight primitives,
  * different density, set once here rather than threaded through every part.
  */
-const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous" } as const;
+const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", about: "generous" } as const;
 
 export default function App() {
   const { atlas, reasoning, error, view, setView, load, syncFromPath, reading, read } = useStore();
@@ -104,8 +114,8 @@ export default function App() {
         subtitle="Formal definitions of “system,” and the maps between them"
         count={`${atlas.entries.length} entries`}
       />
-      <Tabs tabs={TABS} active={view} onSelect={setView} />
-      <p className="view-about">{TABS.find((t) => t.id === view)?.about}</p>
+      <Tabs tabs={TABS} meta={META_TABS} active={view} onSelect={setView} />
+      <p className="view-about">{[...TABS, ...META_TABS].find((t) => t.id === view)?.about}</p>
 
       <div className="flex">
         {view === "read" && (
@@ -118,13 +128,14 @@ export default function App() {
         <main
           id="catalogue"
           tabIndex={-1}
-          className={`flex-1 px-8 py-6 min-w-0 ${view === "read" || view === "overview" ? "measure" : "measure-wide"}`}
+          className={`flex-1 px-8 py-6 min-w-0 ${view === "read" || view === "overview" || view === "about" ? "measure" : "measure-wide"}`}
         >
           {/* The collector is keyed per entry so opening another one starts a fresh
               set of open questions rather than accumulating the previous entry's. */}
           <Register density={DENSITY[view]}>
             <OpenQuestions key={`${view}:${reading}`}>
-              {view === "overview" && <FrontMatter atlas={atlas} reasoning={reasoning} />}
+              {view === "overview" && <FrontMatter atlas={atlas} />}
+              {view === "about" && <AboutView atlas={atlas} reasoning={reasoning} />}
               {view === "read" && <ReadView atlas={atlas} />}
               {view === "compare" && <CompareView atlas={atlas} />}
               {view === "census" && <CensusView atlas={atlas} />}
@@ -136,7 +147,15 @@ export default function App() {
       </div>
 
       <footer className="px-8 py-4 w-open rule-top">
-        Reads <code>{atlas.source.repo}</code>. Reasoning precomputed at build time; this page runs no reasoner.
+        Reads <code>{atlas.source.repo}</code>
+        {atlas.provenance.atlasCommit && <> at <code>{atlas.provenance.atlasCommit}</code></>}. Reasoning
+        precomputed at build time; this page runs no reasoner.{" "}
+        <button
+          onClick={() => setView("about")}
+          className="disclosure cursor-pointer bg-transparent border-0 p-0"
+        >
+          About this catalogue →
+        </button>
       </footer>
     </div>
   );
