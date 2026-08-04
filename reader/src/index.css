@@ -78,6 +78,17 @@
   --transcript-partial: #8a5c08;
   --transcript-absent: #c2352c;
 
+  /* RESERVED CHANNEL — bearer identity. One hue per author, shared with
+     bert-lenses' world tokens so an author wears the same colour across the
+     fleet. Worn only by content that belongs to one author — a shelf card, a
+     column — never by app chrome: legend reads ACROSS traditions, so its own
+     accent stays indigo. Assign a hue when a tradition's first entry lands;
+     stay in this muted earth/slate family, and keep clear of the three
+     semantic channels (green = verified, amber = caution, red = refuted). */
+  --world-klir: #5a6c85;
+  --world-bunge: #8a6a4d;
+  --world-mobus: #4e7d5b;
+
   --border: #d3d7e2;
   --hairline: #e6e9f0;
 
@@ -542,25 +553,38 @@ body {
   align-items: stretch;
 }
 .shelf-card {
+  /* The bearer-identity channel arrives here: each card wears its author's
+     world hue on the strip wash and the leading edge. Unknown authors fall
+     back to the app accent until their hue is assigned. */
+  --world: var(--accent);
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: inherit;
   border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--world);
   background: var(--bg-secondary);
   box-shadow: var(--shadow-card);
   transition:
     box-shadow var(--transition-base),
     border-color var(--transition-base);
 }
+.shelf-card[data-world="klir"] {
+  --world: var(--world-klir);
+}
+.shelf-card[data-world="bunge"] {
+  --world: var(--world-bunge);
+}
+.shelf-card[data-world="mobus"] {
+  --world: var(--world-mobus);
+}
 .shelf-card:hover {
   box-shadow: var(--shadow-card-hover);
-  border-color: var(--accent);
+  border-color: var(--world);
 }
 .shelf-strip {
-  background: var(--accent-soft);
-  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--world) 16%, var(--bg-secondary));
+  border-bottom: 1px solid color-mix(in srgb, var(--world) 30%, var(--border));
   padding: 0.625rem 1rem;
 }
 .shelf-head {

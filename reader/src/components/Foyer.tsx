@@ -39,6 +39,8 @@ export function Shelf({
         const t = transcription[e.iri];
         const { display, context } = excerptOf(e);
         const formula = (display?.length ?? 0) <= FORMULA_CHARS;
+        // "Bunge (1979)" -> "bunge": the key into the bearer-identity hues.
+        const world = head.split(" ")[0].toLowerCase();
         const open = (ev: MouseEvent) => {
           // Plain click navigates in place; modified clicks keep browser behaviour.
           if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
@@ -46,7 +48,7 @@ export function Shelf({
           onOpen(e.iri);
         };
         return (
-          <a key={e.iri} className="shelf-card" href={hrefOf(e)} onClick={open}>
+          <a key={e.iri} className="shelf-card" data-world={world} href={hrefOf(e)} onClick={open}>
             <span className="shelf-strip">
               <span className="shelf-head">{head}</span>
               {tail && <span className="shelf-tail">{tail}</span>}
