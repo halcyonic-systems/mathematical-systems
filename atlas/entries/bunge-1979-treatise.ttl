@@ -49,6 +49,10 @@ entry:bunge-1979-ces-triple
 
     atlas:verbatim """One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.""" ;
 
+    # Presentation spans — exact substrings of the verbatim, enforced by the build.
+    atlas:displayForm "σ = ⟨C, E, S⟩" ;
+    atlas:displayContext "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E." ;
+
     atlas:authorCaveat """However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.""" ;
 
     atlas:admits case:bunge-theory ;
@@ -99,6 +103,9 @@ entry:bunge-1979-def-1-1
     atlas:sourceLocation "ch. 1, Definition 1.1" ;
 
     atlas:verbatim """DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.""" ;
+
+    # No formal statement to lift; the sentence itself faces, minus the running label.
+    atlas:displayForm "An object is a concrete system iff it is composed of at least two different connected things." ;
 
     atlas:admits case:bunge-molecule-reef-family-factory ;
     atlas:refuses case:bunge-states-of-a-thing ,

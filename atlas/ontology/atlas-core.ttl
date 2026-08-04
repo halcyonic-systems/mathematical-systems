@@ -164,6 +164,25 @@ atlas:sourceLocation
     rdfs:label "source location"@en ;
     skos:definition "Where in the bearer the verbatim text appears — equation number, page, section."@en .
 
+atlas:displayForm
+    a owl:AnnotationProperty ;
+    rdfs:label "display form"@en ;
+    skos:definition """The span of the verbatim that is the definition's formal statement — the
+face a reader meets first, e.g. `S = (T, R)` or `σ = ⟨C, E, S⟩`. Presentation only: it adds no
+content, it marks a span. MUST be an exact substring of atlas:verbatim on the same individual —
+the build refuses an entry where it is not, so this property can never put words in an author's
+mouth. Absent where the definition has no formal statement to lift; the verbatim then faces
+whole."""@en .
+
+atlas:displayContext
+    a owl:AnnotationProperty ;
+    rdfs:label "display context"@en ;
+    skos:definition """The span of the verbatim that is the author's own plain-language reading
+of the display form — Klir's "where S, T, R denote…", Bunge's disjointness clause. Same contract
+as atlas:displayForm: an exact substring of atlas:verbatim, enforced by the build. Together the
+two spans let an interface lead with the mathematics and follow with the author's gloss without
+one editorial word being added."""@en .
+
 atlas:evidenceCode
     a owl:AnnotationProperty ;
     rdfs:label "evidence code"@en ;

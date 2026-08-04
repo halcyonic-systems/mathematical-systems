@@ -135,8 +135,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "6dc721c",
-    "repoCommit": "6dc721c"
+    "atlasCommit": "7474761",
+    "repoCommit": "7474761"
   },
   "publishable": true,
   "contextChars": 800,
@@ -279,6 +279,8 @@
       "statedIn": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
       "sourceLocation": "ch. 1, Definition 1.1",
       "verbatim": "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
+      "displayForm": "An object is a concrete system iff it is composed of at least two different connected things.",
+      "displayContext": null,
       "authorCaveat": null,
       "admits": [
         "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory"
@@ -322,6 +324,8 @@
       "statedIn": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
       "sourceLocation": "ch. 1, §1.1 (the general concept of a system)",
       "verbatim": "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.",
+      "displayForm": "σ = ⟨C, E, S⟩",
+      "displayContext": "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E.",
       "authorCaveat": "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.",
       "admits": [
         "https://halcyonic.systems/atlas/case/bunge-theory"
@@ -369,6 +373,8 @@
       "statedIn": "https://halcyonic.systems/atlas/bearer/klir-2001-facets",
       "sourceLocation": "ch. 1, eq. (1.1), p. 5",
       "verbatim": "S = (T, R),   (1.1)\n\nwhere S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.",
+      "displayForm": "S = (T, R)",
+      "displayContext": "where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T.",
       "authorCaveat": null,
       "admits": [
         "https://halcyonic.systems/atlas/case/klir-books-ordered",

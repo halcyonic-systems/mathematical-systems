@@ -11,6 +11,10 @@ export type Entry = {
   statedIn: string | null;
   sourceLocation: string | null;
   verbatim: string | null;
+  /** Presentation spans marked in the atlas (atlas:displayForm / displayContext).
+      The build refuses a span that is not an exact substring of the verbatim. */
+  displayForm: string | null;
+  displayContext: string | null;
   authorCaveat: string | null;
   /** Case IRIs. Cases are individuals since P4 — look them up in `Atlas.cases`. */
   admits: string[];

@@ -46,6 +46,10 @@ entry:klir-2001-eq-1-1
 
 where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.""" ;
 
+    # Presentation spans — exact substrings of the verbatim, enforced by the build.
+    atlas:displayForm "S = (T, R)" ;
+    atlas:displayContext "where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T." ;
+
     atlas:invokesPrimitive prim:thing ,
                            prim:relation ,
                            prim:set ,

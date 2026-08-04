@@ -161,6 +161,12 @@ def extract_entries(g):
                 "statedIn": str(next(g.objects(s, ATLAS.statedIn), "")) or None,
                 "sourceLocation": one(g, s, ATLAS.sourceLocation),
                 "verbatim": one(g, s, ATLAS.verbatim),
+                # Presentation spans: which part of the verbatim is the formal
+                # statement, and which is the author's own reading of it. Marked
+                # in the atlas, never authored here — check_display_spans refuses
+                # a span that is not an exact substring of the verbatim.
+                "displayForm": one(g, s, ATLAS.displayForm),
+                "displayContext": one(g, s, ATLAS.displayContext),
                 "authorCaveat": one(g, s, ATLAS.authorCaveat),
                 # Cases are individuals since 2026-08-03 (P4): each carries its own grade,
                 # its own location, and the author's own words separately from our gloss.
@@ -413,6 +419,39 @@ def prove_the_gate_can_fail(entries, vault):
     return False
 
 
+def check_display_spans(entries):
+    """The fifth gate: a presentation span must be verbatim.
+
+    atlas:displayForm and atlas:displayContext exist so an interface can lead
+    with the mathematics and follow with the author's own gloss. That is safe
+    only while both are exact substrings of the verbatim — the moment one
+    drifts (an atlas edit, a re-transcription, a normalised quote mark), the
+    front page is showing words the author did not write. Refuse the build.
+
+    The gate proves it can fail before it is trusted (SSF #35): one corrupted
+    span must be caught, or the check is decoration.
+    """
+    proven = False
+    for e in entries:
+        v = e["verbatim"] or ""
+        for prop in ("displayForm", "displayContext"):
+            span = e.get(prop)
+            if span is None:
+                continue
+            if span not in v:
+                raise SystemExit(
+                    f"DISPLAY SPAN NOT VERBATIM: {e['id']}.{prop} is not a substring of the "
+                    "entry's verbatim. Fix the annotation in the atlas; never adjust the verbatim to fit."
+                )
+            corrupted = span[:-1] + ("Z" if span[-1] != "Z" else "Q")
+            if corrupted in v:
+                raise SystemExit(
+                    f"GATE INVALID: a corrupted display span on {e['id']} still matches the verbatim."
+                )
+            proven = True
+    return proven
+
+
 def resolve_shapes(entries, foundations):
     """Read each entry's shape category out of the Lean source.
 
@@ -622,6 +661,9 @@ def main():
     for r in transcription.values():
         tally[r["status"]] = tally.get(r["status"], 0) + 1
     print(f"transcription {tally}  gate-can-fail={gate_live}")
+
+    spans_live = check_display_spans(entries)
+    print(f"display spans verbatim  gate-can-fail={spans_live}")
 
     foundations = args.foundations.expanduser().resolve()
     shapes = resolve_shapes(entries, foundations)
