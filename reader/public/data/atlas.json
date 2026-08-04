@@ -135,8 +135,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "0923fa9",
-    "repoCommit": "0923fa9"
+    "atlasCommit": "006cded",
+    "repoCommit": "006cded"
   },
   "publishable": true,
   "contextChars": 800,

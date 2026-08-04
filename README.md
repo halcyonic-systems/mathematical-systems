@@ -28,22 +28,28 @@ npm run data          # extract the atlas, verify transcriptions, resolve the Le
 npm run dev           # http://localhost:5192
 ```
 
-`npm run data` prints four lines, and each is a gate reporting:
+`npm run data` prints one line per gate. This is what a good run looks like:
 
 ```
-transcription {'located': 3}  gate-can-fail=True     every verbatim found in the primary text
+transcription {'located': 3}  gate-can-fail=True     every verbatim found in its primary text
 lean bridge   2/3 entries linked, 0 broken           every formalisation pointer resolves
-atlas.json    3 entries, 2 bearers, 12 primitives    what was extracted
-shipped / full  not-proven / entailed                the two import closures disagree, as they must
+served       definition-atlas.ttl                    the catalogue as RDF, for content negotiation
+served       definition-atlas.owl
+atlas.json   3 entries, 2 bearers, 12 primitives, 1 conflicts
+shipped  {'is-about-entity': 'not-proven',  'describes-entity': 'not-proven'}
+full     {'is-about-entity': 'entailed',    'describes-entity': 'entailed'}
 ```
 
-If any of those four lines looks different from the above, something changed — that is the
-point of printing them.
+Every line is a gate reporting, and the last two must **disagree** — that is the neutrality
+invariant holding. `1 conflicts` is the first derived separating instance. If any line differs
+from the above, something changed; that is why they are printed.
 
-**The one thing that needs you:** register `mathematical.systems`, then run
-`uv run python atlas/migrate-iris.py --apply`. IRIs currently live on `halcyonic.systems`;
-the script is written, dry-run verified at 25 occurrences across 6 files, and refuses to run
-while the target host does not resolve. Three entries is the cheap moment to move them.
+**The one thing outstanding:** IRIs still live on `halcyonic.systems` and belong on
+`https://w3id.org/mathematical-systems/atlas/` — a namespace that survives any change of
+hosting or domain, unlike one on a rented registration. `atlas/migrate-iris.py` is written and
+dry-run verified at 25 occurrences across 6 files; it needs retargeting at the w3id namespace
+and its DNS guard swapped for a redirect check. **Do it before the catalogue grows or anything
+is cited.**
 
 ---
 
@@ -65,8 +71,12 @@ reader/           the instrument that reads it
   docs/design/    visual-language.md — the register, and the gate that holds it
 
 docs/decisions/   ADRs. 0001 is why this is one repository and what would split it.
-scripts/          verify-merge.sh — proves the consolidation was faithful
+scripts/          verify-merge.sh · prepublish.sh — what must be true before going public
+w3id/             the permanent-identifier namespace, submitted to perma-id/w3id.org
 ```
+
+`atlas/docs/proposals/` holds P1–P4: what was decided about the catalogue's structure and why,
+including the reasoning behind decisions that were *not* taken.
 
 A third artifact lives in **its own repository** and is referenced, never vendored:
 
@@ -110,7 +120,8 @@ and not pointed at.
 - **Mapping claims get to point.** `atlas/mappings/README.md` requires a witness for every
   claim of loss; a mapping can now cite the comparison that exhibits it.
 - **It is the precondition for the permanent identifiers.** `w3id.org/…/atlas/entry/<id>`
-  resolves *through* these paths. Without them the namespace would have one destination.
+  resolves *through* these paths — **live since 2026-08-03**, with content negotiation verified:
+  `Accept: text/turtle` returns the catalogue as RDF, a browser gets the entry.
 
 Two limits worth knowing. URLs carry view state, not scroll position or which disclosures are
 open, so "look at this axiom chain" still takes a click. And section anchors within an entry
