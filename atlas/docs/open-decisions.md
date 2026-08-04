@@ -84,7 +84,7 @@ There is none. `entry:klir-2001-eq-1-1` — what happens when an encoding is cor
 
 Both councils recommended dropping BFO/CCO for FaBiO or FRBR, on the grounds that the alignment currently buys nothing computational. Technically fair, and FRBR's Work/Expression/Manifestation would directly address the GDC identity problem below.
 
-**Held anyway**, for a reason the councils could not price: the alignment was asked about by name, by a professional semantic engineer whose interest shaped this project's form. The alignment is relationship-bearing as well as technical, and re-parenting three entries later is cheap.
+**Held anyway**, for a reason the councils could not price: the alignment was asked about by name, by a professional semantic engineer whose interest shaped this project's form. It is relationship-bearing as well as technical, and re-parenting three entries later is cheap.
 
 **Related unresolved problem.** BFO generic dependence means a definition copied to a new bearer is the *same* entity. The atlas needs Klir-in-*Facets* distinguishable from a verbatim copy in a textbook, from Klir 1985, from a translation. No individuation criterion for "a definition" exists anywhere in the architecture. This bites at editions and translations, not at three entries.
 

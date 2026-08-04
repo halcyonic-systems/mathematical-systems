@@ -131,12 +131,12 @@
       "title": "D6 — BFO/CCO alignment vs a bibliographic ontology",
       "blocking": false,
       "problem": "Both councils recommended dropping BFO/CCO for FaBiO or FRBR, on the grounds that the alignment currently buys nothing computational. Technically fair, and FRBR's Work/Expression/Manifestation would directly address the GDC identity problem below.",
-      "fix": "**Held anyway**, for a reason the councils could not price: the alignment was asked about by name, by a professional semantic engineer whose interest shaped this project's form. The alignment is relationship-bearing as well as technical, and re-parenting three entries later is cheap."
+      "fix": "**Held anyway**, for a reason the councils could not price: the alignment was asked about by name, by a professional semantic engineer whose interest shaped this project's form. It is relationship-bearing as well as technical, and re-parenting three entries later is cheap."
     }
   ],
   "provenance": {
-    "atlasCommit": "7474761",
-    "repoCommit": "7474761"
+    "atlasCommit": "79e31f0",
+    "repoCommit": "79e31f0"
   },
   "publishable": true,
   "contextChars": 800,

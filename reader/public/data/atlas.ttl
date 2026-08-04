@@ -61,6 +61,23 @@ atlas:authorCaveat a owl:AnnotationProperty ;
 
 atlas:definition-atlas a owl:Ontology .
 
+atlas:displayContext a owl:AnnotationProperty ;
+    rdfs:label "display context"@en ;
+    skos:definition """The span of the verbatim that is the author's own plain-language reading
+of the display form — Klir's "where S, T, R denote…", Bunge's disjointness clause. Same contract
+as atlas:displayForm: an exact substring of atlas:verbatim, enforced by the build. Together the
+two spans let an interface lead with the mathematics and follow with the author's gloss without
+one editorial word being added."""@en .
+
+atlas:displayForm a owl:AnnotationProperty ;
+    rdfs:label "display form"@en ;
+    skos:definition """The span of the verbatim that is the definition's formal statement — the
+face a reader meets first, e.g. `S = (T, R)` or `σ = ⟨C, E, S⟩`. Presentation only: it adds no
+content, it marks a span. MUST be an exact substring of atlas:verbatim on the same individual —
+the build refuses an entry where it is not, so this property can never put words in an author's
+mouth. Absent where the definition has no formal statement to lift; the verbatim then faces
+whole."""@en .
+
 atlas:encodedBy a owl:AnnotationProperty ;
     rdfs:label "encoded by"@en .
 
@@ -102,6 +119,8 @@ would endorse the reading; asserting it anyway would still break the catalogue's
 neutrality, which must not depend on which tradition an entry belongs to."""@en ;
     atlas:admits case:bunge-theory ;
     atlas:authorCaveat "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing." ;
+    atlas:displayContext "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E." ;
+    atlas:displayForm "σ = ⟨C, E, S⟩" ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
@@ -141,6 +160,7 @@ RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
 definition proper". 003 is the definition proper. They are not alternative
 phrasings of one claim and must not be merged."""@en ;
     atlas:admits case:bunge-molecule-reef-family-factory ;
+    atlas:displayForm "An object is a concrete system iff it is composed of at least two different connected things." ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
@@ -194,6 +214,8 @@ checked against each other before either is cited."""@en ;
     atlas:admits case:klir-books-ordered,
         case:klir-books-partitioned,
         case:klir-population-by-birth ;
+    atlas:displayContext "where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T." ;
+    atlas:displayForm "S = (T, R)" ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
