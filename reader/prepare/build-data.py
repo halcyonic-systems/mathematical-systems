@@ -444,20 +444,48 @@ def read_open_decisions(atlas_root):
     path = atlas_root / "docs" / "open-decisions.md"
     if not path.is_file():
         return []
+
+    # The parser used to require the literal labels **The problem.** and
+    # **Candidate fix.**, which only D1 and D2 happen to use. D3 opens on
+    # **The fork.**, D4 on **Scope.**, and D5 and D6 open on a plain paragraph
+    # — so four of six decisions reached the reader as a heading with nothing
+    # under it. That reads as a broken page rather than as an honest gap, which
+    # is the opposite of what this section is for. Take the first paragraph
+    # whatever it is labelled, and treat a labelled paragraph as the resolution
+    # when its label says so.
+    FIX_LABEL = re.compile(r"^\*\*(candidate fix|a resolution|trigger|held|resolved)", re.I)
+
+    def paragraphs(body):
+        for p in re.split(r"\n\s*\n", body):
+            p = p.strip()
+            if p and not p.startswith(("---", "#")):
+                yield re.sub(r"\s+", " ", p)
+
     out = []
     for block in re.split(r"^## ", path.read_text(), flags=re.M)[1:]:
         head, _, body = block.partition("\n")
         if not re.match(r"D\d", head):  # the file also carries non-decision sections
             continue
-        problem = re.search(r"\*\*The problem\.\*\*\s*(.+?)(?:\n\n|$)", body, re.S)
-        fix = re.search(r"\*\*Candidate fix[^*]*\.?\*\*\s*(.+?)(?:\n\n|$)", body, re.S)
+        paras = list(paragraphs(body))
+        fix = next((p for p in paras[1:] if FIX_LABEL.match(p)), "")
         out.append(
             {
                 "title": re.sub(r"\s*\*\(.*?\)\*", "", head).strip(),
                 "blocking": "blocks" in head,
-                "problem": re.sub(r"\s+", " ", problem.group(1)).strip() if problem else "",
-                "fix": re.sub(r"\s+", " ", fix.group(1)).strip() if fix else "",
+                "problem": paras[0] if paras else "",
+                "fix": fix,
             }
+        )
+
+    # A decision that reaches the reader with no body is a rendering defect, and
+    # it has already shipped once. Fail the build rather than print a heading
+    # over nothing.
+    empty = [d["title"] for d in out if not d["problem"]]
+    if empty:
+        raise SystemExit(
+            "EMPTY OPEN DECISION: " + ", ".join(empty) + "\n"
+            "  docs/open-decisions.md has a D-heading with no parsable first paragraph.\n"
+            "  The reader would render the heading with nothing under it."
         )
     return out
 

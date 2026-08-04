@@ -150,10 +150,21 @@ export function FrontMatter({ atlas, reasoning }: { atlas: Atlas; reasoning: Rea
       </Section>
 
       <Section title="What is unsettled" warrant="open" note="ordered by cost of deferral, not severity">
+        {/* The problem and, where one is drafted, the way out. Showing only the
+            first of the two made D4 read as "Two defects, both flagged by both
+            councils." and nothing else — a heading, a sentence of throat-clearing,
+            and no decision. */}
         {atlas.openDecisions.map((d) => (
-          <Note key={d.title} kind={d.blocking ? "finding" : "boundary"} title={d.title}>
-            {d.problem || d.fix}
-          </Note>
+          <div key={d.title} className="mb-5 last:mb-0">
+            <Note kind={d.blocking ? "finding" : "boundary"} title={d.title}>
+              {d.problem}
+            </Note>
+            {d.fix && (
+              <p className="w-open m-0 mt-1.5 pl-4">
+                <Editorial>{d.fix}</Editorial>
+              </p>
+            )}
+          </div>
         ))}
         <p className="mt-4 mb-0">
           <Editorial>
