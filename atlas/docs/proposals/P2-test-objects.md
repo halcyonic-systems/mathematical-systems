@@ -1,6 +1,11 @@
 # P2 — A test-object vocabulary
 
-**Status: proposal.** Depends on P1 for its first real pair. Sibling to D1.
+**Status: IMPLEMENTED 2026-08-03**, narrowly — one test object, two cases, one derived
+conflict. Kept as the record of why the vocabulary is shaped as it is.
+
+The open problem it named — an example is a string with nowhere to hang `instantiates` — was
+resolved by P4, which made cases individuals. The two turned out to be one refactor, as
+predicted.
 
 ## The problem
 
@@ -73,17 +78,29 @@ witness. It is drafted as M002.
 - Like D1's candidate fix, the vocabulary is **external and prior**, so it does not inherit
   the circularity charge that the primitive scheme carries.
 
+## How the evidence problem was solved
+
+Every `instantiates` link is an interpretation, so it needs a grade — but grading each link
+individually starts a regress. The resolution: **grade the test object, not the link.** Saying
+two cases are about one object is a single claim, made once, argued once. `atlas:evidenceCode`
+on the object carries the grade and `atlas:arguedIn` points at the mapping that argues it;
+links inherit.
+
+`obj:ordered-non-bonding` is `MDU` today. The conflict it derives is therefore real machinery
+resting on an unchecked identification, and the reader reports it that way rather than
+presenting the finding as established.
+
 ## Open
 
-**Where does `instantiates` attach?** An example is currently a string literal on the entry,
-so there is nothing to hang a pointer on. Either examples become individuals — cleaner, and
-it makes a case citable in its own right, which the reader could serve at `/case/<id>` — or
-the pointer sits on the entry and loses which example it refers to. The first is right and is
-a larger change than this document should decide alone.
+**Cases are not yet servable.** `/case/<id>` would make a case citable in its own right — the
+page listing every definition that rules on it. Cheap now that cases have IRIs.
 
-**Interaction with D4.** Every `instantiates` link is an interpretation of a passage and
-deserves its own evidence grade. Adding a second family of assertions under a single
-entry-level code makes D4 worse. Resolving D4 first would be the disciplined order.
+**Splitting multi-case individuals.** `case:bunge-molecule-reef-family-factory` names four
+objects in one individual, which blocks matching any of them separately. A reviewed change,
+not a structural one.
+
+**The vocabulary stays small on purpose.** A term is added only when the corpus holds at least
+two rulings on the same object. One term today, because there is one such pair.
 
 **Scope discipline.** A test object must be a case an author actually ruled on, never one
 invented to make a comparison come out. If nothing in the corpus rules on it, it does not

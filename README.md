@@ -207,20 +207,26 @@ Four proposals in `atlas/docs/proposals/`, one applied and three awaiting decisi
 
 | | | |
 |---|---|---|
-| **P1** | Klir's examples | ✔ applied 2026-08-03 |
-| **P4** | resolving D4 — evidence per assertion | **decision needed**; blocks P2 |
-| **P2** | a test-object vocabulary, so the clash *derives* instead of being asserted | waits on P4 |
-| **P3** | stance is two axes, not one | waits on P4 |
+| **P1** | Klir's examples | ✔ applied |
+| **P4** | evidence per assertion — cases reified | ✔ implemented, examples only |
+| **P2** | a test-object vocabulary | ✔ implemented, one object |
+| **P3** | stance is two axes, not one | **decision needed** — can now be born reified |
 
-**P4 is the bottleneck.** Five independent problems converge on one missing structure —
-examples as individuals rather than string literals. Found from four directions: matching
-examples across authors, the design review's cases matrix, case-versus-reason concatenation,
-and Bunge's examples sitting outside the `sourceLocation` his entry claims. It also records
-that **D4 and D5 are coupled**: any migration renames properties, and renaming an IRI is D5's
-business.
+Cases are individuals now, each carrying its own evidence grade, its own source location, and
+the author's own words separately from our gloss. Reifying them made a hidden gap visible on
+the first build: **3 of 7 cases carry a location**, because Bunge's sit in a labelled block
+outside the location his entry claims.
 
-Also open: **type the primitives** via `skos:broader` (the reader already reads roles, so the
-census becomes a signature comparison with no code change), and the **IRI policy** itself.
+A case may name the **test object** it is a case of, which is what lets two authors be compared
+without matching strings. The vocabulary holds one term, because the corpus holds one pair.
+
+**The identification is itself graded.** `obj:ordered-non-bonding` is `MDU` — model-drafted and
+unchecked — so the conflict derived from it is real machinery on an unverified claim, and the
+reader says exactly that rather than presenting a finding as established.
+
+Still open: **P3's stance axes** (which can now be born reified rather than migrated), **typing
+the primitives** via `skos:broader`, and the **IRI policy**, which D4's migration showed is
+coupled to evidence scope.
 
 **Reader:**
 

@@ -152,3 +152,34 @@ Bunge justifies structurally by the definition that follows.""" ;
         sh:maxCount 1 ;
         sh:message "A case may carry at most one source location, which is its own and need not be the entry's." ;
     ] .
+
+
+##############################################################################
+# Test object — a case named once so two authors can be compared on it.
+##############################################################################
+
+atlas:TestObjectShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:TestObject ;
+
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every test object needs exactly one preferred label." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:evidenceCode ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( atlas:HVP atlas:MDHC atlas:MDU atlas:PROP ) ;
+        sh:message """Every test object needs exactly one evidence code. Saying two cases are
+about the same object is an interpretation of both, and a derived conflict is only as strong as
+the identification underneath it.""" ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:arguedIn ;
+        sh:minCount 1 ;
+        sh:message """Every test object must say where its identification is argued. An
+unargued test object silently manufactures agreements and disagreements.""" ;
+    ] .

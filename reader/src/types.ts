@@ -36,6 +36,8 @@ export type Case = {
   sourceLocation: string | null;
   evidenceCode: string | null;
   encodedOn: string | null;
+  /** The shared test object this case is a case of, if identified. */
+  instantiates: string | null;
   note: string | null;
 };
 
@@ -62,10 +64,25 @@ export type EvidenceCode = {
   definition: string | null;
 };
 
+export type TestObject = {
+  iri: string;
+  id: string;
+  label: string | null;
+  scopeNote: string | null;
+  evidenceCode: string | null;
+  arguedIn: string | null;
+  note: string | null;
+};
+
+/** One test object that a definition admits and another refuses. Derived, not asserted. */
 export type Conflict = {
-  example: string;
-  admittedBy: { entry: string; case: string; text: string | null }[];
-  refusedBy: { entry: string; case: string; text: string | null }[];
+  object: string;
+  label: string | null;
+  /** The grade of the IDENTIFICATION — that both cases are of one object — not of either case. */
+  evidenceCode: string | null;
+  arguedIn: string | null;
+  admittedBy: { entry: string; case: string }[];
+  refusedBy: { entry: string; case: string }[];
 };
 
 export type Transcription = {
@@ -98,6 +115,7 @@ export type OpenDecision = { title: string; blocking: boolean; problem: string; 
 
 export type Atlas = {
   cases: Record<string, Case>;
+  testObjects: Record<string, TestObject>;
   openDecisions: OpenDecision[];
   provenance: { atlasCommit: string | null; repoCommit: string | null };
   shapes: Record<string, Shape>;

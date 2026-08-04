@@ -327,24 +327,48 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
 
   return (
     <>
-      <Section title="Derived conflicts" warrant="derived" note="computed by matching admitted against refused examples">
-        <Derivation
-          verdict={atlas.conflicts.length ? "holds" : "bounded"}
-          claim={
-            atlas.conflicts.length
-              ? `${atlas.conflicts.length} example${atlas.conflicts.length === 1 ? " is" : "s are"} admitted by one entry and refused by another.`
-              : "No conflict can be derived from the recorded examples."
-          }
-          because={
-            atlas.conflicts.length ? undefined : (
-              <>
-                The catalogue does assert one — Bunge refuses “a collection of events, even if
-                ordered”, against Klir — but Klir's side of it lives in Bunge's annotation rather
-                than in Klir's entry, so nothing here can compute it.
-              </>
-            )
-          }
-        />
+      <Section title="Derived conflicts" warrant="derived" note="one test object, ruled on both ways">
+        {atlas.conflicts.length === 0 ? (
+          <Derivation
+            verdict="bounded"
+            claim="No conflict can be derived from the recorded cases."
+            because="A conflict is one test object that a definition admits and another refuses. None of the cases recorded so far share an identified object."
+          />
+        ) : (
+          atlas.conflicts.map((c) => {
+            const grade = (c.evidenceCode ?? "").split("/").pop();
+            return (
+              <Derivation
+                key={c.object}
+                verdict={grade === "HVP" ? "holds" : "note"}
+                claim={`${c.label} — admitted by ${c.admittedBy.length}, refused by ${c.refusedBy.length}.`}
+                because={
+                  <>
+                    Derived: both rulings point at one test object, so this is found rather than
+                    asserted. It is only as strong as that identification, which is graded{" "}
+                    <strong>{grade}</strong>
+                    {grade === "MDU" && " — model-drafted and unchecked, so this finding is real machinery on an unverified claim"}
+                    {c.arguedIn && <> and argued in <code>{c.arguedIn}</code></>}.
+                  </>
+                }
+                detail={
+                  <ul className="m-0 pl-4">
+                    {c.admittedBy.map((a) => (
+                      <li key={a.case}>
+                        admits <CaseList iris={[a.case]} cases={atlas.cases} />
+                      </li>
+                    ))}
+                    {c.refusedBy.map((r) => (
+                      <li key={r.case}>
+                        refuses <CaseList iris={[r.case]} cases={atlas.cases} />
+                      </li>
+                    ))}
+                  </ul>
+                }
+              />
+            );
+          })
+        )}
       </Section>
 
       <Section
@@ -369,12 +393,14 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
       </Section>
 
       <Section title="Open questions" warrant="open">
-        <Absence
-          id="ledger:no-test-objects"
-          inline="Examples are text, not objects."
-          what="Examples are recorded as free text, so two authors ruling on the same case cannot be matched."
-          closes="A test-object vocabulary — atlas:instantiates onto a shared case — would let the Bunge–Klir clash be derived instead of asserted."
-        />
+        {Object.values(atlas.cases).filter((c) => !c.instantiates).length > 0 && (
+          <Absence
+            id="ledger:cases-unidentified"
+            inline={`${Object.values(atlas.cases).filter((c) => !c.instantiates).length} of ${Object.keys(atlas.cases).length} cases are not identified with a test object.`}
+            what="Most cases are not yet identified with a shared test object."
+            closes="Until a case names the object it is a case of, no other author's ruling on that object can be matched against it. A test object is added only where the corpus contains at least two rulings, so most cases will stay unidentified until the catalogue grows."
+          />
+        )}
         <OpenQuestionsBlock />
       </Section>
     </>

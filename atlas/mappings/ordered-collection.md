@@ -4,10 +4,16 @@
 NON-BONDING relation. Klir admits it because a relation on a set is all his definition
 requires; Bunge refuses it because a relation is not a bond, and his requires bonds.**
 
-**Status: both witnesses are in the catalogue** (2026-08-03). Klir's admission was entered
-as `atlas:includedExample` on entry 001 after the source was read; Bunge's refusal was
-already on entry 003. The clash is still *asserted here* rather than *derived by the reader* —
-that waits on P2. Citable, with the presentation named below.
+**Status: DERIVED** (2026-08-03). Both witnesses are on their own entries, both cases point at
+the test object `obj:ordered-non-bonding`, and the build finds the conflict rather than being
+told about it. This document is now the *argument* for the identification, not the record of the
+clash — `atlas:arguedIn` on the test object points here.
+
+**The identification is graded `MDU`.** That Klir's ordered books and Bunge's ordered events are
+cases of one object follows from reading Def. 1.2's bonding requirement alongside Klir's p. 5,
+and no human has checked that reading against both sources. The derived conflict inherits that
+grade and the reader says so. Confirming it raises the test object to `HVP`, and the conflict
+with it.
 
 ---
 

@@ -1,5 +1,6 @@
 @prefix atlas:   <https://halcyonic.systems/atlas/> .
 @prefix prim:    <https://halcyonic.systems/atlas/primitive/> .
+@prefix obj:     <https://halcyonic.systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix obo:     <http://purl.obolibrary.org/obo/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
@@ -68,6 +69,24 @@ no separation of the case from the author's reason for it, concatenated with an 
 no identity, so two authors ruling on the same object could not be matched. See
 docs/proposals/P4-evidence-scope.md."""@en .
 
+atlas:TestObject
+    a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Test Object"@en ;
+    skos:definition """An object that definitions rule on, named once so that two authors ruling
+on it can be identified as ruling on the SAME thing. Klir's "a collection of books ordered by
+authors' names" and Bunge's "a collection of events, even if ordered" are two cases of one test
+object; no string comparison will ever discover that."""@en ;
+    rdfs:comment """A TEST OBJECT IS ITSELF A CLAIM, and carries its own evidence code for that
+reason. Asserting that two cases are about one object is an interpretation of both, made by
+whoever draws the vocabulary — not something read off either source. Grading the object rather
+than each link avoids a regress: the link inherits the identification's grade, and the
+identification is argued in the mapping layer via atlas:arguedIn.
+
+EXTERNAL AND PRIOR, like D1's candidate fix for the primitive scheme. A test object must be a
+case an author actually ruled on, never one invented to make a comparison come out. If nothing
+in the corpus rules on it, it does not belong here."""@en .
+
 atlas:EvidenceCode
     a owl:Class ;
     rdfs:label "Evidence Code"@en ;
@@ -107,6 +126,20 @@ not a system, only a set" is not a refusal at all: on his criterion an object is
 it CAN BE DESCRIBED as conforming, and a bare collection can be. Recording the second as a
 refusal would manufacture a symmetry the authors do not share. See
 docs/proposals/P3-stance-axes.md."""@en .
+
+atlas:instantiates
+    a owl:ObjectProperty ;
+    rdfs:domain atlas:Example ;
+    rdfs:range atlas:TestObject ;
+    rdfs:label "instantiates"@en ;
+    skos:definition """Relates a case to the test object it is a case of. This is what makes a
+disagreement derivable: same test object, one definition admitting and another refusing, is a
+separating instance the build can find rather than one an encoder has to assert."""@en .
+
+atlas:arguedIn
+    a owl:AnnotationProperty ;
+    rdfs:label "argued in"@en ;
+    skos:definition "Where the claim carried by this term is argued — normally a document in mappings/, which owes a witness and must name its presentation."@en .
 
 atlas:statedIn
     a owl:ObjectProperty ;
@@ -286,3 +319,39 @@ prim:time a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "time"@en ;
     skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence."@en .
+
+
+##############################################################################
+# Test objects — grows only when two authors rule on one thing
+##############################################################################
+
+atlas:TestObjectScheme
+    a skos:ConceptScheme ;
+    rdfs:label "Test objects"@en ;
+    skos:definition """Objects that definitions of "system" rule on. Deliberately small: a term
+is added only when the corpus contains at least two rulings on the same object, because a test
+object with one ruling compares nothing and a test object with none is invented."""@en .
+
+obj:ordered-non-bonding
+    a atlas:TestObject ;
+    skos:inScheme atlas:TestObjectScheme ;
+    skos:prefLabel "a collection ordered by a non-bonding relation"@en ;
+    skos:scopeNote """Members standing in an ordering, with no causal action between them: books
+on a shelf by author, events in a sequence.
+
+THE QUALIFIER IS LOAD-BEARING. Bunge refuses this case because ordering is not bonding, not
+because the members are events — Definition 1.2 requires a nonempty bonding set, and a shelf of
+books ordered by author carries a relation and no bonds. Naming the object "an ordered
+collection" would understate the disagreement and invite the reply that he was only excluding
+events."""@en ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:arguedIn "mappings/ordered-collection.md" ;
+    rdfs:comment """MDU, DELIBERATELY. The identification is model-drafted: that Klir's ordered
+books and Bunge's ordered events are cases of one object follows from reading Bunge's Definition
+1.2 alongside Klir's p. 5, and no human has checked that reading against both sources. The
+conflict it derives is therefore real machinery resting on an unchecked claim, and the reader
+says so rather than presenting the conflict as established.
+
+RAISING IT: read Def. 1.2's bonding requirement and Klir's ordering clause, confirm that the
+two cases are the same object, and the code becomes HVP. Until then a derived conflict from
+this object inherits MDU."""@en .

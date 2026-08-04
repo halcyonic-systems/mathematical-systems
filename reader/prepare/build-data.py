@@ -196,9 +196,26 @@ def extract_cases(g):
             "sourceLocation": one(g, s, ATLAS.sourceLocation),
             "evidenceCode": str(next(g.objects(s, ATLAS.evidenceCode), "")) or None,
             "encodedOn": one(g, s, ATLAS.encodedOn),
+            "instantiates": str(next(g.objects(s, ATLAS.instantiates), "")) or None,
             "note": one(g, s, RDFS.comment),
         }
     return cases
+
+
+def extract_test_objects(g):
+    """The shared cases two authors can be compared on."""
+    out = {}
+    for s in g.subjects(RDF.type, ATLAS.TestObject):
+        out[str(s)] = {
+            "iri": str(s),
+            "id": str(s).rsplit("/", 1)[-1],
+            "label": one(g, s, SKOS.prefLabel),
+            "scopeNote": one(g, s, SKOS.scopeNote),
+            "evidenceCode": str(next(g.objects(s, ATLAS.evidenceCode), "")) or None,
+            "arguedIn": one(g, s, ATLAS.arguedIn),
+            "note": one(g, s, RDFS.comment),
+        }
+    return out
 
 
 def extract_bearers(g):
@@ -264,27 +281,46 @@ def extract_evidence_codes(g):
     return sorted(codes, key=lambda c: c["id"])
 
 
-def example_conflicts(entries, cases):
-    """Examples one definition admits and another refuses.
+def example_conflicts(entries, cases, objects):
+    """Separating instances, derived rather than asserted.
 
-    A separating instance in the atlas's own sense -- the witness a "lost"
-    mapping claim owes. Matched on normalised text, which finds the exact
-    restatements and nothing subtler; a near-miss in wording is a mapping-layer
-    judgement and does not belong to a string comparison.
+    A conflict is one TEST OBJECT that one definition admits and another refuses.
+    Matching on text never worked and never could: Klir wrote "a collection of
+    books ordered by authors' names" and Bunge wrote "a collection of events, even
+    if ordered", and no normalisation brings those together. Naming the object
+    once is what makes the comparison possible.
+
+    The conflict is only as strong as the identification underneath it, so the
+    test object's evidence code travels with it. A derived conflict resting on an
+    unchecked identification is still a real finding — it is just not a verified
+    one, and the reader must not present it as though it were.
     """
-    norm = lambda s: re.sub(r"\s+", " ", (s or "").strip().lower()).rstrip(".")
-    included, excluded = {}, {}
+    admits, refuses = {}, {}
     for e in entries:
         for iri in e["admits"]:
-            g = cases.get(iri, {}).get("gloss")
-            included.setdefault(norm(g), []).append({"entry": e["iri"], "case": iri, "text": g})
+            obj = cases.get(iri, {}).get("instantiates")
+            if obj:
+                admits.setdefault(obj, []).append({"entry": e["iri"], "case": iri})
         for iri in e["refuses"]:
-            g = cases.get(iri, {}).get("gloss")
-            excluded.setdefault(norm(g), []).append({"entry": e["iri"], "case": iri, "text": g})
-    return [
-        {"example": k, "admittedBy": included[k], "refusedBy": excluded[k]}
-        for k in sorted(set(included) & set(excluded))
-    ]
+            obj = cases.get(iri, {}).get("instantiates")
+            if obj:
+                refuses.setdefault(obj, []).append({"entry": e["iri"], "case": iri})
+
+    out = []
+    for obj in sorted(set(admits) & set(refuses)):
+        o = objects.get(obj, {})
+        out.append(
+            {
+                "object": obj,
+                "label": o.get("label"),
+                # The grade of the identification, not of either case.
+                "evidenceCode": o.get("evidenceCode"),
+                "arguedIn": o.get("arguedIn"),
+                "admittedBy": admits[obj],
+                "refusedBy": refuses[obj],
+            }
+        )
+    return out
 
 
 def asserted_profile(g):
@@ -572,8 +608,10 @@ def main():
         raise SystemExit("BROKEN LEAN POINTER — fix the spec or the checkout (--foundations).")
 
     cases = extract_cases(g)
+    objects = extract_test_objects(g)
     catalogue = {
         "cases": cases,
+        "testObjects": objects,
         "openDecisions": read_open_decisions(atlas_root),
         "provenance": provenance(atlas_root),
         # Read by scripts/prepublish.sh. Making publishability a property of the
@@ -588,7 +626,7 @@ def main():
         "bearers": extract_bearers(g),
         "primitives": extract_primitives(g, entries),
         "evidenceCodes": extract_evidence_codes(g),
-        "conflicts": example_conflicts(entries, cases),
+        "conflicts": example_conflicts(entries, cases, objects),
         # Displayed with the census. Without it the matrix silently claims two
         # authors mean the same thing by a shared word, which the scheme denies.
         "primitiveSchemeScopeNote": one(g, ATLAS.PrimitiveScheme, SKOS.scopeNote),

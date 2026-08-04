@@ -9,6 +9,7 @@
       "sourceLocation": null,
       "evidenceCode": "https://halcyonic.systems/atlas/HVP",
       "encodedOn": "2026-08-01",
+      "instantiates": null,
       "note": "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block."
     },
     "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory": {
@@ -20,6 +21,7 @@
       "sourceLocation": null,
       "evidenceCode": "https://halcyonic.systems/atlas/HVP",
       "encodedOn": "2026-08-01",
+      "instantiates": null,
       "note": "FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the\nExample block. Splitting them into four would make each separately matchable against other\nauthors, which is what a cases matrix wants; it is also an encoding judgment beyond a\nstructural migration, so it was not made here. Recorded so the decision is visible rather than\ndefaulted."
     },
     "https://halcyonic.systems/atlas/case/bunge-states-of-a-thing": {
@@ -31,6 +33,7 @@
       "sourceLocation": null,
       "evidenceCode": "https://halcyonic.systems/atlas/HVP",
       "encodedOn": "2026-08-01",
+      "instantiates": null,
       "note": null
     },
     "https://halcyonic.systems/atlas/case/bunge-events-ordered": {
@@ -42,6 +45,7 @@
       "sourceLocation": null,
       "evidenceCode": "https://halcyonic.systems/atlas/HVP",
       "encodedOn": "2026-08-01",
+      "instantiates": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
       "note": "Half of the catalogue's first separating instance: Klir admits an ordered\ncollection, Bunge refuses one. The refusal is ontic — Definition 1.2 requires a nonempty\nbonding set, and ordering is not bonding — so he refuses ordered BOOKS for the same reason.\nSee mappings/ordered-collection.md.\n\nNO SOURCE LOCATION, DELIBERATELY. These cases come from the labelled Example block that follows\nDefinition 1.1, not from Definition 1.1 itself, so entry 003's \"ch. 1, Definition 1.1\" does not\ncover them. Reifying made that visible. The correct location is readable from the source but\nhas not been human-checked, and asserting it here would put a model-drafted claim under the\nentry's HVP — the defect P4 exists to close."
     },
     "https://halcyonic.systems/atlas/case/klir-books-ordered": {
@@ -53,6 +57,7 @@
       "sourceLocation": "ch. 1, p. 5",
       "evidenceCode": "https://halcyonic.systems/atlas/HVP",
       "encodedOn": "2026-08-03",
+      "instantiates": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
       "note": null
     },
     "https://halcyonic.systems/atlas/case/klir-books-partitioned": {
@@ -64,6 +69,7 @@
       "sourceLocation": "ch. 1, p. 5",
       "evidenceCode": "https://halcyonic.systems/atlas/HVP",
       "encodedOn": "2026-08-03",
+      "instantiates": null,
       "note": null
     },
     "https://halcyonic.systems/atlas/case/klir-population-by-birth": {
@@ -75,7 +81,19 @@
       "sourceLocation": "ch. 1, p. 5",
       "evidenceCode": "https://halcyonic.systems/atlas/HVP",
       "encodedOn": "2026-08-03",
+      "instantiates": null,
       "note": "The quotation licenses this case rather than describing it: Klir is making\na point about a RELATION being transferable to a different carrier set, and the human\npopulation is his instance of it. A splice, recorded as one."
+    }
+  },
+  "testObjects": {
+    "https://halcyonic.systems/atlas/object/ordered-non-bonding": {
+      "iri": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
+      "id": "ordered-non-bonding",
+      "label": "a collection ordered by a non-bonding relation",
+      "scopeNote": "Members standing in an ordering, with no causal action between them: books\non a shelf by author, events in a sequence.\n\nTHE QUALIFIER IS LOAD-BEARING. Bunge refuses this case because ordering is not bonding, not\nbecause the members are events — Definition 1.2 requires a nonempty bonding set, and a shelf of\nbooks ordered by author carries a relation and no bonds. Naming the object \"an ordered\ncollection\" would understate the disagreement and invite the reply that he was only excluding\nevents.",
+      "evidenceCode": "https://halcyonic.systems/atlas/MDU",
+      "arguedIn": "mappings/ordered-collection.md",
+      "note": "MDU, DELIBERATELY. The identification is model-drafted: that Klir's ordered\nbooks and Bunge's ordered events are cases of one object follows from reading Bunge's Definition\n1.2 alongside Klir's p. 5, and no human has checked that reading against both sources. The\nconflict it derives is therefore real machinery resting on an unchecked claim, and the reader\nsays so rather than presenting the conflict as established.\n\nRAISING IT: read Def. 1.2's bonding requirement and Klir's ordering clause, confirm that the\ntwo cases are the same object, and the code becomes HVP. Until then a derived conflict from\nthis object inherits MDU."
     }
   },
   "openDecisions": [
@@ -117,8 +135,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "2fa3b3b",
-    "repoCommit": "2fa3b3b"
+    "atlasCommit": "0923fa9",
+    "repoCommit": "0923fa9"
   },
   "publishable": true,
   "contextChars": 800,
@@ -550,14 +568,33 @@
       "definition": "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "object": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
+      "label": "a collection ordered by a non-bonding relation",
+      "evidenceCode": "https://halcyonic.systems/atlas/MDU",
+      "arguedIn": "mappings/ordered-collection.md",
+      "admittedBy": [
+        {
+          "entry": "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1",
+          "case": "https://halcyonic.systems/atlas/case/klir-books-ordered"
+        }
+      ],
+      "refusedBy": [
+        {
+          "entry": "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1",
+          "case": "https://halcyonic.systems/atlas/case/bunge-events-ordered"
+        }
+      ]
+    }
+  ],
   "primitiveSchemeScopeNote": "LEXICAL, NOT SEMANTIC. A primitive here records that an author uses a WORD as\na primitive. Two entries linked to prim:thing are not thereby claimed to mean the same\nthing by it — Klir's \"thing\" is unrestricted, Bunge's ranges over concrete entities in\nTheta, and whether those are one primitive or two is a census question this vocabulary\nmust not prejudge.\n\nThe consequence: recurrence counts computed over this scheme are a FIRST-PASS LEXICAL\nmeasure. Semantic co-reference is a mapping-layer claim and owes evidence like any\nother. Minting a separate primitive per author would make recurrence trivially zero;\nmerging them by hand would make it trivially high. Lexical recurrence is the honest\nstarting point, and its limits are stated here rather than discovered later.",
   "profile": {
     "counts": {
-      "subClassOf": 1,
-      "domain": 4,
-      "range": 4,
-      "classes": 3
+      "subClassOf": 2,
+      "domain": 5,
+      "range": 5,
+      "classes": 4
     },
     "verdict": "A taxonomy. Nothing is entailed beyond transitive closure of the asserted tree."
   }

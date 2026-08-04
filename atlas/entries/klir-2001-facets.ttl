@@ -3,6 +3,7 @@
 @prefix entry:   <https://halcyonic.systems/atlas/entry/> .
 @prefix bearer:  <https://halcyonic.systems/atlas/bearer/> .
 @prefix case:    <https://halcyonic.systems/atlas/case/> .
+@prefix obj:     <https://halcyonic.systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -108,6 +109,7 @@ case:klir-books-ordered
     atlas:gloss "a collection of books ordered by authors' names, publication dates, or size" ;
     atlas:verbatim "any ordering of a set is a relation defined on the set" ;
     atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:instantiates obj:ordered-non-bonding ;
     atlas:evidenceCode atlas:HVP ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-03"^^xsd:date .

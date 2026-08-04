@@ -3,6 +3,7 @@
 @prefix entry:   <https://halcyonic.systems/atlas/entry/> .
 @prefix bearer:  <https://halcyonic.systems/atlas/bearer/> .
 @prefix case:    <https://halcyonic.systems/atlas/case/> .
+@prefix obj:     <https://halcyonic.systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -175,6 +176,7 @@ case:bunge-events-ordered
     a atlas:Example ;
     rdfs:label "a collection of events, even if ordered"@en ;
     atlas:gloss "a collection of events, even if ordered" ;
+    atlas:instantiates obj:ordered-non-bonding ;
     atlas:evidenceCode atlas:HVP ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;

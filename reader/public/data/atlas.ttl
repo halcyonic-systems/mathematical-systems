@@ -4,6 +4,7 @@
 @prefix cco: <https://www.commoncoreontologies.org/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix entry: <https://halcyonic.systems/atlas/entry/> .
+@prefix obj: <https://halcyonic.systems/atlas/object/> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prim: <https://halcyonic.systems/atlas/primitive/> .
@@ -15,10 +16,6 @@ atlas:MDHC a atlas:EvidenceCode ;
     rdfs:label "model-drafted, human-checked"@en ;
     skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
 
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
-
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
     skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
@@ -28,6 +25,10 @@ atlas:admits a owl:ObjectProperty ;
     rdfs:domain atlas:FormalSystemDefinition ;
     rdfs:range atlas:Example ;
     skos:definition "Relates a definition to a case its author offers as a system."@en .
+
+atlas:arguedIn a owl:AnnotationProperty ;
+    rdfs:label "argued in"@en ;
+    skos:definition "Where the claim carried by this term is argued — normally a document in mappings/, which owes a witness and must name its presentation."@en .
 
 atlas:atlas-core rdfs:label "Definition Atlas — Core"@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
@@ -250,6 +251,14 @@ atlas:includedExample a owl:AnnotationProperty ;
     owl:deprecated true ;
     skos:definition "Something the author explicitly offers as a system on this definition."@en .
 
+atlas:instantiates a owl:ObjectProperty ;
+    rdfs:label "instantiates"@en ;
+    rdfs:domain atlas:Example ;
+    rdfs:range atlas:TestObject ;
+    skos:definition """Relates a case to the test object it is a case of. This is what makes a
+disagreement derivable: same test object, one definition admitting and another refusing, is a
+separating instance the build can find rather than one an encoder has to assert."""@en .
+
 atlas:invokesPrimitive a owl:ObjectProperty ;
     rdfs:label "invokes primitive"@en ;
     rdfs:comment "Range is skos:Concept, not an OWL class, deliberately. A primitive here is a TERM USED IN A DEFINITION, not a kind of thing in the world. SKOS is about concepts; using it avoids smuggling realism into constructivist traditions."@en ;
@@ -315,9 +324,15 @@ obo:BFO_0000040 a owl:Class ;
     rdfs:subClassOf obo:BFO_0000004 ;
     skos:definition "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en .
 
-skos:ConceptScheme a owl:Class ;
-    rdfs:label "Concept Scheme"@en ;
-    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
+atlas:TestObjectScheme a skos:ConceptScheme ;
+    rdfs:label "Test objects"@en ;
+    skos:definition """Objects that definitions of "system" rule on. Deliberately small: a term
+is added only when the corpus contains at least two rulings on the same object, because a test
+object with one ruling compares nothing and a test object with none is invented."""@en .
 
 bearer:klir-2001-facets a cco:ont00000253 ;
     rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
@@ -341,7 +356,8 @@ entry's HVP — the defect P4 exists to close."""@en ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
-    atlas:gloss "a collection of events, even if ordered" .
+    atlas:gloss "a collection of events, even if ordered" ;
+    atlas:instantiates obj:ordered-non-bonding .
 
 case:bunge-molecule-reef-family-factory a atlas:Example ;
     rdfs:label "a molecule, a coral reef, a family, a factory"@en ;
@@ -376,6 +392,7 @@ case:klir-books-ordered a atlas:Example ;
     atlas:encodedOn "2026-08-03"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
     atlas:gloss "a collection of books ordered by authors' names, publication dates, or size" ;
+    atlas:instantiates obj:ordered-non-bonding ;
     atlas:sourceLocation "ch. 1, p. 5" ;
     atlas:verbatim "any ordering of a set is a relation defined on the set" .
 
@@ -455,11 +472,55 @@ obo:BFO_0000002 a owl:Class ;
     rdfs:subClassOf obo:BFO_0000001 ;
     skos:definition "(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity"@en .
 
+skos:ConceptScheme a owl:Class ;
+    rdfs:label "Concept Scheme"@en ;
+    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+
+atlas:TestObject a owl:Class ;
+    rdfs:label "Test Object"@en ;
+    rdfs:comment """A TEST OBJECT IS ITSELF A CLAIM, and carries its own evidence code for that
+reason. Asserting that two cases are about one object is an interpretation of both, made by
+whoever draws the vocabulary — not something read off either source. Grading the object rather
+than each link avoids a regress: the link inherits the identification's grade, and the
+identification is argued in the mapping layer via atlas:arguedIn.
+
+EXTERNAL AND PRIOR, like D1's candidate fix for the primitive scheme. A test object must be a
+case an author actually ruled on, never one invented to make a comparison come out. If nothing
+in the corpus rules on it, it does not belong here."""@en ;
+    rdfs:subClassOf skos:Concept ;
+    skos:definition """An object that definitions rule on, named once so that two authors ruling
+on it can be identified as ruling on the SAME thing. Klir's "a collection of books ordered by
+authors' names" and Bunge's "a collection of events, even if ordered" are two cases of one test
+object; no string comparison will ever discover that."""@en .
+
 bearer:bunge-1979-treatise-vol4 a cco:ont00000253 ;
     rdfs:label "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)"@en ;
     dcterms:creator "Mario Bunge" ;
     dcterms:date "1979"^^xsd:gYear ;
     dcterms:identifier "doi:10.1007/978-94-009-9392-1" .
+
+obj:ordered-non-bonding a atlas:TestObject ;
+    rdfs:comment """MDU, DELIBERATELY. The identification is model-drafted: that Klir's ordered
+books and Bunge's ordered events are cases of one object follows from reading Bunge's Definition
+1.2 alongside Klir's p. 5, and no human has checked that reading against both sources. The
+conflict it derives is therefore real machinery resting on an unchecked claim, and the reader
+says so rather than presenting the conflict as established.
+
+RAISING IT: read Def. 1.2's bonding requirement and Klir's ordering clause, confirm that the
+two cases are the same object, and the code becomes HVP. Until then a derived conflict from
+this object inherits MDU."""@en ;
+    skos:inScheme atlas:TestObjectScheme ;
+    skos:prefLabel "a collection ordered by a non-bonding relation"@en ;
+    skos:scopeNote """Members standing in an ordering, with no causal action between them: books
+on a shelf by author, events in a sequence.
+
+THE QUALIFIER IS LOAD-BEARING. Bunge refuses this case because ordering is not bonding, not
+because the members are events — Definition 1.2 requires a nonempty bonding set, and a shelf of
+books ordered by author carries a relation and no bonds. Naming the object "an ordered
+collection" would understate the disagreement and invite the reply that he was only excluding
+events."""@en ;
+    atlas:arguedIn "mappings/ordered-collection.md" ;
+    atlas:evidenceCode atlas:MDU .
 
 prim:relation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
