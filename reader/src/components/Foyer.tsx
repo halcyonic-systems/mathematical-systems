@@ -14,12 +14,12 @@ import type { MouseEvent, ReactNode } from "react";
 import { EvidenceBadge, TranscriptBadge } from "./Badge";
 import { CaseItem } from "./Case";
 import { cite } from "./EntryRail";
+import { excerptOf } from "../excerpts";
 import type { Case, Conflict, Entry, Transcription } from "../types";
 
-/** Beyond this, a card clamps and says so. The clamp is visible, never silent:
-    the cue names the truncation, because an unmarked ellipsis on a verbatim
-    would break the discipline the catalogue exists to keep. */
-const CLAMP_CHARS = 300;
+/** A one-line formula is set large and centred; a definitional sentence is a
+    different kind of object and takes the reading register instead. */
+const FORMULA_CHARS = 40;
 
 export function Shelf({
   entries,
@@ -37,7 +37,8 @@ export function Shelf({
       {entries.map((e) => {
         const { head, tail } = cite(e.label);
         const t = transcription[e.iri];
-        const clamped = (e.verbatim?.length ?? 0) > CLAMP_CHARS;
+        const { display, context } = excerptOf(e);
+        const formula = (display?.length ?? 0) <= FORMULA_CHARS;
         const open = (ev: MouseEvent) => {
           // Plain click navigates in place; modified clicks keep browser behaviour.
           if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
@@ -50,11 +51,12 @@ export function Shelf({
               <span className="shelf-head">{head}</span>
               {tail && <span className="shelf-tail">{tail}</span>}
             </span>
-            <blockquote className={`shelf-verbatim${clamped ? " is-clamped" : ""}`}>
-              {e.verbatim ?? "No verbatim recorded."}
+            <blockquote className={`shelf-display${formula ? "" : " shelf-display-long"}`}>
+              {display ?? "No verbatim recorded."}
             </blockquote>
+            {context && <span className="shelf-context">{context}</span>}
             <span className="shelf-cue disclosure" aria-hidden>
-              {clamped ? "The passage continues — read the entry →" : "Read the entry →"}
+              Read the full passage →
             </span>
             <span className="shelf-meta">
               {e.sourceLocation && <span className="passage-locus">{e.sourceLocation}</span>}
@@ -89,8 +91,13 @@ export function ConflictPanel({
   const grade = (conflict.evidenceCode ?? "").split("/").pop();
   return (
     <>
+      {/* The ledger's terms, translated at the door: "admits" means the
+          definition counts it as a system, "refuses" means it does not. A
+          first-time reader should not need the ledger's vocabulary to see that
+          this is a disagreement about what a system is. */}
       <p className="m-0 mb-4 font-semibold" style={{ color: "var(--text-primary)" }}>
-        {conflict.label} — one test object, two verdicts.
+        Both definitions rule on the same object — {conflict.label} — and they disagree about whether it
+        is a system.
       </p>
       <div className="verdicts">
         <div>
@@ -100,7 +107,7 @@ export function ConflictPanel({
                 <span aria-hidden className="verdict-glyph">
                   ⊨
                 </span>
-                {headOf(a.entry)} admits it
+                A system, under {headOf(a.entry)}
               </p>
               {/* CaseItem, not CaseList: the ledger list's hanging indent is for
                   glyph columns, and without one it pulls the meta row off the
@@ -118,7 +125,7 @@ export function ConflictPanel({
                 <span aria-hidden className="verdict-glyph">
                   ⊭
                 </span>
-                {headOf(r.entry)} refuses it
+                Not a system, under {headOf(r.entry)}
               </p>
               <ul className="m-0 p-0 list-none">
                 <CaseItem c={cases[r.case]} />

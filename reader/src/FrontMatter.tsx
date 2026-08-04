@@ -36,12 +36,6 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
       <p className="thesis">
         Relations between definitions are the point; the entries are the substrate.
       </p>
-      <p className="thesis-sub">
-        Each definition of “system” is recorded verbatim from its primary source, with its location, the terms
-        it takes as primitive, and the examples its author admits and refuses. What one definition
-        encompasses, what survives translation into another, and what is lost — that is what the catalogue is
-        for.
-      </p>
 
       <Shelf
         entries={entries}
@@ -49,6 +43,13 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
         hrefOf={(e) => href({ view: "read", entry: e.id })}
         onOpen={read}
       />
+
+      <p className="thesis-sub">
+        Each definition of “system” is recorded verbatim from its primary source, with its location, the terms
+        it takes as primitive, and the examples its author admits and refuses. What one definition
+        encompasses, what survives translation into another, and what is lost — that is what the catalogue is
+        for.
+      </p>
 
       {atlas.conflicts.length > 0 && (
         <div className="mt-6">

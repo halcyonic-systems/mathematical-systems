@@ -16,7 +16,11 @@ const TABS: { id: View; label: string; about: string }[] = [
   {
     id: "overview",
     label: "Overview",
-    about: "Formal definitions of “system,” in their authors' own words — and the case on which two of them disagree.",
+    // Empty on purpose: the masthead one inch above already says what the
+    // catalogue is, and the strip repeating it was the first thing a reader
+    // had to scroll past. Other views keep their line — there, it is the only
+    // orientation a cold reader gets.
+    about: "",
   },
   {
     id: "read",
@@ -115,7 +119,10 @@ export default function App() {
         count={`${atlas.entries.length} entries`}
       />
       <Tabs tabs={TABS} meta={META_TABS} active={view} onSelect={setView} />
-      <p className="view-about">{[...TABS, ...META_TABS].find((t) => t.id === view)?.about}</p>
+      {(() => {
+        const about = [...TABS, ...META_TABS].find((t) => t.id === view)?.about;
+        return about ? <p className="view-about">{about}</p> : null;
+      })()}
 
       <div className="flex">
         {view === "read" && (

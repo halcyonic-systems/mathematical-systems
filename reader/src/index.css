@@ -518,14 +518,17 @@ body {
   line-height: 1.4;
   color: var(--text-primary);
   max-width: 40rem;
-  margin: 1.5rem 0 0.5rem;
+  margin: 1.5rem 0 2rem;
 }
+/* Below the shelf, not above it: what an entry records means more once three
+   entries have been seen, and above the cards it was a paragraph standing
+   between the reader and the material. */
 .thesis-sub {
   color: var(--text-muted);
   font-size: 0.875rem;
   line-height: 1.55;
   max-width: 44rem;
-  margin: 0 0 2.5rem;
+  margin: 1.25rem 0 0;
 }
 
 /* The shelf: each definition is a source-warrant object — same left accent rule
@@ -573,26 +576,36 @@ body {
   color: var(--text-secondary);
   margin-top: 0.1rem;
 }
-/* The verbatim inside a card is the passage register at shelf scale: display
-   serif, never re-spaced. Long passages clamp visibly and say so in the cue —
-   an ellipsis that pretends the passage ends there would be a lie about the one
-   thing this catalogue promises not to lie about. */
-.shelf-verbatim {
+/* The face of a card is the mathematical statement, set large and centred in
+   the display serif — the author's own characters, excerpted (src/excerpts.ts
+   guards that the span is verbatim), never re-set. Below it, the author's own
+   reading of the notation leads into the entry. */
+.shelf-display {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  line-height: 1.5;
+  font-size: 1.75rem;
+  line-height: 1.35;
+  text-align: center;
   color: var(--text-primary);
-  white-space: pre-wrap;
-  /* Margin, not padding: a clamped -webkit-box paints overflow into its own
-     padding, which showed a sliced eighth line under the cue. */
-  margin: 1rem 1rem 0.75rem;
-  padding: 0;
+  margin: 0;
+  padding: 1.75rem 1rem 1.5rem;
 }
-.shelf-verbatim.is-clamped {
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+/* A definitional sentence is a different object from a formula: it is read,
+   not beheld, so it takes the reading register — left-set, at passage scale. */
+.shelf-display-long {
+  font-size: 1.2rem;
+  line-height: 1.45;
+  text-align: left;
+  padding: 1.25rem 1rem 1rem;
+}
+.shelf-context {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0 1rem 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--hairline);
 }
 .shelf-cue {
   padding: 0 1rem 0.625rem;
