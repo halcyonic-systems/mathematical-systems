@@ -366,20 +366,20 @@ bearer:klir-2001-facets a cco:ont00000253 ;
 case:bunge-events-ordered a atlas:Example ;
     rdfs:label "a collection of events, even if ordered"@en ;
     rdfs:comment """Half of the catalogue's first separating instance: Klir admits an ordered
-collection, Bunge refuses one. The refusal is ontic — Definition 1.2 requires a nonempty
-bonding set, and ordering is not bonding — so he refuses ordered BOOKS for the same reason.
-See mappings/ordered-collection.md.
+collection, Bunge refuses one. The refusal is ontic — an aggregate is a collection "not held
+together by bonds" (p. 4), Definition 1.1 requires the members connected, and Definition
+1.2(iii) carries 𝔅≠∅; ordering is not bonding — so he refuses ordered BOOKS for the same
+reason. See mappings/ordered-collection.md.
 
-NO SOURCE LOCATION, DELIBERATELY. These cases come from the labelled Example block that follows
-Definition 1.1, not from Definition 1.1 itself, so entry 003's "ch. 1, Definition 1.1" does not
-cover them. Reifying made that visible. The correct location is readable from the source but
-has not been human-checked, and asserting it here would put a model-drafted claim under the
-entry's HVP — the defect P4 exists to close."""@en ;
+The location was deliberately withheld until human-checked: these cases come from the labelled
+Example block that follows Definition 1.1 in §1.2, not from Definition 1.1 itself, so entry
+003's location did not cover them. Checked against the source and entered 2026-08-05."""@en ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
     atlas:gloss "a collection of events, even if ordered" ;
-    atlas:instantiates obj:ordered-non-bonding .
+    atlas:instantiates obj:ordered-non-bonding ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" .
 
 case:bunge-molecule-reef-family-factory a atlas:Example ;
     rdfs:label "a molecule, a coral reef, a family, a factory"@en ;
@@ -391,22 +391,25 @@ defaulted."""@en ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
-    atlas:gloss "a molecule, a coral reef, a family, a factory" .
+    atlas:gloss "a molecule, a coral reef, a family, a factory" ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" .
 
 case:bunge-states-of-a-thing a atlas:Example ;
     rdfs:label "a set of states of a thing"@en ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
-    atlas:gloss "a set of states of a thing" .
+    atlas:gloss "a set of states of a thing" ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" .
 
 case:bunge-theory a atlas:Example ;
     rdfs:label "a theory"@en ;
-    rdfs:comment "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block."@en ;
+    rdfs:comment "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block. Location human-checked against the source 2026-08-05."@en ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
-    atlas:gloss "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢" .
+    atlas:gloss "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢" ;
+    atlas:sourceLocation "ch. 1, §1.1, p. 5" .
 
 case:klir-books-ordered a atlas:Example ;
     rdfs:label "a collection of books, ordered"@en ;
