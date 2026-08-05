@@ -21,6 +21,11 @@ export function cite(label: string | null) {
     : { head: label.slice(0, i), tail: label.slice(i + 2) };
 }
 
+/** The bearer-identity key ("klir", "bunge") an element wears as data-world.
+    One derivation, shared by the shelf, the rail and the entry page, so an
+    author cannot end up two different colours on two surfaces. */
+export const worldOf = (label: string | null) => cite(label).head.split(" ")[0].toLowerCase();
+
 export function EntryRail({
   entries,
   active,
@@ -47,6 +52,7 @@ export function EntryRail({
           key={e.iri}
           onClick={() => onSelect(e.iri)}
           aria-current={active === e.iri ? "true" : undefined}
+          data-world={worldOf(e.label)}
           className={`rail-row w-full text-left flex cursor-pointer${
             active === e.iri ? " is-current" : ""
           }`}

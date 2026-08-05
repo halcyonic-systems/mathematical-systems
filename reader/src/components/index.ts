@@ -22,7 +22,7 @@ export { Absence, OpenQuestionsBlock } from "./Absence";
 export { Register, OpenQuestions, useDensity, useOpenCollector, type Density } from "./context";
 export { warrantClass, warrantMeaning, type Warrant } from "./warrant";
 export { Masthead, Tabs } from "./Masthead";
-export { EntryRail, cite } from "./EntryRail";
+export { EntryRail, cite, worldOf } from "./EntryRail";
 export { Shelf, ConflictPanel } from "./Foyer";
 export { ReadingKey, type Tier } from "./ReadingKey";
 export { CaseItem, CaseList } from "./Case";

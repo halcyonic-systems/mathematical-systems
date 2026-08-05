@@ -36,6 +36,7 @@ import {
   TranscriptBadge,
   classifyNote,
   localName,
+  worldOf,
   type CellState,
 } from "./components";
 import type { ReactNode } from "react";
@@ -146,7 +147,9 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
   const untyped = atlas.primitives.every((p) => !p.role);
 
   return (
-    <>
+    // The page belongs to one author, so it wears that author's world hue on
+    // the source-warrant edges — the same hue the shelf card wore on the way in.
+    <div data-world={worldOf(entry.label)}>
       <ReadingKey tiers={TIERS} />
 
       <Section
@@ -301,7 +304,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
       <Section title="Open questions" warrant="open" note="what this entry does not yet settle">
         <OpenQuestionsBlock />
       </Section>
-    </>
+    </div>
   );
 }
 
@@ -348,7 +351,13 @@ export function CompareView({ atlas }: { atlas: Atlas }) {
 
       <Section title="Side by side" warrant="source">
         <FieldGrid columns={Math.max(shown.length, 1)} scrollable>
-          <FieldHeadings headings={shown.map((e) => e.label)} />
+          <FieldHeadings
+            headings={shown.map((e) => (
+              <span key={e.iri} data-world={worldOf(e.label)} className="world-ink">
+                {e.label}
+              </span>
+            ))}
+          />
           <Field label="Passage" warrant="source" cells={shown.map((e) => e.verbatim ?? "—")} />
           <Field
             label="Posits"
@@ -421,9 +430,9 @@ export function CensusView({ atlas }: { atlas: Atlas }) {
       >
         <Matrix
           columns={atlas.entries.map((e) => (
-            <Xref key={e.iri} door={doors.entry(e)}>
-              {distinguishing(e.label)}
-            </Xref>
+            <span key={e.iri} data-world={worldOf(e.label)} className="world-ink">
+              <Xref door={doors.entry(e)}>{distinguishing(e.label)}</Xref>
+            </span>
           ))}
           rows={rows}
           caption={atlas.primitiveSchemeScopeNote
@@ -526,7 +535,7 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
                 <span key="c" id={r.anchor} className="block scroll-mt-16">
                   <CaseList iris={[r.iri]} cases={atlas.cases} stance={r.stance} />
                 </span>,
-                <span key="e" className="name-column">
+                <span key="e" data-world={worldOf(r.entry.label)} className="name-column world-ink">
                   <Xref door={doors.entry(r.entry)}>{distinguishing(r.entry.label)}</Xref>
                 </span>,
               ]}

@@ -36,7 +36,7 @@ export function Passage({
     <figure className="m-0">
       <blockquote
         className={`${warrantClass.source} passage-quoted m-0 pl-4`}
-        style={{ borderLeft: "3px solid var(--accent)", whiteSpace: "pre-wrap" }}
+        style={{ borderLeft: "3px solid var(--world, var(--accent))", whiteSpace: "pre-wrap" }}
       >
         {text}
       </blockquote>

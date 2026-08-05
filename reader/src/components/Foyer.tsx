@@ -13,7 +13,7 @@
 import type { MouseEvent, ReactNode } from "react";
 import { EvidenceBadge, TranscriptBadge } from "./Badge";
 import { CaseItem } from "./Case";
-import { cite } from "./EntryRail";
+import { cite, worldOf } from "./EntryRail";
 import { excerptOf } from "../excerpts";
 import type { Case, Conflict, Entry, Transcription } from "../types";
 
@@ -39,8 +39,7 @@ export function Shelf({
         const t = transcription[e.iri];
         const { display, context } = excerptOf(e);
         const formula = (display?.length ?? 0) <= FORMULA_CHARS;
-        // "Bunge (1979)" -> "bunge": the key into the bearer-identity hues.
-        const world = head.split(" ")[0].toLowerCase();
+        const world = worldOf(e.label);
         const open = (ev: MouseEvent) => {
           // Plain click navigates in place; modified clicks keep browser behaviour.
           if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;

@@ -97,6 +97,9 @@
   --world-klir: #5a6c85;
   --world-bunge: #8a6a4d;
   --world-mobus: #4e7d5b;
+  /* The channel's carrier: any element wearing data-world resolves --world for
+     itself and its subtree. One mapping for the whole site — the shelf, the
+     rail, the entry page — so an author is one colour everywhere. */
 
   --border: #d3d7e2;
   --hairline: #e6e9f0;
@@ -149,6 +152,38 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+/* The bearer-identity channel's carrier. An element wearing data-world
+   resolves --world for itself and its subtree; consumers fall back to the app
+   accent for an author whose hue is not yet assigned. Site-wide, not scoped to
+   the shelf: the channel's own contract says it is worn by any content that
+   belongs to one author, and it used to reach only the front page — every
+   other view went uniformly indigo. */
+[data-world="klir"] {
+  --world: var(--world-klir);
+}
+[data-world="bunge"] {
+  --world: var(--world-bunge);
+}
+[data-world="mobus"] {
+  --world: var(--world-mobus);
+}
+
+/* Where the channel shows outside the shelf. The author's VOICE wears the
+   author's colour: source-warrant edges and the quotation's rule take --world,
+   while decided/derived sections — our voice — stay on the app's accent. The
+   rail's numeral gutter takes the same 16% wash as the shelf strip. */
+[data-world] .card-source {
+  border-left-color: var(--world, var(--accent));
+}
+.rail-row[data-world] .rail-numeral {
+  background: color-mix(in srgb, var(--world, var(--accent)) 16%, var(--bg-secondary));
+}
+/* Hue as ink for an author's name at a column head; all three hues clear
+   4.5:1 on the card ground. */
+.world-ink {
+  color: var(--world, inherit);
 }
 
 /* Names are data. small-caps gives an even column without printing "hal" as
@@ -758,15 +793,6 @@ body {
   transition:
     box-shadow var(--transition-base),
     border-color var(--transition-base);
-}
-.shelf-card[data-world="klir"] {
-  --world: var(--world-klir);
-}
-.shelf-card[data-world="bunge"] {
-  --world: var(--world-bunge);
-}
-.shelf-card[data-world="mobus"] {
-  --world: var(--world-mobus);
 }
 .shelf-card:hover {
   box-shadow: var(--shadow-card-hover);
