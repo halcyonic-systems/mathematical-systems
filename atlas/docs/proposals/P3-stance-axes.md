@@ -214,10 +214,95 @@ quotation is the evidence. This is D4 again — an entry-level evidence code can
 separate stance assertions — and stance should not be added before D4 is resolved, or it will
 make D4 measurably worse.
 
+## Addendum, 2026-08-05 — a third axis, and a fifth author
+
+Two case-ruling hunts (Mobus 2022 full text; Bertalanffy 1968 full text) plus an OCR of
+Mesarović & Takahara 1975 ch. II produced evidence this proposal did not have. Raw findings and
+verified quotes: vault `operations/sessions/2026-08-05/references/{mobus-case-hunt,
+bertalanffy-scout}.md`. Same discipline as above — every claim below is located in a primary
+text; inferences are marked as such and are **not** proposed for encoding.
+
+### A third axis: what a refusal is a refusal *of*
+
+The two axes here are about ontology and the observer. A third is visible only once you collect
+what each author actually *refuses*, and it cuts differently:
+
+| | refuses because… | the refusal is about | kind of claim the definition makes |
+|---|---|---|---|
+| **Bunge** | no bonds (𝔅 = ∅) | the **object** | definition with explicit exclusions |
+| **Mobus** | the SOI was cut wrong — repaired by redrawing, not discarding | the **analyst** | descriptive schema, instantiate-only |
+| **Bertalanffy** | the complex is merely *summative* | the complex's **characteristics** | verbal definition + one chosen formalism |
+| **Klir** | nothing — "not a system *yet*" | the **description's state** | criterion (iff) |
+| **Mesarović** | nothing — objects are out of scope | — | pure abstraction |
+
+### Mesarović & Takahara — a fifth stance, formalist
+
+*General Systems Theory: Mathematical Foundations* (1975), ch. II, book p. 11 (Zotero
+`ZA3E2PD3`; OCR'd to vault `operations/systems-science/mesarovic/`):
+
+> "The subject of study in systems theory is not a 'physical object,' a chemical or social
+> phenomenon, for example, but a 'system': a formal relationship between observed features or
+> attributes."
+
+The scanned ch. II contains **no case rulings at all** — and by this passage that is a stance,
+not a gap: concrete objects are excluded from the subject matter by design.
+
+**A distinction worth keeping**, since it is easy to file Mesarović with Klir: this is
+*formalism* — a claim about what the discipline studies — not *constructivism*, a claim that
+systemhood depends on an act of description. One can hold Mesarović's position as a realist.
+Klir's describability criterion cannot be held that way.
+
+### Mobus — the purpose passage is methodological, not ontic
+
+Mobus's one refusal (`6-process-of-deep-sysems-analysis.md:305`, a ball rolling down an
+inclined plane, "that is not really a system") reads as teleological gatekeeping until ch. 3's
+teleonomy section is read against it: "A system can be said to have a purpose **in terms of the
+environment**. This does not necessarily mean that the system is purposeful"; "purpose is a
+mutual support phenomenon" (`3-system-ontology.md:944ff`). Purpose is relational fit, not
+intention — and the refusal is repaired by *redrawing the boundary* (the real system is the
+experimental setup), not by discarding the case. That is the "selects" cell of the table above,
+appearing as a refusal.
+
+### Mobus — Principle 1 has a formal floor
+
+Principle 1 asserts "everything observable in the Universe is a system"
+(`2-principles-of-systems-science.md:269`). But ch. 4's decomposition recursion types its base
+case differently: `c = S(i,j,l+1)` if the component is complex, **`c_a` if it is atomic** — an
+atomic component is not an `S` in his own notation, and the "simplest process rule"
+(`:250-251`) names the primitives that stop the recursion. Ch. 14 goes further, contemplating
+artifacts that are "not really systems and not even atomic components" (`:21`). **Whether the
+floor denies systemhood or merely halts analysis is unresolved in the text** — a question for
+the author, and one a revision paper could settle.
+
+### Bertalanffy — the observer cell is still empty, but a convergence appeared
+
+The hunt did not fill the observer cell. It did surface that Bertalanffy's interaction test and
+Bunge's connection test are nearly the same sentence:
+
+- Bertalanffy (`gst-1968-full-text.md:3202`): interaction means "the behavior of an element p in
+  R is different from its behavior in another relation, R'."
+- Bunge (ch. 1, §1.2): "Unlike a mere relation, a connection makes some difference to its
+  relata."
+
+Both make **difference-making** the line between system and aggregate, reached independently.
+*Inference, not encodable*: this implies Bertalanffy would refuse the ordered-but-unconnected
+collection, since an ordering does not change how the elements behave. No ruling exists, so no
+row — but it is the strongest mapping-document candidate the corpus has.
+
+### Sourcing note affecting entry order
+
+The 1968 vault text is OCR-damaged and **equation (3.1) did not survive**. A clean alternative
+bearer exists: Bertalanffy (1972), "The History and Status of General Systems Theory," *Academy
+of Management Journal* 15(4), 407–426 (Zotero `94Q38KXF`, intact text layer), whose p. 417
+definition **adds the environment** — "a set of elements standing in interrelation among
+themselves **and with the environment**" — and cites Mesarović and Klir on the same page.
+1968 → 1972 is a second definition-revising-itself pair alongside Mobus's 7-tuple → 8-tuple.
+
 ## Open
 
 - **Bertalanffy's observer cell is empty**, and finding the passage that fills it (or
-  establishing that there is none) is the next reading.
+  establishing that there is none) is the next reading. *(2026-08-05: a full-text hunt did not
+  find it; not yet conclusive.)*
 - **All four authors caveat their own general definition.** Klir: "too general and,
   consequently, of little pragmatic value". Bunge: "not a definition proper". Bertalanffy: "so
   general and vague that not much can be learned from it" (`:2508`). Mobus: any definition
