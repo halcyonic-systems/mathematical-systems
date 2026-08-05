@@ -183,3 +183,34 @@ the identification underneath it.""" ;
         sh:message """Every test object must say where its identification is argued. An
 unargued test object silently manufactures agreements and disagreements.""" ;
     ] .
+
+
+##############################################################################
+# Retired term — a tombstone. Retirement is a class change (D5): the strict
+# shapes for live terms keep their teeth, and this shape enforces what a
+# tombstone owes instead. Policy: docs/iri-policy.md.
+##############################################################################
+
+atlas:RetiredTermShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:RetiredTerm ;
+
+    sh:property [
+        sh:path owl:deprecated ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:hasValue true ;
+        sh:message "A retired term must say so in the vocabulary consumers check: owl:deprecated true." ;
+    ] ;
+
+    sh:property [
+        sh:path <http://purl.org/dc/terms/isReplacedBy> ;
+        sh:minCount 1 ;
+        sh:message """A retired term must name at least one successor. A tombstone that points
+nowhere strands every citation that resolves to it.""" ;
+    ] ;
+
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:message "A retired term must say why it was retired and when." ;
+    ] .

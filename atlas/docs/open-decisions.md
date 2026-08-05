@@ -48,7 +48,13 @@ As built it is (A), and until 2026-08-02 the README claimed (B). That claim is c
 
 ---
 
-## D4 — Evidence code scope and first-classness
+## D4 — Evidence code scope and first-classness *(decided 2026-08-05)*
+
+**Decided 2026-08-05: option B of `proposals/P4-evidence-scope.md`, scoped to examples** —
+reify what needs grading, so the grade sits on the thing graded. The 2026-08-03 case
+reification is ratified; primitives and stance follow the same pattern later, only when
+something needs it. First-classness (evidence visible to a reasoner) is explicitly deferred —
+it is a separate question and nothing in the current programme needs inference over evidence.
 
 Two defects, both flagged by both councils.
 
@@ -70,9 +76,16 @@ three entries, not fifty.
 
 ---
 
-## D5 — IRI and deprecation policy
+## D5 — IRI and deprecation policy *(decided 2026-08-05)*
 
-There is none. `entry:klir-2001-eq-1-1` — what happens when an encoding is corrected, when a second edition is entered, when an entry is withdrawn? OBO practice is never to reuse or silently mutate an IRI. Three entries can be renamed; fifty cannot.
+**Decided 2026-08-05: IRIs are permanent; terms are retired, never deleted.** Retirement is a
+class change to `atlas:RetiredTerm` carrying `owl:deprecated true`, at least one
+`dcterms:isReplacedBy` successor, and a why — enforced by `atlas:RetiredTermShape` and by the
+reader build's sixth gate, which refuses to serve a deprecated IRI as live data. **The policy
+and full procedure live in `docs/iri-policy.md`**; first precedent:
+`case:bunge-molecule-reef-family-factory` → four successor cases.
+
+There was none, previously. `entry:klir-2001-eq-1-1` — what happens when an encoding is corrected, when a second edition is entered, when an entry is withdrawn? OBO practice is never to reuse or silently mutate an IRI. Three entries can be renamed; fifty cannot.
 
 **Coupled to D4.** Resolving evidence scope means renaming properties (`atlas:includedExample` → `atlas:admits`, or similar), which is an IRI change and therefore this decision's business. See `proposals/P4-evidence-scope.md`. Deciding D4 without D5 means migrating twice.
 

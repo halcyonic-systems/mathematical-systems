@@ -63,6 +63,16 @@ atlas:authorCaveat a owl:AnnotationProperty ;
     rdfs:label "author caveat"@en ;
     skos:definition "A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources."@en .
 
+case:bunge-molecule-reef-family-factory a atlas:RetiredTerm ;
+    dcterms:isReplacedBy case:bunge-factory,
+        case:bunge-family,
+        case:bunge-molecule,
+        case:bunge-reef ;
+    rdfs:comment """Retired 2026-08-05: four cases were encoded as one individual, which blocked
+each from ever being matched against another author's ruling on the same object. Split under
+the P4 sign-off; first precedent under the D5 retirement policy (docs/iri-policy.md)."""@en ;
+    owl:deprecated true .
+
 atlas:definition-atlas a owl:Ontology .
 
 atlas:displayContext a owl:AnnotationProperty ;
@@ -163,7 +173,10 @@ a mapping claim once the mapping layer exists, not asserted here.
 RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
 definition proper". 003 is the definition proper. They are not alternative
 phrasings of one claim and must not be merged."""@en ;
-    atlas:admits case:bunge-molecule-reef-family-factory ;
+    atlas:admits case:bunge-factory,
+        case:bunge-family,
+        case:bunge-molecule,
+        case:bunge-reef ;
     atlas:displayForm "An object is a concrete system iff it is composed of at least two different connected things." ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-01"^^xsd:date ;
@@ -350,6 +363,16 @@ obo:BFO_0000040 a owl:Class ;
     rdfs:subClassOf obo:BFO_0000004 ;
     skos:definition "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en .
 
+atlas:RetiredTerm a owl:Class ;
+    rdfs:label "Retired Term"@en ;
+    skos:definition """A tombstone: an IRI this catalogue once served as a live term and will
+never serve as one again. IRIs are permanent (w3id) — a term is never deleted and never
+silently mutated; it is retired by CHANGING ITS CLASS to this one, so the strict shapes for
+live terms keep their teeth and a stale citation still resolves to a signpost. A retired term
+carries owl:deprecated true, at least one dcterms:isReplacedBy successor, and a comment saying
+why. Policy and procedure: docs/iri-policy.md (D5). The reader's build refuses to serve a
+deprecated IRI as live data, and that refusal is gated."""@en .
+
 atlas:TestObjectScheme a skos:ConceptScheme ;
     rdfs:label "Test objects"@en ;
     skos:definition """Objects that definitions of "system" rule on. Deliberately small: a term
@@ -379,19 +402,6 @@ Example block that follows Definition 1.1 in §1.2, not from Definition 1.1 itse
     atlas:evidenceCode atlas:HVP ;
     atlas:gloss "a collection of events, even if ordered" ;
     atlas:instantiates obj:ordered-non-bonding ;
-    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" .
-
-case:bunge-molecule-reef-family-factory a atlas:Example ;
-    rdfs:label "a molecule, a coral reef, a family, a factory"@en ;
-    rdfs:comment """FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the
-Example block. Splitting them into four would make each separately matchable against other
-authors, which is what a cases matrix wants; it is also an encoding judgment beyond a
-structural migration, so it was not made here. Recorded so the decision is visible rather than
-defaulted."""@en ;
-    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
-    atlas:encodedOn "2026-08-01"^^xsd:date ;
-    atlas:evidenceCode atlas:HVP ;
-    atlas:gloss "a molecule, a coral reef, a family, a factory" ;
     atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" .
 
 case:bunge-states-of-a-thing a atlas:Example ;
@@ -524,6 +534,45 @@ bearer:bunge-1979-treatise-vol4 a cco:ont00000253 ;
     dcterms:date "1979"^^xsd:gYear ;
     dcterms:identifier "doi:10.1007/978-94-009-9392-1" .
 
+case:bunge-factory a atlas:Example ;
+    rdfs:label "a factory"@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a factory" ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." .
+
+case:bunge-family a atlas:Example ;
+    rdfs:label "a family"@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a family" ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." .
+
+case:bunge-molecule a atlas:Example ;
+    rdfs:label "a molecule"@en ;
+    rdfs:comment """One of four admitted cases Bunge gives in a single sentence; the shared
+verbatim is that sentence. Split from case:bunge-molecule-reef-family-factory 2026-08-05 so
+each case can be matched against other authors' rulings."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a molecule" ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." .
+
+case:bunge-reef a atlas:Example ;
+    rdfs:label "a coral reef"@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:gloss "a coral reef" ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." .
+
 obj:ordered-non-bonding a atlas:TestObject ;
     rdfs:comment """HVP as of 2026-08-05: the identification was model-drafted (2026-08-03) and
 has now been human-verified against both primary texts — Bunge's mere-relation/connection
@@ -580,24 +629,6 @@ term "system" formally: it introduces named components with types or sorts, and
 fixes at least one relation, function, or constraint among them, in symbols or in
 prose precise enough to be transcribed to symbols without adding content."""@en .
 
-atlas:Example a owl:Class ;
-    rdfs:label "Example"@en ;
-    rdfs:comment """WHY THIS IS A CLASS. Examples were literal strings on the entry until
-2026-08-03, which made four things impossible at once: an example could carry no evidence code
-of its own, so one entry-level code graded a verbatim, five primitives and three examples
-alike; no source location, though Bunge's examples sit outside the location his entry claims;
-no separation of the case from the author's reason for it, concatenated with an em dash; and
-no identity, so two authors ruling on the same object could not be matched. See
-docs/proposals/P4-evidence-scope.md."""@en ;
-    skos:definition """A case an author rules on: something they offer as a system, or refuse as
-one. Reified rather than recorded as a string on the entry, because an example is a thing
-several claims are made about -- where it appears in the source, how the encoding was
-established, and which shared case it instantiates."""@en .
-
-atlas:HVP a atlas:EvidenceCode ;
-    rdfs:label "human-verified against primary text"@en ;
-    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
-
 atlas:PrimitiveScheme a skos:ConceptScheme ;
     rdfs:label "Systems-definition primitive vocabulary"@en ;
     skos:definition "Controlled vocabulary of terms used as primitives in formal definitions of system. Deliberately flat and deliberately not an ontology of the world."@en ;
@@ -613,7 +644,25 @@ other. Minting a separate primitive per author would make recurrence trivially z
 merging them by hand would make it trivially high. Lexical recurrence is the honest
 starting point, and its limits are stated here rather than discovered later."""@en .
 
+atlas:Example a owl:Class ;
+    rdfs:label "Example"@en ;
+    rdfs:comment """WHY THIS IS A CLASS. Examples were literal strings on the entry until
+2026-08-03, which made four things impossible at once: an example could carry no evidence code
+of its own, so one entry-level code graded a verbatim, five primitives and three examples
+alike; no source location, though Bunge's examples sit outside the location his entry claims;
+no separation of the case from the author's reason for it, concatenated with an em dash; and
+no identity, so two authors ruling on the same object could not be matched. See
+docs/proposals/P4-evidence-scope.md."""@en ;
+    skos:definition """A case an author rules on: something they offer as a system, or refuse as
+one. Reified rather than recorded as a string on the entry, because an example is a thing
+several claims are made about -- where it appears in the source, how the encoding was
+established, and which shared case it instantiates."""@en .
+
 skos:Concept a owl:Class ;
     rdfs:label "Concept"@en ;
     skos:definition "An idea or notion; a unit of thought."@en .
+
+atlas:HVP a atlas:EvidenceCode ;
+    rdfs:label "human-verified against primary text"@en ;
+    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 

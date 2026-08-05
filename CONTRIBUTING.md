@@ -95,8 +95,9 @@ the passage, so it "verified" an unmodified string and failed the build.
 An entry's id is the last segment of its IRI and the path the reader serves it at, so it is
 what a citation points to. **Renaming one breaks every link to it**, including any that have
 been written into a paper, a mapping document, or the permanent identifier namespace. Choose
-`author-year-locus` carefully once; if a rename is genuinely required it needs a redirect and
-a note, not a quiet edit.
+`author-year-locus` carefully once. If a term genuinely must change, it is **retired, never
+renamed or deleted** — the whole procedure, enforced by a shape and a build gate, is
+`atlas/docs/iri-policy.md` (D5, decided 2026-08-05).
 
 The same holds for the view paths (`/compare`, `/primitives`, `/cases`, `/entailments`). They
 are named for what a reader sees rather than what the code calls them, and they are public

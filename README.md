@@ -44,12 +44,11 @@ Every line is a gate reporting, and the last two must **disagree** — that is t
 invariant holding. `1 conflicts` is the first derived separating instance. If any line differs
 from the above, something changed; that is why they are printed.
 
-**The one thing outstanding:** IRIs still live on `halcyonic.systems` and belong on
-`https://w3id.org/mathematical-systems/atlas/` — a namespace that survives any change of
-hosting or domain, unlike one on a rented registration. `atlas/migrate-iris.py` is written and
-dry-run verified at 25 occurrences across 6 files; it needs retargeting at the w3id namespace
-and its DNS guard swapped for a redirect check. **Do it before the catalogue grows or anything
-is cited.**
+**IRIs are permanent.** They live on `https://w3id.org/mathematical-systems/atlas/` (migrated
+2026-08-04) and are never deleted, reused, or silently changed. When a term stops being right
+it is retired — a class change to `atlas:RetiredTerm` with successors named — and the build
+refuses to serve a retired IRI as live data. **The one document to read before renaming,
+splitting, merging or withdrawing anything: `atlas/docs/iri-policy.md`.**
 
 ---
 
@@ -151,6 +150,9 @@ Four gates, each with something that can actually fail it:
 - **Lean pointers.** A `formalisedAs` that does not resolve fails the build. A broken link
   into the formalisation is worse than no link.
 - **SHACL.** A malformed entry fails `atlas/build.py`.
+- **Retired IRIs.** A term retired under the IRI policy (`atlas/docs/iri-policy.md`) must
+  never reappear as live data — `check_no_retired_served` plants a synthetic leak to prove
+  it can fail, then refuses any real one.
 
 Plus `reader/npm run check:tokens` — the visual register, mechanically held.
 

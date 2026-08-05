@@ -12,17 +12,53 @@
       "instantiates": null,
       "note": "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block. Location human-checked against the source 2026-08-05."
     },
-    "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory": {
-      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory",
-      "id": "bunge-molecule-reef-family-factory",
-      "label": "a molecule, a coral reef, a family, a factory",
-      "gloss": "a molecule, a coral reef, a family, a factory",
-      "verbatim": null,
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule",
+      "id": "bunge-molecule",
+      "label": "a molecule",
+      "gloss": "a molecule",
+      "verbatim": "A molecule, a coral reef, a family and a factory are systems.",
       "sourceLocation": "ch. 1, §1.2, Example following Definition 1.1, p. 7",
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
-      "encodedOn": "2026-08-01",
+      "encodedOn": "2026-08-05",
       "instantiates": null,
-      "note": "FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the\nExample block. Splitting them into four would make each separately matchable against other\nauthors, which is what a cases matrix wants; it is also an encoding judgment beyond a\nstructural migration, so it was not made here. Recorded so the decision is visible rather than\ndefaulted."
+      "note": "One of four admitted cases Bunge gives in a single sentence; the shared\nverbatim is that sentence. Split from case:bunge-molecule-reef-family-factory 2026-08-05 so\neach case can be matched against other authors' rulings."
+    },
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-reef": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-reef",
+      "id": "bunge-reef",
+      "label": "a coral reef",
+      "gloss": "a coral reef",
+      "verbatim": "A molecule, a coral reef, a family and a factory are systems.",
+      "sourceLocation": "ch. 1, §1.2, Example following Definition 1.1, p. 7",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
+      "encodedOn": "2026-08-05",
+      "instantiates": null,
+      "note": null
+    },
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-family": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-family",
+      "id": "bunge-family",
+      "label": "a family",
+      "gloss": "a family",
+      "verbatim": "A molecule, a coral reef, a family and a factory are systems.",
+      "sourceLocation": "ch. 1, §1.2, Example following Definition 1.1, p. 7",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
+      "encodedOn": "2026-08-05",
+      "instantiates": null,
+      "note": null
+    },
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-factory": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-factory",
+      "id": "bunge-factory",
+      "label": "a factory",
+      "gloss": "a factory",
+      "verbatim": "A molecule, a coral reef, a family and a factory are systems.",
+      "sourceLocation": "ch. 1, §1.2, Example following Definition 1.1, p. 7",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
+      "encodedOn": "2026-08-05",
+      "instantiates": null,
+      "note": null
     },
     "https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing": {
       "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing",
@@ -116,18 +152,6 @@
       "fix": "**Trigger: encode Myers, then decide.** Not a headcount. Myers' deterministic system is interpretable \"in any cartesian category\" — schematic, not about any particular subject matter. Klir targets a construct, Bunge targets concrete things, and Myers arguably targets nothing in particular. That is exactly where D2's target-typing either works or visibly breaks, and one entry settles more than ten would."
     },
     {
-      "title": "D4 — Evidence code scope and first-classness",
-      "blocking": false,
-      "problem": "Two defects, both flagged by both councils.",
-      "fix": "**A resolution is drafted** — `proposals/P4-evidence-scope.md`, three options with a recommendation (reify the assertions that need grading, scoped to examples first). It also records that D4 and **D5 are coupled**: any migration renames properties, and renaming an IRI is D5's territory."
-    },
-    {
-      "title": "D5 — IRI and deprecation policy",
-      "blocking": false,
-      "problem": "There is none. `entry:klir-2001-eq-1-1` — what happens when an encoding is corrected, when a second edition is entered, when an entry is withdrawn? OBO practice is never to reuse or silently mutate an IRI. Three entries can be renamed; fifty cannot.",
-      "fix": ""
-    },
-    {
       "title": "D6 — BFO/CCO alignment vs a bibliographic ontology",
       "blocking": false,
       "problem": "Both councils recommended dropping BFO/CCO for FaBiO or FRBR, on the grounds that the alignment currently buys nothing computational. Technically fair, and FRBR's Work/Expression/Manifestation would directly address the GDC identity problem below.",
@@ -135,8 +159,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "0e767a3+",
-    "repoCommit": "0e767a3+"
+    "atlasCommit": "38b95fe+",
+    "repoCommit": "38b95fe+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -394,7 +418,10 @@
       "displayContext": null,
       "authorCaveat": null,
       "admits": [
-        "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory"
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-factory",
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-family",
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule",
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-reef"
       ],
       "refuses": [
         "https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered",
@@ -603,7 +630,7 @@
       "subClassOf": 2,
       "domain": 5,
       "range": 5,
-      "classes": 4
+      "classes": 5
     },
     "verdict": "A taxonomy. Nothing is entailed beyond transitive closure of the asserted tree."
   }

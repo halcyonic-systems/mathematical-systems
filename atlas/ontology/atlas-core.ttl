@@ -69,6 +69,17 @@ no separation of the case from the author's reason for it, concatenated with an 
 no identity, so two authors ruling on the same object could not be matched. See
 docs/proposals/P4-evidence-scope.md."""@en .
 
+atlas:RetiredTerm
+    a owl:Class ;
+    rdfs:label "Retired Term"@en ;
+    skos:definition """A tombstone: an IRI this catalogue once served as a live term and will
+never serve as one again. IRIs are permanent (w3id) — a term is never deleted and never
+silently mutated; it is retired by CHANGING ITS CLASS to this one, so the strict shapes for
+live terms keep their teeth and a stale citation still resolves to a signpost. A retired term
+carries owl:deprecated true, at least one dcterms:isReplacedBy successor, and a comment saying
+why. Policy and procedure: docs/iri-policy.md (D5). The reader's build refuses to serve a
+deprecated IRI as live data, and that refusal is gated."""@en .
+
 atlas:TestObject
     a owl:Class ;
     rdfs:subClassOf skos:Concept ;

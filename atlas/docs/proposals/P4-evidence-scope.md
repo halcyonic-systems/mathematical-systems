@@ -1,7 +1,9 @@
 # P4 — Resolving D4: evidence per assertion
 
-**Status: decision needed.** Analysis and a recommendation; the choice is not mine to make.
-P2 depends on this and should not land first.
+**Status: DECIDED 2026-08-05 — option B, scoped to examples.** The 2026-08-03 reification is
+ratified as doctrine; P2's machinery (test objects, `instantiates`) is legitimized with it.
+The migration/rename coupling is resolved by the D5 retirement policy (`../iri-policy.md`).
+First-classness deferred, as recommended below. The analysis is kept as written.
 
 ## What D4 costs today, measured
 

@@ -531,6 +531,10 @@ def read_open_decisions(atlas_root):
         head, _, body = block.partition("\n")
         if not re.match(r"D\d", head):  # the file also carries non-decision sections
             continue
+        # A decided decision stays in the file — archives are annotated, never
+        # rewritten — but it is no longer unsettled, so it no longer renders.
+        if re.search(r"\*\(decided", head, re.I):
+            continue
         paras = list(paragraphs(body))
         fix = next((p for p in paras[1:] if FIX_LABEL.match(p)), "")
         out.append(
@@ -553,6 +557,44 @@ def read_open_decisions(atlas_root):
             "  The reader would render the heading with nothing under it."
         )
     return out
+
+
+def check_no_retired_served(g, entries, cases, objects):
+    """The sixth gate: a retired IRI never reaches the reader as live data.
+
+    D5 retires a term by class change plus owl:deprecated true — the IRI stays
+    resolvable as a signpost but must never appear in the catalogue's entries,
+    cases or test objects again, or the ledger counts ghosts and a conflict can
+    be derived from a tombstone. Extraction excludes tombstones structurally
+    (they are no longer atlas:Example); this check is the guarantee that holds
+    even if a future edit types a deprecated term back into a live class.
+
+    The gate proves it can fail before it is trusted (SSF #35): a synthetic
+    leak — one deprecated IRI planted in the served set — must be caught, or
+    the check is decoration. Policy: atlas docs/iri-policy.md.
+    """
+    from rdflib import Literal
+
+    deprecated = {str(s) for s in g.subjects(OWL.deprecated, Literal(True))}
+    served = (
+        {e["iri"] for e in entries}
+        | set(cases)
+        | {o["iri"] for o in objects.values()}
+    )
+    leaked = deprecated & served
+    if leaked:
+        raise SystemExit(
+            "RETIRED IRI SERVED AS LIVE: " + ", ".join(sorted(leaked)) + "\n"
+            "  A deprecated term is a tombstone (docs/iri-policy.md). It must not appear in\n"
+            "  entries, cases or test objects — retire it by class change, and point\n"
+            "  dcterms:isReplacedBy at its successors."
+        )
+    if not deprecated:
+        return False
+    planted = served | {next(iter(deprecated))}
+    if not (deprecated & planted):
+        raise SystemExit("GATE INVALID: a planted deprecated IRI was not caught.")
+    return True
 
 
 def provenance(atlas_root):
@@ -721,6 +763,8 @@ def main():
 
     cases = extract_cases(g)
     objects = extract_test_objects(g)
+    retired_live = check_no_retired_served(g, entries, cases, objects)
+    print(f"retired IRIs excluded  gate-can-fail={retired_live}")
     catalogue = {
         "cases": cases,
         "testObjects": objects,

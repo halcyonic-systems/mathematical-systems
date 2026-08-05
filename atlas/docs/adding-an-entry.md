@@ -32,6 +32,15 @@ Rule of thumb: one entry per *distinct definitional claim*, not one per document
 
 - a **bearer** (`cco:ont00000253`) — the document, with ISBN/DOI
 - the **entry** (`atlas:FormalSystemDefinition`) with `atlas:verbatim`, `atlas:sourceLocation`, `atlas:statedIn`, `atlas:invokesPrimitive`, and provenance
+- optionally, **presentation spans**: `atlas:displayForm` (the formal statement within the
+  verbatim) and `atlas:displayContext` (the author's own reading of it). The front page leads
+  with these. Both must be exact substrings of the verbatim — the build refuses a span that
+  drifts (`check_display_spans`).
+
+The id you choose is permanent — read `docs/iri-policy.md` before minting it. And declare the
+entry's **accession number**: append the id to `ACCESSION` in `reader/prepare/build-data.py`
+(the build refuses an unnumbered entry). The number is the one the rail, the prose and the
+shelf all wear; it never changes once the prose refers to it.
 
 ## 3. Choose primitives conservatively
 

@@ -107,7 +107,8 @@ entry:bunge-1979-def-1-1
     # No formal statement to lift; the sentence itself faces, minus the running label.
     atlas:displayForm "An object is a concrete system iff it is composed of at least two different connected things." ;
 
-    atlas:admits case:bunge-molecule-reef-family-factory ;
+    atlas:admits case:bunge-molecule , case:bunge-reef ,
+                 case:bunge-family , case:bunge-factory ;
     atlas:refuses case:bunge-states-of-a-thing ,
                   case:bunge-events-ordered ;
 
@@ -160,18 +161,56 @@ case:bunge-theory
     rdfs:comment "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block. Location human-checked against the source 2026-08-05."@en .
 
 case:bunge-molecule-reef-family-factory
+    a atlas:RetiredTerm ;
+    owl:deprecated true ;
+    dcterms:isReplacedBy case:bunge-molecule , case:bunge-reef ,
+                         case:bunge-family , case:bunge-factory ;
+    rdfs:comment """Retired 2026-08-05: four cases were encoded as one individual, which blocked
+each from ever being matched against another author's ruling on the same object. Split under
+the P4 sign-off; first precedent under the D5 retirement policy (docs/iri-policy.md)."""@en .
+
+case:bunge-molecule
     a atlas:Example ;
-    rdfs:label "a molecule, a coral reef, a family, a factory"@en ;
-    atlas:gloss "a molecule, a coral reef, a family, a factory" ;
+    rdfs:label "a molecule"@en ;
+    atlas:gloss "a molecule" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." ;
     atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
     atlas:evidenceCode atlas:HVP ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
-    atlas:encodedOn "2026-08-01"^^xsd:date ;
-    rdfs:comment """FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the
-Example block. Splitting them into four would make each separately matchable against other
-authors, which is what a cases matrix wants; it is also an encoding judgment beyond a
-structural migration, so it was not made here. Recorded so the decision is visible rather than
-defaulted."""@en .
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    rdfs:comment """One of four admitted cases Bunge gives in a single sentence; the shared
+verbatim is that sentence. Split from case:bunge-molecule-reef-family-factory 2026-08-05 so
+each case can be matched against other authors' rulings."""@en .
+
+case:bunge-reef
+    a atlas:Example ;
+    rdfs:label "a coral reef"@en ;
+    atlas:gloss "a coral reef" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date .
+
+case:bunge-family
+    a atlas:Example ;
+    rdfs:label "a family"@en ;
+    atlas:gloss "a family" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date .
+
+case:bunge-factory
+    a atlas:Example ;
+    rdfs:label "a factory"@en ;
+    atlas:gloss "a factory" ;
+    atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." ;
+    atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date .
 
 case:bunge-states-of-a-thing
     a atlas:Example ;
