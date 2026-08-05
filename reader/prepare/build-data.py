@@ -557,14 +557,30 @@ def read_open_decisions(atlas_root):
 
 def provenance(atlas_root):
     """What this build was made from. Commits rather than a clock: a timestamp
-    would make every rebuild a diff in a tracked file, and says less."""
+    would make every rebuild a diff in a tracked file, and says less.
+
+    The stamp carries a "+" when the tree is dirty at generation time. In the
+    rebuild ritual the data is regenerated BEFORE the TTL edits are committed,
+    so a bare HEAD would name the parent of the commit that actually ships the
+    data — a provenance field naming the wrong commit, on a site about
+    provenance. "09dd543+" is the honest claim: that commit, plus the edits
+    this build was run for."""
 
     def head(path):
         try:
-            return subprocess.run(
+            rev = subprocess.run(
                 ["git", "-C", str(path), "rev-parse", "--short", "HEAD"],
                 capture_output=True, text=True, check=True,
             ).stdout.strip()
+            # Scoped to the stamped subtree: an edit under reader/ must not mark
+            # the ATLAS stamp dirty. Generated data is excluded — regeneration
+            # itself must not dirty the stamp that describes it.
+            dirty = subprocess.run(
+                ["git", "-C", str(path), "status", "--porcelain", "--", ".",
+                 ":(exclude)reader/public/data"],
+                capture_output=True, text=True, check=True,
+            ).stdout.strip()
+            return rev + ("+" if dirty else "")
         except Exception:
             return None
 
