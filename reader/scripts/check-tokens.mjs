@@ -80,7 +80,7 @@ for (const [key, cssVar] of Object.entries(RESERVED)) {
  * future retint. `open` is the floor: it must carry no fill at all.
  */
 const RAMP = [
-  ["source", "--accent-soft"],
+  ["source", "--strip-source"],
   ["derived", "--strip-derived"],
   ["decided", "--strip-decided"],
 ];
@@ -106,14 +106,51 @@ for (const [warrant, cssVar] of RAMP) {
 if (stripDecl("open") !== "transparent")
   problems.push(`.strip-open must carry no fill — it is the floor of the warrant ramp`);
 
-for (let i = 1; i < RAMP.length; i++) {
-  const [loWarrant, loVar] = RAMP[i];
-  const [hiWarrant, hiVar] = RAMP[i - 1];
-  if (!cssHex[loVar] || !cssHex[hiVar]) continue;
-  if (luminance(cssHex[loVar]) <= luminance(cssHex[hiVar]))
+/*
+ * (3b) The warrant ramp is not just monotone but SEPARATED.
+ *
+ * Monotone alone already shipped a ramp the eye cannot read: 1.075:1 between
+ * adjacent rungs is ordered correctly and indistinguishable (outside audit,
+ * 2026-08-05 — those exact values are this check's separating instance; they
+ * fail it). Every step must clear a measured minimum contrast, INCLUDING the
+ * last one from `decided` down to the card ground the strips sit on —
+ * otherwise the weakest filled rung dissolves into the page.
+ */
+const MIN_STEP = 1.09;
+const contrast = (a, b) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+
+const rungs = [...RAMP.map(([w, v]) => [w, cssHex[v]]), ["card ground", cssHex["--bg-secondary"]]];
+for (let i = 1; i < rungs.length; i++) {
+  const [loWarrant, loHex] = rungs[i];
+  const [hiWarrant, hiHex] = rungs[i - 1];
+  if (!loHex || !hiHex) continue;
+  if (luminance(loHex) <= luminance(hiHex))
     problems.push(
-      `warrant ramp inverted: ${loWarrant} (${cssHex[loVar]}) is not lighter than ${hiWarrant} (${cssHex[hiVar]}) — ` +
+      `warrant ramp inverted: ${loWarrant} (${loHex}) is not lighter than ${hiWarrant} (${hiHex}) — ` +
         `weaker warrant must never carry more visual weight`,
+    );
+  else if (contrast(loHex, hiHex) < MIN_STEP)
+    problems.push(
+      `warrant ramp illegible: ${hiWarrant} (${hiHex}) vs ${loWarrant} (${loHex}) is ` +
+        `${contrast(loHex, hiHex).toFixed(3)}:1 — adjacent rungs must differ by ≥ ${MIN_STEP}:1 to be readable`,
+    );
+}
+
+/*
+ * (4) Muted ink is still ink. --text-muted runs at 10–12px in eyebrows and
+ * metadata; #626b80 measured 4.23:1 against --bg-surface — below AA, at the
+ * sizes where contrast matters most. That shipped value is this check's
+ * separating instance.
+ */
+if (cssHex["--text-muted"] && cssHex["--bg-surface"]) {
+  const c = contrast(cssHex["--text-muted"], cssHex["--bg-surface"]);
+  if (c < 4.5)
+    problems.push(
+      `--text-muted (${cssHex["--text-muted"]}) on --bg-surface (${cssHex["--bg-surface"]}) is ${c.toFixed(2)}:1 — ` +
+        `muted ink runs at 10–12px and must clear 4.5:1`,
     );
 }
 

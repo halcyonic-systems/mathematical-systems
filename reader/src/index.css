@@ -24,7 +24,9 @@
   --bg-surface: #e2e5ec;
   --text-primary: #1a1e2b;
   --text-secondary: #414a60;
-  --text-muted: #626b80;
+  /* Gated at ≥ 4.5:1 on --bg-surface: this ink runs at 10–12px in eyebrows and
+     metadata, where the earlier #626b80 measured 4.23:1 — below AA. */
+  --text-muted: #565f75;
   --text-on-accent: #ffffff;
 
   /* accent — indigo leads; slate supports */
@@ -45,9 +47,16 @@
      derivation that can show its work. Both are properties of this ramp, so
      the ramp is now a thing rather than three unrelated borrowings.
 
-     source --accent-soft (#dcdfec) > derived > decided > open (no fill) */
-  --strip-derived: #e4e7f1;
-  --strip-decided: #edeff4;
+     Monotone was not enough: the first monotone values sat 1.075:1 apart —
+     ordered correctly and indistinguishable, a ramp the eye cannot read
+     (outside audit, 2026-08-05). `source` now has its own rung rather than
+     borrowing --accent-soft, and every step, including the last one down to
+     the card ground, is gated at a measured minimum separation.
+
+     source > derived > decided > open (no fill) > card bg #f9fafc */
+  --strip-source: #d3d7e8;
+  --strip-derived: #dfe3ee;
+  --strip-decided: #edeff5;
 
   /* RESERVED CHANNEL — evidence grade. Contractual: means how an encoding was
      established, never decorative, constant across themes. The whole point of
@@ -227,7 +236,7 @@ body {
    on filled marks; this is surface area on chrome, which is the fleet's rule
    rather than an exception to it. A left edge reinforces the step, because a
    background tint alone is too quiet to separate one section from the next. */
-.strip-source  { background: var(--accent-soft);   border-bottom: 1px solid var(--border); }
+.strip-source  { background: var(--strip-source);  border-bottom: 1px solid var(--border); }
 .strip-derived { background: var(--strip-derived); border-bottom: 1px solid var(--border); }
 .strip-decided { background: var(--strip-decided); border-bottom: 1px solid var(--hairline); }
 .strip-open    { background: transparent;          border-bottom: 1px dashed var(--border); }
