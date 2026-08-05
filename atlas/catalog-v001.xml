@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
-  <uri name="https://halcyonic.systems/atlas/imports/cco-bfo-reference" uri="imports/cco-bfo-reference.ttl" />
+  <uri name="https://w3id.org/mathematical-systems/atlas/imports/cco-bfo-reference" uri="imports/cco-bfo-reference.ttl" />
   <uri name="http://purl.obolibrary.org/obo/bfo/2020/bfo-core.ttl" uri="imports/full/bfo-core.ttl" />
   <uri name="http://www.w3.org/2004/02/skos/core" uri="imports/full/core.ttl" />
   <uri name="https://www.commoncoreontologies.org/ExtendedRelationOntology" uri="imports/full/ExtendedRelationOntology.ttl" />

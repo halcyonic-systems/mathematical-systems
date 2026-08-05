@@ -1,97 +1,97 @@
 {
   "cases": {
-    "https://halcyonic.systems/atlas/case/bunge-theory": {
-      "iri": "https://halcyonic.systems/atlas/case/bunge-theory",
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-theory": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-theory",
       "id": "bunge-theory",
       "label": "a theory",
       "gloss": "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢",
       "verbatim": null,
       "sourceLocation": null,
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedOn": "2026-08-01",
       "instantiates": null,
       "note": "Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block."
     },
-    "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory": {
-      "iri": "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory",
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory",
       "id": "bunge-molecule-reef-family-factory",
       "label": "a molecule, a coral reef, a family, a factory",
       "gloss": "a molecule, a coral reef, a family, a factory",
       "verbatim": null,
       "sourceLocation": null,
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedOn": "2026-08-01",
       "instantiates": null,
       "note": "FOUR CASES IN ONE INDIVIDUAL. Bunge lists these in a single sentence of the\nExample block. Splitting them into four would make each separately matchable against other\nauthors, which is what a cases matrix wants; it is also an encoding judgment beyond a\nstructural migration, so it was not made here. Recorded so the decision is visible rather than\ndefaulted."
     },
-    "https://halcyonic.systems/atlas/case/bunge-states-of-a-thing": {
-      "iri": "https://halcyonic.systems/atlas/case/bunge-states-of-a-thing",
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing",
       "id": "bunge-states-of-a-thing",
       "label": "a set of states of a thing",
       "gloss": "a set of states of a thing",
       "verbatim": null,
       "sourceLocation": null,
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedOn": "2026-08-01",
       "instantiates": null,
       "note": null
     },
-    "https://halcyonic.systems/atlas/case/bunge-events-ordered": {
-      "iri": "https://halcyonic.systems/atlas/case/bunge-events-ordered",
+    "https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered",
       "id": "bunge-events-ordered",
       "label": "a collection of events, even if ordered",
       "gloss": "a collection of events, even if ordered",
       "verbatim": null,
       "sourceLocation": null,
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedOn": "2026-08-01",
-      "instantiates": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
+      "instantiates": "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding",
       "note": "Half of the catalogue's first separating instance: Klir admits an ordered\ncollection, Bunge refuses one. The refusal is ontic — Definition 1.2 requires a nonempty\nbonding set, and ordering is not bonding — so he refuses ordered BOOKS for the same reason.\nSee mappings/ordered-collection.md.\n\nNO SOURCE LOCATION, DELIBERATELY. These cases come from the labelled Example block that follows\nDefinition 1.1, not from Definition 1.1 itself, so entry 003's \"ch. 1, Definition 1.1\" does not\ncover them. Reifying made that visible. The correct location is readable from the source but\nhas not been human-checked, and asserting it here would put a model-drafted claim under the\nentry's HVP — the defect P4 exists to close."
     },
-    "https://halcyonic.systems/atlas/case/klir-books-ordered": {
-      "iri": "https://halcyonic.systems/atlas/case/klir-books-ordered",
+    "https://w3id.org/mathematical-systems/atlas/case/klir-books-ordered": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/klir-books-ordered",
       "id": "klir-books-ordered",
       "label": "a collection of books, ordered",
       "gloss": "a collection of books ordered by authors' names, publication dates, or size",
       "verbatim": "any ordering of a set is a relation defined on the set",
       "sourceLocation": "ch. 1, p. 5",
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedOn": "2026-08-03",
-      "instantiates": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
+      "instantiates": "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding",
       "note": null
     },
-    "https://halcyonic.systems/atlas/case/klir-books-partitioned": {
-      "iri": "https://halcyonic.systems/atlas/case/klir-books-partitioned",
+    "https://w3id.org/mathematical-systems/atlas/case/klir-books-partitioned": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/klir-books-partitioned",
       "id": "klir-books-partitioned",
       "label": "a collection of books, partitioned",
       "gloss": "a collection of books partitioned by subject, publisher, or language",
       "verbatim": "every partition of a set emerges from a particular equivalence relation defined on the set",
       "sourceLocation": "ch. 1, p. 5",
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedOn": "2026-08-03",
       "instantiates": null,
       "note": null
     },
-    "https://halcyonic.systems/atlas/case/klir-population-by-birth": {
-      "iri": "https://halcyonic.systems/atlas/case/klir-population-by-birth",
+    "https://w3id.org/mathematical-systems/atlas/case/klir-population-by-birth": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/klir-population-by-birth",
       "id": "klir-population-by-birth",
       "label": "a human population, ordered by dates of birth",
       "gloss": "a human population ordered by dates of birth",
       "verbatim": "may be applied not only to other sets of books, but also to sets whose elements are not books",
       "sourceLocation": "ch. 1, p. 5",
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedOn": "2026-08-03",
       "instantiates": null,
       "note": "The quotation licenses this case rather than describing it: Klir is making\na point about a RELATION being transferable to a different carrier set, and the human\npopulation is his instance of it. A splice, recorded as one."
     }
   },
   "testObjects": {
-    "https://halcyonic.systems/atlas/object/ordered-non-bonding": {
-      "iri": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
+    "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding",
       "id": "ordered-non-bonding",
       "label": "a collection ordered by a non-bonding relation",
       "scopeNote": "Members standing in an ordering, with no causal action between them: books\non a shelf by author, events in a sequence.\n\nTHE QUALIFIER IS LOAD-BEARING. Bunge refuses this case because ordering is not bonding, not\nbecause the members are events — Definition 1.2 requires a nonempty bonding set, and a shelf of\nbooks ordered by author carries a relation and no bonds. Naming the object \"an ordered\ncollection\" would understate the disagreement and invite the reply that he was only excluding\nevents.",
-      "evidenceCode": "https://halcyonic.systems/atlas/MDU",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
       "arguedIn": "mappings/ordered-collection.md",
       "note": "MDU, DELIBERATELY. The identification is model-drafted: that Klir's ordered\nbooks and Bunge's ordered events are cases of one object follows from reading Bunge's Definition\n1.2 alongside Klir's p. 5, and no human has checked that reading against both sources. The\nconflict it derives is therefore real machinery resting on an unchecked claim, and the reader\nsays so rather than presenting the conflict as established.\n\nRAISING IT: read Def. 1.2's bonding requirement and Klir's ordering clause, confirm that the\ntwo cases are the same object, and the code becomes HVP. Until then a derived conflict from\nthis object inherits MDU."
     }
@@ -135,16 +135,16 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "79e31f0",
-    "repoCommit": "79e31f0"
+    "atlasCommit": "09dd543",
+    "repoCommit": "09dd543"
   },
   "publishable": true,
   "contextChars": 800,
   "shapes": {
-    "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1": {
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
       "status": "none"
     },
-    "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple": {
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple": {
       "file": "ShapeBunge.lean",
       "title": "Shape Category for Bunge's CES Framework",
       "moduleDoc": "# Shape Category for Bunge's CES Framework\n\nThe *shape category* `I_Bunge` encodes the dependency structure of Bunge's\nsystem definition σ = ⟨C, E, S⟩ (Treatise on Basic Philosophy Vol. 4, Def 1.2, 1979).\n\n## Construction\n\nWe define a quiver with 3 vertices (the tuple positions) and 3 generating arrows\n(the structural dependencies), then take the free category via `Paths`.\n\n## Arrow Direction Convention\n\nArrows point from the *dependent* to what it *depends on*. This makes a system-as-diagram\n(a functor from the shape category to a data category) covariant.\n\n- S → C: structure is defined over composition\n- S → E: structure is defined over environment\n- E → C: environment acts on composition (Bunge's interaction axiom)",
@@ -188,7 +188,7 @@
       "spec": "Systems/Category/ShapeBunge.lean#BungeShape",
       "status": "resolved"
     },
-    "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1": {
+    "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
       "file": "ShapeKlir.lean",
       "title": "Shape Category for Klir's S = (T, R)",
       "moduleDoc": "# Shape Category for Klir's S = (T, R)\n\nThe *shape category* `I_Klir` encodes the dependency structure of Klir's\nsystem definition S = (T, R) (Facets of Systems Science, 2001, Eq. 1.1).\n\nThis is the simplest non-discrete shape category in the landscape:\n2 objects and 1 generating arrow. It is the common ancestor of both\nBunge's CES triple and Mobus's 8-tuple — the `rfl` proofs of the\ncommuting triangle trace to both authors inheriting T as `Set α` and\nR as `Set (α × α)` from Klir without changing the mathematical type.\n\n## Construction\n\n- `things`: T — the set of things (thinghood)\n- `relation`: R — the set of relations on T (systemhood)\n- `relation_on_things`: R → T — R is defined over T\n\nA thing becomes a system when you specify which of its parts are related.\nThe single arrow captures this: the relation DEPENDS on the things.",
@@ -218,7 +218,7 @@
     }
   },
   "transcription": {
-    "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1": {
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
       "status": "located",
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
@@ -234,7 +234,7 @@
       },
       "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
     },
-    "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple": {
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple": {
       "status": "located",
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
@@ -250,7 +250,7 @@
       },
       "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
     },
-    "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1": {
+    "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
       "status": "located",
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
@@ -273,29 +273,29 @@
   },
   "entries": [
     {
-      "iri": "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1",
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
       "id": "bunge-1979-def-1-1",
       "label": "Bunge (1979), Definition 1.1: concrete system",
-      "statedIn": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
       "sourceLocation": "ch. 1, Definition 1.1",
       "verbatim": "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
       "displayForm": "An object is a concrete system iff it is composed of at least two different connected things.",
       "displayContext": null,
       "authorCaveat": null,
       "admits": [
-        "https://halcyonic.systems/atlas/case/bunge-molecule-reef-family-factory"
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory"
       ],
       "refuses": [
-        "https://halcyonic.systems/atlas/case/bunge-events-ordered",
-        "https://halcyonic.systems/atlas/case/bunge-states-of-a-thing"
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered",
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing"
       ],
       "primitives": [
-        "https://halcyonic.systems/atlas/primitive/action",
-        "https://halcyonic.systems/atlas/primitive/bond",
-        "https://halcyonic.systems/atlas/primitive/part",
-        "https://halcyonic.systems/atlas/primitive/thing"
+        "https://w3id.org/mathematical-systems/atlas/primitive/action",
+        "https://w3id.org/mathematical-systems/atlas/primitive/bond",
+        "https://w3id.org/mathematical-systems/atlas/primitive/part",
+        "https://w3id.org/mathematical-systems/atlas/primitive/thing"
       ],
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
       "formalisedAs": null,
@@ -318,28 +318,28 @@
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
       "id": "bunge-1979-ces-triple",
       "label": "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩",
-      "statedIn": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
       "sourceLocation": "ch. 1, §1.1 (the general concept of a system)",
       "verbatim": "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.",
       "displayForm": "σ = ⟨C, E, S⟩",
       "displayContext": "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E.",
       "authorCaveat": "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.",
       "admits": [
-        "https://halcyonic.systems/atlas/case/bunge-theory"
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-theory"
       ],
       "refuses": [],
       "primitives": [
-        "https://halcyonic.systems/atlas/primitive/composition",
-        "https://halcyonic.systems/atlas/primitive/environment",
-        "https://halcyonic.systems/atlas/primitive/relation",
-        "https://halcyonic.systems/atlas/primitive/set",
-        "https://halcyonic.systems/atlas/primitive/structure",
-        "https://halcyonic.systems/atlas/primitive/thing"
+        "https://w3id.org/mathematical-systems/atlas/primitive/composition",
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/structure",
+        "https://w3id.org/mathematical-systems/atlas/primitive/thing"
       ],
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
       "formalisedAs": "Systems/Category/ShapeBunge.lean#BungeShape",
@@ -367,29 +367,29 @@
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1",
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
       "id": "klir-2001-eq-1-1",
       "label": "Klir (2001), Facets of Systems Science, eq. (1.1)",
-      "statedIn": "https://halcyonic.systems/atlas/bearer/klir-2001-facets",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/klir-2001-facets",
       "sourceLocation": "ch. 1, eq. (1.1), p. 5",
       "verbatim": "S = (T, R),   (1.1)\n\nwhere S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.",
       "displayForm": "S = (T, R)",
       "displayContext": "where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T.",
       "authorCaveat": null,
       "admits": [
-        "https://halcyonic.systems/atlas/case/klir-books-ordered",
-        "https://halcyonic.systems/atlas/case/klir-books-partitioned",
-        "https://halcyonic.systems/atlas/case/klir-population-by-birth"
+        "https://w3id.org/mathematical-systems/atlas/case/klir-books-ordered",
+        "https://w3id.org/mathematical-systems/atlas/case/klir-books-partitioned",
+        "https://w3id.org/mathematical-systems/atlas/case/klir-population-by-birth"
       ],
       "refuses": [],
       "primitives": [
-        "https://halcyonic.systems/atlas/primitive/relation",
-        "https://halcyonic.systems/atlas/primitive/set",
-        "https://halcyonic.systems/atlas/primitive/systemhood",
-        "https://halcyonic.systems/atlas/primitive/thing",
-        "https://halcyonic.systems/atlas/primitive/thinghood"
+        "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/systemhood",
+        "https://w3id.org/mathematical-systems/atlas/primitive/thing",
+        "https://w3id.org/mathematical-systems/atlas/primitive/thinghood"
       ],
-      "evidenceCode": "https://halcyonic.systems/atlas/HVP",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
       "formalisedAs": "Systems/Category/ShapeKlir.lean#KlirShape",
@@ -429,7 +429,7 @@
   ],
   "bearers": [
     {
-      "iri": "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "iri": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
       "label": "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)",
       "creator": "Mario Bunge",
       "date": "1979",
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/bearer/klir-2001-facets",
+      "iri": "https://w3id.org/mathematical-systems/atlas/bearer/klir-2001-facets",
       "label": "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)",
       "creator": "George J. Klir",
       "date": "2001",
@@ -450,99 +450,99 @@
   ],
   "primitives": [
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/thing",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/thing",
       "label": "thing",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
-        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1",
-        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/relation",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
       "label": "relation",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
-        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/set",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/set",
       "label": "set",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple",
-        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/action",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/action",
       "label": "action",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/bond",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/bond",
       "label": "bond",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/composition",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/composition",
       "label": "composition",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/environment",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
       "label": "environment",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/part",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/part",
       "label": "part",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/structure",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/structure",
       "label": "structure",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/bunge-1979-ces-triple"
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/systemhood",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/systemhood",
       "label": "systemhood",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/thinghood",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/thinghood",
       "label": "thinghood",
       "role": null,
       "usedBy": [
-        "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
       ]
     },
     {
-      "iri": "https://halcyonic.systems/atlas/primitive/time",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time",
       "label": "time",
       "role": null,
       "usedBy": []
@@ -550,25 +550,25 @@
   ],
   "evidenceCodes": [
     {
-      "iri": "https://halcyonic.systems/atlas/HVP",
+      "iri": "https://w3id.org/mathematical-systems/atlas/HVP",
       "id": "HVP",
       "label": "human-verified against primary text",
       "definition": "A human read the primary source and confirmed the verbatim text and the encoding against it."
     },
     {
-      "iri": "https://halcyonic.systems/atlas/MDHC",
+      "iri": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "id": "MDHC",
       "label": "model-drafted, human-checked",
       "definition": "A model produced the encoding; a human checked it against the verbatim text."
     },
     {
-      "iri": "https://halcyonic.systems/atlas/MDU",
+      "iri": "https://w3id.org/mathematical-systems/atlas/MDU",
       "id": "MDU",
       "label": "model-drafted, unchecked",
       "definition": "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."
     },
     {
-      "iri": "https://halcyonic.systems/atlas/PROP",
+      "iri": "https://w3id.org/mathematical-systems/atlas/PROP",
       "id": "PROP",
       "label": "propagated from another entry",
       "definition": "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."
@@ -576,20 +576,20 @@
   ],
   "conflicts": [
     {
-      "object": "https://halcyonic.systems/atlas/object/ordered-non-bonding",
+      "object": "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding",
       "label": "a collection ordered by a non-bonding relation",
-      "evidenceCode": "https://halcyonic.systems/atlas/MDU",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
       "arguedIn": "mappings/ordered-collection.md",
       "admittedBy": [
         {
-          "entry": "https://halcyonic.systems/atlas/entry/klir-2001-eq-1-1",
-          "case": "https://halcyonic.systems/atlas/case/klir-books-ordered"
+          "entry": "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
+          "case": "https://w3id.org/mathematical-systems/atlas/case/klir-books-ordered"
         }
       ],
       "refusedBy": [
         {
-          "entry": "https://halcyonic.systems/atlas/entry/bunge-1979-def-1-1",
-          "case": "https://halcyonic.systems/atlas/case/bunge-events-ordered"
+          "entry": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
+          "case": "https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered"
         }
       ]
     }

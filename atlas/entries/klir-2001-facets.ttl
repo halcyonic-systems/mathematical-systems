@@ -1,9 +1,9 @@
-@prefix atlas:   <https://halcyonic.systems/atlas/> .
-@prefix prim:    <https://halcyonic.systems/atlas/primitive/> .
-@prefix entry:   <https://halcyonic.systems/atlas/entry/> .
-@prefix bearer:  <https://halcyonic.systems/atlas/bearer/> .
-@prefix case:    <https://halcyonic.systems/atlas/case/> .
-@prefix obj:     <https://halcyonic.systems/atlas/object/> .
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
+@prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -11,9 +11,9 @@
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://halcyonic.systems/atlas/entries/klir-2001-facets>
+<https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets>
     a owl:Ontology ;
-    owl:imports <https://halcyonic.systems/atlas/atlas-core> ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
     rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
     rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
 

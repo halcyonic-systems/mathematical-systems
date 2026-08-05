@@ -44,7 +44,7 @@ from transcription import PUBLISHABLE_CONTEXT, locate  # noqa: E402
 from rdflib import Graph, Namespace, OWL, RDF, RDFS, URIRef
 from rdflib.namespace import DCTERMS, SKOS
 
-ATLAS = Namespace("https://halcyonic.systems/atlas/")
+ATLAS = Namespace("https://w3id.org/mathematical-systems/atlas/")
 CCO = Namespace("https://www.commoncoreontologies.org/")
 OBO = Namespace("http://purl.obolibrary.org/obo/")
 
@@ -351,8 +351,8 @@ def asserted_profile(g):
 # fuzzy-matched: a wrong pairing would "verify" a transcription against the wrong
 # book, which is worse than not checking at all.
 BEARER_SOURCES = {
-    "https://halcyonic.systems/atlas/bearer/klir-2001-facets": "klir/klir-facets.md",
-    "https://halcyonic.systems/atlas/bearer/bunge-1979-treatise-vol4": (
+    "https://w3id.org/mathematical-systems/atlas/bearer/klir-2001-facets": "klir/klir-facets.md",
+    "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4": (
         "bunge/Bunge - 1979 - Treatise on Basic Philosophy.md"
     ),
 }

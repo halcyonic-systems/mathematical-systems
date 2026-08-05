@@ -13,19 +13,25 @@ default, and touches all four places at once or none.
 WHY NOW: `docs/open-decisions.md` records "no IRI/deprecation policy -- cheap
 now, impossible at 50." There are three entries. This is the cheap moment.
 
-THE GUARD: minting IRIs under a domain you do not control is worse than leaving
-them where they are -- the IRI would resolve to someone else, or to nothing,
-forever. This refuses to run if the target host does not resolve. Resolution is
-not proof of ownership; it is a cheap check against the obvious mistake.
+THE GUARD: minting IRIs under a namespace you do not control is worse than
+leaving them where they are -- the IRI would resolve to someone else, or to
+nothing, forever. A DNS check is useless for w3id (w3id.org always resolves),
+so the guard asserts the thing that actually matters: the namespace REDIRECTS
+into a host we run. Redirection is not proof of ownership either, but it means
+the perma-id rules for this path are merged and routing where we point them.
 """
 
 import argparse
 import pathlib
-import socket
 import sys
+import urllib.request
 
 OLD = "https://halcyonic.systems/atlas/"
-NEW = "https://mathematical.systems/atlas/"
+NEW = "https://w3id.org/mathematical-systems/atlas/"
+
+# The namespace must land here, or the IRIs are being minted into a redirect
+# that serves someone else's content.
+EXPECTED_HOST = "math.systems"
 
 ROOT = pathlib.Path(__file__).parent
 REPO = ROOT.parent
@@ -46,22 +52,32 @@ TARGETS = [
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true", help="write the changes")
-    ap.add_argument("--force", action="store_true", help="skip the DNS check")
+    ap.add_argument("--force", action="store_true", help="skip the redirect check")
     ap.add_argument("--old", default=OLD)
     ap.add_argument("--new", default=NEW)
     args = ap.parse_args()
 
-    host = args.new.split("//", 1)[-1].split("/", 1)[0]
     if args.apply and not args.force:
+        class NoRedirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self, *a, **k):
+                return None
+
+        req = urllib.request.Request(args.new, method="HEAD")
         try:
-            socket.gethostbyname(host)
-        except OSError:
+            resp = urllib.request.build_opener(NoRedirect).open(req, timeout=15)
+            status, location = resp.status, ""
+        except urllib.error.HTTPError as e:
+            status, location = e.code, e.headers.get("Location", "")
+        except OSError as e:
+            sys.exit(f"could not reach {args.new}: {e}")
+        if status not in (301, 302, 303, 307, 308) or EXPECTED_HOST not in location:
             sys.exit(
-                f"{host} does not resolve. Register it before minting IRIs under it —\n"
-                "an IRI on a domain you do not control is worse than one in the wrong\n"
-                "namespace, because it is permanent and points somewhere else.\n"
-                "Use --force if you own it and DNS is simply not live yet."
+                f"{args.new} answered {status} with Location {location or '(none)'} —\n"
+                f"expected a redirect into {EXPECTED_HOST}. The perma-id rules for this\n"
+                "path are not routing where these IRIs assume. Fix the w3id .htaccess\n"
+                "before minting; --force only if you are certain the routing is right."
             )
+        print(f"guard: {args.new} → {status} → {location}")
 
     total, touched = 0, 0
     for path in TARGETS:

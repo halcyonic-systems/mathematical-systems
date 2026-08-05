@@ -38,7 +38,7 @@ DIST_DIR = ROOT / "dist"
 
 SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
 
-REFERENCE_IRI = URIRef("https://halcyonic.systems/atlas/imports/cco-bfo-reference")
+REFERENCE_IRI = URIRef("https://w3id.org/mathematical-systems/atlas/imports/cco-bfo-reference")
 REFERENCE_FILE = IMPORTS_DIR / "cco-bfo-reference.ttl"
 SHAPES_FILE = ROOT / "shapes" / "atlas-shapes.ttl"
 
@@ -70,7 +70,7 @@ def fetch_closure():
 
     while queue:
         iri = queue.pop()
-        if iri in seen or str(iri).startswith("https://halcyonic.systems/atlas/"):
+        if iri in seen or str(iri).startswith("https://w3id.org/mathematical-systems/atlas/"):
             continue
         seen.add(iri)
 
@@ -160,7 +160,7 @@ def build_merged(reference):
         merged.remove(triple)
     for onto in list(merged.subjects(RDF.type, OWL.Ontology)):
         merged.remove((onto, RDF.type, OWL.Ontology))
-    merged.add((URIRef("https://halcyonic.systems/atlas/definition-atlas"), RDF.type, OWL.Ontology))
+    merged.add((URIRef("https://w3id.org/mathematical-systems/atlas/definition-atlas"), RDF.type, OWL.Ontology))
 
     merged.serialize(DIST_DIR / "definition-atlas.owl", format="pretty-xml")
     merged.serialize(DIST_DIR / "definition-atlas.ttl", format="turtle")

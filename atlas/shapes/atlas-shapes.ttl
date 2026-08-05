@@ -1,4 +1,4 @@
-@prefix atlas: <https://halcyonic.systems/atlas/> .
+@prefix atlas: <https://w3id.org/mathematical-systems/atlas/> .
 @prefix cco:   <https://www.commoncoreontologies.org/> .
 @prefix sh:    <http://www.w3.org/ns/shacl#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -6,7 +6,7 @@
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 
-<https://halcyonic.systems/atlas/shapes>
+<https://w3id.org/mathematical-systems/atlas/shapes>
     a owl:Ontology ;
     rdfs:label "Definition Atlas — validation shapes"@en ;
     rdfs:comment """The atlas's refusal conditions.
