@@ -159,7 +159,7 @@ export default function App() {
         <p className="view-about-line m-0">{[...TABS, ...META_TABS].find((t) => t.id === view)?.about}</p>
       </div>
 
-      <div className="flex">
+      <div className="app-body flex">
         {view === "read" && (
           <EntryRail
             entries={atlas.entries}

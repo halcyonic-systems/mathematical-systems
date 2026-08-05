@@ -57,7 +57,11 @@ export function Matrix({
           matrix exists to draw. */}
       {caption && <p className="w-open mt-0 mb-2">{caption}</p>}
       <MatrixLegend />
-      <table className="w-full text-sm border-collapse mt-3 scroll-x">
+      {/* The scroll container is a div, not the table: a table ignores
+          overflow-x, so .scroll-x on it never scrolled and the census pushed
+          the page wide on a phone. */}
+      <div className="scroll-x">
+        <table className="w-full text-sm border-collapse mt-3">
         <thead>
           <tr>
             <th className="eyebrow text-left py-2 pr-4" style={{ borderBottom: "2px solid var(--border)" }}>
@@ -118,6 +122,7 @@ export function Matrix({
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

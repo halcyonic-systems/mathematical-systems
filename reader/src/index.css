@@ -901,6 +901,13 @@ body {
    someone it was sent to.
    --------------------------------------------------------------------------- */
 @media (max-width: 60rem) {
+  /* The rail went full-width here but its flex parent never went to a column,
+     so <main> was squeezed to ~64px beside a 100%-width rail and the page
+     overflowed sideways on every phone. Found during the entry-card bake-off;
+     present on all variants because it lives in the shell, fixed once here. */
+  .app-body {
+    flex-direction: column;
+  }
   .rail {
     position: static;
     width: 100%;
@@ -921,6 +928,16 @@ body {
 }
 
 @media (max-width: 40rem) {
+  /* Seven view links do not fit a phone; the row scrolls within itself rather
+     than stretching the whole page sideways — the nav is the one element
+     allowed to be wider than the screen, and only internally. */
+  nav[aria-label="Views"] {
+    overflow-x: auto;
+    padding-inline: 1rem;
+  }
+  nav[aria-label="Views"] .tab {
+    white-space: nowrap;
+  }
   .w-source {
     font-size: 1.15rem;
   }
