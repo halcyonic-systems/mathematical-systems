@@ -218,7 +218,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
       </Section>
 
       <Section title="What it admits and refuses" warrant="source">
-        <FieldGrid columns={2}>
+        <FieldGrid columns={2} scrollable>
           <FieldHeadings headings={["Admits", "Refuses"]} />
           <Field
             label="Examples"
@@ -481,7 +481,7 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
         warrant="source"
         note={`${rows.length} recorded across ${atlas.entries.length} entries`}
       >
-        <FieldGrid columns={2}>
+        <FieldGrid columns={2} scrollable>
           <FieldHeadings headings={["Example", "Entry"]} />
           {anchored.map((r, i) => (
             <Field

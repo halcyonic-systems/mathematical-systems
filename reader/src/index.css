@@ -301,9 +301,14 @@ body {
 }
 
 /* Prose holds a measure; instruments are allowed the full width. Left-flushed
-   content on a wide screen reads as an accident rather than a choice. */
+   content on a wide screen reads as an accident rather than a choice.
+
+   90rem, not 96: at 96 the wide views ran nearly to the window edge, so
+   switching to Compare read as a different building. At 90 the wide views
+   still share visible margins with the narrow ones — the same room, with a
+   wider table. */
 .measure { max-width: 72rem; margin-inline: auto; }
-.measure-wide { max-width: 96rem; margin-inline: auto; }
+.measure-wide { max-width: 90rem; margin-inline: auto; }
 
 /* The footer's line sits in the same column as the content: centred at the
    page measure, then reading at the open-warrant measure within it. Wearing
@@ -393,17 +398,28 @@ body {
 }
 
 /* One line of orientation per view. A tab bar is the only place a reader
-   arriving from a citation can learn what the catalogue contains. */
+   arriving from a citation can learn what the catalogue contains.
+
+   The band is always present and its line aligns with the page column: it
+   used to be absent on Overview and uncentred everywhere else, so a tab
+   switch moved the start of content on both axes at once. */
 .view-about {
   margin: 0;
   padding: 0.75rem 2rem;
-  max-width: 62rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.view-about-line {
+  /* 68rem, not the page's 72: the band carries its own 2rem side padding where
+     main pads inside its container, so the inner widths must match for the
+     band's line to sit flush with the content edge below it. */
+  max-width: 68rem;
+  margin-inline: auto;
+  min-height: 1.5em;
   font-family: var(--font-display);
   font-size: 1.0625rem;
   line-height: 1.5;
   color: var(--text-secondary);
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
 }
 
 /* Section titles are the only wayfinding inside an entry that runs to nearly
@@ -629,7 +645,8 @@ body {
 .shelf {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  /* The one 20px gap on a site whose every other gap is 24px. */
+  gap: 1.5rem;
   align-items: stretch;
 }
 .shelf-card {
@@ -801,6 +818,20 @@ body {
   }
   .verdicts {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Six unsettled decisions in one column made a 1209px card — a page wearing a
+   card's clothes. Two-up where there is room; the section stays one card, the
+   decisions stop pretending to be a scroll. */
+.unsettled-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+@media (min-width: 64rem) {
+  .unsettled-grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
   }
 }
 

@@ -139,18 +139,22 @@ export function AboutView({ atlas, reasoning }: { atlas: Atlas; reasoning: Reaso
             first of the two made D4 read as "Two defects, both flagged by both
             councils." and nothing else — a heading, a sentence of throat-clearing,
             and no decision. */}
-        {atlas.openDecisions.map((d) => (
-          <div key={d.title} className="mb-5 last:mb-0">
-            <Note kind={d.blocking ? "finding" : "boundary"} title={d.title}>
-              {d.problem}
-            </Note>
-            {d.fix && (
-              <p className="w-open m-0 mt-1.5 pl-4">
-                <Editorial>{d.fix}</Editorial>
-              </p>
-            )}
-          </div>
-        ))}
+        {/* instrument: a grid of decision cards is not prose and must not
+            inherit prose's 44rem measure — two-up inside it was 320px columns. */}
+        <div className="unsettled-grid instrument">
+          {atlas.openDecisions.map((d) => (
+            <div key={d.title}>
+              <Note kind={d.blocking ? "finding" : "boundary"} title={d.title}>
+                {d.problem}
+              </Note>
+              {d.fix && (
+                <p className="w-open m-0 mt-1.5 pl-4">
+                  <Editorial>{d.fix}</Editorial>
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
         <p className="mt-4 mb-0">
           <Editorial>
             A three-entry scaffold is not a fifty-entry corpus. The useful question is which problems get more

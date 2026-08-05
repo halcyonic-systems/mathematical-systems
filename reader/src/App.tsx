@@ -153,10 +153,11 @@ export default function App() {
         }
         onSelect={setView}
       />
-      {(() => {
-        const about = [...TABS, ...META_TABS].find((t) => t.id === view)?.about;
-        return about ? <p className="view-about">{about}</p> : null;
-      })()}
+      {/* Always rendered, so the start of content sits at the same height on
+          every view — the band with no line is still the band. */}
+      <div className="view-about">
+        <p className="view-about-line m-0">{[...TABS, ...META_TABS].find((t) => t.id === view)?.about}</p>
+      </div>
 
       <div className="flex">
         {view === "read" && (
