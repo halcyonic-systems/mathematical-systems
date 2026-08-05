@@ -93,6 +93,20 @@ export default function App() {
     if (!window.location.hash) window.scrollTo({ top: 0 });
   }, [view]);
 
+  // Every view titles its own tab. One <title> across seven routes made
+  // history unreadable and every shared link preview identical — on an
+  // artefact whose URLs exist to be sent to someone. An open entry names
+  // itself; a missing one says so.
+  useEffect(() => {
+    const base = "Atlas — Mathematical Systems";
+    const label = [...TABS, ...META_TABS].find((t) => t.id === view)?.label;
+    const entry = view === "read" ? atlas?.entries.find((e) => e.iri === reading)?.label : null;
+    document.title =
+      view === "overview" ? base
+      : view === "read" ? `${entry ?? "No such entry"} · ${base}`
+      : `${label} · ${base}`;
+  }, [view, reading, atlas]);
+
   if (error)
     return (
       <main className="p-10">
