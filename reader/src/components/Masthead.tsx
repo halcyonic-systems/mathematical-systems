@@ -2,10 +2,12 @@
  * The identity band, and the view switcher beneath it.
  *
  * The band is the fleet's identity device: any page with a name opens on a
- * filled full-bleed masthead. The switcher is a real tablist rather than a row
- * of buttons, so arrow keys work and assistive technology is told which view is
- * current — this is a comparison instrument, and moving between views is the
- * main thing a reader does.
+ * filled full-bleed masthead. The switcher is a row of real links, not tabs:
+ * every view has a canonical URL that exists to be sent to someone (route.ts),
+ * and a <button role="tab"> denies the reader everything an address affords —
+ * middle-click, copy-link, a crawler's path. It also announced tabs that
+ * controlled no tabpanel, which is worse ARIA than none. aria-current="page"
+ * tells assistive technology which view this is; the browser handles the rest.
  */
 import type { ReactNode } from "react";
 
@@ -54,6 +56,7 @@ export function Tabs<T extends string>({
   tabs,
   meta = [],
   active,
+  hrefOf,
   onSelect,
 }: {
   tabs: { id: T; label: string }[];
@@ -61,28 +64,27 @@ export function Tabs<T extends string>({
       the right, in the quiet ink — peers for the keyboard, not for the eye. */
   meta?: { id: T; label: string }[];
   active: T;
+  /** The canonical URL of a view — the same one route.ts would put in the
+      address bar, so a middle-click and a plain click land in the same place. */
+  hrefOf: (id: T) => string;
   onSelect: (id: T) => void;
 }) {
-  const all = [...tabs, ...meta];
-  const move = (delta: number) => {
-    const i = all.findIndex((t) => t.id === active);
-    onSelect(all[(i + delta + all.length) % all.length].id);
-  };
-  const button = (t: { id: T; label: string }, extra = "") => (
-    <button
+  const link = (t: { id: T; label: string }, extra = "") => (
+    <a
       key={t.id}
-      role="tab"
-      aria-selected={active === t.id}
-      tabIndex={active === t.id ? 0 : -1}
-      onClick={() => onSelect(t.id)}
-      onKeyDown={(e) => {
-        if (e.key === "ArrowRight") move(1);
-        if (e.key === "ArrowLeft") move(-1);
+      href={hrefOf(t.id)}
+      aria-current={active === t.id ? "page" : undefined}
+      onClick={(e) => {
+        // A modified click is a request to the browser (new tab, new window,
+        // download), not to the app. Only a plain left click stays in the SPA.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        onSelect(t.id);
       }}
-      className={`tab px-4 py-3 text-sm cursor-pointer bg-transparent${extra}`}
+      className={`tab px-4 py-3 text-sm no-underline${extra}`}
     >
       {t.label}
-    </button>
+    </a>
   );
   return (
     <nav
@@ -90,9 +92,9 @@ export function Tabs<T extends string>({
       style={{ background: "var(--bg-secondary)", borderBottom: "1px solid var(--border)" }}
       className="px-8 flex gap-1 sticky top-0 z-10"
     >
-      <div role="tablist" className="flex gap-1 flex-1">
-        {tabs.map((t) => button(t))}
-        {meta.map((t) => button(t, " tab-meta"))}
+      <div className="flex gap-1 flex-1">
+        {tabs.map((t) => link(t))}
+        {meta.map((t) => link(t, " tab-meta"))}
       </div>
     </nav>
   );

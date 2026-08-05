@@ -469,7 +469,7 @@ body {
   color: var(--text-primary);
   background: var(--bg-surface);
 }
-.tab[aria-selected="true"] {
+.tab[aria-current="page"] {
   color: var(--text-primary);
   border-bottom-color: var(--accent);
   font-weight: 600;

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { EntryRail, Masthead, OpenQuestions, Register, Tabs } from "./components";
+import { href } from "./route";
 import { useStore, type View } from "./store";
 import { FrontMatter } from "./FrontMatter";
 import { AboutView } from "./About";
@@ -118,7 +119,7 @@ export default function App() {
         subtitle="Formal definitions of “system,” and the maps between them"
         count={`${atlas.entries.length} entries`}
       />
-      <Tabs tabs={TABS} meta={META_TABS} active={view} onSelect={setView} />
+      <Tabs tabs={TABS} meta={META_TABS} active={view} hrefOf={(v) => href({ view: v })} onSelect={setView} />
       {(() => {
         const about = [...TABS, ...META_TABS].find((t) => t.id === view)?.about;
         return about ? <p className="view-about">{about}</p> : null;
