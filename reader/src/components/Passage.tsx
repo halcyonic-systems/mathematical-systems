@@ -86,8 +86,15 @@ export function InPage({
 
   return (
     <>
+      {/* Focusable and named: a scroll region a keyboard cannot reach and a
+          screen reader cannot announce hides 40% of its content from both.
+          No edge fade — colour arrives as a filled region with an edge, and
+          the caption below already says the page continues both ways. */}
       <div
         ref={box}
+        tabIndex={0}
+        role="region"
+        aria-label="The page around the located span, from the source"
         className="overflow-y-auto pr-2 relative"
         style={{ maxHeight: "22rem", fontFamily: "var(--font-display)", fontSize: "1.05rem", lineHeight: 1.6 }}
       >

@@ -29,11 +29,18 @@ export default defineConfig({
         const html = readFileSync("dist/index.html", "utf8");
         const escape = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         const BASE_TITLE = "Atlas — Mathematical Systems";
+        const ORIGIN = "https://math.systems";
+        // Canonical + OG ride the same shells: a shared deep link previews
+        // with its own title and resolves to one canonical address.
         const shell = (dir: string, title: string) => {
+          const full = `${escape(title)} · ${BASE_TITLE}`;
           mkdirSync(`dist/${dir}`, { recursive: true });
           writeFileSync(
             `dist/${dir}/index.html`,
-            html.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)} · ${BASE_TITLE}</title>`),
+            html.replace(
+              /<title>[^<]*<\/title>/,
+              `<title>${full}</title>\n    <link rel="canonical" href="${ORIGIN}/${dir}" />\n    <meta property="og:title" content="${full}" />\n    <meta property="og:type" content="article" />\n    <meta property="og:url" content="${ORIGIN}/${dir}" />`,
+            ),
           );
         };
         for (const [seg, label] of Object.entries({
