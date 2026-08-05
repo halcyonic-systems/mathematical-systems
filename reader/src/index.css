@@ -283,6 +283,63 @@ body {
 /* Structure has to be visible from arm's length on a 3,000px page. */
 .rule-top { border-top: 1px solid var(--border); }
 
+/* ---------------------------------------------------------------------------
+   CRITICAL EDITION -- the apparatus stands in a margin beside the text it
+   annotates, rather than padding out a card 40% wider than its own ink. Text
+   holds two-thirds, apparatus one-third; the text column still self-caps at
+   its warrant's reading measure, so this sets proportion, not a new width.
+   Instruments (a grid, a quiver) take no aside and keep the full card.
+   --------------------------------------------------------------------------- */
+.critical-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+/* Grid tracks default to their content's min-content width, not the fraction
+   they were given -- a passage held to --measure-verbatim still reports that
+   as its minimum, so the 2fr column refused to shrink below it and pushed the
+   whole card past the viewport at narrow widths. Both children must be told
+   they are allowed to be narrower than their own content. */
+.critical-text,
+.critical-apparatus {
+  min-width: 0;
+}
+/* The grid must escape the warrant cap on its own container -- the same
+   pattern .instrument already uses to escape a prose measure -- or the whole
+   card, apparatus included, shrinks to the width of a single paragraph. */
+.pad-block:has(.critical-grid) {
+  max-width: none;
+}
+.critical-apparatus {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--hairline);
+}
+.critical-apparatus-item {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.critical-apparatus-label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+@media (max-width: 64rem) {
+  .critical-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .critical-apparatus {
+    padding-left: 0;
+    padding-top: 1.125rem;
+    border-left: none;
+    border-top: 1px solid var(--hairline);
+  }
+}
+
 /* An instrument is not prose and must not inherit prose's measure.
 
    The warrant classes cap their body at 44rem, which is right for a paragraph

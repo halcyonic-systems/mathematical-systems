@@ -152,13 +152,36 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
       <Section
         title="The passage"
         warrant="source"
-        note={bearer?.label}
+        aside={
+          <>
+            {bearer && (
+              <div className="critical-apparatus-item">
+                <span className="eyebrow critical-apparatus-label">Stated in</span>
+                {bearer.label}
+                {bearer.identifiers.length > 0 && <> · {bearer.identifiers.join(" · ")}</>}
+              </div>
+            )}
+            <div className="critical-apparatus-item">
+              <span className="eyebrow critical-apparatus-label">Transcription</span>
+              <TranscriptBadge status={t?.status ?? "no-verbatim"} source={t?.source} />
+            </div>
+            {entry.sourceLocation && (
+              <div className="critical-apparatus-item">
+                <span className="eyebrow critical-apparatus-label">Location</span>
+                {entry.sourceLocation}
+              </div>
+            )}
+            <div className="critical-apparatus-item">
+              <span className="eyebrow critical-apparatus-label">Provenance</span>
+              <div className="mb-1">
+                <EvidenceBadge code={entry.evidenceCode} />
+              </div>
+              {entry.encodedBy} · {entry.encodedOn}
+            </div>
+          </>
+        }
       >
-        <Passage
-          text={entry.verbatim}
-          location={entry.sourceLocation}
-          caption={<TranscriptBadge status={t?.status ?? "no-verbatim"} source={t?.source} />}
-        />
+        <Passage text={entry.verbatim} />
         {entry.authorCaveat && (
           <Note kind="finding" title="The author's own caveat">
             {entry.authorCaveat}
@@ -239,23 +262,34 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
         )}
       </Section>
 
-      <Section title="Provenance" warrant="decided">
-        <p className="m-0 flex items-center gap-3 flex-wrap">
-          <EvidenceBadge code={entry.evidenceCode} />
-          <span>
-            {entry.encodedBy} · {entry.encodedOn}
-          </span>
-        </p>
-        {bearer && (
-          <p className="mt-3 mb-0">
-            {bearer.label}
-            {bearer.identifiers.length > 0 && <> · {bearer.identifiers.join(" · ")}</>}
-          </p>
-        )}
-      </Section>
-
       {entry.annotation.length > 0 && (
-        <Section title="Encoder's apparatus" warrant="decided" note="written into the entry, not derived">
+        <Section
+          title="Encoder's apparatus"
+          warrant="decided"
+          note="written into the entry, not derived"
+          aside={
+            <>
+              {entry.primitives.length > 0 && (
+                <div className="critical-apparatus-item">
+                  <span className="eyebrow critical-apparatus-label">Primitives in play</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {entry.primitives.map((p) => (
+                      <Chip key={p} tone="quiet" {...doors.primitive(p)} title="Open this primitive's census row">
+                        {prims.get(p)?.label ?? localName(p)}
+                      </Chip>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {(entry.admits.length > 0 || entry.refuses.length > 0) && (
+                <div className="critical-apparatus-item">
+                  <span className="eyebrow critical-apparatus-label">Ruled examples</span>
+                  {entry.admits.length} admitted, {entry.refuses.length} refused — see "What it admits and refuses" above.
+                </div>
+              )}
+            </>
+          }
+        >
           {entry.annotation.map((b, i) => (
             <Note key={i} kind={classifyNote(b.kind, b.title)} title={b.title}>
               {unwrap(b.body)}
