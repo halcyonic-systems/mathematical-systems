@@ -12,9 +12,9 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-atlas:MDHC a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, human-checked"@en ;
-    skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
@@ -113,7 +113,12 @@ insisted on. The distinction is his, not ours."""@en .
 
 entry:bertalanffy-1972-set-in-interrelation a atlas:FormalSystemDefinition ;
     rdfs:label "Bertalanffy (1972), The History and Status of General Systems Theory, p. 417"@en ;
-    rdfs:comment """WHY THE 1972 ARTICLE AND NOT THE 1968 BOOK. The book is the canonical
+    rdfs:comment """HVP: the page was read against this transcription on 2026-08-05, including
+the two things a paraphrase would smooth away — that it prints "may be defined" rather than
+"can be", and that "and with the environment" is really there. The second is the clause that
+distinguishes this definition from the 1968 book's, so the whole entry turns on it.
+
+WHY THE 1972 ARTICLE AND NOT THE 1968 BOOK. The book is the canonical
 citation, and its ch. 3 (p. 55) gives the same definition verbally — "a complex of interacting
 elements" — followed by the differential-equation formalisation, eq. (3.1). The only copy of
 the book available to this encoding is an OCR whose ligatures are systematically damaged and
@@ -145,8 +150,8 @@ catalogue.""" ;
     atlas:displayForm "A system may be defined as a set of elements standing in interrelation among themselves and with the environment." ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-05"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape" ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#Bertalanffy72Shape" ;
     atlas:invokesPrimitive prim:element,
         prim:environment,
         prim:relation,
@@ -408,6 +413,10 @@ obo:BFO_0000040 a owl:Class ;
     rdfs:subClassOf obo:BFO_0000004 ;
     skos:definition "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en .
 
+atlas:MDHC a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, human-checked"@en ;
+    skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
+
 atlas:RetiredTerm a owl:Class ;
     rdfs:label "Retired Term"@en ;
     skos:definition """A tombstone: an IRI this catalogue once served as a live term and will
@@ -444,8 +453,16 @@ case:bertalanffy-organism a atlas:Example ;
     rdfs:comment """DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the
 entry's definition is from the 1972 article; the case is recorded here because it is
 Bertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.
-Its location is chapter-level and its grade is MDU: the sentence comes from an OCR of the book
-and the page has not been checked. Raising it needs the same read as the entry.
+
+MDHC, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: a human located "Any organism is a system"
+on p. 209 of the book on 2026-08-05, so the page and the ruling itself are confirmed. The
+remainder of the sentence — "that is, a dynamic order of parts and processes standing in
+mutual interaction" — is still as the OCR gives it and has not been read word for word. HVP
+needs that last step.
+
+The page number comes from a Kindle edition reporting print-equivalent pagination; the same
+edition's p. 56 for eq. (3.1) matches the print index's "mathematical definition, 56-60",
+which is the corroboration for trusting its numbering here.
 
 NOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex
 "can be built up, step by step, by putting together the first separate elements" — merely
@@ -455,9 +472,9 @@ writes the verdict sentence, and encoding an implication as a ruling would put w
 mouth. It belongs to the mapping layer.""" ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
     atlas:encodedOn "2026-08-05"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "an organism" ;
-    atlas:sourceLocation "General System Theory (1968), ch. 8, quoting Bertalanffy 1949a p. 11" ;
+    atlas:sourceLocation "General System Theory (1968), p. 209, quoting Bertalanffy 1949a p. 11" ;
     atlas:verbatim "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction" .
 
 case:bunge-events-ordered a atlas:Example ;
@@ -583,10 +600,6 @@ obo:BFO_0000002 a owl:Class ;
 skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;
     skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:TestObject a owl:Class ;
     rdfs:label "Test Object"@en ;
@@ -740,11 +753,11 @@ one. Reified rather than recorded as a string on the entry, because an example i
 several claims are made about -- where it appears in the source, how the encoding was
 established, and which shared case it instantiates."""@en .
 
-atlas:HVP a atlas:EvidenceCode ;
-    rdfs:label "human-verified against primary text"@en ;
-    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
-
 skos:Concept a owl:Class ;
     rdfs:label "Concept"@en ;
     skos:definition "An idea or notion; a unit of thought."@en .
+
+atlas:HVP a atlas:EvidenceCode ;
+    rdfs:label "human-verified against primary text"@en ;
+    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 

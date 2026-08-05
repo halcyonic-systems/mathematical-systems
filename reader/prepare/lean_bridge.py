@@ -45,7 +45,19 @@ def _docs_by_decl(src):
     return out
 
 
-def parse_shape(path):
+def parse_shape(path, want=None):
+    """`want` names which shape to read when the file declares more than one.
+
+    A file holds one shape per definition, not one per author: ShapeMesarovic
+    carries Def 1.2's discrete quiver and Def 1.4's span, and ShapeBertalanffy
+    carries the 1968 and 1972 definitions, which differ by a position. Without
+    `want` this read the FIRST `abbrev *Shape` and merged the positions and
+    arrows of every inductive in the file — reporting one shape that is the union
+    of two and belongs to neither.
+
+    Selection is by the naming convention every shape file in the development
+    follows: `XShape` is built from `XPosition` and `XArrow`.
+    """
     src = pathlib.Path(path).read_text()
     docs = _docs_by_decl(src)
 
@@ -56,8 +68,14 @@ def parse_shape(path):
         h = re.search(r"^#\s*(.+)$", module_doc, re.M)
         title = h.group(1).strip() if h else ""
 
+    declared = re.findall(r"abbrev\s+(\w+Shape)\s*:=", src)
+    chosen = want if want in declared else (declared[0] if declared else None)
+    prefix = chosen[: -len("Shape")] if chosen else None
+
     positions, arrows, position_type = [], [], None
     for m in INDUCTIVE.finditer(src):
+        if prefix and m.group(1) not in (prefix + "Position", prefix + "Arrow"):
+            continue
         name, body = m.group(1), m.group(2)
         doc = docs.get(name, "")
         notes = _bullets(doc)
@@ -77,13 +95,13 @@ def parse_shape(path):
                     }
                 )
 
-    shape = re.search(r"abbrev\s+(\w+Shape)\s*:=", src)
     return {
         "file": pathlib.Path(path).name,
         "title": title,
         "moduleDoc": module_doc,
         "positionType": position_type,
-        "shape": shape.group(1) if shape else None,
+        "shape": chosen,
+        "declaredShapes": declared,
         "positions": positions,
         "arrows": arrows,
         # The convention the author states, when stated. Direction is the whole
@@ -106,12 +124,13 @@ def resolve(spec, foundations_root):
     path = pathlib.Path(foundations_root) / rel
     if not path.is_file():
         return {"error": f"no such file: {rel}"}
-    shape = parse_shape(path)
+    shape = parse_shape(path, want=decl or None)
     shape["spec"] = spec
     if decl and shape.get("shape") != decl:
         # A pointer naming a declaration the file does not define is a broken
         # link, and a broken link in a bridge is worse than no bridge.
-        shape["error"] = f"{rel} does not declare {decl} (found {shape.get('shape')})"
+        found = ", ".join(shape.get("declaredShapes") or []) or "none"
+        shape["error"] = f"{rel} does not declare {decl} (declares: {found})"
     if not shape["positions"]:
         shape["error"] = f"no positions parsed from {rel}"
     return shape

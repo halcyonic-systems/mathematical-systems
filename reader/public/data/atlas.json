@@ -6,11 +6,11 @@
       "label": "an organism",
       "gloss": "an organism",
       "verbatim": "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction",
-      "sourceLocation": "General System Theory (1968), ch. 8, quoting Bertalanffy 1949a p. 11",
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "sourceLocation": "General System Theory (1968), p. 209, quoting Bertalanffy 1949a p. 11",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedOn": "2026-08-05",
       "instantiates": null,
-      "note": "DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the\nentry's definition is from the 1972 article; the case is recorded here because it is\nBertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.\nIts location is chapter-level and its grade is MDU: the sentence comes from an OCR of the book\nand the page has not been checked. Raising it needs the same read as the entry.\n\nNOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex\n\"can be built up, step by step, by putting together the first separate elements\" — merely\nsummative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is\narchitecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never\nwrites the verdict sentence, and encoding an implication as a ruling would put words in his\nmouth. It belongs to the mapping layer."
+      "note": "DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the\nentry's definition is from the 1972 article; the case is recorded here because it is\nBertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.\n\nMDHC, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: a human located \"Any organism is a system\"\non p. 209 of the book on 2026-08-05, so the page and the ruling itself are confirmed. The\nremainder of the sentence — \"that is, a dynamic order of parts and processes standing in\nmutual interaction\" — is still as the OCR gives it and has not been read word for word. HVP\nneeds that last step.\n\nThe page number comes from a Kindle edition reporting print-equivalent pagination; the same\nedition's p. 56 for eq. (3.1) matches the print index's \"mathematical definition, 56-60\",\nwhich is the corroboration for trusting its numbering here.\n\nNOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex\n\"can be built up, step by step, by putting together the first separate elements\" — merely\nsummative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is\narchitecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never\nwrites the verdict sentence, and encoding an implication as a ruling would put words in his\nmouth. It belongs to the mapping layer."
     },
     "https://w3id.org/mathematical-systems/atlas/case/bunge-theory": {
       "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-theory",
@@ -171,8 +171,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "05c6dc7+",
-    "repoCommit": "05c6dc7+"
+    "atlasCommit": "51267d0+",
+    "repoCommit": "51267d0+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -183,6 +183,9 @@
       "moduleDoc": "# Shape Category for Klir's S = (T, R)\n\nThe *shape category* `I_Klir` encodes the dependency structure of Klir's\nsystem definition S = (T, R) (Facets of Systems Science, 2001, Eq. 1.1).\n\nThis is the simplest non-discrete shape category in the landscape:\n2 objects and 1 generating arrow. It is the common ancestor of both\nBunge's CES triple and Mobus's 8-tuple — the `rfl` proofs of the\ncommuting triangle trace to both authors inheriting T as `Set α` and\nR as `Set (α × α)` from Klir without changing the mathematical type.\n\n## Construction\n\n- `things`: T — the set of things (thinghood)\n- `relation`: R — the set of relations on T (systemhood)\n- `relation_on_things`: R → T — R is defined over T\n\nA thing becomes a system when you specify which of its parts are related.\nThe single arrow captures this: the relation DEPENDS on the things.",
       "positionType": "KlirPosition",
       "shape": "KlirShape",
+      "declaredShapes": [
+        "KlirShape"
+      ],
       "positions": [
         {
           "name": "things",
@@ -211,6 +214,9 @@
       "moduleDoc": "# Shape Category for Bunge's CES Framework\n\nThe *shape category* `I_Bunge` encodes the dependency structure of Bunge's\nsystem definition σ = ⟨C, E, S⟩ (Treatise on Basic Philosophy Vol. 4, Def 1.2, 1979).\n\n## Construction\n\nWe define a quiver with 3 vertices (the tuple positions) and 3 generating arrows\n(the structural dependencies), then take the free category via `Paths`.\n\n## Arrow Direction Convention\n\nArrows point from the *dependent* to what it *depends on*. This makes a system-as-diagram\n(a functor from the shape category to a data category) covariant.\n\n- S → C: structure is defined over composition\n- S → E: structure is defined over environment\n- E → C: environment acts on composition (Bunge's interaction axiom)",
       "positionType": "BungePosition",
       "shape": "BungeShape",
+      "declaredShapes": [
+        "BungeShape"
+      ],
       "positions": [
         {
           "name": "composition",
@@ -256,16 +262,24 @@
       "file": "ShapeBertalanffy.lean",
       "title": "Shape Category for Bertalanffy's General System Theory",
       "moduleDoc": "# Shape Category for Bertalanffy's General System Theory\n\nThe *shape category* `I_Bertalanffy` encodes the dependency structure of Bertalanffy's\nverbal definition of \"system\".\n\n## Source\n\nBertalanffy (1968), *General System Theory*, ch. 3 \"Some System Concepts\", p. 55:\n\n> \"A system can be defined as a complex of interacting elements. Interaction means that\n> elements, p, stand in relations, R, so that the behavior of an element p in R is different\n> from its behavior in another relation, R'.\"\n\nTwo positions are named in that sentence — the elements `p` and the relations `R` — and one\ndependency: the relations are *on* the elements.\n\n## Arrow direction — DECLARED, not assumed\n\n`interrelation_on_elements : interrelation ⟶ elements`, read aloud: **\"the interrelation\ndepends on the elements\"** — you cannot state R without already having the p's it holds\nbetween. This is the same convention as every other shape in this development (Klir's\n`relation_on_things`, Mobus's `network_on_components`): an arrow points from the dependent\nposition to the position it depends on. It is NOT a function arrow and NOT a flow arrow.\n\n## What this shape does NOT capture — the predicate gap\n\nBertalanffy's interaction clause carries a condition Klir's `S = (T, R)` does not: the\nbehaviour of an element **must differ** across relations. That is a predicate constraining\nwhich R qualify, not a position and not a dependency, so the quiver cannot express it and\n`bertalanffyToKlir` below discards it. The two definitions therefore have isomorphic shapes\n(`shapeIso`) while making *different* demands — the shape functor is not injective on\ndefinitional content.\n\nThis is a limit of the shape method, exhibited rather than asserted: `shapeIso` proves the\nstructures correspond, and this paragraph names exactly what survives the correspondence and\nwhat does not. Compare Bunge's near-identical difference-making test — \"unlike a mere\nrelation, a connection makes some difference to its relata\" (1979, ch. 1 §1.2) — which Bunge\n*does* promote to definitional force via the nonempty-bondage requirement, and which\n`ShapeBunge` likewise cannot see.\n\n## The 1972 restatement is a different shape\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417, adds a third position:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nThat definition would carry a second arrow (`interrelation ⟶ environment`) and is deliberately\nNOT encoded here — this file is the 1968 shape. The 1968 → 1972 pair is a definition revising\nitself, and the two shapes are the record of what the revision changed.",
-      "positionType": "BertalanffyPosition",
-      "shape": "BertalanffyShape",
+      "positionType": "Bertalanffy72Position",
+      "shape": "Bertalanffy72Shape",
+      "declaredShapes": [
+        "BertalanffyShape",
+        "Bertalanffy72Shape"
+      ],
       "positions": [
         {
           "name": "elements",
-          "doc": "p — the elements composing the complex"
+          "doc": "the set of elements"
         },
         {
           "name": "interrelation",
-          "doc": "R — the relations in which those elements stand"
+          "doc": "the relations they stand in"
+        },
+        {
+          "name": "environment",
+          "doc": "what they also stand in interrelation *with*"
         }
       ],
       "arrows": [
@@ -273,11 +287,17 @@
           "name": "interrelation_on_elements",
           "from": "interrelation",
           "to": "elements",
-          "doc": "R depends on p — \"elements, p, stand in relations, R\", so the"
+          "doc": ""
+        },
+        {
+          "name": "interrelation_on_environment",
+          "from": "interrelation",
+          "to": "environment",
+          "doc": ""
         }
       ],
       "arrowConvention": "",
-      "spec": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
+      "spec": "Systems/Category/ShapeBertalanffy.lean#Bertalanffy72Shape",
       "status": "resolved"
     }
   },
@@ -535,11 +555,16 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/relation",
         "https://w3id.org/mathematical-systems/atlas/primitive/set"
       ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-05",
-      "formalisedAs": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
+      "formalisedAs": "Systems/Category/ShapeBertalanffy.lean#Bertalanffy72Shape",
       "annotation": [
+        {
+          "kind": "prose",
+          "title": null,
+          "body": "HVP: the page was read against this transcription on 2026-08-05, including\nthe two things a paraphrase would smooth away — that it prints \"may be defined\" rather than\n\"can be\", and that \"and with the environment\" is really there. The second is the clause that\ndistinguishes this definition from the 1968 book's, so the whole entry turns on it."
+        },
         {
           "kind": "section",
           "title": "WHY THE 1972 ARTICLE AND NOT THE 1968 BOOK",
