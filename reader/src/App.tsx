@@ -133,7 +133,19 @@ export default function App() {
         subtitle="Formal definitions of “system,” and the maps between them"
         count={`${atlas.entries.length} entries`}
       />
-      <Tabs tabs={TABS} meta={META_TABS} active={view} hrefOf={(v) => href({ view: v })} onSelect={setView} />
+      {/* The Definitions link must name an entry: href({view:"read"}) with no
+          entry falls back to the root, so a middle-click on Definitions would
+          have opened the Overview. It carries the entry being read, or the
+          first entry for a reader who has not opened one yet. */}
+      <Tabs
+        tabs={TABS}
+        meta={META_TABS}
+        active={view}
+        hrefOf={(v) =>
+          href({ view: v, entry: v === "read" ? (reading ?? atlas.entries[0]?.iri ?? "").split("/").pop() : undefined })
+        }
+        onSelect={setView}
+      />
       {(() => {
         const about = [...TABS, ...META_TABS].find((t) => t.id === view)?.about;
         return about ? <p className="view-about">{about}</p> : null;
