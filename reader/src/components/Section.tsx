@@ -26,12 +26,18 @@ export function Section({
   note,
   level = 2,
   children,
+  aside,
 }: {
   title: string;
   warrant: Warrant;
   note?: ReactNode;
   level?: 2 | 3;
   children: ReactNode;
+  /** A critical edition's margin: provenance, badges, locations, cross-
+      references -- whatever currently pads out a prose section's width. Only
+      for sections whose content is text meant to be read; an instrument (a
+      grid, a quiver) spans the full card instead and takes no aside. */
+  aside?: ReactNode;
 }) {
   const Heading = level === 2 ? "h2" : "h3";
   const id = slug(title);
@@ -52,7 +58,16 @@ export function Section({
         </Heading>
         {note && <span className="text-xs section-note">{note}</span>}
       </div>
-      <div className={`pad-block ${warrantClass[warrant]}`}>{children}</div>
+      <div className={`pad-block ${warrantClass[warrant]}`}>
+        {aside ? (
+          <div className="critical-grid">
+            <div className="critical-text">{children}</div>
+            <aside className="critical-apparatus type-ui">{aside}</aside>
+          </div>
+        ) : (
+          children
+        )}
+      </div>
     </section>
   );
 }
