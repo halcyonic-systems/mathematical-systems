@@ -9,11 +9,12 @@ the test object `obj:ordered-non-bonding`, and the build finds the conflict rath
 told about it. This document is now the *argument* for the identification, not the record of the
 clash — `atlas:arguedIn` on the test object points here.
 
-**The identification is graded `MDU`.** That Klir's ordered books and Bunge's ordered events are
-cases of one object follows from reading Def. 1.2's bonding requirement alongside Klir's p. 5,
-and no human has checked that reading against both sources. The derived conflict inherits that
-grade and the reader says so. Confirming it raises the test object to `HVP`, and the conflict
-with it.
+**The identification is graded `HVP`** (raised from `MDU` on 2026-08-05). A human read both
+primary texts against the claim: Bunge's mere-relation/connection distinction, Definition 1.1
+with its Example block, and Definition 1.2(iii)'s 𝔅_A(σ,t) ≠ ∅ condition, alongside Klir's
+p. 5 criterion and ordering passage. Both halves confirmed — Klir's admission is stated as a
+general principle in his own voice, and Bunge's refusal is bond-absence, not member-kind. The
+derived conflict inherits the grade.
 
 ---
 
@@ -65,10 +66,22 @@ and this mapping is where the asymmetry is stated rather than flattened into a m
 
 ## Why the qualifier is load-bearing
 
-Bunge's Definition 1.1 requires "at least two different **connected** things", and
-Definition 1.2 requires the bonding set 𝔅_A(σ,t) ≠ ∅. Ordering is a relation; bonding is a
-relation in which one member acts on another. A shelf of books ordered by author carries the
-first and not the second.
+Bunge's refusal runs through his whole apparatus, not one clause (attribution sharpened during
+the 2026-08-05 verifying read):
+
+1. **The aggregate/system contrast** (ch. 1, p. 4): an aggregate is a collection "not held
+   together by bonds, and therefore lacks integrity or unity" — the refusal stated in plain
+   words before any formal machinery.
+2. **The mere-relation/connection distinction** (Sec. 1.2): a connection "makes some
+   difference to its relata"; Bunge's own example of a mere relation is *being older* — an
+   ordering.
+3. **Definition 1.1**: "at least two different **connected** things".
+4. **Definition 1.2(iii)**: the structure definition carries 𝔅_A(σ,t) ≠ ∅ — every system's
+   structure contains at least one bond. (Def. 1.2 presupposes σ ∈ Σ; the excluding is done
+   by 1.1 and the connection concept, and 1.2(iii) encodes it.)
+
+Ordering is a relation; bonding is a relation in which one member acts on another. A shelf of
+books ordered by author carries the first and not the second.
 
 So Bunge refuses ordered *books* for the same reason he refuses ordered *events*. The
 disagreement is not about whether events can compose a system. It is about whether a relation
@@ -77,6 +90,15 @@ suffices, or whether it must be a relation of action.
 Naming the case "an ordered collection" would understate this and invite the reply that
 Bunge was only excluding events. The case is **a collection ordered by a non-bonding
 relation** (see P2).
+
+## A second witness pair, found during the verifying read
+
+Bunge's paradigm mere relation is *being older* (Sec. 1.2). Klir's closing example on p. 5 is
+ordering the members of a human population *by their dates of birth* — which he says yields a
+system. Same relation (age order), same kind of carrier (people): one author's system-maker is
+the other's paradigm non-bond. This is a tighter clash than books/events — a candidate second
+test object, or a strengthening witness on this one, once P2/P4 allow it. Recorded here so the
+observation is not lost; not yet encoded.
 
 ## Every "lost" owes a witness
 

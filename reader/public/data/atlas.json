@@ -89,11 +89,11 @@
     "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding": {
       "iri": "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding",
       "id": "ordered-non-bonding",
-      "label": "a collection ordered by a non-bonding relation",
-      "scopeNote": "Members standing in an ordering, with no causal action between them: books\non a shelf by author, events in a sequence.\n\nTHE QUALIFIER IS LOAD-BEARING. Bunge refuses this case because ordering is not bonding, not\nbecause the members are events — Definition 1.2 requires a nonempty bonding set, and a shelf of\nbooks ordered by author carries a relation and no bonds. Naming the object \"an ordered\ncollection\" would understate the disagreement and invite the reply that he was only excluding\nevents.",
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "label": "an ordered but unconnected collection",
+      "scopeNote": "Members standing in an ordering, with no causal action between them: books\non a shelf by author, events in a sequence.\n\nTHE QUALIFIER IS LOAD-BEARING. Bunge refuses this case because ordering is not bonding, not\nbecause the members are events. The refusal runs through his whole apparatus: an aggregate is\na collection \"not held together by bonds\" (ch. 1 p. 4), Definition 1.1 requires the members\nCONNECTED — where a connection, unlike a mere relation \"such as that of being older\", has at\nleast one relatum acting on the other (Sec. 1.2) — and Definition 1.2(iii) carries the\nnonempty-bondage condition 𝔅_A(σ,t) ≠ ∅ into every system's structure. A shelf of books\nordered by author carries a relation and no bonds. \"Unconnected\" in the label is Definition\n1.1's own word; a plainer \"an ordered collection\" would understate the disagreement and invite\nthe reply that he was only excluding events.",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "arguedIn": "mappings/ordered-collection.md",
-      "note": "MDU, DELIBERATELY. The identification is model-drafted: that Klir's ordered\nbooks and Bunge's ordered events are cases of one object follows from reading Bunge's Definition\n1.2 alongside Klir's p. 5, and no human has checked that reading against both sources. The\nconflict it derives is therefore real machinery resting on an unchecked claim, and the reader\nsays so rather than presenting the conflict as established.\n\nRAISING IT: read Def. 1.2's bonding requirement and Klir's ordering clause, confirm that the\ntwo cases are the same object, and the code becomes HVP. Until then a derived conflict from\nthis object inherits MDU."
+      "note": "HVP as of 2026-08-05: the identification was model-drafted (2026-08-03) and\nhas now been human-verified against both primary texts — Bunge's mere-relation/connection\ndistinction, Definition 1.1, its Example block and Definition 1.2(iii)'s 𝔅≠∅ condition read\nagainst Klir p. 5's criterion and ordering passage. The verifying read confirmed that Klir's\nadmission is stated as a general principle (\"any ordering of a set is a relation defined on\nthe set\") and that Bunge's refusal is bond-absence, not member-kind. The derived conflict\ninherits this grade."
     }
   },
   "openDecisions": [
@@ -135,8 +135,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "f6d3a39",
-    "repoCommit": "f6d3a39+"
+    "atlasCommit": "b056438+",
+    "repoCommit": "b056438+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -580,8 +580,8 @@
   "conflicts": [
     {
       "object": "https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding",
-      "label": "a collection ordered by a non-bonding relation",
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "label": "an ordered but unconnected collection",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "arguedIn": "mappings/ordered-collection.md",
       "admittedBy": [
         {

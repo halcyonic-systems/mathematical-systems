@@ -354,23 +354,26 @@ object with one ruling compares nothing and a test object with none is invented.
 obj:ordered-non-bonding
     a atlas:TestObject ;
     skos:inScheme atlas:TestObjectScheme ;
-    skos:prefLabel "a collection ordered by a non-bonding relation"@en ;
+    skos:prefLabel "an ordered but unconnected collection"@en ;
     skos:scopeNote """Members standing in an ordering, with no causal action between them: books
 on a shelf by author, events in a sequence.
 
 THE QUALIFIER IS LOAD-BEARING. Bunge refuses this case because ordering is not bonding, not
-because the members are events — Definition 1.2 requires a nonempty bonding set, and a shelf of
-books ordered by author carries a relation and no bonds. Naming the object "an ordered
-collection" would understate the disagreement and invite the reply that he was only excluding
-events."""@en ;
-    atlas:evidenceCode atlas:MDU ;
+because the members are events. The refusal runs through his whole apparatus: an aggregate is
+a collection "not held together by bonds" (ch. 1 p. 4), Definition 1.1 requires the members
+CONNECTED — where a connection, unlike a mere relation "such as that of being older", has at
+least one relatum acting on the other (Sec. 1.2) — and Definition 1.2(iii) carries the
+nonempty-bondage condition 𝔅_A(σ,t) ≠ ∅ into every system's structure. A shelf of books
+ordered by author carries a relation and no bonds. "Unconnected" in the label is Definition
+1.1's own word; a plainer "an ordered collection" would understate the disagreement and invite
+the reply that he was only excluding events."""@en ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
     atlas:arguedIn "mappings/ordered-collection.md" ;
-    rdfs:comment """MDU, DELIBERATELY. The identification is model-drafted: that Klir's ordered
-books and Bunge's ordered events are cases of one object follows from reading Bunge's Definition
-1.2 alongside Klir's p. 5, and no human has checked that reading against both sources. The
-conflict it derives is therefore real machinery resting on an unchecked claim, and the reader
-says so rather than presenting the conflict as established.
-
-RAISING IT: read Def. 1.2's bonding requirement and Klir's ordering clause, confirm that the
-two cases are the same object, and the code becomes HVP. Until then a derived conflict from
-this object inherits MDU."""@en .
+    rdfs:comment """HVP as of 2026-08-05: the identification was model-drafted (2026-08-03) and
+has now been human-verified against both primary texts — Bunge's mere-relation/connection
+distinction, Definition 1.1, its Example block and Definition 1.2(iii)'s 𝔅≠∅ condition read
+against Klir p. 5's criterion and ordering passage. The verifying read confirmed that Klir's
+admission is stated as a general principle ("any ordering of a set is a relation defined on
+the set") and that Bunge's refusal is bond-absence, not member-kind. The derived conflict
+inherits this grade."""@en .
