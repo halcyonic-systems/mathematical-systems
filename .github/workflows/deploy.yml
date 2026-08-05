@@ -47,6 +47,11 @@ jobs:
       # Serves from the root: math.systems is the custom domain.
       - run: npm run build
         working-directory: reader
+      # Pages has no native SPA fallback: without a 404.html that is the app,
+      # every /entry/<id> deep link — the addresses w3id resolves through and
+      # papers cite — returns a bare 404.
+      - run: cp dist/index.html dist/404.html
+        working-directory: reader
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
