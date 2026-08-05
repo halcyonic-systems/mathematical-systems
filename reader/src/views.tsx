@@ -39,10 +39,13 @@ import {
   type CellState,
 } from "./components";
 import { useStore } from "./store";
+import { href } from "./route";
 import { TIERS } from "./About";
 import type { Atlas, Reasoning } from "./types";
 
 const byIri = <T extends { iri: string }>(xs: T[]) => new Map(xs.map((x) => [x.iri, x]));
+
+const hrefOfEntry = (e: { iri: string }) => href({ view: "read", entry: e.iri.split("/").pop() ?? "" });
 
 /** "Bunge (1979), Definition 1.1: concrete system" -> "Definition 1.1: concrete system". */
 const distinguishing = (label: string | null) => (label ?? "").replace(/^[^,]*\(\d{4}\),\s*/, "");
@@ -56,6 +59,40 @@ const unwrap = (s: string) => s.replace(/\n(?!\n)/g, " ");
 
 export function ReadView({ atlas }: { atlas: Atlas }) {
   const reading = useStore((s) => s.reading);
+  const missing = useStore((s) => s.missing);
+  const read = useStore((s) => s.read);
+
+  // The address bar asked for an entry the catalogue does not hold. Saying so
+  // is the whole fix: the previous behaviour rendered the first entry under the
+  // requested URL, which told the reader they were reading what they asked for.
+  if (missing) {
+    return (
+      <Section title="No such entry" warrant="open" note="the address names an entry this catalogue does not hold">
+        <p className="mt-0">
+          Nothing in the catalogue is identified as <code className="editorial-code">{missing}</code>. If this
+          address arrived from a citation, the entry may have been renamed or not yet added. The catalogue holds:
+        </p>
+        <ul className="m-0 pl-4">
+          {atlas.entries.map((e) => (
+            <li key={e.iri} className="mb-1">
+              <a
+                className="disclosure"
+                href={hrefOfEntry(e)}
+                onClick={(ev) => {
+                  if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+                  ev.preventDefault();
+                  read(e.iri);
+                }}
+              >
+                {e.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    );
+  }
+
   const entry = atlas.entries.find((e) => e.iri === reading) ?? atlas.entries[0];
   const bearer = byIri(atlas.bearers).get(entry.statedIn ?? "");
   const prims = byIri(atlas.primitives);

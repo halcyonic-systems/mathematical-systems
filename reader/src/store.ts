@@ -12,6 +12,10 @@ type State = {
   /** The entry open in Read. Distinct from `compared` — opening one to read
       must not collapse the comparison you had set up. */
   reading: string | null;
+  /** An entry id the address bar asked for that the catalogue does not hold.
+      Kept so the page can say so: silently rendering the first entry under the
+      requested URL would tell the reader they are reading what they asked for. */
+  missing: string | null;
   /** The entries shown side by side in Compare. */
   compared: string[];
   /** Which import closure the entailments view is reporting on. */
@@ -44,11 +48,16 @@ export const useStore = create<State>((set, get) => {
   const apply = (r: Route, atlas: Atlas | null) => {
     const entries = atlas?.entries ?? [];
     const byId = (id: string) => entries.find((e) => e.id === id)?.iri;
-    const reading = (r.entry && byId(r.entry)) || entries[0]?.iri || null;
+    // An id that resolves opens that entry; no id at all opens the first. An id
+    // that does NOT resolve opens nothing — it is recorded as missing, and the
+    // read view says so rather than serving a different entry under this URL.
+    const hit = r.entry ? byId(r.entry) : undefined;
+    const reading = hit ?? (r.entry ? null : entries[0]?.iri ?? null);
     const compared = r.entries?.map(byId).filter((x): x is string => !!x);
     return {
       view: r.view,
       reading,
+      missing: r.entry && !hit ? r.entry : null,
       ...(compared?.length ? { compared } : {}),
       ...(r.closure ? { variant: r.closure } : {}),
     };
@@ -60,6 +69,7 @@ export const useStore = create<State>((set, get) => {
     error: null,
     view: "overview",
     reading: null,
+    missing: null,
     compared: [],
     variant: "shipped",
 
@@ -90,7 +100,7 @@ export const useStore = create<State>((set, get) => {
     },
 
     read: (iri) => {
-      set({ reading: iri, view: "read" });
+      set({ reading: iri, missing: null, view: "read" });
       go(route({ view: "read", entry: idOf(iri) }));
     },
 
