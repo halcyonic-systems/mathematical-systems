@@ -2,7 +2,7 @@
 
 This is a catalogue of what other people wrote. The bar for adding to it is not
 "is this a good definition" but **"can a stranger check that the source says
-this."** Everything below follows from that.
+this."**
 
 ## The shape of a contribution
 
@@ -15,8 +15,8 @@ Most useful contributions are one of:
 - **A mapping** — a claim about the relation between two or more entries.
 - **A witness** — a concrete example one definition admits and another refuses.
 
-`atlas/docs/adding-an-entry.md` is the procedure. What follows is the standard it
-serves.
+`atlas/docs/adding-an-entry.md` walks through the procedure; this file sets the
+standard.
 
 ## Every entry
 
@@ -88,8 +88,7 @@ change is visible rather than silent.
 If you add a constraint, **add something that fails it.** A check nothing can fail proves
 nothing — the transcription gate ships with a routine that corrupts a verified verbatim
 and requires refusal, and the first version of that routine substituted words absent from
-the passage, so it "verified" an unmodified string and failed the build. That is the
-failure mode this rule exists to catch.
+the passage, so it "verified" an unmodified string and failed the build.
 
 ## Entry ids are part of the contract
 

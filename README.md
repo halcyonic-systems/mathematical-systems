@@ -108,7 +108,7 @@ catalogue into something you can hand to someone.
 /entailments?closure=full                            what follows, under the full CCO closure
 ```
 
-**Why this matters more than it sounds.** A catalogue whose thesis is *check the source
+**Why this matters.** A catalogue whose thesis is *check the source
 yourself* cannot ask readers to take findings on trust. Before, a finding could be described
 and not pointed at.
 
@@ -167,8 +167,7 @@ altering the *transcription* is not.
 
 ## Publishing
 
-Intended to be public at **mathematical.systems**. The repository is not public yet, by
-choice: hygiene and contribution standards first, then the switch.
+Public at **math.systems**, source at `halcyonic-systems/mathematical-systems`.
 
 ```bash
 ./scripts/prepublish.sh      # what must be true before going public, checked not remembered
