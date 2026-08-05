@@ -135,14 +135,39 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "09dd543",
-    "repoCommit": "09dd543"
+    "atlasCommit": "436c0d6",
+    "repoCommit": "436c0d6"
   },
   "publishable": true,
   "contextChars": 800,
   "shapes": {
-    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
-      "status": "none"
+    "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
+      "file": "ShapeKlir.lean",
+      "title": "Shape Category for Klir's S = (T, R)",
+      "moduleDoc": "# Shape Category for Klir's S = (T, R)\n\nThe *shape category* `I_Klir` encodes the dependency structure of Klir's\nsystem definition S = (T, R) (Facets of Systems Science, 2001, Eq. 1.1).\n\nThis is the simplest non-discrete shape category in the landscape:\n2 objects and 1 generating arrow. It is the common ancestor of both\nBunge's CES triple and Mobus's 8-tuple — the `rfl` proofs of the\ncommuting triangle trace to both authors inheriting T as `Set α` and\nR as `Set (α × α)` from Klir without changing the mathematical type.\n\n## Construction\n\n- `things`: T — the set of things (thinghood)\n- `relation`: R — the set of relations on T (systemhood)\n- `relation_on_things`: R → T — R is defined over T\n\nA thing becomes a system when you specify which of its parts are related.\nThe single arrow captures this: the relation DEPENDS on the things.",
+      "positionType": "KlirPosition",
+      "shape": "KlirShape",
+      "positions": [
+        {
+          "name": "things",
+          "doc": "T — the set of things that constitute the system"
+        },
+        {
+          "name": "relation",
+          "doc": "R — the set of relations among those things"
+        }
+      ],
+      "arrows": [
+        {
+          "name": "relation_on_things",
+          "from": "relation",
+          "to": "things",
+          "doc": "R depends on T — the relation is defined over the set of things."
+        }
+      ],
+      "arrowConvention": "",
+      "spec": "Systems/Category/ShapeKlir.lean#KlirShape",
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple": {
       "file": "ShapeBunge.lean",
@@ -188,51 +213,26 @@
       "spec": "Systems/Category/ShapeBunge.lean#BungeShape",
       "status": "resolved"
     },
-    "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
-      "file": "ShapeKlir.lean",
-      "title": "Shape Category for Klir's S = (T, R)",
-      "moduleDoc": "# Shape Category for Klir's S = (T, R)\n\nThe *shape category* `I_Klir` encodes the dependency structure of Klir's\nsystem definition S = (T, R) (Facets of Systems Science, 2001, Eq. 1.1).\n\nThis is the simplest non-discrete shape category in the landscape:\n2 objects and 1 generating arrow. It is the common ancestor of both\nBunge's CES triple and Mobus's 8-tuple — the `rfl` proofs of the\ncommuting triangle trace to both authors inheriting T as `Set α` and\nR as `Set (α × α)` from Klir without changing the mathematical type.\n\n## Construction\n\n- `things`: T — the set of things (thinghood)\n- `relation`: R — the set of relations on T (systemhood)\n- `relation_on_things`: R → T — R is defined over T\n\nA thing becomes a system when you specify which of its parts are related.\nThe single arrow captures this: the relation DEPENDS on the things.",
-      "positionType": "KlirPosition",
-      "shape": "KlirShape",
-      "positions": [
-        {
-          "name": "things",
-          "doc": "T — the set of things that constitute the system"
-        },
-        {
-          "name": "relation",
-          "doc": "R — the set of relations among those things"
-        }
-      ],
-      "arrows": [
-        {
-          "name": "relation_on_things",
-          "from": "relation",
-          "to": "things",
-          "doc": "R depends on T — the relation is defined over the set of things."
-        }
-      ],
-      "arrowConvention": "",
-      "spec": "Systems/Category/ShapeKlir.lean#KlirShape",
-      "status": "resolved"
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
+      "status": "none"
     }
   },
   "transcription": {
-    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
+    "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
       "status": "located",
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
         "whitespace around operators ignored"
       ],
-      "matchedChars": 108,
-      "verbatimChars": 108,
+      "matchedChars": 252,
+      "verbatimChars": 252,
       "context": {
-        "before": "So, the total set of relations among the components of a complex entity may be decomposed into its bondage B A and the set B A of nonbonding relations.\n\nWe can now introduce the notion of the A -environment of a thing x with A -composition 𝒞 A(x) . It will be defined as the set of all things, other than those in 𝒞 A(x) , that act on or are acted upon the latter:\n\\[\nℰ A(x)= y ∈ Θ | (y ∈ 𝒞 A(x) ) &(∃ z)(z ⊏ x &(y ▷ z ∨ z ▷ y)) \\ .\n\\]\n\nFinally the structure of a thing will be defined as the set of all the relations among the thing's components as well as among these and the things in the thing's environment.\n\nWe now have all we need to define the notion of a concrete system:",
-        "match": "definition 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
-        "after": "Fig. 1.1. Two systems with the same composition but different structures and environments.\n\nExample A molecule, a coral reef, a family and a factory are systems. On the other hand a set of states of a thing and a collection of events, even if ordered, are not concrete systems. Symbol: Σ .\n\nAnd now the three characteristics of any system:\ndefinition 1.2 Let σ ∈ Σ be a concrete system and A ⊂ Θ a class of things. Then\n(i) the A -composition of σ at a given time t is the set of its A -parts at t :\n\\[\n𝒞 A(σ, t)= x ∈ A | x ⊏ σ\\ ;\n\\]\n(ii) the A -environment of σ at time t is the set of all things of kind A , not components of σ , that act or are acted on by components of σ at t :\n ℰ A(σ, t)= x ∈ A | x ∉ 𝒞 A(σ, t) &(∃ y) (y ∈ 𝒞 A(σ, t) &(x ▷ y ∨ y ▷ x) ) ; . \n(iii) t"
+        "before": "But systemhood is different from both setness and from\nthinghood: it is an independent category.\n \nTo begin our search for a meaningful definition of the term \"system\" from a\nbroad perspective, let us consult a standard dictionary. We are likely to find that a\nsystem is \"a set or arrangement of things so related or connected as to form a unity\n\nor organic whole\" (Webster's New World Dictionary), although different dictionar-\nies may contain stylistic variations of this particular formulation. It follows from\nthis common-sense definition that the term \"system\" stands, in general, for a set of\nsome things and a relation among the things. Formally, we have\n\n\n \nWhat Is Systems Science? 5",
+        "match": "S = (T, R), (1.1)\n \nwhere S, T, R denote, respectively, a system, a set of things distinguished within S,\nand a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood\nand systemhood properties of S reside in T and R, respectively.",
+        "after": "The common-sense definition of a system, expressed by Eq. (1.1), is rather\nprimitive. This, paradoxically, is its weakness as well as its strength. The definition\nis weak because it is too general and, consequently, of little pragmatic value. It is\nstrong because it encompasses all other, more specific definitions of systems. In\nthis regard, this most general definition of systems provides us with a criterion by\nwhich we can determine whether any given object is a system or not: an object is\na system if and only if it can be described in a form that conforms to Eq. (1.1).\nFor example, a collection of books is not a system, only a set. However, when\nwe organize the books in some way, the collection becomes a system. When we\norder them, for instance, by authors' names, we obtain a system since any ordering\nof a set is a relation defined on the set."
       },
-      "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
+      "source": "klir-facets.md"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple": {
       "status": "located",
@@ -250,21 +250,21 @@
       },
       "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
     },
-    "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
       "status": "located",
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
         "whitespace around operators ignored"
       ],
-      "matchedChars": 252,
-      "verbatimChars": 252,
+      "matchedChars": 108,
+      "verbatimChars": 108,
       "context": {
-        "before": "But systemhood is different from both setness and from\nthinghood: it is an independent category.\n \nTo begin our search for a meaningful definition of the term \"system\" from a\nbroad perspective, let us consult a standard dictionary. We are likely to find that a\nsystem is \"a set or arrangement of things so related or connected as to form a unity\n\nor organic whole\" (Webster's New World Dictionary), although different dictionar-\nies may contain stylistic variations of this particular formulation. It follows from\nthis common-sense definition that the term \"system\" stands, in general, for a set of\nsome things and a relation among the things. Formally, we have\n\n\n \nWhat Is Systems Science? 5",
-        "match": "S = (T, R), (1.1)\n \nwhere S, T, R denote, respectively, a system, a set of things distinguished within S,\nand a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood\nand systemhood properties of S reside in T and R, respectively.",
-        "after": "The common-sense definition of a system, expressed by Eq. (1.1), is rather\nprimitive. This, paradoxically, is its weakness as well as its strength. The definition\nis weak because it is too general and, consequently, of little pragmatic value. It is\nstrong because it encompasses all other, more specific definitions of systems. In\nthis regard, this most general definition of systems provides us with a criterion by\nwhich we can determine whether any given object is a system or not: an object is\na system if and only if it can be described in a form that conforms to Eq. (1.1).\nFor example, a collection of books is not a system, only a set. However, when\nwe organize the books in some way, the collection becomes a system. When we\norder them, for instance, by authors' names, we obtain a system since any ordering\nof a set is a relation defined on the set."
+        "before": "So, the total set of relations among the components of a complex entity may be decomposed into its bondage B A and the set B A of nonbonding relations.\n\nWe can now introduce the notion of the A -environment of a thing x with A -composition 𝒞 A(x) . It will be defined as the set of all things, other than those in 𝒞 A(x) , that act on or are acted upon the latter:\n\\[\nℰ A(x)= y ∈ Θ | (y ∈ 𝒞 A(x) ) &(∃ z)(z ⊏ x &(y ▷ z ∨ z ▷ y)) \\ .\n\\]\n\nFinally the structure of a thing will be defined as the set of all the relations among the thing's components as well as among these and the things in the thing's environment.\n\nWe now have all we need to define the notion of a concrete system:",
+        "match": "definition 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
+        "after": "Fig. 1.1. Two systems with the same composition but different structures and environments.\n\nExample A molecule, a coral reef, a family and a factory are systems. On the other hand a set of states of a thing and a collection of events, even if ordered, are not concrete systems. Symbol: Σ .\n\nAnd now the three characteristics of any system:\ndefinition 1.2 Let σ ∈ Σ be a concrete system and A ⊂ Θ a class of things. Then\n(i) the A -composition of σ at a given time t is the set of its A -parts at t :\n\\[\n𝒞 A(σ, t)= x ∈ A | x ⊏ σ\\ ;\n\\]\n(ii) the A -environment of σ at time t is the set of all things of kind A , not components of σ , that act or are acted on by components of σ at t :\n ℰ A(σ, t)= x ∈ A | x ∉ 𝒞 A(σ, t) &(∃ y) (y ∈ 𝒞 A(σ, t) &(x ▷ y ∨ y ▷ x) ) ; . \n(iii) t"
       },
-      "source": "klir-facets.md"
+      "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
     }
   },
   "source": {
@@ -272,100 +272,6 @@
     "coreLabel": "Definition Atlas — Core"
   },
   "entries": [
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
-      "id": "bunge-1979-def-1-1",
-      "label": "Bunge (1979), Definition 1.1: concrete system",
-      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
-      "sourceLocation": "ch. 1, Definition 1.1",
-      "verbatim": "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
-      "displayForm": "An object is a concrete system iff it is composed of at least two different connected things.",
-      "displayContext": null,
-      "authorCaveat": null,
-      "admits": [
-        "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory"
-      ],
-      "refuses": [
-        "https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered",
-        "https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing"
-      ],
-      "primitives": [
-        "https://w3id.org/mathematical-systems/atlas/primitive/action",
-        "https://w3id.org/mathematical-systems/atlas/primitive/bond",
-        "https://w3id.org/mathematical-systems/atlas/primitive/part",
-        "https://w3id.org/mathematical-systems/atlas/primitive/thing"
-      ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
-      "encodedBy": "Shingai Thornton (Claude-assisted)",
-      "encodedOn": "2026-08-01",
-      "formalisedAs": null,
-      "annotation": [
-        {
-          "kind": "flag",
-          "title": "THE SEPARATING INSTANCE, IN BUNGE'S OWN WORDS",
-          "body": "His excluded example is\n\"a collection of events, EVEN IF ORDERED\". Klir, on the passage recorded in entry\n001, holds that ordering a collection is exactly what makes it a system: \"any\nordering of a set is a relation defined on the set\". Two founders, both verbatim,\ndisagreeing about whether an ordered collection is a system. This is the highest-\nvalue datum in the catalogue so far and it was found by reading, not by inference."
-        },
-        {
-          "kind": "section",
-          "title": "MACHINERY BEHIND THE REFUSAL",
-          "body": "(Definition 1.2, encoded here as primitives rather\nthan as its own entry, because it defines composition/environment/structure and\nnot \"system\"):\n  𝒞_A(σ,t) = {x ∈ A | x ⊏ σ}\n  ℰ_A(σ,t) = {x ∈ A | x ∉ 𝒞_A(σ,t) & ∃y (y ∈ 𝒞_A(σ,t) & (x ▷ y ∨ y ▷ x))}\n  𝒮_A(σ,t) = relations, in particular bonds, on 𝒞_A(σ,t) ∪ ℰ_A(σ,t), with the\n             bonding set 𝔅_A(σ,t) ≠ ∅\nThe nonempty-bonding requirement is what does the refusing, and it is encoded in\nsystems-science-foundations as ConcreteSystem.bondage_nonempty over the ActsOn\nclass (Bunge's ▷). The two encodings agree; that agreement should be recorded as\na mapping claim once the mapping layer exists, not asserted here."
-        },
-        {
-          "kind": "section",
-          "title": "RELATION TO ENTRY 002",
-          "body": "Bunge presents 002 first and then disowns it as \"not a\ndefinition proper\". 003 is the definition proper. They are not alternative\nphrasings of one claim and must not be merged."
-        }
-      ]
-    },
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
-      "id": "bunge-1979-ces-triple",
-      "label": "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩",
-      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
-      "sourceLocation": "ch. 1, §1.1 (the general concept of a system)",
-      "verbatim": "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.",
-      "displayForm": "σ = ⟨C, E, S⟩",
-      "displayContext": "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E.",
-      "authorCaveat": "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.",
-      "admits": [
-        "https://w3id.org/mathematical-systems/atlas/case/bunge-theory"
-      ],
-      "refuses": [],
-      "primitives": [
-        "https://w3id.org/mathematical-systems/atlas/primitive/composition",
-        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
-        "https://w3id.org/mathematical-systems/atlas/primitive/relation",
-        "https://w3id.org/mathematical-systems/atlas/primitive/set",
-        "https://w3id.org/mathematical-systems/atlas/primitive/structure",
-        "https://w3id.org/mathematical-systems/atlas/primitive/thing"
-      ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
-      "encodedBy": "Shingai Thornton (Claude-assisted)",
-      "encodedOn": "2026-08-01",
-      "formalisedAs": "Systems/Category/ShapeBunge.lean#BungeShape",
-      "annotation": [
-        {
-          "kind": "flag",
-          "title": null,
-          "body": "\"is (or represents)\". Bunge's own parenthetical hedges between the triple\nBEING a system and REPRESENTING one, and he resolves it later in the same chapter\nby calling the triple \"the minimal model of system σ at time t\". This is direct\nprimary-text evidence on the is-versus-represents question — the distinction the\nLean encodings do not type. Klir's (T,R) IS the system; Bunge's ⟨C,E,S⟩ is a model\nOF a thing. Same shape, different ontological status."
-        },
-        {
-          "kind": "flag",
-          "title": null,
-          "body": "NOT the same triple as the informal gloss. The fuller form Bunge actually works\nwith is relativised to a class A of things and indexed by time: s_A(σ,t) =\n⟨𝒞_A(σ,t), ℰ_A(σ,t), 𝒮_A(σ,t)⟩. Anyone citing \"Bunge's CES triple\" as a bare\n3-tuple is citing the informal version."
-        },
-        {
-          "kind": "flag",
-          "title": "CES, NOT CESM",
-          "body": "Mechanism is not a coordinate here. The string \"CESM\" does not\noccur in the 1979 text; mechanism becomes central in later Bunge (see How Does It\nWork, 2004). Any citation pairing \"1979\" with \"CESM\" is an anachronism."
-        },
-        {
-          "kind": "section",
-          "title": "DELIBERATELY NOT ASSERTED",
-          "body": "cco:ont00001808 (is about). Bunge is a realist and\nwould endorse the reading; asserting it anyway would still break the catalogue's\nneutrality, which must not depend on which tradition an entry belongs to."
-        }
-      ]
-    },
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
       "id": "klir-2001-eq-1-1",
@@ -424,7 +330,104 @@
           "title": "NEXT TIER",
           "body": "the dependency quiver (tier 1) for this definition already exists in\nLean as ShapeKlir in systems-science-foundations. The two encodings must be\nchecked against each other before either is cited."
         }
-      ]
+      ],
+      "number": "001"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+      "id": "bunge-1979-ces-triple",
+      "label": "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "sourceLocation": "ch. 1, §1.1 (the general concept of a system)",
+      "verbatim": "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things.",
+      "displayForm": "σ = ⟨C, E, S⟩",
+      "displayContext": "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E.",
+      "authorCaveat": "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing.",
+      "admits": [
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-theory"
+      ],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/composition",
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/structure",
+        "https://w3id.org/mathematical-systems/atlas/primitive/thing"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
+      "encodedBy": "Shingai Thornton (Claude-assisted)",
+      "encodedOn": "2026-08-01",
+      "formalisedAs": "Systems/Category/ShapeBunge.lean#BungeShape",
+      "annotation": [
+        {
+          "kind": "flag",
+          "title": null,
+          "body": "\"is (or represents)\". Bunge's own parenthetical hedges between the triple\nBEING a system and REPRESENTING one, and he resolves it later in the same chapter\nby calling the triple \"the minimal model of system σ at time t\". This is direct\nprimary-text evidence on the is-versus-represents question — the distinction the\nLean encodings do not type. Klir's (T,R) IS the system; Bunge's ⟨C,E,S⟩ is a model\nOF a thing. Same shape, different ontological status."
+        },
+        {
+          "kind": "flag",
+          "title": null,
+          "body": "NOT the same triple as the informal gloss. The fuller form Bunge actually works\nwith is relativised to a class A of things and indexed by time: s_A(σ,t) =\n⟨𝒞_A(σ,t), ℰ_A(σ,t), 𝒮_A(σ,t)⟩. Anyone citing \"Bunge's CES triple\" as a bare\n3-tuple is citing the informal version."
+        },
+        {
+          "kind": "flag",
+          "title": "CES, NOT CESM",
+          "body": "Mechanism is not a coordinate here. The string \"CESM\" does not\noccur in the 1979 text; mechanism becomes central in later Bunge (see How Does It\nWork, 2004). Any citation pairing \"1979\" with \"CESM\" is an anachronism."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "cco:ont00001808 (is about). Bunge is a realist and\nwould endorse the reading; asserting it anyway would still break the catalogue's\nneutrality, which must not depend on which tradition an entry belongs to."
+        }
+      ],
+      "number": "002"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
+      "id": "bunge-1979-def-1-1",
+      "label": "Bunge (1979), Definition 1.1: concrete system",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
+      "sourceLocation": "ch. 1, Definition 1.1",
+      "verbatim": "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
+      "displayForm": "An object is a concrete system iff it is composed of at least two different connected things.",
+      "displayContext": null,
+      "authorCaveat": null,
+      "admits": [
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory"
+      ],
+      "refuses": [
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered",
+        "https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing"
+      ],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/action",
+        "https://w3id.org/mathematical-systems/atlas/primitive/bond",
+        "https://w3id.org/mathematical-systems/atlas/primitive/part",
+        "https://w3id.org/mathematical-systems/atlas/primitive/thing"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
+      "encodedBy": "Shingai Thornton (Claude-assisted)",
+      "encodedOn": "2026-08-01",
+      "formalisedAs": null,
+      "annotation": [
+        {
+          "kind": "flag",
+          "title": "THE SEPARATING INSTANCE, IN BUNGE'S OWN WORDS",
+          "body": "His excluded example is\n\"a collection of events, EVEN IF ORDERED\". Klir, on the passage recorded in entry\n001, holds that ordering a collection is exactly what makes it a system: \"any\nordering of a set is a relation defined on the set\". Two founders, both verbatim,\ndisagreeing about whether an ordered collection is a system. This is the highest-\nvalue datum in the catalogue so far and it was found by reading, not by inference."
+        },
+        {
+          "kind": "section",
+          "title": "MACHINERY BEHIND THE REFUSAL",
+          "body": "(Definition 1.2, encoded here as primitives rather\nthan as its own entry, because it defines composition/environment/structure and\nnot \"system\"):\n  𝒞_A(σ,t) = {x ∈ A | x ⊏ σ}\n  ℰ_A(σ,t) = {x ∈ A | x ∉ 𝒞_A(σ,t) & ∃y (y ∈ 𝒞_A(σ,t) & (x ▷ y ∨ y ▷ x))}\n  𝒮_A(σ,t) = relations, in particular bonds, on 𝒞_A(σ,t) ∪ ℰ_A(σ,t), with the\n             bonding set 𝔅_A(σ,t) ≠ ∅\nThe nonempty-bonding requirement is what does the refusing, and it is encoded in\nsystems-science-foundations as ConcreteSystem.bondage_nonempty over the ActsOn\nclass (Bunge's ▷). The two encodings agree; that agreement should be recorded as\na mapping claim once the mapping layer exists, not asserted here."
+        },
+        {
+          "kind": "section",
+          "title": "RELATION TO ENTRY 002",
+          "body": "Bunge presents 002 first and then disowns it as \"not a\ndefinition proper\". 003 is the definition proper. They are not alternative\nphrasings of one claim and must not be merged."
+        }
+      ],
+      "number": "003"
     }
   ],
   "bearers": [

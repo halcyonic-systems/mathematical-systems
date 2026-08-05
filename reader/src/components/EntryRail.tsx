@@ -26,7 +26,7 @@ export function EntryRail({
   active,
   onSelect,
 }: {
-  entries: { iri: string; label: string | null; sourceLocation: string | null }[];
+  entries: { iri: string; number: string; label: string | null; sourceLocation: string | null }[];
   active: string | null;
   onSelect: (iri: string) => void;
 }) {
@@ -42,7 +42,7 @@ export function EntryRail({
       >
         Entries
       </p>
-      {entries.map((e, i) => (
+      {entries.map((e) => (
         <button
           key={e.iri}
           onClick={() => onSelect(e.iri)}
@@ -51,8 +51,10 @@ export function EntryRail({
             active === e.iri ? " is-current" : ""
           }`}
         >
+          {/* The accession number from the data, not the render position: the
+              prose says "entry 001" and means Klir, so the rail must too. */}
           <span className="rail-numeral px-3 py-3 tabular-nums text-xs shrink-0">
-            {String(i + 1).padStart(2, "0")}
+            {e.number}
           </span>
           <span className="px-3 py-3">
             {/* Author and year lead, roman and bold; the work and the locus fall

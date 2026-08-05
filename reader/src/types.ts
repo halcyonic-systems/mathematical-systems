@@ -7,6 +7,9 @@ export type AnnotationBlock = {
 export type Entry = {
   iri: string;
   id: string;
+  /** Accession number ("001"), the numbering the catalogue's own prose uses.
+      Assigned at build from the declared order — never from render position. */
+  number: string;
   label: string | null;
   statedIn: string | null;
   sourceLocation: string | null;

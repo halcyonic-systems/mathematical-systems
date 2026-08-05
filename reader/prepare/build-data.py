@@ -150,6 +150,21 @@ def load_atlas(atlas_root):
     return g
 
 
+# The catalogue's accession order: the numbering its own prose already uses.
+# Encoder annotations say "entry 001" (Klir, encoded first) and "entry 003"
+# (Bunge's Definition 1.1), but entries used to be sorted alphabetically by
+# label, so the rail numbered Bunge 01 and Klir 03 — the identifiers on a site
+# about rigorous reference disagreed with themselves. Until the ontology
+# carries an entry-number property (P4/D5 territory — number retirement is an
+# IRI-permanence question), the order is declared here, in one place, and the
+# gate below refuses an entry with no declared number.
+ACCESSION = [
+    "klir-2001-eq-1-1",
+    "bunge-1979-ces-triple",
+    "bunge-1979-def-1-1",
+]
+
+
 def extract_entries(g):
     entries = []
     for s in g.subjects(RDF.type, FSD):
@@ -180,7 +195,18 @@ def extract_entries(g):
                 "annotation": split_annotation(one(g, s, RDFS.comment)),
             }
         )
-    return sorted(entries, key=lambda e: e["label"] or e["iri"])
+    unnumbered = sorted(e["id"] for e in entries if e["id"] not in ACCESSION)
+    if unnumbered:
+        raise SystemExit(
+            "UNNUMBERED ENTRY: " + ", ".join(unnumbered) + "\n"
+            "  Every entry carries an accession number (ACCESSION in build-data.py) so the\n"
+            "  rail, the prose and the shelf agree on which entry is which. Append the new\n"
+            "  id — the number is permanent once the prose refers to it."
+        )
+    entries = sorted(entries, key=lambda e: ACCESSION.index(e["id"]))
+    for i, e in enumerate(entries):
+        e["number"] = f"{i + 1:03d}"
+    return entries
 
 
 def extract_cases(g):
