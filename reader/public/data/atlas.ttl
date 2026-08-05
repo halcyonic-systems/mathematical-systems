@@ -16,10 +16,6 @@ atlas:MDHC a atlas:EvidenceCode ;
     rdfs:label "model-drafted, human-checked"@en ;
     skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
 
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
-
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
     skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
@@ -98,6 +94,11 @@ atlas:encodedBy a owl:AnnotationProperty ;
 atlas:encodedOn a owl:AnnotationProperty ;
     rdfs:label "encoded on"@en .
 
+<https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1972-history-status> rdfs:label "Atlas entry — Bertalanffy 1972, The History and Status of General Systems Theory"@en ;
+    rdfs:comment """Entry 004. The founder of the tradition, entered from a journal article rather
+than the 1968 book — the first non-book bearer in the catalogue. The reason is transcription
+discipline, recorded in the entry's apparatus."""@en .
+
 <https://w3id.org/mathematical-systems/atlas/entries/bunge-1979-treatise> rdfs:label "Atlas entries — Bunge 1979, Treatise on Basic Philosophy vol. 4"@en ;
     rdfs:comment """Entries 002 and 003.
 
@@ -109,6 +110,50 @@ insisted on. The distinction is his, not ours."""@en .
 
 <https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets> rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
     rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
+
+entry:bertalanffy-1972-set-in-interrelation a atlas:FormalSystemDefinition ;
+    rdfs:label "Bertalanffy (1972), The History and Status of General Systems Theory, p. 417"@en ;
+    rdfs:comment """WHY THE 1972 ARTICLE AND NOT THE 1968 BOOK. The book is the canonical
+citation, and its ch. 3 (p. 55) gives the same definition verbally — "a complex of interacting
+elements" — followed by the differential-equation formalisation, eq. (3.1). The only copy of
+the book available to this encoding is an OCR whose ligatures are systematically damaged and
+in which **equation (3.1) did not survive at all**. Transcribing a verbatim from it would
+violate the catalogue's first discipline. The 1972 article restates the definition in a text
+with clean provenance, so it is entered first. The 1968 entry remains wanted, and the pair is
+worth having: the definitions differ.
+
+WHAT THE REVISION CHANGED. 1968: "a complex of interacting elements." 1972: "a set of elements
+standing in interrelation among themselves AND WITH THE ENVIRONMENT." The environment becomes
+constitutive of the definition rather than a later distinction. Encoding both would make that
+revision machine-checkable at the shape level — the 1972 shape carries an arrow the 1968 shape
+does not.
+
+WHAT IS DELIBERATELY OUT OF THE VERBATIM. The differential-equation material sits on the
+following page (p. 418, "a set of n measures, called state variables... a set of n
+simultaneous, first-order differential equations"), and its equation is a page image in this
+scan, not extractable text. Including that sentence would end the verbatim on a colon pointing
+at something the catalogue does not hold. It is a candidate for a second entry from the same
+bearer, in the way Bunge's CES triple and Definition 1.1 are two entries from one book.
+
+THE AUTHOR'S OWN HEDGE is inside the verbatim, not paraphrased around it: "This can be
+expressed mathematically in different ways." On the same page he names Mesarović, Maccia,
+Ashby and Klir as fellow axiomatisers — the founder pointing at two other entries in this
+catalogue.""" ;
+    atlas:admits case:bertalanffy-organism ;
+    atlas:authorCaveat "This can be expressed mathematically in different ways." ;
+    atlas:displayContext "This can be expressed mathematically in different ways." ;
+    atlas:displayForm "A system may be defined as a set of elements standing in interrelation among themselves and with the environment." ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape" ;
+    atlas:invokesPrimitive prim:element,
+        prim:environment,
+        prim:relation,
+        prim:set ;
+    atlas:sourceLocation "p. 417" ;
+    atlas:statedIn bearer:bertalanffy-1972-amj ;
+    atlas:verbatim "A system may be defined as a set of elements standing in interrelation among themselves and with the environment. This can be expressed mathematically in different ways." .
 
 entry:bunge-1979-ces-triple a atlas:FormalSystemDefinition ;
     rdfs:label "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩"@en ;
@@ -379,12 +424,41 @@ atlas:TestObjectScheme a skos:ConceptScheme ;
 is added only when the corpus contains at least two rulings on the same object, because a test
 object with one ruling compares nothing and a test object with none is invented."""@en .
 
+bearer:bertalanffy-1972-amj a cco:ont00000253 ;
+    rdfs:label "Von Bertalanffy, L. — The History and Status of General Systems Theory, Academy of Management Journal 15(4) (1972)"@en ;
+    dcterms:bibliographicCitation "Academy of Management Journal 15(4), December 1972, pp. 407–426. Special issue: General Systems Theory." ;
+    dcterms:creator "Ludwig von Bertalanffy" ;
+    dcterms:date "1972"^^xsd:gYear ;
+    dcterms:identifier "doi:10.2307/255139",
+        "https://www.jstor.org/stable/255139" .
+
 bearer:klir-2001-facets a cco:ont00000253 ;
     rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
     dcterms:creator "George J. Klir" ;
     dcterms:date "2001"^^xsd:gYear ;
     dcterms:identifier "ISBN 978-1-4613-5501-4",
         "doi:10.1007/978-1-4615-1331-5" .
+
+case:bertalanffy-organism a atlas:Example ;
+    rdfs:label "an organism"@en ;
+    rdfs:comment """DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the
+entry's definition is from the 1972 article; the case is recorded here because it is
+Bertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.
+Its location is chapter-level and its grade is MDU: the sentence comes from an OCR of the book
+and the page has not been checked. Raising it needs the same read as the entry.
+
+NOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex
+"can be built up, step by step, by putting together the first separate elements" — merely
+summative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is
+architecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never
+writes the verdict sentence, and encoding an implication as a ruling would put words in his
+mouth. It belongs to the mapping layer.""" ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "an organism" ;
+    atlas:sourceLocation "General System Theory (1968), ch. 8, quoting Bertalanffy 1949a p. 11" ;
+    atlas:verbatim "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction" .
 
 case:bunge-events-ordered a atlas:Example ;
     rdfs:label "a collection of events, even if ordered"@en ;
@@ -467,10 +541,9 @@ prim:composition a skos:Concept ;
     skos:prefLabel "composition"@en ;
     skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en .
 
-prim:environment a skos:Concept ;
+prim:element a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "environment"@en ;
-    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components."@en .
+    skos:prefLabel "element"@en .
 
 prim:part a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -510,6 +583,10 @@ obo:BFO_0000002 a owl:Class ;
 skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;
     skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:TestObject a owl:Class ;
     rdfs:label "Test Object"@en ;
@@ -599,6 +676,11 @@ the reply that he was only excluding events."""@en ;
     atlas:encodedOn "2026-08-05"^^xsd:date ;
     atlas:evidenceCode atlas:HVP .
 
+prim:environment a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "environment"@en ;
+    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components."@en .
+
 prim:relation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "relation"@en .
@@ -611,14 +693,14 @@ prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
 
+atlas:EvidenceCode a owl:Class ;
+    rdfs:label "Evidence Code"@en ;
+    skos:definition "How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones."@en .
+
 cco:ont00000253 a owl:Class ;
     rdfs:label "Information Bearing Entity"@en ;
     rdfs:subClassOf obo:BFO_0000030 ;
     skos:definition "An Object upon which an Information Content Entity generically depends."@en .
-
-atlas:EvidenceCode a owl:Class ;
-    rdfs:label "Evidence Code"@en ;
-    skos:definition "How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones."@en .
 
 atlas:FormalSystemDefinition a owl:Class ;
     rdfs:label "Formal System Definition"@en ;
@@ -658,11 +740,11 @@ one. Reified rather than recorded as a string on the entry, because an example i
 several claims are made about -- where it appears in the source, how the encoding was
 established, and which shared case it instantiates."""@en .
 
-skos:Concept a owl:Class ;
-    rdfs:label "Concept"@en ;
-    skos:definition "An idea or notion; a unit of thought."@en .
-
 atlas:HVP a atlas:EvidenceCode ;
     rdfs:label "human-verified against primary text"@en ;
     skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
+
+skos:Concept a owl:Class ;
+    rdfs:label "Concept"@en ;
+    skos:definition "An idea or notion; a unit of thought."@en .
 

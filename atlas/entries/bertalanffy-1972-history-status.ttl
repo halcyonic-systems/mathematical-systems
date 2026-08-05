@@ -1,0 +1,126 @@
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
+@prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
+@prefix cco:     <https://www.commoncoreontologies.org/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1972-history-status>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
+    rdfs:label "Atlas entry — Bertalanffy 1972, The History and Status of General Systems Theory"@en ;
+    rdfs:comment """Entry 004. The founder of the tradition, entered from a journal article rather
+than the 1968 book — the first non-book bearer in the catalogue. The reason is transcription
+discipline, recorded in the entry's apparatus."""@en .
+
+
+##############################################################################
+# Bearer — the first journal article in the catalogue
+##############################################################################
+
+bearer:bertalanffy-1972-amj
+    a cco:ont00000253 ;   # Information Bearing Entity
+    rdfs:label "Von Bertalanffy, L. — The History and Status of General Systems Theory, Academy of Management Journal 15(4) (1972)"@en ;
+    dcterms:creator "Ludwig von Bertalanffy" ;
+    dcterms:date "1972"^^xsd:gYear ;
+    dcterms:identifier "https://www.jstor.org/stable/255139" ;
+    dcterms:identifier "doi:10.2307/255139" ;
+    dcterms:bibliographicCitation "Academy of Management Journal 15(4), December 1972, pp. 407–426. Special issue: General Systems Theory." .
+
+
+##############################################################################
+# Entry 004 — Bertalanffy's general definition
+##############################################################################
+
+entry:bertalanffy-1972-set-in-interrelation
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Bertalanffy (1972), The History and Status of General Systems Theory, p. 417"@en ;
+
+    atlas:statedIn bearer:bertalanffy-1972-amj ;
+    atlas:sourceLocation "p. 417" ;
+
+    atlas:verbatim """A system may be defined as a set of elements standing in interrelation among themselves and with the environment. This can be expressed mathematically in different ways.""" ;
+
+    # Presentation spans — exact substrings of the verbatim, enforced by the build.
+    # The definition leads; the author's own hedge about formalisation follows it,
+    # which is the same shape as the other entries' formula-then-gloss.
+    atlas:displayForm "A system may be defined as a set of elements standing in interrelation among themselves and with the environment." ;
+    atlas:displayContext "This can be expressed mathematically in different ways." ;
+
+    # Conservative: only terms the definitional sentence itself uses. "element" is a
+    # new primitive — no existing row fits it, and collapsing it onto `thing` would
+    # assert a synonymy across traditions that the scheme's own scope note denies.
+    atlas:invokesPrimitive prim:element ,
+                           prim:set ,
+                           prim:relation ,
+                           prim:environment ;
+
+    atlas:admits case:bertalanffy-organism ;
+
+    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape" ;
+
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+
+    rdfs:comment """WHY THE 1972 ARTICLE AND NOT THE 1968 BOOK. The book is the canonical
+citation, and its ch. 3 (p. 55) gives the same definition verbally — "a complex of interacting
+elements" — followed by the differential-equation formalisation, eq. (3.1). The only copy of
+the book available to this encoding is an OCR whose ligatures are systematically damaged and
+in which **equation (3.1) did not survive at all**. Transcribing a verbatim from it would
+violate the catalogue's first discipline. The 1972 article restates the definition in a text
+with clean provenance, so it is entered first. The 1968 entry remains wanted, and the pair is
+worth having: the definitions differ.
+
+WHAT THE REVISION CHANGED. 1968: "a complex of interacting elements." 1972: "a set of elements
+standing in interrelation among themselves AND WITH THE ENVIRONMENT." The environment becomes
+constitutive of the definition rather than a later distinction. Encoding both would make that
+revision machine-checkable at the shape level — the 1972 shape carries an arrow the 1968 shape
+does not.
+
+WHAT IS DELIBERATELY OUT OF THE VERBATIM. The differential-equation material sits on the
+following page (p. 418, "a set of n measures, called state variables... a set of n
+simultaneous, first-order differential equations"), and its equation is a page image in this
+scan, not extractable text. Including that sentence would end the verbatim on a colon pointing
+at something the catalogue does not hold. It is a candidate for a second entry from the same
+bearer, in the way Bunge's CES triple and Definition 1.1 are two entries from one book.
+
+THE AUTHOR'S OWN HEDGE is inside the verbatim, not paraphrased around it: "This can be
+expressed mathematically in different ways." On the same page he names Mesarović, Maccia,
+Ashby and Klir as fellow axiomatisers — the founder pointing at two other entries in this
+catalogue.""" ;
+
+    atlas:authorCaveat "This can be expressed mathematically in different ways." .
+
+
+##############################################################################
+# Cases
+##############################################################################
+
+case:bertalanffy-organism
+    a atlas:Example ;
+    rdfs:label "an organism"@en ;
+    atlas:gloss "an organism" ;
+    atlas:verbatim "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction" ;
+    atlas:sourceLocation "General System Theory (1968), ch. 8, quoting Bertalanffy 1949a p. 11" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    rdfs:comment """DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the
+entry's definition is from the 1972 article; the case is recorded here because it is
+Bertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.
+Its location is chapter-level and its grade is MDU: the sentence comes from an OCR of the book
+and the page has not been checked. Raising it needs the same read as the entry.
+
+NOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex
+"can be built up, step by step, by putting together the first separate elements" — merely
+summative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is
+architecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never
+writes the verdict sentence, and encoding an implication as a ruling would put words in his
+mouth. It belongs to the mapping layer.""" .

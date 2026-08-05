@@ -97,6 +97,11 @@
   --world-klir: #5a6c85;
   --world-bunge: #8a6a4d;
   --world-mobus: #4e7d5b;
+  /* Bertalanffy takes plum, chosen by measurement rather than by eye: clay and
+     terracotta sit 11–13° from Bunge's bronze in hue, close enough that two
+     authors would read as one. Plum is 77° from its nearest neighbour and
+     clears 6.15:1 on the card ground. */
+  --world-bertalanffy: #74556e;
   /* The channel's carrier: any element wearing data-world resolves --world for
      itself and its subtree. One mapping for the whole site — the shelf, the
      rail, the entry page — so an author is one colour everywhere. */
@@ -168,6 +173,9 @@ body {
 }
 [data-world="mobus"] {
   --world: var(--world-mobus);
+}
+[data-world="bertalanffy"] {
+  --world: var(--world-bertalanffy);
 }
 
 /* Where the channel shows outside the shelf. The author's VOICE wears the
@@ -770,9 +778,16 @@ body {
    and ground as the passage register — that happens to be a door. Hover answers
    with lift and a darkened edge, never with new colour: the reserved channels
    stay contractual on the badges inside. */
+/* No entry count anywhere in this rule. The shelf was `repeat(3, …)`, which was
+   only ever right for a three-entry catalogue, and the catalogue grows. auto-fit
+   lets the column count follow the available width instead: the browser fits as
+   many 18rem tracks as there is room for and stretches them to fill, which also
+   makes the narrow-screen collapse automatic rather than a breakpoint someone
+   has to remember. A short last row is ordinary shelf behaviour and is left
+   alone — special-casing a particular count is the thing this replaces. */
 .shelf {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   /* The one 20px gap on a site whose every other gap is 24px. */
   gap: 1.5rem;
   align-items: stretch;
@@ -932,9 +947,8 @@ body {
 }
 
 @media (max-width: 64rem) {
-  .shelf {
-    grid-template-columns: 1fr;
-  }
+  /* .shelf is deliberately absent: auto-fit already collapses it by width, and a
+     breakpoint that also names a column count is the hard-code this replaced. */
   .verdicts {
     grid-template-columns: 1fr;
   }

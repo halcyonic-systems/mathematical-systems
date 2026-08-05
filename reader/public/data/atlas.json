@@ -1,5 +1,17 @@
 {
   "cases": {
+    "https://w3id.org/mathematical-systems/atlas/case/bertalanffy-organism": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/bertalanffy-organism",
+      "id": "bertalanffy-organism",
+      "label": "an organism",
+      "gloss": "an organism",
+      "verbatim": "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction",
+      "sourceLocation": "General System Theory (1968), ch. 8, quoting Bertalanffy 1949a p. 11",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "encodedOn": "2026-08-05",
+      "instantiates": null,
+      "note": "DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the\nentry's definition is from the 1972 article; the case is recorded here because it is\nBertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.\nIts location is chapter-level and its grade is MDU: the sentence comes from an OCR of the book\nand the page has not been checked. Raising it needs the same read as the entry.\n\nNOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex\n\"can be built up, step by step, by putting together the first separate elements\" — merely\nsummative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is\narchitecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never\nwrites the verdict sentence, and encoding an implication as a ruling would put words in his\nmouth. It belongs to the mapping layer."
+    },
     "https://w3id.org/mathematical-systems/atlas/case/bunge-theory": {
       "iri": "https://w3id.org/mathematical-systems/atlas/case/bunge-theory",
       "id": "bunge-theory",
@@ -159,8 +171,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "38b95fe+",
-    "repoCommit": "38b95fe+"
+    "atlasCommit": "05c6dc7+",
+    "repoCommit": "05c6dc7+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -239,6 +251,34 @@
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
       "status": "none"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation": {
+      "file": "ShapeBertalanffy.lean",
+      "title": "Shape Category for Bertalanffy's General System Theory",
+      "moduleDoc": "# Shape Category for Bertalanffy's General System Theory\n\nThe *shape category* `I_Bertalanffy` encodes the dependency structure of Bertalanffy's\nverbal definition of \"system\".\n\n## Source\n\nBertalanffy (1968), *General System Theory*, ch. 3 \"Some System Concepts\", p. 55:\n\n> \"A system can be defined as a complex of interacting elements. Interaction means that\n> elements, p, stand in relations, R, so that the behavior of an element p in R is different\n> from its behavior in another relation, R'.\"\n\nTwo positions are named in that sentence — the elements `p` and the relations `R` — and one\ndependency: the relations are *on* the elements.\n\n## Arrow direction — DECLARED, not assumed\n\n`interrelation_on_elements : interrelation ⟶ elements`, read aloud: **\"the interrelation\ndepends on the elements\"** — you cannot state R without already having the p's it holds\nbetween. This is the same convention as every other shape in this development (Klir's\n`relation_on_things`, Mobus's `network_on_components`): an arrow points from the dependent\nposition to the position it depends on. It is NOT a function arrow and NOT a flow arrow.\n\n## What this shape does NOT capture — the predicate gap\n\nBertalanffy's interaction clause carries a condition Klir's `S = (T, R)` does not: the\nbehaviour of an element **must differ** across relations. That is a predicate constraining\nwhich R qualify, not a position and not a dependency, so the quiver cannot express it and\n`bertalanffyToKlir` below discards it. The two definitions therefore have isomorphic shapes\n(`shapeIso`) while making *different* demands — the shape functor is not injective on\ndefinitional content.\n\nThis is a limit of the shape method, exhibited rather than asserted: `shapeIso` proves the\nstructures correspond, and this paragraph names exactly what survives the correspondence and\nwhat does not. Compare Bunge's near-identical difference-making test — \"unlike a mere\nrelation, a connection makes some difference to its relata\" (1979, ch. 1 §1.2) — which Bunge\n*does* promote to definitional force via the nonempty-bondage requirement, and which\n`ShapeBunge` likewise cannot see.\n\n## The 1972 restatement is a different shape\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417, adds a third position:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nThat definition would carry a second arrow (`interrelation ⟶ environment`) and is deliberately\nNOT encoded here — this file is the 1968 shape. The 1968 → 1972 pair is a definition revising\nitself, and the two shapes are the record of what the revision changed.",
+      "positionType": "BertalanffyPosition",
+      "shape": "BertalanffyShape",
+      "positions": [
+        {
+          "name": "elements",
+          "doc": "p — the elements composing the complex"
+        },
+        {
+          "name": "interrelation",
+          "doc": "R — the relations in which those elements stand"
+        }
+      ],
+      "arrows": [
+        {
+          "name": "interrelation_on_elements",
+          "from": "interrelation",
+          "to": "elements",
+          "doc": "R depends on p — \"elements, p, stand in relations, R\", so the"
+        }
+      ],
+      "arrowConvention": "",
+      "spec": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
+      "status": "resolved"
     }
   },
   "transcription": {
@@ -247,6 +287,7 @@
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
         "whitespace around operators ignored"
       ],
       "matchedChars": 252,
@@ -263,6 +304,7 @@
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
         "whitespace around operators ignored"
       ],
       "matchedChars": 422,
@@ -279,6 +321,7 @@
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
         "whitespace around operators ignored"
       ],
       "matchedChars": 108,
@@ -289,6 +332,22 @@
         "after": "Fig. 1.1. Two systems with the same composition but different structures and environments.\n\nExample A molecule, a coral reef, a family and a factory are systems. On the other hand a set of states of a thing and a collection of events, even if ordered, are not concrete systems. Symbol: Σ .\n\nAnd now the three characteristics of any system:\ndefinition 1.2 Let σ ∈ Σ be a concrete system and A ⊂ Θ a class of things. Then\n(i) the A -composition of σ at a given time t is the set of its A -parts at t :\n\\[\n𝒞 A(σ, t)= x ∈ A | x ⊏ σ\\ ;\n\\]\n(ii) the A -environment of σ at time t is the set of all things of kind A , not components of σ , that act or are acted on by components of σ at t :\n ℰ A(σ, t)= x ∈ A | x ∉ 𝒞 A(σ, t) &(∃ y) (y ∈ 𝒞 A(σ, t) &(x ▷ y ∨ y ▷ x) ) ; . \n(iii) t"
       },
       "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation": {
+      "status": "located",
+      "normalisations": [
+        "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 169,
+      "verbatimChars": 169,
+      "context": {
+        "before": "Hence the interdisciplinary \nnature of general systems theory; at the same time, its statements pertain \nto formal or structural commonalities abstracting from the “ nature of ele-\nments and forces in the system” with which the special sciences (and \nexplanations in these) are concerned. In other words, system-theoretical \narguments pertain to, and have predictive value, inasmuch as such general \nstructures are concerned. Such “ explanation in principle” may have con-\nsiderable predictive value; for specific explanation, introduction of the \nspecial system conditions is naturally required.\nThis content downloaded from 193.10.199.184 on Sun, 29 Dec 2013 02:50:45 AM\nAll use subject to JSTOR Terms and Conditions\n\n<!-- pdf page 12 -->\n\n1972 The History and Status of General Systems Theory 417",
+        "match": "A system may be defined as a set of elements standing in interrelation \namong themselves and with the environment. This can be expressed mathe-\nmatically in different ways.",
+        "after": "Several typical ways of system description can \nbe indicated.\nOne approach or group of investigations may, somewhat loosely, be \ncircumscribed as axiomatic, inasmuch as the focus of interest is a rigorous \ndefinition of system and the derivation, by modern methods of mathematics \nand logic, of its implications. Among other examples are the system descrip-\ntions by Mesarovic [41], Maccia and Maccia [40], Beier and Laue \n[4] (set theory), Ashby [2] (state-determined systems), and Klir [30] (UC = set \nof all couplings between the elements and the elements and environment; \nST = set of all states and all transitions between states).\nDynamical system theory is concerned with the changes of systems in \ntime. There are two principal ways of description: internal and external [47].\nInternal description or “ classical” system theory (foundations in [9; \n11; and 15, pp."
+      },
+      "source": "bertalanffy-1972-history-status-amj.md"
     }
   },
   "source": {
@@ -455,6 +514,54 @@
         }
       ],
       "number": "003"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+      "id": "bertalanffy-1972-set-in-interrelation",
+      "label": "Bertalanffy (1972), The History and Status of General Systems Theory, p. 417",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1972-amj",
+      "sourceLocation": "p. 417",
+      "verbatim": "A system may be defined as a set of elements standing in interrelation among themselves and with the environment. This can be expressed mathematically in different ways.",
+      "displayForm": "A system may be defined as a set of elements standing in interrelation among themselves and with the environment.",
+      "displayContext": "This can be expressed mathematically in different ways.",
+      "authorCaveat": "This can be expressed mathematically in different ways.",
+      "admits": [
+        "https://w3id.org/mathematical-systems/atlas/case/bertalanffy-organism"
+      ],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/element",
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "encodedBy": "Shingai Thornton (Claude-assisted)",
+      "encodedOn": "2026-08-05",
+      "formalisedAs": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "WHY THE 1972 ARTICLE AND NOT THE 1968 BOOK",
+          "body": "The book is the canonical\ncitation, and its ch. 3 (p. 55) gives the same definition verbally — \"a complex of interacting\nelements\" — followed by the differential-equation formalisation, eq. (3.1). The only copy of\nthe book available to this encoding is an OCR whose ligatures are systematically damaged and\nin which **equation (3.1) did not survive at all**. Transcribing a verbatim from it would\nviolate the catalogue's first discipline. The 1972 article restates the definition in a text\nwith clean provenance, so it is entered first. The 1968 entry remains wanted, and the pair is\nworth having: the definitions differ."
+        },
+        {
+          "kind": "section",
+          "title": "WHAT THE REVISION CHANGED",
+          "body": "1968: \"a complex of interacting elements.\" 1972: \"a set of elements\nstanding in interrelation among themselves AND WITH THE ENVIRONMENT.\" The environment becomes\nconstitutive of the definition rather than a later distinction. Encoding both would make that\nrevision machine-checkable at the shape level — the 1972 shape carries an arrow the 1968 shape\ndoes not."
+        },
+        {
+          "kind": "section",
+          "title": "WHAT IS DELIBERATELY OUT OF THE VERBATIM",
+          "body": "The differential-equation material sits on the\nfollowing page (p. 418, \"a set of n measures, called state variables... a set of n\nsimultaneous, first-order differential equations\"), and its equation is a page image in this\nscan, not extractable text. Including that sentence would end the verbatim on a colon pointing\nat something the catalogue does not hold. It is a candidate for a second entry from the same\nbearer, in the way Bunge's CES triple and Definition 1.1 are two entries from one book."
+        },
+        {
+          "kind": "prose",
+          "title": null,
+          "body": "THE AUTHOR'S OWN HEDGE is inside the verbatim, not paraphrased around it: \"This can be\nexpressed mathematically in different ways.\" On the same page he names Mesarović, Maccia,\nAshby and Klir as fellow axiomatisers — the founder pointing at two other entries in this\ncatalogue."
+        }
+      ],
+      "number": "004"
     }
   ],
   "bearers": [
@@ -476,9 +583,39 @@
         "ISBN 978-1-4613-5501-4",
         "doi:10.1007/978-1-4615-1331-5"
       ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1972-amj",
+      "label": "Von Bertalanffy, L. — The History and Status of General Systems Theory, Academy of Management Journal 15(4) (1972)",
+      "creator": "Ludwig von Bertalanffy",
+      "date": "1972",
+      "identifiers": [
+        "doi:10.2307/255139",
+        "https://www.jstor.org/stable/255139"
+      ]
     }
   ],
   "primitives": [
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+      "label": "relation",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/set",
+      "label": "set",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/thing",
       "label": "thing",
@@ -490,21 +627,12 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
-      "label": "relation",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+      "label": "environment",
       "role": null,
       "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
-        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
-      ]
-    },
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/set",
-      "label": "set",
-      "role": null,
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
-        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
       ]
     },
     {
@@ -532,11 +660,11 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
-      "label": "environment",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/element",
+      "label": "element",
       "role": null,
       "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation"
       ]
     },
     {

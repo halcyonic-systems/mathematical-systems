@@ -75,6 +75,13 @@ def canon(text):
     text = text.replace("\u2019", "'").replace("\u2018", "'")
     text = text.replace("\u201c", '"').replace("\u201d", '"')
     text = re.sub(r"[\u2010-\u2015]", "-", text)       # dash family
+    # A hyphen at a line break is the typesetter breaking a word, not part of it:
+    # the AMJ article prints "mathe-\nmatically". Rejoin before whitespace is
+    # collapsed, or the newline becomes a space and the word can never match.
+    # Deliberately narrow \u2014 only letter-hyphen-newline-letter, so a genuine
+    # compound that happens to sit at a line end is the only false positive, and
+    # an em/en dash (already folded to "-") is not adjacent to word characters.
+    text = re.sub(r"(?<=[^\W\d_])-\s*\n\s*(?=[^\W\d_])", "", text)
     text = re.sub(r"\s+", " ", text)
     text = re.sub(r"\s*([" + re.escape("".join(MATH_TIGHT)) + r"])\s*", r"\1", text)
     text = re.sub(r"\s+([" + re.escape("".join(CLOSE_TIGHT)) + r"])", r"\1", text)
@@ -91,9 +98,23 @@ def prepare_source(raw):
     context view quote the ORIGINAL text rather than the normalised one.
     """
     latexed = delatex(raw)
+
+    # A hyphen at a line break is the typesetter breaking a word, not part of the
+    # word: the AMJ article prints "mathe-\nmatically". The needle is canonicalised
+    # by `canon` and the haystack by this loop, so the rule has to exist in BOTH or
+    # the two disagree and a correct verbatim reports as `partial`. Offsets of the
+    # hyphen and the break are collected here and skipped below, which keeps `out`
+    # and `index` in lockstep exactly as the operator-spacing pass does.
+    # Deliberately narrow: letter, hyphen, a break containing a newline, letter.
+    dropped_break = set()
+    for m in re.finditer(r"(?<=[^\W\d_])-\s*\n\s*(?=[^\W\d_])", latexed):
+        dropped_break.update(range(m.start(), m.end()))
+
     out, index = [], []
     prev_space = True
     for i, ch in enumerate(latexed):
+        if i in dropped_break:
+            continue
         c = unicodedata.normalize("NFKC", ch)
         if c in "_*`{}" or c in "\u201c\u201d":
             continue
@@ -185,6 +206,8 @@ def locate(verbatim, raw, probe_len=120, context_chars=PUBLISHABLE_CONTEXT):
         notes.append("LaTeX math in source rendered to Unicode")
     if PAGE_FURNITURE.search(raw):
         notes.append("running heads / page numbers removed")
+    if re.search(r"[^\W\d_]-\s*\n\s*[^\W\d_]", raw):
+        notes.append("words broken by a hyphen at a line end rejoined")
     notes.append("whitespace around operators ignored")
 
     pos = hay.find(needle)

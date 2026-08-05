@@ -162,6 +162,7 @@ ACCESSION = [
     "klir-2001-eq-1-1",
     "bunge-1979-ces-triple",
     "bunge-1979-def-1-1",
+    "bertalanffy-1972-set-in-interrelation",
 ]
 
 
@@ -380,6 +381,9 @@ BEARER_SOURCES = {
     "https://w3id.org/mathematical-systems/atlas/bearer/klir-2001-facets": "klir/klir-facets.md",
     "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4": (
         "bunge/Bunge - 1979 - Treatise on Basic Philosophy.md"
+    ),
+    "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1972-amj": (
+        "bertalanffy/bertalanffy-1972-history-status-amj.md"
     ),
 }
 

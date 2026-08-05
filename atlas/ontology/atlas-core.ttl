@@ -297,6 +297,15 @@ prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
 
+# Kept distinct from prim:thing on purpose. The scheme is lexical: a primitive
+# records that an author uses a WORD, and Bertalanffy says "elements" where Klir
+# and Bunge say "things". Collapsing the two would assert a synonymy across
+# traditions that this scheme's own scope note denies, and would manufacture a
+# shared row the sources do not support.
+prim:element a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "element"@en .
+
 prim:relation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "relation"@en .
