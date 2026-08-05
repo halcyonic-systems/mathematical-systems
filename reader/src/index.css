@@ -285,6 +285,14 @@ body {
 .measure { max-width: 72rem; margin-inline: auto; }
 .measure-wide { max-width: 96rem; margin-inline: auto; }
 
+/* The footer's line sits in the same column as the content: centred at the
+   page measure, then reading at the open-warrant measure within it. Wearing
+   .w-open alone left the whole footer capped at 44rem against the left edge. */
+.footer-line {
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
 /* The rail is sticky under the tab bar and scrolls on its own; an entry runs to
    nearly three thousand pixels and navigation that scrolls away is navigation
    you do not have. */

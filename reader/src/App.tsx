@@ -153,16 +153,22 @@ export default function App() {
         </main>
       </div>
 
-      <footer className="px-8 py-4 w-open rule-top">
-        Reads <code>{atlas.source.repo}</code>
-        {atlas.provenance.atlasCommit && <> at <code>{atlas.provenance.atlasCommit}</code></>}. Reasoning
-        precomputed at build time; this page runs no reasoner.{" "}
-        <button
-          onClick={() => setView("about")}
-          className="disclosure cursor-pointer bg-transparent border-0 p-0"
-        >
-          About this catalogue →
-        </button>
+      {/* The rule spans the page; the text sits in the same column as the
+          content above it. The footer used to wear `w-open` directly, whose
+          44rem cap left it flushed to the left edge with its rule stopping
+          mid-column — the page appeared to end in the wrong place, twice. */}
+      <footer className="rule-top">
+        <p className="footer-line w-open m-0 px-8 py-4">
+          Reads <code>{atlas.source.repo}</code>
+          {atlas.provenance.atlasCommit && <> at <code>{atlas.provenance.atlasCommit}</code></>}. Reasoning
+          precomputed at build time; this page runs no reasoner.{" "}
+          <button
+            onClick={() => setView("about")}
+            className="disclosure cursor-pointer bg-transparent border-0 p-0"
+          >
+            About this catalogue →
+          </button>
+        </p>
       </footer>
     </div>
   );
