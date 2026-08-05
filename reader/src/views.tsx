@@ -581,35 +581,45 @@ export function CommitmentsView({ reasoning }: { reasoning: Reasoning }) {
         </div>
         {flipped.length > 0 && (
           <p className="mt-4 mb-0">
-            Widening the import set changes {flipped.length} verdict{flipped.length === 1 ? "" : "s"}, both
-            concerning aboutness. The neutrality invariant survives only under the minimal extract — and the
-            two axioms responsible sit in different files, one of them a property axiom. Not findable by
-            reading.
+            Switching the closure changes {flipped.length} verdict{flipped.length === 1 ? "" : "s"} —{" "}
+            {flipped.map((c) => c.id).join(", ")} — marked below. The neutrality invariant survives only under
+            the minimal extract; the axioms responsible sit in different files. Not findable by reading.
           </p>
         )}
       </Section>
 
       <Section title="What the entries are committed to" warrant="derived" note={v.label}>
-        {v.commitments.map((c) => (
-          <Derivation
-            key={c.id}
-            verdict={c.verdict === "entailed" ? "holds" : c.verdict === "refuted" ? "fails" : "bounded"}
-            claim={c.question}
-            because={
-              <>
-                {c.matters}
-                {c.bounded && c.verdict !== "entailed" && (
-                  <> No proof was found within the reasoner's budget — which is not the same claim as refuted.</>
-                )}
-              </>
-            }
-            detail={
-              <p className="m-0">
-                <ProofBadge status={c.verdict} bounded={c.bounded} />
-              </p>
-            }
-          />
-        ))}
+        {/* A verdict the toggle just changed says so where it stands — the
+            toggle used to flip ◐ to ✓ across the table with no indication of
+            which cells moved, which made the page's most information-rich
+            interaction read as a no-op. Keyed on the variant so the tint
+            replays on every switch; the text marker is the record that
+            survives greyscale, print, and reduced motion. */}
+        {v.commitments.map((c) => {
+          const flip = flipped.some((f) => f.id === c.id);
+          return (
+            <div key={`${variant}:${c.id}`} className={flip ? "verdict-flipped" : undefined}>
+              {flip && <p className="eyebrow m-0 mb-1">changed by this closure</p>}
+              <Derivation
+                verdict={c.verdict === "entailed" ? "holds" : c.verdict === "refuted" ? "fails" : "bounded"}
+                claim={c.question}
+                because={
+                  <>
+                    {c.matters}
+                    {c.bounded && c.verdict !== "entailed" && (
+                      <> No proof was found within the reasoner's budget — which is not the same claim as refuted.</>
+                    )}
+                  </>
+                }
+                detail={
+                  <p className="m-0">
+                    <ProofBadge status={c.verdict} bounded={c.bounded} />
+                  </p>
+                }
+              />
+            </div>
+          );
+        })}
       </Section>
 
       <Section title="Why" warrant="derived" note="one minimal justification per entailment, from the reasoner">

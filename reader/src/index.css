@@ -673,11 +673,28 @@ body {
   top: 0.5rem;
 }
 
+/* A verdict the closure toggle just flipped announces itself with a brief
+   surface tint; the permanent record is the text marker beside it, so nothing
+   is lost in print, greyscale, or reduced motion. Surface only — the verdict's
+   own ink is a reserved channel and does not blink. */
+.verdict-flipped {
+  animation: flip-settle 700ms ease-out;
+}
+@keyframes flip-settle {
+  from {
+    background: var(--accent-soft);
+  }
+  to {
+    background: transparent;
+  }
+}
+
 /* The one place motion is used is state change, so removing it costs nothing. */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
     scroll-behavior: auto !important;
+    animation: none !important;
   }
 }
 
