@@ -25,7 +25,7 @@ export function Chip({
       : tone === "quiet"
         ? { background: "var(--bg-surface)", color: "var(--text-secondary)", border: "1px solid transparent" }
         : { background: "transparent", color: "var(--text-secondary)", border: "1px solid var(--accent-slate)" };
-  const className = `px-2 py-0.5 text-xs whitespace-nowrap${title ? " chip-explained" : ""}`;
+  const className = `type-ui px-2 py-0.5 text-xs whitespace-nowrap${title ? " chip-explained" : ""}`;
   if (href)
     return (
       <a
@@ -66,7 +66,7 @@ export function Toggle({
     <button
       onClick={onClick}
       aria-pressed={on}
-      className="toggle px-3 py-1 text-sm cursor-pointer"
+      className="type-ui toggle px-3 py-1 text-sm cursor-pointer"
       style={{
         background: on ? "var(--accent)" : "var(--bg-surface)",
         color: on ? "var(--text-on-accent)" : "var(--text-secondary)",

@@ -154,6 +154,33 @@ if (cssHex["--text-muted"] && cssHex["--bg-surface"]) {
     );
 }
 
+/*
+ * (5) Chrome is firewalled from content typography.
+ *
+ * Warrant classes deliberately set typefaces; the cost is inheritance, and the
+ * leak shipped three bugs (serif badge overflow, hanging-indent clipping that
+ * inverted "no location recorded", census at a prose measure). Every chrome
+ * primitive must wear .type-ui, and .type-ui must reset the inheritable text
+ * properties that caused those bugs. Separating instance: Badge.tsx before
+ * 2026-08-05 carried no reset and fails this check.
+ */
+const CHROME_COMPONENTS = ["components/Badge.tsx", "components/Chip.tsx"];
+{
+  const decl = /\.type-ui\s*\{([^}]*)\}/.exec(stripComments(css));
+  if (!decl) problems.push("index.css must declare .type-ui — the chrome firewall (see gate 5)");
+  else
+    for (const prop of ["font-family", "text-indent", "font-style"])
+      if (!new RegExp(`${prop}\\s*:`).test(decl[1]))
+        problems.push(`.type-ui must reset ${prop} — a chrome element inheriting it from a warrant block has already shipped as a bug`);
+  for (const rel of CHROME_COMPONENTS) {
+    const p = join(resolve(here, "../src"), rel);
+    // Comment-stripped, so a comment MENTIONING type-ui cannot satisfy the
+    // check — only a className carrying it can.
+    if (!stripComments(readFileSync(p, "utf8")).includes("type-ui"))
+      problems.push(`${rel} renders chrome without .type-ui — it will inherit content typography inside a warrant block`);
+  }
+}
+
 const TOKEN_HOMES = new Set(["tokens.ts"]);
 
 // Raw layout belongs in the component vocabulary, exactly as raw colour belongs

@@ -40,12 +40,11 @@ const PROOF_GLYPH: Record<ProofStatus, string> = {
 function Pill({ fill, glyph, text, title }: { fill: string; glyph?: string; text: string; title?: string }) {
   return (
     <span
-      // The font is set here, not inherited: a badge inside a `source` block
-      // otherwise arrives in the display serif, whose wider glyphs overflow the
-      // pill and clip — "human-verified" shipped as "nan-verified". A badge is
-      // UI, never quotation, so the face is part of the component's contract.
-      style={{ background: fill, color: "var(--text-on-accent)", borderRadius: "var(--radius-sm)", fontFamily: "var(--font-body)" }}
-      className="px-2 py-0.5 text-xs font-semibold whitespace-nowrap"
+      // The chrome firewall: a badge inside a `source` block otherwise inherits
+      // the display serif and the list's hanging indent — both shipped as
+      // clipped, meaning-inverting text. A badge is UI, never quotation.
+      style={{ background: fill, color: "var(--text-on-accent)", borderRadius: "var(--radius-sm)" }}
+      className="type-ui px-2 py-0.5 text-xs font-semibold whitespace-nowrap"
       title={title}
     >
       {glyph && <span aria-hidden>{glyph} </span>}

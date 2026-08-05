@@ -255,6 +255,26 @@ body {
   box-shadow: none;
 }
 
+/* ---------------------------------------------------------------------------
+   TYPE-UI — the chrome firewall.
+
+   Warrant classes deliberately carry typography: `source` wears the display
+   serif so "the author said this" can never be set like "we say this". The
+   cost is inheritance: chrome nested inside a warrant block arrives wearing
+   the content's clothes. That one leak shipped three separate bugs — a badge
+   in the serif whose wider glyphs overflowed, a metadata row inheriting a
+   hanging indent that clipped "no location recorded" to "location recorded",
+   and the census inheriting a prose measure. Every chrome primitive wears
+   this reset, and the design gate refuses a chrome component without it.
+   --------------------------------------------------------------------------- */
+.type-ui {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  text-indent: 0;
+}
+
 /* Density is ambient: the same primitives serve a document and an instrument. */
 [data-density="dense"] .w-source { font-size: 1.05rem; max-width: none; }
 [data-density="dense"] .pad-block { padding: 0.5rem 0.75rem; }
