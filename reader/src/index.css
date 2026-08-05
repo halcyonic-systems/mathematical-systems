@@ -304,13 +304,23 @@ body {
 /* A case: our gloss, then the author's own words, then how well established it
    is. The quote is set apart because it is theirs and the gloss is ours. */
 .case-quote { font-family: var(--font-display); color: var(--text-secondary); }
+/* Metadata is UI even when it hangs off a quotation: the row sits inside a
+   `source` block, so without an explicit face it inherits the display serif and
+   its wider glyphs overflow the row — "no location recorded" shipped clipped to
+   "location recorded", the exact inversion of what the data says. The row wraps
+   rather than crushes, and no child may shrink below its own text. */
 .case-meta {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.625rem;
   align-items: center;
   margin-top: 0.3rem;
+  font-family: var(--font-body);
   font-size: 11px;
   color: var(--text-muted);
+}
+.case-meta > * {
+  flex: none;
 }
 
 /* Section titles are links to themselves. The marker stays out of the way until
