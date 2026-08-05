@@ -181,6 +181,26 @@ const CHROME_COMPONENTS = ["components/Badge.tsx", "components/Chip.tsx"];
   }
 }
 
+/*
+ * (6) Type sizes come from the scale.
+ *
+ * Eleven ad hoc sizes coexisted on one page — including a 16.8px nobody chose
+ * and a 17px one pixel from 16 — because every rule invented its own. Outside
+ * :root, a font-size in index.css must be a --step-* / --display-* token, or
+ * em (context-relative sizes like inline code are legitimately relative).
+ * Separating instance: the pre-scale stylesheet fails this with ~25 raw sizes.
+ */
+{
+  const body = stripComments(css).replace(/:root\s*\{[^{}]*\}/, "");
+  for (const m of body.matchAll(/font-size\s*:\s*([^;]+);/g)) {
+    const v = m[1].trim();
+    if (!/^var\(--(step|display)[^)]*\)$/.test(v) && !/^[\d.]+em$/.test(v))
+      problems.push(
+        `index.css raw font-size "${v}" — sizes come from the --step/--display scale (em allowed for context-relative)`,
+      );
+  }
+}
+
 const TOKEN_HOMES = new Set(["tokens.ts"]);
 
 // Raw layout belongs in the component vocabulary, exactly as raw colour belongs

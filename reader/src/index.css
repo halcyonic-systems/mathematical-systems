@@ -115,6 +115,25 @@
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
+  /* THE TYPE SCALE — two ladders, one per face, because the register is
+     two-faced by design: the display serif's small x-height means its steps
+     cannot share values with the sans and still pair correctly. Eleven ad hoc
+     sizes (including a 16.8px nobody chose and a 17px one pixel from 16)
+     became these named steps; the design gate refuses a raw font-size in this
+     file outside :root. Tailwind's text-* utilities are the same scale on the
+     TSX side (text-xs = step--2, text-sm = step-0). */
+  --step--3: 0.625rem;   /* 10px — eyebrows only */
+  --step--2: 0.75rem;    /* 12px — micro metadata */
+  --step--1: 0.8125rem;  /* 13px — quiet body, section titles */
+  --step-0: 0.875rem;    /* 14px — standard body */
+  --step-1: 1rem;        /* 16px — base */
+  --display-0: 1rem;
+  --display-1: 1.05rem;
+  --display-2: 1.2rem;
+  --display-3: 1.35rem;
+  --display-4: 1.55rem;
+  --display-5: 1.7rem;
+
   /* The critical-edition register: a quoted source is set for READING, at a
      measure, in the display serif -- not in UI sans and not in monospace. The
      verbatim is the thing every downstream encoding is checkable against, so it
@@ -142,7 +161,7 @@ body {
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 10px;
+  font-size: var(--step--3);
   font-weight: 600;
   color: var(--text-muted);
 }
@@ -155,11 +174,11 @@ body {
    equal nominal size the two read as equal. Serif that quotes a book has to be
    set larger than the ratio suggests to LOOK larger. */
 .passage-quoted {
-  font-size: 1.7rem;
+  font-size: var(--display-5);
   line-height: 1.4;
 }
 .passage-locus {
-  font-size: 12px;
+  font-size: var(--step--2);
   letter-spacing: 0.01em;
 }
 .passage-caption {
@@ -183,7 +202,7 @@ body {
    --------------------------------------------------------------------------- */
 .w-source {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: var(--display-3);
   line-height: 1.5;
   color: var(--text-primary);
   max-width: var(--measure-verbatim);
@@ -194,7 +213,7 @@ body {
 .w-source ul,
 .w-source li,
 .w-source ol {
-  font-size: 1.05rem;
+  font-size: var(--display-1);
   line-height: 1.5;
   max-width: none;
 }
@@ -203,13 +222,13 @@ body {
    They were 46/44/44rem, close enough to look like drift rather than intent
    when two of them sit in adjacent sections. Tables and instruments opt out. */
 .w-derived {
-  font-size: 0.875rem;
+  font-size: var(--step-0);
   line-height: 1.55;
   color: var(--text-primary);
   max-width: 44rem;
 }
 .w-decided {
-  font-size: 0.875rem;
+  font-size: var(--step-0);
   line-height: 1.55;
   color: var(--text-secondary);
   max-width: 44rem;
@@ -221,7 +240,7 @@ body {
    the dashed rules on .card-open / .strip-open instead; italic is kept for the
    terse in-place absence, where it is doing the job it is for. */
 .w-open {
-  font-size: 0.8125rem;
+  font-size: var(--step--1);
   line-height: 1.55;
   color: var(--text-muted);
   max-width: 44rem;
@@ -276,7 +295,7 @@ body {
 }
 
 /* Density is ambient: the same primitives serve a document and an instrument. */
-[data-density="dense"] .w-source { font-size: 1.05rem; max-width: none; }
+[data-density="dense"] .w-source { font-size: var(--display-1); max-width: none; }
 [data-density="dense"] .pad-block { padding: 0.5rem 0.75rem; }
 [data-density="generous"] .pad-block { padding: 1.5rem 1.25rem; }
 
@@ -319,7 +338,7 @@ body {
   border-left: 1px solid var(--hairline);
 }
 .critical-apparatus-item {
-  font-size: 0.8125rem;
+  font-size: var(--step--1);
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -415,7 +434,7 @@ body {
   align-items: center;
   margin-top: 0.3rem;
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: var(--step--2);
   color: var(--text-muted);
   /* The li's hanging indent (text-indent: -1.5rem) INHERITS: inside a badge it
      shifts the first line 1.5rem left out of its own box, so "human-verified"
@@ -474,7 +493,7 @@ body {
   margin-inline: auto;
   min-height: 1.5em;
   font-family: var(--font-display);
-  font-size: 1.0625rem;
+  font-size: var(--display-1);
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -486,7 +505,7 @@ body {
 .section-title {
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 13px;
+  font-size: var(--step--1);
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
@@ -678,7 +697,7 @@ body {
    --------------------------------------------------------------------------- */
 .thesis {
   font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-size: var(--display-5);
   line-height: 1.4;
   color: var(--text-primary);
   max-width: 40rem;
@@ -689,7 +708,7 @@ body {
    between the reader and the material. */
 .thesis-sub {
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: var(--step-0);
   line-height: 1.55;
   max-width: 44rem;
   margin: 1.25rem 0 0;
@@ -744,12 +763,12 @@ body {
 .shelf-head {
   display: block;
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: var(--step-0);
   color: var(--text-primary);
 }
 .shelf-tail {
   display: block;
-  font-size: 0.75rem;
+  font-size: var(--step--2);
   line-height: 1.4;
   color: var(--text-secondary);
   margin-top: 0.1rem;
@@ -760,7 +779,7 @@ body {
    reading of the notation leads into the entry. */
 .shelf-display {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: var(--display-5);
   line-height: 1.35;
   text-align: center;
   color: var(--text-primary);
@@ -770,7 +789,7 @@ body {
 /* A definitional sentence is a different object from a formula: it is read,
    not beheld, so it takes the reading register — left-set, at passage scale. */
 .shelf-display-long {
-  font-size: 1.2rem;
+  font-size: var(--display-2);
   line-height: 1.45;
   text-align: left;
   padding: 1.25rem 1rem 1rem;
@@ -778,7 +797,7 @@ body {
 .shelf-context {
   display: block;
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: var(--display-0);
   line-height: 1.5;
   color: var(--text-secondary);
   margin: 0 1rem 0.75rem;
@@ -787,7 +806,7 @@ body {
 }
 .shelf-cue {
   padding: 0 1rem 0.625rem;
-  font-size: 12px;
+  font-size: var(--step--2);
 }
 .shelf-meta {
   margin-top: auto;
@@ -797,7 +816,7 @@ body {
   gap: 0.625rem;
   align-items: center;
   flex-wrap: wrap;
-  font-size: 12px;
+  font-size: var(--step--2);
   color: var(--text-muted);
 }
 
@@ -806,7 +825,7 @@ body {
    a reader take a side before scrolling on. */
 .conflict-question {
   font-family: var(--font-display);
-  font-size: 1.55rem;
+  font-size: var(--display-4);
   line-height: 1.4;
   color: var(--text-primary);
   max-width: 40rem;
@@ -836,7 +855,7 @@ body {
   border-top: 1px solid var(--border);
   margin-top: 2.5rem;
   padding-top: 1rem;
-  font-size: 0.875rem;
+  font-size: var(--step-0);
   line-height: 1.55;
   color: var(--text-secondary);
 }
@@ -939,12 +958,12 @@ body {
     white-space: nowrap;
   }
   .w-source {
-    font-size: 1.15rem;
+    font-size: var(--display-2);
   }
   /* Stated after .w-source so the quoted passage keeps its lead at every width;
      it is still the largest thing on the page, just less large. */
   .passage-quoted {
-    font-size: 1.35rem;
+    font-size: var(--display-3);
   }
   .view-about {
     padding: 0.625rem 1rem;
