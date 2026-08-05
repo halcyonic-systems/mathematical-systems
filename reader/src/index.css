@@ -647,9 +647,21 @@ body {
   color: var(--text-muted);
 }
 
-/* The disagreement: two rulings on one object, side by side. The glyphs are the
-   ledger's own (⊨ admits, ⊭ refuses); colour stays on the evidence badge where
-   it is contractual. */
+/* The disagreement asks itself: the question is the panel's headline, set at
+   thesis scale in the display face. A question is the one prose form that makes
+   a reader take a side before scrolling on. */
+.conflict-question {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+  max-width: 40rem;
+  margin: 0 0 1.25rem;
+}
+
+/* Two rulings on one object, side by side. The glyphs are the ledger's own
+   (⊨ admits, ⊭ refuses); colour stays on the evidence badge where it is
+   contractual. */
 .verdicts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

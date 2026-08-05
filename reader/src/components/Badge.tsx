@@ -21,6 +21,16 @@ const EVIDENCE_MEANING: Record<string, string> = {
   PROP: "Propagated from another entry",
 };
 
+/** What the badge SAYS. The curator's code moves to the tooltip: a stranger
+    reads "human-verified"; someone who has learned the vocabulary hovers and
+    gets HVP. Meaning shown, abbreviation earned — not the other way around. */
+const EVIDENCE_PLAIN: Record<string, string> = {
+  HVP: "human-verified",
+  MDHC: "human-checked",
+  MDU: "unchecked",
+  PROP: "propagated",
+};
+
 const PROOF_GLYPH: Record<ProofStatus, string> = {
   entailed: "✓",
   "not-proven": "◐",
@@ -45,8 +55,8 @@ export function EvidenceBadge({ code }: { code: string | null }) {
   return (
     <Pill
       fill={evidence[id as keyof typeof evidence] ?? "var(--accent-slate)"}
-      text={id || "—"}
-      title={EVIDENCE_MEANING[id] ?? id}
+      text={EVIDENCE_PLAIN[id] ?? (id || "—")}
+      title={EVIDENCE_MEANING[id] ? `${id} — ${EVIDENCE_MEANING[id]}` : id}
     />
   );
 }
@@ -67,7 +77,10 @@ export function ProofBadge({ status, bounded }: { status: ProofStatus; bounded?:
 }
 
 export function TranscriptBadge({ status, source }: { status: TranscriptStatus; source?: string }) {
-  const short = status === "located" ? "Verified" : status === "partial" ? "Partial" : "Unverified";
+  // "In the book" is the claim this channel actually makes — the build found the
+  // passage in the primary text. "Verified" beside the evidence badge's
+  // "human-verified" read as one claim said twice; they are different claims.
+  const short = status === "located" ? "In the book" : status === "partial" ? "Partly located" : "Not verified";
   const glyph = status === "located" ? "✓" : status === "partial" ? "◐" : "✕";
   return (
     <Pill

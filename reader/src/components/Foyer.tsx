@@ -93,14 +93,11 @@ export function ConflictPanel({
   const grade = (conflict.evidenceCode ?? "").split("/").pop();
   return (
     <>
-      {/* The ledger's terms, translated at the door: "admits" means the
-          definition counts it as a system, "refuses" means it does not. A
-          first-time reader should not need the ledger's vocabulary to see that
-          this is a disagreement about what a system is. */}
-      <p className="m-0 mb-4 font-semibold" style={{ color: "var(--text-primary)" }}>
-        Both definitions rule on the same object — {conflict.label} — and they disagree about whether it
-        is a system.
-      </p>
+      {/* The disagreement asks itself. The question is generated from the test
+          object's label — data, not copy — so the panel stays derived as the
+          catalogue grows, and a first-time reader needs no ledger vocabulary:
+          admits means yes, refuses means no. */}
+      <p className="conflict-question">Is {conflict.label} a system?</p>
       <div className="verdicts">
         <div>
           {conflict.admittedBy.map((a) => (
@@ -109,7 +106,7 @@ export function ConflictPanel({
                 <span aria-hidden className="verdict-glyph">
                   ⊨
                 </span>
-                A system, under {headOf(a.entry)}
+                {headOf(a.entry)} says yes
               </p>
               {/* CaseItem, not CaseList: the ledger list's hanging indent is for
                   glyph columns, and without one it pulls the meta row off the
@@ -127,7 +124,7 @@ export function ConflictPanel({
                 <span aria-hidden className="verdict-glyph">
                   ⊭
                 </span>
-                Not a system, under {headOf(r.entry)}
+                {headOf(r.entry)} says no
               </p>
               <ul className="m-0 p-0 list-none">
                 <CaseItem c={cases[r.case]} />
