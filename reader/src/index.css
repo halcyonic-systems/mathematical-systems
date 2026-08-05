@@ -335,6 +335,12 @@ body {
   font-family: var(--font-body);
   font-size: 11px;
   color: var(--text-muted);
+  /* The li's hanging indent (text-indent: -1.5rem) INHERITS: inside a badge it
+     shifts the first line 1.5rem left out of its own box, so "human-verified"
+     painted as "man-verified" and "no location recorded" as "location
+     recorded" — meaning inverted by a clipped negative indent, not by a font.
+     Same reset .ruling-glyph already carries, for the same reason. */
+  text-indent: 0;
 }
 .case-meta > * {
   flex: none;
