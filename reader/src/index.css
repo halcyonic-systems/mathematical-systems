@@ -513,6 +513,33 @@ body {
   border-bottom-style: dotted;
 }
 
+/* A cross-reference: quiet in place — content ink, a hairline underline — and
+   it answers the cursor in the accent. Doctrine holds: hover steps presentation
+   only, never the ink of a reserved channel, and the underline means "this goes
+   somewhere" without shouting over the text it sits in. */
+.xref {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 2px;
+  transition: color var(--transition-base), text-decoration-color var(--transition-base);
+}
+.xref:hover {
+  color: var(--accent-strong);
+  text-decoration-color: var(--accent-strong);
+}
+
+/* A chip that is a door: same body as a label chip, underline on hover to say
+   so. The chip's fill is its identity, so hover speaks in the underline. */
+.chip-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+.chip-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* Keyboard users land on the rail otherwise, and the rail is long. */
 .skip-link {
   position: absolute;

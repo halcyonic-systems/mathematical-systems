@@ -82,7 +82,14 @@ export default function App() {
   useEffect(() => {
     if (!atlas) return;
     const id = decodeURIComponent(window.location.hash.slice(1));
-    if (id) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start" }));
+    if (!id) return;
+    const land = () => document.getElementById(id)?.scrollIntoView({ block: "start" });
+    requestAnimationFrame(land);
+    // The first landing is measured against fallback-font metrics; when the
+    // web fonts arrive the page reflows and the target can drift. Land once
+    // more when the real metrics exist. (In a background tab neither rAF fires
+    // until the tab is shown — which is when the scroll should happen anyway.)
+    void document.fonts?.ready.then(() => requestAnimationFrame(land));
   }, [atlas, view, reading]);
 
   // Switching view carried the previous view's scroll position with it, so

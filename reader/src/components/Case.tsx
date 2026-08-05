@@ -14,7 +14,18 @@
 import { EvidenceBadge } from "./Badge";
 import type { Case } from "../types";
 
-export function CaseItem({ c, glyph }: { c: Case | undefined; glyph?: string }) {
+export function CaseItem({
+  c,
+  glyph,
+  link,
+}: {
+  c: Case | undefined;
+  glyph?: string;
+  /** A door to this case's row in the ledger — supplied by the caller (an
+      entry page, a comparison), absent on the ledger itself, where a case
+      linking to its own row would be noise. */
+  link?: { url: string; open: () => void };
+  }) {
   if (!c) return <li className="w-open">Unknown case.</li>;
   return (
     <li className="mb-3 last:mb-0">
@@ -23,7 +34,21 @@ export function CaseItem({ c, glyph }: { c: Case | undefined; glyph?: string }) 
           {glyph}
         </span>
       )}
-      <span>{c.gloss}</span>
+      {link ? (
+        <a
+          href={link.url}
+          className="xref"
+          onClick={(e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+            e.preventDefault();
+            link.open();
+          }}
+        >
+          {c.gloss}
+        </a>
+      ) : (
+        <span>{c.gloss}</span>
+      )}
       {c.verbatim && (
         <span className="case-quote"> — “{c.verbatim}”</span>
       )}
@@ -50,16 +75,19 @@ export function CaseList({
   iris,
   cases,
   stance,
+  linkCase,
 }: {
   iris: string[];
   cases: Record<string, Case>;
   stance?: "admits" | "refuses";
+  /** Per-case door to the ledger; see CaseItem. */
+  linkCase?: (iri: string) => { url: string; open: () => void };
 }) {
   if (iris.length === 0) return <span className="w-open">—</span>;
   return (
     <ul className={`m-0 p-0 list-none case-list${stance ? ` ruling-${stance}` : ""}`}>
       {iris.map((iri) => (
-        <CaseItem key={iri} c={cases[iri]} glyph={stance && RULING[stance]} />
+        <CaseItem key={iri} c={cases[iri]} glyph={stance && RULING[stance]} link={linkCase?.(iri)} />
       ))}
     </ul>
   );

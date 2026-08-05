@@ -38,6 +38,7 @@ import {
   localName,
   type CellState,
 } from "./components";
+import type { ReactNode } from "react";
 import { useStore } from "./store";
 import { href } from "./route";
 import { TIERS } from "./About";
@@ -46,6 +47,49 @@ import type { Atlas, Reasoning } from "./types";
 const byIri = <T extends { iri: string }>(xs: T[]) => new Map(xs.map((x) => [x.iri, x]));
 
 const hrefOfEntry = (e: { iri: string }) => href({ view: "read", entry: e.iri.split("/").pop() ?? "" });
+
+/**
+ * Cross-reference doors. An atlas whose pages do not link to each other is
+ * seven isolated documents behind a nav bar: every journey restarts at the top.
+ * Each door is a real URL plus the SPA transition to it — a primitive chip
+ * lands on that primitive's census row, a case lands on its ledger row, an
+ * entry label opens the entry. The relations were in the data all along; this
+ * is wiring, not authoring.
+ */
+function useDoors() {
+  const openAt = useStore((s) => s.openAt);
+  return {
+    primitive: (iri: string) => ({
+      href: href({ view: "census" }) + `#primitive-${localName(iri)}`,
+      onOpen: () => openAt({ view: "census" }, `primitive-${localName(iri)}`),
+    }),
+    ledgerCase: (iri: string) => ({
+      url: href({ view: "ledger" }) + `#case-${localName(iri)}`,
+      open: () => openAt({ view: "ledger" }, `case-${localName(iri)}`),
+    }),
+    entry: (e: { iri: string }) => ({
+      url: hrefOfEntry(e),
+      open: () => openAt({ view: "read", entry: e.iri.split("/").pop() ?? "" }),
+    }),
+  };
+}
+
+/** A quiet cross-reference anchor: browser semantics intact, SPA on plain click. */
+function Xref({ door, children }: { door: { url: string; open: () => void }; children: ReactNode }) {
+  return (
+    <a
+      href={door.url}
+      className="xref"
+      onClick={(e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        door.open();
+      }}
+    >
+      {children}
+    </a>
+  );
+}
 
 /** "Bunge (1979), Definition 1.1: concrete system" -> "Definition 1.1: concrete system". */
 const distinguishing = (label: string | null) => (label ?? "").replace(/^[^,]*\(\d{4}\),\s*/, "");
@@ -61,6 +105,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
   const reading = useStore((s) => s.reading);
   const missing = useStore((s) => s.missing);
   const read = useStore((s) => s.read);
+  const doors = useDoors();
 
   // The address bar asked for an entry the catalogue does not hold. Saying so
   // is the whole fix: the previous behaviour rendered the first entry under the
@@ -137,7 +182,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
       <Section title="What it posits" warrant="decided" note="terms this encoding reads as primitive">
         <div className="flex flex-wrap gap-2">
           {entry.primitives.map((p) => (
-            <Chip key={p}>
+            <Chip key={p} {...doors.primitive(p)} title="Open this primitive's census row">
               {prims.get(p)?.label ?? localName(p)}
               {prims.get(p)?.role ? ` · ${prims.get(p)!.role}` : ""}
             </Chip>
@@ -179,8 +224,8 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
             label="Examples"
             warrant="source"
             cells={[
-              <CaseList key="a" iris={entry.admits} cases={atlas.cases} stance="admits" />,
-              <CaseList key="r" iris={entry.refuses} cases={atlas.cases} stance="refuses" />,
+              <CaseList key="a" iris={entry.admits} cases={atlas.cases} stance="admits" linkCase={doors.ledgerCase} />,
+              <CaseList key="r" iris={entry.refuses} cases={atlas.cases} stance="refuses" linkCase={doors.ledgerCase} />,
             ]}
           />
         </FieldGrid>
@@ -231,6 +276,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
 export function CompareView({ atlas }: { atlas: Atlas }) {
   const compared = useStore((s) => s.compared);
   const toggle = useStore((s) => s.toggle);
+  const doors = useDoors();
   const shown = atlas.entries.filter((e) => compared.includes(e.iri));
   const prims = byIri(atlas.primitives);
 
@@ -276,7 +322,7 @@ export function CompareView({ atlas }: { atlas: Atlas }) {
             cells={shown.map((e) => (
               <span key={e.iri} className="flex flex-wrap gap-1.5">
                 {e.primitives.map((p) => (
-                  <Chip key={p} tone={isUnique(p) ? "solid" : "quiet"}>
+                  <Chip key={p} tone={isUnique(p) ? "solid" : "quiet"} {...doors.primitive(p)} title="Open this primitive's census row">
                     {prims.get(p)?.label ?? localName(p)}
                   </Chip>
                 ))}
@@ -286,12 +332,16 @@ export function CompareView({ atlas }: { atlas: Atlas }) {
           <Field
             label="Admits"
             warrant="source"
-            cells={shown.map((e) => <CaseList key={e.iri} iris={e.admits} cases={atlas.cases} stance="admits" />)}
+            cells={shown.map((e) => (
+              <CaseList key={e.iri} iris={e.admits} cases={atlas.cases} stance="admits" linkCase={doors.ledgerCase} />
+            ))}
           />
           <Field
             label="Refuses"
             warrant="source"
-            cells={shown.map((e) => <CaseList key={e.iri} iris={e.refuses} cases={atlas.cases} stance="refuses" />)}
+            cells={shown.map((e) => (
+              <CaseList key={e.iri} iris={e.refuses} cases={atlas.cases} stance="refuses" linkCase={doors.ledgerCase} />
+            ))}
           />
           <Field label="Author's caveat" warrant="source" cells={shown.map((e) => e.authorCaveat ?? "—")} />
           <Field
@@ -311,9 +361,11 @@ export function CompareView({ atlas }: { atlas: Atlas }) {
 /* ---------------------------------------------------------------- census -- */
 
 export function CensusView({ atlas }: { atlas: Atlas }) {
+  const doors = useDoors();
   const untyped = atlas.primitives.every((p) => !p.role);
   const rows = atlas.primitives.map((p) => ({
     key: p.iri,
+    id: `primitive-${localName(p.iri)}`,
     label: (
       <>
         {p.label}
@@ -334,7 +386,11 @@ export function CensusView({ atlas }: { atlas: Atlas }) {
         note={`${atlas.primitives.length} primitives across ${atlas.entries.length} entries`}
       >
         <Matrix
-          columns={atlas.entries.map((e) => distinguishing(e.label))}
+          columns={atlas.entries.map((e) => (
+            <Xref key={e.iri} door={doors.entry(e)}>
+              {distinguishing(e.label)}
+            </Xref>
+          ))}
           rows={rows}
           caption={atlas.primitiveSchemeScopeNote
             ?.split("\n\n")[0]
@@ -360,10 +416,19 @@ export function CensusView({ atlas }: { atlas: Atlas }) {
 /* ---------------------------------------------------------------- ledger -- */
 
 export function LedgerView({ atlas }: { atlas: Atlas }) {
+  const doors = useDoors();
   const rows = atlas.entries.flatMap((e) => [
     ...e.admits.map((iri) => ({ entry: e, stance: "admits" as const, iri })),
     ...e.refuses.map((iri) => ({ entry: e, stance: "refuses" as const, iri })),
   ]);
+  // One case can hold several rows (that is what a conflict IS — admitted by
+  // one entry, refused by another), but a fragment must land somewhere single:
+  // the first row for each case carries the anchor.
+  const seen = new Set<string>();
+  const anchored = rows.map((r) => ({
+    ...r,
+    anchor: seen.has(r.iri) ? undefined : (seen.add(r.iri), `case-${localName(r.iri)}`),
+  }));
 
   return (
     <>
@@ -418,14 +483,18 @@ export function LedgerView({ atlas }: { atlas: Atlas }) {
       >
         <FieldGrid columns={2}>
           <FieldHeadings headings={["Example", "Entry"]} />
-          {rows.map((r, i) => (
+          {anchored.map((r, i) => (
             <Field
               key={i}
               label={r.stance}
               warrant="source"
               cells={[
-                <CaseList key="c" iris={[r.iri]} cases={atlas.cases} stance={r.stance} />,
-                <span key="e" className="name-column">{distinguishing(r.entry.label)}</span>,
+                <span key="c" id={r.anchor} className="block scroll-mt-16">
+                  <CaseList iris={[r.iri]} cases={atlas.cases} stance={r.stance} />
+                </span>,
+                <span key="e" className="name-column">
+                  <Xref door={doors.entry(r.entry)}>{distinguishing(r.entry.label)}</Xref>
+                </span>,
               ]}
             />
           ))}

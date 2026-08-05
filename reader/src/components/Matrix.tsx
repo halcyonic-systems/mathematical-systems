@@ -46,7 +46,7 @@ export function Matrix({
   caption,
 }: {
   columns: ReactNode[];
-  rows: { key: string; label: ReactNode; cells: CellState[]; total?: number }[];
+  rows: { key: string; label: ReactNode; cells: CellState[]; total?: number; id?: string }[];
   caption?: ReactNode;
 }) {
   return (
@@ -87,9 +87,13 @@ export function Matrix({
         <tbody>
           {rows.map((r, i) => (
             <tr key={r.key} style={{ background: i % 2 ? "var(--bg-primary)" : "transparent" }}>
+              {/* The id makes a row citable and landable — a primitive chip on
+                  an entry page points here. scroll-mt keeps the sticky bar off
+                  the landing. */}
               <th
                 scope="row"
-                className="py-1.5 pr-4 name-column text-left font-normal"
+                id={r.id}
+                className="py-1.5 pr-4 name-column text-left font-normal scroll-mt-16"
                 style={{ borderBottom: "1px solid var(--hairline)" }}
               >
                 {r.label}

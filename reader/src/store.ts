@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { BASE, go, parse, type Route } from "./route";
+import { BASE, go, href, parse, type Route } from "./route";
 import type { Atlas, Reasoning } from "./types";
 
 export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments" | "about";
@@ -23,6 +23,11 @@ type State = {
   load: () => Promise<void>;
   setView: (v: View) => void;
   read: (iri: string) => void;
+  /** Open a view at a fragment — the cross-reference move. A primitive chip on
+      an entry lands on that primitive's census row; a case lands on its ledger
+      row. Pushes the canonical URL with the fragment, so the same address a
+      middle-click would open is the one the SPA transition writes. */
+  openAt: (r: Route, fragment?: string) => void;
   toggle: (iri: string) => void;
   setVariant: (v: "shipped" | "full") => void;
   /** Re-derive state from the address bar, for back/forward. */
@@ -102,6 +107,15 @@ export const useStore = create<State>((set, get) => {
     read: (iri) => {
       set({ reading: iri, missing: null, view: "read" });
       go(route({ view: "read", entry: idOf(iri) }));
+    },
+
+    openAt: (r, fragment) => {
+      const entries = get().atlas?.entries ?? [];
+      const hit = r.view === "read" && r.entry ? entries.find((e) => e.id === r.entry)?.iri : undefined;
+      set({ view: r.view, ...(hit ? { reading: hit, missing: null } : {}) });
+      const url = href(r) + (fragment ? `#${fragment}` : "");
+      if (url !== window.location.pathname + window.location.search + window.location.hash)
+        window.history.pushState({}, "", url);
     },
 
     toggle: (iri) => {
