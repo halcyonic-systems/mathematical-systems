@@ -113,7 +113,7 @@ Extraction can be delegated to a model. **Verification cannot.** N is set by the
 - **No Mobus, Myers, Troncale entries yet.** Per-tradition RDFs for Bunge, Mobus and Troncale already exist, abandoned, in `archive/apps/onto-viz/ontologies/` — they import nothing and need recovery + audit, not rewriting. **Myers is the one to encode next**, and not for coverage: see `docs/open-decisions.md` D3.
 - **Mapping layer is prose, not RDF.** `mappings/` holds evidence documents; the TTL vocabulary waits until three or four mappings show what it needs to say.
 - **M001's key instantiation is not written in Lean.** Both halves are in `systems-science-foundations` and the hypothesis discharges by inspection, but the one-line theorem does not yet compile. Until it does, M001 is human-checked, not machine-checked.
-- **No reasoner run.** `build.py` validates syntax and that the import chain resolves. Nobody has run HermiT/ELK over the merged graph to check consistency. Do that before trusting any inference.
+- **No reasoner run.** `build.py` validates syntax and that the import chain resolves. Nobody has run HermiT/ELK over the merged graph to check consistency. Do that before trusting any inference. Tracked in #3, with candidate tooling (open-ontologies MCP, DEALER) and their limits.
 
 ## The first mapping — tested
 
