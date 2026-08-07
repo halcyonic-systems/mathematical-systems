@@ -794,15 +794,16 @@ body {
 }
 .shelf-card {
   /* The bearer-identity channel arrives here: each card wears its author's
-     world hue on the strip wash and the leading edge. Unknown authors fall
-     back to the app accent until their hue is assigned. */
-  --world: var(--accent);
+     world hue on the strip wash and the leading edge. The card must NOT set
+     --world itself: it ties with [data-world] on specificity and, sitting
+     later in the file, wins — which painted every card the app accent.
+     Unknown authors fall back to the accent at each usage site instead. */
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: inherit;
   border: 1px solid var(--border);
-  border-left: 3px solid var(--world);
+  border-left: 3px solid var(--world, var(--accent));
   background: var(--bg-secondary);
   box-shadow: var(--shadow-card);
   transition:
@@ -811,11 +812,11 @@ body {
 }
 .shelf-card:hover {
   box-shadow: var(--shadow-card-hover);
-  border-color: var(--world);
+  border-color: var(--world, var(--accent));
 }
 .shelf-strip {
-  background: color-mix(in srgb, var(--world) 16%, var(--bg-secondary));
-  border-bottom: 1px solid color-mix(in srgb, var(--world) 30%, var(--border));
+  background: color-mix(in srgb, var(--world, var(--accent)) 16%, var(--bg-secondary));
+  border-bottom: 1px solid color-mix(in srgb, var(--world, var(--accent)) 30%, var(--border));
   padding: 0.625rem 1rem;
 }
 .shelf-head {
