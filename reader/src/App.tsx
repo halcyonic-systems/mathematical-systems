@@ -105,7 +105,7 @@ export default function App() {
   // artefact whose URLs exist to be sent to someone. An open entry names
   // itself; a missing one says so.
   useEffect(() => {
-    const base = "Atlas — Mathematical Systems";
+    const base = "Mathematical Systems Atlas";
     const label = [...TABS, ...META_TABS].find((t) => t.id === view)?.label;
     const entry = view === "read" ? atlas?.entries.find((e) => e.iri === reading)?.label : null;
     document.title =
@@ -135,9 +135,8 @@ export default function App() {
         Skip to the catalogue
       </a>
       <Masthead
-        eyebrow="Mathematical Systems"
-        title="Atlas"
-        subtitle="Formal definitions of “system,” and the maps between them"
+        eyebrow="math.systems"
+        title="Mathematical Systems Atlas"
         count={`${atlas.entries.length} entries`}
       />
       {/* The Definitions link must name an entry: href({view:"read"}) with no

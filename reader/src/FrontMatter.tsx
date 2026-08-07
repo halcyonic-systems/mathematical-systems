@@ -34,7 +34,7 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
   return (
     <>
       <p className="thesis">
-        Relations between definitions are the point; the entries are the substrate.
+        Formal definitions of “system,” and the maps between them.
       </p>
 
       <Shelf
