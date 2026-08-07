@@ -61,7 +61,10 @@ entry:bertalanffy-1972-set-in-interrelation
                            prim:relation ,
                            prim:environment ;
 
-    atlas:admits case:bertalanffy-organism ;
+    # No cases. The organism ruling recorded here until 2026-08-07 was from the
+    # 1968 book, parked on this entry while it was the only Bertalanffy entry;
+    # it now lives with its own bearer on entry 005 (bertalanffy-1968-gst.ttl).
+    # The 1972 article itself never rules on a concrete object.
 
     # The 1972 shape, NOT the 1968 one. The verbatim says "and with the
     # environment", which is a third position and a second arrow; pointing this
@@ -109,35 +112,6 @@ catalogue.""" ;
 
 
 ##############################################################################
-# Cases
+# Cases — none. The organism ruling moved to entry 005 (bertalanffy-1968-gst.ttl)
+# on 2026-08-07, with the move recorded on the case itself.
 ##############################################################################
-
-case:bertalanffy-organism
-    a atlas:Example ;
-    rdfs:label "an organism"@en ;
-    atlas:gloss "an organism" ;
-    atlas:verbatim "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction" ;
-    atlas:sourceLocation "General System Theory (1968), p. 209, quoting Bertalanffy 1949a p. 11" ;
-    atlas:evidenceCode atlas:MDHC ;
-    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
-    atlas:encodedOn "2026-08-05"^^xsd:date ;
-    rdfs:comment """DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the
-entry's definition is from the 1972 article; the case is recorded here because it is
-Bertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.
-
-MDHC, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: a human located "Any organism is a system"
-on p. 209 of the book on 2026-08-05, so the page and the ruling itself are confirmed. The
-remainder of the sentence — "that is, a dynamic order of parts and processes standing in
-mutual interaction" — is still as the OCR gives it and has not been read word for word. HVP
-needs that last step.
-
-The page number comes from a Kindle edition reporting print-equivalent pagination; the same
-edition's p. 56 for eq. (3.1) matches the print index's "mathematical definition, 56-60",
-which is the corroboration for trusting its numbering here.
-
-NOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex
-"can be built up, step by step, by putting together the first separate elements" — merely
-summative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is
-architecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never
-writes the verdict sentence, and encoding an implication as a ruling would put words in his
-mouth. It belongs to the mapping layer.""" .

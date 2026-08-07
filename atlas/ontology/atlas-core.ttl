@@ -357,7 +357,12 @@ prim:part a skos:Concept ;
 prim:time a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "time"@en ;
-    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence."@en .
+    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word."@en .
+
+prim:measure a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "measure"@en ;
+    skos:scopeNote "Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme."@en .
 
 
 ##############################################################################

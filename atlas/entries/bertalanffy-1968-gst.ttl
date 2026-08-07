@@ -1,0 +1,155 @@
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
+@prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
+@prefix cco:     <https://www.commoncoreontologies.org/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1968-gst>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
+    rdfs:label "Atlas entry — Bertalanffy 1968, General System Theory"@en ;
+    rdfs:comment """Entry 005. The canonical book, entered after the 1972 article (entry 004)
+rather than before it, because the only held copy is an OCR in which eq. (3.1) did not survive
+— the equation below was transcribed from the page image and screenshot-verified on 2026-08-05.
+The 1968/1972 pair makes the revision citable: what changed between them is proved in Lean
+(bert68To72Pre, environment_is_new), not narrated."""@en .
+
+
+##############################################################################
+# Bearer — the 1968 book, distinct from entry 004's 1972 article
+##############################################################################
+
+bearer:bertalanffy-1968-gst
+    a cco:ont00000253 ;   # Information Bearing Entity
+    rdfs:label "Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)"@en ;
+    dcterms:creator "Ludwig von Bertalanffy" ;
+    dcterms:date "1968"^^xsd:gYear ;
+    dcterms:bibliographicCitation "New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'." .
+
+# NOT registered in the transcription gate (BEARER_SOURCES): the vault copy of
+# this book is an OCR with systematically damaged ligatures in which the
+# equation does not exist at all. Registering it would have the gate verify
+# this entry's verbatim against a text known to be wrong. The apparatus below
+# records what was checked instead, and by whom.
+
+
+##############################################################################
+# Entry 005 — the differential-equation definition
+##############################################################################
+
+entry:bertalanffy-1968-eq-3-1
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Bertalanffy (1968), General System Theory, eq. (3.1)"@en ;
+
+    atlas:statedIn bearer:bertalanffy-1968-gst ;
+    atlas:sourceLocation "ch. 3, eq. (3.1), p. 56" ;
+
+    atlas:verbatim """A system can be defined mathematically in various ways. For illustration, we choose a system of simultaneous differential equations. Denoting some measure of elements, pᵢ (i = 1, 2, … n), by Qᵢ, these, for a finite number of elements and in the simplest case, will be of the form:
+
+dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
+dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
+⋯
+dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)                                    (3.1)""" ;
+
+    # Presentation spans — exact substrings of the verbatim, enforced by the build.
+    # The equation is the form; the author's own framing sentence is the context.
+    atlas:displayForm """dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
+dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
+⋯
+dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)""" ;
+    atlas:displayContext "For illustration, we choose a system of simultaneous differential equations." ;
+
+    # Conservative: only what the passage itself uses. "element" as in entry 004;
+    # "measure" is new (the word is his — "some measure of elements"; the
+    # state-variable reading is an interpretation and stays out of the scheme);
+    # "time" is invoked notationally, as the t of dQᵢ/dt — the first entry to
+    # mark the census's time row, previously used by nobody.
+    atlas:invokesPrimitive prim:element ,
+                           prim:measure ,
+                           prim:time ;
+
+    atlas:admits case:bertalanffy-organism ;
+
+    # The 1968 shape — two positions, one arrow, proved isomorphic to Klir's.
+    # This is the definition that shape was built to encode; entry 004 points at
+    # Bertalanffy72Shape, which carries the environment position this one lacks.
+    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape" ;
+
+    atlas:evidenceCode atlas:HVP ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+
+    rdfs:comment """HVP, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: Shingai read the page on
+2026-08-05 — the prose against this transcription, and the equation against the page image,
+because no text layer in any held source contains eq. (3.1) at all. The equation here is
+transcribed from that image, screenshot-verified the same day. The held Kindle text renders
+subscript i as t ("pt", "Qt") — an artifact of the rendering, not the book; the subscripts
+above are as printed. Page numbering is Kindle print-equivalent pagination, corroborated by
+the print index's "mathematical definition, 56-60".
+
+THE HEDGE IS PART OF THE RECORD. The verbatim opens at "A system can be defined mathematically
+in various ways" rather than at the equation: 1968 offers the differential equations as one
+illustration among various possible formalisations, and cutting the hedge would harden an
+avowedly illustrative choice into a definition the author did not state that way. The 1972
+restatement (entry 004) carries the same hedge in the other direction — a verbal definition
+pointing at unspecified mathematics.
+
+WHAT THE REVISION CHANGED, NOW CITABLE FROM BOTH ENDS. 1968: elements and their interrelation,
+no environment term — the shape has two positions and one arrow, and is proved isomorphic to
+Klir's. 1972: "and with the environment" — a third position and a second arrow. The difference
+is machine-checked: bert68To72Pre embeds the 1968 shape in the 1972 one (bert68To72_obj_injective),
+and environment_is_new proves the environment position is not in its image. This entry is the
+1968 end of that pair; mapping 003 (environment-channel.md) is where the finding is stated.
+
+WHY THE 1972 ARTICLE WAS ENTERED FIRST: transcription discipline. See entry 004's apparatus;
+this entry existing at all is the "second entry from the same tradition" that apparatus
+promised.""" ;
+
+    atlas:authorCaveat "A system can be defined mathematically in various ways." .
+
+
+##############################################################################
+# Cases
+##############################################################################
+
+# Moved here from entry 004 (2026-08-07): the ruling's bearer is this book —
+# 1968, p. 209 — not the 1972 article. It was parked on 004 while 004 was the
+# only Bertalanffy entry; now that its own bearer is in the catalogue, the case
+# lives with it. The entry it is admitted by changes accordingly.
+
+case:bertalanffy-organism
+    a atlas:Example ;
+    rdfs:label "an organism"@en ;
+    atlas:gloss "an organism" ;
+    atlas:verbatim "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction" ;
+    atlas:sourceLocation "General System Theory (1968), p. 209, quoting Bertalanffy 1949a p. 11" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-05"^^xsd:date ;
+    rdfs:comment """SAME BEARER AS THE ENTRY, since 2026-08-07. This ruling was first recorded
+on entry 004 (the 1972 article) with a DIFFERENT-BEARER caveat, because the catalogue then held
+no entry from the 1968 book. It moves here now that it does.
+
+MDHC, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: a human located "Any organism is a system"
+on p. 209 of the book on 2026-08-05, so the page and the ruling itself are confirmed. The
+remainder of the sentence — "that is, a dynamic order of parts and processes standing in
+mutual interaction" — is still as the OCR gives it and has not been read word for word. HVP
+needs that last step.
+
+The page number comes from a Kindle edition reporting print-equivalent pagination; the same
+edition's p. 56 for eq. (3.1) matches the print index's "mathematical definition, 56-60",
+which is the corroboration for trusting its numbering here.
+
+NOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex
+"can be built up, step by step, by putting together the first separate elements" — merely
+summative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is
+architecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never
+writes the verdict sentence, and encoding an implication as a ruling would put words in his
+mouth. It belongs to the mapping layer.""" .

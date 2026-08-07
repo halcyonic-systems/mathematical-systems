@@ -163,6 +163,7 @@ ACCESSION = [
     "bunge-1979-ces-triple",
     "bunge-1979-def-1-1",
     "bertalanffy-1972-set-in-interrelation",
+    "bertalanffy-1968-eq-3-1",
 ]
 
 

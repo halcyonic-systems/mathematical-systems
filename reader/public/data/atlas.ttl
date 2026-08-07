@@ -94,6 +94,13 @@ atlas:encodedBy a owl:AnnotationProperty ;
 atlas:encodedOn a owl:AnnotationProperty ;
     rdfs:label "encoded on"@en .
 
+<https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1968-gst> rdfs:label "Atlas entry — Bertalanffy 1968, General System Theory"@en ;
+    rdfs:comment """Entry 005. The canonical book, entered after the 1972 article (entry 004)
+rather than before it, because the only held copy is an OCR in which eq. (3.1) did not survive
+— the equation below was transcribed from the page image and screenshot-verified on 2026-08-05.
+The 1968/1972 pair makes the revision citable: what changed between them is proved in Lean
+(bert68To72Pre, environment_is_new), not narrated."""@en .
+
 <https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1972-history-status> rdfs:label "Atlas entry — Bertalanffy 1972, The History and Status of General Systems Theory"@en ;
     rdfs:comment """Entry 004. The founder of the tradition, entered from a journal article rather
 than the 1968 book — the first non-book bearer in the catalogue. The reason is transcription
@@ -110,6 +117,56 @@ insisted on. The distinction is his, not ours."""@en .
 
 <https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets> rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
     rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
+
+entry:bertalanffy-1968-eq-3-1 a atlas:FormalSystemDefinition ;
+    rdfs:label "Bertalanffy (1968), General System Theory, eq. (3.1)"@en ;
+    rdfs:comment """HVP, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: Shingai read the page on
+2026-08-05 — the prose against this transcription, and the equation against the page image,
+because no text layer in any held source contains eq. (3.1) at all. The equation here is
+transcribed from that image, screenshot-verified the same day. The held Kindle text renders
+subscript i as t ("pt", "Qt") — an artifact of the rendering, not the book; the subscripts
+above are as printed. Page numbering is Kindle print-equivalent pagination, corroborated by
+the print index's "mathematical definition, 56-60".
+
+THE HEDGE IS PART OF THE RECORD. The verbatim opens at "A system can be defined mathematically
+in various ways" rather than at the equation: 1968 offers the differential equations as one
+illustration among various possible formalisations, and cutting the hedge would harden an
+avowedly illustrative choice into a definition the author did not state that way. The 1972
+restatement (entry 004) carries the same hedge in the other direction — a verbal definition
+pointing at unspecified mathematics.
+
+WHAT THE REVISION CHANGED, NOW CITABLE FROM BOTH ENDS. 1968: elements and their interrelation,
+no environment term — the shape has two positions and one arrow, and is proved isomorphic to
+Klir's. 1972: "and with the environment" — a third position and a second arrow. The difference
+is machine-checked: bert68To72Pre embeds the 1968 shape in the 1972 one (bert68To72_obj_injective),
+and environment_is_new proves the environment position is not in its image. This entry is the
+1968 end of that pair; mapping 003 (environment-channel.md) is where the finding is stated.
+
+WHY THE 1972 ARTICLE WAS ENTERED FIRST: transcription discipline. See entry 004's apparatus;
+this entry existing at all is the "second entry from the same tradition" that apparatus
+promised.""" ;
+    atlas:admits case:bertalanffy-organism ;
+    atlas:authorCaveat "A system can be defined mathematically in various ways." ;
+    atlas:displayContext "For illustration, we choose a system of simultaneous differential equations." ;
+    atlas:displayForm """dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
+dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
+⋯
+dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)""" ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape" ;
+    atlas:invokesPrimitive prim:element,
+        prim:measure,
+        prim:time ;
+    atlas:sourceLocation "ch. 3, eq. (3.1), p. 56" ;
+    atlas:statedIn bearer:bertalanffy-1968-gst ;
+    atlas:verbatim """A system can be defined mathematically in various ways. For illustration, we choose a system of simultaneous differential equations. Denoting some measure of elements, pᵢ (i = 1, 2, … n), by Qᵢ, these, for a finite number of elements and in the simplest case, will be of the form:
+
+dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
+dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
+⋯
+dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)                                    (3.1)""" .
 
 entry:bertalanffy-1972-set-in-interrelation a atlas:FormalSystemDefinition ;
     rdfs:label "Bertalanffy (1972), The History and Status of General Systems Theory, p. 417"@en ;
@@ -144,7 +201,6 @@ THE AUTHOR'S OWN HEDGE is inside the verbatim, not paraphrased around it: "This 
 expressed mathematically in different ways." On the same page he names Mesarović, Maccia,
 Ashby and Klir as fellow axiomatisers — the founder pointing at two other entries in this
 catalogue.""" ;
-    atlas:admits case:bertalanffy-organism ;
     atlas:authorCaveat "This can be expressed mathematically in different ways." ;
     atlas:displayContext "This can be expressed mathematically in different ways." ;
     atlas:displayForm "A system may be defined as a set of elements standing in interrelation among themselves and with the environment." ;
@@ -355,11 +411,6 @@ atlas:invokesPrimitive a owl:ObjectProperty ;
     rdfs:range skos:Concept ;
     skos:definition "Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one."@en .
 
-prim:time a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "time"@en ;
-    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence."@en .
-
 atlas:refuses a owl:ObjectProperty ;
     rdfs:label "refuses"@en ;
     rdfs:comment """NOT EVERY NEGATIVE IS A REFUSAL. Bunge refuses ontically -- no bonds,
@@ -433,6 +484,12 @@ atlas:TestObjectScheme a skos:ConceptScheme ;
 is added only when the corpus contains at least two rulings on the same object, because a test
 object with one ruling compares nothing and a test object with none is invented."""@en .
 
+bearer:bertalanffy-1968-gst a cco:ont00000253 ;
+    rdfs:label "Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)"@en ;
+    dcterms:bibliographicCitation "New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'." ;
+    dcterms:creator "Ludwig von Bertalanffy" ;
+    dcterms:date "1968"^^xsd:gYear .
+
 bearer:bertalanffy-1972-amj a cco:ont00000253 ;
     rdfs:label "Von Bertalanffy, L. — The History and Status of General Systems Theory, Academy of Management Journal 15(4) (1972)"@en ;
     dcterms:bibliographicCitation "Academy of Management Journal 15(4), December 1972, pp. 407–426. Special issue: General Systems Theory." ;
@@ -450,9 +507,9 @@ bearer:klir-2001-facets a cco:ont00000253 ;
 
 case:bertalanffy-organism a atlas:Example ;
     rdfs:label "an organism"@en ;
-    rdfs:comment """DIFFERENT BEARER FROM THE ENTRY. This ruling is from the 1968 book, while the
-entry's definition is from the 1972 article; the case is recorded here because it is
-Bertalanffy ruling on a concrete object in his own voice, which the 1972 article never does.
+    rdfs:comment """SAME BEARER AS THE ENTRY, since 2026-08-07. This ruling was first recorded
+on entry 004 (the 1972 article) with a DIFFERENT-BEARER caveat, because the catalogue then held
+no entry from the 1968 book. It moves here now that it does.
 
 MDHC, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: a human located "Any organism is a system"
 on p. 209 of the book on 2026-08-05, so the page and the ruling itself are confirmed. The
@@ -558,9 +615,10 @@ prim:composition a skos:Concept ;
     skos:prefLabel "composition"@en ;
     skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en .
 
-prim:element a skos:Concept ;
+prim:measure a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "element"@en .
+    skos:prefLabel "measure"@en ;
+    skos:scopeNote "Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme."@en .
 
 prim:part a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -581,6 +639,11 @@ prim:thinghood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thinghood"@en ;
     skos:scopeNote "Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en .
+
+prim:time a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "time"@en ;
+    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word."@en .
 
 cco:ont00000853 a owl:Class ;
     rdfs:label "Descriptive Information Content Entity"@en ;
@@ -689,6 +752,10 @@ the reply that he was only excluding events."""@en ;
     atlas:encodedOn "2026-08-05"^^xsd:date ;
     atlas:evidenceCode atlas:HVP .
 
+prim:element a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "element"@en .
+
 prim:environment a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "environment"@en ;
@@ -724,6 +791,20 @@ term "system" formally: it introduces named components with types or sorts, and
 fixes at least one relation, function, or constraint among them, in symbols or in
 prose precise enough to be transcribed to symbols without adding content."""@en .
 
+atlas:Example a owl:Class ;
+    rdfs:label "Example"@en ;
+    rdfs:comment """WHY THIS IS A CLASS. Examples were literal strings on the entry until
+2026-08-03, which made four things impossible at once: an example could carry no evidence code
+of its own, so one entry-level code graded a verbatim, five primitives and three examples
+alike; no source location, though Bunge's examples sit outside the location his entry claims;
+no separation of the case from the author's reason for it, concatenated with an em dash; and
+no identity, so two authors ruling on the same object could not be matched. See
+docs/proposals/P4-evidence-scope.md."""@en ;
+    skos:definition """A case an author rules on: something they offer as a system, or refuse as
+one. Reified rather than recorded as a string on the entry, because an example is a thing
+several claims are made about -- where it appears in the source, how the encoding was
+established, and which shared case it instantiates."""@en .
+
 atlas:PrimitiveScheme a skos:ConceptScheme ;
     rdfs:label "Systems-definition primitive vocabulary"@en ;
     skos:definition "Controlled vocabulary of terms used as primitives in formal definitions of system. Deliberately flat and deliberately not an ontology of the world."@en ;
@@ -738,20 +819,6 @@ measure. Semantic co-reference is a mapping-layer claim and owes evidence like a
 other. Minting a separate primitive per author would make recurrence trivially zero;
 merging them by hand would make it trivially high. Lexical recurrence is the honest
 starting point, and its limits are stated here rather than discovered later."""@en .
-
-atlas:Example a owl:Class ;
-    rdfs:label "Example"@en ;
-    rdfs:comment """WHY THIS IS A CLASS. Examples were literal strings on the entry until
-2026-08-03, which made four things impossible at once: an example could carry no evidence code
-of its own, so one entry-level code graded a verbatim, five primitives and three examples
-alike; no source location, though Bunge's examples sit outside the location his entry claims;
-no separation of the case from the author's reason for it, concatenated with an em dash; and
-no identity, so two authors ruling on the same object could not be matched. See
-docs/proposals/P4-evidence-scope.md."""@en ;
-    skos:definition """A case an author rules on: something they offer as a system, or refuse as
-one. Reified rather than recorded as a string on the entry, because an example is a thing
-several claims are made about -- where it appears in the source, how the encoding was
-established, and which shared case it instantiates."""@en .
 
 skos:Concept a owl:Class ;
     rdfs:label "Concept"@en ;
