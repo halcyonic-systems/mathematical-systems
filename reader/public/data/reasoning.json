@@ -4,7 +4,7 @@
       "label": "As shipped (minimal CCO extract)",
       "consistent": true,
       "droppedAxioms": {
-        "DataPropertyAssertion: unsupported data range": 69
+        "DataPropertyAssertion: unsupported data range": 90
       },
       "commitments": [
         {
@@ -40,10 +40,10 @@
         }
       ],
       "labels": {
-        "FormalSystemDefinition": "Formal System Definition",
+        "ont00000958": "Information Content Entity",
         "BFO_0000001": "entity",
         "ont00000853": "Descriptive Information Content Entity",
-        "ont00000958": "Information Content Entity"
+        "FormalSystemDefinition": "Formal System Definition"
       }
     },
     "full": {
@@ -87,12 +87,12 @@
         }
       ],
       "labels": {
-        "FormalSystemDefinition": "Formal System Definition",
+        "ont00000958": "Information Content Entity",
         "BFO_0000001": "entity",
         "ont00000853": "Descriptive Information Content Entity",
+        "FormalSystemDefinition": "Formal System Definition",
         "ont00001808": "is about",
-        "ont00001982": "describes",
-        "ont00000958": "Information Content Entity"
+        "ont00001982": "describes"
       }
     }
   }

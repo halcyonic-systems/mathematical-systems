@@ -214,3 +214,85 @@ nowhere strands every citation that resolves to it.""" ;
         sh:minCount 1 ;
         sh:message "A retired term must say why it was retired and when." ;
     ] .
+
+
+##############################################################################
+# Stance assertion — a reading of what a definition is doing must carry its
+# licence. A stance with no verbatim is a label the catalogue made up; a
+# stance with no grade is unfalsifiable editorialising in a graph whose whole
+# design is that unverified assertions stay visible and filterable.
+##############################################################################
+
+atlas:StanceAssertionShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:StanceAssertion ;
+
+    sh:property [
+        sh:path atlas:stanceValue ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every stance assertion assigns exactly one value on exactly one axis. Two axes means two assertions — collapsing them is the single-spectrum mistake P3 exists to prevent." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:verbatim ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minLength 20 ;
+        sh:message "Every stance assertion carries the author's own words licensing it. The label is a handle; the quotation is the evidence. No verbatim, no stance." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:sourceLocation ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every stance verbatim says where it is from, which need not be the entry's own location — Klir's stance passage is §2.3, sixteen pages from eq. (1.1)." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:evidenceCode ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( atlas:HVP atlas:MDHC atlas:MDU atlas:PROP ) ;
+        sh:message "Every stance assertion carries exactly one evidence code of its own — the point of reifying it (P4): an entry-level code cannot grade a stance reading separately from a transcription." ;
+    ] .
+
+
+##############################################################################
+# Mapping claim — a relation between two entries must say which relation,
+# between which entries, argued where, on what evidence. An unanchored claim
+# would let the graph assert what no document argues.
+##############################################################################
+
+atlas:MappingClaimShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:MappingClaim ;
+
+    sh:property [
+        sh:path atlas:claimRelation ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every mapping claim asserts exactly one relation from the relation scheme." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:claimSource ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:class atlas:FormalSystemDefinition ;
+        sh:message "Every mapping claim runs from exactly one catalogued entry. A claim about a shape or an unencoded tradition stays in prose until its entry exists." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:claimTarget ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:class atlas:FormalSystemDefinition ;
+        sh:message "Every mapping claim runs to exactly one catalogued entry." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:arguedIn ;
+        sh:minCount 1 ;
+        sh:message "Every mapping claim points at the document that argues it. The claim is an address; the document is the argument." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:evidenceCode ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( atlas:HVP atlas:MDHC atlas:MDU atlas:PROP ) ;
+        sh:message "Every mapping claim carries exactly one evidence code of its own." ;
+    ] .

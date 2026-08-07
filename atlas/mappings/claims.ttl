@@ -1,0 +1,85 @@
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix claim:   <https://w3id.org/mathematical-systems/atlas/claim/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/mathematical-systems/atlas/mappings/claims>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
+    rdfs:label "Atlas mapping claims"@en ;
+    rdfs:comment """The RDF layer of the mapping documents — minted 2026-08-07 when the
+pattern across mappings 001–003 became clear, per the rule in README.md. Each claim is a
+reified relation between two ENTRIES, pointing at the prose document that argues it. The
+document remains the argument; the claim is its address in the graph.
+
+WHAT THE GRAPH CANNOT YET HOLD, so coverage stays honest: mapping 001's strong-reading
+counterexample (Joslyn ⇸ Klir, the feedback-cycle obstruction) relates a SHAPE to an entry —
+Joslyn has no catalogue entry, so the claim stays in prose. Likewise 001's Myers row. Mapping
+002's clash is not duplicated here at all: it is already derived in the graph through
+admits/refuses on the shared test object, which is the stronger encoding.
+
+Every claim below is MDU: the prose mappings are human work, but these graph encodings of
+them have not been human-checked. Shingai reading each claim against its mapping document
+upgrades it to MDHC."""@en .
+
+
+##############################################################################
+# Mapping 001 — weak encompassment, the vacuous half. TRUE of every catalogued
+# definition, and deliberately weak evidence of anything (see the relation's
+# scope note). Recorded because fifty years of citing "Klir's definition
+# subsumes the others" never separated this reading from the strong one.
+##############################################################################
+
+claim:klir-weakly-encompasses-bunge-ces
+    a atlas:MappingClaim ;
+    atlas:claimRelation atlas:weakly-encompasses ;
+    atlas:claimSource entry:klir-2001-eq-1-1 ;
+    atlas:claimTarget entry:bunge-1979-ces-triple ;
+    atlas:arguedIn "mappings/klir-encompassing.md" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    rdfs:comment """The redescription: T := C ∪ E, R := S — Bunge's own formulation already
+says S is a set of relations on C ∪ E. What the redescription is permitted to discard is
+exactly what distinguishes Bunge: the C/E partition, disjointness, bonding, the time index.
+The flattening this claim asserts is the same one whose loss claim:bunge-ces-no-faithful-embedding-into-klir
+records — the two are one finding read from its two sides."""@en .
+
+claim:klir-weakly-encompasses-bunge-def-1-1
+    a atlas:MappingClaim ;
+    atlas:claimRelation atlas:weakly-encompasses ;
+    atlas:claimSource entry:klir-2001-eq-1-1 ;
+    atlas:claimTarget entry:bunge-1979-def-1-1 ;
+    atlas:arguedIn "mappings/klir-encompassing.md" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    rdfs:comment """The redescription: T := the connected things, R := the connection
+relation. What it discards is that the relation must be a CONNECTION — the bonding requirement
+that does Bunge's refusing (see obj:ordered-non-bonding)."""@en .
+
+
+##############################################################################
+# Mapping 003 — the strong reading's failure, entry-level. The environment
+# channel does not survive flattening into (T, R).
+##############################################################################
+
+claim:bunge-ces-no-faithful-embedding-into-klir
+    a atlas:MappingClaim ;
+    atlas:claimRelation atlas:no-faithful-embedding-into ;
+    atlas:claimSource entry:bunge-1979-ces-triple ;
+    atlas:claimTarget entry:klir-2001-eq-1-1 ;
+    atlas:arguedIn "mappings/environment-channel.md" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "Claude (from mapping 003, claim b)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    rdfs:comment """The collapse witness: σ₁ = ⟨{a,b,c}, ∅, S⟩ and σ₂ = ⟨{a,b}, {c}, S⟩ are
+distinct systems by entry 002 and flatten to the single Klir pair ({a,b,c}, S). The datum
+erased is the C/E partition — the environment channel of mapping 003.
+
+NO atlas:theoremName YET, and its absence is a debt, not a licence: the Lean declaration
+(the forgetful map from the Bunge shape is not injective, witnessed by σ₁, σ₂) is owed to
+systems-science-foundations, and the P2 test object that would let the build derive the
+collapse is owed to this catalogue. Until one lands, this claim is asserted."""@en .

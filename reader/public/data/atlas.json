@@ -171,8 +171,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "5463c40+",
-    "repoCommit": "5463c40+"
+    "atlasCommit": "8557328+",
+    "repoCommit": "8557328+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -881,7 +881,7 @@
       "subClassOf": 2,
       "domain": 5,
       "range": 5,
-      "classes": 5
+      "classes": 7
     },
     "verdict": "A taxonomy. Nothing is entailed beyond transitive closure of the asserted tree."
   }

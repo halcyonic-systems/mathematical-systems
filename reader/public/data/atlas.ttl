@@ -2,6 +2,7 @@
 @prefix bearer: <https://w3id.org/mathematical-systems/atlas/bearer/> .
 @prefix case: <https://w3id.org/mathematical-systems/atlas/case/> .
 @prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix claim: <https://w3id.org/mathematical-systems/atlas/claim/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix entry: <https://w3id.org/mathematical-systems/atlas/entry/> .
 @prefix obj: <https://w3id.org/mathematical-systems/atlas/object/> .
@@ -10,11 +11,8 @@
 @prefix prim: <https://w3id.org/mathematical-systems/atlas/primitive/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
@@ -68,6 +66,61 @@ case:bunge-molecule-reef-family-factory a atlas:RetiredTerm ;
 each from ever being matched against another author's ruling on the same object. Split under
 the P4 sign-off; first precedent under the D5 retirement policy (docs/iri-policy.md)."""@en ;
     owl:deprecated true .
+
+claim:bunge-ces-no-faithful-embedding-into-klir a atlas:MappingClaim ;
+    rdfs:comment """The collapse witness: σ₁ = ⟨{a,b,c}, ∅, S⟩ and σ₂ = ⟨{a,b}, {c}, S⟩ are
+distinct systems by entry 002 and flatten to the single Klir pair ({a,b,c}, S). The datum
+erased is the C/E partition — the environment channel of mapping 003.
+
+NO atlas:theoremName YET, and its absence is a debt, not a licence: the Lean declaration
+(the forgetful map from the Bunge shape is not injective, witnessed by σ₁, σ₂) is owed to
+systems-science-foundations, and the P2 test object that would let the build derive the
+collapse is owed to this catalogue. Until one lands, this claim is asserted."""@en ;
+    atlas:arguedIn "mappings/environment-channel.md" ;
+    atlas:claimRelation atlas:no-faithful-embedding-into ;
+    atlas:claimSource entry:bunge-1979-ces-triple ;
+    atlas:claimTarget entry:klir-2001-eq-1-1 ;
+    atlas:encodedBy "Claude (from mapping 003, claim b)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU .
+
+claim:klir-weakly-encompasses-bunge-ces a atlas:MappingClaim ;
+    rdfs:comment """The redescription: T := C ∪ E, R := S — Bunge's own formulation already
+says S is a set of relations on C ∪ E. What the redescription is permitted to discard is
+exactly what distinguishes Bunge: the C/E partition, disjointness, bonding, the time index.
+The flattening this claim asserts is the same one whose loss claim:bunge-ces-no-faithful-embedding-into-klir
+records — the two are one finding read from its two sides."""@en ;
+    atlas:arguedIn "mappings/klir-encompassing.md" ;
+    atlas:claimRelation atlas:weakly-encompasses ;
+    atlas:claimSource entry:klir-2001-eq-1-1 ;
+    atlas:claimTarget entry:bunge-1979-ces-triple ;
+    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU .
+
+claim:klir-weakly-encompasses-bunge-def-1-1 a atlas:MappingClaim ;
+    rdfs:comment """The redescription: T := the connected things, R := the connection
+relation. What it discards is that the relation must be a CONNECTION — the bonding requirement
+that does Bunge's refusing (see obj:ordered-non-bonding)."""@en ;
+    atlas:arguedIn "mappings/klir-encompassing.md" ;
+    atlas:claimRelation atlas:weakly-encompasses ;
+    atlas:claimSource entry:klir-2001-eq-1-1 ;
+    atlas:claimTarget entry:bunge-1979-def-1-1 ;
+    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU .
+
+atlas:claimRelation a owl:ObjectProperty ;
+    rdfs:label "claim relation"@en ;
+    skos:definition "Which relation from the relation scheme this claim asserts between its source and target."@en .
+
+atlas:claimSource a owl:ObjectProperty ;
+    rdfs:label "claim source"@en ;
+    skos:definition "The entry the relation runs from."@en .
+
+atlas:claimTarget a owl:ObjectProperty ;
+    rdfs:label "claim target"@en ;
+    skos:definition "The entry the relation runs to."@en .
 
 atlas:definition-atlas a owl:Ontology .
 
@@ -156,6 +209,7 @@ dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)""" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
     atlas:evidenceCode atlas:HVP ;
     atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape" ;
+    atlas:hasStance stance:bertalanffy-1968-ontic ;
     atlas:invokesPrimitive prim:element,
         prim:measure,
         prim:time ;
@@ -216,144 +270,6 @@ catalogue.""" ;
     atlas:statedIn bearer:bertalanffy-1972-amj ;
     atlas:verbatim "A system may be defined as a set of elements standing in interrelation among themselves and with the environment. This can be expressed mathematically in different ways." .
 
-entry:bunge-1979-ces-triple a atlas:FormalSystemDefinition ;
-    rdfs:label "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩"@en ;
-    rdfs:comment """⚑ "is (or represents)". Bunge's own parenthetical hedges between the triple
-BEING a system and REPRESENTING one, and he resolves it later in the same chapter
-by calling the triple "the minimal model of system σ at time t". This is direct
-primary-text evidence on the is-versus-represents question — the distinction the
-Lean encodings do not type. Klir's (T,R) IS the system; Bunge's ⟨C,E,S⟩ is a model
-OF a thing. Same shape, different ontological status.
-
-⚑ NOT the same triple as the informal gloss. The fuller form Bunge actually works
-with is relativised to a class A of things and indexed by time: s_A(σ,t) =
-⟨𝒞_A(σ,t), ℰ_A(σ,t), 𝒮_A(σ,t)⟩. Anyone citing "Bunge's CES triple" as a bare
-3-tuple is citing the informal version.
-
-⚑ CES, NOT CESM. Mechanism is not a coordinate here. The string "CESM" does not
-occur in the 1979 text; mechanism becomes central in later Bunge (see How Does It
-Work, 2004). Any citation pairing "1979" with "CESM" is an anachronism.
-
-DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Bunge is a realist and
-would endorse the reading; asserting it anyway would still break the catalogue's
-neutrality, which must not depend on which tradition an entry belongs to."""@en ;
-    atlas:admits case:bunge-theory ;
-    atlas:authorCaveat "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing." ;
-    atlas:displayContext "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E." ;
-    atlas:displayForm "σ = ⟨C, E, S⟩" ;
-    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
-    atlas:encodedOn "2026-08-01"^^xsd:date ;
-    atlas:evidenceCode atlas:HVP ;
-    atlas:formalisedAs "Systems/Category/ShapeBunge.lean#BungeShape" ;
-    atlas:invokesPrimitive prim:composition,
-        prim:environment,
-        prim:relation,
-        prim:set,
-        prim:structure,
-        prim:thing ;
-    atlas:sourceLocation "ch. 1, §1.1 (the general concept of a system)" ;
-    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
-    atlas:verbatim "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things." .
-
-entry:bunge-1979-def-1-1 a atlas:FormalSystemDefinition ;
-    rdfs:label "Bunge (1979), Definition 1.1: concrete system"@en ;
-    rdfs:comment """⚑ THE SEPARATING INSTANCE, IN BUNGE'S OWN WORDS. His excluded example is
-"a collection of events, EVEN IF ORDERED". Klir, on the passage recorded in entry
-001, holds that ordering a collection is exactly what makes it a system: "any
-ordering of a set is a relation defined on the set". Two founders, both verbatim,
-disagreeing about whether an ordered collection is a system. This is the highest-
-value datum in the catalogue so far and it was found by reading, not by inference.
-
-MACHINERY BEHIND THE REFUSAL (Definition 1.2, encoded here as primitives rather
-than as its own entry, because it defines composition/environment/structure and
-not "system"):
-  𝒞_A(σ,t) = {x ∈ A | x ⊏ σ}
-  ℰ_A(σ,t) = {x ∈ A | x ∉ 𝒞_A(σ,t) & ∃y (y ∈ 𝒞_A(σ,t) & (x ▷ y ∨ y ▷ x))}
-  𝒮_A(σ,t) = relations, in particular bonds, on 𝒞_A(σ,t) ∪ ℰ_A(σ,t), with the
-             bonding set 𝔅_A(σ,t) ≠ ∅
-The nonempty-bonding requirement is what does the refusing, and it is encoded in
-systems-science-foundations as ConcreteSystem.bondage_nonempty over the ActsOn
-class (Bunge's ▷). The two encodings agree; that agreement should be recorded as
-a mapping claim once the mapping layer exists, not asserted here.
-
-RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
-definition proper". 003 is the definition proper. They are not alternative
-phrasings of one claim and must not be merged."""@en ;
-    atlas:admits case:bunge-factory,
-        case:bunge-family,
-        case:bunge-molecule,
-        case:bunge-reef ;
-    atlas:displayForm "An object is a concrete system iff it is composed of at least two different connected things." ;
-    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
-    atlas:encodedOn "2026-08-01"^^xsd:date ;
-    atlas:evidenceCode atlas:HVP ;
-    atlas:invokesPrimitive prim:action,
-        prim:bond,
-        prim:part,
-        prim:thing ;
-    atlas:refuses case:bunge-events-ordered,
-        case:bunge-states-of-a-thing ;
-    atlas:sourceLocation "ch. 1, Definition 1.1" ;
-    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
-    atlas:verbatim "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things." .
-
-entry:klir-2001-eq-1-1 a atlas:FormalSystemDefinition ;
-    rdfs:label "Klir (2001), Facets of Systems Science, eq. (1.1)"@en ;
-    rdfs:comment """VERIFIED: verbatim transcribed from the primary text, not paraphrased.
-
-DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Klir is an avowed
-constructivist — on his account the relation R is defined by the modeller, not
-discovered. Asserting what this definition is *about* would commit the catalogue
-to a realist reading Klir does not hold. The neutrality is the point.
-
-EXAMPLES NOTE: Klir gives no excluded example in Bunge's sense. His "a collection
-of books is not a system, only a set" (p. 5, same paragraph as the included
-examples) is the opening move of an argument whose conclusion is that organising
-it *makes* it one, and on his own criterion — an object is a system iff it CAN BE
-DESCRIBED in a form conforming to Eq. (1.1) — a bare collection is not refused but
-merely not yet distinguished. Recording it as atlas:excludedExample would give it
-the same form as Bunge's ontic refusal at Definition 1.1 and manufacture a symmetry
-the two authors do not share; in a cases matrix it would read as agreement where
-the finding is the opposite. The three included examples are grouped as Klir groups
-them: his "etc." marks the variants as instances of a kind, not an enumeration of
-cases. Source read 2026-08-03; see docs/proposals/P1-klir-examples.md and
-docs/proposals/P3-stance-axes.md.
-
-CENSUS NOTE: Klir's own gloss splits the definition's two slots into named
-properties — thinghood in T, systemhood in R. Recorded as separate primitives
-rather than folded into `thing` and `relation`, because whether they are distinct
-primitives is a question the census should answer, not one the encoding should
-prejudge.
-
-ADJACENT MATERIAL, NOT YET ENTERED: Klir's self-assessment on the same page (the
-definition is "too general and, consequently, of little pragmatic value" but
-"encompasses all other, more specific definitions of systems") is a claim ABOUT
-this definition's relation to others. It belongs in the mapping layer, not in
-this entry.
-
-NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
-Lean as ShapeKlir in systems-science-foundations. The two encodings must be
-checked against each other before either is cited."""@en ;
-    atlas:admits case:klir-books-ordered,
-        case:klir-books-partitioned,
-        case:klir-population-by-birth ;
-    atlas:displayContext "where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T." ;
-    atlas:displayForm "S = (T, R)" ;
-    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
-    atlas:encodedOn "2026-08-01"^^xsd:date ;
-    atlas:evidenceCode atlas:HVP ;
-    atlas:formalisedAs "Systems/Category/ShapeKlir.lean#KlirShape" ;
-    atlas:invokesPrimitive prim:relation,
-        prim:set,
-        prim:systemhood,
-        prim:thing,
-        prim:thinghood ;
-    atlas:sourceLocation "ch. 1, eq. (1.1), p. 5" ;
-    atlas:statedIn bearer:klir-2001-facets ;
-    atlas:verbatim """S = (T, R),   (1.1)
-
-where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.""" .
-
 atlas:evidenceCode a owl:AnnotationProperty ;
     rdfs:label "evidence code"@en ;
     skos:definition "Which atlas:EvidenceCode individual applies to this encoding."@en .
@@ -387,6 +303,10 @@ atlas:gloss a owl:AnnotationProperty ;
 the same individual, which is the author's. An example carries both: what the case is, and the
 author's own reason for ruling on it as they did."""@en .
 
+atlas:hasStance a owl:ObjectProperty ;
+    rdfs:label "has stance"@en ;
+    skos:definition "Links an entry to a stance assertion about it. The assertion is about the entry (the work), never the author."@en .
+
 <https://w3id.org/mathematical-systems/atlas/imports/cco-bfo-reference> rdfs:label "CCO/BFO reference module (minimal extract)"@en ;
     rdfs:comment "Generated by build.py. Only the external terms the Definition Atlas actually uses, plus their named ancestors. Equivalent-class axioms, restrictions and disjointness from the source ontologies are NOT preserved -- this places terms and renders labels, it does not reproduce CCO/BFO semantics. Do not edit by hand."@en .
 
@@ -411,6 +331,22 @@ atlas:invokesPrimitive a owl:ObjectProperty ;
     rdfs:range skos:Concept ;
     skos:definition "Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one."@en .
 
+<https://w3id.org/mathematical-systems/atlas/mappings/claims> rdfs:label "Atlas mapping claims"@en ;
+    rdfs:comment """The RDF layer of the mapping documents — minted 2026-08-07 when the
+pattern across mappings 001–003 became clear, per the rule in README.md. Each claim is a
+reified relation between two ENTRIES, pointing at the prose document that argues it. The
+document remains the argument; the claim is its address in the graph.
+
+WHAT THE GRAPH CANNOT YET HOLD, so coverage stays honest: mapping 001's strong-reading
+counterexample (Joslyn ⇸ Klir, the feedback-cycle obstruction) relates a SHAPE to an entry —
+Joslyn has no catalogue entry, so the claim stays in prose. Likewise 001's Myers row. Mapping
+002's clash is not duplicated here at all: it is already derived in the graph through
+admits/refuses on the shared test object, which is the stronger encoding.
+
+Every claim below is MDU: the prose mappings are human work, but these graph encodings of
+them have not been human-checked. Shingai reading each claim against its mapping document
+upgrades it to MDHC."""@en .
+
 atlas:refuses a owl:ObjectProperty ;
     rdfs:label "refuses"@en ;
     rdfs:comment """NOT EVERY NEGATIVE IS A REFUSAL. Bunge refuses ontically -- no bonds,
@@ -429,12 +365,20 @@ atlas:sourceLocation a owl:AnnotationProperty ;
     rdfs:label "source location"@en ;
     skos:definition "Where in the bearer the verbatim text appears — equation number, page, section."@en .
 
+atlas:stanceValue a owl:ObjectProperty ;
+    rdfs:label "stance value"@en ;
+    skos:definition "The value a stance assertion assigns, from one of the two stance schemes. The label is a handle; the assertion's verbatim is the evidence."@en .
+
 atlas:statedIn a owl:ObjectProperty ;
     rdfs:label "stated in"@en ;
     rdfs:comment "TODO: align to the inverse of obo:BFO_0000101 (carrier of) once the CCO carrier chain has been read in full. Declared standalone for now rather than asserted wrongly."@en ;
     rdfs:domain atlas:FormalSystemDefinition ;
     rdfs:range cco:ont00000253 ;
     skos:definition "Relates a definition to the document that carries it."@en .
+
+atlas:theoremName a owl:AnnotationProperty ;
+    rdfs:label "theorem name"@en ;
+    skos:definition "The Lean declaration backing this claim, as file#name. Absence on a claim of loss means the theorem is owed, not that none is needed."@en .
 
 atlas:verbatim a owl:AnnotationProperty ;
     rdfs:label "verbatim"@en ;
@@ -467,6 +411,10 @@ obo:BFO_0000040 a owl:Class ;
 atlas:MDHC a atlas:EvidenceCode ;
     rdfs:label "model-drafted, human-checked"@en ;
     skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
+
+atlas:ObserverRoleScheme a skos:ConceptScheme ;
+    rdfs:label "The observer's act"@en ;
+    skos:definition "What drawing the boundary does, on the entry's own account. NOT a proxy for the ontic axis: Klir's act is constitutive because of his ontology, but Mobus's is selective while his ontology is realist, so the second column cannot be read off the first."@en .
 
 atlas:RetiredTerm a owl:Class ;
     rdfs:label "Retired Term"@en ;
@@ -600,6 +548,68 @@ population is his instance of it. A splice, recorded as one."""@en ;
     atlas:sourceLocation "ch. 1, p. 5" ;
     atlas:verbatim "may be applied not only to other sets of books, but also to sets whose elements are not books" .
 
+atlas:constitutive a skos:Concept ;
+    skos:inScheme atlas:ObserverRoleScheme ;
+    skos:prefLabel "constitutive"@en ;
+    skos:scopeNote "Distinguishing is necessary and sufficient for systemhood. Klir's criterion: an object is a system iff it CAN BE DESCRIBED in a form conforming to eq. (1.1)."@en .
+
+atlas:constructivist-about-systemhood a skos:Concept ;
+    skos:inScheme atlas:OnticStanceScheme ;
+    skos:prefLabel "constructivist about systemhood"@en ;
+    skos:scopeNote "Systemhood is conferred by an act of distinction or description. Deliberately narrower than 'constructivist': Klir's own clause permits distinctions on real things, which radical constructivism in von Glasersfeld's sense does not."@en .
+
+entry:bunge-1979-def-1-1 a atlas:FormalSystemDefinition ;
+    rdfs:label "Bunge (1979), Definition 1.1: concrete system"@en ;
+    rdfs:comment """⚑ THE SEPARATING INSTANCE, IN BUNGE'S OWN WORDS. His excluded example is
+"a collection of events, EVEN IF ORDERED". Klir, on the passage recorded in entry
+001, holds that ordering a collection is exactly what makes it a system: "any
+ordering of a set is a relation defined on the set". Two founders, both verbatim,
+disagreeing about whether an ordered collection is a system. This is the highest-
+value datum in the catalogue so far and it was found by reading, not by inference.
+
+MACHINERY BEHIND THE REFUSAL (Definition 1.2, encoded here as primitives rather
+than as its own entry, because it defines composition/environment/structure and
+not "system"):
+  𝒞_A(σ,t) = {x ∈ A | x ⊏ σ}
+  ℰ_A(σ,t) = {x ∈ A | x ∉ 𝒞_A(σ,t) & ∃y (y ∈ 𝒞_A(σ,t) & (x ▷ y ∨ y ▷ x))}
+  𝒮_A(σ,t) = relations, in particular bonds, on 𝒞_A(σ,t) ∪ ℰ_A(σ,t), with the
+             bonding set 𝔅_A(σ,t) ≠ ∅
+The nonempty-bonding requirement is what does the refusing, and it is encoded in
+systems-science-foundations as ConcreteSystem.bondage_nonempty over the ActsOn
+class (Bunge's ▷). The two encodings agree; that agreement should be recorded as
+a mapping claim once the mapping layer exists, not asserted here.
+
+RELATION TO ENTRY 002: Bunge presents 002 first and then disowns it as "not a
+definition proper". 003 is the definition proper. They are not alternative
+phrasings of one claim and must not be merged."""@en ;
+    atlas:admits case:bunge-factory,
+        case:bunge-family,
+        case:bunge-molecule,
+        case:bunge-reef ;
+    atlas:displayForm "An object is a concrete system iff it is composed of at least two different connected things." ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:invokesPrimitive prim:action,
+        prim:bond,
+        prim:part,
+        prim:thing ;
+    atlas:refuses case:bunge-events-ordered,
+        case:bunge-states-of-a-thing ;
+    atlas:sourceLocation "ch. 1, Definition 1.1" ;
+    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
+    atlas:verbatim "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things." .
+
+atlas:no-faithful-embedding-into a skos:Concept ;
+    skos:inScheme atlas:RelationScheme ;
+    skos:prefLabel "admits no faithful embedding into"@en ;
+    skos:scopeNote "No encoding of the source into the target preserves what the source asserts, using only what the target asserts. The strong reading's failure mode: a claim here owes either a machine-checked obstruction (001: infinite hom-set into finite) or a collapse witness (003: two source systems, one target image)."@en .
+
+atlas:perspectivist a skos:Concept ;
+    skos:inScheme atlas:OnticStanceScheme ;
+    skos:prefLabel "perspectivist"@en ;
+    skos:scopeNote "Bertalanffy's own word (GST ch. 10, 'The Perspectivistic View'). Reality is real, access is perspectival, and the perspective is not free: categories 'must, with a certain tolerance allowed, be isomorphic' to the nexus of real events. Constrained, unlike Nietzschean perspectivism; nearest neighbour is Giere's perspectival realism."@en .
+
 prim:action a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "action"@en ;
@@ -645,6 +655,54 @@ prim:time a skos:Concept ;
     skos:prefLabel "time"@en ;
     skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word."@en .
 
+stance:bertalanffy-1968-ontic a atlas:StanceAssertion ;
+    rdfs:comment """His own word — the chapter title names the position — which is why the
+value is "perspectivist" rather than a characterisation in our words. The constraint is argued
+evolutionarily, not asserted: categories that failed to correspond would have been selected
+out, so the perspective is not free. The stance verbatim's "isomorphic ... with a certain
+tolerance" applies to knowledge the same relation the shape categories apply to
+formalisations; whether that is a connection or a pun is a mapping question, not asserted
+here.
+
+Attached to THIS entry, not 004: the passage is in the 1968 book, this entry's bearer. P3
+read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDU pending a human check
+of the encoding."""@en ;
+    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:sourceLocation "ch. 10, 'The Perspectivistic View'" ;
+    atlas:stanceValue atlas:perspectivist ;
+    atlas:verbatim "As for the connections of these stimuli, i.e., the categories of experience, they need not mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to it" .
+
+stance:klir-observer a atlas:StanceAssertion ;
+    rdfs:comment """The iff does the work: describability is necessary AND sufficient, so the
+act of distinguishing constitutes systemhood rather than selecting among systems already
+there. Same page as the entry's verbatim. MDU pending a human check of the encoding, as on
+stance:klir-ontic."""@en ;
+    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:sourceLocation "ch. 1, p. 5" ;
+    atlas:stanceValue atlas:constitutive ;
+    atlas:verbatim "an object is a system if and only if it can be described in a form that conforms to Eq. (1.1)" .
+
+stance:klir-ontic a atlas:StanceAssertion ;
+    rdfs:comment """First person plural, endorsing Gaines, not reporting him. READ PRECISELY:
+the final clause permits distinctions drawn on real things, so this is constructivism about
+SYSTEMHOOD, not anti-realism about things — the narrower claim his text supports, and why the
+value is not plain "constructivist".
+
+MDU: the passage was located and read during the P3 hunts and matches the registered
+transcription source, but THIS encoding — that the quotation licenses this value on this axis
+— has not been human-checked. Shingai reading this assertion against P3's Klir section
+upgrades it to MDHC."""@en ;
+    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:sourceLocation "§2.3, p. 21" ;
+    atlas:stanceValue atlas:constructivist-about-systemhood ;
+    atlas:verbatim "we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities" .
+
 cco:ont00000853 a owl:Class ;
     rdfs:label "Descriptive Information Content Entity"@en ;
     rdfs:subClassOf cco:ont00000958 ;
@@ -660,9 +718,13 @@ obo:BFO_0000002 a owl:Class ;
     rdfs:subClassOf obo:BFO_0000001 ;
     skos:definition "(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity"@en .
 
-skos:ConceptScheme a owl:Class ;
-    rdfs:label "Concept Scheme"@en ;
-    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+atlas:OnticStanceScheme a skos:ConceptScheme ;
+    rdfs:label "Ontic stance"@en ;
+    skos:definition "What the definition takes to exist independently of how anyone knows it. Not a spectrum: perspectivism is a distinct answer, not a midpoint."@en .
+
+atlas:RelationScheme a skos:ConceptScheme ;
+    rdfs:label "Mapping relations"@en ;
+    skos:definition "Relations a mapping claim may assert. A term enters only when at least two prose mappings have needed it; freezing vocabulary ahead of the pattern is the failure this rule prevents."@en .
 
 atlas:TestObject a owl:Class ;
     rdfs:label "Test Object"@en ;
@@ -726,6 +788,45 @@ case:bunge-reef a atlas:Example ;
     atlas:sourceLocation "ch. 1, §1.2, Example following Definition 1.1, p. 7" ;
     atlas:verbatim "A molecule, a coral reef, a family and a factory are systems." .
 
+entry:bunge-1979-ces-triple a atlas:FormalSystemDefinition ;
+    rdfs:label "Bunge (1979), general characterisation: σ = ⟨C, E, S⟩"@en ;
+    rdfs:comment """⚑ "is (or represents)". Bunge's own parenthetical hedges between the triple
+BEING a system and REPRESENTING one, and he resolves it later in the same chapter
+by calling the triple "the minimal model of system σ at time t". This is direct
+primary-text evidence on the is-versus-represents question — the distinction the
+Lean encodings do not type. Klir's (T,R) IS the system; Bunge's ⟨C,E,S⟩ is a model
+OF a thing. Same shape, different ontological status.
+
+⚑ NOT the same triple as the informal gloss. The fuller form Bunge actually works
+with is relativised to a class A of things and indexed by time: s_A(σ,t) =
+⟨𝒞_A(σ,t), ℰ_A(σ,t), 𝒮_A(σ,t)⟩. Anyone citing "Bunge's CES triple" as a bare
+3-tuple is citing the informal version.
+
+⚑ CES, NOT CESM. Mechanism is not a coordinate here. The string "CESM" does not
+occur in the 1979 text; mechanism becomes central in later Bunge (see How Does It
+Work, 2004). Any citation pairing "1979" with "CESM" is an anachronism.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Bunge is a realist and
+would endorse the reading; asserting it anyway would still break the catalogue's
+neutrality, which must not depend on which tradition an entry belongs to."""@en ;
+    atlas:admits case:bunge-theory ;
+    atlas:authorCaveat "However, the preceding is not a definition proper, because it does not tell us what exactly is the membership of the coordinates C, E and S of the ordered triple. We must therefore define the notions of composition, environment, and structure of a thing." ;
+    atlas:displayContext "C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E." ;
+    atlas:displayForm "σ = ⟨C, E, S⟩" ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:formalisedAs "Systems/Category/ShapeBunge.lean#BungeShape" ;
+    atlas:invokesPrimitive prim:composition,
+        prim:environment,
+        prim:relation,
+        prim:set,
+        prim:structure,
+        prim:thing ;
+    atlas:sourceLocation "ch. 1, §1.1 (the general concept of a system)" ;
+    atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
+    atlas:verbatim "One way of characterizing the general concept of a system is this. Let T be a nonempty set. Then the ordered triple σ = ⟨C, E, S⟩ is (or represents) a system over T iff C and E are mutually disjoint subsets of T (i.e. C ∩ E = ∅), and S is a nonempty set of relations on the union of C and E. The system is conceptual if T is a set of conceptual items, and concrete (or material) if T ⊆ Θ is a set of concrete entities, i.e. things." .
+
 obj:ordered-non-bonding a atlas:TestObject ;
     rdfs:comment """HVP as of 2026-08-05: the identification was model-drafted (2026-08-03) and
 has now been human-verified against both primary texts — Bunge's mere-relation/connection
@@ -761,6 +862,78 @@ prim:environment a skos:Concept ;
     skos:prefLabel "environment"@en ;
     skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components."@en .
 
+atlas:weakly-encompasses a skos:Concept ;
+    skos:inScheme atlas:RelationScheme ;
+    skos:prefLabel "weakly encompasses"@en ;
+    skos:scopeNote "The source's form can redescribe the target; nothing need be preserved. Vacuously satisfiable by design — mapping 001 shows every catalogued definition passes, and that the constraints distinguishing the target are exactly what redescription is permitted to discard. A claim in this relation is deliberately weak evidence of anything."@en .
+
+atlas:MappingClaim a owl:Class ;
+    rdfs:label "Mapping Claim"@en ;
+    skos:definition "A reified relation between two entries, asserted by a mapping document. Carries its own evidence code and points at the argument; a claim of preservation owes a theorem name, a claim of loss owes a witness."@en .
+
+atlas:StanceAssertion a owl:Class ;
+    rdfs:label "Stance Assertion"@en ;
+    skos:definition "A reified reading of what an entry's definition is doing — one value on one axis, carried by the entry, graded by its own evidence code, licensed by its own verbatim."@en .
+
+entry:klir-2001-eq-1-1 a atlas:FormalSystemDefinition ;
+    rdfs:label "Klir (2001), Facets of Systems Science, eq. (1.1)"@en ;
+    rdfs:comment """VERIFIED: verbatim transcribed from the primary text, not paraphrased.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). Klir is an avowed
+constructivist — on his account the relation R is defined by the modeller, not
+discovered. Asserting what this definition is *about* would commit the catalogue
+to a realist reading Klir does not hold. The neutrality is the point.
+
+EXAMPLES NOTE: Klir gives no excluded example in Bunge's sense. His "a collection
+of books is not a system, only a set" (p. 5, same paragraph as the included
+examples) is the opening move of an argument whose conclusion is that organising
+it *makes* it one, and on his own criterion — an object is a system iff it CAN BE
+DESCRIBED in a form conforming to Eq. (1.1) — a bare collection is not refused but
+merely not yet distinguished. Recording it as atlas:excludedExample would give it
+the same form as Bunge's ontic refusal at Definition 1.1 and manufacture a symmetry
+the two authors do not share; in a cases matrix it would read as agreement where
+the finding is the opposite. The three included examples are grouped as Klir groups
+them: his "etc." marks the variants as instances of a kind, not an enumeration of
+cases. Source read 2026-08-03; see docs/proposals/P1-klir-examples.md and
+docs/proposals/P3-stance-axes.md.
+
+CENSUS NOTE: Klir's own gloss splits the definition's two slots into named
+properties — thinghood in T, systemhood in R. Recorded as separate primitives
+rather than folded into `thing` and `relation`, because whether they are distinct
+primitives is a question the census should answer, not one the encoding should
+prejudge.
+
+ADJACENT MATERIAL, NOT YET ENTERED: Klir's self-assessment on the same page (the
+definition is "too general and, consequently, of little pragmatic value" but
+"encompasses all other, more specific definitions of systems") is a claim ABOUT
+this definition's relation to others. It belongs in the mapping layer, not in
+this entry.
+
+NEXT TIER: the dependency quiver (tier 1) for this definition already exists in
+Lean as ShapeKlir in systems-science-foundations. The two encodings must be
+checked against each other before either is cited."""@en ;
+    atlas:admits case:klir-books-ordered,
+        case:klir-books-partitioned,
+        case:klir-population-by-birth ;
+    atlas:displayContext "where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T." ;
+    atlas:displayForm "S = (T, R)" ;
+    atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
+    atlas:encodedOn "2026-08-01"^^xsd:date ;
+    atlas:evidenceCode atlas:HVP ;
+    atlas:formalisedAs "Systems/Category/ShapeKlir.lean#KlirShape" ;
+    atlas:hasStance stance:klir-observer,
+        stance:klir-ontic ;
+    atlas:invokesPrimitive prim:relation,
+        prim:set,
+        prim:systemhood,
+        prim:thing,
+        prim:thinghood ;
+    atlas:sourceLocation "ch. 1, eq. (1.1), p. 5" ;
+    atlas:statedIn bearer:klir-2001-facets ;
+    atlas:verbatim """S = (T, R),   (1.1)
+
+where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.""" .
+
 prim:relation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "relation"@en .
@@ -777,10 +950,18 @@ atlas:EvidenceCode a owl:Class ;
     rdfs:label "Evidence Code"@en ;
     skos:definition "How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones."@en .
 
+skos:ConceptScheme a owl:Class ;
+    rdfs:label "Concept Scheme"@en ;
+    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+
 cco:ont00000253 a owl:Class ;
     rdfs:label "Information Bearing Entity"@en ;
     rdfs:subClassOf obo:BFO_0000030 ;
     skos:definition "An Object upon which an Information Content Entity generically depends."@en .
+
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:FormalSystemDefinition a owl:Class ;
     rdfs:label "Formal System Definition"@en ;
@@ -820,11 +1001,11 @@ other. Minting a separate primitive per author would make recurrence trivially z
 merging them by hand would make it trivially high. Lexical recurrence is the honest
 starting point, and its limits are stated here rather than discovered later."""@en .
 
-skos:Concept a owl:Class ;
-    rdfs:label "Concept"@en ;
-    skos:definition "An idea or notion; a unit of thought."@en .
-
 atlas:HVP a atlas:EvidenceCode ;
     rdfs:label "human-verified against primary text"@en ;
     skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
+
+skos:Concept a owl:Class ;
+    rdfs:label "Concept"@en ;
+    skos:definition "An idea or notion; a unit of thought."@en .
 

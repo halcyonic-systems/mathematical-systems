@@ -153,3 +153,35 @@ summative, as against the constitutive characteristics of a Gestalt (1968, ch. 3
 architecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never
 writes the verdict sentence, and encoding an implication as a ruling would put words in his
 mouth. It belongs to the mapping layer.""" .
+
+
+##############################################################################
+# Stance (P3, minted 2026-08-07). One axis only, deliberately: the observer
+# cell is EMPTY. Two full-text hunts found no passage in which Bertalanffy
+# says what drawing the boundary does, and filling the cell by inference from
+# the ontic column is the mistake P3 exists to prevent.
+##############################################################################
+
+@prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
+
+entry:bertalanffy-1968-eq-3-1 atlas:hasStance stance:bertalanffy-1968-ontic .
+
+stance:bertalanffy-1968-ontic
+    a atlas:StanceAssertion ;
+    atlas:stanceValue atlas:perspectivist ;
+    atlas:verbatim "As for the connections of these stimuli, i.e., the categories of experience, they need not mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to it" ;
+    atlas:sourceLocation "ch. 10, 'The Perspectivistic View'" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+    atlas:encodedOn "2026-08-07"^^xsd:date ;
+    rdfs:comment """His own word — the chapter title names the position — which is why the
+value is "perspectivist" rather than a characterisation in our words. The constraint is argued
+evolutionarily, not asserted: categories that failed to correspond would have been selected
+out, so the perspective is not free. The stance verbatim's "isomorphic ... with a certain
+tolerance" applies to knowledge the same relation the shape categories apply to
+formalisations; whether that is a connection or a pun is a mapping question, not asserted
+here.
+
+Attached to THIS entry, not 004: the passage is in the 1968 book, this entry's bearer. P3
+read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDU pending a human check
+of the encoding."""@en .

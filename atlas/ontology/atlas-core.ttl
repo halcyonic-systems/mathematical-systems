@@ -402,3 +402,120 @@ against Klir p. 5's criterion and ordering passage. The verifying read confirmed
 admission is stated as a general principle ("any ordering of a set is a relation defined on
 the set") and that Bunge's refusal is bond-absence, not member-kind. The derived conflict
 inherits this grade."""@en .
+
+
+##############################################################################
+# Stance — P3 minted, 2026-08-07. Two axes, not one: what an author takes to
+# exist is a different commitment from what the observer's act contributes,
+# and at least one author (Mobus) holds opposite positions on them. A stance
+# attaches to the ENTRY, not the author — a person may write from different
+# stances in different works, and "this work is inclined toward" is Mobus's
+# own scoping. Assertions are reified individuals (P4, option B): each carries
+# its own verbatim, location and evidence code, because an entry-level code
+# cannot grade a stance reading separately from a transcription.
+#
+# Self-ascribed stance lives here, on the entry. One author's characterisation
+# of ANOTHER author's stance is a mapping-layer claim and owes a witness; the
+# catalogue must be structurally incapable of adopting one author's reading of
+# another as fact.
+#
+# Value concepts enter only with a user, like test objects. The queue is P3's
+# table: realist awaits a located Bunge verbatim, selective awaits the Mobus
+# entry, formalist awaits Mesarović. Full reasoning and every passage:
+# docs/proposals/P3-stance-axes.md.
+##############################################################################
+
+atlas:StanceAssertion
+    a owl:Class ;
+    rdfs:label "Stance Assertion"@en ;
+    skos:definition "A reified reading of what an entry's definition is doing — one value on one axis, carried by the entry, graded by its own evidence code, licensed by its own verbatim."@en .
+
+atlas:hasStance
+    a owl:ObjectProperty ;
+    rdfs:label "has stance"@en ;
+    skos:definition "Links an entry to a stance assertion about it. The assertion is about the entry (the work), never the author."@en .
+
+atlas:stanceValue
+    a owl:ObjectProperty ;
+    rdfs:label "stance value"@en ;
+    skos:definition "The value a stance assertion assigns, from one of the two stance schemes. The label is a handle; the assertion's verbatim is the evidence."@en .
+
+atlas:OnticStanceScheme
+    a skos:ConceptScheme ;
+    rdfs:label "Ontic stance"@en ;
+    skos:definition "What the definition takes to exist independently of how anyone knows it. Not a spectrum: perspectivism is a distinct answer, not a midpoint."@en .
+
+atlas:constructivist-about-systemhood a skos:Concept ;
+    skos:inScheme atlas:OnticStanceScheme ;
+    skos:prefLabel "constructivist about systemhood"@en ;
+    skos:scopeNote "Systemhood is conferred by an act of distinction or description. Deliberately narrower than 'constructivist': Klir's own clause permits distinctions on real things, which radical constructivism in von Glasersfeld's sense does not."@en .
+
+atlas:perspectivist a skos:Concept ;
+    skos:inScheme atlas:OnticStanceScheme ;
+    skos:prefLabel "perspectivist"@en ;
+    skos:scopeNote "Bertalanffy's own word (GST ch. 10, 'The Perspectivistic View'). Reality is real, access is perspectival, and the perspective is not free: categories 'must, with a certain tolerance allowed, be isomorphic' to the nexus of real events. Constrained, unlike Nietzschean perspectivism; nearest neighbour is Giere's perspectival realism."@en .
+
+atlas:ObserverRoleScheme
+    a skos:ConceptScheme ;
+    rdfs:label "The observer's act"@en ;
+    skos:definition "What drawing the boundary does, on the entry's own account. NOT a proxy for the ontic axis: Klir's act is constitutive because of his ontology, but Mobus's is selective while his ontology is realist, so the second column cannot be read off the first."@en .
+
+atlas:constitutive a skos:Concept ;
+    skos:inScheme atlas:ObserverRoleScheme ;
+    skos:prefLabel "constitutive"@en ;
+    skos:scopeNote "Distinguishing is necessary and sufficient for systemhood. Klir's criterion: an object is a system iff it CAN BE DESCRIBED in a form conforming to eq. (1.1)."@en .
+
+
+##############################################################################
+# Mapping claims — the relation vocabulary, minted 2026-08-07 from the pattern
+# across mappings 001–003 rather than ahead of it, as mappings/README.md
+# required. Two terms, each with at least two users in prose before it was
+# named: weak encompassment (001's Test 1 table; 003's flattening is the same
+# instance stated twice) and no-faithful-embedding (001's Joslyn obstruction;
+# 003's partition collapse). A claim is a reified individual (P4): the relation
+# rides with its evidence code, its argument, and — where one exists — its
+# theorem. What the graph can hold is narrower than what the prose holds:
+# a claim relates two ENTRIES, so 001's Joslyn⇸Klir obstruction (shape-level,
+# no Joslyn entry) and its Myers row (no Myers entry) stay in prose until
+# their entries exist. Coverage figures stay honest.
+##############################################################################
+
+atlas:MappingClaim
+    a owl:Class ;
+    rdfs:label "Mapping Claim"@en ;
+    skos:definition "A reified relation between two entries, asserted by a mapping document. Carries its own evidence code and points at the argument; a claim of preservation owes a theorem name, a claim of loss owes a witness."@en .
+
+atlas:claimRelation
+    a owl:ObjectProperty ;
+    rdfs:label "claim relation"@en ;
+    skos:definition "Which relation from the relation scheme this claim asserts between its source and target."@en .
+
+atlas:claimSource
+    a owl:ObjectProperty ;
+    rdfs:label "claim source"@en ;
+    skos:definition "The entry the relation runs from."@en .
+
+atlas:claimTarget
+    a owl:ObjectProperty ;
+    rdfs:label "claim target"@en ;
+    skos:definition "The entry the relation runs to."@en .
+
+atlas:theoremName
+    a owl:AnnotationProperty ;
+    rdfs:label "theorem name"@en ;
+    skos:definition "The Lean declaration backing this claim, as file#name. Absence on a claim of loss means the theorem is owed, not that none is needed."@en .
+
+atlas:RelationScheme
+    a skos:ConceptScheme ;
+    rdfs:label "Mapping relations"@en ;
+    skos:definition "Relations a mapping claim may assert. A term enters only when at least two prose mappings have needed it; freezing vocabulary ahead of the pattern is the failure this rule prevents."@en .
+
+atlas:weakly-encompasses a skos:Concept ;
+    skos:inScheme atlas:RelationScheme ;
+    skos:prefLabel "weakly encompasses"@en ;
+    skos:scopeNote "The source's form can redescribe the target; nothing need be preserved. Vacuously satisfiable by design — mapping 001 shows every catalogued definition passes, and that the constraints distinguishing the target are exactly what redescription is permitted to discard. A claim in this relation is deliberately weak evidence of anything."@en .
+
+atlas:no-faithful-embedding-into a skos:Concept ;
+    skos:inScheme atlas:RelationScheme ;
+    skos:prefLabel "admits no faithful embedding into"@en ;
+    skos:scopeNote "No encoding of the source into the target preserves what the source asserts, using only what the target asserts. The strong reading's failure mode: a claim here owes either a machine-checked obstruction (001: infinite hom-set into finite) or a collapse witness (003: two source systems, one target image)."@en .

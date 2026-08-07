@@ -31,7 +31,11 @@ import xml.etree.ElementTree as ET
 from rdflib import Graph, Namespace, OWL, RDF, RDFS, URIRef
 
 ROOT = pathlib.Path(__file__).parent
-SOURCES = [ROOT / "ontology" / "atlas-core.ttl", *sorted((ROOT / "entries").glob("*.ttl"))]
+SOURCES = [
+    ROOT / "ontology" / "atlas-core.ttl",
+    *sorted((ROOT / "entries").glob("*.ttl")),
+    *sorted((ROOT / "mappings").glob("*.ttl")),
+]
 IMPORTS_DIR = ROOT / "imports"
 FULL_DIR = IMPORTS_DIR / "full"
 DIST_DIR = ROOT / "dist"

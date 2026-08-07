@@ -35,6 +35,8 @@ step where a reader has to reconstruct your path and may not.
 | [`ordered-collection.md`](ordered-collection.md) | Klir and Bunge on a collection ordered by a non-bonding relation — **they disagree, and about bonding rather than about ordering.** Both witnesses in the catalogue as of 2026-08-03; still asserted rather than derived, pending a test-object vocabulary |
 | [`environment-channel.md`](environment-channel.md) | Which definitions carry an environment channel — **every bearer except Klir, and Klir's absence is a stance, not a gap**: Bunge's E is ontic, Bertalanffy's constitutive, Klir's epistemic (the outside of the describer's distinction). Collapse witness (two Bunge triples, one Klir pair) asserted, not yet derived |
 
-## Not yet encoded in RDF
+## The RDF layer (`claims.ttl`)
 
-These are prose-plus-evidence documents. Once the pattern across three or four mappings is clear, the stable parts get a TTL vocabulary (`atlas:encompasses`, `atlas:admitsNoFaithfulEmbeddingInto`, each carrying an evidence code and a theorem name). Encoding first would freeze a vocabulary before we know what it needs to say.
+The vocabulary was minted 2026-08-07, when mapping 003 made the pattern across three mappings clear: `atlas:weakly-encompasses` and `atlas:no-faithful-embedding-into` each had at least two users in prose before being named (001's Test 1 table and 003's flattening are the same instance stated twice; 001's Joslyn obstruction and 003's partition collapse are two instances of the same loss). Claims are reified individuals (P4) in `claims.ttl`, each carrying its own evidence code and pointing at the document that argues it via `arguedIn`; a claim of loss owes a `theoremName`, and its absence is recorded as a debt.
+
+What the graph deliberately does not hold: claims involving traditions with no entry (001's Joslyn and Myers rows stay in prose), and mapping 002's clash, which is already derived through `admits`/`refuses` on the shared test object — the stronger encoding. The prose documents remain the arguments; the claims are their addresses.
