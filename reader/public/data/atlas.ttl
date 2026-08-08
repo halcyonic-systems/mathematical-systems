@@ -14,6 +14,10 @@
 @prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
     skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
@@ -80,9 +84,9 @@ collapse is owed to this catalogue. Until one lands, this claim is asserted."""@
     atlas:claimRelation atlas:no-faithful-embedding-into ;
     atlas:claimSource entry:bunge-1979-ces-triple ;
     atlas:claimTarget entry:klir-2001-eq-1-1 ;
-    atlas:encodedBy "Claude (from mapping 003, claim b)" ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from mapping 003, claim b)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU .
+    atlas:evidenceCode atlas:MDHC .
 
 claim:klir-weakly-encompasses-bunge-ces a atlas:MappingClaim ;
     rdfs:comment """The redescription: T := C ∪ E, R := S — Bunge's own formulation already
@@ -94,9 +98,9 @@ records — the two are one finding read from its two sides."""@en ;
     atlas:claimRelation atlas:weakly-encompasses ;
     atlas:claimSource entry:klir-2001-eq-1-1 ;
     atlas:claimTarget entry:bunge-1979-ces-triple ;
-    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from mapping 001, Test 1)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU .
+    atlas:evidenceCode atlas:MDHC .
 
 claim:klir-weakly-encompasses-bunge-def-1-1 a atlas:MappingClaim ;
     rdfs:comment """The redescription: T := the connected things, R := the connection
@@ -106,9 +110,9 @@ that does Bunge's refusing (see obj:ordered-non-bonding)."""@en ;
     atlas:claimRelation atlas:weakly-encompasses ;
     atlas:claimSource entry:klir-2001-eq-1-1 ;
     atlas:claimTarget entry:bunge-1979-def-1-1 ;
-    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from mapping 001, Test 1)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU .
+    atlas:evidenceCode atlas:MDHC .
 
 atlas:claimRelation a owl:ObjectProperty ;
     rdfs:label "claim relation"@en ;
@@ -343,9 +347,8 @@ Joslyn has no catalogue entry, so the claim stays in prose. Likewise 001's Myers
 002's clash is not duplicated here at all: it is already derived in the graph through
 admits/refuses on the shared test object, which is the stronger encoding.
 
-Every claim below is MDU: the prose mappings are human work, but these graph encodings of
-them have not been human-checked. Shingai reading each claim against its mapping document
-upgrades it to MDHC."""@en .
+MDHC as of 2026-08-08: the encodings were model-drafted on 2026-08-07 and Shingai checked
+each claim against its mapping document the next day."""@en .
 
 atlas:refuses a owl:ObjectProperty ;
     rdfs:label "refuses"@en ;
@@ -407,10 +410,6 @@ obo:BFO_0000040 a owl:Class ;
     rdfs:label "material entity"@en ;
     rdfs:subClassOf obo:BFO_0000004 ;
     skos:definition "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en .
-
-atlas:MDHC a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, human-checked"@en ;
-    skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
 
 atlas:ObserverRoleScheme a skos:ConceptScheme ;
     rdfs:label "The observer's act"@en ;
@@ -665,11 +664,12 @@ formalisations; whether that is a connection or a pun is a mapping question, not
 here.
 
 Attached to THIS entry, not 004: the passage is in the 1968 book, this entry's bearer. P3
-read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDU pending a human check
-of the encoding."""@en ;
-    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDHC as of 2026-08-08:
+model-drafted 2026-08-07, checked by Shingai the next day — including that the observer cell
+stays empty rather than inferred."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from P3-stance-axes.md)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:sourceLocation "ch. 10, 'The Perspectivistic View'" ;
     atlas:stanceValue atlas:perspectivist ;
     atlas:verbatim "As for the connections of these stimuli, i.e., the categories of experience, they need not mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to it" .
@@ -677,11 +677,21 @@ of the encoding."""@en ;
 stance:klir-observer a atlas:StanceAssertion ;
     rdfs:comment """The iff does the work: describability is necessary AND sufficient, so the
 act of distinguishing constitutes systemhood rather than selecting among systems already
-there. Same page as the entry's verbatim. MDU pending a human check of the encoding, as on
-stance:klir-ontic."""@en ;
-    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+there. Same page as the entry's verbatim.
+
+THE UNIVERSALITY IS THE POINT, NOT AN OBJECTION. During the 2026-08-08 verifying read the
+natural worry surfaced: can't ANY object be so described — two atoms at opposite ends of the
+solar system, related by nothing but the observer and their instrument? Yes, and that is
+mapping 001's Test 1 verdict (vacuously satisfiable, conceded by Klir himself). But a
+criterion an observer can always satisfy is the signature of a constitutive act: if
+describability suffices and describing is the observer's act, systemhood is conferred by
+that act. The vacuity and the constitutivity are one fact read twice.
+
+MDHC as of 2026-08-08: model-drafted 2026-08-07, checked by Shingai — the check that raised
+and resolved the worry above."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from P3-stance-axes.md)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:sourceLocation "ch. 1, p. 5" ;
     atlas:stanceValue atlas:constitutive ;
     atlas:verbatim "an object is a system if and only if it can be described in a form that conforms to Eq. (1.1)" .
@@ -692,13 +702,12 @@ the final clause permits distinctions drawn on real things, so this is construct
 SYSTEMHOOD, not anti-realism about things — the narrower claim his text supports, and why the
 value is not plain "constructivist".
 
-MDU: the passage was located and read during the P3 hunts and matches the registered
-transcription source, but THIS encoding — that the quotation licenses this value on this axis
-— has not been human-checked. Shingai reading this assertion against P3's Klir section
-upgrades it to MDHC."""@en ;
-    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+MDHC as of 2026-08-08: model-drafted from P3 on 2026-08-07, checked by Shingai the next
+day. The passage was located during the P3 hunts and matches the registered transcription
+source."""@en ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from P3-stance-axes.md)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:sourceLocation "§2.3, p. 21" ;
     atlas:stanceValue atlas:constructivist-about-systemhood ;
     atlas:verbatim "we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities" .
@@ -959,9 +968,9 @@ cco:ont00000253 a owl:Class ;
     rdfs:subClassOf obo:BFO_0000030 ;
     skos:definition "An Object upon which an Information Content Entity generically depends."@en .
 
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+atlas:MDHC a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, human-checked"@en ;
+    skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
 
 atlas:FormalSystemDefinition a owl:Class ;
     rdfs:label "Formal System Definition"@en ;

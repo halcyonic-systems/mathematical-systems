@@ -171,8 +171,8 @@ stance:bertalanffy-1968-ontic
     atlas:stanceValue atlas:perspectivist ;
     atlas:verbatim "As for the connections of these stimuli, i.e., the categories of experience, they need not mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to it" ;
     atlas:sourceLocation "ch. 10, 'The Perspectivistic View'" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from P3-stance-axes.md)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
     rdfs:comment """His own word — the chapter title names the position — which is why the
 value is "perspectivist" rather than a characterisation in our words. The constraint is argued
@@ -183,5 +183,6 @@ formalisations; whether that is a connection or a pun is a mapping question, not
 here.
 
 Attached to THIS entry, not 004: the passage is in the 1968 book, this entry's bearer. P3
-read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDU pending a human check
-of the encoding."""@en .
+read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDHC as of 2026-08-08:
+model-drafted 2026-08-07, checked by Shingai the next day — including that the observer cell
+stays empty rather than inferred."""@en .

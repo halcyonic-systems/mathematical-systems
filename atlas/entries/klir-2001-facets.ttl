@@ -156,28 +156,37 @@ stance:klir-ontic
     atlas:stanceValue atlas:constructivist-about-systemhood ;
     atlas:verbatim "we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities" ;
     atlas:sourceLocation "§2.3, p. 21" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from P3-stance-axes.md)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
     rdfs:comment """First person plural, endorsing Gaines, not reporting him. READ PRECISELY:
 the final clause permits distinctions drawn on real things, so this is constructivism about
 SYSTEMHOOD, not anti-realism about things — the narrower claim his text supports, and why the
 value is not plain "constructivist".
 
-MDU: the passage was located and read during the P3 hunts and matches the registered
-transcription source, but THIS encoding — that the quotation licenses this value on this axis
-— has not been human-checked. Shingai reading this assertion against P3's Klir section
-upgrades it to MDHC."""@en .
+MDHC as of 2026-08-08: model-drafted from P3 on 2026-08-07, checked by Shingai the next
+day. The passage was located during the P3 hunts and matches the registered transcription
+source."""@en .
 
 stance:klir-observer
     a atlas:StanceAssertion ;
     atlas:stanceValue atlas:constitutive ;
     atlas:verbatim "an object is a system if and only if it can be described in a form that conforms to Eq. (1.1)" ;
     atlas:sourceLocation "ch. 1, p. 5" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "Claude (from P3-stance-axes.md)" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from P3-stance-axes.md)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
     rdfs:comment """The iff does the work: describability is necessary AND sufficient, so the
 act of distinguishing constitutes systemhood rather than selecting among systems already
-there. Same page as the entry's verbatim. MDU pending a human check of the encoding, as on
-stance:klir-ontic."""@en .
+there. Same page as the entry's verbatim.
+
+THE UNIVERSALITY IS THE POINT, NOT AN OBJECTION. During the 2026-08-08 verifying read the
+natural worry surfaced: can't ANY object be so described — two atoms at opposite ends of the
+solar system, related by nothing but the observer and their instrument? Yes, and that is
+mapping 001's Test 1 verdict (vacuously satisfiable, conceded by Klir himself). But a
+criterion an observer can always satisfy is the signature of a constitutive act: if
+describability suffices and describing is the observer's act, systemhood is conferred by
+that act. The vacuity and the constitutivity are one fact read twice.
+
+MDHC as of 2026-08-08: model-drafted 2026-08-07, checked by Shingai — the check that raised
+and resolved the worry above."""@en .

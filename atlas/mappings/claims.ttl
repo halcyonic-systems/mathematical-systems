@@ -20,9 +20,8 @@ Joslyn has no catalogue entry, so the claim stays in prose. Likewise 001's Myers
 002's clash is not duplicated here at all: it is already derived in the graph through
 admits/refuses on the shared test object, which is the stronger encoding.
 
-Every claim below is MDU: the prose mappings are human work, but these graph encodings of
-them have not been human-checked. Shingai reading each claim against its mapping document
-upgrades it to MDHC."""@en .
+MDHC as of 2026-08-08: the encodings were model-drafted on 2026-08-07 and Shingai checked
+each claim against its mapping document the next day."""@en .
 
 
 ##############################################################################
@@ -38,8 +37,8 @@ claim:klir-weakly-encompasses-bunge-ces
     atlas:claimSource entry:klir-2001-eq-1-1 ;
     atlas:claimTarget entry:bunge-1979-ces-triple ;
     atlas:arguedIn "mappings/klir-encompassing.md" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from mapping 001, Test 1)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
     rdfs:comment """The redescription: T := C ∪ E, R := S — Bunge's own formulation already
 says S is a set of relations on C ∪ E. What the redescription is permitted to discard is
@@ -53,8 +52,8 @@ claim:klir-weakly-encompasses-bunge-def-1-1
     atlas:claimSource entry:klir-2001-eq-1-1 ;
     atlas:claimTarget entry:bunge-1979-def-1-1 ;
     atlas:arguedIn "mappings/klir-encompassing.md" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "Claude (from mapping 001, Test 1)" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from mapping 001, Test 1)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
     rdfs:comment """The redescription: T := the connected things, R := the connection
 relation. What it discards is that the relation must be a CONNECTION — the bonding requirement
@@ -72,8 +71,8 @@ claim:bunge-ces-no-faithful-embedding-into-klir
     atlas:claimSource entry:bunge-1979-ces-triple ;
     atlas:claimTarget entry:klir-2001-eq-1-1 ;
     atlas:arguedIn "mappings/environment-channel.md" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "Claude (from mapping 003, claim b)" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "Shingai Thornton (Claude-drafted from mapping 003, claim b)" ;
     atlas:encodedOn "2026-08-07"^^xsd:date ;
     rdfs:comment """The collapse witness: σ₁ = ⟨{a,b,c}, ∅, S⟩ and σ₂ = ⟨{a,b}, {c}, S⟩ are
 distinct systems by entry 002 and flatten to the single Klir pair ({a,b,c}, S). The datum
