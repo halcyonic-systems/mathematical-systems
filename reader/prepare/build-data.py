@@ -483,6 +483,51 @@ def check_display_spans(entries):
     return proven
 
 
+def check_lean_pin(atlas_root, foundations, allow_drift):
+    """The lean bridge is checked against a pinned commit, not a moving checkout.
+
+    Without a pin, "checked at build time" means checked against whatever state
+    the local SSF working tree happens to be in: it tolerates silent drift and is
+    unreproducible once this repo publishes. protocols-are-systems already pins
+    SSF as a lake dependency; this is the same discipline for the atlas's
+    declaration-level pointers, which have no lake to pin them for it.
+    """
+    pin_path = atlas_root / "lean-pin"
+    if not pin_path.is_file():
+        raise SystemExit(f"no lean pin at {pin_path}")
+    pinned = pin_path.read_text().strip()
+
+    head = subprocess.run(
+        ["git", "-C", str(foundations), "rev-parse", "HEAD"],
+        capture_output=True, text=True,
+    )
+    if head.returncode != 0:
+        raise SystemExit(f"cannot read {foundations} HEAD: {head.stderr.strip()}")
+    actual = head.stdout.strip()
+
+    status = subprocess.run(
+        ["git", "-C", str(foundations), "status", "--porcelain"],
+        capture_output=True, text=True,
+    )
+    dirty = bool(status.stdout.strip())
+
+    print(f"lean pin      pinned={pinned[:12]} checkout={actual[:12]} dirty={dirty}")
+
+    if allow_drift:
+        return
+
+    if actual != pinned:
+        raise SystemExit(
+            f"LEAN PIN MISMATCH — pinned {pinned}, checkout at {actual}.\n"
+            "  bump atlas/lean-pin deliberately, or pass --allow-drift for a local check."
+        )
+    if dirty:
+        raise SystemExit(
+            f"LEAN PIN MISMATCH — {foundations} has uncommitted changes.\n"
+            "  commit or stash them, or pass --allow-drift for a local check."
+        )
+
+
 def resolve_shapes(entries, foundations):
     """Read each entry's shape category out of the Lean source.
 
@@ -720,6 +765,13 @@ def main():
     )
     ap.add_argument("--skip-reasoning", action="store_true")
     ap.add_argument(
+        "--allow-drift",
+        action="store_true",
+        help="skip the lean-pin check (atlas/lean-pin vs --foundations HEAD). For local "
+        "iteration only; the pin exists so a published build is checked against a commit, "
+        "not whatever a working tree happens to hold.",
+    )
+    ap.add_argument(
         "--context",
         type=int,
         default=PUBLISHABLE_CONTEXT,
@@ -755,6 +807,7 @@ def main():
     print(f"display spans verbatim  gate-can-fail={spans_live}")
 
     foundations = args.foundations.expanduser().resolve()
+    check_lean_pin(atlas_root, foundations, args.allow_drift)
     shapes = resolve_shapes(entries, foundations)
     broken = {k: v["error"] for k, v in shapes.items() if v.get("error")}
     linked = sum(1 for v in shapes.values() if v["status"] == "resolved")
