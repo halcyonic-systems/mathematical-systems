@@ -89,6 +89,29 @@ atlas:BearerShape
         sh:path rdfs:label ;
         sh:minCount 1 ;
         sh:message "Every bearer needs a citable label." ;
+    ] ;
+
+    sh:property [
+        sh:path atlas:authoredBy ;
+        sh:minCount 1 ;
+        sh:class atlas:Author ;
+        sh:message "Every bearer must be attributed to at least one atlas:Author node. The dcterms:creator string is bibliography; the node is what lets two works share an author, which is what a revision arc hangs off. No maxCount: co-authored works are legitimate." ;
+    ] .
+
+
+##############################################################################
+# Author shape — identity only, and the identity must be legible
+##############################################################################
+
+atlas:AuthorShape
+    a sh:NodeShape ;
+    sh:targetClass atlas:Author ;
+    rdfs:label "Author well-formedness"@en ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "Every author needs exactly one name. An author node is identity and nothing else; without a label it is not even that." ;
     ] .
 
 

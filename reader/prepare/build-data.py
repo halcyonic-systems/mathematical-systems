@@ -262,9 +262,95 @@ def extract_bearers(g):
                 "creator": one(g, s, DCTERMS.creator),
                 "date": one(g, s, DCTERMS.date),
                 "identifiers": sorted(literals(g, s, DCTERMS.identifier)),
+                # The node, not the string: dcterms:creator stays bibliography,
+                # atlas:authoredBy is what two works can share.
+                "authoredBy": sorted(str(o) for o in g.objects(s, ATLAS.authoredBy)),
             }
         )
     return sorted(bearers, key=lambda b: b["label"] or b["iri"])
+
+
+def extract_authors(g, entries, bearers):
+    """Authors, each with every entry the catalogue holds under their name.
+
+    An author is identity only — a label and the entries reachable through
+    atlas:authoredBy on their bearers. Nothing definitional is aggregated here:
+    a surface grouping by author (the front page's shelf) must present ALL of an
+    author's definitions or none, because the catalogue's live finding is that
+    one author defines "system" differently in different works. Selecting a
+    "representative" definition per author is the misrepresentation this
+    extraction refuses to make possible: the per-author entry list is complete
+    by construction, and check_author_coverage refuses the build if any entry
+    fails to reach an author.
+
+    Within an author, entries are ordered by bearer date then accession — the
+    revision arc reads chronologically. Authors are ordered by their earliest
+    accession number, so the shelf and the rail agree on who comes first.
+    """
+    by_bearer = {b["iri"]: b for b in bearers}
+    authors = {}
+    for s in g.subjects(RDF.type, ATLAS.Author):
+        authors[str(s)] = {
+            "iri": str(s),
+            "id": str(s).rsplit("/", 1)[-1],
+            "label": one(g, s, RDFS.label),
+            "entries": [],
+        }
+    chronological = sorted(
+        entries, key=lambda e: (by_bearer.get(e["statedIn"], {}).get("date") or "", e["number"])
+    )
+    for e in chronological:
+        for a in by_bearer.get(e["statedIn"], {}).get("authoredBy", []):
+            if a in authors:
+                authors[a]["entries"].append(e["iri"])
+    accession_of = {e["iri"]: e["number"] for e in entries}
+    return sorted(
+        (a for a in authors.values() if a["entries"]),
+        key=lambda a: min(accession_of[iri] for iri in a["entries"]),
+    )
+
+
+def check_author_coverage(entries, bearers, authors):
+    """The seventh gate: the author grouping is total — no definition can hide.
+
+    A front page grouped by author is only honest if the grouping provably
+    drops nothing: every entry must reach at least one labelled author through
+    its bearer, and the union of the per-author entry lists must be exactly the
+    entry set. Without this, adding an entry whose bearer forgot its
+    attribution would silently vanish it from the shelf — present in the
+    catalogue, absent from the door.
+
+    The gate proves it can fail before it is trusted (SSF #35): a synthetic
+    entry on an unattributed bearer must be caught, or the check is decoration.
+    """
+    def problems(entry_list, bearer_list, author_list):
+        by_bearer = {b["iri"]: b for b in bearer_list}
+        out = []
+        for e in entry_list:
+            if not by_bearer.get(e["statedIn"], {}).get("authoredBy"):
+                out.append(f"{e['id']}: bearer has no atlas:authoredBy")
+        for a in author_list:
+            if not a["label"]:
+                out.append(f"{a['id']}: author has no label")
+        grouped = {iri for a in author_list for iri in a["entries"]}
+        for e in entry_list:
+            if e["iri"] not in grouped and by_bearer.get(e["statedIn"], {}).get("authoredBy"):
+                out.append(f"{e['id']}: attributed but reaches no extracted author")
+        return out
+
+    found = problems(entries, bearers, authors)
+    if found:
+        raise SystemExit(
+            "AUTHOR COVERAGE FAILED:\n  " + "\n  ".join(found) + "\n"
+            "  The shelf groups entries by author; an entry that reaches no author\n"
+            "  would be in the catalogue but missing from the front page. Add\n"
+            "  atlas:authoredBy to the bearer (authors are declared in atlas-core.ttl)."
+        )
+
+    planted = entries + [{"id": "synthetic", "iri": "urn:synthetic", "statedIn": "urn:no-such-bearer"}]
+    if not problems(planted, bearers, authors):
+        raise SystemExit("GATE INVALID: a synthetic entry on an unattributed bearer was not caught.")
+    return True
 
 
 def extract_primitives(g, entries):
@@ -609,7 +695,7 @@ def read_open_decisions(atlas_root):
     return out
 
 
-def check_no_retired_served(g, entries, cases, objects):
+def check_no_retired_served(g, entries, cases, objects, authors):
     """The sixth gate: a retired IRI never reaches the reader as live data.
 
     D5 retires a term by class change plus owl:deprecated true — the IRI stays
@@ -630,6 +716,7 @@ def check_no_retired_served(g, entries, cases, objects):
         {e["iri"] for e in entries}
         | set(cases)
         | {o["iri"] for o in objects.values()}
+        | {a["iri"] for a in authors}
     )
     leaked = deprecated & served
     if leaked:
@@ -821,7 +908,11 @@ def main():
 
     cases = extract_cases(g)
     objects = extract_test_objects(g)
-    retired_live = check_no_retired_served(g, entries, cases, objects)
+    bearers = extract_bearers(g)
+    authors = extract_authors(g, entries, bearers)
+    coverage_live = check_author_coverage(entries, bearers, authors)
+    print(f"author coverage {len(authors)} authors, every entry reached  gate-can-fail={coverage_live}")
+    retired_live = check_no_retired_served(g, entries, cases, objects, authors)
     print(f"retired IRIs excluded  gate-can-fail={retired_live}")
     catalogue = {
         "cases": cases,
@@ -837,7 +928,8 @@ def main():
         "transcription": transcription,
         "source": {"repo": atlas_root.name, "coreLabel": one(g, ATLAS["atlas-core"], RDFS.label)},
         "entries": entries,
-        "bearers": extract_bearers(g),
+        "bearers": bearers,
+        "authors": authors,
         "primitives": extract_primitives(g, entries),
         "evidenceCodes": extract_evidence_codes(g),
         "conflicts": example_conflicts(entries, cases, objects),
@@ -857,7 +949,7 @@ def main():
             (args.out / name.replace("definition-atlas", "atlas")).write_bytes(src.read_bytes())
             print(f"served       {name}")
 
-    print(f"atlas.json  {len(entries)} entries, {len(catalogue['bearers'])} bearers, "
+    print(f"atlas.json  {len(entries)} entries, {len(authors)} authors, {len(catalogue['bearers'])} bearers, "
           f"{len(catalogue['primitives'])} primitives, {len(catalogue['conflicts'])} conflicts")
 
     if args.skip_reasoning:

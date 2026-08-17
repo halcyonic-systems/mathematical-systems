@@ -38,6 +38,7 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
       </p>
 
       <Shelf
+        authors={atlas.authors}
         entries={entries}
         transcription={atlas.transcription}
         hrefOf={(e) => href({ view: "read", entry: e.id })}
@@ -83,7 +84,7 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
           ? "Every passage located in its primary text at build time."
           : `${verified} of ${entries.length} passages located in their primary text at build time.`}{" "}
         <span className="trust-counts">
-          {entries.length} entries · {caseCount} cases ·
+          {atlas.authors.length} authors · {entries.length} entries · {caseCount} cases ·
         </span>{" "}
         <button
           onClick={() => setView("about")}

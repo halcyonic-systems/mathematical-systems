@@ -879,6 +879,34 @@ body {
   color: var(--text-muted);
 }
 
+/* One card per author; each DEFINITION inside it is the door. The card stopped
+   being a single anchor when the catalogue's own finding — one author, several
+   definitions — moved onto the front page, so the hover affordance moves with
+   the door: rows answer with a wash of the author's own hue, the card keeps
+   only its lift. Rows separate on the hairline, the same rule the meta row
+   already sits on, so a two-definition card reads as one shelf with two
+   volumes rather than two cards glued together. */
+.shelf-def {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--transition-base);
+}
+.shelf-def + .shelf-def {
+  border-top: 1px solid var(--hairline);
+}
+.shelf-def:hover {
+  background: color-mix(in srgb, var(--world, var(--accent)) 6%, var(--bg-secondary));
+}
+/* The year, only where a card holds more than one definition: with one it
+   restates the strip; with several it is the axis the revision reads along. */
+.shelf-def-year {
+  padding: 0.75rem 1rem 0;
+  color: var(--text-muted);
+}
+
 /* The disagreement asks itself: the question is the panel's headline, set at
    thesis scale in the display face. A question is the one prose form that makes
    a reader take a side before scrolling on. */

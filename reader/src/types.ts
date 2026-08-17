@@ -54,6 +54,20 @@ export type Bearer = {
   creator: string | null;
   date: string | null;
   identifiers: string[];
+  /** Author IRIs (atlas:authoredBy). `creator` is the bibliographic string; this is the node. */
+  authoredBy: string[];
+};
+
+/** Identity only — a name plus the entries reachable through its bearers.
+    Nothing definitional aggregates here: an author with two entries is two
+    definitions to be read, never one position to be summarised. The entry
+    list is complete by construction (the build's author-coverage gate), and
+    chronological, so a revision arc reads in order. */
+export type Author = {
+  iri: string;
+  id: string;
+  label: string | null;
+  entries: string[];
 };
 
 export type Primitive = {
@@ -130,6 +144,7 @@ export type Atlas = {
   source: { repo: string; coreLabel: string | null };
   entries: Entry[];
   bearers: Bearer[];
+  authors: Author[];
   primitives: Primitive[];
   evidenceCodes: EvidenceCode[];
   conflicts: Conflict[];

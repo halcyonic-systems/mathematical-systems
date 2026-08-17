@@ -171,8 +171,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "75c4894+",
-    "repoCommit": "75c4894+"
+    "atlasCommit": "0f67d10+",
+    "repoCommit": "0f67d10+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -677,6 +677,9 @@
       "date": "1979",
       "identifiers": [
         "doi:10.1007/978-94-009-9392-1"
+      ],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/mario-bunge"
       ]
     },
     {
@@ -687,6 +690,9 @@
       "identifiers": [
         "ISBN 978-1-4613-5501-4",
         "doi:10.1007/978-1-4615-1331-5"
+      ],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/george-klir"
       ]
     },
     {
@@ -694,7 +700,10 @@
       "label": "Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)",
       "creator": "Ludwig von Bertalanffy",
       "date": "1968",
-      "identifiers": []
+      "identifiers": [],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/ludwig-von-bertalanffy"
+      ]
     },
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1972-amj",
@@ -704,6 +713,37 @@
       "identifiers": [
         "doi:10.2307/255139",
         "https://www.jstor.org/stable/255139"
+      ],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/ludwig-von-bertalanffy"
+      ]
+    }
+  ],
+  "authors": [
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/author/george-klir",
+      "id": "george-klir",
+      "label": "George J. Klir",
+      "entries": [
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/author/mario-bunge",
+      "id": "mario-bunge",
+      "label": "Mario Bunge",
+      "entries": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/author/ludwig-von-bertalanffy",
+      "id": "ludwig-von-bertalanffy",
+      "label": "Ludwig von Bertalanffy",
+      "entries": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation"
       ]
     }
   ],
@@ -879,9 +919,9 @@
   "profile": {
     "counts": {
       "subClassOf": 2,
-      "domain": 5,
-      "range": 5,
-      "classes": 7
+      "domain": 6,
+      "range": 6,
+      "classes": 8
     },
     "verdict": "A taxonomy. Nothing is entailed beyond transitive closure of the asserted tree."
   }

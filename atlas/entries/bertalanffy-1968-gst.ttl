@@ -2,6 +2,7 @@
 @prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
 @prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
 @prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
 @prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
 @prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
@@ -30,6 +31,7 @@ bearer:bertalanffy-1968-gst
     a cco:ont00000253 ;   # Information Bearing Entity
     rdfs:label "Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)"@en ;
     dcterms:creator "Ludwig von Bertalanffy" ;
+    atlas:authoredBy author:ludwig-von-bertalanffy ;
     dcterms:date "1968"^^xsd:gYear ;
     dcterms:bibliographicCitation "New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'." .
 

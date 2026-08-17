@@ -2,6 +2,7 @@
 @prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
 @prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
 @prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
 @prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
 @prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
@@ -26,6 +27,7 @@ bearer:klir-2001-facets
     a cco:ont00000253 ;   # Information Bearing Entity
     rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
     dcterms:creator "George J. Klir" ;
+    atlas:authoredBy author:george-klir ;
     dcterms:date "2001"^^xsd:gYear ;
     dcterms:identifier "ISBN 978-1-4613-5501-4" ;
     dcterms:identifier "doi:10.1007/978-1-4615-1331-5" .

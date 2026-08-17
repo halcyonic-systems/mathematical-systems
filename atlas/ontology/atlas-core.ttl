@@ -1,6 +1,7 @@
 @prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
 @prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
 @prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix obo:     <http://purl.obolibrary.org/obo/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
@@ -68,6 +69,23 @@ alike; no source location, though Bunge's examples sit outside the location his 
 no separation of the case from the author's reason for it, concatenated with an em dash; and
 no identity, so two authors ruling on the same object could not be matched. See
 docs/proposals/P4-evidence-scope.md."""@en .
+
+atlas:Author
+    a owl:Class ;
+    rdfs:label "Author"@en ;
+    skos:definition """A person to whom the catalogue's bearers attribute authorship. Identity
+only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
+recognised as one person revising rather than two people agreeing."""@en ;
+    rdfs:comment """NO DEFINITIONAL CONTENT ATTACHES HERE. The same discipline that scopes
+stance (below) scopes everything else: a person may define "system" differently in different
+works — the catalogue's first author does — so verbatims, primitives, cases, stances and
+evidence codes all attach to the ENTRY or the BEARER, never to the author. An author node that
+accumulated a "position" would manufacture a consistency the corpus is here to test. What an
+author node licenses is exactly one derived fact: which entries share an author, and therefore
+where a revision arc exists to be examined entry by entry.
+
+Declared standalone rather than subclassed into the CCO agent hierarchy, on the
+atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@en .
 
 atlas:RetiredTerm
     a owl:Class ;
@@ -146,6 +164,13 @@ atlas:instantiates
     skos:definition """Relates a case to the test object it is a case of. This is what makes a
 disagreement derivable: same test object, one definition admitting and another refusing, is a
 separating instance the build can find rather than one an encoder has to assert."""@en .
+
+atlas:authoredBy
+    a owl:ObjectProperty ;
+    rdfs:domain cco:ont00000253 ;   # Information Bearing Entity
+    rdfs:range atlas:Author ;
+    rdfs:label "authored by"@en ;
+    skos:definition "Relates a bearer to its author. The bearer's dcterms:creator literal stays as the bibliographic string; this property is what makes the attribution a node two works can share."@en .
 
 atlas:arguedIn
     a owl:AnnotationProperty ;
@@ -402,6 +427,27 @@ against Klir p. 5's criterion and ordering passage. The verifying read confirmed
 admission is stated as a general principle ("any ordering of a set is a relation defined on
 the set") and that Bunge's refusal is bond-absence, not member-kind. The derived conflict
 inherits this grade."""@en .
+
+
+##############################################################################
+# Authors — declared once here, like test objects, because an author is by
+# construction a cross-entry individual: a node declared per entry file would
+# drift into as many labels as files. Full-name slugs, not surnames — IRIs are
+# permanent (docs/iri-policy.md) and a second Klir would be unmintable behind
+# a surname that already means the first.
+##############################################################################
+
+author:george-klir
+    a atlas:Author ;
+    rdfs:label "George J. Klir"@en .
+
+author:mario-bunge
+    a atlas:Author ;
+    rdfs:label "Mario Bunge"@en .
+
+author:ludwig-von-bertalanffy
+    a atlas:Author ;
+    rdfs:label "Ludwig von Bertalanffy"@en .
 
 
 ##############################################################################

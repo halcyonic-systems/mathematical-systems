@@ -2,6 +2,7 @@
 @prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
 @prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
 @prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
 @prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
 @prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
@@ -32,6 +33,7 @@ bearer:bunge-1979-treatise-vol4
     a cco:ont00000253 ;
     rdfs:label "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)"@en ;
     dcterms:creator "Mario Bunge" ;
+    atlas:authoredBy author:mario-bunge ;
     dcterms:date "1979"^^xsd:gYear ;
     dcterms:identifier "doi:10.1007/978-94-009-9392-1" .
 

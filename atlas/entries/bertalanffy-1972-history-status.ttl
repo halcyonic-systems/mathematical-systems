@@ -2,6 +2,7 @@
 @prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
 @prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
 @prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
 @prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
 @prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
@@ -28,6 +29,7 @@ bearer:bertalanffy-1972-amj
     a cco:ont00000253 ;   # Information Bearing Entity
     rdfs:label "Von Bertalanffy, L. — The History and Status of General Systems Theory, Academy of Management Journal 15(4) (1972)"@en ;
     dcterms:creator "Ludwig von Bertalanffy" ;
+    atlas:authoredBy author:ludwig-von-bertalanffy ;
     dcterms:date "1972"^^xsd:gYear ;
     dcterms:identifier "https://www.jstor.org/stable/255139" ;
     dcterms:identifier "doi:10.2307/255139" ;

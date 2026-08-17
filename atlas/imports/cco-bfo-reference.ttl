@@ -24,7 +24,7 @@ cco:ont00000253 a owl:Class ;
 cco:ont00000853 a owl:Class ;
     rdfs:label "Descriptive Information Content Entity"@en ;
     rdfs:subClassOf cco:ont00000958 ;
-    skos:definition "An Information Content Entity that consists of a set of propositions that describe some Entity."@en .
+    skos:definition "An Information Content Entity that describes some Entity."@en .
 
 obo:BFO_0000001 a owl:Class ;
     rdfs:label "entity"@en ;

@@ -1,4 +1,5 @@
 @prefix atlas: <https://w3id.org/mathematical-systems/atlas/> .
+@prefix author: <https://w3id.org/mathematical-systems/atlas/author/> .
 @prefix bearer: <https://w3id.org/mathematical-systems/atlas/bearer/> .
 @prefix case: <https://w3id.org/mathematical-systems/atlas/case/> .
 @prefix cco: <https://www.commoncoreontologies.org/> .
@@ -60,6 +61,12 @@ Spec: strategy/phd/definition-atlas-spec.md in the Halcyonic vault."""@en ;
 atlas:authorCaveat a owl:AnnotationProperty ;
     rdfs:label "author caveat"@en ;
     skos:definition "A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources."@en .
+
+atlas:authoredBy a owl:ObjectProperty ;
+    rdfs:label "authored by"@en ;
+    rdfs:domain cco:ont00000253 ;
+    rdfs:range atlas:Author ;
+    skos:definition "Relates a bearer to its author. The bearer's dcterms:creator literal stays as the bibliographic string; this property is what makes the attribution a node two works can share."@en .
 
 case:bunge-molecule-reef-family-factory a atlas:RetiredTerm ;
     dcterms:isReplacedBy case:bunge-factory,
@@ -431,11 +438,18 @@ atlas:TestObjectScheme a skos:ConceptScheme ;
 is added only when the corpus contains at least two rulings on the same object, because a test
 object with one ruling compares nothing and a test object with none is invented."""@en .
 
+author:george-klir a atlas:Author ;
+    rdfs:label "George J. Klir"@en .
+
+author:mario-bunge a atlas:Author ;
+    rdfs:label "Mario Bunge"@en .
+
 bearer:bertalanffy-1968-gst a cco:ont00000253 ;
     rdfs:label "Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)"@en ;
     dcterms:bibliographicCitation "New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'." ;
     dcterms:creator "Ludwig von Bertalanffy" ;
-    dcterms:date "1968"^^xsd:gYear .
+    dcterms:date "1968"^^xsd:gYear ;
+    atlas:authoredBy author:ludwig-von-bertalanffy .
 
 bearer:bertalanffy-1972-amj a cco:ont00000253 ;
     rdfs:label "Von Bertalanffy, L. — The History and Status of General Systems Theory, Academy of Management Journal 15(4) (1972)"@en ;
@@ -443,14 +457,16 @@ bearer:bertalanffy-1972-amj a cco:ont00000253 ;
     dcterms:creator "Ludwig von Bertalanffy" ;
     dcterms:date "1972"^^xsd:gYear ;
     dcterms:identifier "doi:10.2307/255139",
-        "https://www.jstor.org/stable/255139" .
+        "https://www.jstor.org/stable/255139" ;
+    atlas:authoredBy author:ludwig-von-bertalanffy .
 
 bearer:klir-2001-facets a cco:ont00000253 ;
     rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
     dcterms:creator "George J. Klir" ;
     dcterms:date "2001"^^xsd:gYear ;
     dcterms:identifier "ISBN 978-1-4613-5501-4",
-        "doi:10.1007/978-1-4615-1331-5" .
+        "doi:10.1007/978-1-4615-1331-5" ;
+    atlas:authoredBy author:george-klir .
 
 case:bertalanffy-organism a atlas:Example ;
     rdfs:label "an organism"@en ;
@@ -715,7 +731,7 @@ source."""@en ;
 cco:ont00000853 a owl:Class ;
     rdfs:label "Descriptive Information Content Entity"@en ;
     rdfs:subClassOf cco:ont00000958 ;
-    skos:definition "An Information Content Entity that consists of a set of propositions that describe some Entity."@en .
+    skos:definition "An Information Content Entity that describes some Entity."@en .
 
 cco:ont00000958 a owl:Class ;
     rdfs:label "Information Content Entity"@en ;
@@ -752,11 +768,15 @@ on it can be identified as ruling on the SAME thing. Klir's "a collection of boo
 authors' names" and Bunge's "a collection of events, even if ordered" are two cases of one test
 object; no string comparison will ever discover that."""@en .
 
+author:ludwig-von-bertalanffy a atlas:Author ;
+    rdfs:label "Ludwig von Bertalanffy"@en .
+
 bearer:bunge-1979-treatise-vol4 a cco:ont00000253 ;
     rdfs:label "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)"@en ;
     dcterms:creator "Mario Bunge" ;
     dcterms:date "1979"^^xsd:gYear ;
-    dcterms:identifier "doi:10.1007/978-94-009-9392-1" .
+    dcterms:identifier "doi:10.1007/978-94-009-9392-1" ;
+    atlas:authoredBy author:mario-bunge .
 
 case:bunge-factory a atlas:Example ;
     rdfs:label "a factory"@en ;
@@ -954,6 +974,22 @@ prim:set a skos:Concept ;
 prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
+
+atlas:Author a owl:Class ;
+    rdfs:label "Author"@en ;
+    rdfs:comment """NO DEFINITIONAL CONTENT ATTACHES HERE. The same discipline that scopes
+stance (below) scopes everything else: a person may define "system" differently in different
+works — the catalogue's first author does — so verbatims, primitives, cases, stances and
+evidence codes all attach to the ENTRY or the BEARER, never to the author. An author node that
+accumulated a "position" would manufacture a consistency the corpus is here to test. What an
+author node licenses is exactly one derived fact: which entries share an author, and therefore
+where a revision arc exists to be examined entry by entry.
+
+Declared standalone rather than subclassed into the CCO agent hierarchy, on the
+atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@en ;
+    skos:definition """A person to whom the catalogue's bearers attribute authorship. Identity
+only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
+recognised as one person revising rather than two people agreeing."""@en .
 
 atlas:EvidenceCode a owl:Class ;
     rdfs:label "Evidence Code"@en ;

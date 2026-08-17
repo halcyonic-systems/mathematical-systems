@@ -14,10 +14,11 @@ cco:InformationEntityOntology a owl:Ontology ;
     dcterms:license "BSD 3-Clause: https://github.com/CommonCoreOntology/CommonCoreOntologies/blob/master/LICENSE"@en ;
     dcterms:rights "CUBRC Inc., see full license."@en ;
     rdfs:comment "This ontology is designed to represent generic types of information as well as the relationships between information and other entities."@en ;
-    owl:imports cco:GeospatialOntology,
+    owl:imports <http://purl.obolibrary.org/obo/bfo/2020/bfo-core.ttl>,
+        cco:GeospatialOntology,
         cco:TimeOntology ;
-    owl:versionIRI <https://www.commoncoreontologies.org/2026-04-04/InformationEntityOntology> ;
-    owl:versionInfo "Version 2.1"@en .
+    owl:versionIRI <https://www.commoncoreontologies.org/2026-08-13/InformationEntityOntology> ;
+    owl:versionInfo "Version 2.2"@en .
 
 cco:ont00000029 a owl:Class ;
     rdfs:label "Median Point Estimate Information Content Entity"@en ;
@@ -799,7 +800,8 @@ cco:ont00001660 a owl:NamedIndividual,
         cco:ont00000469 ;
     rdfs:label "International Geomagnetic Reference Field"@en ;
     skos:scopeNote "This global main field model provides magnetic field values for any location on Earth, e.g. for  navigational purposes (declination) or as a standard for core field subtraction for aeromagnetic surveys. An updated version is adopted by International Association of Geomagnetism and Aeronomy (IAGA) every 5 years)."@en ;
-    cco:ont00001754 "Alken, P., Thébault, E., Beggan, C.D. et al. International Geomagnetic Reference Field: the thirteenth generation. Earth Planets Space 73, 49 (2021). https://doi.org/10.1186/s40623-020-01288-x , https://www.iaga-aiga.org/" .
+    cco:ont00001754 "Alken, P., Thébault, E., Beggan, C.D. et al. International Geomagnetic Reference Field: the thirteenth generation. Earth Planets Space 73, 49 (2021). https://doi.org/10.1186/s40623-020-01288-x , https://www.iaga-aiga.org/" ;
+    cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001661 a owl:NamedIndividual,
         cco:ont00001352 ;
@@ -927,6 +929,8 @@ cco:ont00001760 a owl:AnnotationProperty .
 cco:ont00001765 a owl:DatatypeProperty ;
     rdfs:label "has text value"@en ;
     rdfs:domain cco:ont00000253 ;
+    owl:deprecated true ;
+    skos:changeNote "Deprecated without direct replacement because the property is overly generic and does not add semantic content beyond the use of a string literal. Modelers should instead use a more specific datatype property whose meaning explains what the text records, names, describes, encodes, or otherwise represents."@en ;
     skos:definition "A data property that has as its range a string value."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -934,6 +938,8 @@ cco:ont00001767 a owl:DatatypeProperty ;
     rdfs:label "has datetime value"@en ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range xsd:dateTime ;
+    owl:deprecated true ;
+    skos:changeNote "Deprecated without direct replacement because the property is overly generic and does not add semantic content beyond the use of an xsd:dateTime typed literal. Modelers should instead use a more specific datatype property whose meaning explains what date-time value is being recorded, specified, observed, issued, created, modified, or otherwise represented."@en ;
     skos:definition "A data property that has as its value a datetime value."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -941,6 +947,8 @@ cco:ont00001768 a owl:DatatypeProperty ;
     rdfs:label "has URI value"@en ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range xsd:anyURI ;
+    owl:deprecated true ;
+    skos:changeNote "Deprecated without direct replacement because the property is overly generic and does not add semantic content beyond the use of an xsd:anyURI typed literal. Modelers should instead use a more specific datatype property whose meaning explains what the URI identifies, locates, references, resolves to, or otherwise represents."@en ;
     skos:definition "A data property that has as its range a URI value."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -948,6 +956,8 @@ cco:ont00001769 a owl:DatatypeProperty ;
     rdfs:label "has decimal value"@en ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range xsd:decimal ;
+    owl:deprecated true ;
+    skos:changeNote "Deprecated without direct replacement because the property is overly generic and does not add semantic content beyond the use of an xsd:decimal typed literal. Modelers should instead use a more specific datatype property whose meaning explains what the decimal value measures, quantifies, estimates, rates, or otherwise represents."@en ;
     skos:definition "A data property that has as its range a decimal value."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -955,6 +965,8 @@ cco:ont00001770 a owl:DatatypeProperty ;
     rdfs:label "has double value"@en ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range xsd:double ;
+    owl:deprecated true ;
+    skos:changeNote "Deprecated without direct replacement because the property is overly generic and does not add semantic content beyond the use of an xsd:double typed literal. Modelers should instead use a more specific datatype property whose meaning explains what the double value measures, quantifies, estimates, rates, or otherwise represents."@en ;
     skos:definition "A data property that has as its range a double value."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -968,6 +980,8 @@ cco:ont00001772 a owl:DatatypeProperty ;
     rdfs:label "has boolean value"@en ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range xsd:boolean ;
+    owl:deprecated true ;
+    skos:changeNote "Deprecated without direct replacement because the property is overly generic and does not add semantic content beyond the use of an xsd:boolean typed literal. Modelers should instead use a more specific datatype property whose meaning explains what the boolean value affirms, denies, indicates, or otherwise represents."@en ;
     skos:definition "A data property that has as its range a boolean value."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -975,6 +989,8 @@ cco:ont00001773 a owl:DatatypeProperty ;
     rdfs:label "has integer value"@en ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range xsd:integer ;
+    owl:deprecated true ;
+    skos:changeNote "Deprecated because the property does not add semantic content beyond the use of an xsd:integer typed literal. Use a domain-specific datatype property with range xsd:integer where an integer-valued measurement, count, ordinal, identifier component, or other value is intended."@en ;
     skos:definition "A data property that has as its range an integer value."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -1000,7 +1016,7 @@ cco:ont00001863 a owl:ObjectProperty ;
     rdfs:range cco:ont00000120 ;
     rdfs:subPropertyOf obo:BFO_0000101 ;
     owl:inverseOf cco:ont00001961 ;
-    skos:definition "x uses measurement unit y =Def y is measurement unit of x"@en ;
+    skos:definition "x uses measurement unit y =Def y is measurement unit of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001873 a owl:ObjectProperty ;
@@ -1009,7 +1025,7 @@ cco:ont00001873 a owl:ObjectProperty ;
     rdfs:range cco:ont00001069 ;
     rdfs:subPropertyOf cco:ont00001801 ;
     owl:inverseOf cco:ont00001938 ;
-    skos:definition "x represented by y =Def y represents x"@en ;
+    skos:definition "x represented by y =Def y represents x."@en ;
     skos:scopeNote "See notes for inverse property." ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -1018,7 +1034,7 @@ cco:ont00001878 a owl:ObjectProperty ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range obo:BFO_0000001 ;
     owl:inverseOf cco:ont00001919 ;
-    skos:definition "x is mention of y =Def y is mentioned by x"@en ;
+    skos:definition "x is mention of y =Def y is mentioned by x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001879 a owl:ObjectProperty ;
@@ -1027,7 +1043,7 @@ cco:ont00001879 a owl:ObjectProperty ;
     rdfs:range cco:ont00000686 ;
     rdfs:subPropertyOf cco:ont00001801 ;
     owl:inverseOf cco:ont00001916 ;
-    skos:definition "x designated by y =Def y designates x"@en ;
+    skos:definition "x designated by y =Def y designates x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001884 a owl:ObjectProperty ;
@@ -1037,7 +1053,7 @@ cco:ont00001884 a owl:ObjectProperty ;
     rdfs:subPropertyOf cco:ont00001801 ;
     owl:inverseOf cco:ont00001980 ;
     owl:propertyChainAxiom ( cco:ont00001917 obo:BFO_0000176 ) ;
-    skos:definition "x condition described by y =Def y describes condition x"@en ;
+    skos:definition "x condition described by y =Def y describes condition x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001899 a owl:ObjectProperty ;
@@ -1064,7 +1080,7 @@ cco:ont00001965 a owl:ObjectProperty ;
     rdfs:range cco:ont00001022 ;
     rdfs:subPropertyOf cco:ont00001904 ;
     owl:inverseOf cco:ont00001983 ;
-    skos:definition "x is measured by ratio y =Def y is a ratio measurement of x"@en ;
+    skos:definition "x is measured by ratio y =Def y is a ratio measurement of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00002003 a owl:Class ;
@@ -1191,8 +1207,8 @@ cco:ont00002045 a owl:Class ;
 
 cco:ont00002070 a owl:Class ;
     rdfs:label "Email Address"@en ;
-    rdfs:altLabel "Email Box Identifier"@en ;
     rdfs:subClassOf cco:ont00000003 ;
+    skos:altLabel "Email Box Identifier"@en ;
     skos:definition "A Designative Name created in order to identify some Email Box as the destination of an email message for the purpose of Email Messaging."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
@@ -1319,7 +1335,7 @@ cco:ont00001908 a owl:ObjectProperty ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range cco:ont00000829 ;
     rdfs:subPropertyOf obo:BFO_0000101 ;
-    skos:definition "x uses time zone identifier y =Def y time zone identifier used by x"@en ;
+    skos:definition "x uses time zone identifier y =Def y time zone identifier used by x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001912 a owl:ObjectProperty ;
@@ -1328,7 +1344,7 @@ cco:ont00001912 a owl:ObjectProperty ;
     rdfs:range cco:ont00000398 ;
     rdfs:subPropertyOf obo:BFO_0000101 ;
     owl:inverseOf cco:ont00001997 ;
-    skos:definition "x uses reference system y =Def y is reference system of x"@en ;
+    skos:definition "x uses reference system y =Def y is reference system of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001913 a owl:ObjectProperty ;
@@ -1336,7 +1352,7 @@ cco:ont00001913 a owl:ObjectProperty ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range cco:ont00000469 ;
     rdfs:subPropertyOf cco:ont00001912 ;
-    skos:definition "x uses geospatial coordinate reference system y =Def y is geospatial coordinate reference system of x"@en ;
+    skos:definition "x uses geospatial coordinate reference system y =Def y is geospatial coordinate reference system of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001914 a owl:ObjectProperty ;
@@ -1344,7 +1360,7 @@ cco:ont00001914 a owl:ObjectProperty ;
     rdfs:domain obo:BFO_0000001 ;
     rdfs:range cco:ont00000293 ;
     rdfs:subPropertyOf cco:ont00001904 ;
-    skos:definition "x is measured by nominal y =Def y is a nominal measurement of x"@en ;
+    skos:definition "x is measured by nominal y =Def y is a nominal measurement of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001919 a owl:ObjectProperty ;
@@ -1360,7 +1376,7 @@ cco:ont00001920 a owl:ObjectProperty ;
     rdfs:range cco:ont00000965 ;
     rdfs:subPropertyOf cco:ont00001801 ;
     owl:inverseOf cco:ont00001942 ;
-    skos:definition "x prescribed by y =Def y prescribes x"@en ;
+    skos:definition "x prescribed by y =Def y prescribes x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001961 a owl:ObjectProperty ;
@@ -1376,7 +1392,7 @@ cco:ont00001963 a owl:ObjectProperty ;
     rdfs:domain obo:BFO_0000001 ;
     rdfs:range cco:ont00001010 ;
     rdfs:subPropertyOf cco:ont00001904 ;
-    skos:definition "x is measured by ordinal y =Def y is a ordinal measurement of x"@en ;
+    skos:definition "x is measured by ordinal y =Def y is a ordinal measurement of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001964 a owl:ObjectProperty ;
@@ -1384,7 +1400,7 @@ cco:ont00001964 a owl:ObjectProperty ;
     rdfs:domain obo:BFO_0000001 ;
     rdfs:range cco:ont00001364 ;
     rdfs:subPropertyOf cco:ont00001904 ;
-    skos:definition "x is measured by interval y =Def y is a interval measurement of x"@en ;
+    skos:definition "x is measured by interval y =Def y is a interval measurement of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001976 a owl:ObjectProperty ;
@@ -1392,7 +1408,7 @@ cco:ont00001976 a owl:ObjectProperty ;
     rdfs:domain cco:ont00000253 ;
     rdfs:range cco:ont00001175 ;
     rdfs:subPropertyOf cco:ont00001920 ;
-    skos:definition "x uses language y =Def y language used in x"@en ;
+    skos:definition "x uses language y =Def y language used in x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00002002 a owl:Class ;
@@ -1543,7 +1559,7 @@ cco:ont00001917 a owl:ObjectProperty ;
     rdfs:range cco:ont00000853 ;
     rdfs:subPropertyOf cco:ont00001801 ;
     owl:inverseOf cco:ont00001982 ;
-    skos:definition "x described by y =Def y describes x"@en ;
+    skos:definition "x described by y =Def y describes x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001938 a owl:ObjectProperty ;
@@ -1699,7 +1715,7 @@ cco:ont00001904 a owl:ObjectProperty ;
     rdfs:range cco:ont00001163 ;
     rdfs:subPropertyOf cco:ont00001917 ;
     owl:inverseOf cco:ont00001966 ;
-    skos:definition "x is measured by y =Def y is a measurement of x"@en ;
+    skos:definition "x is measured by y =Def y is a measurement of x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001982 a owl:ObjectProperty ;
@@ -1737,7 +1753,7 @@ cco:ont00001801 a owl:ObjectProperty ;
     rdfs:domain obo:BFO_0000001 ;
     rdfs:range cco:ont00000958 ;
     owl:inverseOf cco:ont00001808 ;
-    skos:definition "x is subject of y =Def y is about x"@en ;
+    skos:definition "x is subject of y =Def y is about x."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001966 a owl:ObjectProperty ;
@@ -1758,7 +1774,7 @@ cco:ont00000965 a owl:Class ;
                         owl:onProperty cco:ont00001942 ;
                         owl:someValuesFrom obo:BFO_0000001 ] ) ] ;
     skos:altLabel "Directive ICE"@en ;
-    skos:definition "An Information Content Entity that consists of a set of propositions or images (as in the case of a blueprint) that prescribe some Entity."@en ;
+    skos:definition "An Information Content Entity that prescribes some Entity."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001022 a owl:Class ;
@@ -1822,7 +1838,7 @@ cco:ont00000853 a owl:Class ;
                         owl:onProperty cco:ont00001982 ;
                         owl:someValuesFrom obo:BFO_0000001 ] ) ] ;
     skos:altLabel "Descriptive ICE"@en ;
-    skos:definition "An Information Content Entity that consists of a set of propositions that describe some Entity."@en ;
+    skos:definition "An Information Content Entity that describes some Entity."@en ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00001010 a owl:Class ;
@@ -1861,7 +1877,7 @@ cco:ont00001916 a owl:ObjectProperty ;
     cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
 cco:ont00002001 a owl:Class ;
-    rdfs:label "Media Content Entity" ;
+    rdfs:label "Media Content Entity"@en ;
     rdfs:subClassOf cco:ont00000958 ;
     skos:definition "An information content entity presented in a canonical media format."@en ;
     skos:scopeNote "By 'canonical', it is intended that the media format is of a commonly recognized format, such as mass media formats such as books, magazines, and journals, as well as digital media forms (e.g. ebooks), to include, too, file types, such as those recognized by the Internet Assigned Numbers Authority (IANA)'s Media Types standard [RFC2046]." ;
