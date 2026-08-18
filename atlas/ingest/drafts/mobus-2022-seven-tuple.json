@@ -1,0 +1,83 @@
+{
+  "entry_slug": "mobus-2022-seven-tuple",
+  "label": "Mobus (2022), Systems Science: Theory, Analysis, Modeling, and Design, Ch. 4, Sect. 4.3.3, Eq. 4.1",
+  "source_location": "Chapter 4, \"A Model of System and a Language to Represent It\", Sect. 4.3.3 \"A Mathematical Structure Defining a System\", Eq. 4.1",
+  "verbatim": "Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:\nS_i, l = C, N, G, B, T, H, Δt_i, l\nwhere i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.",
+  "display_form": "S_i, l = C, N, G, B, T, H, Δt_i, l",
+  "display_context": "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.",
+  "author_caveat": "The following definition is proposed as a starting point for developing a formal definition of system.",
+  "primitives": [
+    {
+      "slug": "component",
+      "pref_label": "component",
+      "scope_note": "The author's word for the members of the set C: \"C is a set of components and their 'type' along with membership functions in the event the set is fuzzy\"; components may themselves be subsystems or atomic.",
+      "new": true
+    },
+    {
+      "slug": "graph",
+      "pref_label": "graph",
+      "scope_note": "The author's word for N and G, the interaction structures: \"Equation 4.4 is a graph (from graph theory) that defines the interactions between all of the components in C\"; G is \"a bipartite flow graph\".",
+      "new": true
+    },
+    {
+      "slug": "flow",
+      "pref_label": "flow",
+      "scope_note": "The author's word for what moves along the edges of N and G: \"N is generally a flow network through which real substances are moving from one node (component) to the next with causal influence.\"",
+      "new": true
+    },
+    {
+      "slug": "boundary",
+      "pref_label": "boundary",
+      "scope_note": "The author's word for B: \"The boundary, B in Eq. 4.1, at level l, then is a tuple\", comprising a set of properties and a set of interfaces.",
+      "new": true
+    },
+    {
+      "slug": "transformation",
+      "pref_label": "transformation",
+      "scope_note": "The author's word for T: \"T is the set of transformation rules for the subsystems in S\", the transfer function of each component from inputs to outputs.",
+      "new": true
+    },
+    {
+      "slug": "memory",
+      "pref_label": "memory",
+      "scope_note": "The author's word for H: an object that \"records the history of the system, or its record of state transitions\"; \"This is called memory\".",
+      "new": true
+    },
+    {
+      "slug": "time",
+      "pref_label": "time",
+      "scope_note": "Used here for Δt: \"the last element in S is Δt, a time interval relevant to the level of the system of interest.\"",
+      "new": false
+    },
+    {
+      "slug": "subsystem",
+      "pref_label": "subsystem",
+      "scope_note": "The author's word carried by the index i and the hierarchy: \"The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy.\"",
+      "new": true
+    },
+    {
+      "slug": "environment",
+      "pref_label": "environment",
+      "scope_note": "The author's word for the sources and sinks outside the system that G connects to: \"Together the sets Src_i, l and Snk_i, l are a superset, the environment.\"",
+      "new": false
+    }
+  ],
+  "admits": [
+    {
+      "slug": "atom",
+      "label": "atoms",
+      "gloss": "Atoms are offered as simple systems, distinguished only by having a NULL memory element H.",
+      "verbatim": "Some simple systems, like atoms for example, may have a NULL H; that is there is no memory of past states and future states depend only on the current state and current inputs.",
+      "source_location": "Sect. 4.3.3.5 \"Memory\""
+    },
+    {
+      "slug": "steel-plant",
+      "label": "a steel manufacturing plant",
+      "gloss": "The worked example: a simplified steel plant is designated the system of interest and described with the definition's elements.",
+      "verbatim": "The example is of a very simplified steel manufacturing plant that takes in electric energy, iron, and coke as its main resources and produces steel for sale to customers as well as some scrap (waste materials) for disposal and LOTs of waste heat.",
+      "source_location": "Sect. 4.5 \"Example\""
+    }
+  ],
+  "refuses": [],
+  "comment": "DELIBERATELY NOT ASSERTED\nThis entry does not assert cco is-about between the definition and any subject matter it may be taken to concern. The catalogue records that this author, at this locus, offers this formal statement as a definition of system; it does not adjudicate what the definition is true of, nor align Mobus's seven components with any other author's terms. The primitives are lexical records of the words this author uses, minted separately where the word differs, and reuse of prim:time and prim:environment records word identity only, not agreement of sense.\n\nNOT CARRIED BY THE ENCODING\nThe verbatim holds only Eq. 4.1 and the author's immediate gloss on the indexes. The elaborations of each tuple element occupy the remainder of Sect. 4.3.3 and are not transcribed here: the fuzzy-set formulation of C with per-member \"member autonomy\" membership functions, the recursion of Eq. 4.3 with its \"simplest process rule\" stopping condition, the graphs N and G with capacity functions, the boundary tuple B = P, I with interfaces carrying a protocol object, T, H, and the treatment of Δt as clock or quasi-clock. The author's footnote 7 (that this is \"itself, a concept about what a system consists of\" and \"is not being represented as the 'general theory of systems'\") is a further self-qualification not placed in author_caveat, which holds instead the sentence immediately introducing the definition. Admits are recorded only where the author names something as a system or system of interest; ecosystems, cells and the Universe are discussed as systems elsewhere in the chapter but are not encoded, and no example is refused system status anywhere in the supplied text.\n\nBIBLIOGRAPHIC UNCERTAINTY FOR REVIEW\nThe supplied digitisation carries the chapter title and section numbering but no title page: author surname, year and work title in the label and slug are supplied from outside the passage and must be checked against the printed volume before the MDU stamp is cleared."
+}

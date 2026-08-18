@@ -37,7 +37,17 @@ LATEX = {
     r"\times": "×", r"\vdash": "⊢", r"\exists": "∃", r"\forall": "∀",
     r"\vee": "∨", r"\wedge": "∧", r"\sqsubset": "⊏", r"\triangleright": "▷",
     r"\mid": "|", r"\prime": "′", r"\ldots": "…", r"\cdot": "·",
+    # The Mobus edition. "\Delta t" first: the space in the LaTeX is token-boundary
+    # syntax, not typography — the printed page sets Δt closed up. The bare command
+    # follows as the fallback (the -len sort applies the longer pattern first).
+    r"\Delta t": "Δt", r"\Delta": "Δ",
 }
+
+# Footnote markers as this digitisation drops them into running text: "{ }^{8}".
+# The printed page hangs the numeral in superscript off the preceding word; a
+# page-faithful transcription omits it, so the source side must too — the same
+# judgment already made for running heads and page numbers.
+FOOTNOTE_MARK = re.compile(r"\{\s*\}\^\{\d+\}")
 SCRIPT = {"C": "𝒞", "E": "ℰ", "S": "𝒮", "B": "𝔅", "N": "𝒩", "A": "𝒜", "L": "ℒ", "T": "𝒯"}
 
 # Running heads and page numbers the digitisation drops mid-sentence.
@@ -55,12 +65,14 @@ MARKDOWN_IMAGE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
 def delatex(text):
     """LaTeX math -> the Unicode the printed page shows."""
     text = MARKDOWN_IMAGE.sub(" ", text)
+    text = FOOTNOTE_MARK.sub(" ", text)
     text = re.sub(r"\\mathscr\{([A-Z])\}", lambda m: SCRIPT.get(m.group(1), m.group(1)), text)
     text = re.sub(r"\\(left|right|,|;|!|quad|qquad)\b", " ", text)
     for cmd, char in sorted(LATEX.items(), key=lambda kv: -len(kv[0])):
         text = text.replace(cmd, char)
     text = re.sub(r"\\[a-zA-Z]+", " ", text)          # any command we did not name
     text = text.replace(r"\(", " ").replace(r"\)", " ").replace("$", " ")
+    text = text.replace(r"\[", " ").replace(r"\]", " ")   # display-math delimiters
     text = re.sub(r"\\([|&,;:!#%_ ])", r"\1", text)   # escaped delimiters
     text = re.sub(r"\\\\", " ", text)                    # line breaks
     return re.sub(r"[{}]", "", text)

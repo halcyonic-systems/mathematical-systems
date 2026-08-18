@@ -1,0 +1,10 @@
+{
+  "bearer_slug": "mobus-book-revisions",
+  "bearer_label": "Mobus, G. E. — Revisions to Systems Science: TAMD (working manuscript, shared with Halcyonic)",
+  "creator": "George E. Mobus",
+  "author_slug": "george-mobus",
+  "date": "2025",
+  "identifiers": [],
+  "vault_files": ["mobus/mobus-book-revisions.md"],
+  "note": "The manuscript revising Eq. 4.1 from the published 7-tuple to the 8-tuple with environment E first-class — the version the Lean encoding (Systems/Mobus/Tuple.lean, 'Book-revisions Eq. 1') formalises. A separate bearer from the 2022 book deliberately: the revision arc is the finding, as with Bertalanffy 1968/1972. DATE IS A PLACEHOLDER pending the manuscript's own date — verify at the human pass."
+}

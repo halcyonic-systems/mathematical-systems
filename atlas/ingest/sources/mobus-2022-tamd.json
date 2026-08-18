@@ -1,0 +1,10 @@
+{
+  "bearer_slug": "mobus-2022-tamd",
+  "bearer_label": "Mobus, G. E. — Systems Science: Theory, Analysis, Modeling, and Design (Springer, 2022)",
+  "creator": "George E. Mobus",
+  "author_slug": "george-mobus",
+  "date": "2022",
+  "identifiers": ["ISBN 978-3-030-93481-1", "doi:10.1007/978-3-030-93482-8"],
+  "vault_files": ["mobus/4-a-model-of-system.md"],
+  "note": "Ch. 4 'A Model of System' carries the formal definition (Eq. 4.1). The vault chapter files are the book text (LaTeX-flavoured extraction); the README/concepts/clusters files in the same directory are a knowledge-graph overlay, NOT primary text, and are not registered."
+}

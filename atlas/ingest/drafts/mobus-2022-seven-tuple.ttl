@@ -1,0 +1,143 @@
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
+@prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
+@prefix cco:     <https://www.commoncoreontologies.org/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/mathematical-systems/atlas/entries/mobus-2022-tamd>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
+    rdfs:label "Atlas entry — Mobus (2022), Systems Science: Theory, Analysis, Modeling, and Design, Ch. 4, Sect. 4.3.3, Eq. 4.1 (DRAFT)"@en ;
+    rdfs:comment """MDU DRAFT, staged in ingest/drafts/ — not part of the catalogue until a
+human has read it against the source, corrected it, assigned an accession number, and
+promoted its evidence codes. Drafted 2026-08-17 by the P5 pipeline."""@en .
+
+
+##############################################################################
+# Bearer
+##############################################################################
+
+bearer:mobus-2022-tamd
+    a cco:ont00000253 ;   # Information Bearing Entity
+    rdfs:label "Mobus, G. E. — Systems Science: Theory, Analysis, Modeling, and Design (Springer, 2022)"@en ;
+    dcterms:creator "George E. Mobus" ;
+    atlas:authoredBy author:george-mobus ;
+    dcterms:date "2022"^^xsd:gYear ;
+    dcterms:identifier "ISBN 978-3-030-93481-1" ;
+    dcterms:identifier "doi:10.1007/978-3-030-93482-8" .
+
+
+##############################################################################
+# Entry (MDU draft)
+##############################################################################
+
+entry:mobus-2022-seven-tuple
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Mobus (2022), Systems Science: Theory, Analysis, Modeling, and Design, Ch. 4, Sect. 4.3.3, Eq. 4.1"@en ;
+
+    atlas:statedIn bearer:mobus-2022-tamd ;
+    atlas:sourceLocation """Chapter 4, "A Model of System and a Language to Represent It", Sect. 4.3.3 "A Mathematical Structure Defining a System", Eq. 4.1""" ;
+
+    atlas:verbatim """Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:
+S_i, l = C, N, G, B, T, H, Δt_i, l
+where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.""" ;
+    atlas:displayForm """S_i, l = C, N, G, B, T, H, Δt_i, l""" ;
+    atlas:displayContext """where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.""" ;
+    atlas:authorCaveat """The following definition is proposed as a starting point for developing a formal definition of system.""" ;
+    atlas:invokesPrimitive prim:component ,
+                           prim:graph ,
+                           prim:flow ,
+                           prim:boundary ,
+                           prim:transformation ,
+                           prim:memory ,
+                           prim:time ,
+                           prim:subsystem ,
+                           prim:environment ;
+    atlas:admits case:atom ,
+                 case:steel-plant ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-17"^^xsd:date ;
+
+    rdfs:comment """DELIBERATELY NOT ASSERTED
+This entry does not assert cco is-about between the definition and any subject matter it may be taken to concern. The catalogue records that this author, at this locus, offers this formal statement as a definition of system; it does not adjudicate what the definition is true of, nor align Mobus's seven components with any other author's terms. The primitives are lexical records of the words this author uses, minted separately where the word differs, and reuse of prim:time and prim:environment records word identity only, not agreement of sense.
+
+NOT CARRIED BY THE ENCODING
+The verbatim holds only Eq. 4.1 and the author's immediate gloss on the indexes. The elaborations of each tuple element occupy the remainder of Sect. 4.3.3 and are not transcribed here: the fuzzy-set formulation of C with per-member "member autonomy" membership functions, the recursion of Eq. 4.3 with its "simplest process rule" stopping condition, the graphs N and G with capacity functions, the boundary tuple B = P, I with interfaces carrying a protocol object, T, H, and the treatment of Δt as clock or quasi-clock. The author's footnote 7 (that this is "itself, a concept about what a system consists of" and "is not being represented as the 'general theory of systems'") is a further self-qualification not placed in author_caveat, which holds instead the sentence immediately introducing the definition. Admits are recorded only where the author names something as a system or system of interest; ecosystems, cells and the Universe are discussed as systems elsewhere in the chapter but are not encoded, and no example is refused system status anywhere in the supplied text.
+
+BIBLIOGRAPHIC UNCERTAINTY FOR REVIEW
+The supplied digitisation carries the chapter title and section numbering but no title page: author surname, year and work title in the label and slug are supplied from outside the passage and must be checked against the printed volume before the MDU stamp is cleared."""@en .
+
+
+##############################################################################
+# New primitives proposed by this draft — declared here so the draft parses
+# standalone; on promotion they move into atlas-core's primitive vocabulary,
+# where the scheme's scope notes govern them.
+##############################################################################
+
+prim:component a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "component"@en ;
+    skos:scopeNote """The author's word for the members of the set C: "C is a set of components and their 'type' along with membership functions in the event the set is fuzzy"; components may themselves be subsystems or atomic. [MDU — drafted, unchecked]"""@en .
+
+prim:graph a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "graph"@en ;
+    skos:scopeNote """The author's word for N and G, the interaction structures: "Equation 4.4 is a graph (from graph theory) that defines the interactions between all of the components in C"; G is "a bipartite flow graph". [MDU — drafted, unchecked]"""@en .
+
+prim:flow a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "flow"@en ;
+    skos:scopeNote """The author's word for what moves along the edges of N and G: "N is generally a flow network through which real substances are moving from one node (component) to the next with causal influence." [MDU — drafted, unchecked]"""@en .
+
+prim:boundary a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "boundary"@en ;
+    skos:scopeNote """The author's word for B: "The boundary, B in Eq. 4.1, at level l, then is a tuple", comprising a set of properties and a set of interfaces. [MDU — drafted, unchecked]"""@en .
+
+prim:transformation a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "transformation"@en ;
+    skos:scopeNote """The author's word for T: "T is the set of transformation rules for the subsystems in S", the transfer function of each component from inputs to outputs. [MDU — drafted, unchecked]"""@en .
+
+prim:memory a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "memory"@en ;
+    skos:scopeNote """The author's word for H: an object that "records the history of the system, or its record of state transitions"; "This is called memory". [MDU — drafted, unchecked]"""@en .
+
+prim:subsystem a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "subsystem"@en ;
+    skos:scopeNote """The author's word carried by the index i and the hierarchy: "The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy." [MDU — drafted, unchecked]"""@en .
+
+
+##############################################################################
+# Cases (MDU drafts)
+##############################################################################
+
+case:atom
+    a atlas:Example ;
+    rdfs:label "atoms"@en ;
+    atlas:gloss """Atoms are offered as simple systems, distinguished only by having a NULL memory element H.""" ;
+    atlas:verbatim """Some simple systems, like atoms for example, may have a NULL H; that is there is no memory of past states and future states depend only on the current state and current inputs.""" ;
+    atlas:sourceLocation """Sect. 4.3.3.5 "Memory"""" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-17"^^xsd:date .
+
+case:steel-plant
+    a atlas:Example ;
+    rdfs:label "a steel manufacturing plant"@en ;
+    atlas:gloss """The worked example: a simplified steel plant is designated the system of interest and described with the definition's elements.""" ;
+    atlas:verbatim """The example is of a very simplified steel manufacturing plant that takes in electric energy, iron, and coke as its main resources and produces steel for sale to customers as well as some scrap (waste materials) for disposal and LOTs of waste heat.""" ;
+    atlas:sourceLocation """Sect. 4.5 "Example"""" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-17"^^xsd:date .

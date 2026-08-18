@@ -171,8 +171,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "ef75e86+",
-    "repoCommit": "ef75e86+"
+    "atlasCommit": "716062d+",
+    "repoCommit": "716062d+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -379,9 +379,9 @@
       "matchedChars": 108,
       "verbatimChars": 108,
       "context": {
-        "before": "So, the total set of relations among the components of a complex entity may be decomposed into its bondage B A and the set B A of nonbonding relations.\n\nWe can now introduce the notion of the A -environment of a thing x with A -composition 𝒞 A(x) . It will be defined as the set of all things, other than those in 𝒞 A(x) , that act on or are acted upon the latter:\n\\[\nℰ A(x)= y ∈ Θ | (y ∈ 𝒞 A(x) ) &(∃ z)(z ⊏ x &(y ▷ z ∨ z ▷ y)) \\ .\n\\]\n\nFinally the structure of a thing will be defined as the set of all the relations among the thing's components as well as among these and the things in the thing's environment.\n\nWe now have all we need to define the notion of a concrete system:",
+        "before": "So, the total set of relations among the components of a complex entity may be decomposed into its bondage B A and the set B A of nonbonding relations.\n\nWe can now introduce the notion of the A -environment of a thing x with A -composition 𝒞 A(x) . It will be defined as the set of all things, other than those in 𝒞 A(x) , that act on or are acted upon the latter:\n \nℰ A(x)= y ∈ Θ | (y ∈ 𝒞 A(x) ) &(∃ z)(z ⊏ x &(y ▷ z ∨ z ▷ y)) \\ .\n \n\nFinally the structure of a thing will be defined as the set of all the relations among the thing's components as well as among these and the things in the thing's environment.\n\nWe now have all we need to define the notion of a concrete system:",
         "match": "definition 1.1 An object is a concrete system iff it is composed of at least two different connected things.",
-        "after": "Fig. 1.1. Two systems with the same composition but different structures and environments.\n\nExample A molecule, a coral reef, a family and a factory are systems. On the other hand a set of states of a thing and a collection of events, even if ordered, are not concrete systems. Symbol: Σ .\n\nAnd now the three characteristics of any system:\ndefinition 1.2 Let σ ∈ Σ be a concrete system and A ⊂ Θ a class of things. Then\n(i) the A -composition of σ at a given time t is the set of its A -parts at t :\n\\[\n𝒞 A(σ, t)= x ∈ A | x ⊏ σ\\ ;\n\\]\n(ii) the A -environment of σ at time t is the set of all things of kind A , not components of σ , that act or are acted on by components of σ at t :\n ℰ A(σ, t)= x ∈ A | x ∉ 𝒞 A(σ, t) &(∃ y) (y ∈ 𝒞 A(σ, t) &(x ▷ y ∨ y ▷ x) ) ; . \n(iii) t"
+        "after": "Fig. 1.1. Two systems with the same composition but different structures and environments.\n\nExample A molecule, a coral reef, a family and a factory are systems. On the other hand a set of states of a thing and a collection of events, even if ordered, are not concrete systems. Symbol: Σ .\n\nAnd now the three characteristics of any system:\ndefinition 1.2 Let σ ∈ Σ be a concrete system and A ⊂ Θ a class of things. Then\n(i) the A -composition of σ at a given time t is the set of its A -parts at t :\n \n𝒞 A(σ, t)= x ∈ A | x ⊏ σ\\ ;\n \n(ii) the A -environment of σ at time t is the set of all things of kind A , not components of σ , that act or are acted on by components of σ at t :\n ℰ A(σ, t)= x ∈ A | x ∉ 𝒞 A(σ, t) &(∃ y) (y ∈ 𝒞 A(σ, t) &(x ▷ y ∨ y ▷ x) ) ; . \n(iii) the"
       },
       "source": "Bunge - 1979 - Treatise on Basic Philosophy.md"
     },
