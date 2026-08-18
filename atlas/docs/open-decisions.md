@@ -8,7 +8,15 @@ Ordered by **cost of deferral**, not severity. A 3-entry scaffold is not a 50-en
 
 ---
 
-## D1 — The primitive scheme *(blocks bulk entry)*
+## D1 — The primitive scheme *(decided 2026-08-18 — signature roles adopted)*
+
+**Resolved as the candidate fix proposed.** `atlas:SignatureRoleScheme` carries model
+theory's four roles (sort, operation, relation, constant) as an external, prior taxonomy;
+every primitive is typed via `skos:broader` or carries a recorded unassigned verdict
+(metalanguage and meta-classification — `set`, `thinghood`, `systemhood`). SHACL refuses a
+broader link outside the four. Assignment rule, method and the per-primitive rationale:
+`docs/proposals/P6-signature-roles.md`. First signature-level census over the seven entries:
+11 sorts, 8 relations, 3 operations, 2 constants. The analysis below is kept as written.
 
 **The problem.** `prim:*` concepts are populated *jointly with the entries*. So "these traditions cover the distinct primitives" reduces to "the entries I selected cover the primitives those entries introduced." Circular by construction, and it undermines the census, which is the atlas's whole downstream purpose. Every frontier panelist ranked this first or second in the 2026-08-02 review.
 

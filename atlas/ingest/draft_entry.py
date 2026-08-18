@@ -100,7 +100,12 @@ author's own plain reading of it. Do not invent either.
 - Primitives are LEXICAL: a primitive records that the author uses a WORD as a \
 primitive in this definition. Reuse an existing slug ONLY when the author uses \
 that same word; when in doubt, mint a new one — merging terms across authors is \
-a census question the encoding must not prejudge. Existing primitives:
+a census question the encoding must not prejudge. For each NEW primitive also \
+propose a "role": what the word DENOTES in the formal statement, one of "sort" \
+(carrier kind), "operation" (function symbol), "relation" (relation symbol, incl. \
+graphs and orderings), "constant" (designated individual), or "unassigned" \
+(metalanguage or the author's meta-classification — a verdict, not a gap). \
+Existing primitives:
 {existing_primitives}
 - Cases: record ONLY examples this author explicitly rules on in the source — \
 things offered as systems (admits) or refused as not systems (refuses). Each \
@@ -119,7 +124,7 @@ Respond with ONLY one JSON object:
 {{"entry_slug": "<author>-<year>-<shortname>", "label": "Author (year), Work, \
 locus", "source_location": "...", "verbatim": "...", "display_form": ..., \
 "display_context": ..., "author_caveat": ..., "primitives": [{{"slug": "...", \
-"pref_label": "...", "scope_note": "...", "new": true|false}}], "admits": \
+"pref_label": "...", "scope_note": "...", "role": "...", "new": true|false}}], "admits": \
 [{{"slug": "...", "label": "...", "gloss": "...", "verbatim": "...", \
 "source_location": "..."}}], "refuses": [...same shape...], "comment": "..."}}"""
 
@@ -147,6 +152,9 @@ if the author uses that same word
 page shows them (render LaTeX commands to Unicode, drop \\( \\) \\[ \\] braces and footnote \
 markers, change nothing else) — machine-located in the source, so exact
 - "source_location": section/equation where the elaboration lives
+- "role": the signature role of what the word denotes in the formal statement — \
+"sort" | "operation" | "relation" | "constant" | "unassigned" (D1: the four roles \
+are external and fixed; a word fitting none is reported "unassigned")
 - "new": true if the slug is not in the scheme
 
 Only elements the author actually elaborates; an unelaborated symbol is reported nowhere. \
@@ -205,11 +213,14 @@ def cmd_harvest(source_id, entry_slug):
         lines += [f"## {p['symbol']} → prim:{p['slug']}  ({status})",
                   f"- location: {p['source_location']}", f"- author's words: > {p['verbatim']}", ""]
         if p.get("new"):
+            role = p.get("role", "unassigned")
             lines += ["```turtle", f"prim:{p['slug']} a skos:Concept ;",
-                      "    skos:inScheme atlas:PrimitiveScheme ;",
-                      f'    skos:prefLabel "{p["pref_label"]}"@en ;',
+                      "    skos:inScheme atlas:PrimitiveScheme ;"]
+            if role in ("sort", "operation", "relation", "constant"):
+                lines.append(f"    skos:broader role:{role} ;")
+            lines += [f'    skos:prefLabel "{p["pref_label"]}"@en ;',
                       f'    skos:scopeNote """Mobus\'s {p["symbol"]}: "{p["verbatim"][:180]}" '
-                      f'({p["source_location"]}). [MDU — harvested, unchecked]"""@en .', "```", ""]
+                      f'({p["source_location"]}). [MDU — harvested, unchecked; role proposal: {role}]"""@en .', "```", ""]
     (ROOT / "harvests" / f"{entry_slug}.md").write_text("\n".join(lines))
     for p in found:
         print(f"  {p['symbol']:3} -> prim:{p['slug']:24} {'reuse' if not p.get('new') else 'new'}  ({p['source_location']})")
@@ -351,6 +362,7 @@ def assemble_ttl(d, reg, today):
 @prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
 @prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
 @prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
+@prefix role:    <https://w3id.org/mathematical-systems/atlas/role/> .
 @prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
@@ -419,10 +431,13 @@ entry:""" + slug + """
 ##############################################################################
 """)
         for p in new_prims:
+            role = p.get("role", "unassigned")
+            broader = (f'\n    skos:broader role:{role} ;'
+                       if role in ("sort", "operation", "relation", "constant") else "")
             blocks.append(f"""prim:{p['slug']} a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
+    skos:inScheme atlas:PrimitiveScheme ;{broader}
     skos:prefLabel "{p['pref_label']}"@en ;
-    skos:scopeNote \"\"\"{p['scope_note']} [MDU — drafted, unchecked]\"\"\"@en .
+    skos:scopeNote \"\"\"{p['scope_note']} [MDU — drafted, unchecked; role proposal: {role}]\"\"\"@en .
 """)
 
     cases = d.get("admits", []) + d.get("refuses", [])

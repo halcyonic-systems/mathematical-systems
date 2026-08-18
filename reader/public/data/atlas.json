@@ -158,12 +158,6 @@
   },
   "openDecisions": [
     {
-      "title": "D1 — The primitive scheme",
-      "blocking": true,
-      "problem": "**The problem.** `prim:*` concepts are populated *jointly with the entries*. So \"these traditions cover the distinct primitives\" reduces to \"the entries I selected cover the primitives those entries introduced.\" Circular by construction, and it undermines the census, which is the atlas's whole downstream purpose. Every frontier panelist ranked this first or second in the 2026-08-02 review.",
-      "fix": "**Candidate fix.** Take the primitive vocabulary from **model theory's signature notion** — sorts, operations, relations, constants, axioms. That is external, prior, standard, and demonstrably not derived from the corpus, so the circularity dissolves. Recurrence becomes a real question: how many traditions posit two sorts, how many a relation rather than a function. If everything collapses to \"sorts and relations,\" that is itself a finding — the signature-level echo of the K≅2 result."
-    },
-    {
       "title": "D2 — Intensional targets, and the `is_about` question",
       "blocking": false,
       "problem": "**The current design.** `cco:ont00001808` (`is_about`) is never asserted on an entry, enforced by `shapes/atlas-shapes.ttl`. Rationale in README: it keeps the catalogue neutral between realist (Bunge) and constructivist (Klir) traditions.",
@@ -183,8 +177,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "3711cde+",
-    "repoCommit": "3711cde+"
+    "atlasCommit": "f3f4abc+",
+    "repoCommit": "f3f4abc+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -1049,7 +1043,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
       "label": "environment",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
@@ -1059,7 +1053,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
       "label": "relation",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
@@ -1069,7 +1063,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/thing",
       "label": "thing",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
@@ -1079,7 +1073,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time",
       "label": "time",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
@@ -1089,7 +1083,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/element",
       "label": "element",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation"
@@ -1098,7 +1092,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
       "label": "hierarchy",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
@@ -1107,7 +1101,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
       "label": "level of organization",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
@@ -1116,7 +1110,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/action",
       "label": "action",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
       ]
@@ -1124,7 +1118,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/bipartite-flow-graph",
       "label": "bipartite flow graph",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1132,7 +1126,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/bond",
       "label": "bond",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
       ]
@@ -1140,7 +1134,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/boundary",
       "label": "boundary",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1148,7 +1142,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/component",
       "label": "component",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1156,7 +1150,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/composition",
       "label": "composition",
-      "role": null,
+      "role": "operation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
       ]
@@ -1164,7 +1158,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/flow-network",
       "label": "flow network",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1172,7 +1166,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/measure",
       "label": "measure",
-      "role": null,
+      "role": "operation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1"
       ]
@@ -1180,7 +1174,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/memory",
       "label": "memory",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1188,7 +1182,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/milieu",
       "label": "milieu",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
@@ -1196,7 +1190,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/object",
       "label": "object",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
@@ -1204,7 +1198,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/part",
       "label": "part",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
       ]
@@ -1212,7 +1206,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/structure",
       "label": "structure",
-      "role": null,
+      "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
       ]
@@ -1220,7 +1214,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/subsystem",
       "label": "subsystem",
-      "role": null,
+      "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1228,7 +1222,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/system-of-interest",
       "label": "system of interest",
-      "role": null,
+      "role": "constant",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1252,7 +1246,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time-interval",
       "label": "time interval",
-      "role": null,
+      "role": "constant",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
@@ -1260,7 +1254,7 @@
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/transformation-rule",
       "label": "transformation rule",
-      "role": null,
+      "role": "operation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]

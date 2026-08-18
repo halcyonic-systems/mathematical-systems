@@ -119,6 +119,28 @@ atlas:AuthorShape
 # Primitive shape — keeps the scheme from silently accumulating orphans
 ##############################################################################
 
+##############################################################################
+# Signature-role shape — the D1 discipline: a typed primitive types into the
+# EXTERNAL scheme only. Four roles, fixed prior to the corpus; a primitive that
+# fits none stays untyped (that is a verdict the shape permits), but a broader
+# link to anything outside the role scheme would be the corpus minting its own
+# taxonomy again — the exact circularity D1 closed.
+##############################################################################
+
+atlas:PrimitiveRoleShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf skos:broader ;
+    sh:property [
+        sh:path skos:broader ;
+        sh:in ( <https://w3id.org/mathematical-systems/atlas/role/sort>
+                <https://w3id.org/mathematical-systems/atlas/role/operation>
+                <https://w3id.org/mathematical-systems/atlas/role/relation>
+                <https://w3id.org/mathematical-systems/atlas/role/constant> ) ;
+        sh:maxCount 1 ;
+        sh:message "A primitive's signature role must be one of the four external roles (D1), and at most one. A fifth role minted from the corpus reopens the self-confirming census." ;
+    ] .
+
+
 atlas:PrimitiveShape
     a sh:NodeShape ;
     sh:targetObjectsOf atlas:invokesPrimitive ;

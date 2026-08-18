@@ -2,6 +2,7 @@
 @prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
 @prefix obj:     <https://w3id.org/mathematical-systems/atlas/object/> .
 @prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
+@prefix role:    <https://w3id.org/mathematical-systems/atlas/role/> .
 @prefix cco:     <https://www.commoncoreontologies.org/> .
 @prefix obo:     <http://purl.obolibrary.org/obo/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
@@ -299,6 +300,45 @@ atlas:PROP a atlas:EvidenceCode ;
 
 
 ##############################################################################
+# Signature roles — D1's resolution (decided 2026-08-18). EXTERNAL AND PRIOR:
+# the four roles are model theory's signature notion (sorts, operations,
+# relations, constants), taken from a standard demonstrably not derived from
+# this corpus, which is what dissolves the self-confirming census. The
+# assignment rule: a primitive is typed by what the word DENOTES in the
+# definition's formal statement; metalanguage (ambient set theory) and
+# meta-classification (an author's name for an aspect) stay unassigned, and
+# an unassigned role is a recorded verdict, not a gap. No fifth role may be
+# minted from the corpus — a word that fits none is a finding. Per-primitive
+# rationale: docs/proposals/P6-signature-roles.md.
+##############################################################################
+
+atlas:SignatureRoleScheme
+    a skos:ConceptScheme ;
+    rdfs:label "Signature roles"@en ;
+    skos:definition "Model theory's signature vocabulary, fixed prior to and independent of the corpus. What slot a primitive's word fills in a formal statement — checkable against the formula, unlike meaning."@en .
+
+role:sort a skos:Concept ;
+    skos:inScheme atlas:SignatureRoleScheme ;
+    skos:prefLabel "sort"@en ;
+    skos:definition "A carrier kind: what the definition quantifies over or holds as an entity slot."@en .
+
+role:operation a skos:Concept ;
+    skos:inScheme atlas:SignatureRoleScheme ;
+    skos:prefLabel "operation"@en ;
+    skos:definition "A function symbol: maps arguments to a value (transfer functions, Bunge's composition-at-a-time)."@en .
+
+role:relation a skos:Concept ;
+    skos:inScheme atlas:SignatureRoleScheme ;
+    skos:prefLabel "relation"@en ;
+    skos:definition "A relation symbol, including graphs read as edge relations and orderings."@en .
+
+role:constant a skos:Concept ;
+    skos:inScheme atlas:SignatureRoleScheme ;
+    skos:prefLabel "constant"@en ;
+    skos:definition "A designated individual: a distinguished element the definition names (the SOI, a per-level Δt)."@en .
+
+
+##############################################################################
 # Primitive vocabulary (SKOS) — grows with the census
 ##############################################################################
 
@@ -320,7 +360,8 @@ starting point, and its limits are stated here rather than discovered later."""@
 
 prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "thing"@en .
+    skos:prefLabel "thing"@en ;
+    skos:broader role:sort .
 
 # Kept distinct from prim:thing on purpose. The scheme is lexical: a primitive
 # records that an author uses a WORD, and Bertalanffy says "elements" where Klir
@@ -329,65 +370,78 @@ prim:thing a skos:Concept ;
 # shared row the sources do not support.
 prim:element a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "element"@en .
+    skos:prefLabel "element"@en ;
+    skos:broader role:sort .
 
 prim:relation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "relation"@en .
+    skos:prefLabel "relation"@en ;
+    skos:broader role:relation .
 
 prim:set a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "set"@en .
+    skos:prefLabel "set"@en ;
+    rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en .
 
 prim:thinghood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thinghood"@en ;
-    skos:scopeNote "Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en .
+    skos:scopeNote "Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en ;
+    rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in T) — meta-classification, not a signature symbol. Not a gap; a verdict."@en .
 
 prim:systemhood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "systemhood"@en ;
-    skos:scopeNote "Klir's term, paired with thinghood."@en .
+    skos:scopeNote "Klir's term, paired with thinghood."@en ;
+    rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in R) — meta-classification, not a signature symbol. Not a gap; a verdict."@en .
 
 prim:composition a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "composition"@en ;
-    skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en .
+    skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en ;
+    skos:broader role:operation .
 
 prim:environment a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "environment"@en ;
-    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components. Mobus's revised tuple (entry 007) also carries an E — absent from his published 2022 seven-tuple, which is why the row lights up only on the revisions entry: the difference records the revision."@en .
+    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components. Mobus's revised tuple (entry 007) also carries an E — absent from his published 2022 seven-tuple, which is why the row lights up only on the revisions entry: the difference records the revision."@en ;
+    skos:broader role:sort .
 
 prim:structure a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "structure"@en ;
-    skos:scopeNote "Bunge's S. Relations among components and between components and environment, partitioned into bonding and nonbonding."@en .
+    skos:scopeNote "Bunge's S. Relations among components and between components and environment, partitioned into bonding and nonbonding."@en ;
+    skos:broader role:relation .
 
 prim:bond a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "bond"@en ;
-    skos:scopeNote "A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing."@en .
+    skos:scopeNote "A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing."@en ;
+    skos:broader role:relation .
 
 prim:action a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "action"@en ;
-    skos:scopeNote "Bunge's acts-on relation, written x |> y."@en .
+    skos:scopeNote "Bunge's acts-on relation, written x |> y."@en ;
+    skos:broader role:relation .
 
 prim:part a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "part"@en ;
-    skos:scopeNote "Bunge's part-of relation, written x [ y."@en .
+    skos:scopeNote "Bunge's part-of relation, written x [ y."@en ;
+    skos:broader role:relation .
 
 prim:time a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "time"@en ;
-    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word. Mobus's Δt (Eq. 4.1) is likewise notational at the definition; the word arrives only in the tuple's elaboration."@en .
+    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word. Mobus's Δt (Eq. 4.1) is likewise notational at the definition; the word arrives only in the tuple's elaboration."@en ;
+    skos:broader role:sort .
 
 prim:measure a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "measure"@en ;
-    skos:scopeNote "Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme."@en .
+    skos:scopeNote "Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme."@en ;
+    skos:broader role:operation .
 
 # Mobus Eq. 4.1 (entry 006), conservative census: only the words the passage
 # itself uses. The elaborations of the tuple's symbols (component, boundary,
@@ -396,32 +450,38 @@ prim:measure a skos:Concept ;
 prim:subsystem a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "subsystem"@en ;
-    skos:scopeNote "Mobus's index i: 'The index i is a subsystem index.' The definition's own gloss uses the word as a primitive."@en .
+    skos:scopeNote "Mobus's index i: 'The index i is a subsystem index.' The definition's own gloss uses the word as a primitive."@en ;
+    skos:broader role:sort .
 
 prim:level-of-organization a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "level of organization"@en ;
-    skos:scopeNote "Mobus's index l: 'the index l is the level of organization in the system-subsystem hierarchy.'"@en .
+    skos:scopeNote "Mobus's index l: 'the index l is the level of organization in the system-subsystem hierarchy.'"@en ;
+    skos:broader role:sort .
 
 prim:hierarchy a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "hierarchy"@en ;
-    skos:scopeNote "Mobus's 'system-subsystem hierarchy'. Kept distinct from level-of-organization: the hierarchy is the structure, a level is a position in it."@en .
+    skos:scopeNote "Mobus's 'system-subsystem hierarchy'. Kept distinct from level-of-organization: the hierarchy is the structure, a level is a position in it."@en ;
+    skos:broader role:relation .
 
 prim:system-of-interest a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "system of interest"@en ;
-    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S₀,₀ is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en .
+    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S₀,₀ is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en ;
+    skos:broader role:constant .
 
 prim:object a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "object"@en ;
-    skos:scopeNote "Mobus's O, 'standing for \"objects\" in the environment that are sources and sinks in a unified set' (revisions manuscript, eq. 1)."@en .
+    skos:scopeNote "Mobus's O, 'standing for \"objects\" in the environment that are sources and sinks in a unified set' (revisions manuscript, eq. 1)."@en ;
+    skos:broader role:sort .
 
 prim:milieu a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "milieu"@en ;
-    skos:scopeNote "Mobus's M, 'the non-point source/sink variables constituting the interacting milieu around the system' (revisions manuscript, eq. 1)."@en .
+    skos:scopeNote "Mobus's M, 'the non-point source/sink variables constituting the interacting milieu around the system' (revisions manuscript, eq. 1)."@en ;
+    skos:broader role:sort .
 
 # Parts-harvest of entry 006 (2026-08-18): the elaborations of Eq. 4.1's symbols
 # across §4.3.3's subsections, entered per the Bunge Definition 1.2 rule — parts
@@ -430,37 +490,44 @@ prim:milieu a skos:Concept ;
 prim:component a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "component"@en ;
-    skos:scopeNote "Mobus's C: 'C is a set of components and their \"type\" along with membership functions in the event the set is fuzzy, that is, the components may have partial inclusion' (§4.3.3.1)."@en .
+    skos:scopeNote "Mobus's C: 'C is a set of components and their \"type\" along with membership functions in the event the set is fuzzy, that is, the components may have partial inclusion' (§4.3.3.1)."@en ;
+    skos:broader role:sort .
 
 prim:flow-network a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "flow network"@en ;
-    skos:scopeNote "Mobus's N: 'N is generally a flow network through which real substances are moving from one node (component) to the next with causal influence' (§4.3.3.2.1)."@en .
+    skos:scopeNote "Mobus's N: 'N is generally a flow network through which real substances are moving from one node (component) to the next with causal influence' (§4.3.3.2.1)."@en ;
+    skos:broader role:relation .
 
 prim:bipartite-flow-graph a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "bipartite flow graph"@en ;
-    skos:scopeNote "Mobus's G: 'G is a bipartite flow graph defined as:' (§4.3.3.2.2). The prose gives only the name — the definition proper is Eq. 4.5, which follows it."@en .
+    skos:scopeNote "Mobus's G: 'G is a bipartite flow graph defined as:' (§4.3.3.2.2). The prose gives only the name — the definition proper is Eq. 4.5, which follows it."@en ;
+    skos:broader role:relation .
 
 prim:boundary a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "boundary"@en ;
-    skos:scopeNote "Mobus's B: 'The boundary, B in Eq. 4.1, at level l, then is a tuple' (§4.3.3.3). Thin prose, unambiguous word; the tuple's content is Eq. 4.6."@en .
+    skos:scopeNote "Mobus's B: 'The boundary, B in Eq. 4.1, at level l, then is a tuple' (§4.3.3.3). Thin prose, unambiguous word; the tuple's content is Eq. 4.6."@en ;
+    skos:broader role:sort .
 
 prim:memory a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "memory"@en ;
-    skos:scopeNote "Mobus's H: 'H in very complex systems could be a super complex object that records the history of the system, or its record of state transitions, especially as it develops or evolves' (§4.3.3.5)."@en .
+    skos:scopeNote "Mobus's H: 'H in very complex systems could be a super complex object that records the history of the system, or its record of state transitions, especially as it develops or evolves' (§4.3.3.5)."@en ;
+    skos:broader role:sort .
 
 prim:transformation-rule a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "transformation rule"@en ;
-    skos:scopeNote "Mobus's T: 'T is the set of transformation rules for the subsystems in S' (§4.3.3.4). Hand-recovered after the model's wider span failed to locate — the passage is set in display-math wrappers the digitisation mangles."@en .
+    skos:scopeNote "Mobus's T: 'T is the set of transformation rules for the subsystems in S' (§4.3.3.4). Hand-recovered after the model's wider span failed to locate — the passage is set in display-math wrappers the digitisation mangles."@en ;
+    skos:broader role:operation .
 
 prim:time-interval a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "time interval"@en ;
-    skos:scopeNote "Mobus's Δt: 'Finally, the last element in S is Δt, a time interval relevant to the level of the system of interest' (§4.3.3.6). The author's own WORD for the element; distinct from the census row prim:time, which records the notational Δt/dt invocations shared across authors."@en .
+    skos:scopeNote "Mobus's Δt: 'Finally, the last element in S is Δt, a time interval relevant to the level of the system of interest' (§4.3.3.6). The author's own WORD for the element; distinct from the census row prim:time, which records the notational Δt/dt invocations shared across authors."@en ;
+    skos:broader role:constant .
 
 
 ##############################################################################
