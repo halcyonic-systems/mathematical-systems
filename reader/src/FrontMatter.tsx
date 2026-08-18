@@ -12,7 +12,7 @@
  * the shelf renders the entries, the disagreement renders the derived conflict,
  * and the trust line renders the transcription census.
  */
-import { ConflictPanel, Section, Shelf } from "./components";
+import { ConflictLine, Shelf } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
@@ -45,36 +45,18 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
         onOpen={read}
       />
 
-      <p className="thesis-sub">
-        Each definition of “system” is recorded verbatim from its primary source, with its location, the terms
-        it takes as primitive, and the examples its author admits and refuses. What one definition
-        encompasses, what survives translation into another, and what is lost — that is what the catalogue is
-        for.
-      </p>
-
-      {atlas.conflicts.length > 0 && (
-        <div className="mt-6">
-          <Section
-            title="Where they disagree"
-            warrant="derived"
-            note="one test object, ruled on both ways — found, not asserted"
-          >
-            {atlas.conflicts.map((c) => (
-              <ConflictPanel
-                key={c.object}
-                conflict={c}
-                cases={atlas.cases}
-                entries={entries}
-                seeCases={
-                  <a className="disclosure" href={href({ view: "ledger" })} onClick={openCases}>
-                    See the case in the ledger →
-                  </a>
-                }
-              />
-            ))}
-          </Section>
-        </div>
-      )}
+      {atlas.conflicts.map((c) => (
+        <ConflictLine
+          key={c.object}
+          conflict={c}
+          entries={entries}
+          seeCases={
+            <a className="disclosure" href={href({ view: "ledger" })} onClick={openCases}>
+              See the case in the ledger →
+            </a>
+          }
+        />
+      ))}
 
       <p className="trust-line">
         <span aria-hidden className={allLocated ? "trust-glyph-ok" : "trust-glyph-partial"}>

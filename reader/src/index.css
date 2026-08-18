@@ -763,17 +763,6 @@ body {
   max-width: 40rem;
   margin: 1.5rem 0 2rem;
 }
-/* Below the shelf, not above it: what an entry records means more once three
-   entries have been seen, and above the cards it was a paragraph standing
-   between the reader and the material. */
-.thesis-sub {
-  color: var(--text-muted);
-  font-size: var(--step-0);
-  line-height: 1.55;
-  max-width: 44rem;
-  margin: 1.25rem 0 0;
-}
-
 /* The shelf: each definition is a source-warrant object — same left accent rule
    and ground as the passage register — that happens to be a door. Hover answers
    with lift and a darkened edge, never with new colour: the reserved channels
@@ -907,34 +896,22 @@ body {
   color: var(--text-muted);
 }
 
-/* The disagreement asks itself: the question is the panel's headline, set at
-   thesis scale in the display face. A question is the one prose form that makes
-   a reader take a side before scrolling on. */
-.conflict-question {
+/* The disagreement, compressed to one sentence below the shelf. The question
+   still asks itself — generated from the test object's label, in the display
+   face so it reads as material, not chrome — but the two rulings and their
+   grades wait in the ledger, where a reader who took the bait can weigh them
+   in the authors' own words. */
+.conflict-line {
+  margin: 1.75rem 0 0;
+  font-size: var(--step-0);
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 44rem;
+}
+.conflict-line-q {
   font-family: var(--font-display);
-  font-size: var(--display-4);
-  line-height: 1.4;
+  font-size: var(--display-1);
   color: var(--text-primary);
-  max-width: 40rem;
-  margin: 0 0 1.25rem;
-}
-
-/* Two rulings on one object, side by side. The glyphs are the ledger's own
-   (⊨ admits, ⊭ refuses); colour stays on the evidence badge where it is
-   contractual. */
-.verdicts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-.verdict-ruling {
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 0.5rem;
-}
-.verdict-glyph {
-  color: var(--text-muted);
-  margin-right: 0.375rem;
 }
 
 /* One line of trust, then the door to the full apparatus. */
@@ -973,14 +950,6 @@ body {
    the catalogue — so it sits apart on the right, in the quiet ink. */
 .tab-meta {
   margin-left: auto;
-}
-
-@media (max-width: 64rem) {
-  /* .shelf is deliberately absent: auto-fit already collapses it by width, and a
-     breakpoint that also names a column count is the hard-code this replaced. */
-  .verdicts {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Six unsettled decisions in one column made a 1209px card — a page wearing a
