@@ -64,7 +64,8 @@ atlas/            the catalogue — a citable dataset
   mappings/       relations BETWEEN entries — prose, with witnesses. The payload.
   shapes/         SHACL. The atlas can refuse.
   imports/        vendored CCO/BFO — full closure, plus the minimal extract that ships
-  docs/           open-decisions.md · adding-an-entry.md
+  ingest/         the P5 pipeline: scan/draft/harvest into staged MDU work, gates as intake filter
+  docs/           open-decisions.md · adding-an-entry.md · proposals/ (P1–P6: what was decided, and why)
   build.py        merge → validate → dist/. migrate-iris.py stages the namespace move.
 
 reader/           the instrument that reads it

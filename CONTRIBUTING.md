@@ -29,7 +29,8 @@ that lacks any of them:
 | `atlas:sourceLocation` | equation number, page, section. "It's in the book" is not auditable |
 | `atlas:statedIn` | the document carrying it |
 | `atlas:evidenceCode` | exactly one, from the controlled set |
-| `atlas:invokesPrimitive` | at least one, declared in the primitive scheme |
+| `atlas:invokesPrimitive` | at least one, declared in the primitive scheme (each primitive role-typed or carrying an unassigned verdict — D1) |
+| `atlas:authoredBy` | on the bearer: attribution to an `atlas:Author` node, declared in core |
 | no `cco:is_about` | the neutrality invariant — see below |
 
 Transcriptions are additionally checked against the primary text at build time. If

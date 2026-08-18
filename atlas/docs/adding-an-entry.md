@@ -8,7 +8,24 @@ Encoding forces distinctions that prose lets you blur. Writing Bunge as an entry
 
 None of that came from looking harder. It came from having to put the definition into fields with names. Expect the same on every entry, and treat "this doesn't fit the template" as a finding rather than an annoyance.
 
-## 0. Does it qualify?
+## The pipeline drafts; you decide
+
+Since 2026-08-18 the default route through this procedure is the **P5 ingest pipeline**
+(`atlas/ingest/draft_entry.py` — see `docs/proposals/P5-entry-ingest.md`):
+
+```sh
+uv run --with anthropic --with rdflib python ingest/draft_entry.py scan  <source-id>     # candidates vs §5
+uv run --with anthropic --with rdflib python ingest/draft_entry.py draft <source-id> <n> # staged MDU draft
+uv run --with anthropic --with rdflib python ingest/draft_entry.py harvest <source-id> <entry-slug>  # parts → primitives
+```
+
+The pipeline mechanises steps 1–3 below (registration of the source is yours; drafts land
+in `ingest/drafts/`, stamped `MDU`, with every verbatim machine-located before the file is
+written) — **and nothing else**. Reading the draft against the source, the rulings this
+document describes, accession, IRIs, and promotion of evidence codes stay yours, exactly as
+written below. Both routes end at the same file with the same obligations; the pipeline just
+removes the scaffolding labour. Entries 006–007 went through it; this document remains the
+contract either way.
 
 Inclusion criteria live in the spec (`strategy/phd/definition-atlas-spec.md` §5). Short form: it introduces named components with types or sorts, **and** fixes at least one relation, function, or constraint among them, in symbols or in prose precise enough to transcribe without adding content.
 
@@ -30,7 +47,11 @@ Rule of thumb: one entry per *distinct definitional claim*, not one per document
 
 `entries/<author>-<year>-<shortname>.ttl`, importing `atlas-core`. Copy `entries/klir-2001-facets.ttl` as the template. Each entry declares:
 
-- a **bearer** (`cco:ont00000253`) — the document, with ISBN/DOI
+- a **bearer** (`cco:ont00000253`) — the document, with ISBN/DOI, and **`atlas:authoredBy`
+  pointing at an `atlas:Author` node** (SHACL refuses an unattributed bearer — the author
+  node is what lets two works share an author, which is what a revision arc hangs off).
+  Authors are declared once, in `atlas-core.ttl`, with full-name slugs (`author:george-klir`);
+  the author node carries identity only — never a position, stance, or definitional content
 - the **entry** (`atlas:FormalSystemDefinition`) with `atlas:verbatim`, `atlas:sourceLocation`, `atlas:statedIn`, `atlas:invokesPrimitive`, and provenance
 - optionally, **presentation spans**: `atlas:displayForm` (the formal statement within the
   verbatim) and `atlas:displayContext` (the author's own reading of it). The front page leads
@@ -47,6 +68,19 @@ shelf all wear; it never changes once the prose refers to it.
 Add a `prim:` concept for each term the definition treats as primitive. **When in doubt, mint a new one rather than reusing an existing one.**
 
 Whether two authors' terms are the same primitive is a *census question*. Deciding it at encoding time destroys the finding. Klir's `thinghood` and `systemhood` are kept separate from `thing` and `relation` for exactly this reason.
+
+Three rules layered on since the first entries, each with its own record:
+
+- **Only the words the passage itself uses** (the Bertalanffy-1968 standard, reaffirmed on
+  entry 006), plus notational admission where a symbol invokes a census row (Δt, dQᵢ/dt).
+- **Parts-definitions are primitives, never entries** — when the definition's symbols are
+  elaborated in surrounding subsections (Bunge's Definition 1.2, Mobus's §4.3.3), those
+  words enter the scheme with the author's defining sentence in the scope note, via the
+  pipeline's `harvest` command or by hand. See "What does not go in an entry" below.
+- **Every primitive gets a signature role** — `skos:broader` onto one of the four external
+  roles (sort, operation, relation, constant), or a recorded unassigned verdict for
+  metalanguage and meta-classification. The roles are fixed and SHACL-closed; assignment
+  rule and precedents: `docs/proposals/P6-signature-roles.md` (D1).
 
 ## 4. Set the evidence code honestly
 

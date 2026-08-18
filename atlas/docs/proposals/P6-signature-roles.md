@@ -59,6 +59,13 @@ operation for composition; constant-per-SOI vs index sort for level; entity vs p
 memory). Revisiting a flagged row is an edit-in-place with a note, not a retirement, so
 long as the referent is unchanged (iri-policy).
 
+**The citation gate for flagged rows** (the MDU discipline extended): a ⚑ assignment must
+not be load-bearing in prose or in a mapping claim until it has been re-read — against the
+source passage AND against the Lean encoding of the same tradition, where one exists, since
+the shape categories already made the corresponding slot decision and agreement or
+disagreement is itself a finding. Unflagged rows may be cited freely. Resolving a flag is
+triggered by need (the first claim that would rest on it), not by calendar.
+
 ## First signature-level census
 
 Over seven entries and four authors: **11 sorts, 8 relations, 3 operations, 2 constants,
