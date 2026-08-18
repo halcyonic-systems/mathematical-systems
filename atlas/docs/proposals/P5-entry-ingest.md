@@ -107,6 +107,16 @@ One mechanic this adds: the transcription gate reads vault markdown (`BEARER_SOU
 Zotero-held PDF arms the gate only after extraction into `operations/systems-science/` — a
 per-source step the drafter should perform and report, not skip silently.
 
+**Done 2026-08-17 for every held source.** Joslyn 1995, Willems 2007 and 1991, Myers CST and
+the Mesarović–Takahara full book are extracted to `operations/systems-science/{joslyn,willems,
+myers,mesarovic}/`, and each cited passage was located in its extract: Joslyn Defs 25 and 28,
+Myers Def 1.2.1.2, Willems' `(T, W, B)` with `B ⊆ Wᵀ` in the 2007 text. Two OCR facts worth
+knowing before drafting: Willems 1991's display math is mangled exactly as the SSF header
+warned (the 2007 wording is the citation-quality source), and the Joslyn OCR has systematic
+ligature damage ("¿5" for "is"), so its verbatims need transcription against the page image,
+Bertalanffy-1968 style. Six of seven traditions are now gate-armed; only Wymore waits on a
+text.
+
 ## Cost
 
 Stage-one drafter: about a day, most of it prompt-and-refuse iteration against the gates. Per
