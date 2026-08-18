@@ -164,6 +164,7 @@ ACCESSION = [
     "bunge-1979-def-1-1",
     "bertalanffy-1972-set-in-interrelation",
     "bertalanffy-1968-eq-3-1",
+    "mobus-2022-seven-tuple",
 ]
 
 
@@ -471,6 +472,9 @@ BEARER_SOURCES = {
     ),
     "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1972-amj": (
         "bertalanffy/bertalanffy-1972-history-status-amj.md"
+    ),
+    "https://w3id.org/mathematical-systems/atlas/bearer/mobus-2022-tamd": (
+        "mobus/4-a-model-of-system.md"
     ),
 }
 

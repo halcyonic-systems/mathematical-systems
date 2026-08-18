@@ -1,6 +1,15 @@
 # P5 — Semi-automated entry ingest
 
-**Status: SCOPED 2026-08-17 — not started.** A pipeline that drafts entries as `MDU` and lets
+**Status: BUILT 2026-08-17; first promotion 2026-08-18.** `ingest/draft_entry.py` ran the
+full loop on Mobus TAMD ch. 4: scan (six candidates, one include), draft (refused once by
+the locate gate, corrected), guided human pass (verbatim, caveats, location, primitives and
+cases each ruled on individually), promotion to entry 006 at MDHC. Two rulings from that pass
+now stand as precedent: **conservative primitives** (only the words the passage itself uses,
+the Bertalanffy-1968 standard, with notational admission per the dQᵢ/dt precedent), and a
+**parts-harvest follow-up**: the elaborations of a definition's symbols across its
+subsections enter the scheme as primitives with their own scope notes via a dedicated pass
+(the Bunge Definition 1.2 rule in adding-an-entry.md), never silently through the entry's
+census row. The parts-harvest pass is P5's next stage, unbuilt. A pipeline that drafts entries as `MDU` and lets
 the existing gates act as the intake filter, with promotion to `MDHC`/`HVP` remaining a human
 act. Scoped before building, so the boundaries are decided while nothing is at stake.
 

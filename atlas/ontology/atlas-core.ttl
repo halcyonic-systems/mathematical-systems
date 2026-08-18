@@ -382,12 +382,36 @@ prim:part a skos:Concept ;
 prim:time a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "time"@en ;
-    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word."@en .
+    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word. Mobus's Δt (Eq. 4.1) is likewise notational at the definition; the word arrives only in the tuple's elaboration."@en .
 
 prim:measure a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "measure"@en ;
     skos:scopeNote "Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme."@en .
+
+# Mobus Eq. 4.1 (entry 006), conservative census: only the words the passage
+# itself uses. The elaborations of the tuple's symbols (component, boundary,
+# memory...) live in §4.3.3's subsections and enter via a parts-harvest pass
+# (the Bunge Definition 1.2 rule in docs/adding-an-entry.md), not here.
+prim:subsystem a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "subsystem"@en ;
+    skos:scopeNote "Mobus's index i: 'The index i is a subsystem index.' The definition's own gloss uses the word as a primitive."@en .
+
+prim:level-of-organization a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "level of organization"@en ;
+    skos:scopeNote "Mobus's index l: 'the index l is the level of organization in the system-subsystem hierarchy.'"@en .
+
+prim:hierarchy a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "hierarchy"@en ;
+    skos:scopeNote "Mobus's 'system-subsystem hierarchy'. Kept distinct from level-of-organization: the hierarchy is the structure, a level is a position in it."@en .
+
+prim:system-of-interest a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "system of interest"@en ;
+    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S_0,0 is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en .
 
 
 ##############################################################################
@@ -448,6 +472,10 @@ author:mario-bunge
 author:ludwig-von-bertalanffy
     a atlas:Author ;
     rdfs:label "Ludwig von Bertalanffy"@en .
+
+author:george-mobus
+    a atlas:Author ;
+    rdfs:label "George E. Mobus"@en .
 
 
 ##############################################################################

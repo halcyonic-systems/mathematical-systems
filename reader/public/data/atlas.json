@@ -131,6 +131,18 @@
       "encodedOn": "2026-08-03",
       "instantiates": null,
       "note": "The quotation licenses this case rather than describing it: Klir is making\na point about a RELATION being transferable to a different carrier set, and the human\npopulation is his instance of it. A splice, recorded as one."
+    },
+    "https://w3id.org/mathematical-systems/atlas/case/mobus-atom": {
+      "iri": "https://w3id.org/mathematical-systems/atlas/case/mobus-atom",
+      "id": "mobus-atom",
+      "label": "atoms",
+      "gloss": "Atoms, offered as simple systems distinguished by a NULL memory element H.",
+      "verbatim": "Some simple systems, like atoms for example, may have a NULL H; that is there is no memory of past states and future states depend only on the current state and current inputs.",
+      "sourceLocation": "ch. 4, §4.3.3.5",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedOn": "2026-08-18",
+      "instantiates": null,
+      "note": null
     }
   },
   "testObjects": {
@@ -171,8 +183,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "716062d+",
-    "repoCommit": "716062d+"
+    "atlasCommit": "eb222bd+",
+    "repoCommit": "eb222bd+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -331,6 +343,9 @@
       "arrowConvention": "",
       "spec": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
       "status": "resolved"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple": {
+      "status": "none"
     }
   },
   "transcription": {
@@ -403,6 +418,22 @@
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1": {
       "status": "no-source-registered"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "words broken by a hyphen at a line end rejoined",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 340,
+      "verbatimChars": 340,
+      "context": {
+        "before": "The development of this approach was inspired originally by Klir (2001) although he, by his own claim, was a radical constructivist, whereas this work is inclined toward a realist interpretation. Another similar approach was that of Wymore (1967). Both of their works were, however, devoted to a purely mathematical approach to defining system and then using the definition and the math to explore the mathematical implications. However, the approach taken in this book is quite different in purpose. We start with a principle-based definition and then apply mathematics as a way to provide a structure for \"holding\" the details of a system description. We will not be doing math as much as using math.",
+        "match": "Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:\n \nS i, l=C, N, G, B, T, H, Δt i, l\n \nwhere i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S 0,0 is the designated SOI.",
+        "after": "Recall from the previous chapter that the ontological framework specified that the SOI be designated as level 0 . This will make sense in this definition as we show how the system definition leads to a natural way to deconstruct the component/interaction level ( +1 ) in the framework. Several later chapters in the book will describe the application of these equations (and the knowledgebase described in Chap. 8) to even more complex adaptive and evolvable systems (CAESs) described in Part III.\n\n \n As we will see later, we will actually incorporate both indexes into a single coding scheme that will give both the level in the hierarchy and the component index using a 'dotted' numbering scheme. This will be conducive to providing key values for the knowledgebase schema to be covered in Chap."
+      },
+      "source": "4-a-model-of-system.md"
     }
   },
   "source": {
@@ -667,6 +698,65 @@
         }
       ],
       "number": "005"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
+      "id": "mobus-2022-seven-tuple",
+      "label": "Mobus (2022), Systems Science: TAMD, eq. (4.1)",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/mobus-2022-tamd",
+      "sourceLocation": "ch. 4, §4.3.3, eq. (4.1), p. 191",
+      "verbatim": "Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:\nS_i, l = C, N, G, B, T, H, Δt_i, l\nwhere i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.",
+      "displayForm": "S_i, l = C, N, G, B, T, H, Δt_i, l",
+      "displayContext": "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.",
+      "authorCaveat": "The following definition is proposed as a starting point for developing a formal definition of system.",
+      "admits": [
+        "https://w3id.org/mathematical-systems/atlas/case/mobus-atom"
+      ],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
+        "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
+        "https://w3id.org/mathematical-systems/atlas/primitive/subsystem",
+        "https://w3id.org/mathematical-systems/atlas/primitive/system-of-interest",
+        "https://w3id.org/mathematical-systems/atlas/primitive/time"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)",
+      "encodedOn": "2026-08-18",
+      "formalisedAs": null,
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "VERIFIED AS MDHC",
+          "body": "model-drafted by the P5 pipeline 2026-08-17, checked by\nShingai Thornton 2026-08-18 in a guided session against the vault digitisation — verbatim,\nspans, both caveats and their positions, location, primitives and cases each ruled on. Not\nyet read against the printed page; MDHC, not HVP, records exactly that."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "cco:ont00001808 (is about). The catalogue records that this\nauthor, at this locus, states this definition in these words; what the definition is about\nis not asserted, per the neutrality invariant."
+        },
+        {
+          "kind": "section",
+          "title": "NO ENVIRONMENT ELEMENT",
+          "body": "The published tuple has seven coordinates and no E. The revisions\nmanuscript revises eq. (4.1) to the eight-tuple with environment first-class — the version\nthe Lean development encodes — and is registered as its own bearer (mobus-book-revisions)\nprecisely so the revision is citable rather than silently merged. prim:environment is\ndeliberately NOT invoked here: the row lighting up only at the revisions entry is the census\nrecording the revision."
+        },
+        {
+          "kind": "section",
+          "title": "PRIMITIVES, CONSERVATIVE",
+          "body": "(ruled 2026-08-18): only the words the passage itself uses — the\nBertalanffy-1968 standard — plus time admitted notationally via Δt, the exact dQᵢ/dt\nprecedent. The elaborations of C, N, G, B, T and H across §4.3.3's subsections are\nparts-definitions in the sense of docs/adding-an-entry.md (the Bunge Definition 1.2 rule):\nthey enter the scheme as primitives with their own scope notes when a parts-harvest pass\nreads those subsections. Until then this census row understates Mobus deliberately, and the\nunderstatement is recorded here rather than discovered later."
+        },
+        {
+          "kind": "section",
+          "title": "CASES",
+          "body": "one admit. The steel-plant worked example (§4.5) is HELD, not recorded: the model\nproposed it, but its licensing sentence describes the plant without ruling it a system.\nIt returns if a stronger licensing sentence is found in §4.5. Nothing in the chapter is\nrefused systemhood."
+        },
+        {
+          "kind": "section",
+          "title": "NEXT TIER",
+          "body": "Systems/Category/ShapeMobus.lean encodes the REVISED eight-tuple (Book-revisions\nEq. 1), not this published seven-tuple. The formalisedAs pointer therefore belongs to the\nforthcoming revisions entry, and this entry deliberately carries none."
+        }
+      ],
+      "number": "006"
     }
   ],
   "bearers": [
@@ -693,6 +783,19 @@
       ],
       "authoredBy": [
         "https://w3id.org/mathematical-systems/atlas/author/george-klir"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/bearer/mobus-2022-tamd",
+      "label": "Mobus, G. E. — Systems Science: Theory, Analysis, Modeling, and Design (Springer, 2022)",
+      "creator": "George E. Mobus",
+      "date": "2022",
+      "identifiers": [
+        "ISBN 978-3-030-93481-1",
+        "doi:10.1007/978-3-030-93482-8"
+      ],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/george-mobus"
       ]
     },
     {
@@ -744,6 +847,14 @@
       "entries": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/author/george-mobus",
+      "id": "george-mobus",
+      "label": "George E. Mobus",
+      "entries": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
     }
   ],
@@ -797,6 +908,15 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time",
+      "label": "time",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/action",
       "label": "action",
       "role": null,
@@ -818,6 +938,22 @@
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
+      "label": "hierarchy",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
+      "label": "level of organization",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
     },
     {
@@ -845,6 +981,22 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/subsystem",
+      "label": "subsystem",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/system-of-interest",
+      "label": "system of interest",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/systemhood",
       "label": "systemhood",
       "role": null,
@@ -858,14 +1010,6 @@
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
-      ]
-    },
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time",
-      "label": "time",
-      "role": null,
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1"
       ]
     }
   ],

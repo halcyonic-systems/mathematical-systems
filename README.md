@@ -10,7 +10,7 @@ actually say, how they relate, and what a translation between them costs.
 
 | | answered by | state |
 |---|---|---|
-| How does each tradition define *system*, in its own words? | `atlas/` — verbatim, sourced, provenance-graded | **5 entries, 3 authors** |
+| How does each tradition define *system*, in its own words? | `atlas/` — verbatim, sourced, provenance-graded | **6 entries, 4 authors** |
 | How do the definitions relate to each other, precisely? | `atlas/mappings/` + the Lean shape categories | **2 mappings**, 2 entries bridged |
 | What do we gain and lose translating between them? | the silence lists, and the loss catalogue | **first separating instance recorded** — see below |
 | What does this imply for teaching systems science as one discipline? | downstream: the lens ladder in `bert-lenses` | not started |
@@ -31,14 +31,14 @@ npm run dev           # http://localhost:5192
 `npm run data` prints one line per gate. This is what a good run looks like:
 
 ```
-transcription {'located': 4, 'no-source-registered': 1}  gate-can-fail=True    every registered verbatim found in its primary text
+transcription {'located': 5, 'no-source-registered': 1}  gate-can-fail=True    every registered verbatim found in its primary text
 display spans verbatim  gate-can-fail=True           every front-page excerpt is a substring of its verbatim
-lean bridge   4/5 entries linked, 0 broken           every formalisation pointer resolves
-author coverage 3 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
+lean bridge   4/6 entries linked, 0 broken           every formalisation pointer resolves
+author coverage 4 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
 retired IRIs excluded  gate-can-fail=True            no tombstone served as live data
 served       definition-atlas.ttl                    the catalogue as RDF, for content negotiation
 served       definition-atlas.owl
-atlas.json  5 entries, 3 authors, 4 bearers, 14 primitives, 1 conflicts
+atlas.json  6 entries, 4 authors, 5 bearers, 18 primitives, 1 conflicts
 shipped  {'is-about-entity': 'not-proven',  'describes-entity': 'not-proven'}
 full     {'is-about-entity': 'entailed',    'describes-entity': 'entailed'}
 ```

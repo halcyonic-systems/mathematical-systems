@@ -182,6 +182,14 @@ insisted on. The distinction is his, not ours."""@en .
 <https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets> rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
     rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
 
+<https://w3id.org/mathematical-systems/atlas/entries/mobus-2022-tamd> rdfs:label "Atlas entry — Mobus 2022, Systems Science: Theory, Analysis, Modeling, and Design"@en ;
+    rdfs:comment """Entry 006. The first entry drafted by the P5 ingest pipeline (2026-08-17)
+and promoted through a guided human pass (2026-08-18) — verbatim, spans, caveats, location,
+primitives and cases each ruled on individually. The published definition is a SEVEN-tuple
+with no environment element; the eighth element arrives in the revisions manuscript
+(bearer registered as mobus-book-revisions, entry to come), which is why this bearer and
+that one stay distinct: the revision arc is the finding, as with Bertalanffy 1968/1972."""@en .
+
 entry:bertalanffy-1968-eq-3-1 a atlas:FormalSystemDefinition ;
     rdfs:label "Bertalanffy (1968), General System Theory, eq. (3.1)"@en ;
     rdfs:comment """HVP, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: Shingai read the page on
@@ -280,6 +288,59 @@ catalogue.""" ;
     atlas:sourceLocation "p. 417" ;
     atlas:statedIn bearer:bertalanffy-1972-amj ;
     atlas:verbatim "A system may be defined as a set of elements standing in interrelation among themselves and with the environment. This can be expressed mathematically in different ways." .
+
+entry:mobus-2022-seven-tuple a atlas:FormalSystemDefinition ;
+    rdfs:label "Mobus (2022), Systems Science: TAMD, eq. (4.1)"@en ;
+    rdfs:comment """VERIFIED AS MDHC: model-drafted by the P5 pipeline 2026-08-17, checked by
+Shingai Thornton 2026-08-18 in a guided session against the vault digitisation — verbatim,
+spans, both caveats and their positions, location, primitives and cases each ruled on. Not
+yet read against the printed page; MDHC, not HVP, records exactly that.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about). The catalogue records that this
+author, at this locus, states this definition in these words; what the definition is about
+is not asserted, per the neutrality invariant.
+
+NO ENVIRONMENT ELEMENT. The published tuple has seven coordinates and no E. The revisions
+manuscript revises eq. (4.1) to the eight-tuple with environment first-class — the version
+the Lean development encodes — and is registered as its own bearer (mobus-book-revisions)
+precisely so the revision is citable rather than silently merged. prim:environment is
+deliberately NOT invoked here: the row lighting up only at the revisions entry is the census
+recording the revision.
+
+PRIMITIVES, CONSERVATIVE (ruled 2026-08-18): only the words the passage itself uses — the
+Bertalanffy-1968 standard — plus time admitted notationally via Δt, the exact dQᵢ/dt
+precedent. The elaborations of C, N, G, B, T and H across §4.3.3's subsections are
+parts-definitions in the sense of docs/adding-an-entry.md (the Bunge Definition 1.2 rule):
+they enter the scheme as primitives with their own scope notes when a parts-harvest pass
+reads those subsections. Until then this census row understates Mobus deliberately, and the
+understatement is recorded here rather than discovered later.
+
+CASES: one admit. The steel-plant worked example (§4.5) is HELD, not recorded: the model
+proposed it, but its licensing sentence describes the plant without ruling it a system.
+It returns if a stronger licensing sentence is found in §4.5. Nothing in the chapter is
+refused systemhood.
+
+NEXT TIER: Systems/Category/ShapeMobus.lean encodes the REVISED eight-tuple (Book-revisions
+Eq. 1), not this published seven-tuple. The formalisedAs pointer therefore belongs to the
+forthcoming revisions entry, and this entry deliberately carries none."""@en ;
+    atlas:admits case:mobus-atom ;
+    atlas:authorCaveat "The following definition is proposed as a starting point for developing a formal definition of system.",
+        "There is a point we need to be clear about. What is being presented here is, itself, a concept about what a system consists of, how it is composed. It is not being represented as the \"general theory of systems,\" though it might be a candidate for that title." ;
+    atlas:displayContext "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI." ;
+    atlas:displayForm "S_i, l = C, N, G, B, T, H, Δt_i, l" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)" ;
+    atlas:encodedOn "2026-08-18"^^xsd:date ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:invokesPrimitive prim:hierarchy,
+        prim:level-of-organization,
+        prim:subsystem,
+        prim:system-of-interest,
+        prim:time ;
+    atlas:sourceLocation "ch. 4, §4.3.3, eq. (4.1), p. 191" ;
+    atlas:statedIn bearer:mobus-2022-tamd ;
+    atlas:verbatim """Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:
+S_i, l = C, N, G, B, T, H, Δt_i, l
+where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.""" .
 
 atlas:evidenceCode a owl:AnnotationProperty ;
     rdfs:label "evidence code"@en ;
@@ -441,6 +502,9 @@ object with one ruling compares nothing and a test object with none is invented.
 author:george-klir a atlas:Author ;
     rdfs:label "George J. Klir"@en .
 
+author:george-mobus a atlas:Author ;
+    rdfs:label "George E. Mobus"@en .
+
 author:mario-bunge a atlas:Author ;
     rdfs:label "Mario Bunge"@en .
 
@@ -467,6 +531,14 @@ bearer:klir-2001-facets a cco:ont00000253 ;
     dcterms:identifier "ISBN 978-1-4613-5501-4",
         "doi:10.1007/978-1-4615-1331-5" ;
     atlas:authoredBy author:george-klir .
+
+bearer:mobus-2022-tamd a cco:ont00000253 ;
+    rdfs:label "Mobus, G. E. — Systems Science: Theory, Analysis, Modeling, and Design (Springer, 2022)"@en ;
+    dcterms:creator "George E. Mobus" ;
+    dcterms:date "2022"^^xsd:gYear ;
+    dcterms:identifier "ISBN 978-3-030-93481-1",
+        "doi:10.1007/978-3-030-93482-8" ;
+    atlas:authoredBy author:george-mobus .
 
 case:bertalanffy-organism a atlas:Example ;
     rdfs:label "an organism"@en ;
@@ -563,6 +635,15 @@ population is his instance of it. A splice, recorded as one."""@en ;
     atlas:sourceLocation "ch. 1, p. 5" ;
     atlas:verbatim "may be applied not only to other sets of books, but also to sets whose elements are not books" .
 
+case:mobus-atom a atlas:Example ;
+    rdfs:label "atoms"@en ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)" ;
+    atlas:encodedOn "2026-08-18"^^xsd:date ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:gloss "Atoms, offered as simple systems distinguished by a NULL memory element H." ;
+    atlas:sourceLocation "ch. 4, §4.3.3.5" ;
+    atlas:verbatim "Some simple systems, like atoms for example, may have a NULL H; that is there is no memory of past states and future states depend only on the current state and current inputs." .
+
 atlas:constitutive a skos:Concept ;
     skos:inScheme atlas:ObserverRoleScheme ;
     skos:prefLabel "constitutive"@en ;
@@ -640,6 +721,16 @@ prim:composition a skos:Concept ;
     skos:prefLabel "composition"@en ;
     skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en .
 
+prim:hierarchy a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "hierarchy"@en ;
+    skos:scopeNote "Mobus's 'system-subsystem hierarchy'. Kept distinct from level-of-organization: the hierarchy is the structure, a level is a position in it."@en .
+
+prim:level-of-organization a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "level of organization"@en ;
+    skos:scopeNote "Mobus's index l: 'the index l is the level of organization in the system-subsystem hierarchy.'"@en .
+
 prim:measure a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "measure"@en ;
@@ -655,6 +746,16 @@ prim:structure a skos:Concept ;
     skos:prefLabel "structure"@en ;
     skos:scopeNote "Bunge's S. Relations among components and between components and environment, partitioned into bonding and nonbonding."@en .
 
+prim:subsystem a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "subsystem"@en ;
+    skos:scopeNote "Mobus's index i: 'The index i is a subsystem index.' The definition's own gloss uses the word as a primitive."@en .
+
+prim:system-of-interest a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "system of interest"@en ;
+    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S_0,0 is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en .
+
 prim:systemhood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "systemhood"@en ;
@@ -664,11 +765,6 @@ prim:thinghood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thinghood"@en ;
     skos:scopeNote "Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en .
-
-prim:time a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "time"@en ;
-    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word."@en .
 
 stance:bertalanffy-1968-ontic a atlas:StanceAssertion ;
     rdfs:comment """His own word — the chapter title names the position — which is why the
@@ -891,6 +987,11 @@ prim:environment a skos:Concept ;
     skos:prefLabel "environment"@en ;
     skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components."@en .
 
+prim:time a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "time"@en ;
+    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word. Mobus's Δt (Eq. 4.1) is likewise notational at the definition; the word arrives only in the tuple's elaboration."@en .
+
 atlas:weakly-encompasses a skos:Concept ;
     skos:inScheme atlas:RelationScheme ;
     skos:prefLabel "weakly encompasses"@en ;
@@ -975,6 +1076,14 @@ prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
 
+atlas:EvidenceCode a owl:Class ;
+    rdfs:label "Evidence Code"@en ;
+    skos:definition "How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones."@en .
+
+skos:ConceptScheme a owl:Class ;
+    rdfs:label "Concept Scheme"@en ;
+    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+
 atlas:Author a owl:Class ;
     rdfs:label "Author"@en ;
     rdfs:comment """NO DEFINITIONAL CONTENT ATTACHES HERE. The same discipline that scopes
@@ -990,14 +1099,6 @@ atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@
     skos:definition """A person to whom the catalogue's bearers attribute authorship. Identity
 only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
 recognised as one person revising rather than two people agreeing."""@en .
-
-atlas:EvidenceCode a owl:Class ;
-    rdfs:label "Evidence Code"@en ;
-    skos:definition "How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones."@en .
-
-skos:ConceptScheme a owl:Class ;
-    rdfs:label "Concept Scheme"@en ;
-    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
 
 cco:ont00000253 a owl:Class ;
     rdfs:label "Information Bearing Entity"@en ;
@@ -1031,6 +1132,10 @@ one. Reified rather than recorded as a string on the entry, because an example i
 several claims are made about -- where it appears in the source, how the encoding was
 established, and which shared case it instantiates."""@en .
 
+atlas:HVP a atlas:EvidenceCode ;
+    rdfs:label "human-verified against primary text"@en ;
+    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
+
 atlas:PrimitiveScheme a skos:ConceptScheme ;
     rdfs:label "Systems-definition primitive vocabulary"@en ;
     skos:definition "Controlled vocabulary of terms used as primitives in formal definitions of system. Deliberately flat and deliberately not an ontology of the world."@en ;
@@ -1045,10 +1150,6 @@ measure. Semantic co-reference is a mapping-layer claim and owes evidence like a
 other. Minting a separate primitive per author would make recurrence trivially zero;
 merging them by hand would make it trivially high. Lexical recurrence is the honest
 starting point, and its limits are stated here rather than discovered later."""@en .
-
-atlas:HVP a atlas:EvidenceCode ;
-    rdfs:label "human-verified against primary text"@en ;
-    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 
 skos:Concept a owl:Class ;
     rdfs:label "Concept"@en ;
