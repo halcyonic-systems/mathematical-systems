@@ -88,15 +88,24 @@ human pass must stay a reading, not an approval click.
 
 ## First corpus
 
-In leverage order, from the traditions already encoded in Lean:
+**The queue's source of truth is the SSF repo itself**: every `ShapeX.lean` header cites its
+primary source, most with the Zotero key, and each entry's verbatim must be transcribed from
+the exact edition the Lean encoding read. Verified against SSF headers and the Zotero library
+2026-08-17 — six of seven texts are already held; only Wymore's primary is missing:
 
-| tradition | why next | primary text (vault, 2026-08-17) |
+| tradition | why next | primary text (verified 2026-08-17) |
 |---|---|---|
-| Mobus | the 8-tuple's semantic authority is machine-checked | held (`mobus/`, `mobus-kalton-2015/`) |
-| Mesarović | P3's stance queue is blocked on this entry | held (`mesarovic/`, ch. 2 of Mesarović–Takahara 1975) |
-| Spivak | Lean-encoded; text on hand | held (`spivak/category-theory-sciences-full.md`) |
-| Joslyn, Willems | the two whose refusals force the quiver-level maximality reading | to acquire |
-| Wymore, Myers | complete the Lean-encoded set | to acquire |
+| Mobus | the 8-tuple's semantic authority is machine-checked | vault `mobus/`, `mobus-kalton-2015/` |
+| Mesarović | P3's stance queue is blocked on this entry | vault `mesarovic/` ch. 2 + full PDF, Zotero `ZA3E2PD3` |
+| Spivak | Lean-encoded (arXiv:2606.28984) | vault `spivak/category-theory-sciences-full.md` |
+| Joslyn | with Willems, forces the quiver-level maximality reading | Zotero `JXTBBK89` — Joslyn 1995, *Semantic Control Systems* |
+| Willems | ditto | Zotero `U4CJSMHZ` (2007 IEEE CSM) + `NRXKIFUE` (1991 IEEE TAC) — both papers the Lean header cites |
+| Myers | completes the Lean-encoded set | Zotero `TTTYTNEI` — *Categorical Systems Theory* |
+| Wymore | last of the set | **to acquire: Wymore 1993 *T3SD*.** Only Wach et al. 2021 (Zotero `BNPE2684`) is held, and it *restates* Wymore — the catalogue's own rule makes a restatement `PROP`, not an entry, so the Lean encoding's secondary sourcing is itself a fact the entry must record |
+
+One mechanic this adds: the transcription gate reads vault markdown (`BEARER_SOURCES`), so a
+Zotero-held PDF arms the gate only after extraction into `operations/systems-science/` — a
+per-source step the drafter should perform and report, not skip silently.
 
 ## Cost
 
