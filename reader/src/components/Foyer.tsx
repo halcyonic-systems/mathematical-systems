@@ -20,8 +20,19 @@ import { excerptOf } from "../excerpts";
 import type { Author, Conflict, Entry, Transcription } from "../types";
 
 /** A one-line formula is set large and centred; a definitional sentence is a
-    different kind of object and takes the reading register instead. */
+    different kind of object and takes the reading register instead. Between
+    the two sits the long formula — Mobus's subscripted tuples — which is still
+    beheld, not read, but wraps mid-subscript at the display size: it keeps the
+    centred formula treatment one step down the scale. */
 const FORMULA_CHARS = 40;
+const SHORT_FORMULA_CHARS = 22;
+
+const displayClass = (display: string | null) => {
+  const n = display?.length ?? 0;
+  if (n > FORMULA_CHARS) return "shelf-display shelf-display-long";
+  if (n > SHORT_FORMULA_CHARS) return "shelf-display shelf-display-mid";
+  return "shelf-display";
+};
 
 /** "Klir (2001)" -> "2001". The year the strip and the definition rows use;
     degrades to nothing rather than to a wrong number. */
@@ -72,7 +83,6 @@ export function Shelf({
             {defs.map((e) => {
               const t = transcription[e.iri];
               const { display, context } = excerptOf(e);
-              const formula = (display?.length ?? 0) <= FORMULA_CHARS;
               const year = yearOf(e.label);
               // Badges appear on the front page only as EXCEPTIONS. The good
               // state — passage located by the build, encoding human-verified —
@@ -94,7 +104,7 @@ export function Shelf({
                   {year && defs.length > 1 && (
                     <span className="shelf-def-year eyebrow">{year}</span>
                   )}
-                  <blockquote className={`shelf-display${formula ? "" : " shelf-display-long"}`}>
+                  <blockquote className={displayClass(display)}>
                     {display ?? "No verbatim recorded."}
                   </blockquote>
                   {context && <span className="shelf-context">{context}</span>}

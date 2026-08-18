@@ -75,17 +75,34 @@ def delatex(text):
     text = text.replace(r"\[", " ").replace(r"\]", " ")   # display-math delimiters
     text = re.sub(r"\\([|&,;:!#%_ ])", r"\1", text)   # escaped delimiters
     text = re.sub(r"\\\\", " ", text)                    # line breaks
-    return re.sub(r"[{}]", "", text)
+    text = re.sub(r"[{}]", "", text)
+    # \boldsymbol{\Delta} \boldsymbol{t} leaves "Δ t" after the wrappers are
+    # stripped — the same token-boundary space the \Delta t table entry closes,
+    # arriving through braces instead. The page sets Δt closed up; so do we.
+    return re.sub(r"Δ\s+(?=[A-Za-z])", "Δ", text)
+
+
+# Character folds that are digitisation choices, not content: the revisions
+# manuscript exports INCREMENT (U+2206) where the page shows Greek Δ, and CJK
+# angle brackets (U+3008/9) where the page shows mathematical ⟨⟩. NFKC folds
+# neither, so both sides fold them here explicitly.
+GLYPH_FOLD = {"∆": "Δ", "〈": "⟨", "〉": "⟩"}
 
 
 def canon(text):
     """Everything that must not count as a difference: layout, emphasis, quotes."""
     text = unicodedata.normalize("NFKC", text)
+    for src, dst in GLYPH_FOLD.items():
+        text = text.replace(src, dst)
     text = PAGE_FURNITURE.sub(" ", text)
+    text = text.replace("#", " ")                      # markdown heading marks
     text = text.replace("```", " ").replace("`", " ")
     text = re.sub(r"[_*]", "", text)                   # markdown emphasis
     text = text.replace("\u2019", "'").replace("\u2018", "'")
-    text = text.replace("\u201c", '"').replace("\u201d", '"')
+    # Double quotes are DROPPED, not folded: the source-side loop has always
+    # dropped the curly pair, so folding here left a straight-vs-nothing
+    # mismatch the first time a verbatim quoted inside itself. Symmetric now.
+    text = re.sub(r"[\u201c\u201d\"]", "", text)
     text = re.sub(r"[\u2010-\u2015]", "-", text)       # dash family
     # A hyphen at a line break is the typesetter breaking a word, not part of it:
     # the AMJ article prints "mathe-\nmatically". Rejoin before whitespace is
@@ -128,7 +145,7 @@ def prepare_source(raw):
         if i in dropped_break:
             continue
         c = unicodedata.normalize("NFKC", ch)
-        if c in "_*`{}" or c in "\u201c\u201d":
+        if c in '_*`{}#"' or c in "\u201c\u201d":
             continue
         if c.isspace():
             if prev_space:
@@ -140,6 +157,7 @@ def prepare_source(raw):
         prev_space = False
         for sub in c:
             sub = {"\u2019": "'", "\u2018": "'"}.get(sub, sub)
+            sub = GLYPH_FOLD.get(sub, sub)
             if "\u2010" <= sub <= "\u2015":
                 sub = "-"
             out.append(sub.lower())

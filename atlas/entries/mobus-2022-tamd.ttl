@@ -48,13 +48,15 @@ entry:mobus-2022-seven-tuple
     atlas:statedIn bearer:mobus-2022-tamd ;
     atlas:sourceLocation "ch. 4, §4.3.3, eq. (4.1), p. 191" ;
 
+    # Subscripts as the page sets them (Unicode subscript characters), ruled
+    # 2026-08-18: the digitisation's braces are LaTeX syntax, not typography.
     atlas:verbatim """Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:
-S_i, l = C, N, G, B, T, H, Δt_i, l
-where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.""" ;
+Sᵢ, ₗ = C, N, G, B, T, H, Δtᵢ, ₗ
+where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S₀,₀ is the designated SOI.""" ;
 
     # Presentation spans — exact substrings of the verbatim, enforced by the build.
-    atlas:displayForm "S_i, l = C, N, G, B, T, H, Δt_i, l" ;
-    atlas:displayContext "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI." ;
+    atlas:displayForm "Sᵢ, ₗ = C, N, G, B, T, H, Δtᵢ, ₗ" ;
+    atlas:displayContext "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S₀,₀ is the designated SOI." ;
 
     # Two caveats, both the author's own. The first stands at §4.3's opening and
     # qualifies all three presentational forms of the definition (verbal,
@@ -67,7 +69,16 @@ where i and l are indexes. The index i is a subsystem index and the index l is t
                            prim:level-of-organization ,
                            prim:hierarchy ,
                            prim:system-of-interest ,
-                           prim:time ;
+                           prim:time ,
+                           # The parts-harvest (2026-08-18): the elaborations of
+                           # the tuple's symbols, per the Bunge Definition 1.2 rule.
+                           prim:component ,
+                           prim:flow-network ,
+                           prim:bipartite-flow-graph ,
+                           prim:boundary ,
+                           prim:transformation-rule ,
+                           prim:memory ,
+                           prim:time-interval ;
 
     atlas:admits case:mobus-atom ;
 
@@ -91,13 +102,15 @@ precisely so the revision is citable rather than silently merged. prim:environme
 deliberately NOT invoked here: the row lighting up only at the revisions entry is the census
 recording the revision.
 
-PRIMITIVES, CONSERVATIVE (ruled 2026-08-18): only the words the passage itself uses — the
-Bertalanffy-1968 standard — plus time admitted notationally via Δt, the exact dQᵢ/dt
-precedent. The elaborations of C, N, G, B, T and H across §4.3.3's subsections are
-parts-definitions in the sense of docs/adding-an-entry.md (the Bunge Definition 1.2 rule):
-they enter the scheme as primitives with their own scope notes when a parts-harvest pass
-reads those subsections. Until then this census row understates Mobus deliberately, and the
-understatement is recorded here rather than discovered later.
+PRIMITIVES (ruled 2026-08-18, two layers): from the passage itself, the conservative
+Bertalanffy-1968 standard — subsystem, level of organization, hierarchy, system of interest,
+plus time admitted notationally via Δt, the exact dQᵢ/dt precedent. From the PARTS-HARVEST
+run the same day (the Bunge Definition 1.2 rule in docs/adding-an-entry.md): component,
+flow network, bipartite flow graph, boundary, transformation rule, memory and time interval —
+the author's own words for the tuple's symbols, each scope note carrying his defining
+sentence machine-located in §4.3.3's subsections. Five were model-harvested and checked in
+the guided pass; transformation rule and time interval were hand-recovered with narrower
+spans after the model's wider ones failed the locate gate (display-math furniture).
 
 CASES: one admit. The steel-plant worked example (§4.5) is HELD, not recorded: the model
 proposed it, but its licensing sentence describes the plant without ruling it a system.

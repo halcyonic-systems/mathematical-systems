@@ -183,8 +183,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "eb222bd+",
-    "repoCommit": "eb222bd+"
+    "atlasCommit": "3711cde+",
+    "repoCommit": "3711cde+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -346,6 +346,85 @@
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple": {
       "status": "none"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple": {
+      "file": "ShapeMobus.lean",
+      "title": "Shape Category for Mobus's 8-Tuple Framework",
+      "moduleDoc": "# Shape Category for Mobus's 8-Tuple Framework\n\nThe *shape category* `I_Mobus` encodes the dependency structure of Mobus's\nsystem definition S = (C, N, E, G, B, T, H, Δt).\n\n## Construction\n\nWe define a quiver with 8 vertices (the tuple positions) and 5 generating arrows\n(derived from the coherence constraints in `MobusSystem`), then take the free category.\n\n## Arrow Provenance\n\nEach generating arrow traces to a specific coherence constraint:\n- `network_on_components` ← `network_components : N.nodes = C`\n- `interfaces_in_components` ← `interfaces_sub : B.interfaces ⊆ C`\n- `external_on_env` ← `externalFlows_nodes` (environment component)\n- `external_on_boundary` ← `externalFlows_nodes` (boundary component)\n- `env_disjoint_comp` ← `disjoint : C ∩ E.objects = ∅`\n\n## Isolated Vertices\n\n`transforms`, `history`, and `timeScale` have no generating arrows. They are\nparametric data with no structural role in the coherence constraints.",
+      "positionType": "MobusPosition",
+      "shape": "MobusShape",
+      "declaredShapes": [
+        "MobusShape"
+      ],
+      "positions": [
+        {
+          "name": "components",
+          "doc": "C — the set of active components"
+        },
+        {
+          "name": "internalNetwork",
+          "doc": "N — the directed graph of internal flows among components"
+        },
+        {
+          "name": "environment",
+          "doc": "E — environmental objects and milieu"
+        },
+        {
+          "name": "externalFlows",
+          "doc": "G — the bipartite flow graph crossing the boundary"
+        },
+        {
+          "name": "boundary",
+          "doc": "B — interface components and their properties"
+        },
+        {
+          "name": "transforms",
+          "doc": "T — domain-specific processing functions"
+        },
+        {
+          "name": "history",
+          "doc": "H — stored knowledge / memory"
+        },
+        {
+          "name": "timeScale",
+          "doc": "Δt — temporal resolution of observation"
+        }
+      ],
+      "arrows": [
+        {
+          "name": "network_on_components",
+          "from": "internalNetwork",
+          "to": "components",
+          "doc": "N depends on C (internal network nodes = components)"
+        },
+        {
+          "name": "interfaces_in_components",
+          "from": "boundary",
+          "to": "components",
+          "doc": "B depends on C (interface components ⊆ components)"
+        },
+        {
+          "name": "external_on_env",
+          "from": "externalFlows",
+          "to": "environment",
+          "doc": "G depends on E (external flow nodes include environment objects)"
+        },
+        {
+          "name": "external_on_boundary",
+          "from": "externalFlows",
+          "to": "boundary",
+          "doc": "G depends on B (external flow nodes include boundary interfaces)"
+        },
+        {
+          "name": "env_disjoint_comp",
+          "from": "environment",
+          "to": "components",
+          "doc": "E constrains C (components and environment are disjoint)"
+        }
+      ],
+      "arrowConvention": "",
+      "spec": "Systems/Category/ShapeMobus.lean#MobusShape",
+      "status": "resolved"
     }
   },
   "transcription": {
@@ -434,6 +513,21 @@
         "after": "Recall from the previous chapter that the ontological framework specified that the SOI be designated as level 0 . This will make sense in this definition as we show how the system definition leads to a natural way to deconstruct the component/interaction level ( +1 ) in the framework. Several later chapters in the book will describe the application of these equations (and the knowledgebase described in Chap. 8) to even more complex adaptive and evolvable systems (CAESs) described in Part III.\n\n \n As we will see later, we will actually incorporate both indexes into a single coding scheme that will give both the level in the hierarchy and the component index using a 'dotted' numbering scheme. This will be conducive to providing key values for the knowledgebase schema to be covered in Chap."
       },
       "source": "4-a-model-of-system.md"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 504,
+      "verbatimChars": 504,
+      "context": {
+        "before": "That formulation, however, treated a system as being essentially static over its duration. That is, the system would not change over its life time. Additionally, the formulation only minimally represented the environment of a system. In this paper we seek to revise the model to enhance the handling of environmental aspects and to extend the model’s ability to represent a full life-cycle of any instance of any kind of system.\n\n## Extending and Modifying the Framework\n\nWe begin with a basic revision of the original 7-tuple structure, reproduced here.\n\n###### Si,l=〈C,N,G,B,T,H,∆t〉i,l The original Eq. 4.1 in (Mobus, 2022).",
+        "match": "Revised Eq. 4.1 is as follows.\n\n###### Si,l=〈C,N,E,G,B,T,H,∆t〉i,l (1)\n\nIn what follows, the subscript indexes, i, for index number in the set, and l, for level in the complexity/organization hierarchy will be dropped for simplicity.\n\nS is now given as an oct-tuple with new member E containing the set, O, (standing for “objects” in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system.",
+        "after": "Examples of a milieu are given below. The set O subsumes the sets, Src and Snk which were included in the original G bipartite network and were effectively ‘hidden’ from exposure of the model. This was deemed an unnecessary complexity, particularly since many objects in a system’s environment may be both sources and sinks simultaneously (for background, refer to Mobus, 2022). The environment object is now defined as:\n\nE= 〈O,M〉 \n\nO= 〈o0,o1,o2,…ok,…om〉 \n\nWhere O is the set of object sources and sinks in the environment of the SOI.\n\nThe milieu is represented by the abstract M object. M is the set of variables that are part of the environment but do not have a discrete (point) source. They surround or ‘bathe’ the system in conditions that impact or influence the state of the system, but do not interact necessarily through a discrete set of interfaces, as in the case of flows."
+      },
+      "source": "mobus-book-revisions.md"
     }
   },
   "source": {
@@ -705,20 +799,27 @@
       "label": "Mobus (2022), Systems Science: TAMD, eq. (4.1)",
       "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/mobus-2022-tamd",
       "sourceLocation": "ch. 4, §4.3.3, eq. (4.1), p. 191",
-      "verbatim": "Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:\nS_i, l = C, N, G, B, T, H, Δt_i, l\nwhere i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.",
-      "displayForm": "S_i, l = C, N, G, B, T, H, Δt_i, l",
-      "displayContext": "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.",
+      "verbatim": "Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:\nSᵢ, ₗ = C, N, G, B, T, H, Δtᵢ, ₗ\nwhere i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S₀,₀ is the designated SOI.",
+      "displayForm": "Sᵢ, ₗ = C, N, G, B, T, H, Δtᵢ, ₗ",
+      "displayContext": "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S₀,₀ is the designated SOI.",
       "authorCaveat": "The following definition is proposed as a starting point for developing a formal definition of system.",
       "admits": [
         "https://w3id.org/mathematical-systems/atlas/case/mobus-atom"
       ],
       "refuses": [],
       "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/bipartite-flow-graph",
+        "https://w3id.org/mathematical-systems/atlas/primitive/boundary",
+        "https://w3id.org/mathematical-systems/atlas/primitive/component",
+        "https://w3id.org/mathematical-systems/atlas/primitive/flow-network",
         "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
         "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
+        "https://w3id.org/mathematical-systems/atlas/primitive/memory",
         "https://w3id.org/mathematical-systems/atlas/primitive/subsystem",
         "https://w3id.org/mathematical-systems/atlas/primitive/system-of-interest",
-        "https://w3id.org/mathematical-systems/atlas/primitive/time"
+        "https://w3id.org/mathematical-systems/atlas/primitive/time",
+        "https://w3id.org/mathematical-systems/atlas/primitive/time-interval",
+        "https://w3id.org/mathematical-systems/atlas/primitive/transformation-rule"
       ],
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)",
@@ -742,8 +843,8 @@
         },
         {
           "kind": "section",
-          "title": "PRIMITIVES, CONSERVATIVE",
-          "body": "(ruled 2026-08-18): only the words the passage itself uses — the\nBertalanffy-1968 standard — plus time admitted notationally via Δt, the exact dQᵢ/dt\nprecedent. The elaborations of C, N, G, B, T and H across §4.3.3's subsections are\nparts-definitions in the sense of docs/adding-an-entry.md (the Bunge Definition 1.2 rule):\nthey enter the scheme as primitives with their own scope notes when a parts-harvest pass\nreads those subsections. Until then this census row understates Mobus deliberately, and the\nunderstatement is recorded here rather than discovered later."
+          "title": "PRIMITIVES",
+          "body": "(ruled 2026-08-18, two layers): from the passage itself, the conservative\nBertalanffy-1968 standard — subsystem, level of organization, hierarchy, system of interest,\nplus time admitted notationally via Δt, the exact dQᵢ/dt precedent. From the PARTS-HARVEST\nrun the same day (the Bunge Definition 1.2 rule in docs/adding-an-entry.md): component,\nflow network, bipartite flow graph, boundary, transformation rule, memory and time interval —\nthe author's own words for the tuple's symbols, each scope note carrying his defining\nsentence machine-located in §4.3.3's subsections. Five were model-harvested and checked in\nthe guided pass; transformation rule and time interval were hand-recovered with narrower\nspans after the model's wider ones failed the locate gate (display-math furniture)."
         },
         {
           "kind": "section",
@@ -757,6 +858,70 @@
         }
       ],
       "number": "006"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple",
+      "id": "mobus-revisions-oct-tuple",
+      "label": "Mobus (2025), revisions manuscript, eq. (1)",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/mobus-book-revisions",
+      "sourceLocation": "\"Extending and Modifying the Framework\", eq. (1), revising Eq. 4.1 of the 2022 book",
+      "verbatim": "Revised Eq. 4.1 is as follows.\nSᵢ,ₗ=⟨C,N,E,G,B,T,H,Δt⟩ᵢ,ₗ (1)\nIn what follows, the subscript indexes, i, for index number in the set, and l, for level in the complexity/organization hierarchy will be dropped for simplicity.\nS is now given as an oct-tuple with new member E containing the set, O, (standing for \"objects\" in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system.",
+      "displayForm": "Sᵢ,ₗ=⟨C,N,E,G,B,T,H,Δt⟩ᵢ,ₗ",
+      "displayContext": "S is now given as an oct-tuple with new member E containing the set, O, (standing for \"objects\" in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system.",
+      "authorCaveat": null,
+      "admits": [],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
+        "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
+        "https://w3id.org/mathematical-systems/atlas/primitive/milieu",
+        "https://w3id.org/mathematical-systems/atlas/primitive/object",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/time"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)",
+      "encodedOn": "2026-08-18",
+      "formalisedAs": "Systems/Category/ShapeMobus.lean#MobusShape",
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "VERIFIED AS MDHC",
+          "body": "model-drafted by the P5 pipeline and checked by Shingai\nThornton 2026-08-18 in the same guided session as entry 006 — verbatim, spans, primitives,\ncaveat and date each ruled on. The manuscript date (March 2025) was supplied by Shingai, who\nreceived the document from its author."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "cco:ont00001808 (is about), per the neutrality invariant."
+        },
+        {
+          "kind": "section",
+          "title": "THE REVISION IS THE FINDING",
+          "body": "Entry 006's tuple has seven coordinates; this one has eight,\nand the new coordinate is E — the environment, now carrying the source/sink objects O and\nthe milieu M. The environment becoming first-class is the same move Bertalanffy made between\n1968 and 1972 (environment_is_new in the Lean development), which makes this the catalogue's\nsecond revision arc with the same content. prim:environment lights up on this entry and not\non entry 006 by design: the census row difference IS the record of the revision."
+        },
+        {
+          "kind": "section",
+          "title": "PRIMITIVES",
+          "body": "(ruled 2026-08-18): the conservative standard, the words of the passage itself —\nset, environment, hierarchy, level of organization, object, milieu — plus time notationally\nvia Δt (the dQᵢ/dt precedent, as on entry 006). \"System\" is deliberately NOT recorded as a\nprimitive: it is the definiendum, the term the definition fixes, not an undefined input it\nrests on — and a row every entry would trivially share carries no census information."
+        },
+        {
+          "kind": "section",
+          "title": "NO AUTHOR CAVEAT",
+          "body": "(ruled 2026-08-18): the drafted candidate (\"the subscript indexes ... will\nbe dropped for simplicity\") is notational bookkeeping, not a self-qualification. The\nmanuscript's framing sentence — that the 2022 treatment \"ignored a critical aspect of real\nsystems, namely that they age and change\" — qualifies the OLD definition, and belongs to\nthis arc note rather than to a caveat on the new one."
+        },
+        {
+          "kind": "section",
+          "title": "HELD, NOT ENTERED",
+          "body": "the manuscript's lifecycle equations (St+1 = St⟨ΔS⟩ with\nΔS = ⟨ΔC,ΔN,ΔE,ΔG,ΔB,ΔT,ΔH⟩) were scanned as a candidate. They introduce typed components\nand fix a transition relation, but they define system CHANGE over an already-given S rather\nthan the term \"system\" — held pending a spec §5 ruling. They are the natural formal locus of\nthe Mobus life-cycle work and the Bunge–Mobus change-convergence thread, and likely enter\nthrough the mapping layer rather than as an entry."
+        },
+        {
+          "kind": "section",
+          "title": "FORMALISATION",
+          "body": "MobusShape encodes THIS equation (\"Book-revisions Eq. 1\" in\nSystems/Mobus/Tuple.lean), which is why the pointer sits here and not on entry 006."
+        }
+      ],
+      "number": "007"
     }
   ],
   "bearers": [
@@ -783,6 +948,16 @@
       ],
       "authoredBy": [
         "https://w3id.org/mathematical-systems/atlas/author/george-klir"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/bearer/mobus-book-revisions",
+      "label": "Mobus, G. E. — Revisions to Systems Science: TAMD (working manuscript, March 2025, shared with Halcyonic)",
+      "creator": "George E. Mobus",
+      "date": "2025",
+      "identifiers": [],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/george-mobus"
       ]
     },
     {
@@ -854,24 +1029,36 @@
       "id": "george-mobus",
       "label": "George E. Mobus",
       "entries": [
-        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
     }
   ],
   "primitives": [
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
-      "label": "relation",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/set",
+      "label": "set",
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
-        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/set",
-      "label": "set",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+      "label": "environment",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+      "label": "relation",
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
@@ -890,6 +1077,16 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time",
+      "label": "time",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/element",
       "label": "element",
       "role": null,
@@ -899,21 +1096,21 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
-      "label": "environment",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
+      "label": "hierarchy",
       "role": null,
       "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
-        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time",
-      "label": "time",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
+      "label": "level of organization",
       "role": null,
       "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
-        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
     },
     {
@@ -925,11 +1122,35 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/bipartite-flow-graph",
+      "label": "bipartite flow graph",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/bond",
       "label": "bond",
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/boundary",
+      "label": "boundary",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/component",
+      "label": "component",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
     },
     {
@@ -941,16 +1162,8 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
-      "label": "hierarchy",
-      "role": null,
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
-      ]
-    },
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
-      "label": "level of organization",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/flow-network",
+      "label": "flow network",
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
@@ -962,6 +1175,30 @@
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/memory",
+      "label": "memory",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/milieu",
+      "label": "milieu",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/object",
+      "label": "object",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
     },
     {
@@ -1010,6 +1247,22 @@
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/time-interval",
+      "label": "time interval",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/transformation-rule",
+      "label": "transformation rule",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
       ]
     }
   ],

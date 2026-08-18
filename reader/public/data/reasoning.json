@@ -4,7 +4,7 @@
       "label": "As shipped (minimal CCO extract)",
       "consistent": true,
       "droppedAxioms": {
-        "DataPropertyAssertion: unsupported data range": 101
+        "DataPropertyAssertion: unsupported data range": 120
       },
       "commitments": [
         {
@@ -40,8 +40,8 @@
         }
       ],
       "labels": {
-        "ont00000853": "Descriptive Information Content Entity",
         "ont00000958": "Information Content Entity",
+        "ont00000853": "Descriptive Information Content Entity",
         "FormalSystemDefinition": "Formal System Definition",
         "BFO_0000001": "entity"
       }
@@ -50,7 +50,7 @@
       "label": "Under the full CCO import closure",
       "consistent": true,
       "droppedAxioms": {
-        "DataPropertyAssertion: unsupported data range": 5,
+        "DataPropertyAssertion: unsupported data range": 6,
         "DataPropertyRange: unsupported data range": 2
       },
       "commitments": [
@@ -74,8 +74,8 @@
           "sub": "https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition",
           "sup": "https://www.commoncoreontologies.org/ont00000958",
           "axioms": [
-            "<https://www.commoncoreontologies.org/ont00000853> SubClassOf <https://www.commoncoreontologies.org/ont00000958>",
-            "<https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition> SubClassOf <https://www.commoncoreontologies.org/ont00000853>"
+            "<https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition> SubClassOf <https://www.commoncoreontologies.org/ont00000853>",
+            "<https://www.commoncoreontologies.org/ont00000853> SubClassOf <https://www.commoncoreontologies.org/ont00000958>"
           ]
         },
         {
@@ -87,11 +87,11 @@
         }
       ],
       "labels": {
-        "ont00000853": "Descriptive Information Content Entity",
-        "ont00001808": "is about",
         "ont00000958": "Information Content Entity",
-        "FormalSystemDefinition": "Formal System Definition",
         "ont00001982": "describes",
+        "ont00000853": "Descriptive Information Content Entity",
+        "FormalSystemDefinition": "Formal System Definition",
+        "ont00001808": "is about",
         "BFO_0000001": "entity"
       }
     }

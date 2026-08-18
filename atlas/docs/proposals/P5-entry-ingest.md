@@ -9,7 +9,16 @@ the Bertalanffy-1968 standard, with notational admission per the dQᵢ/dt preced
 **parts-harvest follow-up**: the elaborations of a definition's symbols across its
 subsections enter the scheme as primitives with their own scope notes via a dedicated pass
 (the Bunge Definition 1.2 rule in adding-an-entry.md), never silently through the entry's
-census row. The parts-harvest pass is P5's next stage, unbuilt. A pipeline that drafts entries as `MDU` and lets
+census row.
+
+**Parts-harvest BUILT and run 2026-08-18** (`harvest <source-id> <entry-slug>`): reads a
+promoted entry plus its registered source, proposes one primitive per elaborated symbol with
+the author's defining sentence, machine-locates every verbatim, drops loudly what fails
+twice, and stages the result in `ingest/harvests/` for the human pass. First run on entry
+006 harvested five of seven elements; the two locate-failures (T, Δt — display-math
+furniture) were hand-recovered with narrower spans in the same session. Entry 007 (the
+revisions oct-tuple) went through scan → draft → guided pass the same day, carrying the
+Lean pointer entry 006 could not. A pipeline that drafts entries as `MDU` and lets
 the existing gates act as the intake filter, with promotion to `MDHC`/`HVP` remaining a human
 act. Scoped before building, so the boundaries are decided while nothing is at stake.
 

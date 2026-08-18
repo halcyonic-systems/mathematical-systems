@@ -357,7 +357,7 @@ prim:composition a skos:Concept ;
 prim:environment a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "environment"@en ;
-    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components."@en .
+    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components. Mobus's revised tuple (entry 007) also carries an E — absent from his published 2022 seven-tuple, which is why the row lights up only on the revisions entry: the difference records the revision."@en .
 
 prim:structure a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -411,7 +411,56 @@ prim:hierarchy a skos:Concept ;
 prim:system-of-interest a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "system of interest"@en ;
-    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S_0,0 is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en .
+    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S₀,₀ is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en .
+
+prim:object a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "object"@en ;
+    skos:scopeNote "Mobus's O, 'standing for \"objects\" in the environment that are sources and sinks in a unified set' (revisions manuscript, eq. 1)."@en .
+
+prim:milieu a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "milieu"@en ;
+    skos:scopeNote "Mobus's M, 'the non-point source/sink variables constituting the interacting milieu around the system' (revisions manuscript, eq. 1)."@en .
+
+# Parts-harvest of entry 006 (2026-08-18): the elaborations of Eq. 4.1's symbols
+# across §4.3.3's subsections, entered per the Bunge Definition 1.2 rule — parts
+# are primitives, never entries. Each scope note carries the author's own
+# defining sentence, machine-located in the source.
+prim:component a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "component"@en ;
+    skos:scopeNote "Mobus's C: 'C is a set of components and their \"type\" along with membership functions in the event the set is fuzzy, that is, the components may have partial inclusion' (§4.3.3.1)."@en .
+
+prim:flow-network a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "flow network"@en ;
+    skos:scopeNote "Mobus's N: 'N is generally a flow network through which real substances are moving from one node (component) to the next with causal influence' (§4.3.3.2.1)."@en .
+
+prim:bipartite-flow-graph a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "bipartite flow graph"@en ;
+    skos:scopeNote "Mobus's G: 'G is a bipartite flow graph defined as:' (§4.3.3.2.2). The prose gives only the name — the definition proper is Eq. 4.5, which follows it."@en .
+
+prim:boundary a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "boundary"@en ;
+    skos:scopeNote "Mobus's B: 'The boundary, B in Eq. 4.1, at level l, then is a tuple' (§4.3.3.3). Thin prose, unambiguous word; the tuple's content is Eq. 4.6."@en .
+
+prim:memory a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "memory"@en ;
+    skos:scopeNote "Mobus's H: 'H in very complex systems could be a super complex object that records the history of the system, or its record of state transitions, especially as it develops or evolves' (§4.3.3.5)."@en .
+
+prim:transformation-rule a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "transformation rule"@en ;
+    skos:scopeNote "Mobus's T: 'T is the set of transformation rules for the subsystems in S' (§4.3.3.4). Hand-recovered after the model's wider span failed to locate — the passage is set in display-math wrappers the digitisation mangles."@en .
+
+prim:time-interval a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "time interval"@en ;
+    skos:scopeNote "Mobus's Δt: 'Finally, the last element in S is Δt, a time interval relevant to the level of the system of interest' (§4.3.3.6). The author's own WORD for the element; distinct from the census row prim:time, which records the notational Δt/dt invocations shared across authors."@en .
 
 
 ##############################################################################

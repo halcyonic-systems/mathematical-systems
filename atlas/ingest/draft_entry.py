@@ -124,6 +124,98 @@ locus", "source_location": "...", "verbatim": "...", "display_form": ..., \
 "source_location": "..."}}], "refuses": [...same shape...], "comment": "..."}}"""
 
 
+HARVEST_SYSTEM_TEMPLATE = """You are running a PARTS-HARVEST pass for the Mathematical \
+Systems Definition Atlas. A promoted entry records a definition whose formal statement is \
+a tuple of symbols; the author defines each symbol in elaboration passages elsewhere in \
+the source. Those elaborations are parts-definitions: per the atlas's procedure they are \
+NOT entries — they enter the primitive vocabulary, each carrying the author's own defining \
+words.
+
+The entry being harvested:
+{entry_context}
+
+Primitives already in the scheme (reuse a slug ONLY when the author uses the same word; \
+the scheme is lexical and merging across authors is a census question):
+{existing_primitives}
+
+For each element of the definition's formal statement that the author elaborates, report:
+- "symbol": the tuple symbol (e.g. "C")
+- "slug": proposed primitive slug for the author's word (kebab-case), or an existing slug \
+if the author uses that same word
+- "pref_label": the author's word
+- "verbatim": the author's DEFINING sentence(s) for this element, copied as the printed \
+page shows them (render LaTeX commands to Unicode, drop \\( \\) \\[ \\] braces and footnote \
+markers, change nothing else) — machine-located in the source, so exact
+- "source_location": section/equation where the elaboration lives
+- "new": true if the slug is not in the scheme
+
+Only elements the author actually elaborates; an unelaborated symbol is reported nowhere. \
+Respond with ONLY a JSON array."""
+
+
+def cmd_harvest(source_id, entry_slug):
+    reg = load_registration(source_id)
+    text = source_text(reg)
+    entry_file = ATLAS / "entries" / f"{reg['bearer_slug']}.ttl"
+    if not entry_file.is_file():
+        raise SystemExit(
+            f"no promoted entry file at {entry_file.relative_to(REPO)} — the harvest "
+            "elaborates a PROMOTED entry; draft and promote it first."
+        )
+    prims = existing_primitives()
+    prim_list = "\n".join(f"  prim:{s} — \"{l}\"" for s, l in sorted(prims.items()))
+    system = HARVEST_SYSTEM_TEMPLATE.format(
+        entry_context=entry_file.read_text(), existing_primitives=prim_list)
+
+    found = parse_json(ask(system, f"SOURCE TEXT:\n{text}"), "[", "]")
+    problems = []
+    for p in found:
+        p["slug"] = p["slug"].removeprefix("prim:")
+        if locate(p["verbatim"], text)["status"] != "located":
+            problems.append(f"{p['slug']}: elaboration verbatim not located in source")
+    if problems:
+        feedback = ("These harvest items failed machine location:\n- " + "\n- ".join(problems) +
+                    "\nEvery verbatim must locate in the source. Return the corrected complete JSON array.")
+        found = parse_json(ask(system, f"SOURCE TEXT:\n{text}\n\n{feedback}"), "[", "]")
+        kept = []
+        for p in found:
+            p["slug"] = p["slug"].removeprefix("prim:")
+            if locate(p["verbatim"], text)["status"] == "located":
+                kept.append(p)
+            else:
+                # One item failing twice must not discard the located rest; the
+                # drop is printed, never silent, and the element stays harvestable
+                # by hand or by a later run.
+                print(f"  DROPPED {p['symbol']} -> prim:{p['slug']}: verbatim not located after correction")
+        found = kept
+
+    (ROOT / "harvests").mkdir(exist_ok=True)
+    (ROOT / "harvests" / f"{entry_slug}.json").write_text(
+        json.dumps(found, indent=2, ensure_ascii=False))
+
+    # The review file carries ready-to-adapt TTL: the human pass moves accepted
+    # blocks into atlas-core's scheme and adds the invokesPrimitive triples to
+    # the entry — both edits stay human, as everywhere in this pipeline.
+    lines = [f"# Parts harvest — {entry_slug}", "",
+             "MDU until reviewed. For each ACCEPTED item: add the block to the",
+             "primitive vocabulary in atlas-core.ttl (drop the [MDU] tag), and add",
+             f"`prim:<slug>` to entry:{entry_slug}'s atlas:invokesPrimitive.", ""]
+    for p in found:
+        status = "REUSE" if not p.get("new") else "new"
+        lines += [f"## {p['symbol']} → prim:{p['slug']}  ({status})",
+                  f"- location: {p['source_location']}", f"- author's words: > {p['verbatim']}", ""]
+        if p.get("new"):
+            lines += ["```turtle", f"prim:{p['slug']} a skos:Concept ;",
+                      "    skos:inScheme atlas:PrimitiveScheme ;",
+                      f'    skos:prefLabel "{p["pref_label"]}"@en ;',
+                      f'    skos:scopeNote """Mobus\'s {p["symbol"]}: "{p["verbatim"][:180]}" '
+                      f'({p["source_location"]}). [MDU — harvested, unchecked]"""@en .', "```", ""]
+    (ROOT / "harvests" / f"{entry_slug}.md").write_text("\n".join(lines))
+    for p in found:
+        print(f"  {p['symbol']:3} -> prim:{p['slug']:24} {'reuse' if not p.get('new') else 'new'}  ({p['source_location']})")
+    print(f"staged: {(ROOT / 'harvests' / (entry_slug + '.md')).relative_to(REPO)}")
+
+
 def load_registration(source_id):
     path = ROOT / "sources" / f"{source_id}.json"
     if not path.is_file():
@@ -206,6 +298,7 @@ def cmd_scan(source_id):
     print(f"scanning {source_id}: {len(text)} chars from {len(reg['vault_files'])} file(s)")
     candidates = parse_json(ask(SCAN_SYSTEM, text), "[", "]")
 
+    (ROOT / "candidates").mkdir(exist_ok=True)
     out = ROOT / "candidates" / f"{source_id}.json"
     out.write_text(json.dumps(candidates, indent=2, ensure_ascii=False))
 
@@ -392,6 +485,7 @@ def cmd_draft(source_id, n):
             raise SystemExit("DRAFT REFUSED after one correction round:\n- " + "\n- ".join(problems))
 
     today = datetime.date.today().isoformat()
+    (ROOT / "drafts").mkdir(exist_ok=True)   # git drops the dir when its last draft promotes
     # The fields as returned, kept beside the TTL: an assembler fix can then
     # re-emit the file without a fresh model call (and a fresh nondeterminism).
     (ROOT / "drafts" / f"{d['entry_slug']}.json").write_text(
@@ -417,11 +511,16 @@ def main():
     dr = sub.add_parser("draft", help="draft one accepted candidate as an MDU entry")
     dr.add_argument("source_id")
     dr.add_argument("candidate", type=int)
+    hv = sub.add_parser("harvest", help="harvest a promoted entry's parts-definitions as primitives")
+    hv.add_argument("source_id")
+    hv.add_argument("entry_slug")
     args = ap.parse_args()
     if args.cmd == "scan":
         cmd_scan(args.source_id)
-    else:
+    elif args.cmd == "draft":
         cmd_draft(args.source_id, args.candidate)
+    else:
+        cmd_harvest(args.source_id, args.entry_slug)
 
 
 if __name__ == "__main__":

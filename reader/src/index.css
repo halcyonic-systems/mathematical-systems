@@ -834,6 +834,14 @@ body {
   margin: 0;
   padding: 1.75rem 1rem 1.5rem;
 }
+/* A long formula — Mobus's subscripted tuples — is still beheld, but at the
+   largest step it wraps mid-subscript inside a card. One step down keeps it
+   on a single line without demoting it to the reading register. */
+.shelf-display-mid {
+  font-size: var(--display-3);
+  line-height: 1.4;
+  padding: 1.5rem 0.75rem 1.25rem;
+}
 /* A definitional sentence is a different object from a formula: it is read,
    not beheld, so it takes the reading register — left-set, at passage scale. */
 .shelf-display-long {

@@ -190,6 +190,13 @@ with no environment element; the eighth element arrives in the revisions manuscr
 (bearer registered as mobus-book-revisions, entry to come), which is why this bearer and
 that one stay distinct: the revision arc is the finding, as with Bertalanffy 1968/1972."""@en .
 
+<https://w3id.org/mathematical-systems/atlas/entries/mobus-book-revisions> rdfs:label "Atlas entry — Mobus, revisions manuscript (March 2025)"@en ;
+    rdfs:comment """Entry 007. The second half of the Mobus revision arc: the published
+seven-tuple (entry 006) revised to an oct-tuple with the environment E first-class. Second
+entry through the P5 pipeline, promoted by guided pass 2026-08-18. The manuscript also
+REPRODUCES the original Eq. 4.1 before revising it — the scan graded that reproduction PROP
+(a restatement of entry 006), which is why it is not a third entry."""@en .
+
 entry:bertalanffy-1968-eq-3-1 a atlas:FormalSystemDefinition ;
     rdfs:label "Bertalanffy (1968), General System Theory, eq. (3.1)"@en ;
     rdfs:comment """HVP, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: Shingai read the page on
@@ -307,13 +314,15 @@ precisely so the revision is citable rather than silently merged. prim:environme
 deliberately NOT invoked here: the row lighting up only at the revisions entry is the census
 recording the revision.
 
-PRIMITIVES, CONSERVATIVE (ruled 2026-08-18): only the words the passage itself uses — the
-Bertalanffy-1968 standard — plus time admitted notationally via Δt, the exact dQᵢ/dt
-precedent. The elaborations of C, N, G, B, T and H across §4.3.3's subsections are
-parts-definitions in the sense of docs/adding-an-entry.md (the Bunge Definition 1.2 rule):
-they enter the scheme as primitives with their own scope notes when a parts-harvest pass
-reads those subsections. Until then this census row understates Mobus deliberately, and the
-understatement is recorded here rather than discovered later.
+PRIMITIVES (ruled 2026-08-18, two layers): from the passage itself, the conservative
+Bertalanffy-1968 standard — subsystem, level of organization, hierarchy, system of interest,
+plus time admitted notationally via Δt, the exact dQᵢ/dt precedent. From the PARTS-HARVEST
+run the same day (the Bunge Definition 1.2 rule in docs/adding-an-entry.md): component,
+flow network, bipartite flow graph, boundary, transformation rule, memory and time interval —
+the author's own words for the tuple's symbols, each scope note carrying his defining
+sentence machine-located in §4.3.3's subsections. Five were model-harvested and checked in
+the guided pass; transformation rule and time interval were hand-recovered with narrower
+spans after the model's wider ones failed the locate gate (display-math furniture).
 
 CASES: one admit. The steel-plant worked example (§4.5) is HELD, not recorded: the model
 proposed it, but its licensing sentence describes the plant without ruling it a system.
@@ -326,21 +335,85 @@ forthcoming revisions entry, and this entry deliberately carries none."""@en ;
     atlas:admits case:mobus-atom ;
     atlas:authorCaveat "The following definition is proposed as a starting point for developing a formal definition of system.",
         "There is a point we need to be clear about. What is being presented here is, itself, a concept about what a system consists of, how it is composed. It is not being represented as the \"general theory of systems,\" though it might be a candidate for that title." ;
-    atlas:displayContext "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI." ;
-    atlas:displayForm "S_i, l = C, N, G, B, T, H, Δt_i, l" ;
+    atlas:displayContext "where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S₀,₀ is the designated SOI." ;
+    atlas:displayForm "Sᵢ, ₗ = C, N, G, B, T, H, Δtᵢ, ₗ" ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)" ;
     atlas:encodedOn "2026-08-18"^^xsd:date ;
     atlas:evidenceCode atlas:MDHC ;
-    atlas:invokesPrimitive prim:hierarchy,
+    atlas:invokesPrimitive prim:bipartite-flow-graph,
+        prim:boundary,
+        prim:component,
+        prim:flow-network,
+        prim:hierarchy,
         prim:level-of-organization,
+        prim:memory,
         prim:subsystem,
         prim:system-of-interest,
-        prim:time ;
+        prim:time,
+        prim:time-interval,
+        prim:transformation-rule ;
     atlas:sourceLocation "ch. 4, §4.3.3, eq. (4.1), p. 191" ;
     atlas:statedIn bearer:mobus-2022-tamd ;
     atlas:verbatim """Deriving a definition of system from the principles and the ontology, a system S is a 7-tuple:
-S_i, l = C, N, G, B, T, H, Δt_i, l
-where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S_0,0 is the designated SOI.""" .
+Sᵢ, ₗ = C, N, G, B, T, H, Δtᵢ, ₗ
+where i and l are indexes. The index i is a subsystem index and the index l is the level of organization in the system-subsystem hierarchy. Both are 0 for the initial system of interest, S₀,₀ is the designated SOI.""" .
+
+entry:mobus-revisions-oct-tuple a atlas:FormalSystemDefinition ;
+    rdfs:label "Mobus (2025), revisions manuscript, eq. (1)"@en ;
+    rdfs:comment """VERIFIED AS MDHC: model-drafted by the P5 pipeline and checked by Shingai
+Thornton 2026-08-18 in the same guided session as entry 006 — verbatim, spans, primitives,
+caveat and date each ruled on. The manuscript date (March 2025) was supplied by Shingai, who
+received the document from its author.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about), per the neutrality invariant.
+
+THE REVISION IS THE FINDING. Entry 006's tuple has seven coordinates; this one has eight,
+and the new coordinate is E — the environment, now carrying the source/sink objects O and
+the milieu M. The environment becoming first-class is the same move Bertalanffy made between
+1968 and 1972 (environment_is_new in the Lean development), which makes this the catalogue's
+second revision arc with the same content. prim:environment lights up on this entry and not
+on entry 006 by design: the census row difference IS the record of the revision.
+
+PRIMITIVES (ruled 2026-08-18): the conservative standard, the words of the passage itself —
+set, environment, hierarchy, level of organization, object, milieu — plus time notationally
+via Δt (the dQᵢ/dt precedent, as on entry 006). "System" is deliberately NOT recorded as a
+primitive: it is the definiendum, the term the definition fixes, not an undefined input it
+rests on — and a row every entry would trivially share carries no census information.
+
+NO AUTHOR CAVEAT (ruled 2026-08-18): the drafted candidate ("the subscript indexes ... will
+be dropped for simplicity") is notational bookkeeping, not a self-qualification. The
+manuscript's framing sentence — that the 2022 treatment "ignored a critical aspect of real
+systems, namely that they age and change" — qualifies the OLD definition, and belongs to
+this arc note rather than to a caveat on the new one.
+
+HELD, NOT ENTERED: the manuscript's lifecycle equations (St+1 = St⟨ΔS⟩ with
+ΔS = ⟨ΔC,ΔN,ΔE,ΔG,ΔB,ΔT,ΔH⟩) were scanned as a candidate. They introduce typed components
+and fix a transition relation, but they define system CHANGE over an already-given S rather
+than the term "system" — held pending a spec §5 ruling. They are the natural formal locus of
+the Mobus life-cycle work and the Bunge–Mobus change-convergence thread, and likely enter
+through the mapping layer rather than as an entry.
+
+FORMALISATION: MobusShape encodes THIS equation ("Book-revisions Eq. 1" in
+Systems/Mobus/Tuple.lean), which is why the pointer sits here and not on entry 006."""@en ;
+    atlas:displayContext "S is now given as an oct-tuple with new member E containing the set, O, (standing for \"objects\" in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system." ;
+    atlas:displayForm "Sᵢ,ₗ=⟨C,N,E,G,B,T,H,Δt⟩ᵢ,ₗ" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)" ;
+    atlas:encodedOn "2026-08-18"^^xsd:date ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:formalisedAs "Systems/Category/ShapeMobus.lean#MobusShape" ;
+    atlas:invokesPrimitive prim:environment,
+        prim:hierarchy,
+        prim:level-of-organization,
+        prim:milieu,
+        prim:object,
+        prim:set,
+        prim:time ;
+    atlas:sourceLocation "\"Extending and Modifying the Framework\", eq. (1), revising Eq. 4.1 of the 2022 book" ;
+    atlas:statedIn bearer:mobus-book-revisions ;
+    atlas:verbatim """Revised Eq. 4.1 is as follows.
+Sᵢ,ₗ=⟨C,N,E,G,B,T,H,Δt⟩ᵢ,ₗ (1)
+In what follows, the subscript indexes, i, for index number in the set, and l, for level in the complexity/organization hierarchy will be dropped for simplicity.
+S is now given as an oct-tuple with new member E containing the set, O, (standing for "objects" in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system.""" .
 
 atlas:evidenceCode a owl:AnnotationProperty ;
     rdfs:label "evidence code"@en ;
@@ -502,9 +575,6 @@ object with one ruling compares nothing and a test object with none is invented.
 author:george-klir a atlas:Author ;
     rdfs:label "George J. Klir"@en .
 
-author:george-mobus a atlas:Author ;
-    rdfs:label "George E. Mobus"@en .
-
 author:mario-bunge a atlas:Author ;
     rdfs:label "Mario Bunge"@en .
 
@@ -538,6 +608,12 @@ bearer:mobus-2022-tamd a cco:ont00000253 ;
     dcterms:date "2022"^^xsd:gYear ;
     dcterms:identifier "ISBN 978-3-030-93481-1",
         "doi:10.1007/978-3-030-93482-8" ;
+    atlas:authoredBy author:george-mobus .
+
+bearer:mobus-book-revisions a cco:ont00000253 ;
+    rdfs:label "Mobus, G. E. — Revisions to Systems Science: TAMD (working manuscript, March 2025, shared with Halcyonic)"@en ;
+    dcterms:creator "George E. Mobus" ;
+    dcterms:date "2025"^^xsd:gYear ;
     atlas:authoredBy author:george-mobus .
 
 case:bertalanffy-organism a atlas:Example ;
@@ -711,30 +787,55 @@ prim:action a skos:Concept ;
     skos:prefLabel "action"@en ;
     skos:scopeNote "Bunge's acts-on relation, written x |> y."@en .
 
+prim:bipartite-flow-graph a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "bipartite flow graph"@en ;
+    skos:scopeNote "Mobus's G: 'G is a bipartite flow graph defined as:' (§4.3.3.2.2). The prose gives only the name — the definition proper is Eq. 4.5, which follows it."@en .
+
 prim:bond a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "bond"@en ;
     skos:scopeNote "A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing."@en .
+
+prim:boundary a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "boundary"@en ;
+    skos:scopeNote "Mobus's B: 'The boundary, B in Eq. 4.1, at level l, then is a tuple' (§4.3.3.3). Thin prose, unambiguous word; the tuple's content is Eq. 4.6."@en .
+
+prim:component a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "component"@en ;
+    skos:scopeNote "Mobus's C: 'C is a set of components and their \"type\" along with membership functions in the event the set is fuzzy, that is, the components may have partial inclusion' (§4.3.3.1)."@en .
 
 prim:composition a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "composition"@en ;
     skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en .
 
-prim:hierarchy a skos:Concept ;
+prim:flow-network a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "hierarchy"@en ;
-    skos:scopeNote "Mobus's 'system-subsystem hierarchy'. Kept distinct from level-of-organization: the hierarchy is the structure, a level is a position in it."@en .
-
-prim:level-of-organization a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "level of organization"@en ;
-    skos:scopeNote "Mobus's index l: 'the index l is the level of organization in the system-subsystem hierarchy.'"@en .
+    skos:prefLabel "flow network"@en ;
+    skos:scopeNote "Mobus's N: 'N is generally a flow network through which real substances are moving from one node (component) to the next with causal influence' (§4.3.3.2.1)."@en .
 
 prim:measure a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "measure"@en ;
     skos:scopeNote "Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme."@en .
+
+prim:memory a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "memory"@en ;
+    skos:scopeNote "Mobus's H: 'H in very complex systems could be a super complex object that records the history of the system, or its record of state transitions, especially as it develops or evolves' (§4.3.3.5)."@en .
+
+prim:milieu a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "milieu"@en ;
+    skos:scopeNote "Mobus's M, 'the non-point source/sink variables constituting the interacting milieu around the system' (revisions manuscript, eq. 1)."@en .
+
+prim:object a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "object"@en ;
+    skos:scopeNote "Mobus's O, 'standing for \"objects\" in the environment that are sources and sinks in a unified set' (revisions manuscript, eq. 1)."@en .
 
 prim:part a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -754,7 +855,7 @@ prim:subsystem a skos:Concept ;
 prim:system-of-interest a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "system of interest"@en ;
-    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S_0,0 is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en .
+    skos:scopeNote "Mobus's SOI: 'the initial system of interest, S₀,₀ is the designated SOI'. The designated system at which analysis begins, at indexes 0,0."@en .
 
 prim:systemhood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -765,6 +866,16 @@ prim:thinghood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thinghood"@en ;
     skos:scopeNote "Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en .
+
+prim:time-interval a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "time interval"@en ;
+    skos:scopeNote "Mobus's Δt: 'Finally, the last element in S is Δt, a time interval relevant to the level of the system of interest' (§4.3.3.6). The author's own WORD for the element; distinct from the census row prim:time, which records the notational Δt/dt invocations shared across authors."@en .
+
+prim:transformation-rule a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "transformation rule"@en ;
+    skos:scopeNote "Mobus's T: 'T is the set of transformation rules for the subsystems in S' (§4.3.3.4). Hand-recovered after the model's wider span failed to locate — the passage is set in display-math wrappers the digitisation mangles."@en .
 
 stance:bertalanffy-1968-ontic a atlas:StanceAssertion ;
     rdfs:comment """His own word — the chapter title names the position — which is why the
@@ -863,6 +974,9 @@ in the corpus rules on it, it does not belong here."""@en ;
 on it can be identified as ruling on the SAME thing. Klir's "a collection of books ordered by
 authors' names" and Bunge's "a collection of events, even if ordered" are two cases of one test
 object; no string comparison will ever discover that."""@en .
+
+author:george-mobus a atlas:Author ;
+    rdfs:label "George E. Mobus"@en .
 
 author:ludwig-von-bertalanffy a atlas:Author ;
     rdfs:label "Ludwig von Bertalanffy"@en .
@@ -982,15 +1096,15 @@ prim:element a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "element"@en .
 
-prim:environment a skos:Concept ;
+prim:hierarchy a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "environment"@en ;
-    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components."@en .
+    skos:prefLabel "hierarchy"@en ;
+    skos:scopeNote "Mobus's 'system-subsystem hierarchy'. Kept distinct from level-of-organization: the hierarchy is the structure, a level is a position in it."@en .
 
-prim:time a skos:Concept ;
+prim:level-of-organization a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "time"@en ;
-    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word. Mobus's Δt (Eq. 4.1) is likewise notational at the definition; the word arrives only in the tuple's elaboration."@en .
+    skos:prefLabel "level of organization"@en ;
+    skos:scopeNote "Mobus's index l: 'the index l is the level of organization in the system-subsystem hierarchy.'"@en .
 
 atlas:weakly-encompasses a skos:Concept ;
     skos:inScheme atlas:RelationScheme ;
@@ -1064,21 +1178,31 @@ checked against each other before either is cited."""@en ;
 
 where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.""" .
 
+prim:environment a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "environment"@en ;
+    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components. Mobus's revised tuple (entry 007) also carries an E — absent from his published 2022 seven-tuple, which is why the row lights up only on the revisions entry: the difference records the revision."@en .
+
 prim:relation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "relation"@en .
-
-prim:set a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "set"@en .
 
 prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
 
+prim:time a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "time"@en ;
+    skos:scopeNote "Bunge's triple is indexed at a time t. Klir's is not. A candidate point of divergence. In Bertalanffy's eq. (3.1) the invocation is notational — the t of dQᵢ/dt — rather than the word. Mobus's Δt (Eq. 4.1) is likewise notational at the definition; the word arrives only in the tuple's elaboration."@en .
+
 atlas:EvidenceCode a owl:Class ;
     rdfs:label "Evidence Code"@en ;
     skos:definition "How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones."@en .
+
+prim:set a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "set"@en .
 
 skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;

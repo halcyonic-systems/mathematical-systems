@@ -1,0 +1,107 @@
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
+@prefix cco:     <https://www.commoncoreontologies.org/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/mathematical-systems/atlas/entries/mobus-book-revisions>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
+    rdfs:label "Atlas entry — Mobus, revisions manuscript (March 2025)"@en ;
+    rdfs:comment """Entry 007. The second half of the Mobus revision arc: the published
+seven-tuple (entry 006) revised to an oct-tuple with the environment E first-class. Second
+entry through the P5 pipeline, promoted by guided pass 2026-08-18. The manuscript also
+REPRODUCES the original Eq. 4.1 before revising it — the scan graded that reproduction PROP
+(a restatement of entry 006), which is why it is not a third entry."""@en .
+
+
+##############################################################################
+# Bearer — the working manuscript, a distinct document from the 2022 book
+##############################################################################
+
+bearer:mobus-book-revisions
+    a cco:ont00000253 ;   # Information Bearing Entity
+    rdfs:label "Mobus, G. E. — Revisions to Systems Science: TAMD (working manuscript, March 2025, shared with Halcyonic)"@en ;
+    dcterms:creator "George E. Mobus" ;
+    atlas:authoredBy author:george-mobus ;
+    dcterms:date "2025"^^xsd:gYear .
+
+
+##############################################################################
+# Entry 007 — the revised oct-tuple
+##############################################################################
+
+entry:mobus-revisions-oct-tuple
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Mobus (2025), revisions manuscript, eq. (1)"@en ;
+
+    atlas:statedIn bearer:mobus-book-revisions ;
+    atlas:sourceLocation "\"Extending and Modifying the Framework\", eq. (1), revising Eq. 4.1 of the 2022 book" ;
+
+    # Subscripts and brackets as the manuscript sets them; the digitisation's
+    # CJK angle brackets and increment sign are export artifacts, folded by the
+    # locator (GLYPH_FOLD) and transcribed here as the glyphs the page shows.
+    atlas:verbatim """Revised Eq. 4.1 is as follows.
+Sᵢ,ₗ=⟨C,N,E,G,B,T,H,Δt⟩ᵢ,ₗ (1)
+In what follows, the subscript indexes, i, for index number in the set, and l, for level in the complexity/organization hierarchy will be dropped for simplicity.
+S is now given as an oct-tuple with new member E containing the set, O, (standing for "objects" in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system.""" ;
+
+    # Presentation spans — exact substrings of the verbatim, enforced by the build.
+    atlas:displayForm "Sᵢ,ₗ=⟨C,N,E,G,B,T,H,Δt⟩ᵢ,ₗ" ;
+    atlas:displayContext "S is now given as an oct-tuple with new member E containing the set, O, (standing for \"objects\" in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system." ;
+
+    atlas:invokesPrimitive prim:set ,
+                           prim:environment ,
+                           prim:hierarchy ,
+                           prim:level-of-organization ,
+                           prim:object ,
+                           prim:milieu ,
+                           prim:time ;
+
+    atlas:formalisedAs "Systems/Category/ShapeMobus.lean#MobusShape" ;
+
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)" ;
+    atlas:encodedOn "2026-08-18"^^xsd:date ;
+
+    rdfs:comment """VERIFIED AS MDHC: model-drafted by the P5 pipeline and checked by Shingai
+Thornton 2026-08-18 in the same guided session as entry 006 — verbatim, spans, primitives,
+caveat and date each ruled on. The manuscript date (March 2025) was supplied by Shingai, who
+received the document from its author.
+
+DELIBERATELY NOT ASSERTED: cco:ont00001808 (is about), per the neutrality invariant.
+
+THE REVISION IS THE FINDING. Entry 006's tuple has seven coordinates; this one has eight,
+and the new coordinate is E — the environment, now carrying the source/sink objects O and
+the milieu M. The environment becoming first-class is the same move Bertalanffy made between
+1968 and 1972 (environment_is_new in the Lean development), which makes this the catalogue's
+second revision arc with the same content. prim:environment lights up on this entry and not
+on entry 006 by design: the census row difference IS the record of the revision.
+
+PRIMITIVES (ruled 2026-08-18): the conservative standard, the words of the passage itself —
+set, environment, hierarchy, level of organization, object, milieu — plus time notationally
+via Δt (the dQᵢ/dt precedent, as on entry 006). "System" is deliberately NOT recorded as a
+primitive: it is the definiendum, the term the definition fixes, not an undefined input it
+rests on — and a row every entry would trivially share carries no census information.
+
+NO AUTHOR CAVEAT (ruled 2026-08-18): the drafted candidate ("the subscript indexes ... will
+be dropped for simplicity") is notational bookkeeping, not a self-qualification. The
+manuscript's framing sentence — that the 2022 treatment "ignored a critical aspect of real
+systems, namely that they age and change" — qualifies the OLD definition, and belongs to
+this arc note rather than to a caveat on the new one.
+
+HELD, NOT ENTERED: the manuscript's lifecycle equations (St+1 = St⟨ΔS⟩ with
+ΔS = ⟨ΔC,ΔN,ΔE,ΔG,ΔB,ΔT,ΔH⟩) were scanned as a candidate. They introduce typed components
+and fix a transition relation, but they define system CHANGE over an already-given S rather
+than the term "system" — held pending a spec §5 ruling. They are the natural formal locus of
+the Mobus life-cycle work and the Bunge–Mobus change-convergence thread, and likely enter
+through the mapping layer rather than as an entry.
+
+FORMALISATION: MobusShape encodes THIS equation ("Book-revisions Eq. 1" in
+Systems/Mobus/Tuple.lean), which is why the pointer sits here and not on entry 006."""@en .
