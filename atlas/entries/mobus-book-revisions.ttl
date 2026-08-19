@@ -30,7 +30,8 @@ bearer:mobus-book-revisions
     rdfs:label "Mobus, G. E. — Revisions to Systems Science: TAMD (working manuscript, March 2025, shared with Halcyonic)"@en ;
     dcterms:creator "George E. Mobus" ;
     atlas:authoredBy author:george-mobus ;
-    dcterms:date "2025"^^xsd:gYear .
+    dcterms:date "2025"^^xsd:gYear ;
+    rdfs:comment "Quoted with the author's permission, granted 2026-08-19 (video call)."@en .
 
 
 ##############################################################################
