@@ -1,0 +1,56 @@
+{
+  "entry_slug": "mesarovic-takahara-1975-general-system",
+  "label": "Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)",
+  "source_location": "Chapter II, §1(a), Definition 1.1, book p. 11 = scan page 22; eqs. (2.1)–(2.2)",
+  "verbatim": "Definition 1.1. A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)\nwhere × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form\nS ⊂ V₁ × ⋯ × Vₙ (2.2)",
+  "display_form": "A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)",
+  "display_context": "where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object.",
+  "author_caveat": null,
+  "primitives": [
+    {
+      "slug": "relation",
+      "pref_label": "relation",
+      "scope_note": "The author defines a (general) system as a relation, in the set-theoretic sense, on the given family of sets; 'relation' is the undefined term carrying the definition.",
+      "role": "relation",
+      "new": false
+    },
+    {
+      "slug": "set",
+      "pref_label": "set",
+      "scope_note": "The nonempty (abstract) sets on which the relation is defined; taken as given, unanalysed.",
+      "role": "sort",
+      "new": false
+    },
+    {
+      "slug": "cartesian-product",
+      "pref_label": "Cartesian product",
+      "scope_note": "The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset.",
+      "role": "operation",
+      "new": true
+    },
+    {
+      "slug": "index-set",
+      "pref_label": "index set",
+      "scope_note": "The set I indexing the family of sets Vᵢ over which the product is taken.",
+      "role": "sort",
+      "new": true
+    },
+    {
+      "slug": "component-set",
+      "pref_label": "component set",
+      "scope_note": "A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product.",
+      "role": "sort",
+      "new": true
+    },
+    {
+      "slug": "system-object",
+      "pref_label": "system object",
+      "scope_note": "The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition.",
+      "role": "sort",
+      "new": true
+    }
+  ],
+  "admits": [],
+  "refuses": [],
+  "comment": "SCOPE OF THE ENTRY. The entry carries Definition 1.1 alone — the set-theoretic definition of a (general) system as a relation on nonempty abstract sets — together with the author's immediate gloss naming × as Cartesian product, I as the index set, and a component set Vᵢ as a system object, plus the finite-index form (2.2). Definitions 1.2 (input object, output object, input-output system), 1.3 (function-type system), and the parallel presentation at book p. 6 (eq. 1.1) are not encoded here.\n\nTRANSCRIPTION. The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image, itself unverified by a human), including the correction that the book prints ⊂ rather than ⊆. Per atlas procedure the set-builder braces of × {Vᵢ : i ∈ I} are dropped from the verbatim, and subscripts are carried as the source file writes them. Equation numbers (2.1) and (2.2) are retained as printed. This is a model-drafted, unchecked (MDU) transcription and must be verified against the page image before any evidence code rises.\n\nDELIBERATELY NOT ASSERTED. No cco is-about relation is asserted between this entry and any subject matter, thing, or phenomenon. The catalogue records that this author, in this locus, uses these words in this formal statement; it does not assert what the definition is about, nor that this 'system' is the same notion as any other author's.\n\nWHAT DOES NOT FIT. The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; whether these should be censused together is left open."
+}
