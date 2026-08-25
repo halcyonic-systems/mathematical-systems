@@ -1098,33 +1098,55 @@ body {
   }
 }
 
-/* The floor panel: the shared shape, stated once above the shelf. Editorial
-   set smaller than the material it introduces, per the foyer's rule. */
-.floor-panel {
-  margin: 0 auto 2.5rem;
+/* The floor lede: two lines, editorial set smaller than the material. */
+.floor-lede {
+  margin: 0 auto 2rem;
   max-width: 44rem;
   text-align: center;
 }
-.floor-arrow {
-  width: 13rem;
-  margin: 0 auto 0.75rem;
+.floor-lede-line {
+  font-size: var(--step-1);
+  color: var(--text-secondary);
+  margin: 0 0 0.5rem;
+}
+.floor-lede-legend {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* The rail: a hairline behind the per-author dot rows; the world-colored
+   arrows above it are the loud layer. Column = glyph header + card. */
+.shelf-rail {
+  position: relative;
+}
+.shelf-rail-line {
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  top: 44px;
+  height: 1px;
+  background: var(--border);
+}
+.shelf-col {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.shelf-glyph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.shelf-glyph svg {
+  width: 7.5rem;
+  height: 3.25rem;
   display: block;
 }
-.floor-arrow-label {
-  font-size: var(--step--3);
-  letter-spacing: 0.08em;
-  fill: var(--text-secondary);
-  font-family: var(--font-ui);
-}
-.floor-text {
-  font-size: var(--step-0);
-  color: var(--text-secondary);
-  line-height: 1.55;
-  text-align: left;
-}
-.floor-cite {
-  margin-top: 0.5rem;
-  font-size: var(--step--1);
+.shelf-glyph-count {
+  color: var(--text-muted);
 }
 
 /* Per-definition floor line and additions. The roles line is the entry
@@ -1145,4 +1167,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
+}
+
+/* The rail metaphor is a single row; when the grid wraps, the line lies. */
+@media (max-width: 76rem) {
+  .shelf-rail-line { display: none; }
 }

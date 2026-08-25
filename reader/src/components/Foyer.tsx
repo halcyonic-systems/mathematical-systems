@@ -49,36 +49,16 @@ function armSpan(entries: Entry[]) {
   return span ? `${n} · ${span}` : n;
 }
 
-/** The floor: what every entry shares, stated at the only layer where the
-    sharing is true. No word appears in every definition (the compare view's
-    banner), so the panel claims a SHAPE, cites the machine-checked result,
-    and leaves each entry to name the floor in its own vocabulary on its
-    card. Everything here beyond the two sentences is drawn, not asserted. */
-export function FloorPanel({ repo }: { repo: string }) {
+/** The floor lede: two sentences and the arrow convention, said once.
+    The receipt ("machine-checked") lives in the trust line with the other
+    receipts, not here — the lede makes no claim it has to defend. */
+export function FloorLede() {
   return (
-    <section className="floor-panel">
-      <svg viewBox="0 0 220 40" className="floor-arrow" aria-label="one position depending on another">
-        <circle cx="30" cy="20" r="5" fill="var(--text-primary)" />
-        <circle cx="190" cy="20" r="5" fill="var(--text-primary)" />
-        <line x1="42" y1="20" x2="176" y2="20" stroke="var(--accent)" strokeWidth="1.75" />
-        <polygon points="176,15.5 185,20 176,24.5" fill="var(--accent)" />
-        <text x="110" y="12" textAnchor="middle" className="floor-arrow-label">depends on</text>
-      </svg>
-      <p className="floor-text">
-        Every definition below, encoded on its own terms, admits this shape: one
-        position depending on another. That is a machine-checked result, not a
-        reading — and the sharing is a shape, not a vocabulary: no single word
-        appears in every definition, so each card names the floor in its
-        author&rsquo;s own terms and lists what the definition adds beyond it.
-        The arrow is an asserted dependency, not a symmetric connection;
-        composition is not part of the floor, because no tradition jointly
-        asserts it.
-      </p>
-      <p className="floor-cite">
-        <a className="disclosure" href={`${repo}/blob/master/docs/reference/common-core-theorem.md`}
-           target="_blank" rel="noreferrer">
-          The common-core theorem, with the Lean receipts →
-        </a>
+    <section className="floor-lede">
+      <p className="floor-lede-line">One floor. Every definition builds on it differently.</p>
+      <p className="floor-lede-legend">
+        arrows read &ldquo;is defined over&rdquo;: relation &rarr; thing means the
+        relation cannot be stated without the things
       </p>
     </section>
   );
@@ -121,8 +101,13 @@ export function Shelf({
 }) {
   const byIri = new Map(entries.map((e) => [e.iri, e]));
   const prims = new Map(primitives.map((p) => [p.iri, p]));
+  const addCount = (a: Author) =>
+    new Set(a.entries.flatMap((iri) => floor[iri]?.adds ?? [])).size;
   return (
-    <div className="shelf">
+    <div className="shelf shelf-rail">
+      {/* The rail: continuity whispered — a hairline behind the dot rows.
+          The per-author arrows above it are the loud layer. */}
+      <span className="shelf-rail-line" aria-hidden />
       {byCommitment(authors, floor).map((a) => {
         // The author's entries, in the catalogue's chronological order. ALL of
         // them: an author card that elected a representative definition would
@@ -133,8 +118,22 @@ export function Shelf({
         const defs = a.entries.map((iri) => byIri.get(iri)).filter((e): e is Entry => Boolean(e));
         if (!defs.length) return null;
         const world = worldOf(defs[0].label);
+        const n = addCount(a);
         return (
-          <article key={a.iri} className="shelf-card" data-world={world}>
+          <article key={a.iri} className="shelf-col" data-world={world}>
+            <span className="shelf-glyph">
+              <svg viewBox="0 0 120 52" aria-label="the floor shape, plus this author's additions">
+                <circle cx="24" cy="26" r="7" fill="var(--bg-primary)" stroke="var(--world)" strokeWidth="3" />
+                <circle cx="96" cy="26" r="7" fill="var(--bg-primary)" stroke="var(--world)" strokeWidth="3" />
+                <line x1="34" y1="26" x2="82" y2="26" stroke="var(--world)" strokeWidth="2.5" />
+                <polygon points="82,20 92,26 82,32" fill="var(--world)" />
+                {Array.from({ length: Math.min(n, 9) }, (_, i) => (
+                  <circle key={i} cx={60 + (i - (Math.min(n, 9) - 1) / 2) * 12} cy="44" r="3" fill="var(--world)" />
+                ))}
+              </svg>
+              <span className="shelf-glyph-count eyebrow">+{n} beyond the floor</span>
+            </span>
+            <div className="shelf-card" data-world={world}>
             <span className="shelf-strip">
               <span className="shelf-head">{a.label}</span>
               <span className="shelf-tail">{armSpan(defs)}</span>
@@ -171,10 +170,10 @@ export function Shelf({
                   {f?.position && (
                     <span className="shelf-floor">
                       <span className="shelf-floor-roles">
-                        floor, in its own words: {primName(f.position, prims)} →{" "}
                         {f.dependency
                           ? primName(f.dependency, prims)
-                          : "dependency at the shape level (Lean)"}
+                          : "shape-level dependency (Lean)"}{" "}
+                        → {primName(f.position, prims)}
                       </span>
                       {f.adds.length > 0 && (
                         <span className="shelf-adds">
@@ -201,6 +200,7 @@ export function Shelf({
                 </a>
               );
             })}
+            </div>
           </article>
         );
       })}
