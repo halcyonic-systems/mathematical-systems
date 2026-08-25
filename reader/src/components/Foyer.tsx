@@ -9,6 +9,13 @@
  * favourite. Each definition — not the card — is the door into its entry.
  * Everything editorial is set smaller than what it introduces.
  *
+ * The card is quote-forward: the glyph's one computed number carries the
+ * accretion story, and the apparatus (floor roles, additions, context) lives
+ * on the entry page. Rigor is a pipeline property — the gates and the
+ * computed ordering are unchanged by showing less ink — but exceptions are
+ * not detail: the badge rows render here whenever a quote falls short of the
+ * good state.
+ *
  * These take data and callbacks; wiring to the store stays in the view, as with
  * EntryRail. Definitions render as real anchors so an entry can be opened in a
  * new tab or copied as a citation, not merely clicked.
@@ -17,8 +24,7 @@ import type { MouseEvent, ReactNode } from "react";
 import { EvidenceBadge, TranscriptBadge } from "./Badge";
 import { cite, worldOf } from "./EntryRail";
 import { excerptOf } from "../excerpts";
-import { Chip } from "./Chip";
-import type { Author, Conflict, Entry, Floor, Primitive, Transcription } from "../types";
+import type { Author, Conflict, Entry, Floor, Transcription } from "../types";
 
 /** A one-line formula is set large and centred; a definitional sentence is a
     different kind of object and takes the reading register instead. Between
@@ -49,24 +55,17 @@ function armSpan(entries: Entry[]) {
   return span ? `${n} · ${span}` : n;
 }
 
-/** The floor lede: two sentences and the arrow convention, said once.
-    The receipt ("machine-checked") lives in the trust line with the other
-    receipts, not here — the lede makes no claim it has to defend. */
+/** The floor lede: one sentence. The receipt ("machine-checked") lives in the
+    trust line with the other receipts; the arrow convention lives on the entry
+    page's floor figure, where the roles actually render — the lede makes no
+    claim it has to defend and explains no notation it no longer shows. */
 export function FloorLede() {
   return (
     <section className="floor-lede">
       <p className="floor-lede-line">One floor. Every definition builds on it differently.</p>
-      <p className="floor-lede-legend">
-        arrows read &ldquo;is defined over&rdquo;: relation &rarr; thing means the
-        relation cannot be stated without the things
-      </p>
     </section>
   );
 }
-
-/** IRI tail as a fallback name; the primitive's own label wins when present. */
-const primName = (iri: string, prims: Map<string, Primitive>) =>
-  prims.get(iri)?.label ?? iri.split("/").pop() ?? iri;
 
 /** Commitment order is COMPUTED: authors ascend by how many primitives their
     definitions add beyond the floor (union across the author's entries), ties
@@ -86,7 +85,6 @@ export function Shelf({
   authors,
   entries,
   floor,
-  primitives,
   transcription,
   hrefOf,
   onOpen,
@@ -94,13 +92,11 @@ export function Shelf({
   authors: Author[];
   entries: Entry[];
   floor: Record<string, Floor>;
-  primitives: Primitive[];
   transcription: Record<string, Transcription>;
   hrefOf: (e: Entry) => string;
   onOpen: (iri: string) => void;
 }) {
   const byIri = new Map(entries.map((e) => [e.iri, e]));
-  const prims = new Map(primitives.map((p) => [p.iri, p]));
   const addCount = (a: Author) =>
     new Set(a.entries.flatMap((iri) => floor[iri]?.adds ?? [])).size;
   return (
@@ -140,7 +136,7 @@ export function Shelf({
             </span>
             {defs.map((e) => {
               const t = transcription[e.iri];
-              const { display, context } = excerptOf(e);
+              const { display } = excerptOf(e);
               const year = yearOf(e.label);
               // Badges appear on the front page only as EXCEPTIONS. The good
               // state — passage located by the build, encoding human-verified —
@@ -157,7 +153,11 @@ export function Shelf({
                 ev.preventDefault();
                 onOpen(e.iri);
               };
-              const f = floor[e.iri];
+              // The card carries the quote and nothing that argues: floor
+              // roles and additions render on the entry page's floor figure,
+              // one click down. What may NOT move is the exception badges —
+              // unverified is never silently equal to verified — so they stay
+              // wherever the quote renders.
               return (
                 <a key={e.iri} className="shelf-def" href={hrefOf(e)} onClick={open}>
                   {year && defs.length > 1 && (
@@ -166,26 +166,6 @@ export function Shelf({
                   <blockquote className={displayClass(display)}>
                     {display ?? "No verbatim recorded."}
                   </blockquote>
-                  {context && <span className="shelf-context">{context}</span>}
-                  {f?.position && (
-                    <span className="shelf-floor">
-                      <span className="shelf-floor-roles">
-                        {f.dependency
-                          ? primName(f.dependency, prims)
-                          : "shape-level dependency (Lean)"}{" "}
-                        → {primName(f.position, prims)}
-                      </span>
-                      {f.adds.length > 0 && (
-                        <span className="shelf-adds">
-                          {f.adds.map((iri) => (
-                            <Chip key={iri} tone="quiet" title="Beyond the floor: a primitive this definition invokes that plays neither floor role. Computed from the entry's own primitives; the roles are declared and gated in atlas/mappings/floor.ttl.">
-                              +{primName(iri, prims)}
-                            </Chip>
-                          ))}
-                        </span>
-                      )}
-                    </span>
-                  )}
                   <span className="shelf-cue disclosure" aria-hidden>
                     Read the full passage →
                   </span>

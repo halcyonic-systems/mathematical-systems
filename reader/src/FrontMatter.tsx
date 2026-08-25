@@ -43,7 +43,6 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
         authors={atlas.authors}
         entries={entries}
         floor={atlas.floor}
-        primitives={atlas.primitives}
         transcription={atlas.transcription}
         hrefOf={(e) => href({ view: "read", entry: e.id })}
         onOpen={read}

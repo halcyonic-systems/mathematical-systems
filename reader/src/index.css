@@ -850,16 +850,6 @@ body {
   text-align: left;
   padding: 1.25rem 1rem 1rem;
 }
-.shelf-context {
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--display-0);
-  line-height: 1.5;
-  color: var(--text-secondary);
-  margin: 0 1rem 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--hairline);
-}
 .shelf-cue {
   padding: 0 1rem 0.625rem;
   font-size: var(--step--2);
@@ -1098,7 +1088,7 @@ body {
   }
 }
 
-/* The floor lede: two lines, editorial set smaller than the material. */
+/* The floor lede: one line, editorial set smaller than the material. */
 .floor-lede {
   margin: 0 auto 2rem;
   max-width: 44rem;
@@ -1107,12 +1097,6 @@ body {
 .floor-lede-line {
   font-size: var(--step-1);
   color: var(--text-secondary);
-  margin: 0 0 0.5rem;
-}
-.floor-lede-legend {
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  color: var(--text-muted);
   margin: 0;
 }
 
@@ -1149,24 +1133,44 @@ body {
   color: var(--text-muted);
 }
 
-/* Per-definition floor line and additions. The roles line is the entry
-   naming the floor in its own words; the chips are computed additions. */
-.shelf-floor {
-  display: block;
-  margin-top: 0.5rem;
+/* The entry page's floor figure: the shelf glyph annotated with this entry's
+   own role-players. The SVG labels take the UI face at label scale; the verb
+   sits above the arrow it glosses. */
+.floor-figure {
+  margin: 0;
 }
-.shelf-floor-roles {
+.floor-figure svg {
   display: block;
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+  overflow: visible; /* long role labels may pass the viewBox edge */
+}
+.floor-figure-label {
   font-family: var(--font-ui);
-  font-size: var(--step--2);
-  letter-spacing: 0.04em;
-  color: var(--text-secondary);
-  margin-bottom: 0.35rem;
+  font-size: var(--step--1);
+  letter-spacing: 0.03em;
+  fill: var(--text-primary);
 }
-.shelf-adds {
+.floor-figure-verb {
+  font-family: var(--font-ui);
+  font-size: var(--step--3);
+  letter-spacing: 0.06em;
+  fill: var(--text-muted);
+}
+.floor-figure-legend {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-muted);
+  margin: 0.5rem 0 0;
+  max-width: 34rem;
+}
+.floor-figure-adds {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
 }
 
 /* The rail metaphor is a single row; when the grid wraps, the line lies. */

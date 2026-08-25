@@ -23,6 +23,7 @@ import {
   Field,
   FieldGrid,
   FieldHeadings,
+  FloorFigure,
   InPage,
   Matrix,
   Note,
@@ -144,6 +145,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
   const prims = byIri(atlas.primitives);
   const t = atlas.transcription[entry.iri];
   const shape = atlas.shapes[entry.iri];
+  const f = atlas.floor[entry.iri];
   const untyped = atlas.primitives.every((p) => !p.role);
 
   return (
@@ -220,6 +222,23 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
             inline="Untyped — recorded lexically, with no signature role."
             what="The primitives on this entry carry no signature role."
             closes="Typing them via skos:broader onto a model-theoretic vocabulary would turn the census into a comparison of signatures rather than of words."
+          />
+        )}
+      </Section>
+
+      <Section
+        title="On the floor"
+        warrant="decided"
+        note="roles declared in atlas/mappings/floor.ttl · additions computed from the entry's primitives"
+      >
+        {f?.position ? (
+          <FloorFigure floor={f} primitives={atlas.primitives} primitiveDoor={doors.primitive} />
+        ) : (
+          <Absence
+            id={`${entry.id}:no-floor`}
+            inline="No floor roles declared for this entry."
+            what="This entry's primitives are not yet assigned to the floor's two roles."
+            closes="Declaring them in atlas/mappings/floor.ttl (and passing its gate) would place this definition on the shelf's shared arrow."
           />
         )}
       </Section>
