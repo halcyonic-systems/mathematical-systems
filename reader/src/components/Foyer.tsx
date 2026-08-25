@@ -17,7 +17,8 @@ import type { MouseEvent, ReactNode } from "react";
 import { EvidenceBadge, TranscriptBadge } from "./Badge";
 import { cite, worldOf } from "./EntryRail";
 import { excerptOf } from "../excerpts";
-import type { Author, Conflict, Entry, Transcription } from "../types";
+import { Chip } from "./Chip";
+import type { Author, Conflict, Entry, Floor, Primitive, Transcription } from "../types";
 
 /** A one-line formula is set large and centred; a definitional sentence is a
     different kind of object and takes the reading register instead. Between
@@ -48,23 +49,81 @@ function armSpan(entries: Entry[]) {
   return span ? `${n} · ${span}` : n;
 }
 
+/** The floor: what every entry shares, stated at the only layer where the
+    sharing is true. No word appears in every definition (the compare view's
+    banner), so the panel claims a SHAPE, cites the machine-checked result,
+    and leaves each entry to name the floor in its own vocabulary on its
+    card. Everything here beyond the two sentences is drawn, not asserted. */
+export function FloorPanel({ repo }: { repo: string }) {
+  return (
+    <section className="floor-panel">
+      <svg viewBox="0 0 220 40" className="floor-arrow" aria-label="one position depending on another">
+        <circle cx="30" cy="20" r="5" fill="var(--text-primary)" />
+        <circle cx="190" cy="20" r="5" fill="var(--text-primary)" />
+        <line x1="42" y1="20" x2="176" y2="20" stroke="var(--accent)" strokeWidth="1.75" />
+        <polygon points="176,15.5 185,20 176,24.5" fill="var(--accent)" />
+        <text x="110" y="12" textAnchor="middle" className="floor-arrow-label">depends on</text>
+      </svg>
+      <p className="floor-text">
+        Every definition below, encoded on its own terms, admits this shape: one
+        position depending on another. That is a machine-checked result, not a
+        reading — and the sharing is a shape, not a vocabulary: no single word
+        appears in every definition, so each card names the floor in its
+        author&rsquo;s own terms and lists what the definition adds beyond it.
+        The arrow is an asserted dependency, not a symmetric connection;
+        composition is not part of the floor, because no tradition jointly
+        asserts it.
+      </p>
+      <p className="floor-cite">
+        <a className="disclosure" href={`${repo}/blob/master/docs/reference/common-core-theorem.md`}
+           target="_blank" rel="noreferrer">
+          The common-core theorem, with the Lean receipts →
+        </a>
+      </p>
+    </section>
+  );
+}
+
+/** IRI tail as a fallback name; the primitive's own label wins when present. */
+const primName = (iri: string, prims: Map<string, Primitive>) =>
+  prims.get(iri)?.label ?? iri.split("/").pop() ?? iri;
+
+/** Commitment order is COMPUTED: authors ascend by how many primitives their
+    definitions add beyond the floor (union across the author's entries), ties
+    broken by the existing accession order. A hand-written ordering would be an
+    editorial ranking of authors; a count of their own declared primitives is
+    not. */
+function byCommitment(authors: Author[], floor: Record<string, Floor>) {
+  const load = (a: Author) =>
+    new Set(a.entries.flatMap((iri) => floor[iri]?.adds ?? [])).size;
+  return [...authors]
+    .map((a, i) => ({ a, i, n: load(a) }))
+    .sort((x, y) => x.n - y.n || x.i - y.i)
+    .map((x) => x.a);
+}
+
 export function Shelf({
   authors,
   entries,
+  floor,
+  primitives,
   transcription,
   hrefOf,
   onOpen,
 }: {
   authors: Author[];
   entries: Entry[];
+  floor: Record<string, Floor>;
+  primitives: Primitive[];
   transcription: Record<string, Transcription>;
   hrefOf: (e: Entry) => string;
   onOpen: (iri: string) => void;
 }) {
   const byIri = new Map(entries.map((e) => [e.iri, e]));
+  const prims = new Map(primitives.map((p) => [p.iri, p]));
   return (
     <div className="shelf">
-      {authors.map((a) => {
+      {byCommitment(authors, floor).map((a) => {
         // The author's entries, in the catalogue's chronological order. ALL of
         // them: an author card that elected a representative definition would
         // hide exactly the finding this catalogue exists to record — that one
@@ -99,6 +158,7 @@ export function Shelf({
                 ev.preventDefault();
                 onOpen(e.iri);
               };
+              const f = floor[e.iri];
               return (
                 <a key={e.iri} className="shelf-def" href={hrefOf(e)} onClick={open}>
                   {year && defs.length > 1 && (
@@ -108,6 +168,25 @@ export function Shelf({
                     {display ?? "No verbatim recorded."}
                   </blockquote>
                   {context && <span className="shelf-context">{context}</span>}
+                  {f?.position && (
+                    <span className="shelf-floor">
+                      <span className="shelf-floor-roles">
+                        floor, in its own words: {primName(f.position, prims)} →{" "}
+                        {f.dependency
+                          ? primName(f.dependency, prims)
+                          : "dependency at the shape level (Lean)"}
+                      </span>
+                      {f.adds.length > 0 && (
+                        <span className="shelf-adds">
+                          {f.adds.map((iri) => (
+                            <Chip key={iri} tone="quiet" title="Beyond the floor: a primitive this definition invokes that plays neither floor role. Computed from the entry's own primitives; the roles are declared and gated in atlas/mappings/floor.ttl.">
+                              +{primName(iri, prims)}
+                            </Chip>
+                          ))}
+                        </span>
+                      )}
+                    </span>
+                  )}
                   <span className="shelf-cue disclosure" aria-hidden>
                     Read the full passage →
                   </span>

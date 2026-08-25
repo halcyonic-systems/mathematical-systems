@@ -12,7 +12,7 @@
  * the shelf renders the entries, the disagreement renders the derived conflict,
  * and the trust line renders the transcription census.
  */
-import { ConflictLine, Shelf } from "./components";
+import { ConflictLine, FloorPanel, Shelf } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
@@ -37,9 +37,13 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
         Formal definitions of “system,” and the maps between them.
       </p>
 
+      <FloorPanel repo={atlas.source.repo} />
+
       <Shelf
         authors={atlas.authors}
         entries={entries}
+        floor={atlas.floor}
+        primitives={atlas.primitives}
         transcription={atlas.transcription}
         hrefOf={(e) => href({ view: "read", entry: e.id })}
         onOpen={read}

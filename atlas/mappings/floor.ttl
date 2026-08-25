@@ -1,0 +1,70 @@
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/mathematical-systems/atlas/mappings/floor>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
+    rdfs:label "Floor roles — which primitive plays position, which plays dependency"@en ;
+    rdfs:comment """The common-core theorem (systems-science-foundations,
+docs/reference/common-core-theorem.md; trusted statements in
+Systems/Challenge.lean) proves every encoded shape admits the walking
+arrow: one position depending on another. That sharing is a SHAPE fact,
+not a vocabulary fact — no lexical primitive appears in every entry
+(the compare view's own banner). This file records, per entry, which of
+ITS OWN primitives plays each floor role. Where a definition's quoted
+passage never names the dependency (the dependency lives only in the
+formalisation), the entry declares floorDependencyShapeLevel instead of
+a primitive, and the build gate requires its Lean bridge to be resolved.
+Everything a definition invokes beyond its floor roles and the ambient
+substrate is computed by the build as that definition's additions —
+never hand-written."""@en .
+
+# The ambient substrate: vocabulary for having a collection at all,
+# claimed by no tradition as content.
+atlas:floor atlas:substratePrimitive prim:set .
+
+# ---- Klir 2001, S = (T, R) --------------------------------------------------
+entry:klir-2001-eq-1-1
+    atlas:floorPosition   prim:thing ;
+    atlas:floorDependency prim:relation .
+
+# ---- Bunge 1979, sigma = <C, E, S> ------------------------------------------
+entry:bunge-1979-ces-triple
+    atlas:floorPosition   prim:thing ;
+    atlas:floorDependency prim:relation .
+
+# ---- Bunge 1979, Def 1.1 (concrete system) ----------------------------------
+# The bond is Bunge's dependency: "unlike a mere relation, a connection
+# makes some difference to its relata" (1979, ch. 1, sect. 1.2).
+entry:bunge-1979-def-1-1
+    atlas:floorPosition   prim:thing ;
+    atlas:floorDependency prim:bond .
+
+# ---- Bertalanffy 1972, "set of elements standing in interrelation" ----------
+entry:bertalanffy-1972-set-in-interrelation
+    atlas:floorPosition   prim:element ;
+    atlas:floorDependency prim:relation .
+
+# ---- Bertalanffy 1968, eq. (3.1) --------------------------------------------
+# The quoted passage names elements and equations; interrelation is carried
+# by the coupled ODEs, not by a vocabulary item. Dependency is warranted at
+# the shape level (ShapeBertalanffy, Lean bridge).
+entry:bertalanffy-1968-eq-3-1
+    atlas:floorPosition prim:element ;
+    atlas:floorDependencyShapeLevel true .
+
+# ---- Mobus 2022, seven-tuple ------------------------------------------------
+entry:mobus-2022-seven-tuple
+    atlas:floorPosition   prim:component ;
+    atlas:floorDependency prim:flow-network .
+
+# ---- Mobus 2025, oct-tuple revision -----------------------------------------
+# The revision passage quoted concerns E and the milieu; the network slot
+# is not named in it. Dependency warranted at the shape level (Lean bridge).
+entry:mobus-revisions-oct-tuple
+    atlas:floorPosition prim:object ;
+    atlas:floorDependencyShapeLevel true .

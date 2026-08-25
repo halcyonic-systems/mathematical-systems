@@ -134,6 +134,13 @@ export type Shape = {
 
 export type OpenDecision = { title: string; blocking: boolean; problem: string; fix: string };
 
+export type Floor = {
+  position: string | null;
+  dependency: string | null;
+  dependencyShapeLevel: boolean;
+  adds: string[];
+};
+
 export type Atlas = {
   cases: Record<string, Case>;
   testObjects: Record<string, TestObject>;
@@ -143,6 +150,7 @@ export type Atlas = {
   transcription: Record<string, Transcription>;
   source: { repo: string; coreLabel: string | null };
   entries: Entry[];
+  floor: Record<string, Floor>;
   bearers: Bearer[];
   authors: Author[];
   primitives: Primitive[];

@@ -147,6 +147,9 @@ def load_atlas(atlas_root):
     g.parse(atlas_root / "ontology" / "atlas-core.ttl", format="turtle")
     for f in sorted((atlas_root / "entries").glob("*.ttl")):
         g.parse(f, format="turtle")
+    floor = atlas_root / "mappings" / "floor.ttl"
+    if floor.exists():
+        g.parse(floor, format="turtle")
     return g
 
 
@@ -352,6 +355,85 @@ def check_author_coverage(entries, bearers, authors):
     planted = entries + [{"id": "synthetic", "iri": "urn:synthetic", "statedIn": "urn:no-such-bearer"}]
     if not problems(planted, bearers, authors):
         raise SystemExit("GATE INVALID: a synthetic entry on an unattributed bearer was not caught.")
+    return True
+
+
+def extract_floor(g, entries):
+    """Floor roles per entry (atlas/mappings/floor.ttl) and computed additions.
+
+    The floor is a shape-level fact (common-core theorem); this mapping only
+    records which of an entry's OWN primitives plays each role. Additions are
+    computed, never hand-written: primitives minus the entry's floor roles
+    minus the declared substrate."""
+    substrate = {str(o) for o in g.objects(ATLAS.floor, ATLAS.substratePrimitive)}
+    floor = {}
+    for e in entries:
+        s_ = URIRef(e["iri"])
+        pos = one(g, s_, ATLAS.floorPosition)
+        dep = one(g, s_, ATLAS.floorDependency)
+        shape_level = str(one(g, s_, ATLAS.floorDependencyShapeLevel) or "").lower() == "true"
+        roles = {str(x) for x in (pos, dep) if x}
+        floor[e["iri"]] = {
+            "position": str(pos) if pos else None,
+            "dependency": str(dep) if dep else None,
+            "dependencyShapeLevel": shape_level,
+            "adds": sorted(p for p in e["primitives"] if p not in roles and p not in substrate),
+        }
+    return floor
+
+
+def check_floor(entries, floor, shapes):
+    """The floor gate: every entry declares its roles, every role is warranted.
+
+    Position must be one of the entry's own primitives. Dependency must be a
+    primitive of the entry OR declared shape-level, and shape-level is honest
+    only when the entry's Lean bridge is resolved — the warrant is then the
+    formalisation, and a broken bridge would leave the claim standing on
+    nothing. A growing catalogue cannot silently skip the declaration: an
+    entry with no floorPosition fails the build.
+
+    Proves it can fail (SSF #35) two ways: a planted entry with an unwarranted
+    role primitive, and a planted shape-level entry with no resolved bridge.
+    """
+    def problems(entry_list, floor_map, shape_map):
+        out = []
+        for e in entry_list:
+            f = floor_map.get(e["iri"])
+            if not f or not f["position"]:
+                out.append(f"{e['id']}: no atlas:floorPosition declared")
+                continue
+            if f["position"] not in e["primitives"]:
+                out.append(f"{e['id']}: floorPosition is not one of the entry's primitives")
+            if f["dependency"] and f["dependencyShapeLevel"]:
+                out.append(f"{e['id']}: dependency both lexical and shape-level")
+            if f["dependency"]:
+                if f["dependency"] not in e["primitives"]:
+                    out.append(f"{e['id']}: floorDependency is not one of the entry's primitives")
+            elif f["dependencyShapeLevel"]:
+                if (shape_map.get(e["iri"]) or {}).get("status") != "resolved":
+                    out.append(f"{e['id']}: shape-level dependency but Lean bridge not resolved")
+            else:
+                out.append(f"{e['id']}: no dependency warrant (primitive or shape-level)")
+        return out
+
+    found = problems(entries, floor, shapes)
+    if found:
+        raise SystemExit(
+            "FLOOR GATE FAILED:\n  " + "\n  ".join(found) + "\n"
+            "  Every entry must declare its floor roles in atlas/mappings/floor.ttl,\n"
+            "  each warranted by one of the entry's own primitives or, where the\n"
+            "  passage is silent, by a resolved Lean bridge."
+        )
+
+    bogus = [{"id": "synthetic", "iri": "urn:synthetic", "primitives": ["urn:p"]}]
+    planted = {"urn:synthetic": {"position": "urn:not-a-primitive", "dependency": "urn:p",
+                                 "dependencyShapeLevel": False, "adds": []}}
+    if not problems(bogus, planted, {}):
+        raise SystemExit("GATE INVALID: an unwarranted floor role was not caught.")
+    planted2 = {"urn:synthetic": {"position": "urn:p", "dependency": None,
+                                  "dependencyShapeLevel": True, "adds": []}}
+    if not problems(bogus, planted2, {}):
+        raise SystemExit("GATE INVALID: shape-level with no resolved bridge was not caught.")
     return True
 
 
@@ -920,6 +1002,11 @@ def main():
     authors = extract_authors(g, entries, bearers)
     coverage_live = check_author_coverage(entries, bearers, authors)
     print(f"author coverage {len(authors)} authors, every entry reached  gate-can-fail={coverage_live}")
+    floor = extract_floor(g, entries)
+    floor_live = check_floor(entries, floor, shapes)
+    declared = sum(1 for f in floor.values() if f["dependency"])
+    shape_lvl = sum(1 for f in floor.values() if f["dependencyShapeLevel"])
+    print(f"floor roles   {declared} lexical + {shape_lvl} shape-level dependencies, adds computed  gate-can-fail={floor_live}")
     retired_live = check_no_retired_served(g, entries, cases, objects, authors)
     print(f"retired IRIs excluded  gate-can-fail={retired_live}")
     catalogue = {
@@ -936,6 +1023,7 @@ def main():
         "transcription": transcription,
         "source": {"repo": atlas_root.name, "coreLabel": one(g, ATLAS["atlas-core"], RDFS.label)},
         "entries": entries,
+        "floor": floor,
         "bearers": bearers,
         "authors": authors,
         "primitives": extract_primitives(g, entries),

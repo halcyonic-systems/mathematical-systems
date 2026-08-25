@@ -177,8 +177,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "f3f4abc+",
-    "repoCommit": "f3f4abc+"
+    "atlasCommit": "c3e3044+",
+    "repoCommit": "c3e3044+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -918,6 +918,82 @@
       "number": "007"
     }
   ],
+  "floor": {
+    "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/thing",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/systemhood",
+        "https://w3id.org/mathematical-systems/atlas/primitive/thinghood"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/thing",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/composition",
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/structure"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/thing",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/bond",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/action",
+        "https://w3id.org/mathematical-systems/atlas/primitive/part"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/element",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/element",
+      "dependency": null,
+      "dependencyShapeLevel": true,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/measure",
+        "https://w3id.org/mathematical-systems/atlas/primitive/time"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/component",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/flow-network",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/bipartite-flow-graph",
+        "https://w3id.org/mathematical-systems/atlas/primitive/boundary",
+        "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
+        "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
+        "https://w3id.org/mathematical-systems/atlas/primitive/memory",
+        "https://w3id.org/mathematical-systems/atlas/primitive/subsystem",
+        "https://w3id.org/mathematical-systems/atlas/primitive/system-of-interest",
+        "https://w3id.org/mathematical-systems/atlas/primitive/time",
+        "https://w3id.org/mathematical-systems/atlas/primitive/time-interval",
+        "https://w3id.org/mathematical-systems/atlas/primitive/transformation-rule"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/object",
+      "dependency": null,
+      "dependencyShapeLevel": true,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
+        "https://w3id.org/mathematical-systems/atlas/primitive/level-of-organization",
+        "https://w3id.org/mathematical-systems/atlas/primitive/milieu",
+        "https://w3id.org/mathematical-systems/atlas/primitive/time"
+      ]
+    }
+  },
   "bearers": [
     {
       "iri": "https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4",
