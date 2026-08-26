@@ -99,4 +99,12 @@ lake build Systems.Category.JoslynIncomparability Systems.Category.ShapeKlir
 
 Then check that `KlirShape` is the free category on the acyclic two-object quiver in `ShapeKlir.lean` (so the `Finite (X ⟶ Y)` instance is available), and instantiate `joslyn_no_faithful_functor` at it.
 
-**⚠ Not yet done:** the instantiation is not written as a Lean declaration. Both halves are in the repo and the hypothesis is discharged by inspection, but until `¬ ∃ F : JoslynShape ⥤ KlirShape, F.Faithful` compiles as its own theorem, this mapping's evidence code is **model-drafted, human-checked** — not machine-checked end to end. Writing that declaration is the first task this mapping generates.
+**Done (2026-08-26):** the instantiation now compiles as its own declaration —
+`no_faithful_joslyn_to_klir : ¬ ∃ F : JoslynShape ⥤ KlirShape, F.Faithful`
+(SSF `Systems/Category/JoslynIncomparability.lean`, commit f2b0820), with the
+finite-hom-set hypothesis discharged by a `Finite.of_subsingleton` instance over
+`klirHomSubsingleton` rather than by inspection. Axioms: `[propext, Classical.choice,
+Quot.sound]`; no sorry. This mapping's evidence code is now **machine-checked end to
+end** for the strong-reading refutation. The presentation-relativity caveat above is
+unchanged by the upgrade and travels with any statement of the result — the theorem's
+own docstring restates it.
