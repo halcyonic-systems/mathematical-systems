@@ -102,6 +102,10 @@
      authors would read as one. Plum is 77° from its nearest neighbour and
      clears 6.15:1 on the card ground. */
   --world-bertalanffy: #74556e;
+  /* Mesarović fills the widest remaining hue gap (bronze 29° → green 137°,
+     midpoint ~83°): olive at 85°, 56° from Bunge and 52° from Mobus, 4.86:1
+     on the card ground — the same measured rule that placed plum. */
+  --world-mesarović: #5e7340;
   /* The channel's carrier: any element wearing data-world resolves --world for
      itself and its subtree. One mapping for the whole site — the shelf, the
      rail, the entry page — so an author is one colour everywhere. */
@@ -176,6 +180,9 @@ body {
 }
 [data-world="bertalanffy"] {
   --world: var(--world-bertalanffy);
+}
+[data-world="mesarović"] {
+  --world: var(--world-mesarović);
 }
 
 /* Where the channel shows outside the shelf. The author's VOICE wears the

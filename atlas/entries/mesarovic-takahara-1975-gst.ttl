@@ -15,10 +15,14 @@
 <https://w3id.org/mathematical-systems/atlas/entries/mesarovic-takahara-1975-gst>
     a owl:Ontology ;
     owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
-    rdfs:label "Atlas entry — Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11) (DRAFT)"@en ;
-    rdfs:comment """MDU DRAFT, staged in ingest/drafts/ — not part of the catalogue until a
-human has read it against the source, corrected it, assigned an accession number, and
-promoted its evidence codes. Drafted 2026-08-25 by the P5 pipeline."""@en .
+    rdfs:label "Atlas entry — Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)"@en ;
+    rdfs:comment """Accessioned at MDU (2026-08-26): the entry is in the catalogue and visible,
+and its evidence code says exactly what that means — model-drafted, no human has yet read it
+against the source. It must not be cited in any claim until the guided pass promotes the code.
+Open at that pass: verify the page-image transcription (scan p. 22 = book p. 11), rule on the
+Ch. I p. 6 characterisation (candidate 0 — distinct entry per the Bunge two-entry precedent,
+or a preview of Def 1.1), and decide joint-authorship modelling (no Takahara node yet).
+Drafted 2026-08-25 by the P5 pipeline."""@en .
 
 
 ##############################################################################
@@ -73,32 +77,6 @@ DELIBERATELY NOT ASSERTED. No cco is-about relation is asserted between this ent
 WHAT DOES NOT FIT. The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; whether these should be censused together is left open."""@en .
 
 
-##############################################################################
-# New primitives proposed by this draft — declared here so the draft parses
-# standalone; on promotion they move into atlas-core's primitive vocabulary,
-# where the scheme's scope notes govern them.
-##############################################################################
-
-prim:cartesian-product a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:operation ;
-    skos:prefLabel "Cartesian product"@en ;
-    skos:scopeNote """The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset. [MDU — drafted, unchecked; role proposal: operation]"""@en .
-
-prim:index-set a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:sort ;
-    skos:prefLabel "index set"@en ;
-    skos:scopeNote """The set I indexing the family of sets Vᵢ over which the product is taken. [MDU — drafted, unchecked; role proposal: sort]"""@en .
-
-prim:component-set a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:sort ;
-    skos:prefLabel "component set"@en ;
-    skos:scopeNote """A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product. [MDU — drafted, unchecked; role proposal: sort]"""@en .
-
-prim:system-object a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:sort ;
-    skos:prefLabel "system object"@en ;
-    skos:scopeNote """The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+# The four primitives this entry minted (cartesian-product, index-set,
+# component-set, system-object) are declared in atlas-core's vocabulary,
+# still carrying their MDU markers.

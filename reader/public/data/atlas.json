@@ -177,8 +177,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "7bf927f",
-    "repoCommit": "7bf927f+"
+    "atlasCommit": "64ffbff+",
+    "repoCommit": "64ffbff+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -419,6 +419,9 @@
       "arrowConvention": "",
       "spec": "Systems/Category/ShapeMobus.lean#MobusShape",
       "status": "resolved"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system": {
+      "status": "none"
     }
   },
   "transcription": {
@@ -522,6 +525,22 @@
         "after": "Examples of a milieu are given below. The set O subsumes the sets, Src and Snk which were included in the original G bipartite network and were effectively ‘hidden’ from exposure of the model. This was deemed an unnecessary complexity, particularly since many objects in a system’s environment may be both sources and sinks simultaneously (for background, refer to Mobus, 2022). The environment object is now defined as:\n\nE= 〈O,M〉 \n\nO= 〈o0,o1,o2,…ok,…om〉 \n\nWhere O is the set of object sources and sinks in the environment of the SOI.\n\nThe milieu is represented by the abstract M object. M is the set of variables that are part of the environment but do not have a discrete (point) source. They surround or ‘bathe’ the system in conditions that impact or influence the state of the system, but do not interact necessarily through a discrete set of interfaces, as in the case of flows."
       },
       "source": "mobus-book-revisions.md"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 266,
+      "verbatimChars": 266,
+      "context": {
+        "before": "6 prose reads \"a proper\nsubset of × V̄\"), in (1.1), (2.1), (2.2), and (2.3).\n\nBook p. 6 (Ch. I §2, scan page 17):\n\nThe starting point for the entire development is the concept of a system defined on the set-theoretic level. Quite simply and most naturally for that level, a system is defined as a relation in the set-theoretic sense, i.e., it is assumed that a family of sets is given,\nV̄ = Vᵢ : i ∈ I\nwhere I is the index set, and a system, defined on V̄, is a proper subset of × V̄,\nS ⊂ × Vᵢ : i ∈ I\nThe components of S, Vᵢ, i ∈ I, are termed the systems objects. We shall primarily be concerned with a system consisting of two objects, the input object X and the output object Y:\nS ⊂ X × Y (1.1)\n\nBook p. 11 (Ch. II §1(a), scan page 22):",
+        "match": "Definition 1.1. A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)\nwhere × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form\nS ⊂ V₁ × ⋯ × Vₙ (2.2)",
+        "after": "Definition 1.2. Let Iₓ ⊂ I and Iᵧ ⊂ I be a partition of I, i.e., Iₓ ∩ Iᵧ = φ, Iₓ ∪ Iᵧ = I. The set X = × Vᵢ : i ∈ Iₓ is termed the input object, while Y = × Vᵢ : i ∈ Iᵧ is termed the output object. The system S is then\nS ⊂ X × Y (2.3)\nand will be referred to as an input–output system.\n\nThe form (2.3) rather than (2.2) will be used throughout this book.\n\nDefinition 1.3. If S is a function\nS : X → Y (2.4)\nit is referred to as a function-type (or functional) system.\n\n---\n\n\n<!-- scan page 1 -->\n\nMATHEMATICSINSCIENCEANDee\nGeneral SystemsTheory:MathematicalFoundations\n\n<!-- scan page 2 -->\n\nGeneral Systems Theory:Mathematical Foundations\nM.D. Mesarovic and Yasuhiko TakaharaSysteMs RESEARCH CENTERCASE WESTERN RESERVE UNIVERSITYCLEVELAND, OHIO\nACADEMIC PRESS New York San Francisco London 1975A S"
+      },
+      "source": "mesarovic-takahara-1975-ch2.md"
     }
   },
   "source": {
@@ -916,6 +935,54 @@
         }
       ],
       "number": "007"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system",
+      "id": "mesarovic-takahara-1975-general-system",
+      "label": "Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst",
+      "sourceLocation": "Chapter II, §1(a), Definition 1.1, book p. 11 = scan page 22; eqs. (2.1)–(2.2)",
+      "verbatim": "Definition 1.1. A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)\nwhere × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form\nS ⊂ V₁ × ⋯ × Vₙ (2.2)",
+      "displayForm": "A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)",
+      "displayContext": "where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object.",
+      "authorCaveat": null,
+      "admits": [],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/cartesian-product",
+        "https://w3id.org/mathematical-systems/atlas/primitive/component-set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/index-set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/system-object"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED",
+      "encodedOn": "2026-08-25",
+      "formalisedAs": null,
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "SCOPE OF THE ENTRY",
+          "body": "The entry carries Definition 1.1 alone — the set-theoretic definition of a (general) system as a relation on nonempty abstract sets — together with the author's immediate gloss naming × as Cartesian product, I as the index set, and a component set Vᵢ as a system object, plus the finite-index form (2.2). Definitions 1.2 (input object, output object, input-output system), 1.3 (function-type system), and the parallel presentation at book p. 6 (eq. 1.1) are not encoded here."
+        },
+        {
+          "kind": "section",
+          "title": "TRANSCRIPTION",
+          "body": "The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image, itself unverified by a human), including the correction that the book prints ⊂ rather than ⊆. Per atlas procedure the set-builder braces of × {Vᵢ : i ∈ I} are dropped from the verbatim, and subscripts are carried as the source file writes them. Equation numbers (2.1) and (2.2) are retained as printed. This is a model-drafted, unchecked (MDU) transcription and must be verified against the page image before any evidence code rises."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "No cco is-about relation is asserted between this entry and any subject matter, thing, or phenomenon. The catalogue records that this author, in this locus, uses these words in this formal statement; it does not assert what the definition is about, nor that this 'system' is the same notion as any other author's."
+        },
+        {
+          "kind": "section",
+          "title": "WHAT DOES NOT FIT",
+          "body": "The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; whether these should be censused together is left open."
+        }
+      ],
+      "number": "008"
     }
   ],
   "floor": {
@@ -992,6 +1059,16 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/milieu",
         "https://w3id.org/mathematical-systems/atlas/primitive/time"
       ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/system-object",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/cartesian-product",
+        "https://w3id.org/mathematical-systems/atlas/primitive/component-set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/index-set"
+      ]
     }
   },
   "bearers": [
@@ -1018,6 +1095,20 @@
       ],
       "authoredBy": [
         "https://w3id.org/mathematical-systems/atlas/author/george-klir"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst",
+      "label": "Mesarović, M. D. & Takahara, Y. — General Systems Theory: Mathematical Foundations (Academic Press, 1975)",
+      "creator": "Mihajlo D. Mesarović and Yasuhiko Takahara",
+      "date": "1975",
+      "identifiers": [
+        "ISBN 0-12-491540-X",
+        "LCCN 74-1639",
+        "Mathematics in Science and Engineering v. 113"
+      ],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic"
       ]
     },
     {
@@ -1102,6 +1193,14 @@
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic",
+      "id": "mihajlo-mesarovic",
+      "label": "Mihajlo D. Mesarović",
+      "entries": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
+      ]
     }
   ],
   "primitives": [
@@ -1113,16 +1212,7 @@
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
         "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
-        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
-      ]
-    },
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
-      "label": "environment",
-      "role": "sort",
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
-        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
     },
@@ -1133,7 +1223,18 @@
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
-        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"
+        "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+      "label": "environment",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
       ]
     },
     {
@@ -1184,6 +1285,14 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/cartesian-product",
+      "label": "Cartesian product",
+      "role": "operation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/action",
       "label": "action",
       "role": "relation",
@@ -1224,6 +1333,14 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/component-set",
+      "label": "component set",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/composition",
       "label": "composition",
       "role": "operation",
@@ -1237,6 +1354,14 @@
       "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/index-set",
+      "label": "index set",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
       ]
     },
     {
@@ -1293,6 +1418,14 @@
       "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/system-object",
+      "label": "system object",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
       ]
     },
     {

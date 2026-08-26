@@ -169,6 +169,7 @@ ACCESSION = [
     "bertalanffy-1968-eq-3-1",
     "mobus-2022-seven-tuple",
     "mobus-revisions-oct-tuple",
+    "mesarovic-takahara-1975-general-system",
 ]
 
 
@@ -561,6 +562,9 @@ BEARER_SOURCES = {
     ),
     "https://w3id.org/mathematical-systems/atlas/bearer/mobus-book-revisions": (
         "mobus/mobus-book-revisions.md"
+    ),
+    "https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst": (
+        "mesarovic/mesarovic-takahara-1975-ch2.md"
     ),
 }
 

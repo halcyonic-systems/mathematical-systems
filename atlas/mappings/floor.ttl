@@ -68,3 +68,13 @@ entry:mobus-2022-seven-tuple
 entry:mobus-revisions-oct-tuple
     atlas:floorPosition prim:object ;
     atlas:floorDependencyShapeLevel true .
+
+# ---- Mesarović & Takahara 1975, Def 1.1 -------------------------------------
+# The passage's own words carry both roles: "a relation on nonempty
+# (abstract) sets" whose component sets are "system objects" (book p. 11,
+# eq. 2.1). The relation is stated over the system objects — the floor arrow
+# in its purest lexical form. Declared 2026-08-26 with the entry at MDU;
+# re-examine at the guided pass with the rest of the draft.
+entry:mesarovic-takahara-1975-general-system
+    atlas:floorPosition   prim:system-object ;
+    atlas:floorDependency prim:relation .
