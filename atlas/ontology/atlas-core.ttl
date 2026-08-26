@@ -529,32 +529,33 @@ prim:time-interval a skos:Concept ;
     skos:scopeNote "Mobus's Δt: 'Finally, the last element in S is Δt, a time interval relevant to the level of the system of interest' (§4.3.3.6). The author's own WORD for the element; distinct from the census row prim:time, which records the notational Δt/dt invocations shared across authors."@en ;
     skos:broader role:constant .
 
-# ---- Mesarović & Takahara 1975, Def 1.1 (entry 008) — accessioned at MDU:
-# scope notes and role proposals below are the pipeline draft's, unchecked;
-# the guided pass may merge, rename, or re-role them.
+# ---- Mesarović & Takahara 1975, Def 1.1 (entry 008). Roles and no-merge
+# rulings confirmed at the guided pass (2026-08-26): all four kept as the
+# author's own words, distinct from prim:component and prim:object per the
+# census-question rule.
 
 prim:cartesian-product a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "Cartesian product"@en ;
-    skos:scopeNote "The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset. [MDU — drafted, unchecked; role proposal: operation]"@en ;
+    skos:scopeNote "The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset. Role confirmed at the guided pass, 2026-08-26."@en ;
     skos:broader role:operation .
 
 prim:index-set a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "index set"@en ;
-    skos:scopeNote "The set I indexing the family of sets Vᵢ over which the product is taken. [MDU — drafted, unchecked; role proposal: sort]"@en ;
+    skos:scopeNote "The set I indexing the family of sets Vᵢ over which the product is taken. Role confirmed at the guided pass, 2026-08-26."@en ;
     skos:broader role:sort .
 
 prim:component-set a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "component set"@en ;
-    skos:scopeNote "A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product. Distinct from prim:component (Mobus's word) — merging is a census question. [MDU — drafted, unchecked; role proposal: sort]"@en ;
+    skos:scopeNote "A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product. Distinct from prim:component (Mobus's word) — merging is a census question. Role confirmed at the guided pass, 2026-08-26."@en ;
     skos:broader role:sort .
 
 prim:system-object a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "system object"@en ;
-    skos:scopeNote "The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. [MDU — drafted, unchecked; role proposal: sort]"@en ;
+    skos:scopeNote "The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. Role confirmed at the guided pass, 2026-08-26."@en ;
     skos:broader role:sort .
 
 
@@ -621,13 +622,16 @@ author:george-mobus
     a atlas:Author ;
     rdfs:label "George E. Mobus"@en .
 
-# Joint authorship note (2026-08-26): the 1975 GST book has two authors.
-# author_slug carries Mesarović; whether Takahara gets his own node (and the
-# bearer a second atlas:authoredBy) is an open guided-pass decision — the
-# entry's dcterms:creator names both meanwhile.
+# The 1975 GST book has two authors; both get identity nodes (ruled
+# 2026-08-26: the identity layer must agree with the card label, and the
+# bearer shape explicitly allows co-authored works).
 author:mihajlo-mesarovic
     a atlas:Author ;
     rdfs:label "Mihajlo D. Mesarović"@en .
+
+author:yasuhiko-takahara
+    a atlas:Author ;
+    rdfs:label "Yasuhiko Takahara"@en .
 
 
 ##############################################################################

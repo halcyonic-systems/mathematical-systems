@@ -2,7 +2,9 @@
 
 Scanned mesarovic/mesarovic-takahara-1975-ch2.md with claude-opus-5. Accept a candidate with: draft mesarovic-takahara-1975-gst <n>
 
-## 0 — include — Chapter I, §2 (Formalization Approach), book p. 6 = scan page 17; eq. (1.1)
+## 0 — prop (ruled 2026-08-26) — Chapter I, §2 (Formalization Approach), book p. 6 = scan page 17; eq. (1.1)
+
+RULED at the guided pass (Shingai Thornton): a preview of Def 1.1, not a distinct definitional claim — grades PROP pointing at entry mesarovic-takahara-1975-general-system; not accessioned.
 
 > The starting point for the entire development is the concept of a system defined on the set-theoretic level. Quite simply and most naturally for that level, a system is defined as a relation in the set-theoretic sense, i.e., it is assumed that a family of sets is given,
 V̄ = {Vᵢ : i ∈ I}

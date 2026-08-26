@@ -67,15 +67,41 @@ export function FloorLede() {
   );
 }
 
-/** Commitment order is COMPUTED: authors ascend by how many primitives their
-    definitions add beyond the floor (union across the author's entries), ties
-    broken by the existing accession order. A hand-written ordering would be an
-    editorial ranking of authors; a count of their own declared primitives is
-    not. */
+/** The card unit is the AUTHORSHIP, not the author: a co-authored bearer
+    (Mesarović & Takahara) lists its entry under every author node — that is
+    the identity layer doing its job — but rendering one card per author would
+    print the same definition twice. Entries are regrouped by the full set of
+    authors that share them; a joint card's head joins the authors' names in
+    declaration order. Author nodes themselves stay untouched — revision arcs
+    still hang off the person, not the team. */
+function byAuthorship(authors: Author[]): Author[] {
+  const teamOf = new Map<string, Author[]>();
+  for (const a of authors)
+    for (const iri of a.entries) (teamOf.get(iri) ?? teamOf.set(iri, []).get(iri)!).push(a);
+  const cards = new Map<string, Author>();
+  for (const a of authors)
+    for (const iri of a.entries) {
+      const team = teamOf.get(iri)!;
+      const key = team.map((t) => t.iri).join("+");
+      const c =
+        cards.get(key) ??
+        cards
+          .set(key, { iri: key, id: key, label: team.map((t) => t.label).join(" & "), entries: [] })
+          .get(key)!;
+      if (!c.entries.includes(iri)) c.entries.push(iri);
+    }
+  return [...cards.values()];
+}
+
+/** Commitment order is COMPUTED: authorships ascend by how many primitives
+    their definitions add beyond the floor (union across the card's entries),
+    ties broken by the existing accession order. A hand-written ordering would
+    be an editorial ranking of authors; a count of their own declared
+    primitives is not. */
 function byCommitment(authors: Author[], floor: Record<string, Floor>) {
   const load = (a: Author) =>
     new Set(a.entries.flatMap((iri) => floor[iri]?.adds ?? [])).size;
-  return [...authors]
+  return byAuthorship(authors)
     .map((a, i) => ({ a, i, n: load(a) }))
     .sort((x, y) => x.n - y.n || x.i - y.i)
     .map((x) => x.a);

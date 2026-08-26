@@ -2,8 +2,8 @@
   {
     "location": "Chapter I, §2 (Formalization Approach), book p. 6 = scan page 17; eq. (1.1)",
     "passage": "The starting point for the entire development is the concept of a system defined on the set-theoretic level. Quite simply and most naturally for that level, a system is defined as a relation in the set-theoretic sense, i.e., it is assumed that a family of sets is given,\nV̄ = {Vᵢ : i ∈ I}\nwhere I is the index set, and a system, defined on V̄, is a proper subset of × V̄,\nS ⊂ × {Vᵢ : i ∈ I}\nThe components of S, Vᵢ, i ∈ I, are termed the systems objects. We shall primarily be concerned with a system consisting of two objects, the input object X and the output object Y:\nS ⊂ X × Y (1.1)",
-    "verdict": "include",
-    "rationale": "General characterisation of the book's system concept: names the components (family of sets V̄ = {Vᵢ}, index set I, input object X, output object Y) with types and fixes the constraint that a system is a proper subset of the Cartesian product. Distinct entry from the definition proper (Def. 1.1) per the general-characterisation rule.",
+    "verdict": "prop",
+    "rationale": "General characterisation of the book's system concept: names the components (family of sets V̄ = {Vᵢ}, index set I, input object X, output object Y) with types and fixes the constraint that a system is a proper subset of the Cartesian product. Distinct entry from the definition proper (Def. 1.1) per the general-characterisation rule. RULED at the guided pass (2026-08-26, Shingai Thornton): a preview of Def 1.1, not a distinct definitional claim — grades PROP pointing at entry mesarovic-takahara-1975-general-system; not accessioned.",
     "caveat": "The notion ofa system as given in (1.1) is perfectly general."
   },
   {

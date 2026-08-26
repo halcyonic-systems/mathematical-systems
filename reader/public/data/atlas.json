@@ -177,8 +177,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "f712749+",
-    "repoCommit": "f712749+"
+    "atlasCommit": "811b2b2+",
+    "repoCommit": "811b2b2+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -985,7 +985,12 @@
         {
           "kind": "section",
           "title": "WHAT DOES NOT FIT",
-          "body": "The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; whether these should be censused together is left open."
+          "body": "The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; ruled kept-unmerged at the guided pass (2026-08-26) per the census-question rule."
+        },
+        {
+          "kind": "section",
+          "title": "CANDIDATE 0 RULED",
+          "body": "(2026-08-26, Shingai Thornton). The Ch. I §2 passage at book p. 6 — 'a system is defined as a relation in the set-theoretic sense … S ⊂ × V̄ … We shall primarily be concerned with a system consisting of two objects … S ⊂ X × Y (1.1)' — is a PREVIEW of Definition 1.1, not a distinct definitional claim: Chapter I announces its concepts will be introduced precisely via formalization, the p. 6 statement is the same relation in sketch form, and the author never insists on a distinction between two claims (contrast Bunge, whose general characterisation and definition proper are two entries because he says they differ). Under the catalogue's restatement rule the passage grades PROP, pointing here; it is not accessioned."
         }
       ],
       "number": "008"
@@ -1114,7 +1119,8 @@
         "Mathematics in Science and Engineering v. 113"
       ],
       "authoredBy": [
-        "https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic"
+        "https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic",
+        "https://w3id.org/mathematical-systems/atlas/author/yasuhiko-takahara"
       ]
     },
     {
@@ -1204,6 +1210,14 @@
       "iri": "https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic",
       "id": "mihajlo-mesarovic",
       "label": "Mihajlo D. Mesarović",
+      "entries": [
+        "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/author/yasuhiko-takahara",
+      "id": "yasuhiko-takahara",
+      "label": "Yasuhiko Takahara",
       "entries": [
         "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
       ]

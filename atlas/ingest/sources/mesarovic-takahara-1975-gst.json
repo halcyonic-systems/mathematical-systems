@@ -4,7 +4,13 @@
   "creator": "Mihajlo D. Mesarović and Yasuhiko Takahara",
   "author_slug": "mihajlo-mesarovic",
   "date": "1975",
-  "identifiers": ["ISBN 0-12-491540-X", "Mathematics in Science and Engineering v. 113", "LCCN 74-1639"],
-  "vault_files": ["mesarovic/mesarovic-takahara-1975-ch2.md"],
-  "note": "Partial scan (48 pages: front matter + Ch. I Introduction + Ch. II 'Basic Concepts', book pp. 1-~40). OCR prose is reliable; formulas are mangled — the file's 'Page-image transcriptions' section carries Def 1.1-1.3 and the Ch. I p. 6 passage transcribed from the page images (2026-08-25, unverified by a human yet), and verbatims with formulas must come from that section. TWO AUTHORS: author_slug carries Mesarović; how the atlas models joint authorship (second author node vs dcterms:creator only) is a guided-pass decision — atlas-core currently has no takahara node."
+  "identifiers": [
+    "ISBN 0-12-491540-X",
+    "Mathematics in Science and Engineering v. 113",
+    "LCCN 74-1639"
+  ],
+  "vault_files": [
+    "mesarovic/mesarovic-takahara-1975-ch2.md"
+  ],
+  "note": "Partial scan (48 pages: front matter + Ch. I Introduction + Ch. II 'Basic Concepts', book pp. 1-~40). OCR prose is reliable; formulas are mangled — the file's 'Page-image transcriptions' section carries Def 1.1-1.3 and the Ch. I p. 6 passage transcribed from the page images (2026-08-25, unverified by a human yet), and verbatims with formulas must come from that section. TWO AUTHORS: both have author nodes (ruled 2026-08-26); the bearer carries two atlas:authoredBy."
 }

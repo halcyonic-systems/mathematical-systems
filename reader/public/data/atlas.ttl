@@ -187,10 +187,10 @@ insisted on. The distinction is his, not ours."""@en .
     rdfs:comment """Drafted 2026-08-25 by the P5 pipeline; accessioned at MDU 2026-08-26;
 promoted to MDHC the same day after the verbatim was read against the page image (scan
 p. 22 = book p. 11) by Shingai Thornton — see the TRANSCRIPTION block for what was checked,
-including the braces defect the review caught. Still open from the guided pass: candidate 0
-(the Ch. I p. 6 characterisation — distinct entry per the Bunge two-entry precedent, or a
-preview of Def 1.1), the four minted primitives' roles and possible merges (their scope
-notes still carry MDU markers), and joint-authorship modelling (no Takahara node yet)."""@en .
+including the braces defect the review caught. Guided pass completed 2026-08-26: candidate 0
+ruled a PREVIEW of Def 1.1, not a distinct entry (see the CANDIDATE 0 RULED block); the four
+minted primitives' roles confirmed and kept unmerged; Takahara given his own author node,
+the bearer carrying both."""@en .
 
 <https://w3id.org/mathematical-systems/atlas/entries/mobus-2022-tamd> rdfs:label "Atlas entry — Mobus 2022, Systems Science: Theory, Analysis, Modeling, and Design"@en ;
     rdfs:comment """Entry 006. The first entry drafted by the P5 ingest pipeline (2026-08-17)
@@ -318,7 +318,9 @@ TRANSCRIPTION. The source file warns that its OCR mangles notation; the verbatim
 
 DELIBERATELY NOT ASSERTED. No cco is-about relation is asserted between this entry and any subject matter, thing, or phenomenon. The catalogue records that this author, in this locus, uses these words in this formal statement; it does not assert what the definition is about, nor that this 'system' is the same notion as any other author's.
 
-WHAT DOES NOT FIT. The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; whether these should be censused together is left open."""@en ;
+WHAT DOES NOT FIT. The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; ruled kept-unmerged at the guided pass (2026-08-26) per the census-question rule.
+
+CANDIDATE 0 RULED (2026-08-26, Shingai Thornton). The Ch. I §2 passage at book p. 6 — 'a system is defined as a relation in the set-theoretic sense … S ⊂ × V̄ … We shall primarily be concerned with a system consisting of two objects … S ⊂ X × Y (1.1)' — is a PREVIEW of Definition 1.1, not a distinct definitional claim: Chapter I announces its concepts will be introduced precisely via formalization, the p. 6 statement is the same relation in sketch form, and the author never insists on a distinction between two claims (contrast Bunge, whose general characterisation and definition proper are two entries because he says they differ). Under the catalogue's restatement rule the passage grades PROP, pointing here; it is not accessioned."""@en ;
     atlas:displayContext "where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object." ;
     atlas:displayForm """A (general) system is a relation on nonempty (abstract) sets
 S ⊂ × {Vᵢ : i ∈ I} (2.1)""" ;
@@ -646,6 +648,9 @@ author:mario-bunge a atlas:Author ;
 author:mihajlo-mesarovic a atlas:Author ;
     rdfs:label "Mihajlo D. Mesarović"@en .
 
+author:yasuhiko-takahara a atlas:Author ;
+    rdfs:label "Yasuhiko Takahara"@en .
+
 bearer:bertalanffy-1968-gst a cco:ont00000253 ;
     rdfs:label "Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)"@en ;
     dcterms:bibliographicCitation "New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'." ;
@@ -677,7 +682,8 @@ bearer:mesarovic-takahara-1975-gst a cco:ont00000253 ;
     dcterms:identifier "ISBN 0-12-491540-X",
         "LCCN 74-1639",
         "Mathematics in Science and Engineering v. 113" ;
-    atlas:authoredBy author:mihajlo-mesarovic .
+    atlas:authoredBy author:mihajlo-mesarovic,
+        author:yasuhiko-takahara .
 
 bearer:mobus-2022-tamd a cco:ont00000253 ;
     rdfs:label "Mobus, G. E. — Systems Science: Theory, Analysis, Modeling, and Design (Springer, 2022)"@en ;
@@ -884,13 +890,13 @@ prim:cartesian-product a skos:Concept ;
     skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "Cartesian product"@en ;
-    skos:scopeNote "The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset. [MDU — drafted, unchecked; role proposal: operation]"@en .
+    skos:scopeNote "The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset. Role confirmed at the guided pass, 2026-08-26."@en .
 
 prim:component-set a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "component set"@en ;
-    skos:scopeNote "A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product. Distinct from prim:component (Mobus's word) — merging is a census question. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product. Distinct from prim:component (Mobus's word) — merging is a census question. Role confirmed at the guided pass, 2026-08-26."@en .
 
 prim:composition a skos:Concept ;
     skos:broader role:operation ;
@@ -902,7 +908,7 @@ prim:index-set a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "index set"@en ;
-    skos:scopeNote "The set I indexing the family of sets Vᵢ over which the product is taken. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "The set I indexing the family of sets Vᵢ over which the product is taken. Role confirmed at the guided pass, 2026-08-26."@en .
 
 prim:measure a skos:Concept ;
     skos:broader role:operation ;
@@ -1227,7 +1233,7 @@ prim:system-object a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "system object"@en ;
-    skos:scopeNote "The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. Role confirmed at the guided pass, 2026-08-26."@en .
 
 role:constant a skos:Concept ;
     skos:definition "A designated individual: a distinguished element the definition names (the SOI, a per-level Δt)."@en ;
@@ -1342,6 +1348,16 @@ skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;
     skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
 
+prim:set a skos:Concept ;
+    rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "set"@en .
+
+prim:thing a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "thing"@en .
+
 atlas:Author a owl:Class ;
     rdfs:label "Author"@en ;
     rdfs:comment """NO DEFINITIONAL CONTENT ATTACHES HERE. The same discipline that scopes
@@ -1357,16 +1373,6 @@ atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@
     skos:definition """A person to whom the catalogue's bearers attribute authorship. Identity
 only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
 recognised as one person revising rather than two people agreeing."""@en .
-
-prim:set a skos:Concept ;
-    rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "set"@en .
-
-prim:thing a skos:Concept ;
-    skos:broader role:sort ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "thing"@en .
 
 prim:relation a skos:Concept ;
     skos:broader role:relation ;
