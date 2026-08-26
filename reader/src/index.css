@@ -1073,6 +1073,19 @@ body {
     color: #000;
   }
 
+  /* A printed entry opens on its record: the identity strip renders in print
+     only (screen carries the same facts in the section asides). */
+  .record-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+    column-gap: 1.75rem;
+    row-gap: 1rem;
+    border: 1px solid #000;
+    padding: 1.125rem 1.25rem;
+    margin-bottom: 2rem;
+    break-inside: avoid;
+  }
+
   /* A reference that only exists as a hover is lost on paper. */
   a[href^="http"]::after {
     content: " (" attr(href) ")";
@@ -1183,4 +1196,31 @@ body {
 /* The rail metaphor is a single row; when the grid wraps, the line lies. */
 @media (max-width: 76rem) {
   .shelf-rail-line { display: none; }
+}
+
+/* A leaf is a section set on open paper: structure carried by a rule and by
+   warrant typography, no frame. Grafted from entrycard-v1 (#2) — the right
+   tool whenever a section's box stops earning its border. */
+.leaf {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.leaf-head {
+  margin-bottom: 0.875rem;
+}
+
+/* The record strip: the entry's identity as one labelled ledger header.
+   Grafted from entrycard-v1 (#2); on screen the critical-edition layout
+   carries these facts in the section asides, so the strip renders in PRINT
+   ONLY — a printed entry opens on exactly this. */
+.record-strip {
+  display: none;
+}
+.record-field-label {
+  margin: 0 0 0.3rem;
+}
+.record-field-value {
+  font-size: var(--step--1);
+  line-height: 1.4;
+  color: var(--text-primary);
 }

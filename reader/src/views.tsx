@@ -25,6 +25,9 @@ import {
   FieldHeadings,
   FloorFigure,
   InPage,
+  Leaf,
+  RecordField,
+  RecordStrip,
   Matrix,
   Note,
   OpenQuestionsBlock,
@@ -152,6 +155,17 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
     // The page belongs to one author, so it wears that author's world hue on
     // the source-warrant edges — the same hue the shelf card wore on the way in.
     <div data-world={worldOf(entry.label)}>
+      {/* Print-only: a printed entry opens on the record's identity (#2). */}
+      <RecordStrip>
+        <RecordField label="Accession">{entry.number}</RecordField>
+        <RecordField label="Citation">{entry.label ?? "—"}</RecordField>
+        <RecordField label="Location">{entry.sourceLocation ?? "—"}</RecordField>
+        <RecordField label="Evidence">{localName(entry.evidenceCode)}</RecordField>
+        <RecordField label="Transcript">{t?.status ?? "no-verbatim"}</RecordField>
+        <RecordField label="Encoded">
+          {entry.encodedBy ?? "—"} · {entry.encodedOn ?? "—"}
+        </RecordField>
+      </RecordStrip>
       <ReadingKey tiers={TIERS} />
 
       <Section
@@ -320,9 +334,11 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
         </Section>
       )}
 
-      <Section title="Open questions" warrant="open" note="what this entry does not yet settle">
+      {/* A leaf, not a card: this section's box stopped earning its border —
+          the doctrine the bake-off harvest recorded (#2). */}
+      <Leaf title="Open questions" warrant="open" note="what this entry does not yet settle">
         <OpenQuestionsBlock />
-      </Section>
+      </Leaf>
     </div>
   );
 }

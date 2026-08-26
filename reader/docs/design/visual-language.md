@@ -75,6 +75,13 @@ style objects in one view file, and no way to change a section's weight centrall
 instruments; the same eight primitives serve both, with density set once by whoever wraps a
 view rather than as a prop on every part.
 
+**Apparatus belongs inside the section's frame** — a column within the box, never a
+page-level margin outside it ("evidence tags in the box rather than a weird side column";
+the judge's stated reason in the 2026-08-05 entry-card blind pick, recorded when the losing
+branches were harvested, #2). Corollaries now in the vocabulary: `Leaf` (heading + rule, no
+card) is the tool when a section's box stops earning its border, and `RecordStrip` opens a
+*printed* entry on its identity while the screen keeps those facts in the section asides.
+
 ## What legend adds
 
 1. **Indigo, not teal.** bert-lenses holds teal; the per-tradition hues (klir, bunge, mobus)
