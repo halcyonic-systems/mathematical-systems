@@ -386,13 +386,13 @@ prim:set a skos:Concept ;
 prim:thinghood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thinghood"@en ;
-    skos:scopeNote "Klir's term. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en ;
+    skos:scopeNote "Klir's term, taken from Rosen [1986] ('Some Comments on Systems and System Theory', Int. J. Gen. Syst. 13; quoted at length in Facets ch. 1): the aspect of a system subsumed under its adjective — what is special or particular about it. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision."@en ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in T) — meta-classification, not a signature symbol. Not a gap; a verdict."@en .
 
 prim:systemhood a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "systemhood"@en ;
-    skos:scopeNote "Klir's term, paired with thinghood."@en ;
+    skos:scopeNote "Klir's term, paired with thinghood; both taken from Rosen [1986], who holds systemhood to be an independent category — reducible neither to thinghood nor to set-ness — and locates GST's difficulties in confusing it with the latter. Klir quotes the passage in Facets ch. 1 and then formalises set-theoretically anyway; the tension with the set-theoretic school (Mesarović: the relation carries 'all the information we can legitimately use') is a live fault line the catalogue records, not resolves."@en ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in R) — meta-classification, not a signature symbol. Not a gap; a verdict."@en .
 
 prim:composition a skos:Concept ;
