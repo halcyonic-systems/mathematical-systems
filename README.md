@@ -10,12 +10,25 @@ actually say, how they relate, and what a translation between them costs.
 
 | | answered by | state |
 |---|---|---|
-| How does each tradition define *system*, in its own words? | `atlas/` — verbatim, sourced, provenance-graded | **7 entries, 4 authors** |
-| How do the definitions relate to each other, precisely? | `atlas/mappings/` + the Lean shape categories | **2 mappings**, 2 entries bridged |
+| How does each tradition define *system*, in its own words? | `atlas/` — verbatim, sourced, provenance-graded | **8 entries, 6 authors** |
+| How do the definitions relate to each other, precisely? | `atlas/mappings/` + the Lean shape categories | growing — see `atlas/mappings/` |
 | What do we gain and lose translating between them? | the silence lists, and the loss catalogue | **first separating instance recorded** — see below |
 | What does this imply for teaching systems science as one discipline? | downstream: the lens ladder in `bert-lenses` | not started |
 
 The third question is the live one. The fourth is why it matters.
+
+**The loss catalogue's thesis, in one sentence.** The network is provably the entire
+shared core of the encoded traditions; everything the word "system" adds is typed
+enrichment on that skeleton — boundary, kind, dynamics, bonds — and each enrichment is
+exhibited by a projection that forgets it. The definitions aren't a network described
+fancily; they're a network plus commitments, and the commitments are where systemhood
+becomes checkable. Each clause is carried by a machine-checked artifact, so the sentence
+can be cited rather than asserted: the shared core is the repaired quiver-level statement
+(one dependency; SSF `Systems/Challenge.lean`), "Klir is a graph" is literally
+`KlirSystem` (`Systems/Klir/KlirSystem.lean`), the enrichments are exhibited by the
+`toKlir` projections (`toKlir_eq_of_composition_structure_eq`: two CES triples differing
+only in E project to the same Klir system), and the bond/relation split is Bunge's own
+aggregate/system distinction.
 
 ---
 
@@ -31,14 +44,15 @@ npm run dev           # http://localhost:5192
 `npm run data` prints one line per gate. This is what a good run looks like:
 
 ```
-transcription {'located': 6, 'no-source-registered': 1}  gate-can-fail=True    every registered verbatim found in its primary text
+transcription {'located': 7, 'no-source-registered': 1}  gate-can-fail=True    every registered verbatim found in its primary text
 display spans verbatim  gate-can-fail=True           every front-page excerpt is a substring of its verbatim
-lean bridge   5/7 entries linked, 0 broken           every formalisation pointer resolves
-author coverage 4 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
+lean bridge   5/8 entries linked, 0 broken           every formalisation pointer resolves
+author coverage 6 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
+floor roles   6 lexical + 2 shape-level dependencies, adds computed  gate-can-fail=True
 retired IRIs excluded  gate-can-fail=True            no tombstone served as live data
 served       definition-atlas.ttl                    the catalogue as RDF, for content negotiation
 served       definition-atlas.owl
-atlas.json  7 entries, 4 authors, 6 bearers, 27 primitives, 1 conflicts
+atlas.json  8 entries, 6 authors, 7 bearers, 31 primitives, 1 conflicts
 shipped  {'is-about-entity': 'not-proven',  'describes-entity': 'not-proven'}
 full     {'is-about-entity': 'entailed',    'describes-entity': 'entailed'}
 ```
