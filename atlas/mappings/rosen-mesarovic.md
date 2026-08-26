@@ -93,12 +93,17 @@ question outside this catalogue (Limits program, open square 5: set-relations vs
 class of systems *is* the class of relations); Bunge refuses it as a concrete system (a
 conceptual object) while admitting it could sit in his conceptual kingdom. This is close to
 the test-object bar — Bunge's §1.8 is a ruling in his own voice on exactly this form — but
-minting `obj:bare-relation` is **deferred to a human decision**, for one reason: Bunge's
-ruling is aimed at a *definition schema*, and Mesarović's admission is *constitutive* rather
-than an example he offers. Whether that satisfies "a case an author actually ruled on, never
-one invented to make a comparison come out" is a judgment call, not a derivation. (Precedent
-either way: `obj:ordered-non-bonding` was minted from an explicit Example block; this one
-would be minted from a Concluding-Remarks ruling.)
+Bunge's ruling is aimed at a *definition schema*, and Mesarović's admission is
+*constitutive* rather than an example he offers. (Precedent either way:
+`obj:ordered-non-bonding` was minted from an explicit Example block; this one would be
+minted from a Concluding-Remarks ruling.)
+
+**RULED — not minted (Shingai, 2026-08-26).** The strict reading of the bar holds: a
+schema-level ruling and a constitutive admission are not two authors ruling on one offered
+case. The conflict stays argued in this document. What would reopen the decision: a Bunge
+passage offering a bare relation (not a schema) as a refused example, or a Mesarović
+passage ruling on a concrete candidate — either upgrades this to the catalogue's second
+derived ConflictLine.
 
 ## Presentation
 

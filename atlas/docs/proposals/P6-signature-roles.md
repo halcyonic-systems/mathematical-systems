@@ -46,7 +46,7 @@ finding, recorded as an unassigned verdict on the primitive. SHACL enforces the 
 | bipartite-flow-graph | relation | Mobus's G, same reading |
 | hierarchy | relation | the system-subsystem ordering |
 | transformation-rule | operation | transfer functions, inputs → outputs |
-| composition | operation | Bunge's 𝒞_A(σ, t): assigns a parts-set to a thing at a time ⚑ |
+| composition | operation | Bunge's 𝒞_A(σ, t): assigns a parts-set to a thing at a time (ruled 2026-08-26) |
 | measure | operation | Bertalanffy's Qᵢ maps elements to values (re-read 2026-08-26; Lean silent) |
 | system-of-interest | constant | S₀,₀ — a designated individual |
 | time-interval | constant | Mobus's Δt, a designated interval per level (re-read 2026-08-26, agree) |
@@ -59,7 +59,7 @@ operation for composition; constant-per-SOI vs index sort for level; entity vs p
 memory). Revisiting a flagged row is an edit-in-place with a note, not a retirement, so
 long as the referent is unchanged (iri-policy).
 
-## Re-read record (2026-08-26) — seven flags resolved, one held
+## Re-read record (2026-08-26) — all eight flags resolved
 
 Each flagged row read against its source passage and the Lean encoding of the same
 tradition (`Systems/Mobus/Tuple.lean` is the semantic authority for the Mobus slots;
@@ -90,16 +90,14 @@ tradition (`Systems/Mobus/Tuple.lean` is the semantic authority for the Mobus sl
 - **measure — operation, unflagged, with Lean silence recorded.** `ShapeBertalanffy` has
   two positions and no measure vertex; the source is unambiguous (Qᵢ assigns a quantity
   to element pᵢ — a function symbol in eq. 3.1's own notation).
-- **composition — ⚑ HELD, and sharpened into a finding.** This is the one genuine
-  source/Lean disagreement: P6 assigned *operation* (Bunge's 𝒞_A(σ,t) assigns a parts-set
-  to a thing at a time — a time-indexed function symbol), but the Lean encoding's slot
-  decision is `composition : Set α` — the *value*, time-sliced, a tuple slot. Per this
-  proposal's own gate, disagreement is a finding, and this one is exactly the tuple-slot
-  vs operation fork the original flag predicted. DECIDE (Shingai): does the census row
-  record the word's denotation in the source's formal statement (→ operation, keep P6's
-  assignment, note the Lean time-slice as a bridge fact) or defer to the encoding's slot
-  decision (→ re-role to sort/slot, note the source's richer typing)? One word rules it;
-  the row stays uncitable until then.
+- **composition — operation, RULED (Shingai, 2026-08-26).** The one genuine source/Lean
+  disagreement, resolved for the source's formal statement: the census row records what
+  the word denotes there, and Bunge's 𝒞_A(σ,t) is a time-indexed function symbol —
+  *operation*. The Lean encoding's `composition : Set α` (the time-sliced value as a
+  tuple slot) is recorded as a bridge fact, not a role: StructureFamily deliberately
+  time-slices the whole triple, so the slot decision is about the encoding's temporal
+  scope, not about the word. If P7 is taken up, composition's arrows re-derive this
+  structurally (the time-index dependency becomes an edge or its absence).
 
 **The citation gate for flagged rows** (the MDU discipline extended): a ⚑ assignment must
 not be load-bearing in prose or in a mapping claim until it has been re-read — against the

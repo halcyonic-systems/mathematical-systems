@@ -1,7 +1,8 @@
-# P7 — Tier 1: the dependency quiver (PROPOSED)
+# P7 — Tier 1: the dependency quiver (DECIDED)
 
-**Status: PROPOSED 2026-08-26 — drafted for Shingai's adoption ruling; nothing here is
-modelled, coded, or load-bearing until adopted.** Issue #12 is the tracking home.
+**Status: DECIDED 2026-08-26 — adopted as proposed (Shingai's ruling, atlas issue #12).**
+Nothing is built yet; adoption green-lights the pilot order below whenever tier 1 is taken
+up. Issue #12 remains the tracking home for the implementation.
 
 Tier 1 records, per entry, WHICH primitive depends on WHICH — the arrows, not just the
 vertex set. atlas-core's header has reserved the tier since the beginning; the floor work
