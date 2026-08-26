@@ -34,6 +34,7 @@ step where a reader has to reconstruct your path and may not.
 | [`klir-encompassing.md`](klir-encompassing.md) | Klir's claim that (T,R) "encompasses all other, more specific definitions" — **true and vacuous on his own reading; false on the reading that would make it informative** |
 | [`ordered-collection.md`](ordered-collection.md) | Klir and Bunge on a collection ordered by a non-bonding relation — **they disagree, and about bonding rather than about ordering.** Both witnesses in the catalogue as of 2026-08-03; still asserted rather than derived, pending a test-object vocabulary |
 | [`environment-channel.md`](environment-channel.md) | Which definitions carry an environment channel — **every bearer except Klir, and Klir's absence is a stance, not a gap**: Bunge's E is ontic, Bertalanffy's constitutive, Klir's epistemic (the outside of the describer's distinction). Collapse witness (two Bunge triples, one Klir pair) asserted, not yet derived |
+| [`rosen-mesarovic.md`](rosen-mesarovic.md) | The set-theoretic definition and its critics — **the confrontation was never staged by Rosen or answered by Mesarović, but Bunge staged it once (1979 §1.8): "a system is a binary relation — again a conceptual object."** Concept-vs-thing, not structure. Argued, not derived; candidate test object deferred to a human minting decision |
 
 ## The RDF layer (`claims.ttl`)
 
