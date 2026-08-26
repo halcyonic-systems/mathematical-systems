@@ -98,6 +98,12 @@ def canon(text):
     text = text.replace("#", " ")                      # markdown heading marks
     text = text.replace("```", " ").replace("`", " ")
     text = re.sub(r"[_*]", "", text)                   # markdown emphasis
+    # Braces are LaTeX grouping in a digitised source (delatex consumes them on
+    # the source side) but genuine set-builder notation on a printed page —
+    # Mesarović's ×{Vᵢ : i ∈ I}. Stripped on BOTH sides, so a verbatim may
+    # carry the braces the page prints and still locate in a source whose
+    # braces delatex already ate. locate() reports the normalisation.
+    text = re.sub(r"[{}]", "", text)
     text = text.replace("\u2019", "'").replace("\u2018", "'")
     # Double quotes are DROPPED, not folded: the source-side loop has always
     # dropped the curly pair, so folding here left a straight-vs-nothing
@@ -238,6 +244,8 @@ def locate(verbatim, raw, probe_len=120, context_chars=PUBLISHABLE_CONTEXT):
         notes.append("running heads / page numbers removed")
     if re.search(r"[^\W\d_]-\s*\n\s*[^\W\d_]", raw):
         notes.append("words broken by a hyphen at a line end rejoined")
+    if "{" in verbatim or "{" in raw:
+        notes.append("set/grouping braces ignored")
     notes.append("whitespace around operators ignored")
 
     pos = hay.find(needle)

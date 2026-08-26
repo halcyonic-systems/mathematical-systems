@@ -16,6 +16,10 @@
 @prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
     skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
@@ -180,13 +184,13 @@ insisted on. The distinction is his, not ours."""@en .
     rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
 
 <https://w3id.org/mathematical-systems/atlas/entries/mesarovic-takahara-1975-gst> rdfs:label "Atlas entry — Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)"@en ;
-    rdfs:comment """Accessioned at MDU (2026-08-26): the entry is in the catalogue and visible,
-and its evidence code says exactly what that means — model-drafted, no human has yet read it
-against the source. It must not be cited in any claim until the guided pass promotes the code.
-Open at that pass: verify the page-image transcription (scan p. 22 = book p. 11), rule on the
-Ch. I p. 6 characterisation (candidate 0 — distinct entry per the Bunge two-entry precedent,
-or a preview of Def 1.1), and decide joint-authorship modelling (no Takahara node yet).
-Drafted 2026-08-25 by the P5 pipeline."""@en .
+    rdfs:comment """Drafted 2026-08-25 by the P5 pipeline; accessioned at MDU 2026-08-26;
+promoted to MDHC the same day after the verbatim was read against the page image (scan
+p. 22 = book p. 11) by Shingai Thornton — see the TRANSCRIPTION block for what was checked,
+including the braces defect the review caught. Still open from the guided pass: candidate 0
+(the Ch. I p. 6 characterisation — distinct entry per the Bunge two-entry precedent, or a
+preview of Def 1.1), the four minted primitives' roles and possible merges (their scope
+notes still carry MDU markers), and joint-authorship modelling (no Takahara node yet)."""@en .
 
 <https://w3id.org/mathematical-systems/atlas/entries/mobus-2022-tamd> rdfs:label "Atlas entry — Mobus 2022, Systems Science: Theory, Analysis, Modeling, and Design"@en ;
     rdfs:comment """Entry 006. The first entry drafted by the P5 ingest pipeline (2026-08-17)
@@ -310,17 +314,17 @@ entry:mesarovic-takahara-1975-general-system a atlas:FormalSystemDefinition ;
     rdfs:label "Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)"@en ;
     rdfs:comment """SCOPE OF THE ENTRY. The entry carries Definition 1.1 alone — the set-theoretic definition of a (general) system as a relation on nonempty abstract sets — together with the author's immediate gloss naming × as Cartesian product, I as the index set, and a component set Vᵢ as a system object, plus the finite-index form (2.2). Definitions 1.2 (input object, output object, input-output system), 1.3 (function-type system), and the parallel presentation at book p. 6 (eq. 1.1) are not encoded here.
 
-TRANSCRIPTION. The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image, itself unverified by a human), including the correction that the book prints ⊂ rather than ⊆. Per atlas procedure the set-builder braces of × {Vᵢ : i ∈ I} are dropped from the verbatim, and subscripts are carried as the source file writes them. Equation numbers (2.1) and (2.2) are retained as printed. This is a model-drafted, unchecked (MDU) transcription and must be verified against the page image before any evidence code rises.
+TRANSCRIPTION. The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image). Verified against the page image by Shingai Thornton, 2026-08-26: ⊂ (proper subset, not ⊆) confirmed in (2.1) and (2.2); "nonempty" confirmed; the gloss sentence confirmed; equation numbers confirmed as printed — and the reviewer caught that (2.1) prints set-builder braces, ×{Vᵢ : i ∈ I}, which the draft had dropped to satisfy the locator. The locator now normalises braces on both sides (reported as a normalisation), and the verbatim carries the braces the page prints. Subscripts are carried as the source file writes them.
 
 DELIBERATELY NOT ASSERTED. No cco is-about relation is asserted between this entry and any subject matter, thing, or phenomenon. The catalogue records that this author, in this locus, uses these words in this formal statement; it does not assert what the definition is about, nor that this 'system' is the same notion as any other author's.
 
 WHAT DOES NOT FIT. The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; whether these should be censused together is left open."""@en ;
     atlas:displayContext "where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object." ;
     atlas:displayForm """A (general) system is a relation on nonempty (abstract) sets
-S ⊂ × Vᵢ : i ∈ I (2.1)""" ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+S ⊂ × {Vᵢ : i ∈ I} (2.1)""" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-26" ;
     atlas:encodedOn "2026-08-25"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:floorDependency prim:relation ;
     atlas:floorPosition prim:system-object ;
     atlas:invokesPrimitive prim:cartesian-product,
@@ -332,7 +336,7 @@ S ⊂ × Vᵢ : i ∈ I (2.1)""" ;
     atlas:sourceLocation "Chapter II, §1(a), Definition 1.1, book p. 11 = scan page 22; eqs. (2.1)–(2.2)" ;
     atlas:statedIn bearer:mesarovic-takahara-1975-gst ;
     atlas:verbatim """Definition 1.1. A (general) system is a relation on nonempty (abstract) sets
-S ⊂ × Vᵢ : i ∈ I (2.1)
+S ⊂ × {Vᵢ : i ∈ I} (2.1)
 where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form
 S ⊂ V₁ × ⋯ × Vₙ (2.2)""" .
 
@@ -612,10 +616,6 @@ obo:BFO_0000040 a owl:Class ;
     rdfs:label "material entity"@en ;
     rdfs:subClassOf obo:BFO_0000004 ;
     skos:definition "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:ObserverRoleScheme a skos:ConceptScheme ;
     rdfs:label "The observer's act"@en ;

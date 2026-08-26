@@ -177,8 +177,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "64ffbff+",
-    "repoCommit": "64ffbff+"
+    "atlasCommit": "f712749+",
+    "repoCommit": "f712749+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -431,6 +431,7 @@
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
         "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
         "whitespace around operators ignored"
       ],
       "matchedChars": 252,
@@ -448,6 +449,7 @@
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
         "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
         "whitespace around operators ignored"
       ],
       "matchedChars": 422,
@@ -465,6 +467,7 @@
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
         "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
         "whitespace around operators ignored"
       ],
       "matchedChars": 108,
@@ -500,6 +503,7 @@
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
         "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
         "whitespace around operators ignored"
       ],
       "matchedChars": 340,
@@ -515,6 +519,7 @@
       "status": "located",
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
+        "set/grouping braces ignored",
         "whitespace around operators ignored"
       ],
       "matchedChars": 504,
@@ -531,12 +536,13 @@
       "normalisations": [
         "LaTeX math in source rendered to Unicode",
         "running heads / page numbers removed",
+        "set/grouping braces ignored",
         "whitespace around operators ignored"
       ],
       "matchedChars": 266,
       "verbatimChars": 266,
       "context": {
-        "before": "6 prose reads \"a proper\nsubset of × V̄\"), in (1.1), (2.1), (2.2), and (2.3).\n\nBook p. 6 (Ch. I §2, scan page 17):\n\nThe starting point for the entire development is the concept of a system defined on the set-theoretic level. Quite simply and most naturally for that level, a system is defined as a relation in the set-theoretic sense, i.e., it is assumed that a family of sets is given,\nV̄ = Vᵢ : i ∈ I\nwhere I is the index set, and a system, defined on V̄, is a proper subset of × V̄,\nS ⊂ × Vᵢ : i ∈ I\nThe components of S, Vᵢ, i ∈ I, are termed the systems objects. We shall primarily be concerned with a system consisting of two objects, the input object X and the output object Y:\nS ⊂ X × Y (1.1)\n\nBook p. 11 (Ch. II §1(a), scan page 22):",
+        "before": "6 prose reads \"a proper subset of × V̄\"), in (1.1), (2.1), (2.2), (2.3).\n\nBook p. 6 (Ch. I §2, scan page 17):\n\nThe starting point for the entire development is the concept of a system defined on the set-theoretic level. Quite simply and most naturally for that level, a system is defined as a relation in the set-theoretic sense, i.e., it is assumed that a family of sets is given,\nV̄ = Vᵢ : i ∈ I\nwhere I is the index set, and a system, defined on V̄, is a proper subset of × V̄,\nS ⊂ × Vᵢ : i ∈ I\nThe components of S, Vᵢ, i ∈ I, are termed the systems objects. We shall primarily be concerned with a system consisting of two objects, the input object X and the output object Y:\nS ⊂ X × Y (1.1)\n\nBook p. 11 (Ch. II §1(a), scan page 22):",
         "match": "Definition 1.1. A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)\nwhere × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form\nS ⊂ V₁ × ⋯ × Vₙ (2.2)",
         "after": "Definition 1.2. Let Iₓ ⊂ I and Iᵧ ⊂ I be a partition of I, i.e., Iₓ ∩ Iᵧ = φ, Iₓ ∪ Iᵧ = I. The set X = × Vᵢ : i ∈ Iₓ is termed the input object, while Y = × Vᵢ : i ∈ Iᵧ is termed the output object. The system S is then\nS ⊂ X × Y (2.3)\nand will be referred to as an input–output system.\n\nThe form (2.3) rather than (2.2) will be used throughout this book.\n\nDefinition 1.3. If S is a function\nS : X → Y (2.4)\nit is referred to as a function-type (or functional) system.\n\n---\n\n\n<!-- scan page 1 -->\n\nMATHEMATICSINSCIENCEANDee\nGeneral SystemsTheory:MathematicalFoundations\n\n<!-- scan page 2 -->\n\nGeneral Systems Theory:Mathematical Foundations\nM.D. Mesarovic and Yasuhiko TakaharaSysteMs RESEARCH CENTERCASE WESTERN RESERVE UNIVERSITYCLEVELAND, OHIO\nACADEMIC PRESS New York San Francisco London 1975A S"
       },
@@ -942,8 +948,8 @@
       "label": "Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)",
       "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst",
       "sourceLocation": "Chapter II, §1(a), Definition 1.1, book p. 11 = scan page 22; eqs. (2.1)–(2.2)",
-      "verbatim": "Definition 1.1. A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)\nwhere × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form\nS ⊂ V₁ × ⋯ × Vₙ (2.2)",
-      "displayForm": "A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × Vᵢ : i ∈ I (2.1)",
+      "verbatim": "Definition 1.1. A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × {Vᵢ : i ∈ I} (2.1)\nwhere × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form\nS ⊂ V₁ × ⋯ × Vₙ (2.2)",
+      "displayForm": "A (general) system is a relation on nonempty (abstract) sets\nS ⊂ × {Vᵢ : i ∈ I} (2.1)",
       "displayContext": "where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object.",
       "authorCaveat": null,
       "admits": [],
@@ -956,8 +962,8 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/set",
         "https://w3id.org/mathematical-systems/atlas/primitive/system-object"
       ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
-      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-26",
       "encodedOn": "2026-08-25",
       "formalisedAs": null,
       "annotation": [
@@ -969,7 +975,7 @@
         {
           "kind": "section",
           "title": "TRANSCRIPTION",
-          "body": "The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image, itself unverified by a human), including the correction that the book prints ⊂ rather than ⊆. Per atlas procedure the set-builder braces of × {Vᵢ : i ∈ I} are dropped from the verbatim, and subscripts are carried as the source file writes them. Equation numbers (2.1) and (2.2) are retained as printed. This is a model-drafted, unchecked (MDU) transcription and must be verified against the page image before any evidence code rises."
+          "body": "The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image). Verified against the page image by Shingai Thornton, 2026-08-26: ⊂ (proper subset, not ⊆) confirmed in (2.1) and (2.2); \"nonempty\" confirmed; the gloss sentence confirmed; equation numbers confirmed as printed — and the reviewer caught that (2.1) prints set-builder braces, ×{Vᵢ : i ∈ I}, which the draft had dropped to satisfy the locator. The locator now normalises braces on both sides (reported as a normalisation), and the verbatim carries the braces the page prints. Subscripts are carried as the source file writes them."
         },
         {
           "kind": "section",
