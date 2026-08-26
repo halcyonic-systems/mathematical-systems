@@ -1,0 +1,29 @@
+[
+  {
+    "symbol": "C",
+    "slug": "composition",
+    "pref_label": "composition",
+    "verbatim": "The composition of a system is the set of its components; the environment, the set of items with which it is connected; and the structure, the relations among its components as well as among these and the environment.",
+    "source_location": "ch. 1, §1.1 (Aggregate and System)",
+    "role": "sort",
+    "new": false
+  },
+  {
+    "symbol": "E",
+    "slug": "environment",
+    "pref_label": "environment",
+    "verbatim": "The composition of a system is the set of its components; the environment, the set of items with which it is connected; and the structure, the relations among its components as well as among these and the environment.",
+    "source_location": "ch. 1, §1.1 (Aggregate and System)",
+    "role": "sort",
+    "new": false
+  },
+  {
+    "symbol": "S",
+    "slug": "structure",
+    "pref_label": "structure",
+    "verbatim": "Finally the structure of a thing will be defined as the set of all the relations among the thing's components as well as among these and the things in the thing's environment.",
+    "source_location": "ch. 1, §1.2 (Concrete System: Definition)",
+    "role": "relation",
+    "new": false
+  }
+]

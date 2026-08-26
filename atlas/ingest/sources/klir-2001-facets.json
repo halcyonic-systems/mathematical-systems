@@ -1,0 +1,14 @@
+{
+  "bearer_slug": "klir-2001-facets",
+  "bearer_label": "Klir, G. J. — Facets of Systems Science, 2nd ed. (Kluwer, 2001)",
+  "creator": "George J. Klir",
+  "author_slug": "george-klir",
+  "date": "2001",
+  "identifiers": [
+    "ISBN 0-306-46518-4"
+  ],
+  "vault_files": [
+    "klir/klir-facets.md"
+  ],
+  "note": "Registered 2026-08-26 for the #8 back-harvest; the vault file was already the BEARER_SOURCES gate text for entry 001, so the provenance judgment predates this file. Full-book ingest including the reprinted classics (Rosen 1986 at ~line 12792)."
+}

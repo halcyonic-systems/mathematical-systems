@@ -1,0 +1,14 @@
+{
+  "bearer_slug": "bertalanffy-1972-history-status",
+  "bearer_label": "Bertalanffy, L. von — The History and Status of General Systems Theory (Academy of Management Journal 15(4), 1972)",
+  "creator": "Ludwig von Bertalanffy",
+  "author_slug": "ludwig-von-bertalanffy",
+  "date": "1972",
+  "identifiers": [
+    "doi:10.2307/255139"
+  ],
+  "vault_files": [
+    "bertalanffy/bertalanffy-1972-history-status-amj.md"
+  ],
+  "note": "Registered 2026-08-26 for the #8 back-harvest; publisher text layer (not OCR), displayed equations absent as the file header warns. Same filename-vs-IRI caveat as bunge: bearer IRI is bertalanffy-1972-amj."
+}

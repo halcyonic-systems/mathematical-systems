@@ -1,0 +1,29 @@
+[
+  {
+    "symbol": "S",
+    "slug": "system",
+    "pref_label": "system",
+    "verbatim": "It follows from this common-sense definition that the term \"system\" stands, in general, for a set of some things and a relation among the things.",
+    "source_location": "ch. 1, p. 4 (immediately preceding eq. (1.1))",
+    "role": "unassigned",
+    "new": true
+  },
+  {
+    "symbol": "T",
+    "slug": "set-of-things",
+    "pref_label": "set of things",
+    "verbatim": "Symbol T may stand for a single set with arbitrary elements, finite or infinite, but can also represent, for example, a power set (the set of all subsets of another set), any subset of the power set, or an arbitrary family of distinct sets.",
+    "source_location": "ch. 2, §2.1, p. 9",
+    "role": "sort",
+    "new": true
+  },
+  {
+    "symbol": "R",
+    "slug": "relation",
+    "pref_label": "relation",
+    "verbatim": "Cartesian products provide a basis for defining relations. A relation, in general, is a subset of some Cartesian product of given sets.",
+    "source_location": "ch. 2, §2.1, p. 10",
+    "role": "relation",
+    "new": false
+  }
+]

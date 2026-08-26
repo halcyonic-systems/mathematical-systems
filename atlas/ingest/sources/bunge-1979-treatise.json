@@ -1,0 +1,14 @@
+{
+  "bearer_slug": "bunge-1979-treatise",
+  "bearer_label": "Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)",
+  "creator": "Mario Bunge",
+  "author_slug": "mario-bunge",
+  "date": "1979",
+  "identifiers": [
+    "ISBN 90-277-0944-9"
+  ],
+  "vault_files": [
+    "bunge/Bunge - 1979 - Treatise on Basic Philosophy.md"
+  ],
+  "note": "Registered 2026-08-26 for the #8 back-harvest. bearer_slug here matches the ENTRY FILENAME (entries/bunge-1979-treatise.ttl, which holds both 1979 entries); the bearer IRI inside it is bunge-1979-treatise-vol4 — the harvest command looks entries up by filename, so this registration must not be used to draft a new bearer. Known source hazards (duplicate Definition 1.19 and 3.4 numbering, Def 1.8(i) latter/latter) recorded in issue #5."
+}
