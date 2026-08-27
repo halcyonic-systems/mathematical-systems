@@ -170,6 +170,7 @@ ACCESSION = [
     "mobus-2022-seven-tuple",
     "mobus-revisions-oct-tuple",
     "mesarovic-takahara-1975-general-system",
+    "joslyn-1995-control2",
 ]
 
 
@@ -568,6 +569,9 @@ BEARER_SOURCES = {
     ),
     "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1968-gst": (
         "bertalanffy/gst-1968-full-text.md"
+    ),
+    "https://w3id.org/mathematical-systems/atlas/bearer/joslyn-1995-semantic-control": (
+        "joslyn/joslyn-1995-semantic-control-systems.md"
     ),
 }
 

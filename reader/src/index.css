@@ -106,6 +106,12 @@
      midpoint ~83°): olive at 85°, 56° from Bunge and 52° from Mobus, 4.86:1
      on the card ground — the same measured rule that placed plum. */
   --world-mesarović: #5e7340;
+  /* Joslyn: the widest gap is now slate 215° → plum 312°; violet at 256°,
+     41° from Klir and 56° from plum, 5.84:1 on the card ground. Nearer the
+     app accent (232°) than any other world hue — tolerated on the Klir
+     precedent (215°, 17° from accent), and the accent is desaturated where
+     this is not. */
+  --world-joslyn: #6a55a3;
   /* The channel's carrier: any element wearing data-world resolves --world for
      itself and its subtree. One mapping for the whole site — the shelf, the
      rail, the entry page — so an author is one colour everywhere. */
@@ -183,6 +189,9 @@ body {
 }
 [data-world="mesarović"] {
   --world: var(--world-mesarović);
+}
+[data-world="joslyn"] {
+  --world: var(--world-joslyn);
 }
 
 /* Where the channel shows outside the shelf. The author's VOICE wears the

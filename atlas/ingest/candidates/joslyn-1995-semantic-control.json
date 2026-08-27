@@ -1,0 +1,121 @@
+[
+  {
+    "location": "§2.1.1, Definition 1 (p. 89)",
+    "passage": "Definition 1 (System^) A group of units so combined as to form a whole and to operate in\nunison (Webster, 1989).",
+    "verdict": "prop",
+    "rationale": "Verbatim quotation of Webster's dictionary definition, cited to another source; it restates rather than introduces the author's own system concept.",
+    "caveat": "It is perhaps best exemplified by Webster's definition:"
+  },
+  {
+    "location": "§2.1.1, Definition 2 (p. 89)",
+    "passage": "In the systems theory literature, Hall and Fagan take up this sense:\nDefinition 2 (System^) A system^ ¿5 a set of objects together with relationships between the\nobjects (Hall and Fagan, 1956).",
+    "verdict": "prop",
+    "rationale": "Direct citation of Hall and Fagan's published definition, reproduced by Joslyn as an exemplar of the classical view, not as his own definition.",
+    "caveat": null
+  },
+  {
+    "location": "§2.1.1, Definition 3 (p. 89)",
+    "passage": "As does Waelchli:\nDefinition 3 (System^) A system^ ¿5 a bounded collection of three types of entities:\nelements, attributes of elements, and relationships among elements and attributes (Waelchli, 1992).",
+    "verdict": "prop",
+    "rationale": "Cited definition from Waelchli (1992), listed as another instance of the classical/structuralist sense; not the author's own construction.",
+    "caveat": null
+  },
+  {
+    "location": "§2.1.1, Definition 4 (p. 89)",
+    "passage": "To these I will add my own natural language definition:\nDefinition 4 (System.) A system, 5 is an entity which resultsfromthe entering into relation of\nmultiple entities, called parts, to form the new whole entity S with new properties at a level\nhierarchically distinct from those parts.",
+    "verdict": "include",
+    "rationale": "The author's own general (natural-language) characterisation: it names sorts (parts, whole entity S) and fixes the constitutive relation (parts entering into relation to form S with new properties at a hierarchically distinct level).",
+    "caveat": "To these I will add my own natural language definition:"
+  },
+  {
+    "location": "§2.1.1, Definition 5 (p. 89)",
+    "passage": "Definition 5 (System^ Given a finite family of sets Xv ..., Xn and thár cartesian product\nn\n\nX := X Xe\n\nthen a systenij 5 is any relation in X, so that\nSQX,\n\nS * 0.",
+    "verdict": "prop",
+    "rationale": "Formal set-theoretic definition explicitly adopted from the Mesarović school (\"from which the following definition is adopted\"), so it restates another author's definition even though Joslyn uses it throughout.",
+    "caveat": "The final condition is required so that the system must actually exist. For simplicity,\nit will generally be assumed that the X¡ are finite."
+  },
+  {
+    "location": "§2.1.2, Definition 8 (p. 91)",
+    "passage": "Gaines reaches the \"solipsistic\" limit of this trend:\nDefinition 8 (SystemG) A systemG ¿5 [that which] is distinguished as a system (Gaines, 1980).",
+    "verdict": "prop",
+    "rationale": "Quoted definition attributed to Gaines; it also fixes no components or relations, merely a self-referential criterion.",
+    "caveat": "He asserts that this view is not frivolous, and indeed claims that systems have the\nunique property that being distinguished as systems is both necessary and sufficient\nfor their being systems."
+  },
+  {
+    "location": "§2.1.2, Definition 9 (p. 91)",
+    "passage": "I offer the following definition.\nDefinition 9 (System2) A system^ ¿5 a bounded region of some (perhaps abstract) space which\nfunctionally and uniquely distinguishes it.",
+    "verdict": "include",
+    "rationale": "The author's own definition of his second (constructivist/functionalist) system concept: it names a region and an ambient (possibly abstract) space and fixes the constraint that the boundary functionally and uniquely distinguishes the region.",
+    "caveat": "I offer the following definition."
+  },
+  {
+    "location": "§2.1.2, Definition 10 (p. 91)",
+    "passage": "Definition 10 (System AvN) A system^^ can be any object, any quantity of matter, any region\nof space, etc., selectedfor study and set apart (mentally) from everything else, which then becomes\nthe surroundings (Abbot and van Ness, 1972, p. 1).",
+    "verdict": "prop",
+    "rationale": "Quoted thermodynamics-textbook definition (Abbot and van Ness), adduced as evidence that system₂ is used in physics; not Joslyn's own definition.",
+    "caveat": null
+  },
+  {
+    "location": "§2.6, Definition 21 (p. 99)",
+    "passage": "Thus we arrive at a synthetic definition of system in terms of distinctions, variety,\nand constraint.\nDefinition 21 (System) A system is a cardinal distinction on a variety of dimensional\ndistinctions.",
+    "verdict": "include",
+    "rationale": "The author's culminating synthetic definition proper: it names two sorts of primitive (cardinal distinction, dimensional distinctions, previously typed in Defs. 19–20) and fixes the relation of one being made upon a variety of the other.",
+    "caveat": "Although these processes are not mutually exclusive (dimensional and\ncardinal variety can change independently), cardinal variety requires some amount of\ndimensional variety (some universe of discourse) in order to even be defined, let\nalone avoid degeneracy."
+  },
+  {
+    "location": "§2.7.1, Definition 22 (p. 99)",
+    "passage": "Definition 22 (Contingent Metasystem) Given a systemj S with environment E (where E is\nunderstood to be similar to the constraint¡ C), then let\nS' := (S, E)\nbe the metasystem, with parts S and E, generated contingently on S.",
+    "verdict": "include",
+    "rationale": "Author's own definition of a qualified system variant (metasystem): named components S and E with their types, and the pairing relation S' := ⟨S, E⟩ that constitutes the whole.",
+    "caveat": "In the creation of any systemj 5, another metasystem 5' is identifiable\ncontingent on considering S and its environment together as new, distinct entities."
+  },
+  {
+    "location": "§3.1, Definition 25 (p. 101; page-image transcription)",
+    "passage": "Definition 25 (Control₁) Given a metasystem CS := ⟨C, O⟩ consisting of a controller C and an object of control O, then CS is a control₁ system, and the relation between C and O is a control₁ relation, if the actions of C result in a constraint₂ on the freedom of O.",
+    "verdict": "prop",
+    "rationale": "Fully componential (CS = ⟨C, O⟩ with a constraint condition), but Joslyn presents it as Turchin's earlier definition from the 1992 Principia Cybernetica nodes, re-offered here rather than newly defined.",
+    "caveat": "Although he has since moved beyond this definition (Turchin, 1995), it\ncaptures an important case, and we offer it again here."
+  },
+  {
+    "location": "§3.1 gloss (p. 102; page-image transcription)",
+    "passage": "A control₁ system is a metasystem of two subsystems: C, as the environment of O, manifests a constraint₂ on O.",
+    "verdict": "exclude",
+    "rationale": "This is the author's immediate gloss restating Definition 25 in other words, adding no new components or constraints.",
+    "caveat": "As long as these\ndifferent complementary perspectives are not confused, the slight equivocation of\nreferring to C as either the constrain^ on O or the controlling subsystem can be\ntolerated."
+  },
+  {
+    "location": "§3.3, Definition 27 (p. 103)",
+    "passage": "This leads to the definition of control offered by Marken:\nDefinition 27 (Control^) A controlled^ event is a physical variable (or afunction ofseveral\nvariables) that remains stable in the face of factors that should produce variability (Marken,\n1988).",
+    "verdict": "prop",
+    "rationale": "Quoted from Marken (1988) and concerns a controlled event rather than a system; Joslyn adapts it in his own Definition 28.",
+    "caveat": "Thus he offers a descriptive\ndefinition: if some stable quantity is observed which \"should\" be varying, then that\nquantity is under control."
+  },
+  {
+    "location": "§3.3, Definition 28 (p. 103; page-image transcription)",
+    "passage": "Definition 28 (Control₂) A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂.",
+    "verdict": "include",
+    "rationale": "The author's own definition of his central system concept: components C and O typed by the control₁ system, plus a second-order constraint condition on the variation of the constraint.",
+    "caveat": "Control^ can be adapted to our terminology, and generalized slightly, as follows:"
+  },
+  {
+    "location": "§3.4, Proposition 29 and eq. (30) (p. 106; page-image transcription)",
+    "passage": "Proposition 29 Given a control₂ system CS = ⟨C, O⟩, then O is itself a control₁ system\nO = ⟨O_E, O_I⟩,\nwhere O_E is O's external component which exercises additional constraint₁ over the stable internal component O_I.\n\nCS is now expressed according to the formula\nCS = ⟨C, O = ⟨O_E, O_I⟩⟩. (30)",
+    "verdict": "exclude",
+    "rationale": "Although it introduces the typed components O_E and O_I with a constraint relation, it is presented as a derived proposition about control₂ systems, not as a definition of the system concept.",
+    "caveat": "Because the actions of O£constrain2 the freedom of Op therefore, even while CS =\n{C, (OE,Oj)) is a controlg system, O = {OE,Oj) is itself a controlj system, in virtue of\nDef. (25)."
+  },
+  {
+    "location": "§3.7.1, eq. (31) (p. 109)",
+    "passage": "First, CS can be viewed by (relatively) downgrading our focus on die control\nmechanism OE, while regarding the environmental disturbances C and internal\nstates Oj together. Then (30) can be rewritten as\nCS, := (OE,(C,O¿).\n\n(31)",
+    "verdict": "exclude",
+    "rationale": "A complementary regrouping of the already-defined control₂ system components (the intentional-control view), not a new definition of a system.",
+    "caveat": "Instead, CS, is an alternative view of a control2 system which we can choose to\nassume, and which is sometimes necessary or useful."
+  },
+  {
+    "location": "§3.7.2, eq. (32) (p. 110)",
+    "passage": "Secondly, we recognize that C and OE vary in complementary ways, while O¡\nremains constant. It therefore also makes sense to decompose CS according to the\nformula\nCX, := <O/,<C,OE».\n\n(32)",
+    "verdict": "exclude",
+    "rationale": "Another decomposition of the same control₂ system (stimulus-response control view); it re-partitions previously defined components rather than defining a new system concept.",
+    "caveat": "While GSis a control2 system, CS^ is in fact a control^ system of a very particular sort."
+  }
+]

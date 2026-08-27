@@ -16,10 +16,6 @@
 @prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
-
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
     skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
@@ -180,6 +176,17 @@ proper" and supplies a separate DEFINITION of concrete system. Collapsing them
 into one entry would misrepresent him and would erase the caveat he himself
 insisted on. The distinction is his, not ours."""@en .
 
+<https://w3id.org/mathematical-systems/atlas/entries/joslyn-1995-semantic-control> rdfs:label "Atlas entry — Joslyn (1995), Semantic Control Systems, §3.3, Definition 28 (Control₂)"@en ;
+    rdfs:comment """Drafted 2026-08-27 by the P5 pipeline; accessioned at MDU the same day
+(the entry-008 pattern: in the catalogue and visible, its evidence code saying exactly what
+that means — model-drafted, no human pass yet; must not be cited until promoted). Open at
+the guided pass: verify the page-image transcription (World Futures pp. 101-106) and the
+five case verbatims (drawn from the damaged body layer, spellings preserved and disclosed);
+rule on candidate 9 (Def 22, contingent metasystem — a second Joslyn entry candidate); note
+the scan's provenance finding that Def 25 (control₁) is Joslyn re-offering Turchin 1992 and
+therefore grades PROP under the restatement rule — a fact the collaboration artifact should
+carry. Entry serves the encoding-faithfulness ask (systems-science-foundations#50)."""@en .
+
 <https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets> rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
     rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
 
@@ -309,6 +316,40 @@ catalogue.""" ;
     atlas:sourceLocation "p. 417" ;
     atlas:statedIn bearer:bertalanffy-1972-amj ;
     atlas:verbatim "A system may be defined as a set of elements standing in interrelation among themselves and with the environment. This can be expressed mathematically in different ways." .
+
+entry:joslyn-1995-control2 a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §3.3, Definition 28 (Control₂)"@en ;
+    rdfs:comment """DELIBERATELY NOT ASSERTED
+No cco is-about relation is asserted between this entry and any subject matter, in keeping with the catalogue's neutrality invariant: the entry records that Joslyn writes this definition at this locus, not that the definition is about control, systems, or any worldly phenomenon.
+
+SOURCE AND RENDERING
+The verbatim is taken from the 2026-08-27 page-image transcription prefacing the file, which the transcriber marks as the authoritative text for formula-bearing quotes because the PDF's own text layer carries systematic subscript and ligature damage ("controlj" for control₁, "controlg" for control₂, "constrainedj" for constrained₁) and flattens the printed angle brackets ⟨ ⟩ to parentheses. Subscripts appear as Unicode subscript digits, as in the transcription; the printed page carries them as typeset subscripts. This is an MDU draft: the human pass should check the rendered subscripts and brackets against the page image.
+
+NOT ENCODED
+display_context is null: Definition 28 has no immediate authorial gloss inside the transcribed section, and the explication that follows on pp. 103–104 ("Control2 requires a bit of explication and exemplification. First, we recognize that O varies over a state space...") survives only in the damaged body layer, so it could not be given as an exact substring of a page-faithful verbatim. Likewise not encoded: the dependence of this definition on Definition 25 (control₁), Definition 15 (constraint₂) and Definition 6 (constraint₁), which the entry leaves as lexical primitives rather than unfolding; the derivation at Proposition 29 that O in a control₂ system must itself decompose as ⟨O_E, O_I⟩; the mapping to Marken's Definition 27 (control_M) recovered as a special case; and the two complementary re-decompositions CS₁ and CS₂ of §3.7. The case verbatims are drawn from the damaged body text and reproduce its OCR spellings ("controlg", "constraintj", "Cs", "control2", "controlled2") exactly as the file carries them.
+
+AUTHOR CAVEAT
+None recorded: Joslyn qualifies the whole enterprise as semiformal and deliberately iterative in §1, and remarks before Definition 28 that Marken's control is "adapted to our terminology, and generalized slightly," but no qualification is placed on this definition itself in a form that could be lifted verbatim as a caveat on it."""@en ;
+    atlas:admits case:thermodynamic-system-with-decoupled-envelope,
+        case:thermostat-machine ;
+    atlas:displayForm "A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂." ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-27"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:floorDependencyShapeLevel true ;
+    atlas:floorPosition prim:control-1-system ;
+    atlas:formalisedAs "Systems/Category/ShapeJoslyn.lean#JoslynShape" ;
+    atlas:invokesPrimitive prim:constrained-2,
+        prim:constraint-1,
+        prim:control-1-system,
+        prim:control-2-system,
+        prim:variation ;
+    atlas:refuses case:boiling-liquid,
+        case:damped-spring-stable-equilibrium,
+        case:spinning-top ;
+    atlas:sourceLocation "§3.3 Control Theory, Definition 28, p. 103 (from the 2026-08-27 page-image transcription section)" ;
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:verbatim "Definition 28 (Control₂) A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂." .
 
 entry:mesarovic-takahara-1975-general-system a atlas:FormalSystemDefinition ;
     rdfs:label "Mesarović & Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)"@en ;
@@ -639,6 +680,9 @@ atlas:TestObjectScheme a skos:ConceptScheme ;
 is added only when the corpus contains at least two rulings on the same object, because a test
 object with one ruling compares nothing and a test object with none is invented."""@en .
 
+author:cliff-joslyn a atlas:Author ;
+    rdfs:label "Cliff Joslyn"@en .
+
 author:george-klir a atlas:Author ;
     rdfs:label "George J. Klir"@en .
 
@@ -666,6 +710,14 @@ bearer:bertalanffy-1972-amj a cco:ont00000253 ;
     dcterms:identifier "doi:10.2307/255139",
         "https://www.jstor.org/stable/255139" ;
     atlas:authoredBy author:ludwig-von-bertalanffy .
+
+bearer:joslyn-1995-semantic-control a cco:ont00000253 ;
+    rdfs:label "Joslyn, C. — Semantic Control Systems (World Futures 45, 1995)"@en ;
+    dcterms:creator "Cliff Joslyn" ;
+    dcterms:date "1995"^^xsd:gYear ;
+    dcterms:identifier "World Futures 45, pp. 87-123",
+        "doi:10.1080/02604027.1995.9972556" ;
+    atlas:authoredBy author:cliff-joslyn .
 
 bearer:klir-2001-facets a cco:ont00000253 ;
     rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
@@ -729,6 +781,15 @@ mouth. It belongs to the mapping layer.""" ;
     atlas:sourceLocation "General System Theory (1968), p. 209, quoting Bertalanffy 1949a p. 11" ;
     atlas:verbatim "Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction" .
 
+case:boiling-liquid a atlas:Example ;
+    rdfs:label "Boiling liquid"@en ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "A dynamic equilibrium whose rate tracks the heat input; Joslyn states explicitly that it is not controlled₂." ;
+    atlas:sourceLocation "§3.6, p. 109" ;
+    atlas:verbatim "The boiling activity is in dynamic equilibrium, but it is not controlled2." .
+
 case:bunge-events-ordered a atlas:Example ;
     rdfs:label "a collection of events, even if ordered"@en ;
     rdfs:comment """Half of the catalogue's first separating instance: Klir admits an ordered
@@ -763,6 +824,15 @@ case:bunge-theory a atlas:Example ;
     atlas:evidenceCode atlas:HVP ;
     atlas:gloss "a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢" ;
     atlas:sourceLocation "ch. 1, §1.1, p. 5" .
+
+case:damped-spring-stable-equilibrium a atlas:Example ;
+    rdfs:label "System governed only by a stable equilibrium (the damped spring of Eq. 26)"@en ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "Joslyn rules that mere passive stability is not control₂, since varying the free parameters varies the constraint₁ on O and hence the equilibrium point." ;
+    atlas:sourceLocation "§3.3, p. 104" ;
+    atlas:verbatim "It is clear that a system governed only by a stable equilibrium, as in (26), is not a controlg system: a variation of the free parameters causes a corresponding variation of the constraintj on O, and thus of x*." .
 
 case:klir-books-ordered a atlas:Example ;
     rdfs:label "a collection of books, ordered"@en ;
@@ -803,6 +873,33 @@ case:mobus-atom a atlas:Example ;
     atlas:gloss "Atoms, offered as simple systems distinguished by a NULL memory element H." ;
     atlas:sourceLocation "ch. 4, §4.3.3.5" ;
     atlas:verbatim "Some simple systems, like atoms for example, may have a NULL H; that is there is no memory of past states and future states depend only on the current state and current inputs." .
+
+case:spinning-top a atlas:Example ;
+    rdfs:label "Spinning top"@en ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "The spin stabilises the axis of revolution, but a tilt of the table moves it; Joslyn notes that a controlled₂ position would resist the perturbation." ;
+    atlas:sourceLocation "§3.6, p. 109" ;
+    atlas:verbatim "The torque generated by its active spinning creates a stable position of the axis of revolution, but a tilt to the table top will cause that center to move. If the position were controlled2, then it would resist that environmental perturbation." .
+
+case:thermodynamic-system-with-decoupled-envelope a atlas:Example ;
+    rdfs:label "Thermodynamic system O in a systematically varying thermal environment C"@en ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "Joslyn's worked example: once O's envelope of variation stays constant while C's temperature changes systematically, the pair CS = ⟨C, O⟩ is declared a control₂ system." ;
+    atlas:sourceLocation "§3.3, p. 104" ;
+    atlas:verbatim "That is, as Cs temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control2 system." .
+
+case:thermostat-machine a atlas:Example ;
+    rdfs:label "Thermostat (human-engineered machine)"@en ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "Joslyn offers engineered machines such as thermostats as familiar instances of control₂ systems." ;
+    atlas:sourceLocation "§4.6, p. 117" ;
+    atlas:verbatim "We are quite familiar with control2 systems which are artifacts, for example human-engineered machines like thermostats." .
 
 atlas:constitutive a skos:Concept ;
     skos:inScheme atlas:ObserverRoleScheme ;
@@ -904,6 +1001,24 @@ prim:composition a skos:Concept ;
     skos:prefLabel "composition"@en ;
     skos:scopeNote "Bunge's C. The set of a thing's parts, relativised to a class A and a time t."@en .
 
+prim:constrained-2 a skos:Concept ;
+    skos:broader role:relation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "constrained₂"@en ;
+    skos:scopeNote "The author's word, the participial form of constraint₂ (Definition 15, the reduction of some variety), predicated here of the second-order variation in the constraint₁ on O. [MDU — drafted, unchecked; role proposal: relation]"@en .
+
+prim:constraint-1 a skos:Concept ;
+    skos:broader role:operation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "constraint₁"@en ;
+    skos:scopeNote "The author's word, carried into this definition, for the systemic constraint C := X − S of Definition 6; here it is what C places on O and what may itself vary. [MDU — drafted, unchecked; role proposal: operation]"@en .
+
+prim:control-2-system a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "control₂ system"@en ;
+    skos:scopeNote "Joslyn's word for the kind of system defined here: a control₁ system whose second-order variation in the constraint₁ on O, induced by C's variation, is itself constrained₂. [MDU — drafted, unchecked; role proposal: sort]"@en .
+
 prim:index-set a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -975,6 +1090,11 @@ prim:transformation-rule a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "transformation rule"@en ;
     skos:scopeNote "Mobus's T: 'T is the set of transformation rules for the subsystems in S' (§4.3.3.4). Hand-recovered after the model's wider span failed to locate — the passage is set in display-math wrappers the digitisation mangles."@en .
+
+prim:variation a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "variation"@en ;
+    skos:scopeNote "The author's word for the varying of a component or of a constraint over its state space; used here at two levels (C's variation, and the variation in the constraint₁ on O) without further formal analysis in the definition itself. [MDU — drafted, unchecked; role proposal: unassigned]"@en .
 
 stance:bertalanffy-1968-ontic a atlas:StanceAssertion ;
     rdfs:comment """His own word — the chapter title names the position — which is why the
@@ -1205,6 +1325,12 @@ prim:component a skos:Concept ;
     skos:prefLabel "component"@en ;
     skos:scopeNote "Mobus's C: 'C is a set of components and their \"type\" along with membership functions in the event the set is fuzzy, that is, the components may have partial inclusion' (§4.3.3.1)."@en .
 
+prim:control-1-system a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "control₁ system"@en ;
+    skos:scopeNote "Joslyn's word for the metasystem CS = ⟨C, O⟩ of Definition 25, in which the actions of the controller C result in a constraint₂ on the freedom of the object of control O; it is the antecedent kind on which control₂ is predicated. [MDU — drafted, unchecked; role proposal: sort]"@en .
+
 prim:flow-network a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1348,6 +1474,10 @@ skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;
     skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 prim:set a skos:Concept ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1402,6 +1532,10 @@ term "system" formally: it introduces named components with types or sorts, and
 fixes at least one relation, function, or constraint among them, in symbols or in
 prose precise enough to be transcribed to symbols without adding content."""@en .
 
+atlas:HVP a atlas:EvidenceCode ;
+    rdfs:label "human-verified against primary text"@en ;
+    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
+
 role:sort a skos:Concept ;
     skos:definition "A carrier kind: what the definition quantifies over or holds as an entity slot."@en ;
     skos:inScheme atlas:SignatureRoleScheme ;
@@ -1420,10 +1554,6 @@ docs/proposals/P4-evidence-scope.md."""@en ;
 one. Reified rather than recorded as a string on the entry, because an example is a thing
 several claims are made about -- where it appears in the source, how the encoding was
 established, and which shared case it instantiates."""@en .
-
-atlas:HVP a atlas:EvidenceCode ;
-    rdfs:label "human-verified against primary text"@en ;
-    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 
 atlas:PrimitiveScheme a skos:ConceptScheme ;
     rdfs:label "Systems-definition primitive vocabulary"@en ;

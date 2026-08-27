@@ -558,6 +558,40 @@ prim:system-object a skos:Concept ;
     skos:scopeNote "The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. Role confirmed at the guided pass, 2026-08-26."@en ;
     skos:broader role:sort .
 
+# ---- Joslyn 1995, Def 28 (entry 009) — accessioned at MDU: scope notes and
+# role proposals below are the pipeline draft's, unchecked; the guided pass
+# may merge, rename, or re-role them. `variation` proposes UNASSIGNED (used
+# at two levels without formal analysis) — a verdict candidate, not a gap.
+
+prim:control-1-system a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "control₁ system"@en ;
+    skos:scopeNote """Joslyn's word for the metasystem CS = ⟨C, O⟩ of Definition 25, in which the actions of the controller C result in a constraint₂ on the freedom of the object of control O; it is the antecedent kind on which control₂ is predicated. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+
+prim:control-2-system a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "control₂ system"@en ;
+    skos:scopeNote """Joslyn's word for the kind of system defined here: a control₁ system whose second-order variation in the constraint₁ on O, induced by C's variation, is itself constrained₂. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+
+prim:constraint-1 a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:operation ;
+    skos:prefLabel "constraint₁"@en ;
+    skos:scopeNote """The author's word, carried into this definition, for the systemic constraint C := X − S of Definition 6; here it is what C places on O and what may itself vary. [MDU — drafted, unchecked; role proposal: operation]"""@en .
+
+prim:constrained-2 a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:relation ;
+    skos:prefLabel "constrained₂"@en ;
+    skos:scopeNote """The author's word, the participial form of constraint₂ (Definition 15, the reduction of some variety), predicated here of the second-order variation in the constraint₁ on O. [MDU — drafted, unchecked; role proposal: relation]"""@en .
+
+prim:variation a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "variation"@en ;
+    skos:scopeNote """The author's word for the varying of a component or of a constraint over its state space; used here at two levels (C's variation, and the variation in the constraint₁ on O) without further formal analysis in the definition itself. [MDU — drafted, unchecked; role proposal: unassigned]"""@en .
+
 
 ##############################################################################
 # Test objects — grows only when two authors rule on one thing
@@ -632,6 +666,10 @@ author:mihajlo-mesarovic
 author:yasuhiko-takahara
     a atlas:Author ;
     rdfs:label "Yasuhiko Takahara"@en .
+
+author:cliff-joslyn
+    a atlas:Author ;
+    rdfs:label "Cliff Joslyn"@en .
 
 
 ##############################################################################

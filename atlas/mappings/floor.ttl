@@ -78,3 +78,16 @@ entry:mobus-revisions-oct-tuple
 entry:mesarovic-takahara-1975-general-system
     atlas:floorPosition   prim:system-object ;
     atlas:floorDependency prim:relation .
+
+# ---- Joslyn 1995, Def 28 (Control₂) ------------------------------------------
+# The passage predicates control₂-hood of a control₁ system; its own words
+# carry the thing-side role (the kind the definition is defined over) but the
+# dependency — the feedback loop between the roles — lives in the
+# formalisation (ShapeJoslyn, the cyclic efferent/afferent quiver), not in a
+# vocabulary item of this passage. Declared 2026-08-27 with the entry at MDU;
+# re-examine at the guided pass. NOTE: this is the catalogue's first CYCLIC
+# shape on the floor — the walking arrow embeds in it, but its own loop is
+# exactly what no_faithful_joslyn_to_klir proves unreachable in return.
+entry:joslyn-1995-control2
+    atlas:floorPosition prim:control-1-system ;
+    atlas:floorDependencyShapeLevel true .

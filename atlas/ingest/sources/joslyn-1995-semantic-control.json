@@ -1,0 +1,15 @@
+{
+  "bearer_slug": "joslyn-1995-semantic-control",
+  "bearer_label": "Joslyn, C. — Semantic Control Systems (World Futures 45, 1995)",
+  "creator": "Cliff Joslyn",
+  "author_slug": "cliff-joslyn",
+  "date": "1995",
+  "identifiers": [
+    "World Futures 45, pp. 87-123",
+    "doi:10.1080/02604027.1995.9972556"
+  ],
+  "vault_files": [
+    "joslyn/joslyn-1995-semantic-control-systems.md"
+  ],
+  "note": "Text-based PDF whose own text layer carries ligature/subscript damage (the file's 2026-08-27 page-image transcription block carries Defs 25/28 + Prop 29 as printed, angle brackets restored; formulas must quote from it, not the body). CONTEXT: Defs 1-10 in this paper are Joslyn CATALOGUING other authors' system definitions — they are not his claims and must not be drafted as his entries. His own definitional contributions are the control-system definitions (24, 25, 27, 28) and Prop 29, which the Lean encoding (ShapeJoslyn) formalises; they are kind-of-system definitions admitted under the spec's held Ashby ruling (species formalized, genus assumed) as precursor-style entries with caveats. DOI is the World Futures article; verify at guided pass."
+}

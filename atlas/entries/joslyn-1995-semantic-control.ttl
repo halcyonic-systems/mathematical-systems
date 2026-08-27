@@ -1,0 +1,140 @@
+@prefix atlas:   <https://w3id.org/mathematical-systems/atlas/> .
+@prefix prim:    <https://w3id.org/mathematical-systems/atlas/primitive/> .
+@prefix entry:   <https://w3id.org/mathematical-systems/atlas/entry/> .
+@prefix bearer:  <https://w3id.org/mathematical-systems/atlas/bearer/> .
+@prefix author:  <https://w3id.org/mathematical-systems/atlas/author/> .
+@prefix role:    <https://w3id.org/mathematical-systems/atlas/role/> .
+@prefix case:    <https://w3id.org/mathematical-systems/atlas/case/> .
+@prefix cco:     <https://www.commoncoreontologies.org/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/mathematical-systems/atlas/entries/joslyn-1995-semantic-control>
+    a owl:Ontology ;
+    owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
+    rdfs:label "Atlas entry — Joslyn (1995), Semantic Control Systems, §3.3, Definition 28 (Control₂)"@en ;
+    rdfs:comment """Drafted 2026-08-27 by the P5 pipeline; accessioned at MDU the same day
+(the entry-008 pattern: in the catalogue and visible, its evidence code saying exactly what
+that means — model-drafted, no human pass yet; must not be cited until promoted). Open at
+the guided pass: verify the page-image transcription (World Futures pp. 101-106) and the
+five case verbatims (drawn from the damaged body layer, spellings preserved and disclosed);
+rule on candidate 9 (Def 22, contingent metasystem — a second Joslyn entry candidate); note
+the scan's provenance finding that Def 25 (control₁) is Joslyn re-offering Turchin 1992 and
+therefore grades PROP under the restatement rule — a fact the collaboration artifact should
+carry. Entry serves the encoding-faithfulness ask (systems-science-foundations#50)."""@en .
+
+
+##############################################################################
+# Bearer
+##############################################################################
+
+bearer:joslyn-1995-semantic-control
+    a cco:ont00000253 ;   # Information Bearing Entity
+    rdfs:label "Joslyn, C. — Semantic Control Systems (World Futures 45, 1995)"@en ;
+    dcterms:creator "Cliff Joslyn" ;
+    atlas:authoredBy author:cliff-joslyn ;
+    dcterms:date "1995"^^xsd:gYear ;
+    dcterms:identifier "World Futures 45, pp. 87-123" ;
+    dcterms:identifier "doi:10.1080/02604027.1995.9972556" .
+
+
+##############################################################################
+# Entry (MDU draft)
+##############################################################################
+
+entry:joslyn-1995-control2
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §3.3, Definition 28 (Control₂)"@en ;
+
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:sourceLocation """§3.3 Control Theory, Definition 28, p. 103 (from the 2026-08-27 page-image transcription section)""" ;
+
+    atlas:verbatim """Definition 28 (Control₂) A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂.""" ;
+    atlas:displayForm """A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂.""" ;
+    atlas:invokesPrimitive prim:control-1-system ,
+                           prim:control-2-system ,
+                           prim:constraint-1 ,
+                           prim:constrained-2 ,
+                           prim:variation ;
+    atlas:admits case:thermodynamic-system-with-decoupled-envelope ,
+                 case:thermostat-machine ;
+    atlas:refuses case:damped-spring-stable-equilibrium ,
+                 case:boiling-liquid ,
+                 case:spinning-top ;
+    atlas:formalisedAs "Systems/Category/ShapeJoslyn.lean#JoslynShape" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-27"^^xsd:date ;
+
+    rdfs:comment """DELIBERATELY NOT ASSERTED
+No cco is-about relation is asserted between this entry and any subject matter, in keeping with the catalogue's neutrality invariant: the entry records that Joslyn writes this definition at this locus, not that the definition is about control, systems, or any worldly phenomenon.
+
+SOURCE AND RENDERING
+The verbatim is taken from the 2026-08-27 page-image transcription prefacing the file, which the transcriber marks as the authoritative text for formula-bearing quotes because the PDF's own text layer carries systematic subscript and ligature damage ("controlj" for control₁, "controlg" for control₂, "constrainedj" for constrained₁) and flattens the printed angle brackets ⟨ ⟩ to parentheses. Subscripts appear as Unicode subscript digits, as in the transcription; the printed page carries them as typeset subscripts. This is an MDU draft: the human pass should check the rendered subscripts and brackets against the page image.
+
+NOT ENCODED
+display_context is null: Definition 28 has no immediate authorial gloss inside the transcribed section, and the explication that follows on pp. 103–104 ("Control2 requires a bit of explication and exemplification. First, we recognize that O varies over a state space...") survives only in the damaged body layer, so it could not be given as an exact substring of a page-faithful verbatim. Likewise not encoded: the dependence of this definition on Definition 25 (control₁), Definition 15 (constraint₂) and Definition 6 (constraint₁), which the entry leaves as lexical primitives rather than unfolding; the derivation at Proposition 29 that O in a control₂ system must itself decompose as ⟨O_E, O_I⟩; the mapping to Marken's Definition 27 (control_M) recovered as a special case; and the two complementary re-decompositions CS₁ and CS₂ of §3.7. The case verbatims are drawn from the damaged body text and reproduce its OCR spellings ("controlg", "constraintj", "Cs", "control2", "controlled2") exactly as the file carries them.
+
+AUTHOR CAVEAT
+None recorded: Joslyn qualifies the whole enterprise as semiformal and deliberately iterative in §1, and remarks before Definition 28 that Marken's control is "adapted to our terminology, and generalized slightly," but no qualification is placed on this definition itself in a form that could be lifted verbatim as a caveat on it."""@en .
+
+
+# The five primitives this entry minted are declared in atlas-core's vocabulary,
+# still carrying their MDU markers.
+
+##############################################################################
+# Cases (MDU drafts)
+##############################################################################
+
+case:thermodynamic-system-with-decoupled-envelope
+    a atlas:Example ;
+    rdfs:label "Thermodynamic system O in a systematically varying thermal environment C"@en ;
+    atlas:gloss """Joslyn's worked example: once O's envelope of variation stays constant while C's temperature changes systematically, the pair CS = ⟨C, O⟩ is declared a control₂ system.""" ;
+    atlas:verbatim """That is, as Cs temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control2 system.""" ;
+    atlas:sourceLocation """§3.3, p. 104""" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date .
+
+case:thermostat-machine
+    a atlas:Example ;
+    rdfs:label "Thermostat (human-engineered machine)"@en ;
+    atlas:gloss """Joslyn offers engineered machines such as thermostats as familiar instances of control₂ systems.""" ;
+    atlas:verbatim """We are quite familiar with control2 systems which are artifacts, for example human-engineered machines like thermostats.""" ;
+    atlas:sourceLocation """§4.6, p. 117""" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date .
+
+case:damped-spring-stable-equilibrium
+    a atlas:Example ;
+    rdfs:label "System governed only by a stable equilibrium (the damped spring of Eq. 26)"@en ;
+    atlas:gloss """Joslyn rules that mere passive stability is not control₂, since varying the free parameters varies the constraint₁ on O and hence the equilibrium point.""" ;
+    atlas:verbatim """It is clear that a system governed only by a stable equilibrium, as in (26), is not a controlg system: a variation of the free parameters causes a corresponding variation of the constraintj on O, and thus of x*.""" ;
+    atlas:sourceLocation """§3.3, p. 104""" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date .
+
+case:boiling-liquid
+    a atlas:Example ;
+    rdfs:label "Boiling liquid"@en ;
+    atlas:gloss """A dynamic equilibrium whose rate tracks the heat input; Joslyn states explicitly that it is not controlled₂.""" ;
+    atlas:verbatim """The boiling activity is in dynamic equilibrium, but it is not controlled2.""" ;
+    atlas:sourceLocation """§3.6, p. 109""" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date .
+
+case:spinning-top
+    a atlas:Example ;
+    rdfs:label "Spinning top"@en ;
+    atlas:gloss """The spin stabilises the axis of revolution, but a tilt of the table moves it; Joslyn notes that a controlled₂ position would resist the perturbation.""" ;
+    atlas:verbatim """The torque generated by its active spinning creates a stable position of the axis of revolution, but a tilt to the table top will cause that center to move. If the position were controlled2, then it would resist that environmental perturbation.""" ;
+    atlas:sourceLocation """§3.6, p. 109""" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-08-26"^^xsd:date .
