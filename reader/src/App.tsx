@@ -4,7 +4,7 @@ import { href } from "./route";
 import { useStore, type View } from "./store";
 import { FrontMatter } from "./FrontMatter";
 import { AboutView } from "./About";
-import { CensusView, CommitmentsView, CompareView, FloorView, LedgerView, ReadView } from "./views";
+import { ApparatusView, CensusView, CommitmentsView, CompareView, FloorView, LedgerView, ReadView } from "./views";
 
 /**
  * Labels name what a view holds, not what you do to it. "Read" and "Census"
@@ -29,6 +29,27 @@ const TABS: { id: View; label: string; about: string }[] = [
     about: "One definition of “system” in full — the passage as its author wrote it, what it posits, and how it has been formalised.",
   },
   {
+    id: "floor",
+    label: "The Floor",
+    about: "The one dependency every encoded definition asserts — what it is, what it is not, and each entry's own words for its two ends.",
+  },
+  {
+    id: "apparatus",
+    label: "Apparatus",
+    about: "The catalogue's four instruments — comparison, census, case ledger, entailments — each with a line on when to reach for it.",
+  },
+];
+
+/**
+ * The four instrument views live BEHIND the Apparatus tab (nav consolidation,
+ * 2026-08-27): a first-time reader chooses among four reading-order tabs, not
+ * seven parallel ones, while every instrument keeps its URL — deep links and
+ * the cross-reference doors (chips, case links) route into them unchanged.
+ * These orientation lines render on the instrument's own page AND on the
+ * Apparatus index; single-sourced here so the two can never drift.
+ */
+const INSTRUMENTS: { id: View; label: string; about: string }[] = [
+  {
     id: "compare",
     label: "Compare",
     about: "Definitions side by side, aligned row by row, with the vocabulary they share and the vocabulary unique to each.",
@@ -48,11 +69,6 @@ const TABS: { id: View; label: string; about: string }[] = [
     label: "Entailments",
     about: "What the entries are logically committed to by the ontology they are aligned with — and how that changes when the imported axiom set widens.",
   },
-  {
-    id: "floor",
-    label: "The Floor",
-    about: "The one dependency every encoded definition asserts — what it is, what it is not, and each entry's own words for its two ends.",
-  },
 ];
 
 /** About the catalogue rather than of it: the methods, set apart on the right. */
@@ -68,7 +84,15 @@ const META_TABS: { id: View; label: string; about: string }[] = [
  * Entries are documents; comparisons are instruments. Same eight primitives,
  * different density, set once here rather than threaded through every part.
  */
-const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", about: "generous" } as const;
+const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", apparatus: "generous", about: "generous" } as const;
+
+/** Every view's label and orientation line, tabbed or not — titles and the
+    view-about strip must survive a view leaving the tab row. */
+const ALL_VIEWS = [...TABS, ...INSTRUMENTS, ...META_TABS];
+
+/** The tab that reads active for a view: an instrument lights the Apparatus
+    tab, so the reader always knows which door they came through. */
+const tabOf = (v: View): View => (INSTRUMENTS.some((i) => i.id === v) ? "apparatus" : v);
 
 export default function App() {
   const { atlas, reasoning, error, view, setView, load, syncFromPath, reading, read } = useStore();
@@ -111,7 +135,7 @@ export default function App() {
   // itself; a missing one says so.
   useEffect(() => {
     const base = "Mathematical Systems Atlas";
-    const label = [...TABS, ...META_TABS].find((t) => t.id === view)?.label;
+    const label = ALL_VIEWS.find((t) => t.id === view)?.label;
     const entry = view === "read" ? atlas?.entries.find((e) => e.iri === reading)?.label : null;
     document.title =
       view === "overview" ? base
@@ -151,7 +175,7 @@ export default function App() {
       <Tabs
         tabs={TABS}
         meta={META_TABS}
-        active={view}
+        active={tabOf(view)}
         hrefOf={(v) =>
           href({ view: v, entry: v === "read" ? (reading ?? atlas.entries[0]?.iri ?? "").split("/").pop() : undefined })
         }
@@ -160,7 +184,7 @@ export default function App() {
       {/* Always rendered, so the start of content sits at the same height on
           every view — the band with no line is still the band. */}
       <div className="view-about">
-        <p className="view-about-line m-0">{[...TABS, ...META_TABS].find((t) => t.id === view)?.about}</p>
+        <p className="view-about-line m-0">{ALL_VIEWS.find((t) => t.id === view)?.about}</p>
       </div>
 
       <div className="app-body flex">
@@ -188,6 +212,9 @@ export default function App() {
               {view === "ledger" && <LedgerView atlas={atlas} />}
               {view === "commitments" && <CommitmentsView reasoning={reasoning} />}
               {view === "floor" && <FloorView atlas={atlas} />}
+              {view === "apparatus" && (
+                <ApparatusView instruments={INSTRUMENTS} />
+              )}
             </OpenQuestions>
           </Register>
         </main>

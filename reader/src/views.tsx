@@ -46,7 +46,7 @@ import {
   type CellState,
 } from "./components";
 import type { ReactNode } from "react";
-import { useStore } from "./store";
+import { useStore, type View } from "./store";
 import { href } from "./route";
 import { TIERS } from "./About";
 import type { Atlas, Reasoning } from "./types";
@@ -372,6 +372,48 @@ export function FloorView({ atlas }: { atlas: Atlas }) {
         Floor shape machine-checked (Lean) · roles declared and gated — the gate can fail,
         proven · additions computed, never hand-written.
       </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------- apparatus -- */
+
+/** The instruments' index (nav consolidation, 2026-08-27): four doors, each
+    with the same orientation line its own page wears — single-sourced from
+    App's INSTRUMENTS list, so the index and the strip can never drift. The
+    reading pages invite; these are the tools, and a tool is best introduced
+    by when to reach for it. */
+export function ApparatusView({
+  instruments,
+}: {
+  instruments: { id: View; label: string; about: string }[];
+}) {
+  const setView = useStore((s) => s.setView);
+  return (
+    <div className="apparatus-view">
+      <p className="apparatus-lede">
+        The catalogue's instruments. The reading pages show the material; these four are
+        for working with it — each earns its density, and none is where a first visit
+        should start.
+      </p>
+      {instruments.map((i) => (
+        <a
+          key={i.id}
+          className="apparatus-door"
+          href={href({ view: i.id })}
+          onClick={(ev) => {
+            if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+            ev.preventDefault();
+            setView(i.id);
+          }}
+        >
+          <span className="apparatus-door-label">{i.label}</span>
+          <span className="apparatus-door-about">{i.about}</span>
+          <span className="disclosure apparatus-door-cue" aria-hidden>
+            Open →
+          </span>
+        </a>
+      ))}
     </div>
   );
 }

@@ -1198,6 +1198,53 @@ body {
   .shelf-rail-line { display: none; }
 }
 
+/* The apparatus index: four doors, one per instrument. A door is a row, not a
+   card — label, the same orientation line the instrument's own page wears, and
+   a cue. Rows separate on the hairline; hover answers with the accent wash. */
+.apparatus-view {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+.apparatus-lede {
+  font-size: var(--step-0);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0.5rem 0 1.5rem;
+}
+.apparatus-door {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem 0.75rem;
+  border-top: 1px solid var(--hairline);
+  transition: background var(--transition-base);
+}
+.apparatus-door:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+.apparatus-door:hover {
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+.apparatus-door-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--display-2);
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+.apparatus-door-about {
+  display: block;
+  font-size: var(--step--1);
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 38rem;
+}
+.apparatus-door-cue {
+  display: block;
+  font-size: var(--step--2);
+  margin-top: 0.35rem;
+}
+
 /* The floor page (brief C — the Instrument): the figure is the page, prose is
    its caption. The selector wears each entry's world hue; the figure inherits
    the selected entry's hue through data-world; the twin columns carry the

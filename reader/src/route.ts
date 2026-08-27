@@ -32,6 +32,7 @@ const SEGMENT: Record<View, string> = {
   ledger: "cases",
   commitments: "entailments",
   floor: "floor",
+  apparatus: "apparatus",
   about: "about",
 };
 
