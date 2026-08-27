@@ -76,7 +76,7 @@ SOURCE AND RENDERING
 The verbatim is taken from the 2026-08-27 page-image transcription prefacing the file, which the transcriber marks as the authoritative text for formula-bearing quotes because the PDF's own text layer carries systematic subscript and ligature damage ("controlj" for control₁, "controlg" for control₂, "constrainedj" for constrained₁) and flattens the printed angle brackets ⟨ ⟩ to parentheses. Subscripts appear as Unicode subscript digits, as in the transcription; the printed page carries them as typeset subscripts. This is an MDU draft: the human pass should check the rendered subscripts and brackets against the page image.
 
 NOT ENCODED
-display_context is null: Definition 28 has no immediate authorial gloss inside the transcribed section, and the explication that follows on pp. 103–104 ("Control2 requires a bit of explication and exemplification. First, we recognize that O varies over a state space...") survives only in the damaged body layer, so it could not be given as an exact substring of a page-faithful verbatim. Likewise not encoded: the dependence of this definition on Definition 25 (control₁), Definition 15 (constraint₂) and Definition 6 (constraint₁), which the entry leaves as lexical primitives rather than unfolding; the derivation at Proposition 29 that O in a control₂ system must itself decompose as ⟨O_E, O_I⟩; the mapping to Marken's Definition 27 (control_M) recovered as a special case; and the two complementary re-decompositions CS₁ and CS₂ of §3.7. The case verbatims are drawn from the damaged body text and reproduce its OCR spellings ("controlg", "constraintj", "Cs", "control2", "controlled2") exactly as the file carries them.
+display_context is null: Definition 28 has no immediate authorial gloss inside the transcribed section, and the explication that follows on pp. 103–104 ("Control2 requires a bit of explication and exemplification. First, we recognize that O varies over a state space...") survives only in the damaged body layer, so it could not be given as an exact substring of a page-faithful verbatim. Likewise not encoded: the dependence of this definition on Definition 25 (control₁), Definition 15 (constraint₂) and Definition 6 (constraint₁), which the entry leaves as lexical primitives rather than unfolding; the derivation at Proposition 29 that O in a control₂ system must itself decompose as ⟨O_E, O_I⟩; the mapping to Marken's Definition 27 (control_M) recovered as a special case; and the two complementary re-decompositions CS₁ and CS₂ of §3.7. The case verbatims were re-transcribed from the page images (2026-08-27, at Shingai's direction during the guided pass, replacing the damaged body layer's OCR spellings); the page-imaged case passages are recorded in the source file's transcription block.
 
 AUTHOR CAVEAT
 None recorded: Joslyn qualifies the whole enterprise as semiformal and deliberately iterative in §1, and remarks before Definition 28 that Marken's control is "adapted to our terminology, and generalized slightly," but no qualification is placed on this definition itself in a form that could be lifted verbatim as a caveat on it."""@en .
@@ -93,7 +93,7 @@ case:thermodynamic-system-with-decoupled-envelope
     a atlas:Example ;
     rdfs:label "Thermodynamic system O in a systematically varying thermal environment C"@en ;
     atlas:gloss """Joslyn's worked example: once O's envelope of variation stays constant while C's temperature changes systematically, the pair CS = ⟨C, O⟩ is declared a control₂ system.""" ;
-    atlas:verbatim """That is, as Cs temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control2 system.""" ;
+    atlas:verbatim """That is, as C's temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control₂ system.""" ;
     atlas:sourceLocation """§3.3, p. 104""" ;
     atlas:evidenceCode atlas:MDU ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
@@ -103,7 +103,7 @@ case:thermostat-machine
     a atlas:Example ;
     rdfs:label "Thermostat (human-engineered machine)"@en ;
     atlas:gloss """Joslyn offers engineered machines such as thermostats as familiar instances of control₂ systems.""" ;
-    atlas:verbatim """We are quite familiar with control2 systems which are artifacts, for example human-engineered machines like thermostats.""" ;
+    atlas:verbatim """We are quite familiar with control₂ systems which are artifacts, for example human-engineered machines like thermostats.""" ;
     atlas:sourceLocation """§4.6, p. 117""" ;
     atlas:evidenceCode atlas:MDU ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
@@ -113,7 +113,7 @@ case:damped-spring-stable-equilibrium
     a atlas:Example ;
     rdfs:label "System governed only by a stable equilibrium (the damped spring of Eq. 26)"@en ;
     atlas:gloss """Joslyn rules that mere passive stability is not control₂, since varying the free parameters varies the constraint₁ on O and hence the equilibrium point.""" ;
-    atlas:verbatim """It is clear that a system governed only by a stable equilibrium, as in (26), is not a controlg system: a variation of the free parameters causes a corresponding variation of the constraintj on O, and thus of x*.""" ;
+    atlas:verbatim """It is clear that a system governed only by a stable equilibrium, as in (26), is not a control₂ system: a variation of the free parameters causes a corresponding variation of the constraint₁ on O, and thus of x*.""" ;
     atlas:sourceLocation """§3.3, p. 104""" ;
     atlas:evidenceCode atlas:MDU ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
@@ -123,7 +123,7 @@ case:boiling-liquid
     a atlas:Example ;
     rdfs:label "Boiling liquid"@en ;
     atlas:gloss """A dynamic equilibrium whose rate tracks the heat input; Joslyn states explicitly that it is not controlled₂.""" ;
-    atlas:verbatim """The boiling activity is in dynamic equilibrium, but it is not controlled2.""" ;
+    atlas:verbatim """The boiling activity is in dynamic equilibrium, but it is not controlled₂.""" ;
     atlas:sourceLocation """§3.6, p. 109""" ;
     atlas:evidenceCode atlas:MDU ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
@@ -133,7 +133,7 @@ case:spinning-top
     a atlas:Example ;
     rdfs:label "Spinning top"@en ;
     atlas:gloss """The spin stabilises the axis of revolution, but a tilt of the table moves it; Joslyn notes that a controlled₂ position would resist the perturbation.""" ;
-    atlas:verbatim """The torque generated by its active spinning creates a stable position of the axis of revolution, but a tilt to the table top will cause that center to move. If the position were controlled2, then it would resist that environmental perturbation.""" ;
+    atlas:verbatim """The torque generated by its active spinning creates a stable position of the axis of revolution, but a tilt to the table top will cause that center to move. If the position were controlled₂, then it would resist that environmental perturbation.""" ;
     atlas:sourceLocation """§3.6, p. 109""" ;
     atlas:evidenceCode atlas:MDU ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
