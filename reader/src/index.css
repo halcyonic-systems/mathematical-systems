@@ -1198,6 +1198,149 @@ body {
   .shelf-rail-line { display: none; }
 }
 
+/* The floor page (brief C — the Instrument): the figure is the page, prose is
+   its caption. The selector wears each entry's world hue; the figure inherits
+   the selected entry's hue through data-world; the twin columns carry the
+   parity requirement — IS and IS NOT at identical weight, refusals holding
+   the page's only red. */
+.floor-view {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+.floor-view-title {
+  font-family: var(--font-display);
+  font-size: var(--display-4);
+  text-align: center;
+  margin: 1rem 0 0.25rem;
+}
+.floor-view-sub {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--step-0);
+  margin: 0 0 1.5rem;
+}
+.floor-instrument {
+  text-align: center;
+}
+.floor-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.floor-chip {
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  border: 1px solid var(--world, var(--accent));
+  color: var(--world, var(--accent));
+  background: transparent;
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.9rem;
+  cursor: pointer;
+  transition: background var(--transition-base);
+}
+.floor-chip.is-current {
+  background: var(--world, var(--accent));
+  color: var(--text-on-accent);
+  font-weight: 600;
+}
+.floor-chip-note {
+  font-size: var(--step--3);
+  letter-spacing: 0.04em;
+}
+.floor-instrument-svg {
+  width: 100%;
+  max-width: 42rem;
+  height: auto;
+  overflow: visible;
+}
+.floor-instrument-verb {
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  fill: var(--text-muted);
+}
+.floor-instrument-label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--display-2);
+  fill: var(--text-primary);
+}
+.floor-instrument-cite {
+  font-size: var(--step--1);
+  margin: 0.25rem 0 0;
+}
+.floor-instrument-legend {
+  margin: 0.75rem auto 0;
+  text-align: center;
+}
+.floor-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2.5rem 0 2rem;
+}
+@media (max-width: 52rem) {
+  .floor-columns { grid-template-columns: 1fr; }
+}
+.floor-col {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 1.4rem 1.6rem;
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+.floor-col p { margin: 0 0 0.85rem; }
+.floor-col p:last-child { margin-bottom: 0; }
+.floor-col strong { color: var(--text-primary); }
+.floor-col-is { border-top: 3px solid var(--accent); }
+.floor-col-not { border-top: 3px solid var(--proof-refuted); }
+.floor-col-head { margin: 0 0 0.9rem; color: var(--accent); font-weight: 600; }
+.floor-col-head-not { color: var(--proof-refuted); }
+.floor-col-fork-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 0.85rem;
+}
+.floor-fork {
+  width: 6.5rem;
+  flex-shrink: 0;
+  overflow: visible;
+  margin-top: 0.2rem;
+}
+.floor-fork-caption {
+  font-family: var(--font-ui);
+  font-size: var(--step--3);
+  fill: var(--proof-refuted);
+}
+.floor-receipt {
+  display: inline-block;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  padding: 0.05rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.floor-receipt-refuted {
+  color: var(--proof-refuted);
+  background: color-mix(in srgb, var(--proof-refuted) 10%, var(--bg-secondary));
+}
+.floor-view-trust {
+  text-align: center;
+}
+.floor-lede-door {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: var(--step-1);
+}
+.floor-lede-door:hover .disclosure { text-decoration: underline; }
+
 /* A leaf is a section set on open paper: structure carried by a rule and by
    warrant typography, no frame. Grafted from entrycard-v1 (#2) — the right
    tool whenever a section's box stops earning its border. */

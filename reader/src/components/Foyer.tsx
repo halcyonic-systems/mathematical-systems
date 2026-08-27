@@ -59,10 +59,27 @@ function armSpan(entries: Entry[]) {
     trust line with the other receipts; the arrow convention lives on the entry
     page's floor figure, where the roles actually render — the lede makes no
     claim it has to defend and explains no notation it no longer shows. */
-export function FloorLede() {
+export function FloorLede({ href, onOpen }: { href?: string; onOpen?: () => void }) {
+  const line = "One floor. Every definition builds on it differently.";
   return (
     <section className="floor-lede">
-      <p className="floor-lede-line">One floor. Every definition builds on it differently.</p>
+      {href ? (
+        // The lede is the floor page's door (operator decision, #16): a real
+        // anchor, SPA on plain click, browser semantics kept.
+        <a
+          className="floor-lede-line floor-lede-door"
+          href={href}
+          onClick={(ev: MouseEvent) => {
+            if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+            ev.preventDefault();
+            onOpen?.();
+          }}
+        >
+          {line} <span aria-hidden className="disclosure">→</span>
+        </a>
+      ) : (
+        <p className="floor-lede-line">{line}</p>
+      )}
     </section>
   );
 }

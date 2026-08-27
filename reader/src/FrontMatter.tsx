@@ -37,7 +37,7 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
         Formal definitions of “system,” and the maps between them.
       </p>
 
-      <FloorLede />
+      <FloorLede href={href({ view: "floor" })} onOpen={() => setView("floor")} />
 
       <Shelf
         authors={atlas.authors}

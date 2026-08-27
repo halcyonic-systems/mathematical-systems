@@ -23,7 +23,9 @@ import {
   Field,
   FieldGrid,
   FieldHeadings,
+  FloorColumns,
   FloorFigure,
+  FloorInstrument,
   InPage,
   Leaf,
   RecordField,
@@ -339,6 +341,37 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
       <Leaf title="Open questions" warrant="open" note="what this entry does not yet settle">
         <OpenQuestionsBlock />
       </Leaf>
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------------- floor -- */
+
+/** The floor page (brief C — the Instrument, picked 2026-08-26): the figure is
+    the page, prose is its caption. Selector and figure derive entirely from the
+    catalogue; the twin claims columns are the only hand-written prose and every
+    claim carries a receipt. */
+export function FloorView({ atlas }: { atlas: Atlas }) {
+  const read = useStore((s) => s.read);
+  const placed = atlas.entries.filter((e) => atlas.floor[e.iri]?.position);
+  return (
+    <div className="floor-view">
+      <p className="floor-view-title">The floor</p>
+      <p className="floor-view-sub">
+        One arrow. {placed.length} definitions name its ends in their own words — choose one.
+      </p>
+      <FloorInstrument
+        entries={atlas.entries}
+        floor={atlas.floor}
+        primitives={atlas.primitives}
+        hrefOf={hrefOfEntry}
+        onOpen={read}
+      />
+      <FloorColumns />
+      <p className="trust-line floor-view-trust">
+        Floor shape machine-checked (Lean) · roles declared and gated — the gate can fail,
+        proven · additions computed, never hand-written.
+      </p>
     </div>
   );
 }

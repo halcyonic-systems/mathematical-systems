@@ -24,7 +24,7 @@ export { warrantClass, warrantMeaning, type Warrant } from "./warrant";
 export { Masthead, Tabs } from "./Masthead";
 export { EntryRail, cite, worldOf } from "./EntryRail";
 export { Shelf, ConflictLine, FloorLede } from "./Foyer";
-export { FloorFigure } from "./Floor";
+export { FloorFigure, FloorInstrument, FloorColumns } from "./Floor";
 export { ReadingKey, type Tier } from "./ReadingKey";
 export { CaseItem, CaseList } from "./Case";
 export { Chip } from "./Chip";

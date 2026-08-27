@@ -4,7 +4,7 @@ import { href } from "./route";
 import { useStore, type View } from "./store";
 import { FrontMatter } from "./FrontMatter";
 import { AboutView } from "./About";
-import { CensusView, CommitmentsView, CompareView, LedgerView, ReadView } from "./views";
+import { CensusView, CommitmentsView, CompareView, FloorView, LedgerView, ReadView } from "./views";
 
 /**
  * Labels name what a view holds, not what you do to it. "Read" and "Census"
@@ -48,6 +48,11 @@ const TABS: { id: View; label: string; about: string }[] = [
     label: "Entailments",
     about: "What the entries are logically committed to by the ontology they are aligned with — and how that changes when the imported axiom set widens.",
   },
+  {
+    id: "floor",
+    label: "The Floor",
+    about: "The one dependency every encoded definition asserts — what it is, what it is not, and each entry's own words for its two ends.",
+  },
 ];
 
 /** About the catalogue rather than of it: the methods, set apart on the right. */
@@ -63,7 +68,7 @@ const META_TABS: { id: View; label: string; about: string }[] = [
  * Entries are documents; comparisons are instruments. Same eight primitives,
  * different density, set once here rather than threaded through every part.
  */
-const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", about: "generous" } as const;
+const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", about: "generous" } as const;
 
 export default function App() {
   const { atlas, reasoning, error, view, setView, load, syncFromPath, reading, read } = useStore();
@@ -182,6 +187,7 @@ export default function App() {
               {view === "census" && <CensusView atlas={atlas} />}
               {view === "ledger" && <LedgerView atlas={atlas} />}
               {view === "commitments" && <CommitmentsView reasoning={reasoning} />}
+              {view === "floor" && <FloorView atlas={atlas} />}
             </OpenQuestions>
           </Register>
         </main>

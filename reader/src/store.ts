@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { BASE, go, href, parse, type Route } from "./route";
 import type { Atlas, Reasoning } from "./types";
 
-export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments" | "about";
+export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments" | "floor" | "about";
 
 type State = {
   atlas: Atlas | null;

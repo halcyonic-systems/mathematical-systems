@@ -31,6 +31,7 @@ const SEGMENT: Record<View, string> = {
   census: "primitives",
   ledger: "cases",
   commitments: "entailments",
+  floor: "floor",
   about: "about",
 };
 

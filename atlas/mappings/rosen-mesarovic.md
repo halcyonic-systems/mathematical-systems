@@ -87,6 +87,41 @@ past the target (Rosen → the school unnamed, 1986), and no return fire ever. T
 container-vs-model question the three positions define is open, and is carried as a research
 question outside this catalogue (Limits program, open square 5: set-relations vs morphisms).
 
+## The Berlinski triangle — the shared enemy who structured the discourse
+
+David Berlinski, *On Systems Analysis: An Essay Concerning the Limitations of Some
+Mathematical Methods in the Social, Political, and Biological Sciences* (MIT Press, 1976) —
+the era's most vigorous published attack on the systems movement. His thesis, in the words
+Klir quotes: systems research used "mathematical methods for largely ceremonial reasons" —
+thin mathematics dressed in physics' authority, Forrester's urban/world dynamics the chief
+exhibit. (Weighing note, outside these texts: Berlinski later became a professional
+contrarian — Discovery Institute, *The Devil's Delusion*.)
+
+All three catalogued critics of the set-theoretic moment triangulate off him, each in a
+different direction, and none off each other:
+
+- **Bunge (1979, §1.8)** — Berlinski as the *overreaction his own demolition is calibrated
+  against*. Immediately after ruling the three definitions incorrect: the field's
+  confusions "have elicited some entirely negative reactions to it (e.g. Berlinski, 1976).
+  While there is some legitimacy in such reactions, there is no denying that systemics
+  abounds in good theories... Rather than throw out the baby together with the bath water
+  we ought to change the latter once in a while." Position: the reasonable demolisher.
+- **Rosen (1986, ¶2 + ref 1)** — Berlinski as the *denier the essay exists to answer*.
+  The foundational confusion "has led many to conclude that there is no such thing as a
+  'system' and hence to deny that System Theory is about any thing" — footnoted to
+  Berlinski (with Monod). The whole thinghood/set-ness/systemhood construction is Rosen's
+  reply to exactly that denial.
+- **Klir (Facets, ch. 9)** — Berlinski *reviewed and graded*: his critique "aimed at a
+  larger target" than Hoos's, "more vigorous, but, unfortunately, far less substantiated...
+  a fair number of obvious errors or misunderstandings."
+
+The historical finding this triangle sharpens: the field's **shared external enemy did more
+to structure its discourse than its internal disagreements, which were never voiced**.
+Bunge and Rosen each built their positive positions as calibrated responses to the same
+hostile outsider, published within a decade of each other, in venues each read — and cite
+him, not each other. The non-debate documented above is not an accident of attention; the
+attention existed and was spent on the common critic instead.
+
 ## A candidate test object — deferred, deliberately
 
 "A bare binary relation (a set of ordered pairs)": Mesarović admits it definitionally (the
