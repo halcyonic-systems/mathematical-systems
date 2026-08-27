@@ -566,6 +566,9 @@ BEARER_SOURCES = {
     "https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst": (
         "mesarovic/mesarovic-takahara-1975-ch2.md"
     ),
+    "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1968-gst": (
+        "bertalanffy/gst-1968-full-text.md"
+    ),
 }
 
 

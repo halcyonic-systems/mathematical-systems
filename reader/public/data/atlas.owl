@@ -1,13 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
   xmlns:dcterms="http://purl.org/dc/terms/"
-  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:owl="http://www.w3.org/2002/07/owl#"
   xmlns:atlas="https://w3id.org/mathematical-systems/atlas/"
   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:cco="https://www.commoncoreontologies.org/"
 >
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/mobus-2022-tamd">
+    <rdfs:label xml:lang="en">Atlas entry — Mobus 2022, Systems Science: Theory, Analysis, Modeling, and Design</rdfs:label>
+    <rdfs:comment xml:lang="en">Entry 006. The first entry drafted by the P5 ingest pipeline (2026-08-17)
+and promoted through a guided human pass (2026-08-18) — verbatim, spans, caveats, location,
+primitives and cases each ruled on individually. The published definition is a SEVEN-tuple
+with no environment element; the eighth element arrives in the revisions manuscript
+(bearer registered as mobus-book-revisions, entry to come), which is why this bearer and
+that one stay distinct: the revision arc is the finding, as with Bertalanffy 1968/1972.</rdfs:comment>
+  </rdf:Description>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/invokesPrimitive">
+    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label xml:lang="en">invokes primitive</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one.</skos:definition>
+    <rdfs:comment xml:lang="en">Range is skos:Concept, not an OWL class, deliberately. A primitive here is a TERM USED IN A DEFINITION, not a kind of thing in the world. SKOS is about concepts; using it avoids smuggling realism into constructivist traditions.</rdfs:comment>
+  </owl:ObjectProperty>
+  <atlas:FormalSystemDefinition rdf:about="https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system">
+    <rdfs:label xml:lang="en">Mesarović &amp; Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)</rdfs:label>
+    <atlas:statedIn>
+      <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst">
+        <rdfs:label xml:lang="en">Mesarović, M. D. &amp; Takahara, Y. — General Systems Theory: Mathematical Foundations (Academic Press, 1975)</rdfs:label>
+        <dcterms:creator>Mihajlo D. Mesarović and Yasuhiko Takahara</dcterms:creator>
+        <atlas:authoredBy rdf:resource="https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic"/>
+        <atlas:authoredBy rdf:resource="https://w3id.org/mathematical-systems/atlas/author/yasuhiko-takahara"/>
+        <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1975</dcterms:date>
+        <dcterms:identifier>ISBN 0-12-491540-X</dcterms:identifier>
+        <dcterms:identifier>Mathematics in Science and Engineering v. 113</dcterms:identifier>
+        <dcterms:identifier>LCCN 74-1639</dcterms:identifier>
+      </cco:ont00000253>
+    </atlas:statedIn>
+    <atlas:sourceLocation>Chapter II, §1(a), Definition 1.1, book p. 11 = scan page 22; eqs. (2.1)–(2.2)</atlas:sourceLocation>
+    <atlas:verbatim>Definition 1.1. A (general) system is a relation on nonempty (abstract) sets
+S ⊂ × {Vᵢ : i ∈ I} (2.1)
+where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form
+S ⊂ V₁ × ⋯ × Vₙ (2.2)</atlas:verbatim>
+    <atlas:displayForm>A (general) system is a relation on nonempty (abstract) sets
+S ⊂ × {Vᵢ : i ∈ I} (2.1)</atlas:displayForm>
+    <atlas:displayContext>where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object.</atlas:displayContext>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/relation">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">relation</skos:prefLabel>
+        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/relation"/>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/set">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">set</skos:prefLabel>
+        <rdfs:comment xml:lang="en">Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict.</rdfs:comment>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/cartesian-product">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">Cartesian product</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
+        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/operation"/>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/index-set">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">index set</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">The set I indexing the family of sets Vᵢ over which the product is taken. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
+        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/sort"/>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/component-set">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">component set</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product. Distinct from prim:component (Mobus's word) — merging is a census question. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
+        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/sort"/>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/system-object">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">system object</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
+        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/sort"/>
+      </skos:Concept>
+    </atlas:invokesPrimitive>
+    <atlas:evidenceCode>
+      <atlas:EvidenceCode rdf:about="https://w3id.org/mathematical-systems/atlas/MDHC">
+        <rdfs:label xml:lang="en">model-drafted, human-checked</rdfs:label>
+        <skos:definition xml:lang="en">A model produced the encoding; a human checked it against the verbatim text.</skos:definition>
+      </atlas:EvidenceCode>
+    </atlas:evidenceCode>
+    <atlas:encodedBy>claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-26</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-25</atlas:encodedOn>
+    <rdfs:comment xml:lang="en">SCOPE OF THE ENTRY. The entry carries Definition 1.1 alone — the set-theoretic definition of a (general) system as a relation on nonempty abstract sets — together with the author's immediate gloss naming × as Cartesian product, I as the index set, and a component set Vᵢ as a system object, plus the finite-index form (2.2). Definitions 1.2 (input object, output object, input-output system), 1.3 (function-type system), and the parallel presentation at book p. 6 (eq. 1.1) are not encoded here.
+
+TRANSCRIPTION. The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image). Verified against the page image by Shingai Thornton, 2026-08-26: ⊂ (proper subset, not ⊆) confirmed in (2.1) and (2.2); "nonempty" confirmed; the gloss sentence confirmed; equation numbers confirmed as printed — and the reviewer caught that (2.1) prints set-builder braces, ×{Vᵢ : i ∈ I}, which the draft had dropped to satisfy the locator. The locator now normalises braces on both sides (reported as a normalisation), and the verbatim carries the braces the page prints. Subscripts are carried as the source file writes them.
+
+DELIBERATELY NOT ASSERTED. No cco is-about relation is asserted between this entry and any subject matter, thing, or phenomenon. The catalogue records that this author, in this locus, uses these words in this formal statement; it does not assert what the definition is about, nor that this 'system' is the same notion as any other author's.
+
+WHAT DOES NOT FIT. The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; ruled kept-unmerged at the guided pass (2026-08-26) per the census-question rule.
+
+CANDIDATE 0 RULED (2026-08-26, Shingai Thornton). The Ch. I §2 passage at book p. 6 — 'a system is defined as a relation in the set-theoretic sense … S ⊂ × V̄ … We shall primarily be concerned with a system consisting of two objects … S ⊂ X × Y (1.1)' — is a PREVIEW of Definition 1.1, not a distinct definitional claim: Chapter I announces its concepts will be introduced precisely via formalization, the p. 6 statement is the same relation in sketch form, and the author never insists on a distinction between two claims (contrast Bunge, whose general characterisation and definition proper are two entries because he says they differ). Under the catalogue's restatement rule the passage grades PROP, pointing here; it is not accessioned.</rdfs:comment>
+    <atlas:floorPosition rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/system-object"/>
+    <atlas:floorDependency rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/relation"/>
+  </atlas:FormalSystemDefinition>
   <atlas:FormalSystemDefinition rdf:about="https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple">
     <rdfs:label xml:lang="en">Mobus (2022), Systems Science: TAMD, eq. (4.1)</rdfs:label>
     <atlas:statedIn>
@@ -135,12 +239,7 @@ where i and l are indexes. The index i is a subsystem index and the index l is t
         <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-18</atlas:encodedOn>
       </atlas:Example>
     </atlas:admits>
-    <atlas:evidenceCode>
-      <atlas:EvidenceCode rdf:about="https://w3id.org/mathematical-systems/atlas/MDHC">
-        <rdfs:label xml:lang="en">model-drafted, human-checked</rdfs:label>
-        <skos:definition xml:lang="en">A model produced the encoding; a human checked it against the verbatim text.</skos:definition>
-      </atlas:EvidenceCode>
-    </atlas:evidenceCode>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
     <atlas:encodedBy>claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)</atlas:encodedBy>
     <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-18</atlas:encodedOn>
     <rdfs:comment xml:lang="en">VERIFIED AS MDHC: model-drafted by the P5 pipeline 2026-08-17, checked by
@@ -180,96 +279,6 @@ forthcoming revisions entry, and this entry deliberately carries none.</rdfs:com
     <atlas:floorPosition rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/component"/>
     <atlas:floorDependency rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/flow-network"/>
   </atlas:FormalSystemDefinition>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/encodedBy">
-    <rdfs:label xml:lang="en">encoded by</rdfs:label>
-  </owl:AnnotationProperty>
-  <atlas:FormalSystemDefinition rdf:about="https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system">
-    <rdfs:label xml:lang="en">Mesarović &amp; Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)</rdfs:label>
-    <atlas:statedIn>
-      <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst">
-        <rdfs:label xml:lang="en">Mesarović, M. D. &amp; Takahara, Y. — General Systems Theory: Mathematical Foundations (Academic Press, 1975)</rdfs:label>
-        <dcterms:creator>Mihajlo D. Mesarović and Yasuhiko Takahara</dcterms:creator>
-        <atlas:authoredBy rdf:resource="https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic"/>
-        <atlas:authoredBy rdf:resource="https://w3id.org/mathematical-systems/atlas/author/yasuhiko-takahara"/>
-        <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1975</dcterms:date>
-        <dcterms:identifier>ISBN 0-12-491540-X</dcterms:identifier>
-        <dcterms:identifier>Mathematics in Science and Engineering v. 113</dcterms:identifier>
-        <dcterms:identifier>LCCN 74-1639</dcterms:identifier>
-      </cco:ont00000253>
-    </atlas:statedIn>
-    <atlas:sourceLocation>Chapter II, §1(a), Definition 1.1, book p. 11 = scan page 22; eqs. (2.1)–(2.2)</atlas:sourceLocation>
-    <atlas:verbatim>Definition 1.1. A (general) system is a relation on nonempty (abstract) sets
-S ⊂ × {Vᵢ : i ∈ I} (2.1)
-where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object. When I is finite, (2.1) is written in the form
-S ⊂ V₁ × ⋯ × Vₙ (2.2)</atlas:verbatim>
-    <atlas:displayForm>A (general) system is a relation on nonempty (abstract) sets
-S ⊂ × {Vᵢ : i ∈ I} (2.1)</atlas:displayForm>
-    <atlas:displayContext>where × denotes Cartesian product and I is the index set. A component set Vᵢ is referred to as a system object.</atlas:displayContext>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/relation">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">relation</skos:prefLabel>
-        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/relation"/>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/set">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">set</skos:prefLabel>
-        <rdfs:comment xml:lang="en">Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict.</rdfs:comment>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/cartesian-product">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">Cartesian product</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">The operation denoted by × in (2.1) and (2.2), forming the product of the family of sets of which the system is a subset. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
-        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/operation"/>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/index-set">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">index set</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">The set I indexing the family of sets Vᵢ over which the product is taken. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
-        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/sort"/>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/component-set">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">component set</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">A member Vᵢ of the indexed family entering the Cartesian product; the author's word for the factors of the product. Distinct from prim:component (Mobus's word) — merging is a census question. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
-        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/sort"/>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/system-object">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">system object</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">The author's name for a component set Vᵢ once regarded as belonging to the system; introduced by naming, not by further definition. Role confirmed at the guided pass, 2026-08-26.</skos:scopeNote>
-        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/sort"/>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
-    <atlas:encodedBy>claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-26</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-25</atlas:encodedOn>
-    <rdfs:comment xml:lang="en">SCOPE OF THE ENTRY. The entry carries Definition 1.1 alone — the set-theoretic definition of a (general) system as a relation on nonempty abstract sets — together with the author's immediate gloss naming × as Cartesian product, I as the index set, and a component set Vᵢ as a system object, plus the finite-index form (2.2). Definitions 1.2 (input object, output object, input-output system), 1.3 (function-type system), and the parallel presentation at book p. 6 (eq. 1.1) are not encoded here.
-
-TRANSCRIPTION. The source file warns that its OCR mangles notation; the verbatim follows the page-image transcription supplied with the source (scan page 22 = book page 11; made 2026-08-25 by a model reading the page image). Verified against the page image by Shingai Thornton, 2026-08-26: ⊂ (proper subset, not ⊆) confirmed in (2.1) and (2.2); "nonempty" confirmed; the gloss sentence confirmed; equation numbers confirmed as printed — and the reviewer caught that (2.1) prints set-builder braces, ×{Vᵢ : i ∈ I}, which the draft had dropped to satisfy the locator. The locator now normalises braces on both sides (reported as a normalisation), and the verbatim carries the braces the page prints. Subscripts are carried as the source file writes them.
-
-DELIBERATELY NOT ASSERTED. No cco is-about relation is asserted between this entry and any subject matter, thing, or phenomenon. The catalogue records that this author, in this locus, uses these words in this formal statement; it does not assert what the definition is about, nor that this 'system' is the same notion as any other author's.
-
-WHAT DOES NOT FIT. The passage rules on no examples: it neither offers a concrete thing as a system nor refuses one, so admits and refuses are empty. No qualification is placed on the definition within the passage, so author_caveat is null; the restriction 'The form (2.3) rather than (2.2) will be used throughout this book' belongs to Definition 1.2's neighbourhood and is not carried here. The primitive slugs 'Cartesian product', 'index set', 'component set', and 'system object' are minted new rather than merged with the existing 'component', 'set', or 'object' slugs, because the words the author uses differ; ruled kept-unmerged at the guided pass (2026-08-26) per the census-question rule.
-
-CANDIDATE 0 RULED (2026-08-26, Shingai Thornton). The Ch. I §2 passage at book p. 6 — 'a system is defined as a relation in the set-theoretic sense … S ⊂ × V̄ … We shall primarily be concerned with a system consisting of two objects … S ⊂ X × Y (1.1)' — is a PREVIEW of Definition 1.1, not a distinct definitional claim: Chapter I announces its concepts will be introduced precisely via formalization, the p. 6 statement is the same relation in sketch form, and the author never insists on a distinction between two claims (contrast Bunge, whose general characterisation and definition proper are two entries because he says they differ). Under the catalogue's restatement rule the passage grades PROP, pointing here; it is not accessioned.</rdfs:comment>
-    <atlas:floorPosition rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/system-object"/>
-    <atlas:floorDependency rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/relation"/>
-  </atlas:FormalSystemDefinition>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/arguedIn">
-    <rdfs:label xml:lang="en">argued in</rdfs:label>
-    <skos:definition xml:lang="en">Where the claim carried by this term is argued — normally a document in mappings/, which owes a witness and must name its presentation.</skos:definition>
-  </owl:AnnotationProperty>
   <atlas:FormalSystemDefinition rdf:about="https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation">
     <rdfs:label xml:lang="en">Bertalanffy (1972), The History and Status of General Systems Theory, p. 417</rdfs:label>
     <atlas:statedIn>
@@ -348,125 +357,9 @@ catalogue.</rdfs:comment>
     <atlas:floorPosition rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/element"/>
     <atlas:floorDependency rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/relation"/>
   </atlas:FormalSystemDefinition>
-  <atlas:FormalSystemDefinition rdf:about="https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1">
-    <rdfs:label xml:lang="en">Bertalanffy (1968), General System Theory, eq. (3.1)</rdfs:label>
-    <atlas:statedIn>
-      <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1968-gst">
-        <rdfs:label xml:lang="en">Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)</rdfs:label>
-        <dcterms:creator>Ludwig von Bertalanffy</dcterms:creator>
-        <atlas:authoredBy rdf:resource="https://w3id.org/mathematical-systems/atlas/author/ludwig-von-bertalanffy"/>
-        <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1968</dcterms:date>
-        <dcterms:bibliographicCitation>New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'.</dcterms:bibliographicCitation>
-      </cco:ont00000253>
-    </atlas:statedIn>
-    <atlas:sourceLocation>ch. 3, eq. (3.1), p. 56</atlas:sourceLocation>
-    <atlas:verbatim>A system can be defined mathematically in various ways. For illustration, we choose a system of simultaneous differential equations. Denoting some measure of elements, pᵢ (i = 1, 2, … n), by Qᵢ, these, for a finite number of elements and in the simplest case, will be of the form:
-
-dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
-dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
-⋯
-dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)                                    (3.1)</atlas:verbatim>
-    <atlas:displayForm>dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
-dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
-⋯
-dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)</atlas:displayForm>
-    <atlas:displayContext>For illustration, we choose a system of simultaneous differential equations.</atlas:displayContext>
-    <atlas:invokesPrimitive rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/element"/>
-    <atlas:invokesPrimitive>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/measure">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-        <skos:prefLabel xml:lang="en">measure</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme.</skos:scopeNote>
-        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/operation"/>
-      </skos:Concept>
-    </atlas:invokesPrimitive>
-    <atlas:invokesPrimitive rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/time"/>
-    <atlas:admits>
-      <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bertalanffy-organism">
-        <rdfs:label xml:lang="en">an organism</rdfs:label>
-        <atlas:gloss>an organism</atlas:gloss>
-        <atlas:verbatim>Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction</atlas:verbatim>
-        <atlas:sourceLocation>General System Theory (1968), p. 209, quoting Bertalanffy 1949a p. 11</atlas:sourceLocation>
-        <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
-        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-05</atlas:encodedOn>
-        <rdfs:comment>SAME BEARER AS THE ENTRY, since 2026-08-07. This ruling was first recorded
-on entry 004 (the 1972 article) with a DIFFERENT-BEARER caveat, because the catalogue then held
-no entry from the 1968 book. It moves here now that it does.
-
-MDHC, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: a human located "Any organism is a system"
-on p. 209 of the book on 2026-08-05, so the page and the ruling itself are confirmed. The
-remainder of the sentence — "that is, a dynamic order of parts and processes standing in
-mutual interaction" — is still as the OCR gives it and has not been read word for word. HVP
-needs that last step.
-
-The page number comes from a Kindle edition reporting print-equivalent pagination; the same
-edition's p. 56 for eq. (3.1) matches the print index's "mathematical definition, 56-60",
-which is the corroboration for trusting its numbering here.
-
-NOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex
-"can be built up, step by step, by putting together the first separate elements" — merely
-summative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is
-architecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never
-writes the verdict sentence, and encoding an implication as a ruling would put words in his
-mouth. It belongs to the mapping layer.</rdfs:comment>
-      </atlas:Example>
-    </atlas:admits>
-    <atlas:formalisedAs>Systems/Category/ShapeBertalanffy.lean#BertalanffyShape</atlas:formalisedAs>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-07</atlas:encodedOn>
-    <rdfs:comment>HVP, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: Shingai read the page on
-2026-08-05 — the prose against this transcription, and the equation against the page image,
-because no text layer in any held source contains eq. (3.1) at all. The equation here is
-transcribed from that image, screenshot-verified the same day. The held Kindle text renders
-subscript i as t ("pt", "Qt") — an artifact of the rendering, not the book; the subscripts
-above are as printed. Page numbering is Kindle print-equivalent pagination, corroborated by
-the print index's "mathematical definition, 56-60".
-
-THE HEDGE IS PART OF THE RECORD. The verbatim opens at "A system can be defined mathematically
-in various ways" rather than at the equation: 1968 offers the differential equations as one
-illustration among various possible formalisations, and cutting the hedge would harden an
-avowedly illustrative choice into a definition the author did not state that way. The 1972
-restatement (entry 004) carries the same hedge in the other direction — a verbal definition
-pointing at unspecified mathematics.
-
-WHAT THE REVISION CHANGED, NOW CITABLE FROM BOTH ENDS. 1968: elements and their interrelation,
-no environment term — the shape has two positions and one arrow, and is proved isomorphic to
-Klir's. 1972: "and with the environment" — a third position and a second arrow. The difference
-is machine-checked: bert68To72Pre embeds the 1968 shape in the 1972 one (bert68To72_obj_injective),
-and environment_is_new proves the environment position is not in its image. This entry is the
-1968 end of that pair; mapping 003 (environment-channel.md) is where the finding is stated.
-
-WHY THE 1972 ARTICLE WAS ENTERED FIRST: transcription discipline. See entry 004's apparatus;
-this entry existing at all is the "second entry from the same tradition" that apparatus
-promised.</rdfs:comment>
-    <atlas:authorCaveat>A system can be defined mathematically in various ways.</atlas:authorCaveat>
-    <atlas:hasStance>
-      <atlas:StanceAssertion rdf:about="https://w3id.org/mathematical-systems/atlas/stance/bertalanffy-1968-ontic">
-        <atlas:stanceValue rdf:resource="https://w3id.org/mathematical-systems/atlas/perspectivist"/>
-        <atlas:verbatim>As for the connections of these stimuli, i.e., the categories of experience, they need not mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to it</atlas:verbatim>
-        <atlas:sourceLocation>ch. 10, 'The Perspectivistic View'</atlas:sourceLocation>
-        <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
-        <atlas:encodedBy>Shingai Thornton (Claude-drafted from P3-stance-axes.md)</atlas:encodedBy>
-        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-07</atlas:encodedOn>
-        <rdfs:comment xml:lang="en">His own word — the chapter title names the position — which is why the
-value is "perspectivist" rather than a characterisation in our words. The constraint is argued
-evolutionarily, not asserted: categories that failed to correspond would have been selected
-out, so the perspective is not free. The stance verbatim's "isomorphic ... with a certain
-tolerance" applies to knowledge the same relation the shape categories apply to
-formalisations; whether that is a connection or a pun is a mapping question, not asserted
-here.
-
-Attached to THIS entry, not 004: the passage is in the 1968 book, this entry's bearer. P3
-read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDHC as of 2026-08-08:
-model-drafted 2026-08-07, checked by Shingai the next day — including that the observer cell
-stays empty rather than inferred.</rdfs:comment>
-      </atlas:StanceAssertion>
-    </atlas:hasStance>
-    <atlas:floorPosition rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/element"/>
-    <atlas:floorDependencyShapeLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</atlas:floorDependencyShapeLevel>
-  </atlas:FormalSystemDefinition>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/encodedOn">
+    <rdfs:label xml:lang="en">encoded on</rdfs:label>
+  </owl:AnnotationProperty>
   <atlas:FormalSystemDefinition rdf:about="https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple">
     <rdfs:label xml:lang="en">Mobus (2025), revisions manuscript, eq. (1)</rdfs:label>
     <atlas:statedIn>
@@ -548,6 +441,17 @@ Systems/Mobus/Tuple.lean), which is why the pointer sits here and not on entry 0
     <atlas:floorPosition rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/object"/>
     <atlas:floorDependencyShapeLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</atlas:floorDependencyShapeLevel>
   </atlas:FormalSystemDefinition>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/arguedIn">
+    <rdfs:label xml:lang="en">argued in</rdfs:label>
+    <skos:definition xml:lang="en">Where the claim carried by this term is argued — normally a document in mappings/, which owes a witness and must name its presentation.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/statedIn">
+    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition"/>
+    <rdfs:range rdf:resource="https://www.commoncoreontologies.org/ont00000253"/>
+    <rdfs:label xml:lang="en">stated in</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to the document that carries it.</skos:definition>
+    <rdfs:comment xml:lang="en">TODO: align to the inverse of obo:BFO_0000101 (carrier of) once the CCO carrier chain has been read in full. Declared standalone for now rather than asserted wrongly.</rdfs:comment>
+  </owl:ObjectProperty>
   <atlas:MappingClaim rdf:about="https://w3id.org/mathematical-systems/atlas/claim/bunge-ces-no-faithful-embedding-into-klir">
     <atlas:claimRelation>
       <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/no-faithful-embedding-into">
@@ -675,93 +579,168 @@ NO atlas:theoremName YET, and its absence is a debt, not a licence: the Lean dec
 systems-science-foundations, and the P2 test object that would let the build derive the
 collapse is owed to this catalogue. Until one lands, this claim is asserted.</rdfs:comment>
   </atlas:MappingClaim>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/sourceLocation">
-    <rdfs:label xml:lang="en">source location</rdfs:label>
-    <skos:definition xml:lang="en">Where in the bearer the verbatim text appears — equation number, page, section.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/statedIn">
-    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition"/>
-    <rdfs:range rdf:resource="https://www.commoncoreontologies.org/ont00000253"/>
-    <rdfs:label xml:lang="en">stated in</rdfs:label>
-    <skos:definition xml:lang="en">Relates a definition to the document that carries it.</skos:definition>
-    <rdfs:comment xml:lang="en">TODO: align to the inverse of obo:BFO_0000101 (carrier of) once the CCO carrier chain has been read in full. Declared standalone for now rather than asserted wrongly.</rdfs:comment>
-  </owl:ObjectProperty>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/formalisedAs">
-    <rdfs:label xml:lang="en">formalised as</rdfs:label>
-    <skos:definition xml:lang="en">The shape category in systems-science-foundations that encodes this
-definition's dependency structure, as a path relative to that repository plus the
-declaration name: `Systems/Category/ShapeKlir.lean#KlirShape`.</skos:definition>
-    <rdfs:comment xml:lang="en">BIBLIOGRAPHIC, NOT A FAITHFULNESS CLAIM. This says only that a
-formalisation of this definition exists and where to find it. Whether the quiver
-is FAITHFUL to the passage -- which position encodes which primitive, which
-phrase licenses which arrow, and what the encoding is silent about -- is a
-mapping-layer claim and owes evidence like any other. Recording the pointer here
-and the judgement there keeps the two from being confused.
+  <atlas:FormalSystemDefinition rdf:about="https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1">
+    <rdfs:label xml:lang="en">Bertalanffy (1968), General System Theory, eq. (3.1)</rdfs:label>
+    <atlas:statedIn>
+      <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1968-gst">
+        <rdfs:label xml:lang="en">Von Bertalanffy, L. — General System Theory: Foundations, Development, Applications (1968)</rdfs:label>
+        <dcterms:creator>Ludwig von Bertalanffy</dcterms:creator>
+        <atlas:authoredBy rdf:resource="https://w3id.org/mathematical-systems/atlas/author/ludwig-von-bertalanffy"/>
+        <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1968</dcterms:date>
+        <dcterms:bibliographicCitation>New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'.</dcterms:bibliographicCitation>
+      </cco:ont00000253>
+    </atlas:statedIn>
+    <atlas:sourceLocation>ch. 3, eq. (3.1), p. 56</atlas:sourceLocation>
+    <atlas:verbatim>A system can be defined mathematically in various ways. For illustration, we choose a system of simultaneous differential equations. Denoting some measure of elements, pᵢ (i = 1, 2, … n), by Qᵢ, these, for a finite number of elements and in the simplest case, will be of the form:
 
-DELIBERATELY A STRING, NOT AN IRI. The foundations are a separate repository with
-its own release cadence; a resolvable IRI would pin this catalogue to a commit or
-a hosting arrangement neither artifact controls. The reader resolves the path
-against a configured checkout and fails the build if the declaration is absent.</rdfs:comment>
-  </owl:AnnotationProperty>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets">
-    <rdfs:label xml:lang="en">Atlas entry — Klir 2001, Facets of Systems Science</rdfs:label>
-    <rdfs:comment xml:lang="en">Entry 001. The first entry in the catalogue, and the tradition the deck opens with.</rdfs:comment>
-  </rdf:Description>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/stanceValue">
-    <rdfs:label xml:lang="en">stance value</rdfs:label>
-    <skos:definition xml:lang="en">The value a stance assertion assigns, from one of the two stance schemes. The label is a handle; the assertion's verbatim is the evidence.</skos:definition>
-  </owl:ObjectProperty>
-  <atlas:MappingClaim rdf:about="https://w3id.org/mathematical-systems/atlas/claim/klir-weakly-encompasses-bunge-ces">
-    <atlas:claimRelation>
-      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/weakly-encompasses">
-        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/RelationScheme"/>
-        <skos:prefLabel xml:lang="en">weakly encompasses</skos:prefLabel>
-        <skos:scopeNote xml:lang="en">The source's form can redescribe the target; nothing need be preserved. Vacuously satisfiable by design — mapping 001 shows every catalogued definition passes, and that the constraints distinguishing the target are exactly what redescription is permitted to discard. A claim in this relation is deliberately weak evidence of anything.</skos:scopeNote>
+dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
+dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
+⋯
+dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)                                    (3.1)</atlas:verbatim>
+    <atlas:displayForm>dQ₁/dt = f₁(Q₁, Q₂, … Qₙ)
+dQ₂/dt = f₂(Q₁, Q₂, … Qₙ)
+⋯
+dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)</atlas:displayForm>
+    <atlas:displayContext>For illustration, we choose a system of simultaneous differential equations.</atlas:displayContext>
+    <atlas:invokesPrimitive rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/element"/>
+    <atlas:invokesPrimitive>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/measure">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+        <skos:prefLabel xml:lang="en">measure</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">Bertalanffy's Qᵢ, 'some measure of elements'. The word is his; reading Qᵢ as a state variable is an interpretation and stays out of the scheme.</skos:scopeNote>
+        <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/operation"/>
       </skos:Concept>
-    </atlas:claimRelation>
-    <atlas:claimSource rdf:resource="https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"/>
-    <atlas:claimTarget rdf:resource="https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"/>
-    <atlas:arguedIn>mappings/klir-encompassing.md</atlas:arguedIn>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-drafted from mapping 001, Test 1)</atlas:encodedBy>
+    </atlas:invokesPrimitive>
+    <atlas:invokesPrimitive rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/time"/>
+    <atlas:admits>
+      <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bertalanffy-organism">
+        <rdfs:label xml:lang="en">an organism</rdfs:label>
+        <atlas:gloss>an organism</atlas:gloss>
+        <atlas:verbatim>Any organism is a system, that is, a dynamic order of parts and processes standing in mutual interaction</atlas:verbatim>
+        <atlas:sourceLocation>General System Theory (1968), p. 209, quoting Bertalanffy 1949a p. 11</atlas:sourceLocation>
+        <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-05</atlas:encodedOn>
+        <rdfs:comment>SAME BEARER AS THE ENTRY, since 2026-08-07. This ruling was first recorded
+on entry 004 (the 1972 article) with a DIFFERENT-BEARER caveat, because the catalogue then held
+no entry from the 1968 book. It moves here now that it does.
+
+MDHC, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: a human located "Any organism is a system"
+on p. 209 of the book on 2026-08-05, so the page and the ruling itself are confirmed. The
+remainder of the sentence — "that is, a dynamic order of parts and processes standing in
+mutual interaction" — is still as the OCR gives it and has not been read word for word. HVP
+needs that last step.
+
+The page number comes from a Kindle edition reporting print-equivalent pagination; the same
+edition's p. 56 for eq. (3.1) matches the print index's "mathematical definition, 56-60",
+which is the corroboration for trusting its numbering here.
+
+NOT ENCODED AS A REFUSAL: the heap of bricks. Bertalanffy calls heaps the case where a complex
+"can be built up, step by step, by putting together the first separate elements" — merely
+summative, as against the constitutive characteristics of a Gestalt (1968, ch. 3). That is
+architecturally Klir's book-collection and Bunge's ordered-events exclusion, but he never
+writes the verdict sentence, and encoding an implication as a ruling would put words in his
+mouth. It belongs to the mapping layer.</rdfs:comment>
+      </atlas:Example>
+    </atlas:admits>
+    <atlas:formalisedAs>Systems/Category/ShapeBertalanffy.lean#BertalanffyShape</atlas:formalisedAs>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
+    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
     <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-07</atlas:encodedOn>
-    <rdfs:comment xml:lang="en">The redescription: T := C ∪ E, R := S — Bunge's own formulation already
-says S is a set of relations on C ∪ E. What the redescription is permitted to discard is
-exactly what distinguishes Bunge: the C/E partition, disjointness, bonding, the time index.
-The flattening this claim asserts is the same one whose loss claim:bunge-ces-no-faithful-embedding-into-klir
-records — the two are one finding read from its two sides.</rdfs:comment>
-  </atlas:MappingClaim>
-  <atlas:EvidenceCode rdf:about="https://w3id.org/mathematical-systems/atlas/PROP">
-    <rdfs:label xml:lang="en">propagated from another entry</rdfs:label>
-    <skos:definition xml:lang="en">Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it.</skos:definition>
-  </atlas:EvidenceCode>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/refuses">
+    <rdfs:comment>HVP, AND THE SCOPE OF THE CHECK IS EXACTLY THIS: Shingai read the page on
+2026-08-05 — the prose against this transcription, and the equation against the page image,
+because no text layer in any held source contains eq. (3.1) at all. The equation here is
+transcribed from that image, screenshot-verified the same day. The held Kindle text renders
+subscript i as t ("pt", "Qt") — an artifact of the rendering, not the book; the subscripts
+above are as printed. Page numbering is Kindle print-equivalent pagination, corroborated by
+the print index's "mathematical definition, 56-60".
+
+THE HEDGE IS PART OF THE RECORD. The verbatim opens at "A system can be defined mathematically
+in various ways" rather than at the equation: 1968 offers the differential equations as one
+illustration among various possible formalisations, and cutting the hedge would harden an
+avowedly illustrative choice into a definition the author did not state that way. The 1972
+restatement (entry 004) carries the same hedge in the other direction — a verbal definition
+pointing at unspecified mathematics.
+
+WHAT THE REVISION CHANGED, NOW CITABLE FROM BOTH ENDS. 1968: elements and their interrelation,
+no environment term — the shape has two positions and one arrow, and is proved isomorphic to
+Klir's. 1972: "and with the environment" — a third position and a second arrow. The difference
+is machine-checked: bert68To72Pre embeds the 1968 shape in the 1972 one (bert68To72_obj_injective),
+and environment_is_new proves the environment position is not in its image. This entry is the
+1968 end of that pair; mapping 003 (environment-channel.md) is where the finding is stated.
+
+WHY THE 1972 ARTICLE WAS ENTERED FIRST: transcription discipline. See entry 004's apparatus;
+this entry existing at all is the "second entry from the same tradition" that apparatus
+promised.</rdfs:comment>
+    <atlas:authorCaveat>A system can be defined mathematically in various ways.</atlas:authorCaveat>
+    <atlas:hasStance>
+      <atlas:StanceAssertion rdf:about="https://w3id.org/mathematical-systems/atlas/stance/bertalanffy-1968-ontic">
+        <atlas:stanceValue rdf:resource="https://w3id.org/mathematical-systems/atlas/perspectivist"/>
+        <atlas:verbatim>As for the connections of these stimuli, i.e., the categories of experience, they need not mirror the nexus of real events but must, with a certain tolerance allowed, be isomorphic to it</atlas:verbatim>
+        <atlas:sourceLocation>ch. 10, 'The Perspectivistic View'</atlas:sourceLocation>
+        <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
+        <atlas:encodedBy>Shingai Thornton (Claude-drafted from P3-stance-axes.md)</atlas:encodedBy>
+        <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-07</atlas:encodedOn>
+        <rdfs:comment xml:lang="en">His own word — the chapter title names the position — which is why the
+value is "perspectivist" rather than a characterisation in our words. The constraint is argued
+evolutionarily, not asserted: categories that failed to correspond would have been selected
+out, so the perspective is not free. The stance verbatim's "isomorphic ... with a certain
+tolerance" applies to knowledge the same relation the shape categories apply to
+formalisations; whether that is a connection or a pun is a mapping question, not asserted
+here.
+
+Attached to THIS entry, not 004: the passage is in the 1968 book, this entry's bearer. P3
+read the chapter on 2026-08-03 (gst-1968-full-text.md:11478–11585). MDHC as of 2026-08-08:
+model-drafted 2026-08-07, checked by Shingai the next day — including that the observer cell
+stays empty rather than inferred.</rdfs:comment>
+      </atlas:StanceAssertion>
+    </atlas:hasStance>
+    <atlas:floorPosition rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/element"/>
+    <atlas:floorDependencyShapeLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</atlas:floorDependencyShapeLevel>
+  </atlas:FormalSystemDefinition>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/admits">
     <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition"/>
     <rdfs:range rdf:resource="https://w3id.org/mathematical-systems/atlas/Example"/>
-    <rdfs:label xml:lang="en">refuses</rdfs:label>
-    <skos:definition xml:lang="en">Relates a definition to a case its author says is NOT a system on it.
-The separating-instance data: where two definitions rule differently on the same case is where
-the loss catalogue comes from.</skos:definition>
-    <rdfs:comment xml:lang="en">NOT EVERY NEGATIVE IS A REFUSAL. Bunge refuses ontically -- no bonds,
-therefore not a system, and no act of description alters it. Klir's "a collection of books is
-not a system, only a set" is not a refusal at all: on his criterion an object is a system iff
-it CAN BE DESCRIBED as conforming, and a bare collection can be. Recording the second as a
-refusal would manufacture a symmetry the authors do not share. See
-docs/proposals/P3-stance-axes.md.</rdfs:comment>
+    <rdfs:label xml:lang="en">admits</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to a case its author offers as a system.</skos:definition>
   </owl:ObjectProperty>
+  <owl:Ontology rdf:about="https://w3id.org/mathematical-systems/atlas/definition-atlas"/>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/verbatim">
+    <rdfs:label xml:lang="en">verbatim</rdfs:label>
+    <skos:definition xml:lang="en">The definition exactly as written in the source, transcribed without paraphrase. The thing every downstream encoding must be checkable against.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/claimTarget">
+    <rdfs:label xml:lang="en">claim target</rdfs:label>
+    <skos:definition xml:lang="en">The entry the relation runs to.</skos:definition>
+  </owl:ObjectProperty>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/mappings/claims">
+    <rdfs:label xml:lang="en">Atlas mapping claims</rdfs:label>
+    <rdfs:comment xml:lang="en">The RDF layer of the mapping documents — minted 2026-08-07 when the
+pattern across mappings 001–003 became clear, per the rule in README.md. Each claim is a
+reified relation between two ENTRIES, pointing at the prose document that argues it. The
+document remains the argument; the claim is its address in the graph.
+
+WHAT THE GRAPH CANNOT YET HOLD, so coverage stays honest: mapping 001's strong-reading
+counterexample (Joslyn ⇸ Klir, the feedback-cycle obstruction) relates a SHAPE to an entry —
+Joslyn has no catalogue entry, so the claim stays in prose. Likewise 001's Myers row. Mapping
+002's clash is not duplicated here at all: it is already derived in the graph through
+admits/refuses on the shared test object, which is the stronger encoding.
+
+MDHC as of 2026-08-08: the encodings were model-drafted on 2026-08-07 and Shingai checked
+each claim against its mapping document the next day.</rdfs:comment>
+  </rdf:Description>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/gloss">
+    <rdfs:label xml:lang="en">gloss</rdfs:label>
+    <skos:definition xml:lang="en">Our description of a case, in our words. Distinct from atlas:verbatim on
+the same individual, which is the author's. An example carries both: what the case is, and the
+author's own reason for ruling on it as they did.</skos:definition>
+  </owl:AnnotationProperty>
   <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/theoremName">
     <rdfs:label xml:lang="en">theorem name</rdfs:label>
     <skos:definition xml:lang="en">The Lean declaration backing this claim, as file#name. Absence on a claim of loss means the theorem is owed, not that none is needed.</skos:definition>
   </owl:AnnotationProperty>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/bunge-1979-treatise">
-    <rdfs:label xml:lang="en">Atlas entries — Bunge 1979, Treatise on Basic Philosophy vol. 4</rdfs:label>
-    <rdfs:comment xml:lang="en">Entries 002 and 003.
-
-TWO entries from one source, deliberately. Bunge gives a general CHARACTERISATION
-of system as an ordered triple, then explicitly says it is "not a definition
-proper" and supplies a separate DEFINITION of concrete system. Collapsing them
-into one entry would misrepresent him and would erase the caveat he himself
-insisted on. The distinction is his, not ours.</rdfs:comment>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/floor">
+    <atlas:substratePrimitive rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/set"/>
   </rdf:Description>
   <atlas:RetiredTerm rdf:about="https://w3id.org/mathematical-systems/atlas/case/bunge-molecule-reef-family-factory">
     <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
@@ -816,12 +795,107 @@ each case can be matched against other authors' rulings.</rdfs:comment>
 each from ever being matched against another author's ruling on the same object. Split under
 the P4 sign-off; first precedent under the D5 retirement policy (docs/iri-policy.md).</rdfs:comment>
   </atlas:RetiredTerm>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/excludedExample">
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/includedExample">
     <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
-    <rdfs:label xml:lang="en">excluded example</rdfs:label>
-    <rdfs:comment xml:lang="en">DEPRECATED 2026-08-03. Superseded by atlas:refuses onto an atlas:Example. Retained declared so data written against the old shape stays readable.</rdfs:comment>
-    <skos:definition xml:lang="en">Something the author explicitly says is NOT a system on this definition. The separating-instance data, captured at tier 0: where two definitions disagree about the same object is exactly where the loss catalogue comes from.</skos:definition>
+    <rdfs:label xml:lang="en">included example</rdfs:label>
+    <rdfs:comment xml:lang="en">DEPRECATED 2026-08-03. Superseded by atlas:admits onto an atlas:Example. Retained declared so data written against the old shape stays readable.</rdfs:comment>
+    <skos:definition xml:lang="en">Something the author explicitly offers as a system on this definition.</skos:definition>
   </owl:AnnotationProperty>
+  <atlas:MappingClaim rdf:about="https://w3id.org/mathematical-systems/atlas/claim/klir-weakly-encompasses-bunge-ces">
+    <atlas:claimRelation>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/weakly-encompasses">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/RelationScheme"/>
+        <skos:prefLabel xml:lang="en">weakly encompasses</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">The source's form can redescribe the target; nothing need be preserved. Vacuously satisfiable by design — mapping 001 shows every catalogued definition passes, and that the constraints distinguishing the target are exactly what redescription is permitted to discard. A claim in this relation is deliberately weak evidence of anything.</skos:scopeNote>
+      </skos:Concept>
+    </atlas:claimRelation>
+    <atlas:claimSource rdf:resource="https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"/>
+    <atlas:claimTarget rdf:resource="https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple"/>
+    <atlas:arguedIn>mappings/klir-encompassing.md</atlas:arguedIn>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
+    <atlas:encodedBy>Shingai Thornton (Claude-drafted from mapping 001, Test 1)</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-07</atlas:encodedOn>
+    <rdfs:comment xml:lang="en">The redescription: T := C ∪ E, R := S — Bunge's own formulation already
+says S is a set of relations on C ∪ E. What the redescription is permitted to discard is
+exactly what distinguishes Bunge: the C/E partition, disjointness, bonding, the time index.
+The flattening this claim asserts is the same one whose loss claim:bunge-ces-no-faithful-embedding-into-klir
+records — the two are one finding read from its two sides.</rdfs:comment>
+  </atlas:MappingClaim>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/evidenceCode">
+    <rdfs:label xml:lang="en">evidence code</rdfs:label>
+    <skos:definition xml:lang="en">Which atlas:EvidenceCode individual applies to this encoding.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/claimRelation">
+    <rdfs:label xml:lang="en">claim relation</rdfs:label>
+    <skos:definition xml:lang="en">Which relation from the relation scheme this claim asserts between its source and target.</skos:definition>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/instantiates">
+    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/Example"/>
+    <rdfs:range rdf:resource="https://w3id.org/mathematical-systems/atlas/TestObject"/>
+    <rdfs:label xml:lang="en">instantiates</rdfs:label>
+    <skos:definition xml:lang="en">Relates a case to the test object it is a case of. This is what makes a
+disagreement derivable: same test object, one definition admitting and another refusing, is a
+separating instance the build can find rather than one an encoder has to assert.</skos:definition>
+  </owl:ObjectProperty>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/mobus-book-revisions">
+    <rdfs:label xml:lang="en">Atlas entry — Mobus, revisions manuscript (March 2025)</rdfs:label>
+    <rdfs:comment xml:lang="en">Entry 007. The second half of the Mobus revision arc: the published
+seven-tuple (entry 006) revised to an oct-tuple with the environment E first-class. Second
+entry through the P5 pipeline, promoted by guided pass 2026-08-18. The manuscript also
+REPRODUCES the original Eq. 4.1 before revising it — the scan graded that reproduction PROP
+(a restatement of entry 006), which is why it is not a third entry.</rdfs:comment>
+  </rdf:Description>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/authorCaveat">
+    <rdfs:label xml:lang="en">author caveat</rdfs:label>
+    <skos:definition xml:lang="en">A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/sourceLocation">
+    <rdfs:label xml:lang="en">source location</rdfs:label>
+    <skos:definition xml:lang="en">Where in the bearer the verbatim text appears — equation number, page, section.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/displayForm">
+    <rdfs:label xml:lang="en">display form</rdfs:label>
+    <skos:definition xml:lang="en">The span of the verbatim that is the definition's formal statement — the
+face a reader meets first, e.g. `S = (T, R)` or `σ = ⟨C, E, S⟩`. Presentation only: it adds no
+content, it marks a span. MUST be an exact substring of atlas:verbatim on the same individual —
+the build refuses an entry where it is not, so this property can never put words in an author's
+mouth. Absent where the definition has no formal statement to lift; the verbatim then faces
+whole.</skos:definition>
+  </owl:AnnotationProperty>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/mesarovic-takahara-1975-gst">
+    <rdfs:label xml:lang="en">Atlas entry — Mesarović &amp; Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)</rdfs:label>
+    <rdfs:comment xml:lang="en">Drafted 2026-08-25 by the P5 pipeline; accessioned at MDU 2026-08-26;
+promoted to MDHC the same day after the verbatim was read against the page image (scan
+p. 22 = book p. 11) by Shingai Thornton — see the TRANSCRIPTION block for what was checked,
+including the braces defect the review caught. Guided pass completed 2026-08-26: candidate 0
+ruled a PREVIEW of Def 1.1, not a distinct entry (see the CANDIDATE 0 RULED block); the four
+minted primitives' roles confirmed and kept unmerged; Takahara given his own author node,
+the bearer carrying both.</rdfs:comment>
+  </rdf:Description>
+  <atlas:EvidenceCode rdf:about="https://w3id.org/mathematical-systems/atlas/MDU">
+    <rdfs:label xml:lang="en">model-drafted, unchecked</rdfs:label>
+    <skos:definition xml:lang="en">A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest.</skos:definition>
+  </atlas:EvidenceCode>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/refuses">
+    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition"/>
+    <rdfs:range rdf:resource="https://w3id.org/mathematical-systems/atlas/Example"/>
+    <rdfs:label xml:lang="en">refuses</rdfs:label>
+    <skos:definition xml:lang="en">Relates a definition to a case its author says is NOT a system on it.
+The separating-instance data: where two definitions rule differently on the same case is where
+the loss catalogue comes from.</skos:definition>
+    <rdfs:comment xml:lang="en">NOT EVERY NEGATIVE IS A REFUSAL. Bunge refuses ontically -- no bonds,
+therefore not a system, and no act of description alters it. Klir's "a collection of books is
+not a system, only a set" is not a refusal at all: on his criterion an object is a system iff
+it CAN BE DESCRIBED as conforming, and a bare collection can be. Recording the second as a
+refusal would manufacture a symmetry the authors do not share. See
+docs/proposals/P3-stance-axes.md.</rdfs:comment>
+  </owl:ObjectProperty>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1972-history-status">
+    <rdfs:label xml:lang="en">Atlas entry — Bertalanffy 1972, The History and Status of General Systems Theory</rdfs:label>
+    <rdfs:comment xml:lang="en">Entry 004. The founder of the tradition, entered from a journal article rather
+than the 1968 book — the first non-book bearer in the catalogue. The reason is transcription
+discipline, recorded in the entry's apparatus.</rdfs:comment>
+  </rdf:Description>
   <atlas:MappingClaim rdf:about="https://w3id.org/mathematical-systems/atlas/claim/klir-weakly-encompasses-bunge-def-1-1">
     <atlas:claimRelation rdf:resource="https://w3id.org/mathematical-systems/atlas/weakly-encompasses"/>
     <atlas:claimSource rdf:resource="https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1"/>
@@ -879,11 +953,47 @@ phrasings of one claim and must not be merged.</rdfs:comment>
 relation. What it discards is that the relation must be a CONNECTION — the bonding requirement
 that does Bunge's refusing (see obj:ordered-non-bonding).</rdfs:comment>
   </atlas:MappingClaim>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/gloss">
-    <rdfs:label xml:lang="en">gloss</rdfs:label>
-    <skos:definition xml:lang="en">Our description of a case, in our words. Distinct from atlas:verbatim on
-the same individual, which is the author's. An example carries both: what the case is, and the
-author's own reason for ruling on it as they did.</skos:definition>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/imports/cco-bfo-reference">
+    <rdfs:comment xml:lang="en">Generated by build.py. Only the external terms the Definition Atlas actually uses, plus their named ancestors. Equivalent-class axioms, restrictions and disjointness from the source ontologies are NOT preserved -- this places terms and renders labels, it does not reproduce CCO/BFO semantics. Do not edit by hand.</rdfs:comment>
+    <rdfs:label xml:lang="en">CCO/BFO reference module (minimal extract)</rdfs:label>
+  </rdf:Description>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/formalisedAs">
+    <rdfs:label xml:lang="en">formalised as</rdfs:label>
+    <skos:definition xml:lang="en">The shape category in systems-science-foundations that encodes this
+definition's dependency structure, as a path relative to that repository plus the
+declaration name: `Systems/Category/ShapeKlir.lean#KlirShape`.</skos:definition>
+    <rdfs:comment xml:lang="en">BIBLIOGRAPHIC, NOT A FAITHFULNESS CLAIM. This says only that a
+formalisation of this definition exists and where to find it. Whether the quiver
+is FAITHFUL to the passage -- which position encodes which primitive, which
+phrase licenses which arrow, and what the encoding is silent about -- is a
+mapping-layer claim and owes evidence like any other. Recording the pointer here
+and the judgement there keeps the two from being confused.
+
+DELIBERATELY A STRING, NOT AN IRI. The foundations are a separate repository with
+its own release cadence; a resolvable IRI would pin this catalogue to a commit or
+a hosting arrangement neither artifact controls. The reader resolves the path
+against a configured checkout and fails the build if the declaration is absent.</rdfs:comment>
+  </owl:AnnotationProperty>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/hasStance">
+    <rdfs:label xml:lang="en">has stance</rdfs:label>
+    <skos:definition xml:lang="en">Links an entry to a stance assertion about it. The assertion is about the entry (the work), never the author.</skos:definition>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/claimSource">
+    <rdfs:label xml:lang="en">claim source</rdfs:label>
+    <skos:definition xml:lang="en">The entry the relation runs from.</skos:definition>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/stanceValue">
+    <rdfs:label xml:lang="en">stance value</rdfs:label>
+    <skos:definition xml:lang="en">The value a stance assertion assigns, from one of the two stance schemes. The label is a handle; the assertion's verbatim is the evidence.</skos:definition>
+  </owl:ObjectProperty>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/excludedExample">
+    <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    <rdfs:label xml:lang="en">excluded example</rdfs:label>
+    <rdfs:comment xml:lang="en">DEPRECATED 2026-08-03. Superseded by atlas:refuses onto an atlas:Example. Retained declared so data written against the old shape stays readable.</rdfs:comment>
+    <skos:definition xml:lang="en">Something the author explicitly says is NOT a system on this definition. The separating-instance data, captured at tier 0: where two definitions disagree about the same object is exactly where the loss catalogue comes from.</skos:definition>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/encodedBy">
+    <rdfs:label xml:lang="en">encoded by</rdfs:label>
   </owl:AnnotationProperty>
   <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/authoredBy">
     <rdfs:domain rdf:resource="https://www.commoncoreontologies.org/ont00000253"/>
@@ -891,60 +1001,6 @@ author's own reason for ruling on it as they did.</skos:definition>
     <rdfs:label xml:lang="en">authored by</rdfs:label>
     <skos:definition xml:lang="en">Relates a bearer to its author. The bearer's dcterms:creator literal stays as the bibliographic string; this property is what makes the attribution a node two works can share.</skos:definition>
   </owl:ObjectProperty>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/evidenceCode">
-    <rdfs:label xml:lang="en">evidence code</rdfs:label>
-    <skos:definition xml:lang="en">Which atlas:EvidenceCode individual applies to this encoding.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/claimRelation">
-    <rdfs:label xml:lang="en">claim relation</rdfs:label>
-    <skos:definition xml:lang="en">Which relation from the relation scheme this claim asserts between its source and target.</skos:definition>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/admits">
-    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition"/>
-    <rdfs:range rdf:resource="https://w3id.org/mathematical-systems/atlas/Example"/>
-    <rdfs:label xml:lang="en">admits</rdfs:label>
-    <skos:definition xml:lang="en">Relates a definition to a case its author offers as a system.</skos:definition>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1972-history-status">
-    <rdfs:label xml:lang="en">Atlas entry — Bertalanffy 1972, The History and Status of General Systems Theory</rdfs:label>
-    <rdfs:comment xml:lang="en">Entry 004. The founder of the tradition, entered from a journal article rather
-than the 1968 book — the first non-book bearer in the catalogue. The reason is transcription
-discipline, recorded in the entry's apparatus.</rdfs:comment>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/verbatim">
-    <rdfs:label xml:lang="en">verbatim</rdfs:label>
-    <skos:definition xml:lang="en">The definition exactly as written in the source, transcribed without paraphrase. The thing every downstream encoding must be checkable against.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/invokesPrimitive">
-    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:label xml:lang="en">invokes primitive</rdfs:label>
-    <skos:definition xml:lang="en">Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one.</skos:definition>
-    <rdfs:comment xml:lang="en">Range is skos:Concept, not an OWL class, deliberately. A primitive here is a TERM USED IN A DEFINITION, not a kind of thing in the world. SKOS is about concepts; using it avoids smuggling realism into constructivist traditions.</rdfs:comment>
-  </owl:ObjectProperty>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/includedExample">
-    <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
-    <rdfs:label xml:lang="en">included example</rdfs:label>
-    <rdfs:comment xml:lang="en">DEPRECATED 2026-08-03. Superseded by atlas:admits onto an atlas:Example. Retained declared so data written against the old shape stays readable.</rdfs:comment>
-    <skos:definition xml:lang="en">Something the author explicitly offers as a system on this definition.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/authorCaveat">
-    <rdfs:label xml:lang="en">author caveat</rdfs:label>
-    <skos:definition xml:lang="en">A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/hasStance">
-    <rdfs:label xml:lang="en">has stance</rdfs:label>
-    <skos:definition xml:lang="en">Links an entry to a stance assertion about it. The assertion is about the entry (the work), never the author.</skos:definition>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/mobus-2022-tamd">
-    <rdfs:label xml:lang="en">Atlas entry — Mobus 2022, Systems Science: Theory, Analysis, Modeling, and Design</rdfs:label>
-    <rdfs:comment xml:lang="en">Entry 006. The first entry drafted by the P5 ingest pipeline (2026-08-17)
-and promoted through a guided human pass (2026-08-18) — verbatim, spans, caveats, location,
-primitives and cases each ruled on individually. The published definition is a SEVEN-tuple
-with no environment element; the eighth element arrives in the revisions manuscript
-(bearer registered as mobus-book-revisions, entry to come), which is why this bearer and
-that one stay distinct: the revision arc is the finding, as with Bertalanffy 1968/1972.</rdfs:comment>
-  </rdf:Description>
   <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/displayContext">
     <rdfs:label xml:lang="en">display context</rdfs:label>
     <skos:definition xml:lang="en">The span of the verbatim that is the author's own plain-language reading
@@ -953,23 +1009,13 @@ as atlas:displayForm: an exact substring of atlas:verbatim, enforced by the buil
 two spans let an interface lead with the mathematics and follow with the author's gloss without
 one editorial word being added.</skos:definition>
   </owl:AnnotationProperty>
-  <atlas:EvidenceCode rdf:about="https://w3id.org/mathematical-systems/atlas/MDU">
-    <rdfs:label xml:lang="en">model-drafted, unchecked</rdfs:label>
-    <skos:definition xml:lang="en">A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest.</skos:definition>
-  </atlas:EvidenceCode>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/claimSource">
-    <rdfs:label xml:lang="en">claim source</rdfs:label>
-    <skos:definition xml:lang="en">The entry the relation runs from.</skos:definition>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/mesarovic-takahara-1975-gst">
-    <rdfs:label xml:lang="en">Atlas entry — Mesarović &amp; Takahara (1975), General Systems Theory: Mathematical Foundations, Ch. II §1(a), Definition 1.1 (book p. 11)</rdfs:label>
-    <rdfs:comment xml:lang="en">Drafted 2026-08-25 by the P5 pipeline; accessioned at MDU 2026-08-26;
-promoted to MDHC the same day after the verbatim was read against the page image (scan
-p. 22 = book p. 11) by Shingai Thornton — see the TRANSCRIPTION block for what was checked,
-including the braces defect the review caught. Guided pass completed 2026-08-26: candidate 0
-ruled a PREVIEW of Def 1.1, not a distinct entry (see the CANDIDATE 0 RULED block); the four
-minted primitives' roles confirmed and kept unmerged; Takahara given his own author node,
-the bearer carrying both.</rdfs:comment>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1968-gst">
+    <rdfs:label xml:lang="en">Atlas entry — Bertalanffy 1968, General System Theory</rdfs:label>
+    <rdfs:comment xml:lang="en">Entry 005. The canonical book, entered after the 1972 article (entry 004)
+rather than before it, because the only held copy is an OCR in which eq. (3.1) did not survive
+— the equation below was transcribed from the page image and screenshot-verified on 2026-08-05.
+The 1968/1972 pair makes the revision citable: what changed between them is proved in Lean
+(bert68To72Pre, environment_is_new), not narrated.</rdfs:comment>
   </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/mappings/floor">
     <rdfs:label xml:lang="en">Floor roles — which primitive plays position, which plays dependency</rdfs:label>
@@ -987,66 +1033,20 @@ Everything a definition invokes beyond its floor roles and the ambient
 substrate is computed by the build as that definition's additions —
 never hand-written.</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/mobus-book-revisions">
-    <rdfs:label xml:lang="en">Atlas entry — Mobus, revisions manuscript (March 2025)</rdfs:label>
-    <rdfs:comment xml:lang="en">Entry 007. The second half of the Mobus revision arc: the published
-seven-tuple (entry 006) revised to an oct-tuple with the environment E first-class. Second
-entry through the P5 pipeline, promoted by guided pass 2026-08-18. The manuscript also
-REPRODUCES the original Eq. 4.1 before revising it — the scan graded that reproduction PROP
-(a restatement of entry 006), which is why it is not a third entry.</rdfs:comment>
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets">
+    <rdfs:label xml:lang="en">Atlas entry — Klir 2001, Facets of Systems Science</rdfs:label>
+    <rdfs:comment xml:lang="en">Entry 001. The first entry in the catalogue, and the tradition the deck opens with.</rdfs:comment>
   </rdf:Description>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/displayForm">
-    <rdfs:label xml:lang="en">display form</rdfs:label>
-    <skos:definition xml:lang="en">The span of the verbatim that is the definition's formal statement — the
-face a reader meets first, e.g. `S = (T, R)` or `σ = ⟨C, E, S⟩`. Presentation only: it adds no
-content, it marks a span. MUST be an exact substring of atlas:verbatim on the same individual —
-the build refuses an entry where it is not, so this property can never put words in an author's
-mouth. Absent where the definition has no formal statement to lift; the verbatim then faces
-whole.</skos:definition>
-  </owl:AnnotationProperty>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/instantiates">
-    <rdfs:domain rdf:resource="https://w3id.org/mathematical-systems/atlas/Example"/>
-    <rdfs:range rdf:resource="https://w3id.org/mathematical-systems/atlas/TestObject"/>
-    <rdfs:label xml:lang="en">instantiates</rdfs:label>
-    <skos:definition xml:lang="en">Relates a case to the test object it is a case of. This is what makes a
-disagreement derivable: same test object, one definition admitting and another refusing, is a
-separating instance the build can find rather than one an encoder has to assert.</skos:definition>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/imports/cco-bfo-reference">
-    <rdfs:label xml:lang="en">CCO/BFO reference module (minimal extract)</rdfs:label>
-    <rdfs:comment xml:lang="en">Generated by build.py. Only the external terms the Definition Atlas actually uses, plus their named ancestors. Equivalent-class axioms, restrictions and disjointness from the source ontologies are NOT preserved -- this places terms and renders labels, it does not reproduce CCO/BFO semantics. Do not edit by hand.</rdfs:comment>
-  </rdf:Description>
-  <owl:ObjectProperty rdf:about="https://w3id.org/mathematical-systems/atlas/claimTarget">
-    <rdfs:label xml:lang="en">claim target</rdfs:label>
-    <skos:definition xml:lang="en">The entry the relation runs to.</skos:definition>
-  </owl:ObjectProperty>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/mappings/claims">
-    <rdfs:label xml:lang="en">Atlas mapping claims</rdfs:label>
-    <rdfs:comment xml:lang="en">The RDF layer of the mapping documents — minted 2026-08-07 when the
-pattern across mappings 001–003 became clear, per the rule in README.md. Each claim is a
-reified relation between two ENTRIES, pointing at the prose document that argues it. The
-document remains the argument; the claim is its address in the graph.
+  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/bunge-1979-treatise">
+    <rdfs:label xml:lang="en">Atlas entries — Bunge 1979, Treatise on Basic Philosophy vol. 4</rdfs:label>
+    <rdfs:comment xml:lang="en">Entries 002 and 003.
 
-WHAT THE GRAPH CANNOT YET HOLD, so coverage stays honest: mapping 001's strong-reading
-counterexample (Joslyn ⇸ Klir, the feedback-cycle obstruction) relates a SHAPE to an entry —
-Joslyn has no catalogue entry, so the claim stays in prose. Likewise 001's Myers row. Mapping
-002's clash is not duplicated here at all: it is already derived in the graph through
-admits/refuses on the shared test object, which is the stronger encoding.
-
-MDHC as of 2026-08-08: the encodings were model-drafted on 2026-08-07 and Shingai checked
-each claim against its mapping document the next day.</rdfs:comment>
+TWO entries from one source, deliberately. Bunge gives a general CHARACTERISATION
+of system as an ordered triple, then explicitly says it is "not a definition
+proper" and supplies a separate DEFINITION of concrete system. Collapsing them
+into one entry would misrepresent him and would erase the caveat he himself
+insisted on. The distinction is his, not ours.</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/entries/bertalanffy-1968-gst">
-    <rdfs:label xml:lang="en">Atlas entry — Bertalanffy 1968, General System Theory</rdfs:label>
-    <rdfs:comment xml:lang="en">Entry 005. The canonical book, entered after the 1972 article (entry 004)
-rather than before it, because the only held copy is an OCR in which eq. (3.1) did not survive
-— the equation below was transcribed from the page image and screenshot-verified on 2026-08-05.
-The 1968/1972 pair makes the revision citable: what changed between them is proved in Lean
-(bert68To72Pre, environment_is_new), not narrated.</rdfs:comment>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:about="https://w3id.org/mathematical-systems/atlas/encodedOn">
-    <rdfs:label xml:lang="en">encoded on</rdfs:label>
-  </owl:AnnotationProperty>
   <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/atlas-core">
     <owl:versionIRI rdf:resource="https://w3id.org/mathematical-systems/atlas/2026-08-01/atlas-core"/>
     <rdfs:label xml:lang="en">Definition Atlas — Core</rdfs:label>
@@ -1073,24 +1073,23 @@ Tier 1 (dependency quiver) and above are not yet modelled here.
 
 Spec: strategy/phd/definition-atlas-spec.md in the Halcyonic vault.</rdfs:comment>
   </rdf:Description>
-  <owl:Ontology rdf:about="https://w3id.org/mathematical-systems/atlas/definition-atlas"/>
-  <rdf:Description rdf:about="https://w3id.org/mathematical-systems/atlas/floor">
-    <atlas:substratePrimitive rdf:resource="https://w3id.org/mathematical-systems/atlas/primitive/set"/>
-  </rdf:Description>
-  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/EvidenceCode">
-    <rdfs:label xml:lang="en">Evidence Code</rdfs:label>
-    <skos:definition xml:lang="en">How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones.</skos:definition>
+  <atlas:EvidenceCode rdf:about="https://w3id.org/mathematical-systems/atlas/PROP">
+    <rdfs:label xml:lang="en">propagated from another entry</rdfs:label>
+    <skos:definition xml:lang="en">Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it.</skos:definition>
+  </atlas:EvidenceCode>
+  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000853">
+    <rdfs:subClassOf rdf:resource="https://www.commoncoreontologies.org/ont00000958"/>
+    <rdfs:label xml:lang="en">Descriptive Information Content Entity</rdfs:label>
+    <skos:definition xml:lang="en">An Information Content Entity that describes some Entity.</skos:definition>
   </owl:Class>
-  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/RetiredTerm">
-    <rdfs:label xml:lang="en">Retired Term</rdfs:label>
-    <skos:definition xml:lang="en">A tombstone: an IRI this catalogue once served as a live term and will
-never serve as one again. IRIs are permanent (w3id) — a term is never deleted and never
-silently mutated; it is retired by CHANGING ITS CLASS to this one, so the strict shapes for
-live terms keep their teeth and a stale citation still resolves to a signpost. A retired term
-carries owl:deprecated true, at least one dcterms:isReplacedBy successor, and a comment saying
-why. Policy and procedure: docs/iri-policy.md (D5). The reader's build refuses to serve a
-deprecated IRI as live data, and that refusal is gated.</skos:definition>
-  </owl:Class>
+  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing">
+    <rdfs:label xml:lang="en">a set of states of a thing</rdfs:label>
+    <atlas:gloss>a set of states of a thing</atlas:gloss>
+    <atlas:sourceLocation>ch. 1, §1.2, Example following Definition 1.1, p. 7</atlas:sourceLocation>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
+    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
+  </atlas:Example>
   <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/role/operation">
     <skos:inScheme>
       <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/SignatureRoleScheme">
@@ -1101,7 +1100,43 @@ deprecated IRI as live data, and that refusal is gated.</skos:definition>
     <skos:prefLabel xml:lang="en">operation</skos:prefLabel>
     <skos:definition xml:lang="en">A function symbol: maps arguments to a value (transfer functions, Bunge's composition-at-a-time).</skos:definition>
   </skos:Concept>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/thinghood">
+  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition">
+    <rdfs:subClassOf rdf:resource="https://www.commoncoreontologies.org/ont00000853"/>
+    <rdfs:label xml:lang="en">Formal System Definition</rdfs:label>
+    <skos:definition xml:lang="en">A Descriptive Information Content Entity that defines the
+term "system" formally: it introduces named components with types or sorts, and
+fixes at least one relation, function, or constraint among them, in symbols or in
+prose precise enough to be transcribed to symbols without adding content.</skos:definition>
+    <rdfs:comment xml:lang="en">Inclusion criteria are stated in the spec, §5. Borderline cases are adjudicated there, not here.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000040">
+    <rdfs:label xml:lang="en">material entity</rdfs:label>
+    <skos:definition xml:lang="en">(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
+  </owl:Class>
+  <atlas:StanceAssertion rdf:about="https://w3id.org/mathematical-systems/atlas/stance/klir-ontic">
+    <atlas:stanceValue>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/constructivist-about-systemhood">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/OnticStanceScheme"/>
+        <skos:prefLabel xml:lang="en">constructivist about systemhood</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">Systemhood is conferred by an act of distinction or description. Deliberately narrower than 'constructivist': Klir's own clause permits distinctions on real things, which radical constructivism in von Glasersfeld's sense does not.</skos:scopeNote>
+      </skos:Concept>
+    </atlas:stanceValue>
+    <atlas:verbatim>we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities</atlas:verbatim>
+    <atlas:sourceLocation>§2.3, p. 21</atlas:sourceLocation>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
+    <atlas:encodedBy>Shingai Thornton (Claude-drafted from P3-stance-axes.md)</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-07</atlas:encodedOn>
+    <rdfs:comment xml:lang="en">First person plural, endorsing Gaines, not reporting him. READ PRECISELY:
+the final clause permits distinctions drawn on real things, so this is constructivism about
+SYSTEMHOOD, not anti-realism about things — the narrower claim his text supports, and why the
+value is not plain "constructivist".
+
+MDHC as of 2026-08-08: model-drafted from P3 on 2026-08-07, checked by Shingai the next
+day. The passage was located during the P3 hunts and matches the registered transcription
+source.</rdfs:comment>
+  </atlas:StanceAssertion>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/composition">
     <skos:inScheme>
       <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme">
         <rdfs:label xml:lang="en">Systems-definition primitive vocabulary</rdfs:label>
@@ -1119,32 +1154,27 @@ merging them by hand would make it trivially high. Lexical recurrence is the hon
 starting point, and its limits are stated here rather than discovered later.</skos:scopeNote>
       </skos:ConceptScheme>
     </skos:inScheme>
-    <skos:prefLabel xml:lang="en">thinghood</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Klir's term, taken from Rosen [1986] ('Some Comments on Systems and System Theory', Int. J. Gen. Syst. 13; quoted at length in Facets ch. 1): the aspect of a system subsumed under its adjective — what is special or particular about it. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision.</skos:scopeNote>
-    <rdfs:comment xml:lang="en">Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in T) — meta-classification, not a signature symbol. Not a gap; a verdict.</rdfs:comment>
+    <skos:prefLabel xml:lang="en">composition</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">Bunge's C. The set of a thing's parts, relativised to a class A and a time t.</skos:scopeNote>
+    <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/operation"/>
   </skos:Concept>
-  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/TestObject">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:label xml:lang="en">Test Object</rdfs:label>
-    <skos:definition xml:lang="en">An object that definitions rule on, named once so that two authors ruling
-on it can be identified as ruling on the SAME thing. Klir's "a collection of books ordered by
-authors' names" and Bunge's "a collection of events, even if ordered" are two cases of one test
-object; no string comparison will ever discover that.</skos:definition>
-    <rdfs:comment xml:lang="en">A TEST OBJECT IS ITSELF A CLAIM, and carries its own evidence code for that
-reason. Asserting that two cases are about one object is an interpretation of both, made by
-whoever draws the vocabulary — not something read off either source. Grading the object rather
-than each link avoids a regress: the link inherits the identification's grade, and the
-identification is argued in the mapping layer via atlas:arguedIn.
-
-EXTERNAL AND PRIOR, like D1's candidate fix for the primitive scheme. A test object must be a
-case an author actually ruled on, never one invented to make a comparison come out. If nothing
-in the corpus rules on it, it does not belong here.</rdfs:comment>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/perspectivist">
+    <skos:inScheme>
+      <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/OnticStanceScheme">
+        <rdfs:label xml:lang="en">Ontic stance</rdfs:label>
+        <skos:definition xml:lang="en">What the definition takes to exist independently of how anyone knows it. Not a spectrum: perspectivism is a distinct answer, not a midpoint.</skos:definition>
+      </skos:ConceptScheme>
+    </skos:inScheme>
+    <skos:prefLabel xml:lang="en">perspectivist</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">Bertalanffy's own word (GST ch. 10, 'The Perspectivistic View'). Reality is real, access is perspectival, and the perspective is not free: categories 'must, with a certain tolerance allowed, be isomorphic' to the nexus of real events. Constrained, unlike Nietzschean perspectivism; nearest neighbour is Giere's perspectival realism.</skos:scopeNote>
+  </skos:Concept>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000001">
+    <rdfs:label xml:lang="en">entity</rdfs:label>
+    <skos:definition xml:lang="en">(Elucidation) An entity is anything that exists or has existed or will exist</skos:definition>
   </owl:Class>
-  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/klir-books-ordered">
-    <rdfs:label xml:lang="en">a collection of books, ordered</rdfs:label>
-    <atlas:gloss>a collection of books ordered by authors' names, publication dates, or size</atlas:gloss>
-    <atlas:verbatim>any ordering of a set is a relation defined on the set</atlas:verbatim>
-    <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
+  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered">
+    <rdfs:label xml:lang="en">a collection of events, even if ordered</rdfs:label>
+    <atlas:gloss>a collection of events, even if ordered</atlas:gloss>
     <atlas:instantiates>
       <atlas:TestObject rdf:about="https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding">
         <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/TestObjectScheme"/>
@@ -1173,63 +1203,6 @@ the set") and that Bunge's refusal is bond-absence, not member-kind. The derived
 inherits this grade.</rdfs:comment>
       </atlas:TestObject>
     </atlas:instantiates>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
-  </atlas:Example>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000004">
-    <rdfs:label xml:lang="en">independent continuant</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
-    <skos:definition xml:lang="en">b is an independent continuant =Def b is a continuant &amp; there is no c such that b specifically depends on c or b generically depends on c</skos:definition>
-  </owl:Class>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/role/constant">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/SignatureRoleScheme"/>
-    <skos:prefLabel xml:lang="en">constant</skos:prefLabel>
-    <skos:definition xml:lang="en">A designated individual: a distinguished element the definition names (the SOI, a per-level Δt).</skos:definition>
-  </skos:Concept>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000002">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
-    <rdfs:label xml:lang="en">continuant</rdfs:label>
-    <skos:definition xml:lang="en">(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity</skos:definition>
-  </owl:Class>
-  <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/OnticStanceScheme">
-    <rdfs:label xml:lang="en">Ontic stance</rdfs:label>
-    <skos:definition xml:lang="en">What the definition takes to exist independently of how anyone knows it. Not a spectrum: perspectivism is a distinct answer, not a midpoint.</skos:definition>
-  </skos:ConceptScheme>
-  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/klir-population-by-birth">
-    <rdfs:label xml:lang="en">a human population, ordered by dates of birth</rdfs:label>
-    <atlas:gloss>a human population ordered by dates of birth</atlas:gloss>
-    <atlas:verbatim>may be applied not only to other sets of books, but also to sets whose elements are not books</atlas:verbatim>
-    <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
-    <rdfs:comment xml:lang="en">The quotation licenses this case rather than describing it: Klir is making
-a point about a RELATION being transferable to a different carrier set, and the human
-population is his instance of it. A splice, recorded as one.</rdfs:comment>
-  </atlas:Example>
-  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/FormalSystemDefinition">
-    <rdfs:subClassOf rdf:resource="https://www.commoncoreontologies.org/ont00000853"/>
-    <rdfs:label xml:lang="en">Formal System Definition</rdfs:label>
-    <skos:definition xml:lang="en">A Descriptive Information Content Entity that defines the
-term "system" formally: it introduces named components with types or sorts, and
-fixes at least one relation, function, or constraint among them, in symbols or in
-prose precise enough to be transcribed to symbols without adding content.</skos:definition>
-    <rdfs:comment xml:lang="en">Inclusion criteria are stated in the spec, §5. Borderline cases are adjudicated there, not here.</rdfs:comment>
-  </owl:Class>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/systemhood">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-    <skos:prefLabel xml:lang="en">systemhood</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Klir's term, paired with thinghood; both taken from Rosen [1986], who holds systemhood to be an independent category — reducible neither to thinghood nor to set-ness — and locates GST's difficulties in confusing it with the latter. Klir quotes the passage in Facets ch. 1 and then formalises set-theoretically anyway; the tension with the set-theoretic school (Mesarović: the relation carries 'all the information we can legitimately use') is a live fault line the catalogue records, not resolves.</skos:scopeNote>
-    <rdfs:comment xml:lang="en">Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in R) — meta-classification, not a signature symbol. Not a gap; a verdict.</rdfs:comment>
-  </skos:Concept>
-  <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/mario-bunge">
-    <rdfs:label xml:lang="en">Mario Bunge</rdfs:label>
-  </atlas:Author>
-  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bunge-events-ordered">
-    <rdfs:label xml:lang="en">a collection of events, even if ordered</rdfs:label>
-    <atlas:gloss>a collection of events, even if ordered</atlas:gloss>
-    <atlas:instantiates rdf:resource="https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding"/>
     <atlas:sourceLocation>ch. 1, §1.2, Example following Definition 1.1, p. 7</atlas:sourceLocation>
     <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
     <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
@@ -1244,10 +1217,22 @@ The location was deliberately withheld until human-checked: these cases come fro
 Example block that follows Definition 1.1 in §1.2, not from Definition 1.1 itself, so entry
 003's location did not cover them. Checked against the source and entered 2026-08-05.</rdfs:comment>
   </atlas:Example>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/bond">
+  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/klir-population-by-birth">
+    <rdfs:label xml:lang="en">a human population, ordered by dates of birth</rdfs:label>
+    <atlas:gloss>a human population ordered by dates of birth</atlas:gloss>
+    <atlas:verbatim>may be applied not only to other sets of books, but also to sets whose elements are not books</atlas:verbatim>
+    <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
+    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
+    <rdfs:comment xml:lang="en">The quotation licenses this case rather than describing it: Klir is making
+a point about a RELATION being transferable to a different carrier set, and the human
+population is his instance of it. A splice, recorded as one.</rdfs:comment>
+  </atlas:Example>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/part">
     <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-    <skos:prefLabel xml:lang="en">bond</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing.</skos:scopeNote>
+    <skos:prefLabel xml:lang="en">part</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">Bunge's part-of relation, written x [ y.</skos:scopeNote>
     <skos:broader>
       <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/role/relation">
         <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/SignatureRoleScheme"/>
@@ -1256,86 +1241,14 @@ Example block that follows Definition 1.1 in §1.2, not from Definition 1.1 itse
       </skos:Concept>
     </skos:broader>
   </skos:Concept>
-  <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4">
-    <rdfs:label xml:lang="en">Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)</rdfs:label>
-    <dcterms:creator>Mario Bunge</dcterms:creator>
-    <atlas:authoredBy rdf:resource="https://w3id.org/mathematical-systems/atlas/author/mario-bunge"/>
-    <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1979</dcterms:date>
-    <dcterms:identifier>doi:10.1007/978-94-009-9392-1</dcterms:identifier>
-  </cco:ont00000253>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/part">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-    <skos:prefLabel xml:lang="en">part</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Bunge's part-of relation, written x [ y.</skos:scopeNote>
-    <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/relation"/>
-  </skos:Concept>
-  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/MappingClaim">
-    <rdfs:label xml:lang="en">Mapping Claim</rdfs:label>
-    <skos:definition xml:lang="en">A reified relation between two entries, asserted by a mapping document. Carries its own evidence code and points at the argument; a claim of preservation owes a theorem name, a claim of loss owes a witness.</skos:definition>
-  </owl:Class>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/constitutive">
-    <skos:inScheme>
-      <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/ObserverRoleScheme">
-        <rdfs:label xml:lang="en">The observer's act</rdfs:label>
-        <skos:definition xml:lang="en">What drawing the boundary does, on the entry's own account. NOT a proxy for the ontic axis: Klir's act is constitutive because of his ontology, but Mobus's is selective while his ontology is realist, so the second column cannot be read off the first.</skos:definition>
-      </skos:ConceptScheme>
-    </skos:inScheme>
-    <skos:prefLabel xml:lang="en">constitutive</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Distinguishing is necessary and sufficient for systemhood. Klir's criterion: an object is a system iff it CAN BE DESCRIBED in a form conforming to eq. (1.1).</skos:scopeNote>
-  </skos:Concept>
-  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/klir-books-partitioned">
-    <rdfs:label xml:lang="en">a collection of books, partitioned</rdfs:label>
-    <atlas:gloss>a collection of books partitioned by subject, publisher, or language</atlas:gloss>
-    <atlas:verbatim>every partition of a set emerges from a particular equivalence relation defined on the set</atlas:verbatim>
-    <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
-  </atlas:Example>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/composition">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-    <skos:prefLabel xml:lang="en">composition</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Bunge's C. The set of a thing's parts, relativised to a class A and a time t.</skos:scopeNote>
-    <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/operation"/>
-  </skos:Concept>
-  <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/TestObjectScheme">
-    <rdfs:label xml:lang="en">Test objects</rdfs:label>
-    <skos:definition xml:lang="en">Objects that definitions of "system" rule on. Deliberately small: a term
-is added only when the corpus contains at least two rulings on the same object, because a test
-object with one ruling compares nothing and a test object with none is invented.</skos:definition>
-  </skos:ConceptScheme>
-  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/Example">
-    <rdfs:label xml:lang="en">Example</rdfs:label>
-    <skos:definition xml:lang="en">A case an author rules on: something they offer as a system, or refuse as
-one. Reified rather than recorded as a string on the entry, because an example is a thing
-several claims are made about -- where it appears in the source, how the encoding was
-established, and which shared case it instantiates.</skos:definition>
-    <rdfs:comment xml:lang="en">WHY THIS IS A CLASS. Examples were literal strings on the entry until
-2026-08-03, which made four things impossible at once: an example could carry no evidence code
-of its own, so one entry-level code graded a verbatim, five primitives and three examples
-alike; no source location, though Bunge's examples sit outside the location his entry claims;
-no separation of the case from the author's reason for it, concatenated with an em dash; and
-no identity, so two authors ruling on the same object could not be matched. See
-docs/proposals/P4-evidence-scope.md.</rdfs:comment>
-  </owl:Class>
-  <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/klir-2001-facets">
-    <rdfs:label xml:lang="en">Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)</rdfs:label>
-    <dcterms:creator>George J. Klir</dcterms:creator>
-    <atlas:authoredBy>
-      <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/george-klir">
-        <rdfs:label xml:lang="en">George J. Klir</rdfs:label>
-      </atlas:Author>
-    </atlas:authoredBy>
-    <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2001</dcterms:date>
-    <dcterms:identifier>ISBN 978-1-4613-5501-4</dcterms:identifier>
-    <dcterms:identifier>doi:10.1007/978-1-4615-1331-5</dcterms:identifier>
-  </cco:ont00000253>
-  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
-    <skos:definition xml:lang="en">An idea or notion; a unit of thought.</skos:definition>
-    <rdfs:label xml:lang="en">Concept</rdfs:label>
-  </owl:Class>
   <atlas:StanceAssertion rdf:about="https://w3id.org/mathematical-systems/atlas/stance/klir-observer">
-    <atlas:stanceValue rdf:resource="https://w3id.org/mathematical-systems/atlas/constitutive"/>
+    <atlas:stanceValue>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/constitutive">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/ObserverRoleScheme"/>
+        <skos:prefLabel xml:lang="en">constitutive</skos:prefLabel>
+        <skos:scopeNote xml:lang="en">Distinguishing is necessary and sufficient for systemhood. Klir's criterion: an object is a system iff it CAN BE DESCRIBED in a form conforming to eq. (1.1).</skos:scopeNote>
+      </skos:Concept>
+    </atlas:stanceValue>
     <atlas:verbatim>an object is a system if and only if it can be described in a form that conforms to Eq. (1.1)</atlas:verbatim>
     <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
     <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
@@ -1356,89 +1269,36 @@ that act. The vacuity and the constitutivity are one fact read twice.
 MDHC as of 2026-08-08: model-drafted 2026-08-07, checked by Shingai — the check that raised
 and resolved the worry above.</rdfs:comment>
   </atlas:StanceAssertion>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000030">
-    <skos:definition xml:lang="en">(Elucidation) An object is a material entity which manifests causal unity &amp; is of a type instances of which are maximal relative to the sort of causal unity manifested</skos:definition>
-    <rdfs:label xml:lang="en">object</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
-  </owl:Class>
-  <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/ludwig-von-bertalanffy">
-    <rdfs:label xml:lang="en">Ludwig von Bertalanffy</rdfs:label>
-  </atlas:Author>
-  <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/george-mobus">
-    <rdfs:label xml:lang="en">George E. Mobus</rdfs:label>
-  </atlas:Author>
-  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bunge-theory">
-    <rdfs:label xml:lang="en">a theory</rdfs:label>
-    <atlas:gloss>a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢</atlas:gloss>
-    <atlas:sourceLocation>ch. 1, §1.1, p. 5</atlas:sourceLocation>
+  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/klir-books-partitioned">
+    <rdfs:label xml:lang="en">a collection of books, partitioned</rdfs:label>
+    <atlas:gloss>a collection of books partitioned by subject, publisher, or language</atlas:gloss>
+    <atlas:verbatim>every partition of a set emerges from a particular equivalence relation defined on the set</atlas:verbatim>
+    <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
     <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
     <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
-    <rdfs:comment xml:lang="en">Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block. Location human-checked against the source 2026-08-05.</rdfs:comment>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
   </atlas:Example>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000040">
-    <skos:definition xml:lang="en">(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part</skos:definition>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
-    <rdfs:label xml:lang="en">material entity</rdfs:label>
-  </owl:Class>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/constructivist-about-systemhood">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/OnticStanceScheme"/>
-    <skos:prefLabel xml:lang="en">constructivist about systemhood</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Systemhood is conferred by an act of distinction or description. Deliberately narrower than 'constructivist': Klir's own clause permits distinctions on real things, which radical constructivism in von Glasersfeld's sense does not.</skos:scopeNote>
-  </skos:Concept>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/role/sort">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/SignatureRoleScheme"/>
-    <skos:prefLabel xml:lang="en">sort</skos:prefLabel>
-    <skos:definition xml:lang="en">A carrier kind: what the definition quantifies over or holds as an entity slot.</skos:definition>
+  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/klir-books-ordered">
+    <rdfs:label xml:lang="en">a collection of books, ordered</rdfs:label>
+    <atlas:gloss>a collection of books ordered by authors' names, publication dates, or size</atlas:gloss>
+    <atlas:verbatim>any ordering of a set is a relation defined on the set</atlas:verbatim>
+    <atlas:sourceLocation>ch. 1, p. 5</atlas:sourceLocation>
+    <atlas:instantiates rdf:resource="https://w3id.org/mathematical-systems/atlas/object/ordered-non-bonding"/>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
+    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-03</atlas:encodedOn>
+  </atlas:Example>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/systemhood">
+    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+    <skos:prefLabel xml:lang="en">systemhood</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">Klir's term, paired with thinghood; both taken from Rosen [1986], who holds systemhood to be an independent category — reducible neither to thinghood nor to set-ness — and locates GST's difficulties in confusing it with the latter. Klir quotes the passage in Facets ch. 1 and then formalises set-theoretically anyway; the tension with the set-theoretic school (Mesarović: the relation carries 'all the information we can legitimately use') is a live fault line the catalogue records, not resolves.</skos:scopeNote>
+    <rdfs:comment xml:lang="en">Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in R) — meta-classification, not a signature symbol. Not a gap; a verdict.</rdfs:comment>
   </skos:Concept>
   <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000031">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
     <skos:definition xml:lang="en">(Elucidation) A generically dependent continuant is an entity that exists in virtue of the fact that there is at least one of what may be multiple copies which is the content or the pattern that multiple copies would share</skos:definition>
     <rdfs:label xml:lang="en">generically dependent continuant</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
   </owl:Class>
-  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme">
-    <skos:definition xml:lang="en">A set of concepts, optionally including statements about semantic relationships between those concepts.</skos:definition>
-    <rdfs:label xml:lang="en">Concept Scheme</rdfs:label>
-  </owl:Class>
-  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000958">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
-    <skos:definition xml:lang="en">A Generically Dependent Continuant that generically depends on some Information Bearing Entity and stands in relation of aboutness to some Entity.</skos:definition>
-    <rdfs:label xml:lang="en">Information Content Entity</rdfs:label>
-  </owl:Class>
-  <atlas:StanceAssertion rdf:about="https://w3id.org/mathematical-systems/atlas/stance/klir-ontic">
-    <atlas:stanceValue rdf:resource="https://w3id.org/mathematical-systems/atlas/constructivist-about-systemhood"/>
-    <atlas:verbatim>we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities</atlas:verbatim>
-    <atlas:sourceLocation>§2.3, p. 21</atlas:sourceLocation>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/MDHC"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-drafted from P3-stance-axes.md)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-07</atlas:encodedOn>
-    <rdfs:comment xml:lang="en">First person plural, endorsing Gaines, not reporting him. READ PRECISELY:
-the final clause permits distinctions drawn on real things, so this is constructivism about
-SYSTEMHOOD, not anti-realism about things — the narrower claim his text supports, and why the
-value is not plain "constructivist".
-
-MDHC as of 2026-08-08: model-drafted from P3 on 2026-08-07, checked by Shingai the next
-day. The passage was located during the P3 hunts and matches the registered transcription
-source.</rdfs:comment>
-  </atlas:StanceAssertion>
-  <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic">
-    <rdfs:label xml:lang="en">Mihajlo D. Mesarović</rdfs:label>
-  </atlas:Author>
-  <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/RelationScheme">
-    <rdfs:label xml:lang="en">Mapping relations</rdfs:label>
-    <skos:definition xml:lang="en">Relations a mapping claim may assert. A term enters only when at least two prose mappings have needed it; freezing vocabulary ahead of the pattern is the failure this rule prevents.</skos:definition>
-  </skos:ConceptScheme>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/thing">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-    <skos:prefLabel xml:lang="en">thing</skos:prefLabel>
-    <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/sort"/>
-  </skos:Concept>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/action">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
-    <skos:prefLabel xml:lang="en">action</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Bunge's acts-on relation, written x |&gt; y.</skos:scopeNote>
-    <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/relation"/>
-  </skos:Concept>
   <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/Author">
     <rdfs:label xml:lang="en">Author</rdfs:label>
     <skos:definition xml:lang="en">A person to whom the catalogue's bearers attribute authorship. Identity
@@ -1455,44 +1315,188 @@ where a revision arc exists to be examined entry by entry.
 Declared standalone rather than subclassed into the CCO agent hierarchy, on the
 atlas:statedIn precedent: declared plainly now rather than asserted wrongly.</rdfs:comment>
   </owl:Class>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/action">
+    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+    <skos:prefLabel xml:lang="en">action</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">Bunge's acts-on relation, written x |&gt; y.</skos:scopeNote>
+    <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/relation"/>
+  </skos:Concept>
+  <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/bunge-1979-treatise-vol4">
+    <rdfs:label xml:lang="en">Bunge, M. — Treatise on Basic Philosophy, Vol. 4: Ontology II — A World of Systems (Reidel, 1979)</rdfs:label>
+    <dcterms:creator>Mario Bunge</dcterms:creator>
+    <atlas:authoredBy>
+      <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/mario-bunge">
+        <rdfs:label xml:lang="en">Mario Bunge</rdfs:label>
+      </atlas:Author>
+    </atlas:authoredBy>
+    <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1979</dcterms:date>
+    <dcterms:identifier>doi:10.1007/978-94-009-9392-1</dcterms:identifier>
+  </cco:ont00000253>
+  <cco:ont00000253 rdf:about="https://w3id.org/mathematical-systems/atlas/bearer/klir-2001-facets">
+    <rdfs:label xml:lang="en">Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)</rdfs:label>
+    <dcterms:creator>George J. Klir</dcterms:creator>
+    <atlas:authoredBy>
+      <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/george-klir">
+        <rdfs:label xml:lang="en">George J. Klir</rdfs:label>
+      </atlas:Author>
+    </atlas:authoredBy>
+    <dcterms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2001</dcterms:date>
+    <dcterms:identifier>ISBN 978-1-4613-5501-4</dcterms:identifier>
+    <dcterms:identifier>doi:10.1007/978-1-4615-1331-5</dcterms:identifier>
+  </cco:ont00000253>
+  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bunge-theory">
+    <rdfs:label xml:lang="en">a theory</rdfs:label>
+    <atlas:gloss>a theory: 𝒯 = ⟨P, B, ⊢⟩ — propositions P, embedded in a body of knowledge B, glued by entailment ⊢</atlas:gloss>
+    <atlas:sourceLocation>ch. 1, §1.1, p. 5</atlas:sourceLocation>
+    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
+    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
+    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
+    <rdfs:comment xml:lang="en">Bunge's own worked conceptual-system example, given inline in §1.1 rather than in a labelled Example block. Location human-checked against the source 2026-08-05.</rdfs:comment>
+  </atlas:Example>
+  <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/RelationScheme">
+    <rdfs:label xml:lang="en">Mapping relations</rdfs:label>
+    <skos:definition xml:lang="en">Relations a mapping claim may assert. A term enters only when at least two prose mappings have needed it; freezing vocabulary ahead of the pattern is the failure this rule prevents.</skos:definition>
+  </skos:ConceptScheme>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/thing">
+    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+    <skos:prefLabel xml:lang="en">thing</skos:prefLabel>
+    <skos:broader>
+      <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/role/sort">
+        <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/SignatureRoleScheme"/>
+        <skos:prefLabel xml:lang="en">sort</skos:prefLabel>
+        <skos:definition xml:lang="en">A carrier kind: what the definition quantifies over or holds as an entity slot.</skos:definition>
+      </skos:Concept>
+    </skos:broader>
+  </skos:Concept>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000030">
+    <rdfs:label xml:lang="en">object</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+    <skos:definition xml:lang="en">(Elucidation) An object is a material entity which manifests causal unity &amp; is of a type instances of which are maximal relative to the sort of causal unity manifested</skos:definition>
+  </owl:Class>
+  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000958">
+    <skos:definition xml:lang="en">A Generically Dependent Continuant that generically depends on some Information Bearing Entity and stands in relation of aboutness to some Entity.</skos:definition>
+    <rdfs:label xml:lang="en">Information Content Entity</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+  </owl:Class>
+  <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/TestObjectScheme">
+    <rdfs:label xml:lang="en">Test objects</rdfs:label>
+    <skos:definition xml:lang="en">Objects that definitions of "system" rule on. Deliberately small: a term
+is added only when the corpus contains at least two rulings on the same object, because a test
+object with one ruling compares nothing and a test object with none is invented.</skos:definition>
+  </skos:ConceptScheme>
+  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/StanceAssertion">
+    <rdfs:label xml:lang="en">Stance Assertion</rdfs:label>
+    <skos:definition xml:lang="en">A reified reading of what an entry's definition is doing — one value on one axis, carried by the entry, graded by its own evidence code, licensed by its own verbatim.</skos:definition>
+  </owl:Class>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/thinghood">
+    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+    <skos:prefLabel xml:lang="en">thinghood</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">Klir's term, taken from Rosen [1986] ('Some Comments on Systems and System Theory', Int. J. Gen. Syst. 13; quoted at length in Facets ch. 1): the aspect of a system subsumed under its adjective — what is special or particular about it. Recorded as its own primitive rather than folded into `thing`, because whether it is distinct is a census question, not a modelling decision.</skos:scopeNote>
+    <rdfs:comment xml:lang="en">Signature role (D1, 2026-08-18): deliberately unassigned — Klir's name for an aspect of S (residing in T) — meta-classification, not a signature symbol. Not a gap; a verdict.</rdfs:comment>
+  </skos:Concept>
+  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000253">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000030"/>
+    <rdfs:label xml:lang="en">Information Bearing Entity</rdfs:label>
+    <skos:definition xml:lang="en">An Object upon which an Information Content Entity generically depends.</skos:definition>
+  </owl:Class>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/role/constant">
+    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/SignatureRoleScheme"/>
+    <skos:prefLabel xml:lang="en">constant</skos:prefLabel>
+    <skos:definition xml:lang="en">A designated individual: a distinguished element the definition names (the SOI, a per-level Δt).</skos:definition>
+  </skos:Concept>
+  <skos:ConceptScheme rdf:about="https://w3id.org/mathematical-systems/atlas/ObserverRoleScheme">
+    <rdfs:label xml:lang="en">The observer's act</rdfs:label>
+    <skos:definition xml:lang="en">What drawing the boundary does, on the entry's own account. NOT a proxy for the ontic axis: Klir's act is constitutive because of his ontology, but Mobus's is selective while his ontology is realist, so the second column cannot be read off the first.</skos:definition>
+  </skos:ConceptScheme>
+  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/bond">
+    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
+    <skos:prefLabel xml:lang="en">bond</skos:prefLabel>
+    <skos:scopeNote xml:lang="en">A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing.</skos:scopeNote>
+    <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/relation"/>
+  </skos:Concept>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000004">
+    <rdfs:label xml:lang="en">independent continuant</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    <skos:definition xml:lang="en">b is an independent continuant =Def b is a continuant &amp; there is no c such that b specifically depends on c or b generically depends on c</skos:definition>
+  </owl:Class>
+  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/EvidenceCode">
+    <rdfs:label xml:lang="en">Evidence Code</rdfs:label>
+    <skos:definition xml:lang="en">How an encoding was established. Modelled on the Gene Ontology's evidence codes: every assertion carries a record of its provenance strength, and unverified assertions remain visible and filterable rather than silently equal to verified ones.</skos:definition>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#ConceptScheme">
+    <rdfs:label xml:lang="en">Concept Scheme</rdfs:label>
+    <skos:definition xml:lang="en">A set of concepts, optionally including statements about semantic relationships between those concepts.</skos:definition>
+  </owl:Class>
+  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/TestObject">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label xml:lang="en">Test Object</rdfs:label>
+    <skos:definition xml:lang="en">An object that definitions rule on, named once so that two authors ruling
+on it can be identified as ruling on the SAME thing. Klir's "a collection of books ordered by
+authors' names" and Bunge's "a collection of events, even if ordered" are two cases of one test
+object; no string comparison will ever discover that.</skos:definition>
+    <rdfs:comment xml:lang="en">A TEST OBJECT IS ITSELF A CLAIM, and carries its own evidence code for that
+reason. Asserting that two cases are about one object is an interpretation of both, made by
+whoever draws the vocabulary — not something read off either source. Grading the object rather
+than each link avoids a regress: the link inherits the identification's grade, and the
+identification is argued in the mapping layer via atlas:arguedIn.
+
+EXTERNAL AND PRIOR, like D1's candidate fix for the primitive scheme. A test object must be a
+case an author actually ruled on, never one invented to make a comparison come out. If nothing
+in the corpus rules on it, it does not belong here.</rdfs:comment>
+  </owl:Class>
+  <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/george-mobus">
+    <rdfs:label xml:lang="en">George E. Mobus</rdfs:label>
+  </atlas:Author>
+  <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/ludwig-von-bertalanffy">
+    <rdfs:label xml:lang="en">Ludwig von Bertalanffy</rdfs:label>
+  </atlas:Author>
   <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/primitive/structure">
     <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/PrimitiveScheme"/>
     <skos:prefLabel xml:lang="en">structure</skos:prefLabel>
     <skos:scopeNote xml:lang="en">Bunge's S. Relations among components and between components and environment, partitioned into bonding and nonbonding.</skos:scopeNote>
     <skos:broader rdf:resource="https://w3id.org/mathematical-systems/atlas/role/relation"/>
   </skos:Concept>
-  <atlas:Example rdf:about="https://w3id.org/mathematical-systems/atlas/case/bunge-states-of-a-thing">
-    <rdfs:label xml:lang="en">a set of states of a thing</rdfs:label>
-    <atlas:gloss>a set of states of a thing</atlas:gloss>
-    <atlas:sourceLocation>ch. 1, §1.2, Example following Definition 1.1, p. 7</atlas:sourceLocation>
-    <atlas:evidenceCode rdf:resource="https://w3id.org/mathematical-systems/atlas/HVP"/>
-    <atlas:encodedBy>Shingai Thornton (Claude-assisted)</atlas:encodedBy>
-    <atlas:encodedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-08-01</atlas:encodedOn>
-  </atlas:Example>
-  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000253">
-    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000030"/>
-    <rdfs:label xml:lang="en">Information Bearing Entity</rdfs:label>
-    <skos:definition xml:lang="en">An Object upon which an Information Content Entity generically depends.</skos:definition>
+  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/RetiredTerm">
+    <rdfs:label xml:lang="en">Retired Term</rdfs:label>
+    <skos:definition xml:lang="en">A tombstone: an IRI this catalogue once served as a live term and will
+never serve as one again. IRIs are permanent (w3id) — a term is never deleted and never
+silently mutated; it is retired by CHANGING ITS CLASS to this one, so the strict shapes for
+live terms keep their teeth and a stale citation still resolves to a signpost. A retired term
+carries owl:deprecated true, at least one dcterms:isReplacedBy successor, and a comment saying
+why. Policy and procedure: docs/iri-policy.md (D5). The reader's build refuses to serve a
+deprecated IRI as live data, and that refusal is gated.</skos:definition>
   </owl:Class>
-  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000001">
-    <rdfs:label xml:lang="en">entity</rdfs:label>
-    <skos:definition xml:lang="en">(Elucidation) An entity is anything that exists or has existed or will exist</skos:definition>
+  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/MappingClaim">
+    <rdfs:label xml:lang="en">Mapping Claim</rdfs:label>
+    <skos:definition xml:lang="en">A reified relation between two entries, asserted by a mapping document. Carries its own evidence code and points at the argument; a claim of preservation owes a theorem name, a claim of loss owes a witness.</skos:definition>
   </owl:Class>
-  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/StanceAssertion">
-    <rdfs:label xml:lang="en">Stance Assertion</rdfs:label>
-    <skos:definition xml:lang="en">A reified reading of what an entry's definition is doing — one value on one axis, carried by the entry, graded by its own evidence code, licensed by its own verbatim.</skos:definition>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000002">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+    <skos:definition xml:lang="en">(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity</skos:definition>
+    <rdfs:label xml:lang="en">continuant</rdfs:label>
   </owl:Class>
-  <owl:Class rdf:about="https://www.commoncoreontologies.org/ont00000853">
-    <rdfs:subClassOf rdf:resource="https://www.commoncoreontologies.org/ont00000958"/>
-    <rdfs:label xml:lang="en">Descriptive Information Content Entity</rdfs:label>
-    <skos:definition xml:lang="en">An Information Content Entity that describes some Entity.</skos:definition>
+  <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
+    <skos:definition xml:lang="en">An idea or notion; a unit of thought.</skos:definition>
+    <rdfs:label xml:lang="en">Concept</rdfs:label>
   </owl:Class>
-  <skos:Concept rdf:about="https://w3id.org/mathematical-systems/atlas/perspectivist">
-    <skos:inScheme rdf:resource="https://w3id.org/mathematical-systems/atlas/OnticStanceScheme"/>
-    <skos:prefLabel xml:lang="en">perspectivist</skos:prefLabel>
-    <skos:scopeNote xml:lang="en">Bertalanffy's own word (GST ch. 10, 'The Perspectivistic View'). Reality is real, access is perspectival, and the perspective is not free: categories 'must, with a certain tolerance allowed, be isomorphic' to the nexus of real events. Constrained, unlike Nietzschean perspectivism; nearest neighbour is Giere's perspectival realism.</skos:scopeNote>
-  </skos:Concept>
+  <owl:Class rdf:about="https://w3id.org/mathematical-systems/atlas/Example">
+    <rdfs:label xml:lang="en">Example</rdfs:label>
+    <skos:definition xml:lang="en">A case an author rules on: something they offer as a system, or refuse as
+one. Reified rather than recorded as a string on the entry, because an example is a thing
+several claims are made about -- where it appears in the source, how the encoding was
+established, and which shared case it instantiates.</skos:definition>
+    <rdfs:comment xml:lang="en">WHY THIS IS A CLASS. Examples were literal strings on the entry until
+2026-08-03, which made four things impossible at once: an example could carry no evidence code
+of its own, so one entry-level code graded a verbatim, five primitives and three examples
+alike; no source location, though Bunge's examples sit outside the location his entry claims;
+no separation of the case from the author's reason for it, concatenated with an em dash; and
+no identity, so two authors ruling on the same object could not be matched. See
+docs/proposals/P4-evidence-scope.md.</rdfs:comment>
+  </owl:Class>
   <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/yasuhiko-takahara">
     <rdfs:label xml:lang="en">Yasuhiko Takahara</rdfs:label>
+  </atlas:Author>
+  <atlas:Author rdf:about="https://w3id.org/mathematical-systems/atlas/author/mihajlo-mesarovic">
+    <rdfs:label xml:lang="en">Mihajlo D. Mesarović</rdfs:label>
   </atlas:Author>
 </rdf:RDF>

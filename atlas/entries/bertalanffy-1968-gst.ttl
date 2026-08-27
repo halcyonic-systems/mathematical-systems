@@ -35,11 +35,14 @@ bearer:bertalanffy-1968-gst
     dcterms:date "1968"^^xsd:gYear ;
     dcterms:bibliographicCitation "New York: George Braziller, 1968. Ch. 3, 'Some System Concepts in Elementary Mathematical Consideration', pp. 55–60. Page numbers are Kindle print-equivalent pagination, corroborated against the print index entry 'mathematical definition, 56-60'." .
 
-# NOT registered in the transcription gate (BEARER_SOURCES): the vault copy of
-# this book is an OCR with systematically damaged ligatures in which the
-# equation does not exist at all. Registering it would have the gate verify
-# this entry's verbatim against a text known to be wrong. The apparatus below
-# records what was checked instead, and by whom.
+# Registered in the transcription gate as of 2026-08-27, via the Mesarović
+# pattern: the vault copy's OCR body still omits the equation entirely, but the
+# file now opens with a page-image transcription block (PDF p. 37 = book p. 56,
+# transcribed fresh from the scan and agreeing with this entry's original human
+# pass), and the gate locates the verbatim there. Before that block existed,
+# registering would have verified this entry against a text known to be wrong —
+# which is why it stayed out for so long, and why the apparatus below records
+# what was checked by hand in the meantime.
 
 
 ##############################################################################

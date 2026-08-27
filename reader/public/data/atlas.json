@@ -177,8 +177,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "44bdd3f+",
-    "repoCommit": "44bdd3f+"
+    "atlasCommit": "7396486+",
+    "repoCommit": "7396486+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -496,7 +496,22 @@
       "source": "bertalanffy-1972-history-status-amj.md"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1": {
-      "status": "no-source-registered"
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 362,
+      "verbatimChars": 362,
+      "context": {
+        "before": "37 = book pp. 56–57) by Claude,\nper the Mesarović precedent: the OCR body below omits the displayed equations entirely\n(eq. 3.1 survives only as the marker \"(3.1)\"), so formula-bearing quotes must come from\nthis section, not the body. Stacked fractions flattened to slash form and the dotted\nelision row written ⋯, matching the atlas entry's established transcription conventions.\nVerified against the same page by the entry's original human pass (the entry predates\nthis block; the two transcriptions agree).\n\nBook p. 56 (ch. 3, \"Some System Concepts in Elementary Mathematical Consideration\"):",
+        "match": "A system can be defined mathematically in various ways. For illustration, we choose a system of simultaneous differential equations. Denoting some measure of elements, pᵢ (i = 1, 2, … n), by Qᵢ, these, for a finite number of elements and in the simplest case, will be of the form:\n\ndQ₁/dt = f₁(Q₁, Q₂, … Qₙ)\ndQ₂/dt = f₂(Q₁, Q₂, … Qₙ)\n⋯\ndQₙ/dt = fₙ(Q₁, Q₂, … Qₙ) (3.1)",
+        "after": "Change of any measure Qᵢ therefore is a function of all Q's, from Q₁ to Qₙ; conversely, change of any Qᵢ entails change of all other measures and of the system as a whole.\n\n\nExtracted 2026-07-29 from Zotero GF2IPGGQ ( Von Bertalanffy Ludwig General System Theory 1968.pdf ) via the zotero skill. Text-based PDF, clean extraction, ~102,800 words. OCR artifacts present (spaced letters, \"bas\" for \"has\", \"dassical\" for \"classical\") — quote carefully and check against the PDF for anything going into a paper.\n\nPage markers appear inline as bare numbers on their own line. The passages that matter for the isomorphy question: pp. 35–36 (what system theory is not — the trivial-mathematics objection and the apples/planets/oceans disclaimer) and pp. 82–85 (the three reasons for isomorphism, and the analogy / homology / explanation levels)."
+      },
+      "source": "gst-1968-full-text.md"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple": {
       "status": "located",
