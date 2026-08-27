@@ -237,8 +237,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "0fd253a+",
-    "repoCommit": "0fd253a+"
+    "atlasCommit": "20182b5+",
+    "repoCommit": "20182b5+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -1161,11 +1161,16 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/control-2-system",
         "https://w3id.org/mathematical-systems/atlas/primitive/variation"
       ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
-      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-27",
       "encodedOn": "2026-08-27",
       "formalisedAs": "Systems/Category/ShapeJoslyn.lean#JoslynShape",
       "annotation": [
+        {
+          "kind": "section",
+          "title": "GUIDED PASS",
+          "body": "(2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; \"induced by C's variation\"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction, and REMAIN MDU: the operator verified the definition pages, not the three case pages. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him."
+        },
         {
           "kind": "prose",
           "title": null,

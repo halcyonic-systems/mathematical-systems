@@ -185,7 +185,9 @@ five case verbatims (drawn from the damaged body layer, spellings preserved and 
 rule on candidate 9 (Def 22, contingent metasystem — a second Joslyn entry candidate); note
 the scan's provenance finding that Def 25 (control₁) is Joslyn re-offering Turchin 1992 and
 therefore grades PROP under the restatement rule — a fact the collaboration artifact should
-carry. Entry serves the encoding-faithfulness ask (systems-science-foundations#50)."""@en .
+carry. Entry serves the encoding-faithfulness ask (systems-science-foundations#50).
+GUIDED PASS COMPLETE 2026-08-27 (see the entry's own comment): MDHC on the definition,
+cases still MDU pending their three pages, candidate 9 deferred."""@en .
 
 <https://w3id.org/mathematical-systems/atlas/entries/klir-2001-facets> rdfs:label "Atlas entry — Klir 2001, Facets of Systems Science"@en ;
     rdfs:comment "Entry 001. The first entry in the catalogue, and the tradition the deck opens with."@en .
@@ -319,7 +321,9 @@ catalogue.""" ;
 
 entry:joslyn-1995-control2 a atlas:FormalSystemDefinition ;
     rdfs:label "Joslyn (1995), Semantic Control Systems, §3.3, Definition 28 (Control₂)"@en ;
-    rdfs:comment """DELIBERATELY NOT ASSERTED
+    rdfs:comment """GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction, and REMAIN MDU: the operator verified the definition pages, not the three case pages. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
+
+DELIBERATELY NOT ASSERTED
 No cco is-about relation is asserted between this entry and any subject matter, in keeping with the catalogue's neutrality invariant: the entry records that Joslyn writes this definition at this locus, not that the definition is about control, systems, or any worldly phenomenon.
 
 SOURCE AND RENDERING
@@ -333,9 +337,9 @@ None recorded: Joslyn qualifies the whole enterprise as semiformal and deliberat
     atlas:admits case:thermodynamic-system-with-decoupled-envelope,
         case:thermostat-machine ;
     atlas:displayForm "A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂." ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-27" ;
     atlas:encodedOn "2026-08-27"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:floorDependencyShapeLevel true ;
     atlas:floorPosition prim:control-1-system ;
     atlas:formalisedAs "Systems/Category/ShapeJoslyn.lean#JoslynShape" ;
@@ -1005,19 +1009,19 @@ prim:constrained-2 a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "constrained₂"@en ;
-    skos:scopeNote "The author's word, the participial form of constraint₂ (Definition 15, the reduction of some variety), predicated here of the second-order variation in the constraint₁ on O. [MDU — drafted, unchecked; role proposal: relation]"@en .
+    skos:scopeNote "The author's word, the participial form of constraint₂ (Definition 15, the reduction of some variety), predicated here of the second-order variation in the constraint₁ on O. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
 prim:constraint-1 a skos:Concept ;
     skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "constraint₁"@en ;
-    skos:scopeNote "The author's word, carried into this definition, for the systemic constraint C := X − S of Definition 6; here it is what C places on O and what may itself vary. [MDU — drafted, unchecked; role proposal: operation]"@en .
+    skos:scopeNote "The author's word, carried into this definition, for the systemic constraint C := X − S of Definition 6; here it is what C places on O and what may itself vary. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
 prim:control-2-system a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "control₂ system"@en ;
-    skos:scopeNote "Joslyn's word for the kind of system defined here: a control₁ system whose second-order variation in the constraint₁ on O, induced by C's variation, is itself constrained₂. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn's word for the kind of system defined here: a control₁ system whose second-order variation in the constraint₁ on O, induced by C's variation, is itself constrained₂. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
 prim:index-set a skos:Concept ;
     skos:broader role:sort ;
@@ -1094,7 +1098,7 @@ prim:transformation-rule a skos:Concept ;
 prim:variation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "variation"@en ;
-    skos:scopeNote "The author's word for the varying of a component or of a constraint over its state space; used here at two levels (C's variation, and the variation in the constraint₁ on O) without further formal analysis in the definition itself. [MDU — drafted, unchecked; role proposal: unassigned]"@en .
+    skos:scopeNote "The author's word for the varying of a component or of a constraint over its state space; used here at two levels (C's variation, and the variation in the constraint₁ on O) without further formal analysis in the definition itself. [Unassigned verdict confirmed at the guided pass, 2026-08-27 — provisionally, author review invited via SSF#50.]"@en .
 
 stance:bertalanffy-1968-ontic a atlas:StanceAssertion ;
     rdfs:comment """His own word — the chapter title names the position — which is why the
@@ -1329,7 +1333,7 @@ prim:control-1-system a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "control₁ system"@en ;
-    skos:scopeNote "Joslyn's word for the metasystem CS = ⟨C, O⟩ of Definition 25, in which the actions of the controller C result in a constraint₂ on the freedom of the object of control O; it is the antecedent kind on which control₂ is predicated. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn's word for the metasystem CS = ⟨C, O⟩ of Definition 25, in which the actions of the controller C result in a constraint₂ on the freedom of the object of control O; it is the antecedent kind on which control₂ is predicated. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
 prim:flow-network a skos:Concept ;
     skos:broader role:relation ;
@@ -1465,6 +1469,10 @@ prim:element a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "element"@en .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 role:operation a skos:Concept ;
     skos:definition "A function symbol: maps arguments to a value (transfer functions, Bunge's composition-at-a-time)."@en ;
     skos:inScheme atlas:SignatureRoleScheme ;
@@ -1473,10 +1481,6 @@ role:operation a skos:Concept ;
 skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;
     skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 prim:set a skos:Concept ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
