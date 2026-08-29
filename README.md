@@ -32,6 +32,18 @@ aggregate/system distinction.
 
 ---
 
+## The ontology is an artifact, not scaffolding
+
+The catalogue's machine face is `atlas/ontology/atlas-core.ttl`, and it is a product in
+its own right: the primitive scheme with signature roles typed onto all 27 primitives
+(D1), evidence codes as first-class terms, SHACL shapes that let the atlas refuse a
+malformed entry, vendored CCO/BFO alignment, and a persistent w3id namespace so every
+term has a name that outlives this repository. Every accessioned entry types its
+primitives into it, so the ontology grows in lockstep with the catalogue rather than
+behind it. Downstream it is the typed vocabulary the wider suite grounds against — the
+reasoning engine's knowledge graph is slated to be generated from it, not maintained
+beside it.
+
 ## Getting back into it
 
 ```bash
@@ -279,3 +291,17 @@ what the text says that the quiver is silent about. Those pairs accumulate into 
 and the mappings are what a reader outside this project can actually read.
 
 Monday picks the week's definition. The sitting stays small enough not to skip.
+
+## The suite
+
+This repository is half of the substrate layer of a small suite of interdependent
+products (block shared across the suite's READMEs; this repo's row in bold; updated
+2026-08-29):
+
+| Layer | Project | Role |
+|---|---|---|
+| **Substrate** | **mathematical-systems (this repo)** | **What was said — provenance-graded verbatims, mappings, and the typed ontology** |
+| Substrate | [systems-science-foundations](https://github.com/halcyonic-systems/systems-science-foundations) | What is proven — the Lean formal core (K≅2) |
+| Service | [general-systems-reasoner](https://github.com/halcyonic-systems/general-systems-reasoner) | Retrieval, drafting, and generation over the substrate — the one door every surface calls |
+| Surface | [Facets](https://github.com/halcyonic-systems/facets) | The web instrument at [facets.systems](https://facets.systems): Chat asks, Model builds |
+| Surface | [homeostat](https://github.com/halcyonic-systems/homeostat) | The sovereign harness lane — terminal-side consumption |
