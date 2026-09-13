@@ -55,6 +55,9 @@ Tier 1 (dependency quiver) and above are not yet modelled here.
 Spec: strategy/phd/definition-atlas-spec.md in the Halcyonic vault."""@en ;
     owl:versionIRI <https://w3id.org/mathematical-systems/atlas/2026-08-01/atlas-core> .
 
+author:robert-rosen a atlas:Author ;
+    rdfs:label "Robert Rosen"@en .
+
 atlas:authorCaveat a owl:AnnotationProperty ;
     rdfs:label "author caveat"@en ;
     skos:definition "A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources."@en .
@@ -1492,6 +1495,11 @@ prim:thing a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
 
+prim:relation a skos:Concept ;
+    skos:broader role:relation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "relation"@en .
+
 atlas:Author a owl:Class ;
     rdfs:label "Author"@en ;
     rdfs:comment """NO DEFINITIONAL CONTENT ATTACHES HERE. The same discipline that scopes
@@ -1507,11 +1515,6 @@ atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@
     skos:definition """A person to whom the catalogue's bearers attribute authorship. Identity
 only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
 recognised as one person revising rather than two people agreeing."""@en .
-
-prim:relation a skos:Concept ;
-    skos:broader role:relation ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "relation"@en .
 
 role:relation a skos:Concept ;
     skos:definition "A relation symbol, including graphs read as edge relations and orderings."@en ;

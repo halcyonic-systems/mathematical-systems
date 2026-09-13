@@ -671,6 +671,14 @@ author:cliff-joslyn
     a atlas:Author ;
     rdfs:label "Cliff Joslyn"@en .
 
+# Rosen 1978 registered 2026-09-13; the 1986 "Some Comments" paper already
+# feeds two primitives (thinghood, systemhood) via Klir's Facets reprint and is
+# not an entry — the 1978/1986 arc is the first revision arc to hang off an
+# author node.
+author:robert-rosen
+    a atlas:Author ;
+    rdfs:label "Robert Rosen"@en .
+
 
 ##############################################################################
 # Stance — P3 minted, 2026-08-07. Two axes, not one: what an author takes to

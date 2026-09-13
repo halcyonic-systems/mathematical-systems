@@ -1,0 +1,15 @@
+{
+  "bearer_slug": "rosen-1978-fundamentals",
+  "bearer_label": "Rosen, R. — Fundamentals of Measurement and Representation of Natural Systems (Elsevier North-Holland, 1978)",
+  "creator": "Robert Rosen",
+  "author_slug": "robert-rosen",
+  "date": "1978",
+  "identifiers": [
+    "ISBN 0-444-00261-8",
+    "General Systems Research Series v. 1"
+  ],
+  "vault_files": [
+    "rosen/rosen-1978-fundamentals-measurement.md"
+  ],
+  "note": "Registered 2026-09-13. Full-book OCR of the 2003 Rosen Enterprises republication (Zotero attachment 7RL2ED43); notation mangled in the OCR body — the file's 'Page-image transcriptions' section carries §2.1 (undefined terms + Propositions 1-2), Definitions 2.9.1-2.9.3, and §7.10 (functor category over the one-arrow diagram) transcribed from the page images 2026-09-13, unverified by a human yet; verbatims with formulas must come from that section. Expected shape: ONE entry (Def 2.9.1, with 2.9.2/2.9.3 as harvested primitives); §5.6-5.7 modelling relation and §7.10 are mapping-layer, not entries."
+}
