@@ -1,0 +1,63 @@
+{
+  "entry_slug": "rosen-1978-formal-system",
+  "label": "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)",
+  "source_location": "§2.9 Appendix, DEFINITION 2.9.1, book p. 54 (scan page 72)",
+  "verbatim": "DEFINITION 2.9.1 A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system.\nTo each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.\nNotice that we consider two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′.",
+  "display_form": "A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system.",
+  "display_context": "To each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.",
+  "author_caveat": null,
+  "primitives": [
+    {
+      "slug": "set",
+      "pref_label": "set",
+      "scope_note": "The first component S of the pair; the carrier whose members the mappings in F are defined on. Rosen assumes no further structure on it.",
+      "role": "sort",
+      "new": false
+    },
+    {
+      "slug": "element",
+      "pref_label": "element",
+      "scope_note": "Used of the members of F: \"The elements of F will be called the observables of the formal system.\"",
+      "role": "sort",
+      "new": false
+    },
+    {
+      "slug": "pair",
+      "pref_label": "pair",
+      "scope_note": "The form of the system object itself: a system \"shall consist of a pair (S, F)\". Rosen takes the pairing as given.",
+      "role": "sort",
+      "new": true
+    },
+    {
+      "slug": "family",
+      "pref_label": "family",
+      "scope_note": "The second component F is \"a family of real-valued mappings defined on S\"; the word is used without further explication.",
+      "role": "sort",
+      "new": true
+    },
+    {
+      "slug": "real-valued-mapping",
+      "pref_label": "real-valued mapping",
+      "scope_note": "The members of F: mappings defined on S taking values in the real numbers. Rosen uses the phrase as a primitive ingredient of the pair.",
+      "role": "operation",
+      "new": true
+    },
+    {
+      "slug": "observable",
+      "pref_label": "observable",
+      "scope_note": "The author's name for the elements of F. Elsewhere in the work Rosen lists \"observable\" among three basic undefined terms; here it is stipulated as the label for the members of F.",
+      "role": "operation",
+      "new": true
+    },
+    {
+      "slug": "reduced-state",
+      "pref_label": "reduced state",
+      "scope_note": "Used in the immediate gloss: to each formal system is uniquely associated \"a set of reduced states S/R_F\", carried over from the preceding sections.",
+      "role": "sort",
+      "new": true
+    }
+  ],
+  "admits": [],
+  "refuses": [],
+  "comment": "DELIBERATELY NOT ASSERTED\nThis entry records only that the passage states a definition of \"system\" at the given locus. No cco is-about relation is asserted between this entry and any subject matter, discipline, or other atlas entry; the catalogue's neutrality invariant forbids inferring topical aboutness from the presence of a definition.\n\nWHAT THE ENCODING LEAVES OUT\nThe locus is embedded in a longer formal development that the entry does not carry: Definition 2.9.2 (subsystem and extension, S′ ⊆ S and F′ ⊆ F), the remarks that (S, F) is a subsystem of (S, H(S, R)) and that no formal system is a subsystem of (S, ∅), Definition 2.9.3 (morphism as a pair (φ, ψ)), and the closing note that \"the class of formal systems becomes a category\". Also left out is §2.1's declaration that system, observable and state are three basic undefined terms, together with Propositions 1 and 2, on which Rosen's notion of observable rests; the reduced-state construction S/R_F named in the gloss is developed in earlier sections and is not reproduced here.\n\nCASES\nNo admits or refuses are recorded: at this locus Rosen offers no example as a system and refuses none. The nearby remark about (S, H(S, R)) and (S, ∅) rules on the subsystem relation, not on systemhood, and so was not treated as a case.\n\nSOURCE FIDELITY\nThe verbatim follows the human-flagged page-image transcription of book p. 54 (scan page 72), not the tesseract OCR body, which mangles subscripts and set-inclusion signs. The transcription itself is marked \"Not yet verified by a human against the page\"; the subscripted R_F, the primes on S′ and F′, and the ≠ sign in particular should be checked against the page image at review."
+}
