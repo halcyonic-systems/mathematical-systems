@@ -237,8 +237,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "20182b5+",
-    "repoCommit": "20182b5+"
+    "atlasCommit": "4a80a4f+",
+    "repoCommit": "4a80a4f+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -529,6 +529,9 @@
       "arrowConvention": "Arrows point in the *functional direction* (same direction as the named function).",
       "spec": "Systems/Category/ShapeJoslyn.lean#JoslynShape",
       "status": "resolved"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system": {
+      "status": "none"
     }
   },
   "transcription": {
@@ -687,6 +690,24 @@
         "after": "p. 106 (§3.4, State Systems):\n\nProposition 29 Given a control₂ system CS = ⟨C, O⟩, then O is itself a control₁ system\nO = ⟨O E, O I⟩,\nwhere O E is O's external component which exercises additional constraint₁ over the stable internal component O I.\n\nCS is now expressed according to the formula\nCS = ⟨C, O = ⟨O E, O I⟩⟩. (30)\n\nCase passages (page-imaged 2026-08-27 at Shingai's direction, replacing the damaged body layer for the entry's five case rulings):\n\np. 104: That is, as C's temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control₂ system.\n\np. 104: It is clear that a system governed only by a stable equilibrium, as in (26), is not a control₂ system: a variation of the free parameters causes a corresponding variation of the constraint₁ on O, and thus of x."
       },
       "source": "joslyn-1995-semantic-control-systems.md"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 617,
+      "verbatimChars": 617,
+      "context": {
+        "before": "They are:\nPROPOSITION 1 The only meaningful physical events which occur in the world are those represented by the evaluation of observables on states.\nPROPOSITION 2 Every observable can be regarded as a mapping from states to real numbers.\n\nBook p. 54 (§2.9 Appendix, scan page 72):\n\nAll of our considerations thusfar have been concerned with two kinds of data: (1) on the one hand, given a set of states, we assumed on which no further structure was assumed; (2) given a set F of observables; i.e., real-valued maps from S into R, we assumed in terms of which we could impute structure to S by constructing a set S/R F of reduced states. Furthermore, these were the only kinds of data which entered into our development.\nWe then make the following:",
+        "match": "DEFINITION 2.9.1 A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system.\nTo each formal system defined as above, we can uniquely associate a set of reduced states S/R F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.\nNotice that we consider two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′.",
+        "after": "DEFINITION 2.9.2 A system (S′, F′) will be called a subsystem of (S, F) if and only if S′ ⊆ S and F′ ⊆ F. If (S′, F′) is a subsystem of (S, F), we shall also say that (S, F) is an extension of (S′, F′).\nAccording to this definition, two systems (S, F) and (S, G) will be accounted as different unless one of F, G is a subset of the other. Likewise, two formal systems (S₁, F), (S₂, F) will be accounted as different unless one of S₁, S₂ is a subset of the other.\nNotice that, if H(S, R) denotes the set of all real-valued mappings defined on S, then any formal system of the form (S, F) is a subsystem of the formal system (S, H(S, R)). Likewise, no formal system is a subsystem of (S, ∅).\n\nBook p. 56 (§2.9 Appendix, scan page 74):\n\nLet us now define the next concept required for a formal trea"
+      },
+      "source": "rosen-1978-fundamentals-measurement.md"
     }
   },
   "source": {
@@ -1193,6 +1214,55 @@
         }
       ],
       "number": "009"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system",
+      "id": "rosen-1978-formal-system",
+      "label": "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/rosen-1978-fundamentals",
+      "sourceLocation": "§2.9 Appendix, DEFINITION 2.9.1, book p. 54 (scan page 72)",
+      "verbatim": "DEFINITION 2.9.1 A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system.\nTo each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.\nNotice that we consider two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′.",
+      "displayForm": "A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system.",
+      "displayContext": "To each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.",
+      "authorCaveat": null,
+      "admits": [],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/element",
+        "https://w3id.org/mathematical-systems/atlas/primitive/family",
+        "https://w3id.org/mathematical-systems/atlas/primitive/observable",
+        "https://w3id.org/mathematical-systems/atlas/primitive/pair",
+        "https://w3id.org/mathematical-systems/atlas/primitive/real-valued-mapping",
+        "https://w3id.org/mathematical-systems/atlas/primitive/reduced-state",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED",
+      "encodedOn": "2026-09-13",
+      "formalisedAs": null,
+      "annotation": [
+        {
+          "kind": "prose",
+          "title": null,
+          "body": "DELIBERATELY NOT ASSERTED\nThis entry records only that the passage states a definition of \"system\" at the given locus. No cco is-about relation is asserted between this entry and any subject matter, discipline, or other atlas entry; the catalogue's neutrality invariant forbids inferring topical aboutness from the presence of a definition."
+        },
+        {
+          "kind": "prose",
+          "title": null,
+          "body": "WHAT THE ENCODING LEAVES OUT\nThe locus is embedded in a longer formal development that the entry does not carry: Definition 2.9.2 (subsystem and extension, S′ ⊆ S and F′ ⊆ F), the remarks that (S, F) is a subsystem of (S, H(S, R)) and that no formal system is a subsystem of (S, ∅), Definition 2.9.3 (morphism as a pair (φ, ψ)), and the closing note that \"the class of formal systems becomes a category\". Also left out is §2.1's declaration that system, observable and state are three basic undefined terms, together with Propositions 1 and 2, on which Rosen's notion of observable rests; the reduced-state construction S/R_F named in the gloss is developed in earlier sections and is not reproduced here."
+        },
+        {
+          "kind": "prose",
+          "title": null,
+          "body": "CASES\nNo admits or refuses are recorded: at this locus Rosen offers no example as a system and refuses none. The nearby remark about (S, H(S, R)) and (S, ∅) rules on the subsystem relation, not on systemhood, and so was not treated as a case."
+        },
+        {
+          "kind": "prose",
+          "title": null,
+          "body": "SOURCE FIDELITY\nThe verbatim follows the human-flagged page-image transcription of book p. 54 (scan page 72), not the tesseract OCR body, which mangles subscripts and set-inclusion signs. The transcription itself is marked \"Not yet verified by a human against the page\"; the subscripted R_F, the primes on S′ and F′, and the ≠ sign in particular should be checked against the page image at review."
+        }
+      ],
+      "number": "010"
     }
   ],
   "floor": {
@@ -1290,6 +1360,18 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/control-2-system",
         "https://w3id.org/mathematical-systems/atlas/primitive/variation"
       ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/set",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/real-valued-mapping",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/element",
+        "https://w3id.org/mathematical-systems/atlas/primitive/family",
+        "https://w3id.org/mathematical-systems/atlas/primitive/observable",
+        "https://w3id.org/mathematical-systems/atlas/primitive/pair",
+        "https://w3id.org/mathematical-systems/atlas/primitive/reduced-state"
+      ]
     }
   },
   "bearers": [
@@ -1367,6 +1449,19 @@
       ],
       "authoredBy": [
         "https://w3id.org/mathematical-systems/atlas/author/george-mobus"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/bearer/rosen-1978-fundamentals",
+      "label": "Rosen, R. — Fundamentals of Measurement and Representation of Natural Systems (Elsevier North-Holland, 1978)",
+      "creator": "Robert Rosen",
+      "date": "1978",
+      "identifiers": [
+        "General Systems Research Series v. 1",
+        "ISBN 0-444-00261-8"
+      ],
+      "authoredBy": [
+        "https://w3id.org/mathematical-systems/atlas/author/robert-rosen"
       ]
     },
     {
@@ -1452,6 +1547,14 @@
       "entries": [
         "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2"
       ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/author/robert-rosen",
+      "id": "robert-rosen",
+      "label": "Robert Rosen",
+      "entries": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+      ]
     }
   ],
   "primitives": [
@@ -1464,7 +1567,8 @@
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
         "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
         "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system",
-        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple",
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
       ]
     },
     {
@@ -1476,6 +1580,16 @@
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
         "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
         "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/element",
+      "label": "element",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
       ]
     },
     {
@@ -1506,15 +1620,6 @@
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
-      ]
-    },
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/element",
-      "label": "element",
-      "role": "sort",
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
-        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation"
       ]
     },
     {
@@ -1632,6 +1737,14 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/family",
+      "label": "family",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/flow-network",
       "label": "flow network",
       "role": "relation",
@@ -1680,11 +1793,43 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/observable",
+      "label": "observable",
+      "role": "operation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/pair",
+      "label": "pair",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/part",
       "label": "part",
       "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/real-valued-mapping",
+      "label": "real-valued mapping",
+      "role": "operation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/reduced-state",
+      "label": "reduced state",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
       ]
     },
     {
