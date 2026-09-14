@@ -744,93 +744,102 @@ prim:triple a skos:Concept ;
     skos:scopeNote """The composite form the author gives the system in this passage: a three-component object assembled from S, O and 𝒟. [MDU — drafted, unchecked; role proposal: unassigned]"""@en .
 
 
-# Joslyn 1995, Definitions 21 and 22 — minted 2026-09-14 at MDU by the P5 draft;
-# roles are proposals until the guided pass.
+# Joslyn 1995, Definitions 21 and 22 — minted 2026-09-14 by the P5 draft; roles ruled
+# the same day (bulk review, Shingai Thornton). THE RULE APPLIED, once, for all fourteen
+# Joslyn primitives: a word is a SORT when the passage uses it as a kind of thing that
+# other words are predicated of (parts, whole, region, space, level); a RELATION when
+# the passage uses it for something holding between or made upon such things (a
+# distinction made on a universe, a boundary, an act of distinguishing, a dependency);
+# OPERATION and CONSTANT were not needed. Where a word could go either way the
+# passage's grammar decided: 'level' is a sort because Def. 4 names one level and
+# orders nothing; 'cardinal distinction' is a relation because Def. 19 defines it as a
+# constraint. Each scope note carries its own one-line reason.
 prim:cardinal-distinction a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:relation ;
     skos:prefLabel "cardinal distinction"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 19 (p. 95): "A cardinal distinction is a constraint₂ which creates a system₁" — the distinction made ON an existing universe of discourse; Definition 21 makes a system one such distinction. [MDU — harvested from the page-image transcription; role proposal: relation]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 19 (p. 95): "A cardinal distinction is a constraint₂ which creates a system₁" — the distinction made ON an existing universe of discourse; Definition 21 makes a system one such distinction. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: a distinction MADE ON an existing universe of discourse is a constraint over its elements (Def. 19 calls it a constraint₂), not a kind of thing.]"""@en .
 
 prim:dimensional-distinction a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "dimensional distinction"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 20 (p. 95): "the recognition or designation of some property or entity irrespective of other existing dimensional distinctions" — the qualitative parts a cardinal distinction is made on. [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 20 (p. 95): "the recognition or designation of some property or entity irrespective of other existing dimensional distinctions" — the qualitative parts a cardinal distinction is made on. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the recognition of a property or entity (Def. 20) yields the qualitative parts the universe of discourse is made of.]"""@en .
 
 prim:variety a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "variety"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 21: "a variety of dimensional distinctions" — the collection (Ashby's word) the cardinal distinction is made on. Kept distinct from prim:variation (Def 28's word). [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 21: "a variety of dimensional distinctions" — the collection (Ashby's word) the cardinal distinction is made on. Kept distinct from prim:variation (Def 28's word). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: Ashby's word for the collection of distinctions, taken here as the carrier the cardinal distinction is made on.]"""@en .
 
 prim:system-1 a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "system₁"@en ;
-    skos:scopeNote """Joslyn 1995's subscripted classical sense: Definition 5 (p. 89), "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", adopted from the Mesarović school (a restatement of entry 008). Definition 19 says a cardinal distinction "creates a system₁"; Definition 22 is stated over a system₁. Not the author's own system_J (Definition 4). [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995's subscripted classical sense: Definition 5 (p. 89), "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", adopted from the Mesarović school (a restatement of entry 008). Definition 19 says a cardinal distinction "creates a system₁"; Definition 22 is stated over a system₁. Not the author's own system_J (Definition 4). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: a system₁ is Mesarović's relation S ⊆ X, but Def. 22 takes one as a thing to form a pair over, so at this locus it is a carrier kind.]"""@en .
 
 prim:generated-contingently-on a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:relation ;
     skos:prefLabel "generated contingently on"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 22: the metasystem S′ = ⟨S, E⟩ is "generated contingently on S" — the passage's own word for how the pair depends on the system it is formed around; the dependency of the floor arrow for entry 013, lexical. [MDU; role proposal: relation]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 22: the metasystem S′ = ⟨S, E⟩ is "generated contingently on S" — the passage's own word for how the pair depends on the system it is formed around; the dependency of the floor arrow for entry 013, lexical. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: the passage's own phrase for how the pair depends on S; the floor dependency of entry 013.]"""@en .
 
 prim:metasystem a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "metasystem"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 22: S′ := ⟨S, E⟩, "the metasystem, with parts S and E, generated contingently on S". Also the genus word of Definition 25 ("Given a metasystem CS := ⟨C, O⟩"). [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 22: S′ := ⟨S, E⟩, "the metasystem, with parts S and E, generated contingently on S". Also the genus word of Definition 25 ("Given a metasystem CS := ⟨C, O⟩"). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the pair ⟨S, E⟩ named as a thing with parts.]"""@en .
 
 
-# Joslyn 1995, Definitions 4 and 9 — minted 2026-09-14 at MDU; roles are proposals.
+# Joslyn 1995, Definitions 4 and 9 — minted 2026-09-14; roles ruled the same day (see the
+# rule stated above the Definition 21/22 block).
 prim:entity a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "entity"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 4: a system_J "is an entity which results from the entering into relation of multiple entities, called parts" — the sort of both the whole and the parts. [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 4: a system_J "is an entity which results from the entering into relation of multiple entities, called parts" — the sort of both the whole and the parts. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the kind of both the parts and the whole in Def. 4.]"""@en .
 
 prim:whole a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "whole"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 4: "the new whole entity S". [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 4: "the new whole entity S". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: 'the new whole entity S'.]"""@en .
 
 prim:property a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "property"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 4: "new properties at a level hierarchically distinct from those parts". [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 4: "new properties at a level hierarchically distinct from those parts". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: what the whole has anew at the distinct level.]"""@en .
 
 prim:level a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "level"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 4: "a level hierarchically distinct from those parts". Kept distinct from prim:level-of-organization (Mobus's word). [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 4: "a level hierarchically distinct from those parts". Kept distinct from prim:level-of-organization (Mobus's word). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: 'a level hierarchically distinct from those parts' — a kind, not an ordering relation, because the passage names one level and orders nothing.]"""@en .
 
 prim:region a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "region"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 9: a system₂ "is a bounded region of some (perhaps abstract) space". [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 9: a system₂ "is a bounded region of some (perhaps abstract) space". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the carrier of Def. 9.]"""@en .
 
 prim:space a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "space"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 9: "some (perhaps abstract) space" the region is bounded in. [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 9: "some (perhaps abstract) space" the region is bounded in. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the ambient of Def. 9.]"""@en .
 
 prim:bounded a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:relation ;
     skos:prefLabel "bounded"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 9: "a bounded region" — the boundary that the distinguishing act draws. [MDU; role proposal: relation]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 9: "a bounded region" — the boundary that the distinguishing act draws. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: the boundary that separates region from space.]"""@en .
 
 prim:distinguishes a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:relation ;
     skos:prefLabel "distinguishes"@en ;
-    skos:scopeNote """Joslyn 1995 Definition 9: the space "functionally and uniquely distinguishes" the region; "functionally" fixed on the same page as: what the distinguishing system "chooses as significant can be called the function of the distinction". [MDU; role proposal: relation]"""@en .
+    skos:scopeNote """Joslyn 1995 Definition 9: the space "functionally and uniquely distinguishes" the region; "functionally" fixed on the same page as: what the distinguishing system "chooses as significant can be called the function of the distinction". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: the act ('functionally and uniquely distinguishes'), the floor dependency of entry 015.]"""@en .
 
 
 ##############################################################################

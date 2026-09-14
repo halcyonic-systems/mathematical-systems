@@ -75,7 +75,7 @@ entry:joslyn-1995-control2
 
     rdfs:comment """DEFINIENDUM (recorded 2026-09-14, Shingai Thornton's observation; corrected the same evening). Definition 28 defines a KIND of system, control₂, not "system". It is stated over a control₁ system (Definition 25, itself Turchin's), which is stated over "a metasystem CS := ⟨C, O⟩" (p. 101). The paper DOES define system — Definition 21 (p. 99), "A system is a cardinal distinction on a variety of dimensional distinctions", now entry 012 — and the metasystem, Definition 22 (p. 99), now entry 013. For eighteen days the catalogue carried the species and not the genus, which is exactly the misrepresentation the spec's held ruling of 2026-08-21 (kind-of-system definitions admitted only with a pointer to the genus) exists to prevent. Repaired: this entry now carries atlas:speciesOf → entry 013 and atlas:kindRestriction, the shelf marks it as a kind, and its floor position control-1-system is read as what it always was — a prior system as the thing-side role. Any mapping from this entry to a definition of "system" compares a species with a genus and must say so.
 
-GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction, and REMAIN MDU: the operator verified the definition pages, not the three case pages. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
+GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction; REMAINED MDU until 2026-09-14, when Shingai Thornton read all five case sentences against pp. 104, 109 and 117 and they were promoted to MDHC. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
 
 DELIBERATELY NOT ASSERTED
 No cco is-about relation is asserted between this entry and any subject matter, in keeping with the catalogue's neutrality invariant: the entry records that Joslyn writes this definition at this locus, not that the definition is about control, systems, or any worldly phenomenon.
@@ -103,8 +103,8 @@ case:thermodynamic-system-with-decoupled-envelope
     atlas:gloss """Joslyn's worked example: once O's envelope of variation stays constant while C's temperature changes systematically, the pair CS = ⟨C, O⟩ is declared a control₂ system.""" ;
     atlas:verbatim """That is, as C's temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control₂ system.""" ;
     atlas:sourceLocation """§3.3, p. 104""" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 104 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date .
 
 case:thermostat-machine
@@ -113,8 +113,8 @@ case:thermostat-machine
     atlas:gloss """Joslyn offers engineered machines such as thermostats as familiar instances of control₂ systems.""" ;
     atlas:verbatim """We are quite familiar with control₂ systems which are artifacts, for example human-engineered machines like thermostats.""" ;
     atlas:sourceLocation """§4.6, p. 117""" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 117 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date .
 
 case:damped-spring-stable-equilibrium
@@ -123,8 +123,8 @@ case:damped-spring-stable-equilibrium
     atlas:gloss """Joslyn rules that mere passive stability is not control₂, since varying the free parameters varies the constraint₁ on O and hence the equilibrium point.""" ;
     atlas:verbatim """It is clear that a system governed only by a stable equilibrium, as in (26), is not a control₂ system: a variation of the free parameters causes a corresponding variation of the constraint₁ on O, and thus of x*.""" ;
     atlas:sourceLocation """§3.3, p. 104""" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 104 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date .
 
 case:boiling-liquid
@@ -133,8 +133,8 @@ case:boiling-liquid
     atlas:gloss """A dynamic equilibrium whose rate tracks the heat input; Joslyn states explicitly that it is not controlled₂.""" ;
     atlas:verbatim """The boiling activity is in dynamic equilibrium, but it is not controlled₂.""" ;
     atlas:sourceLocation """§3.6, p. 109""" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 109 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date .
 
 case:spinning-top
@@ -143,8 +143,8 @@ case:spinning-top
     atlas:gloss """The spin stabilises the axis of revolution, but a tilt of the table moves it; Joslyn notes that a controlled₂ position would resist the perturbation.""" ;
     atlas:verbatim """The torque generated by its active spinning creates a stable position of the axis of revolution, but a tilt to the table top will cause that center to move. If the position were controlled₂, then it would resist that environmental perturbation.""" ;
     atlas:sourceLocation """§3.6, p. 109""" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 109 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date .
 
 
@@ -251,8 +251,8 @@ case:joslyn-machines-and-organisms
     atlas:gloss "Machines and organisms, named as the classical exemplars of systems in the paragraph that follows Definition 4." ;
     atlas:verbatim "Classical exemplars of systems are machines and organisms." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14; verbatim read against p. 89 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-14"^^xsd:date .
 
 case:joslyn-lever
@@ -261,8 +261,8 @@ case:joslyn-lever
     atlas:gloss "A board and a rock arranged so the rock is a fulcrum: a lever, whose lifting force is a property at a hierarchically distinct level and does not follow from the two considered as a collection." ;
     atlas:verbatim "But when they are so positioned that the rock acts as a fulcrum to the board, then together they form a greater whole machine, a lever, which has properties at a hierarchically distinct level, here lifting force." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14; verbatim read against p. 89 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-14"^^xsd:date .
 
 entry:joslyn-1995-system-2

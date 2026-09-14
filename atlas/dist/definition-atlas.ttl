@@ -334,7 +334,7 @@ entry:joslyn-1995-control2 a atlas:FormalSystemDefinition ;
     rdfs:label "Joslyn (1995), Semantic Control Systems, §3.3, Definition 28 (Control₂)"@en ;
     rdfs:comment """DEFINIENDUM (recorded 2026-09-14, Shingai Thornton's observation; corrected the same evening). Definition 28 defines a KIND of system, control₂, not "system". It is stated over a control₁ system (Definition 25, itself Turchin's), which is stated over "a metasystem CS := ⟨C, O⟩" (p. 101). The paper DOES define system — Definition 21 (p. 99), "A system is a cardinal distinction on a variety of dimensional distinctions", now entry 012 — and the metasystem, Definition 22 (p. 99), now entry 013. For eighteen days the catalogue carried the species and not the genus, which is exactly the misrepresentation the spec's held ruling of 2026-08-21 (kind-of-system definitions admitted only with a pointer to the genus) exists to prevent. Repaired: this entry now carries atlas:speciesOf → entry 013 and atlas:kindRestriction, the shelf marks it as a kind, and its floor position control-1-system is read as what it always was — a prior system as the thing-side role. Any mapping from this entry to a definition of "system" compares a species with a genus and must say so.
 
-GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction, and REMAIN MDU: the operator verified the definition pages, not the three case pages. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
+GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction; REMAINED MDU until 2026-09-14, when Shingai Thornton read all five case sentences against pp. 104, 109 and 117 and they were promoted to MDHC. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
 
 DELIBERATELY NOT ASSERTED
 No cco is-about relation is asserted between this entry and any subject matter, in keeping with the catalogue's neutrality invariant: the entry records that Joslyn writes this definition at this locus, not that the definition is about control, systems, or any worldly phenomenon.
@@ -916,9 +916,9 @@ mouth. It belongs to the mapping layer.""" ;
 
 case:boiling-liquid a atlas:Example ;
     rdfs:label "Boiling liquid"@en ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 109 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "A dynamic equilibrium whose rate tracks the heat input; Joslyn states explicitly that it is not controlled₂." ;
     atlas:sourceLocation "§3.6, p. 109" ;
     atlas:verbatim "The boiling activity is in dynamic equilibrium, but it is not controlled₂." .
@@ -960,27 +960,27 @@ case:bunge-theory a atlas:Example ;
 
 case:damped-spring-stable-equilibrium a atlas:Example ;
     rdfs:label "System governed only by a stable equilibrium (the damped spring of Eq. 26)"@en ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 104 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "Joslyn rules that mere passive stability is not control₂, since varying the free parameters varies the constraint₁ on O and hence the equilibrium point." ;
     atlas:sourceLocation "§3.3, p. 104" ;
     atlas:verbatim "It is clear that a system governed only by a stable equilibrium, as in (26), is not a control₂ system: a variation of the free parameters causes a corresponding variation of the constraint₁ on O, and thus of x*." .
 
 case:joslyn-lever a atlas:Example ;
     rdfs:label "the lever: a board and a rock positioned so the rock is a fulcrum (Joslyn 1995)"@en ;
-    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
+    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14; verbatim read against p. 89 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "A board and a rock arranged so the rock is a fulcrum: a lever, whose lifting force is a property at a hierarchically distinct level and does not follow from the two considered as a collection." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
     atlas:verbatim "But when they are so positioned that the rock acts as a fulcrum to the board, then together they form a greater whole machine, a lever, which has properties at a hierarchically distinct level, here lifting force." .
 
 case:joslyn-machines-and-organisms a atlas:Example ;
     rdfs:label "machines and organisms (Joslyn 1995, classical exemplars)"@en ;
-    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
+    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14; verbatim read against p. 89 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "Machines and organisms, named as the classical exemplars of systems in the paragraph that follows Definition 4." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
     atlas:verbatim "Classical exemplars of systems are machines and organisms." .
@@ -1027,27 +1027,27 @@ case:mobus-atom a atlas:Example ;
 
 case:spinning-top a atlas:Example ;
     rdfs:label "Spinning top"@en ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 109 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "The spin stabilises the axis of revolution, but a tilt of the table moves it; Joslyn notes that a controlled₂ position would resist the perturbation." ;
     atlas:sourceLocation "§3.6, p. 109" ;
     atlas:verbatim "The torque generated by its active spinning creates a stable position of the axis of revolution, but a tilt to the table top will cause that center to move. If the position were controlled₂, then it would resist that environmental perturbation." .
 
 case:thermodynamic-system-with-decoupled-envelope a atlas:Example ;
     rdfs:label "Thermodynamic system O in a systematically varying thermal environment C"@en ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 104 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "Joslyn's worked example: once O's envelope of variation stays constant while C's temperature changes systematically, the pair CS = ⟨C, O⟩ is declared a control₂ system." ;
     atlas:sourceLocation "§3.3, p. 104" ;
     atlas:verbatim "That is, as C's temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control₂ system." .
 
 case:thermostat-machine a atlas:Example ;
     rdfs:label "Thermostat (human-engineered machine)"@en ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED; verbatim read against p. 117 by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-08-26"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:gloss "Joslyn offers engineered machines such as thermostats as familiar instances of control₂ systems." ;
     atlas:sourceLocation "§4.6, p. 117" ;
     atlas:verbatim "We are quite familiar with control₂ systems which are artifacts, for example human-engineered machines like thermostats." .
@@ -1203,7 +1203,7 @@ prim:bounded a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "bounded"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 9: \"a bounded region\" — the boundary that the distinguishing act draws. [MDU; role proposal: relation]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 9: \"a bounded region\" — the boundary that the distinguishing act draws. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: the boundary that separates region from space.]"@en .
 
 prim:cartesian-product a skos:Concept ;
     skos:broader role:operation ;
@@ -1245,7 +1245,7 @@ prim:entity a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "entity"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 4: a system_J \"is an entity which results from the entering into relation of multiple entities, called parts\" — the sort of both the whole and the parts. [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 4: a system_J \"is an entity which results from the entering into relation of multiple entities, called parts\" — the sort of both the whole and the parts. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the kind of both the parts and the whole in Def. 4.]"@en .
 
 prim:index-set a skos:Concept ;
     skos:broader role:sort ;
@@ -1257,7 +1257,7 @@ prim:level a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "level"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 4: \"a level hierarchically distinct from those parts\". Kept distinct from prim:level-of-organization (Mobus's word). [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 4: \"a level hierarchically distinct from those parts\". Kept distinct from prim:level-of-organization (Mobus's word). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: 'a level hierarchically distinct from those parts' — a kind, not an ordering relation, because the passage names one level and orders nothing.]"@en .
 
 prim:measure a skos:Concept ;
     skos:broader role:operation ;
@@ -1275,7 +1275,7 @@ prim:metasystem a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "metasystem"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 22: S′ := ⟨S, E⟩, \"the metasystem, with parts S and E, generated contingently on S\". Also the genus word of Definition 25 (\"Given a metasystem CS := ⟨C, O⟩\"). [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 22: S′ := ⟨S, E⟩, \"the metasystem, with parts S and E, generated contingently on S\". Also the genus word of Definition 25 (\"Given a metasystem CS := ⟨C, O⟩\"). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the pair ⟨S, E⟩ named as a thing with parts.]"@en .
 
 prim:milieu a skos:Concept ;
     skos:broader role:sort ;
@@ -1293,7 +1293,7 @@ prim:property a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "property"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 4: \"new properties at a level hierarchically distinct from those parts\". [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 4: \"new properties at a level hierarchically distinct from those parts\". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: what the whole has anew at the distinct level.]"@en .
 
 prim:reduced-state a skos:Concept ;
     skos:broader role:sort ;
@@ -1305,7 +1305,7 @@ prim:space a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "space"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 9: \"some (perhaps abstract) space\" the region is bounded in. [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 9: \"some (perhaps abstract) space\" the region is bounded in. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the ambient of Def. 9.]"@en .
 
 prim:structure a skos:Concept ;
     skos:broader role:relation ;
@@ -1363,13 +1363,13 @@ prim:variety a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "variety"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 21: \"a variety of dimensional distinctions\" — the collection (Ashby's word) the cardinal distinction is made on. Kept distinct from prim:variation (Def 28's word). [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 21: \"a variety of dimensional distinctions\" — the collection (Ashby's word) the cardinal distinction is made on. Kept distinct from prim:variation (Def 28's word). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: Ashby's word for the collection of distinctions, taken here as the carrier the cardinal distinction is made on.]"@en .
 
 prim:whole a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "whole"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 4: \"the new whole entity S\". [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 4: \"the new whole entity S\". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: 'the new whole entity S'.]"@en .
 
 stance:bertalanffy-1968-ontic a atlas:StanceAssertion ;
     rdfs:comment """His own word — the chapter title names the position — which is why the
@@ -1467,6 +1467,10 @@ obo:BFO_0000002 a owl:Class ;
     rdfs:label "continuant"@en ;
     rdfs:subClassOf obo:BFO_0000001 ;
     skos:definition "(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity"@en .
+
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:ObserverRoleScheme a skos:ConceptScheme ;
     rdfs:label "The observer's act"@en ;
@@ -1639,7 +1643,7 @@ prim:cardinal-distinction a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "cardinal distinction"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 19 (p. 95): \"A cardinal distinction is a constraint₂ which creates a system₁\" — the distinction made ON an existing universe of discourse; Definition 21 makes a system one such distinction. [MDU — harvested from the page-image transcription; role proposal: relation]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 19 (p. 95): \"A cardinal distinction is a constraint₂ which creates a system₁\" — the distinction made ON an existing universe of discourse; Definition 21 makes a system one such distinction. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: a distinction MADE ON an existing universe of discourse is a constraint over its elements (Def. 19 calls it a constraint₂), not a kind of thing.]"@en .
 
 prim:component a skos:Concept ;
     skos:broader role:sort ;
@@ -1663,13 +1667,13 @@ prim:dimensional-distinction a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "dimensional distinction"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 20 (p. 95): \"the recognition or designation of some property or entity irrespective of other existing dimensional distinctions\" — the qualitative parts a cardinal distinction is made on. [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 20 (p. 95): \"the recognition or designation of some property or entity irrespective of other existing dimensional distinctions\" — the qualitative parts a cardinal distinction is made on. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the recognition of a property or entity (Def. 20) yields the qualitative parts the universe of discourse is made of.]"@en .
 
 prim:distinguishes a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "distinguishes"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 9: the space \"functionally and uniquely distinguishes\" the region; \"functionally\" fixed on the same page as: what the distinguishing system \"chooses as significant can be called the function of the distinction\". [MDU; role proposal: relation]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 9: the space \"functionally and uniquely distinguishes\" the region; \"functionally\" fixed on the same page as: what the distinguishing system \"chooses as significant can be called the function of the distinction\". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: the act ('functionally and uniquely distinguishes'), the floor dependency of entry 015.]"@en .
 
 prim:family a skos:Concept ;
     skos:broader role:sort ;
@@ -1687,7 +1691,7 @@ prim:generated-contingently-on a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "generated contingently on"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 22: the metasystem S′ = ⟨S, E⟩ is \"generated contingently on S\" — the passage's own word for how the pair depends on the system it is formed around; the dependency of the floor arrow for entry 013, lexical. [MDU; role proposal: relation]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 22: the metasystem S′ = ⟨S, E⟩ is \"generated contingently on S\" — the passage's own word for how the pair depends on the system it is formed around; the dependency of the floor arrow for entry 013, lexical. [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; relation: the passage's own phrase for how the pair depends on S; the floor dependency of entry 013.]"@en .
 
 prim:hierarchy a skos:Concept ;
     skos:broader role:relation ;
@@ -1717,7 +1721,7 @@ prim:region a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "region"@en ;
-    skos:scopeNote "Joslyn 1995 Definition 9: a system₂ \"is a bounded region of some (perhaps abstract) space\". [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995 Definition 9: a system₂ \"is a bounded region of some (perhaps abstract) space\". [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: the carrier of Def. 9.]"@en .
 
 prim:state a skos:Concept ;
     skos:broader role:sort ;
@@ -1729,7 +1733,7 @@ prim:system-1 a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "system₁"@en ;
-    skos:scopeNote "Joslyn 1995's subscripted classical sense: Definition 5 (p. 89), \"a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅\", adopted from the Mesarović school (a restatement of entry 008). Definition 19 says a cardinal distinction \"creates a system₁\"; Definition 22 is stated over a system₁. Not the author's own system_J (Definition 4). [MDU; role proposal: sort]"@en .
+    skos:scopeNote "Joslyn 1995's subscripted classical sense: Definition 5 (p. 89), \"a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅\", adopted from the Mesarović school (a restatement of entry 008). Definition 19 says a cardinal distinction \"creates a system₁\"; Definition 22 is stated over a system₁. Not the author's own system_J (Definition 4). [Role ruled 2026-09-14 by Shingai Thornton on a bulk review of the fourteen Joslyn primitives; sort: a system₁ is Mesarović's relation S ⊆ X, but Def. 22 takes one as a thing to form a pair over, so at this locus it is a carrier kind.]"@en .
 
 prim:system-object a skos:Concept ;
     skos:broader role:sort ;
@@ -1891,10 +1895,6 @@ atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@
 only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
 recognised as one person revising rather than two people agreeing."""@en .
 
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
-
 prim:set a skos:Concept ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1919,10 +1919,6 @@ atlas:HVP a atlas:EvidenceCode ;
     rdfs:label "human-verified against primary text"@en ;
     skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 
-atlas:MDHC a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, human-checked"@en ;
-    skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
-
 atlas:FormalSystemDefinition a owl:Class ;
     rdfs:label "Formal System Definition"@en ;
     rdfs:comment "Inclusion criteria are stated in the spec, §5. Borderline cases are adjudicated there, not here."@en ;
@@ -1945,6 +1941,10 @@ docs/proposals/P4-evidence-scope.md."""@en ;
 one. Reified rather than recorded as a string on the entry, because an example is a thing
 several claims are made about -- where it appears in the source, how the encoding was
 established, and which shared case it instantiates."""@en .
+
+atlas:MDHC a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, human-checked"@en ;
+    skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
 
 role:sort a skos:Concept ;
     skos:definition "A carrier kind: what the definition quantifies over or holds as an entity slot."@en ;
