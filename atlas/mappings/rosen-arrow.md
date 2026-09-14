@@ -1,7 +1,12 @@
 # Mapping 008 — Rosen 1978 and the walking arrow: is Definition 2.9.1 a view of the kernel?
 
-**Verdict: NOT YET TESTED.** Prepared 2026-09-13 as the statement of the claim, the
-presentation, and the Lean target. Nothing below is derived. **Graded `MDU` as a document.**
+**Verdict: claim 1 MACHINE-CHECKED (2026-09-14); claims 2–4 not yet tested.** On the encoding
+that makes ℝ the substrate, Rosen's (S, F) shape is *isomorphic* to the walking arrow:
+`rosenKlirEquiv : Paths RosenPosition ≌ Paths KlirPosition` with both round trips literally
+the identity functor (`klirToRosen_rosenToKlir`, `rosenToKlir_klirToRosen`, SSF
+`Systems/Category/RosenKlirIso.lean`; shape in `ShapeRosen.lean`; axioms propext, choice,
+Quot.sound; thinness `rosen_path_subsingleton` axiom-free). Prepared 2026-09-13; claims 2–4
+remain as stated. **Graded `MDU` as a document** — no human has read this memo against the sources.
 
 **Why this mapping exists.** Rosen 1978 §7.10 (book pp. 182–183) takes a category with two
 objects and one map A₁ → A₂, forms the functor category of diagrams over it, and says it
@@ -16,7 +21,7 @@ tradition should be a *generated view* of the kernel at a statable cost, never a
 
 ## The claims, stated so they could fail
 
-1. **Shape (machine-checkable).** Definition 2.9.1's dependency quiver has two positions,
+1. **Shape — MACHINE-CHECKED 2026-09-14 (`rosenKlirEquiv`).** Definition 2.9.1's dependency quiver has two positions,
    `set` (S) and `observables` (F), and one generating arrow, `defined_on : observables → set`
    ("a family of real-valued mappings defined on S"). Claim: `ShapeRosen` so encoded is
    isomorphic to `KlirShape` — not merely admits it. **Fails if** the encoding needs a third
@@ -60,8 +65,10 @@ tradition should be a *generated view* of the kernel at a statable cost, never a
 
 ## Debts
 
-- `ShapeRosen.lean` does not exist. Encoding decisions to record when it does: whether ℝ
-  is a position (see claim 1); whether `state` is a position or the substrate.
+- ~~`ShapeRosen.lean` does not exist.~~ Built 2026-09-14. Encoding decisions recorded in its
+  module docstring: ℝ is the substrate (Proposition 2 fixes the codomain), not a position;
+  `states` is a position (the definition's "a set", the gloss's "states"). The cospan
+  alternative (ℝ as a position) is named there as the presentation on which claim 1 fails.
 - `Kernel.toRosen` does not exist; claim 2 is the target.
 - The Bunge witness for claim 3 is not constructed.
 - Verbatims for §7.10 are page-image transcribed (scan pages 200–201) but not human-read.

@@ -546,6 +546,7 @@ The verbatim follows the human-flagged page-image transcription of book p. 54 (s
     atlas:evidenceCode atlas:MDHC ;
     atlas:floorDependency prim:real-valued-mapping ;
     atlas:floorPosition prim:set ;
+    atlas:formalisedAs "Systems/Category/ShapeRosen.lean#RosenShape" ;
     atlas:hasStance stance:rosen-1978-observer,
         stance:rosen-1978-ontic ;
     atlas:invokesPrimitive prim:element,

@@ -65,6 +65,7 @@ Notice that we consider two formal systems (S, F) and (S′, F′) as different 
                            prim:real-valued-mapping ,
                            prim:observable ,
                            prim:reduced-state ;
+    atlas:formalisedAs "Systems/Category/ShapeRosen.lean#RosenShape" ;
     atlas:evidenceCode atlas:MDHC ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim read against scan page 72 (book p. 54) by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-13"^^xsd:date ;

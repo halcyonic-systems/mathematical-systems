@@ -237,8 +237,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "b800bd8+",
-    "repoCommit": "b800bd8+"
+    "atlasCommit": "33b1f34+",
+    "repoCommit": "33b1f34+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -531,7 +531,35 @@
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system": {
-      "status": "none"
+      "file": "ShapeRosen.lean",
+      "title": "Shape Category for Rosen's formal system (S, F)",
+      "moduleDoc": "# Shape Category for Rosen's formal system (S, F)\n\nThe *shape category* `I_Rosen` encodes the dependency structure of Rosen's\nDefinition 2.9.1 (*Fundamentals of Measurement and Representation of Natural\nSystems*, Elsevier North-Holland 1978, book p. 54; atlas entry 010):\n\n> A system (or formal system) shall consist of a pair (S, F), where S is a set\n> and F is a family of real-valued mappings defined on S. The elements of F\n> will be called the observables of the formal system.\n\n## Construction\n\n- `states`: S — the set the definition calls \"a set\" and the gloss calls the\n  states (Rosen's own word for the elements of S throughout ch. 2).\n- `observables`: F — the family of observables.\n- `defined_on`: F → S — \"a family of real-valued mappings *defined on* S\".\n\n## The encoding decision (mapping 008, claim 1)\n\nThe real line is NOT a position. Proposition 2 (p. 26) fixes the codomain of\nevery observable as ℝ once and for all, so ℝ is part of the ambient substrate of\nthe definition, like `Set` for Klir, and not a relatum the definition varies\nover. On this encoding the quiver has 2 objects and 1 arrow: it is the walking\narrow, and `RosenKlirIso.lean` proves it is equivalent to `KlirShape`.\n\nThe alternative encoding — ℝ as a third position with a second arrow\nF → ℝ — gives a cospan `S ← F → ℝ`, not the arrow. That encoding is not\nbuilt here; mapping 008 records it as the presentation on which claim 1 would\nfail. The choice is a reading of the text (Proposition 2 makes ℝ fixed), and\nit is stated here so that the theorem downstream is read as relative to it.\n\n## Arrow direction convention\n\nArrows point in the direction of dependency, as in `ShapeKlir`: `defined_on`\nreads \"F depends on S\" (the observables are defined over the states). This is\nthe same convention as Klir's `relation_on_things` (\"R is defined over T\"),\nwhich is what makes the two shapes comparable position-for-position.\n\n## What the shape forgets\n\nThat the observables are real-valued (Proposition 2), that the states carry no\nstructure (\"no further structure was assumed\", p. 54), and the reduced-state\nconstruction S/R_F. A quiver records that a dependency exists, nothing more.",
+      "positionType": "RosenPosition",
+      "shape": "RosenShape",
+      "declaredShapes": [
+        "RosenShape"
+      ],
+      "positions": [
+        {
+          "name": "states",
+          "doc": "S — the set of states"
+        },
+        {
+          "name": "observables",
+          "doc": "F — the family of real-valued mappings defined on S"
+        }
+      ],
+      "arrows": [
+        {
+          "name": "defined_on",
+          "from": "observables",
+          "to": "states",
+          "doc": "F depends on S — the observables are \"defined on S\"."
+        }
+      ],
+      "arrowConvention": "Arrows point in the direction of dependency, as in `ShapeKlir`: `defined_on`",
+      "spec": "Systems/Category/ShapeRosen.lean#RosenShape",
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple": {
       "status": "none"
@@ -1260,7 +1288,7 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim read against scan page 72 (book p. 54) by Shingai Thornton 2026-09-14",
       "encodedOn": "2026-09-13",
-      "formalisedAs": null,
+      "formalisedAs": "Systems/Category/ShapeRosen.lean#RosenShape",
       "annotation": [
         {
           "kind": "section",
