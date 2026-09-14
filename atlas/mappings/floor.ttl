@@ -105,3 +105,14 @@ entry:joslyn-1995-control2
 entry:rosen-1978-formal-system
     atlas:floorPosition   prim:set ;
     atlas:floorDependency prim:real-valued-mapping .
+
+# ---- Rosen 1978, §5.8, the triple (S, O, 𝒟) ---------------------------------
+# The passage's own words: "a set of states S, a set of observables O defined
+# on those states and a family 𝒟 of dynamics imposed on the system". Position
+# is the author's word "state" this time (the pair entry had only "set");
+# dependency is the observable, "defined on those states". Dynamics is an
+# addition the build computes, not a floor role: no morphism for 𝒟 exists in
+# the text (entry comment, caution 3). Declared 2026-09-14 with the entry at MDU.
+entry:rosen-1978-system-triple
+    atlas:floorPosition   prim:state ;
+    atlas:floorDependency prim:observable .

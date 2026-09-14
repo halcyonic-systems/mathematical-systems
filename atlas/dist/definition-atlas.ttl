@@ -219,7 +219,8 @@ REPRODUCES the original Eq. 4.1 before revising it — the scan graded that repr
 <https://w3id.org/mathematical-systems/atlas/entries/rosen-1978-fundamentals> rdfs:label "Atlas entry — Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
     rdfs:comment """Drafted 2026-09-13 by the P5 pipeline; accessioned at MDU the same day
 (precedent: entry 009); promoted to MDHC 2026-09-14 after Shingai Thornton read the verbatim
-against the page (see the HUMAN CHECK block on the entry). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
+against the page (see the HUMAN CHECK block on the entry). Second entry, the §5.8 triple, accessioned
+2026-09-14 at MDU on Shingai Thornton's ruling (see its RULED block). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
 the verbatim's primes (S′, F′), the subscript R_F, the ≠ sign and the "(or formal system)"
 parenthetical all match the printed page; no correction needed. This is not a human check —
 the evidence code stays MDU until Shingai Thornton reads the same page. The five minted
@@ -559,6 +560,36 @@ The verbatim follows the human-flagged page-image transcription of book p. 54 (s
 To each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.
 Notice that we consider two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′.""" .
 
+entry:rosen-1978-system-triple a atlas:FormalSystemDefinition ;
+    rdfs:label "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §5.8, the system as a triple (book p. 128)"@en ;
+    rdfs:comment """SCOPE OF THE ENTRY. The recapitulating sentence at §5.8 (book p. 128) alone: system as a triple of states, observables defined on the states, and dynamics imposed on the system. The numbered points that follow it (reduced-state labelling, dynamics as reduced states of interacting systems) are not carried. The §5.1 material it recalls (p. 96: "The three basic features of natural systems with which we have been concerned are: states, observables and interactions (dynamics)", followed by the S-, O- and D-subsystem definitions) is not carried either; see RELATION TO §5.1 below.
+
+RULED A SECOND ENTRY, NOT A RESTATEMENT (2026-09-14, Shingai Thornton; handled as the Mobus 7→8 revision was). The triple adds a coordinate the pair (S, F) of Definition 2.9.1 cannot carry — a family of dynamics — so it is a distinct definitional claim, not a re-offer of 2.9.1. The two forms sit on either side of the static/dynamic seam. Rosen's expositor Louie (2009, 2017) retains the PAIR as the object of the category of formal systems and not the triple; that fact is recordable only because both forms are entries. Three cautions the entry owes, in the author's own terms:
+  (1) UNLABELLED. Unlike 2.9.1 this is not headed DEFINITION; the hedge "can be regarded as" is the author's, retained inside the verbatim because it is not detachable (compare Bunge's "is (or represents)", entry 002).
+  (2) SELF-ATTRIBUTED TO §5.1, WHICH STATES NO TRIPLE. §5.1 names the three features and builds subsystem notions from each; the triple as an object is first written here. The atlas records the sentence where the form is stated, not where the author says he stated it.
+  (3) NO MORPHISM FOR 𝒟. Definition 2.9.3 gives morphisms for the pair only; nothing in the text says what a map of dynamics is. The categorical apparatus of ch. 2 and §7.10 is built on the pair. Any mapping from this entry to a dynamical tradition (Mobus T/Δt, Wymore) inherits this gap.
+
+TRANSCRIPTION. Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). The script letter is rendered 𝒟. Not yet read against the page by a human: MDU.
+
+DELIBERATELY NOT ASSERTED. No cco is-about relation. Recording that Rosen uses "state", "observable" and "dynamics" here is a lexical fact about this passage; "observable" is the same word as in entry 010 and reuses its primitive, per the lexical rule.
+
+CASES. None offered, none refused."""@en ;
+    atlas:displayForm "a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry by Shingai Thornton 2026-09-14; verbatim not yet human-read" ;
+    atlas:encodedOn "2026-09-13"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:floorDependency prim:observable ;
+    atlas:floorPosition prim:state ;
+    atlas:invokesPrimitive prim:dynamics,
+        prim:family,
+        prim:observable,
+        prim:set,
+        prim:state,
+        prim:triple ;
+    atlas:sourceLocation "§5.8, book p. 128 (scan page 146)" ;
+    atlas:statedIn bearer:rosen-1978-fundamentals ;
+    atlas:verbatim "Let us recall that, according to Section 5.1, a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system." .
+
 atlas:evidenceCode a owl:AnnotationProperty ;
     rdfs:label "evidence code"@en ;
     skos:definition "Which atlas:EvidenceCode individual applies to this encoding."@en .
@@ -807,14 +838,6 @@ bearer:mobus-book-revisions a cco:ont00000253 ;
     dcterms:date "2025"^^xsd:gYear ;
     rdfs:comment "Quoted with the author's permission, granted 2026-08-19 (video call)."@en ;
     atlas:authoredBy author:george-mobus .
-
-bearer:rosen-1978-fundamentals a cco:ont00000253 ;
-    rdfs:label "Rosen, R. — Fundamentals of Measurement and Representation of Natural Systems (Elsevier North-Holland, 1978)"@en ;
-    dcterms:creator "Robert Rosen" ;
-    dcterms:date "1978"^^xsd:gYear ;
-    dcterms:identifier "General Systems Research Series v. 1",
-        "ISBN 0-444-00261-8" ;
-    atlas:authoredBy author:robert-rosen .
 
 case:bertalanffy-organism a atlas:Example ;
     rdfs:label "an organism"@en ;
@@ -1078,11 +1101,11 @@ prim:control-2-system a skos:Concept ;
     skos:prefLabel "control₂ system"@en ;
     skos:scopeNote "Joslyn's word for the kind of system defined here: a control₁ system whose second-order variation in the constraint₁ on O, induced by C's variation, is itself constrained₂. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
-prim:family a skos:Concept ;
-    skos:broader role:sort ;
+prim:dynamics a skos:Concept ;
+    skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "family"@en ;
-    skos:scopeNote "The second component F is \"a family of real-valued mappings defined on S\"; the word is used without further explication. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:prefLabel "dynamics"@en ;
+    skos:scopeNote "Used here for the members of the third component: the family 𝒟 of dynamics imposed on the system, each dynamics acting on the states. [MDU — drafted, unchecked; role proposal: operation]"@en .
 
 prim:index-set a skos:Concept ;
     skos:broader role:sort ;
@@ -1107,12 +1130,6 @@ prim:milieu a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "milieu"@en ;
     skos:scopeNote "Mobus's M, 'the non-point source/sink variables constituting the interacting milieu around the system' (revisions manuscript, eq. 1)."@en .
-
-prim:observable a skos:Concept ;
-    skos:broader role:operation ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "observable"@en ;
-    skos:scopeNote "The author's name for the elements of F. Elsewhere in the work Rosen lists \"observable\" among three basic undefined terms; here it is stipulated as the label for the members of F. [MDU — drafted, unchecked; role proposal: operation]"@en .
 
 prim:pair a skos:Concept ;
     skos:broader role:sort ;
@@ -1173,6 +1190,11 @@ prim:transformation-rule a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "transformation rule"@en ;
     skos:scopeNote "Mobus's T: 'T is the set of transformation rules for the subsystems in S' (§4.3.3.4). Hand-recovered after the model's wider span failed to locate — the passage is set in display-math wrappers the digitisation mangles."@en .
+
+prim:triple a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "triple"@en ;
+    skos:scopeNote "The composite form the author gives the system in this passage: a three-component object assembled from S, O and 𝒟. [MDU — drafted, unchecked; role proposal: unassigned]"@en .
 
 prim:variation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1305,6 +1327,14 @@ bearer:bunge-1979-treatise-vol4 a cco:ont00000253 ;
     dcterms:identifier "doi:10.1007/978-94-009-9392-1" ;
     atlas:authoredBy author:mario-bunge .
 
+bearer:rosen-1978-fundamentals a cco:ont00000253 ;
+    rdfs:label "Rosen, R. — Fundamentals of Measurement and Representation of Natural Systems (Elsevier North-Holland, 1978)"@en ;
+    dcterms:creator "Robert Rosen" ;
+    dcterms:date "1978"^^xsd:gYear ;
+    dcterms:identifier "General Systems Research Series v. 1",
+        "ISBN 0-444-00261-8" ;
+    atlas:authoredBy author:robert-rosen .
+
 case:bunge-factory a atlas:Example ;
     rdfs:label "a factory"@en ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;
@@ -1434,6 +1464,12 @@ prim:control-1-system a skos:Concept ;
     skos:prefLabel "control₁ system"@en ;
     skos:scopeNote "Joslyn's word for the metasystem CS = ⟨C, O⟩ of Definition 25, in which the actions of the controller C result in a constraint₂ on the freedom of the object of control O; it is the antecedent kind on which control₂ is predicated. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
+prim:family a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "family"@en ;
+    skos:scopeNote "The second component F is \"a family of real-valued mappings defined on S\"; the word is used without further explication. [MDU — drafted, unchecked; role proposal: sort]"@en .
+
 prim:flow-network a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1463,6 +1499,12 @@ prim:real-valued-mapping a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "real-valued mapping"@en ;
     skos:scopeNote "The members of F: mappings defined on S taking values in the real numbers. Rosen uses the phrase as a primitive ingredient of the pair. [MDU — drafted, unchecked; role proposal: operation]"@en .
+
+prim:state a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "state"@en ;
+    skos:scopeNote "Rosen's word for what the first component of the triple collects: the set S is a set of states, states being one of his three basic undefined terms. [MDU — drafted, unchecked; role proposal: sort]"@en .
 
 prim:system-object a skos:Concept ;
     skos:broader role:sort ;
@@ -1551,6 +1593,12 @@ prim:environment a skos:Concept ;
     skos:prefLabel "environment"@en ;
     skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components. Mobus's revised tuple (entry 007) also carries an E — absent from his published 2022 seven-tuple, which is why the row lights up only on the revisions entry: the difference records the revision."@en .
 
+prim:observable a skos:Concept ;
+    skos:broader role:operation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "observable"@en ;
+    skos:scopeNote "The author's name for the elements of F. Elsewhere in the work Rosen lists \"observable\" among three basic undefined terms; here it is stipulated as the label for the members of F. [MDU — drafted, unchecked; role proposal: operation]"@en .
+
 prim:time a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1578,29 +1626,24 @@ skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;
     skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
 
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
-
 prim:thing a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
 
-role:operation a skos:Concept ;
-    skos:definition "A function symbol: maps arguments to a value (transfer functions, Bunge's composition-at-a-time)."@en ;
-    skos:inScheme atlas:SignatureRoleScheme ;
-    skos:prefLabel "operation"@en .
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 prim:relation a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "relation"@en .
 
-prim:set a skos:Concept ;
-    rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "set"@en .
+role:operation a skos:Concept ;
+    skos:definition "A function symbol: maps arguments to a value (transfer functions, Bunge's composition-at-a-time)."@en ;
+    skos:inScheme atlas:SignatureRoleScheme ;
+    skos:prefLabel "operation"@en .
 
 atlas:Author a owl:Class ;
     rdfs:label "Author"@en ;
@@ -1617,6 +1660,11 @@ atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@
     skos:definition """A person to whom the catalogue's bearers attribute authorship. Identity
 only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
 recognised as one person revising rather than two people agreeing."""@en .
+
+prim:set a skos:Concept ;
+    rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "set"@en .
 
 role:relation a skos:Concept ;
     skos:definition "A relation symbol, including graphs read as edge relations and orderings."@en ;
@@ -1645,11 +1693,6 @@ atlas:HVP a atlas:EvidenceCode ;
     rdfs:label "human-verified against primary text"@en ;
     skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 
-role:sort a skos:Concept ;
-    skos:definition "A carrier kind: what the definition quantifies over or holds as an entity slot."@en ;
-    skos:inScheme atlas:SignatureRoleScheme ;
-    skos:prefLabel "sort"@en .
-
 atlas:Example a owl:Class ;
     rdfs:label "Example"@en ;
     rdfs:comment """WHY THIS IS A CLASS. Examples were literal strings on the entry until
@@ -1663,6 +1706,11 @@ docs/proposals/P4-evidence-scope.md."""@en ;
 one. Reified rather than recorded as a string on the entry, because an example is a thing
 several claims are made about -- where it appears in the source, how the encoding was
 established, and which shared case it instantiates."""@en .
+
+role:sort a skos:Concept ;
+    skos:definition "A carrier kind: what the definition quantifies over or holds as an entity slot."@en ;
+    skos:inScheme atlas:SignatureRoleScheme ;
+    skos:prefLabel "sort"@en .
 
 atlas:PrimitiveScheme a skos:ConceptScheme ;
     rdfs:label "Systems-definition primitive vocabulary"@en ;

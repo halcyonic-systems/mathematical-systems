@@ -172,6 +172,7 @@ ACCESSION = [
     "mesarovic-takahara-1975-general-system",
     "joslyn-1995-control2",
     "rosen-1978-formal-system",
+    "rosen-1978-system-triple",
 ]
 
 

@@ -713,6 +713,26 @@ prim:reduced-state a skos:Concept ;
     skos:scopeNote """Used in the immediate gloss: to each formal system is uniquely associated "a set of reduced states S/R_F", carried over from the preceding sections. [MDU — drafted, unchecked; role proposal: sort]"""@en .
 
 
+# Rosen 1978, §5.8 triple — minted 2026-09-14 at MDU by the P5 draft; roles are
+# proposals until the guided pass.
+prim:state a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "state"@en ;
+    skos:scopeNote """Rosen's word for what the first component of the triple collects: the set S is a set of states, states being one of his three basic undefined terms. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+
+prim:dynamics a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:operation ;
+    skos:prefLabel "dynamics"@en ;
+    skos:scopeNote """Used here for the members of the third component: the family 𝒟 of dynamics imposed on the system, each dynamics acting on the states. [MDU — drafted, unchecked; role proposal: operation]"""@en .
+
+prim:triple a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "triple"@en ;
+    skos:scopeNote """The composite form the author gives the system in this passage: a three-component object assembled from S, O and 𝒟. [MDU — drafted, unchecked; role proposal: unassigned]"""@en .
+
+
 ##############################################################################
 # Stance — P3 minted, 2026-08-07. Two axes, not one: what an author takes to
 # exist is a different commitment from what the observer's act contributes,

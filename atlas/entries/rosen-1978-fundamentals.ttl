@@ -18,7 +18,8 @@
     rdfs:label "Atlas entry — Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
     rdfs:comment """Drafted 2026-09-13 by the P5 pipeline; accessioned at MDU the same day
 (precedent: entry 009); promoted to MDHC 2026-09-14 after Shingai Thornton read the verbatim
-against the page (see the HUMAN CHECK block on the entry). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
+against the page (see the HUMAN CHECK block on the entry). Second entry, the §5.8 triple, accessioned
+2026-09-14 at MDU on Shingai Thornton's ruling (see its RULED block). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
 the verbatim's primes (S′, F′), the subscript R_F, the ≠ sign and the "(or formal system)"
 parenthetical all match the printed page; no correction needed. This is not a human check —
 the evidence code stays MDU until Shingai Thornton reads the same page. The five minted
@@ -83,6 +84,43 @@ No admits or refuses are recorded: at this locus Rosen offers no example as a sy
 
 SOURCE FIDELITY
 The verbatim follows the human-flagged page-image transcription of book p. 54 (scan page 72), not the tesseract OCR body, which mangles subscripts and set-inclusion signs. The transcription itself is marked "Not yet verified by a human against the page"; the subscripted R_F, the primes on S′ and F′, and the ≠ sign in particular should be checked against the page image at review."""@en .
+
+
+##############################################################################
+# Entry 2 — the triple (§5.8), accessioned 2026-09-14
+##############################################################################
+
+entry:rosen-1978-system-triple
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §5.8, the system as a triple (book p. 128)"@en ;
+
+    atlas:statedIn bearer:rosen-1978-fundamentals ;
+    atlas:sourceLocation """§5.8, book p. 128 (scan page 146)""" ;
+
+    atlas:verbatim """Let us recall that, according to Section 5.1, a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system.""" ;
+    atlas:displayForm """a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system""" ;
+    atlas:invokesPrimitive prim:state ,
+                           prim:observable ,
+                           prim:dynamics ,
+                           prim:triple ,
+                           prim:set ,
+                           prim:family ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry by Shingai Thornton 2026-09-14; verbatim not yet human-read" ;
+    atlas:encodedOn "2026-09-13"^^xsd:date ;
+
+    rdfs:comment """SCOPE OF THE ENTRY. The recapitulating sentence at §5.8 (book p. 128) alone: system as a triple of states, observables defined on the states, and dynamics imposed on the system. The numbered points that follow it (reduced-state labelling, dynamics as reduced states of interacting systems) are not carried. The §5.1 material it recalls (p. 96: "The three basic features of natural systems with which we have been concerned are: states, observables and interactions (dynamics)", followed by the S-, O- and D-subsystem definitions) is not carried either; see RELATION TO §5.1 below.
+
+RULED A SECOND ENTRY, NOT A RESTATEMENT (2026-09-14, Shingai Thornton; handled as the Mobus 7→8 revision was). The triple adds a coordinate the pair (S, F) of Definition 2.9.1 cannot carry — a family of dynamics — so it is a distinct definitional claim, not a re-offer of 2.9.1. The two forms sit on either side of the static/dynamic seam. Rosen's expositor Louie (2009, 2017) retains the PAIR as the object of the category of formal systems and not the triple; that fact is recordable only because both forms are entries. Three cautions the entry owes, in the author's own terms:
+  (1) UNLABELLED. Unlike 2.9.1 this is not headed DEFINITION; the hedge "can be regarded as" is the author's, retained inside the verbatim because it is not detachable (compare Bunge's "is (or represents)", entry 002).
+  (2) SELF-ATTRIBUTED TO §5.1, WHICH STATES NO TRIPLE. §5.1 names the three features and builds subsystem notions from each; the triple as an object is first written here. The atlas records the sentence where the form is stated, not where the author says he stated it.
+  (3) NO MORPHISM FOR 𝒟. Definition 2.9.3 gives morphisms for the pair only; nothing in the text says what a map of dynamics is. The categorical apparatus of ch. 2 and §7.10 is built on the pair. Any mapping from this entry to a dynamical tradition (Mobus T/Δt, Wymore) inherits this gap.
+
+TRANSCRIPTION. Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). The script letter is rendered 𝒟. Not yet read against the page by a human: MDU.
+
+DELIBERATELY NOT ASSERTED. No cco is-about relation. Recording that Rosen uses "state", "observable" and "dynamics" here is a lexical fact about this passage; "observable" is the same word as in entry 010 and reuses its primitive, per the lexical rule.
+
+CASES. None offered, none refused."""@en .
 
 
 ##############################################################################

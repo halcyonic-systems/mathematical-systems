@@ -237,8 +237,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "fd41576+",
-    "repoCommit": "fd41576+"
+    "atlasCommit": "2d66efe+",
+    "repoCommit": "2d66efe+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -532,6 +532,9 @@
     },
     "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system": {
       "status": "none"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple": {
+      "status": "none"
     }
   },
   "transcription": {
@@ -706,6 +709,24 @@
         "before": "They are:\nPROPOSITION 1 The only meaningful physical events which occur in the world are those represented by the evaluation of observables on states.\nPROPOSITION 2 Every observable can be regarded as a mapping from states to real numbers.\n\nBook p. 54 (§2.9 Appendix, scan page 72):\n\nAll of our considerations thusfar have been concerned with two kinds of data: (1) on the one hand, given a set of states, we assumed on which no further structure was assumed; (2) given a set F of observables; i.e., real-valued maps from S into R, we assumed in terms of which we could impute structure to S by constructing a set S/R F of reduced states. Furthermore, these were the only kinds of data which entered into our development.\nWe then make the following:",
         "match": "DEFINITION 2.9.1 A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system.\nTo each formal system defined as above, we can uniquely associate a set of reduced states S/R F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.\nNotice that we consider two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′.",
         "after": "DEFINITION 2.9.2 A system (S′, F′) will be called a subsystem of (S, F) if and only if S′ ⊆ S and F′ ⊆ F. If (S′, F′) is a subsystem of (S, F), we shall also say that (S, F) is an extension of (S′, F′).\nAccording to this definition, two systems (S, F) and (S, G) will be accounted as different unless one of F, G is a subset of the other. Likewise, two formal systems (S₁, F), (S₂, F) will be accounted as different unless one of S₁, S₂ is a subset of the other.\nNotice that, if H(S, R) denotes the set of all real-valued mappings defined on S, then any formal system of the form (S, F) is a subsystem of the formal system (S, H(S, R)). Likewise, no formal system is a subsystem of (S, ∅).\n\nBook p. 56 (§2.9 Appendix, scan page 74):\n\nLet us now define the next concept required for a formal trea"
+      },
+      "source": "rosen-1978-fundamentals-measurement.md"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 199,
+      "verbatimChars": 199,
+      "context": {
+        "before": "A notion of subsystem can be defined with respect to each of these basic constituents independently. Each of these three basic features will be useful subsequently, so we now develop some terminology which will allow us to discuss them individually.\n1. Given a system with set of states S, a state-restricted subsystem (an S-subsystem) will be a system whose set of states consists of a subset S′ ⊂ S.\n2. Given a system on which a set ℱ of observables is defined, an observable-restricted subsystem (an O-subsystem) will be a system on which a subset ℱ′ ⊂ ℱ of the original set of observables is defined.\n\nBook p. 128 (§5.8, scan page 146):",
+        "match": "Let us recall that, according to Section 5.1, a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system.",
+        "after": "An observable Φ imposed on a class of systems is in fact imposed on such a set of triples. Let us observe now that:\n1. The set S and the observables in O define a set of reduced states S/R O, which we employ to label the states of S.\n\n## OCR text (tesseract, unverified)\n\n<!-- scan page 0 (book p. i) -->\nFundamentals of\nMeasurement\nand Representation\nof Natural Systems\n\nRobert Rosen\n\n<!-- scan page 1 (book p. ii) -->\nBOOKS BY ROBERT ROSEN:\n(Partial listing)\n\nThe following are out-of-print monographs that are currently being republished\nand can be ordered via the website at www.rosen-enterprises.com :\n\nOptimality Principles in Biology\n\nDynamical System Theory in Biology\n\nFoundations of Mathematical Biology. Volumes I. I, and III\n\nFundamentals of Measurement and Representation of Natural Sys"
       },
       "source": "rosen-1978-fundamentals-measurement.md"
     }
@@ -1273,6 +1294,59 @@
         }
       ],
       "number": "010"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple",
+      "id": "rosen-1978-system-triple",
+      "label": "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §5.8, the system as a triple (book p. 128)",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/rosen-1978-fundamentals",
+      "sourceLocation": "§5.8, book p. 128 (scan page 146)",
+      "verbatim": "Let us recall that, according to Section 5.1, a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system.",
+      "displayForm": "a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system",
+      "displayContext": null,
+      "authorCaveat": null,
+      "admits": [],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/dynamics",
+        "https://w3id.org/mathematical-systems/atlas/primitive/family",
+        "https://w3id.org/mathematical-systems/atlas/primitive/observable",
+        "https://w3id.org/mathematical-systems/atlas/primitive/set",
+        "https://w3id.org/mathematical-systems/atlas/primitive/state",
+        "https://w3id.org/mathematical-systems/atlas/primitive/triple"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry by Shingai Thornton 2026-09-14; verbatim not yet human-read",
+      "encodedOn": "2026-09-13",
+      "formalisedAs": null,
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "SCOPE OF THE ENTRY",
+          "body": "The recapitulating sentence at §5.8 (book p. 128) alone: system as a triple of states, observables defined on the states, and dynamics imposed on the system. The numbered points that follow it (reduced-state labelling, dynamics as reduced states of interacting systems) are not carried. The §5.1 material it recalls (p. 96: \"The three basic features of natural systems with which we have been concerned are: states, observables and interactions (dynamics)\", followed by the S-, O- and D-subsystem definitions) is not carried either; see RELATION TO §5.1 below."
+        },
+        {
+          "kind": "section",
+          "title": "RULED A SECOND ENTRY, NOT A RESTATEMENT",
+          "body": "(2026-09-14, Shingai Thornton; handled as the Mobus 7→8 revision was). The triple adds a coordinate the pair (S, F) of Definition 2.9.1 cannot carry — a family of dynamics — so it is a distinct definitional claim, not a re-offer of 2.9.1. The two forms sit on either side of the static/dynamic seam. Rosen's expositor Louie (2009, 2017) retains the PAIR as the object of the category of formal systems and not the triple; that fact is recordable only because both forms are entries. Three cautions the entry owes, in the author's own terms:\n  (1) UNLABELLED. Unlike 2.9.1 this is not headed DEFINITION; the hedge \"can be regarded as\" is the author's, retained inside the verbatim because it is not detachable (compare Bunge's \"is (or represents)\", entry 002).\n  (2) SELF-ATTRIBUTED TO §5.1, WHICH STATES NO TRIPLE. §5.1 names the three features and builds subsystem notions from each; the triple as an object is first written here. The atlas records the sentence where the form is stated, not where the author says he stated it.\n  (3) NO MORPHISM FOR 𝒟. Definition 2.9.3 gives morphisms for the pair only; nothing in the text says what a map of dynamics is. The categorical apparatus of ch. 2 and §7.10 is built on the pair. Any mapping from this entry to a dynamical tradition (Mobus T/Δt, Wymore) inherits this gap."
+        },
+        {
+          "kind": "section",
+          "title": "TRANSCRIPTION",
+          "body": "Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). The script letter is rendered 𝒟. Not yet read against the page by a human: MDU."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "No cco is-about relation. Recording that Rosen uses \"state\", \"observable\" and \"dynamics\" here is a lexical fact about this passage; \"observable\" is the same word as in entry 010 and reuses its primitive, per the lexical rule."
+        },
+        {
+          "kind": "section",
+          "title": "CASES",
+          "body": "None offered, none refused."
+        }
+      ],
+      "number": "011"
     }
   ],
   "floor": {
@@ -1381,6 +1455,16 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/observable",
         "https://w3id.org/mathematical-systems/atlas/primitive/pair",
         "https://w3id.org/mathematical-systems/atlas/primitive/reduced-state"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/state",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/observable",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/dynamics",
+        "https://w3id.org/mathematical-systems/atlas/primitive/family",
+        "https://w3id.org/mathematical-systems/atlas/primitive/triple"
       ]
     }
   },
@@ -1563,7 +1647,8 @@
       "id": "robert-rosen",
       "label": "Robert Rosen",
       "entries": [
-        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system",
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
       ]
     }
   ],
@@ -1578,7 +1663,8 @@
         "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
         "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple",
-        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system",
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
       ]
     },
     {
@@ -1633,6 +1719,15 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/family",
+      "label": "family",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system",
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/hierarchy",
       "label": "hierarchy",
       "role": "relation",
@@ -1648,6 +1743,15 @@
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/observable",
+      "label": "observable",
+      "role": "operation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system",
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
       ]
     },
     {
@@ -1747,11 +1851,11 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/family",
-      "label": "family",
-      "role": "sort",
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/dynamics",
+      "label": "dynamics",
+      "role": "operation",
       "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
       ]
     },
     {
@@ -1803,14 +1907,6 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/observable",
-      "label": "observable",
-      "role": "operation",
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
-      ]
-    },
-    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/pair",
       "label": "pair",
       "role": "sort",
@@ -1840,6 +1936,14 @@
       "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/state",
+      "label": "state",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
       ]
     },
     {
@@ -1904,6 +2008,14 @@
       "role": "operation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/triple",
+      "label": "triple",
+      "role": null,
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
       ]
     },
     {
