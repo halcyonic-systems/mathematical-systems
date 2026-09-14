@@ -402,9 +402,9 @@ CASES. None ruled at this locus; the lever recurs as an illustration of the func
 DELIBERATELY NOT ASSERTED. No cco is-about."""@en ;
     atlas:displayContext "I offer the following definition." ;
     atlas:displayForm "A system₂ is a bounded region of some (perhaps abstract) space which functionally and uniquely distinguishes it." ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 91 (PDF page 5) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:floorDependency prim:distinguishes ;
     atlas:floorPosition prim:region ;
     atlas:invokesPrimitive prim:bounded,
@@ -429,9 +429,9 @@ DELIBERATELY NOT ASSERTED. No cco is-about. Primitives are lexical; "relation" a
     atlas:authorCaveat "To these I will add my own natural language definition:" ;
     atlas:displayContext "To these I will add my own natural language definition:" ;
     atlas:displayForm "A system_J S is an entity which results from the entering into relation of multiple entities, called parts, to form the new whole entity S with new properties at a level hierarchically distinct from those parts." ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 89 (PDF page 3) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:floorDependency prim:relation ;
     atlas:floorPosition prim:part ;
     atlas:invokesPrimitive prim:entity,
@@ -972,6 +972,7 @@ case:joslyn-lever a atlas:Example ;
     atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
     atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "A board and a rock arranged so the rock is a fulcrum: a lever, whose lifting force is a property at a hierarchically distinct level and does not follow from the two considered as a collection." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
     atlas:verbatim "But when they are so positioned that the rock acts as a fulcrum to the board, then together they form a greater whole machine, a lever, which has properties at a hierarchically distinct level, here lifting force." .
 
@@ -980,6 +981,7 @@ case:joslyn-machines-and-organisms a atlas:Example ;
     atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
     atlas:evidenceCode atlas:MDU ;
+    atlas:gloss "Machines and organisms, named as the classical exemplars of systems in the paragraph that follows Definition 4." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
     atlas:verbatim "Classical exemplars of systems are machines and organisms." .
 
@@ -1108,7 +1110,7 @@ entry:joslyn-1995-contingent-metasystem a atlas:FormalSystemDefinition ;
     rdfs:label "Joslyn (1995), Semantic Control Systems, §2.7.1, Definition 22 (Contingent Metasystem), p. 99"@en ;
     rdfs:comment """WHY IT IS AN ENTRY AND A SPECIES. A metasystem is a system (it has parts S and E) of a stated kind: formed from a system and its environment. It is the form Definition 25 later takes as given ("Given a metasystem CS := ⟨C, O⟩"), so it is the genus of the control entries and a species of Definition 21. The species chain the catalogue records is 009 (control₂) → 013 (metasystem) → 012 (system).
 
-GENUS WORD (corrected 2026-09-14 against the p. 89 page image). The passage says system₁. In this paper system₁ is Definition 5 (p. 89): "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", introduced with "the Mesarovic school ... from which the following definition is adopted" — a restatement of Mesarović & Takahara 1975 Def 1.1, entry 008 (scan candidate 4, graded PROP). The pointer therefore goes to 008, in the author's own words; it is not a lineage claim by the catalogue. The author's OWN definitions are Definition 4 (system_J, entry 014), Definition 9 (system₂, entry 015) and the synthetic Definition 21 (entry 012); none of them is the genus word of this passage.
+GENUS WORD (corrected 2026-09-14 against the p. 89 page image; the Definition 5 label and the "adopted" sentence confirmed on the page by Shingai Thornton the same evening). The passage says system₁. In this paper system₁ is Definition 5 (p. 89): "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", introduced with "the Mesarovic school ... from which the following definition is adopted" — a restatement of Mesarović & Takahara 1975 Def 1.1, entry 008 (scan candidate 4, graded PROP). The pointer therefore goes to 008, in the author's own words; it is not a lineage claim by the catalogue. The author's OWN definitions are Definition 4 (system_J, entry 014), Definition 9 (system₂, entry 015) and the synthetic Definition 21 (entry 012); none of them is the genus word of this passage.
 
 PRIMITIVES. environment, constraint-1 and part are reused (same words as existing entries); system-1 and metasystem are new. DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."""@en ;
     atlas:authorCaveat "(where E is understood to be similar to the constraint₁ C)" ;
@@ -1889,6 +1891,10 @@ atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@
 only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
 recognised as one person revising rather than two people agreeing."""@en .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 prim:set a skos:Concept ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1898,10 +1904,6 @@ prim:relation a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "relation"@en .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 cco:ont00000253 a owl:Class ;
     rdfs:label "Information Bearing Entity"@en ;

@@ -160,7 +160,7 @@
       "iri": "https://w3id.org/mathematical-systems/atlas/case/joslyn-machines-and-organisms",
       "id": "joslyn-machines-and-organisms",
       "label": "machines and organisms (Joslyn 1995, classical exemplars)",
-      "gloss": null,
+      "gloss": "Machines and organisms, named as the classical exemplars of systems in the paragraph that follows Definition 4.",
       "verbatim": "Classical exemplars of systems are machines and organisms.",
       "sourceLocation": "§2.1.1, p. 89, paragraph following Definition 4",
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
@@ -172,7 +172,7 @@
       "iri": "https://w3id.org/mathematical-systems/atlas/case/joslyn-lever",
       "id": "joslyn-lever",
       "label": "the lever: a board and a rock positioned so the rock is a fulcrum (Joslyn 1995)",
-      "gloss": null,
+      "gloss": "A board and a rock arranged so the rock is a fulcrum: a lever, whose lifting force is a property at a hierarchically distinct level and does not follow from the two considered as a collection.",
       "verbatim": "But when they are so positioned that the rock acts as a fulcrum to the board, then together they form a greater whole machine, a lever, which has properties at a hierarchically distinct level, here lifting force.",
       "sourceLocation": "§2.1.1, p. 89, paragraph following Definition 4",
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
@@ -261,8 +261,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "c877775+",
-    "repoCommit": "c877775+"
+    "atlasCommit": "61db51a+",
+    "repoCommit": "61db51a+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -1588,7 +1588,7 @@
         {
           "kind": "section",
           "title": "GENUS WORD",
-          "body": "(corrected 2026-09-14 against the p. 89 page image). The passage says system₁. In this paper system₁ is Definition 5 (p. 89): \"a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅\", introduced with \"the Mesarovic school ... from which the following definition is adopted\" — a restatement of Mesarović & Takahara 1975 Def 1.1, entry 008 (scan candidate 4, graded PROP). The pointer therefore goes to 008, in the author's own words; it is not a lineage claim by the catalogue. The author's OWN definitions are Definition 4 (system_J, entry 014), Definition 9 (system₂, entry 015) and the synthetic Definition 21 (entry 012); none of them is the genus word of this passage."
+          "body": "(corrected 2026-09-14 against the p. 89 page image; the Definition 5 label and the \"adopted\" sentence confirmed on the page by Shingai Thornton the same evening). The passage says system₁. In this paper system₁ is Definition 5 (p. 89): \"a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅\", introduced with \"the Mesarovic school ... from which the following definition is adopted\" — a restatement of Mesarović & Takahara 1975 Def 1.1, entry 008 (scan candidate 4, graded PROP). The pointer therefore goes to 008, in the author's own words; it is not a lineage claim by the catalogue. The author's OWN definitions are Definition 4 (system_J, entry 014), Definition 9 (system₂, entry 015) and the synthetic Definition 21 (entry 012); none of them is the genus word of this passage."
         },
         {
           "kind": "section",
@@ -1621,8 +1621,8 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/relation",
         "https://w3id.org/mathematical-systems/atlas/primitive/whole"
       ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
-      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 — not yet human-read",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 89 (PDF page 3) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed",
       "encodedOn": "2026-09-14",
       "formalisedAs": null,
       "kindRestriction": null,
@@ -1664,8 +1664,8 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/region",
         "https://w3id.org/mathematical-systems/atlas/primitive/space"
       ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
-      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 — not yet human-read",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 91 (PDF page 5) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed",
       "encodedOn": "2026-09-14",
       "formalisedAs": null,
       "kindRestriction": null,

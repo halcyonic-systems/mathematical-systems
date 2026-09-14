@@ -205,7 +205,7 @@ be the metasystem, with parts S and E, generated contingently on S.""" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
     rdfs:comment """WHY IT IS AN ENTRY AND A SPECIES. A metasystem is a system (it has parts S and E) of a stated kind: formed from a system and its environment. It is the form Definition 25 later takes as given ("Given a metasystem CS := ⟨C, O⟩"), so it is the genus of the control entries and a species of Definition 21. The species chain the catalogue records is 009 (control₂) → 013 (metasystem) → 012 (system).
 
-GENUS WORD (corrected 2026-09-14 against the p. 89 page image). The passage says system₁. In this paper system₁ is Definition 5 (p. 89): "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", introduced with "the Mesarovic school ... from which the following definition is adopted" — a restatement of Mesarović & Takahara 1975 Def 1.1, entry 008 (scan candidate 4, graded PROP). The pointer therefore goes to 008, in the author's own words; it is not a lineage claim by the catalogue. The author's OWN definitions are Definition 4 (system_J, entry 014), Definition 9 (system₂, entry 015) and the synthetic Definition 21 (entry 012); none of them is the genus word of this passage.
+GENUS WORD (corrected 2026-09-14 against the p. 89 page image; the Definition 5 label and the "adopted" sentence confirmed on the page by Shingai Thornton the same evening). The passage says system₁. In this paper system₁ is Definition 5 (p. 89): "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", introduced with "the Mesarovic school ... from which the following definition is adopted" — a restatement of Mesarović & Takahara 1975 Def 1.1, entry 008 (scan candidate 4, graded PROP). The pointer therefore goes to 008, in the author's own words; it is not a lineage claim by the catalogue. The author's OWN definitions are Definition 4 (system_J, entry 014), Definition 9 (system₂, entry 015) and the synthetic Definition 21 (entry 012); none of them is the genus word of this passage.
 
 PRIMITIVES. environment, constraint-1 and part are reused (same words as existing entries); system-1 and metasystem are new. DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."""@en .
 
@@ -236,8 +236,8 @@ Definition 4 (System_J) A system_J S is an entity which results from the enterin
                            prim:level ;
     atlas:admits case:joslyn-machines-and-organisms ,
                  case:joslyn-lever ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 89 (PDF page 3) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
     rdfs:comment """SCOPE. The author's own natural-language definition, subscript J, offered after Webster (Def. 1), Hall & Fagan (Def. 2) and Waelchli (Def. 3) and before the Mesarović-school system₁ (Def. 5) he adopts. Admitted on the Bertalanffy-1972 precedent (entry 004): prose, but sorted (parts, whole entity) with a fixed constitutive relation (entering into relation) and a condition (new properties at a hierarchically distinct level). The caveat is the author's own word "natural language".
 
@@ -248,6 +248,7 @@ DELIBERATELY NOT ASSERTED. No cco is-about. Primitives are lexical; "relation" a
 case:joslyn-machines-and-organisms
     a atlas:Example ;
     rdfs:label "machines and organisms (Joslyn 1995, classical exemplars)"@en ;
+    atlas:gloss "Machines and organisms, named as the classical exemplars of systems in the paragraph that follows Definition 4." ;
     atlas:verbatim "Classical exemplars of systems are machines and organisms." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
     atlas:evidenceCode atlas:MDU ;
@@ -257,6 +258,7 @@ case:joslyn-machines-and-organisms
 case:joslyn-lever
     a atlas:Example ;
     rdfs:label "the lever: a board and a rock positioned so the rock is a fulcrum (Joslyn 1995)"@en ;
+    atlas:gloss "A board and a rock arranged so the rock is a fulcrum: a lever, whose lifting force is a property at a hierarchically distinct level and does not follow from the two considered as a collection." ;
     atlas:verbatim "But when they are so positioned that the rock acts as a fulcrum to the board, then together they form a greater whole machine, a lever, which has properties at a hierarchically distinct level, here lifting force." ;
     atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
     atlas:evidenceCode atlas:MDU ;
@@ -277,8 +279,8 @@ Definition 9 (System₂) A system₂ is a bounded region of some (perhaps abstra
                            prim:space ,
                            prim:bounded ,
                            prim:distinguishes ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 91 (PDF page 5) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
     rdfs:comment """SCOPE. The author's own constructivist-sense definition, offered after Gaines (Def. 8, "[that which] is distinguished as a system") and before Abbot & van Ness (Def. 10). Sorts: region, space; constraint: the boundary functionally and uniquely distinguishes the region. The paragraph before it fixes the sense of "functionally": "the act of drawing a distinction must necessarily be made with reference to and in the context of the system which makes or draws the distinction, usually a human subject. What that system chooses as significant can be called the function of the distinction." That is the observer's act stated inside the definition; a stance assertion (constitutive, in Gaines's and Klir's sense) is a candidate for the guided pass, not asserted here.
 
