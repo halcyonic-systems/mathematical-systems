@@ -175,6 +175,8 @@ ACCESSION = [
     "rosen-1978-system-triple",
     "joslyn-1995-system",
     "joslyn-1995-contingent-metasystem",
+    "joslyn-1995-system-j",
+    "joslyn-1995-system-2",
 ]
 
 

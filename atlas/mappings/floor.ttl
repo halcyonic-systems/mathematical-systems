@@ -135,3 +135,18 @@ entry:joslyn-1995-contingent-metasystem
     atlas:floorPosition   prim:system-1 ;
     atlas:floorDependency prim:generated-contingently-on .
 
+# ---- Joslyn 1995, Definition 4 (System_J) ---------------------------------------
+# "the entering into relation of multiple entities, called parts, to form the new
+# whole": parts are the position, entering into relation the dependency.
+entry:joslyn-1995-system-j
+    atlas:floorPosition   prim:part ;
+    atlas:floorDependency prim:relation .
+
+# ---- Joslyn 1995, Definition 9 (System₂) ----------------------------------------
+# "a bounded region of some space which functionally and uniquely distinguishes
+# it": the region is the position, being distinguished (by the boundary, in the
+# space) the dependency — the passage's own verb.
+entry:joslyn-1995-system-2
+    atlas:floorPosition   prim:region ;
+    atlas:floorDependency prim:distinguishes .
+

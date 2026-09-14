@@ -168,10 +168,10 @@ Definition 21 (System) A system is a cardinal distinction on a variety of dimens
     atlas:invokesPrimitive prim:cardinal-distinction ,
                            prim:dimensional-distinction ,
                            prim:variety ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 99 (PDF page 13) by Shingai Thornton 2026-09-14: Def 21 sentence, the ₁ subscripts on system and constraint, S′ and the angle brackets, and \"generated contingently on S\" all confirmed" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
-    rdfs:comment """WHY THIS IS THE GENUS ENTRY. The paper offers several system definitions: Definition 4 (p. 89, "my own natural language definition": an entity resulting from parts entering into relation, at a hierarchically distinct level), Definition 9 (p. 91, system₂: a bounded region of a space functionally and uniquely distinguished), and Definition 21, which the author introduces as the point he "arrives at" — "a synthetic definition of system in terms of distinctions, variety, and constraint." The catalogue takes the author's own word "synthetic" and the position of the definition (the close of §2, before control is introduced) as marking it the definition proper. Definitions 4 and 9 are include-graded candidates (scan candidates 3 and 6) still to be ruled on at the guided pass: one entry per distinct definitional claim may yet make them entries 014/015.
+    rdfs:comment """WHY THIS IS THE SYNTHETIC ENTRY. The paper offers three definitions of the author's own: Definition 4 (p. 89, system_J, "my own natural language definition": an entity resulting from parts entering into relation, at a hierarchically distinct level — entry 014), Definition 9 (p. 91, system₂: a bounded region of a space functionally and uniquely distinguished — entry 015), and Definition 21, which he introduces as the point he "arrives at": "a synthetic definition of system in terms of distinctions, variety, and constraint." §2.6 says both kinds of distinction "are clearly required for systems formation": repeated dimensional distinction-making builds "a complex, multi-dimensional universe of discourse (set of qualitatively distinct parts) on which cardinal distinctions can then be made". So 21 = a system₂-type act (a cardinal distinction, a boundary) made on a system_J-type universe (qualitatively distinct parts). Three entries, one author, as with Bunge's two; ruled by Shingai Thornton 2026-09-14. The paper's other labelled definitions (1 Webster, 2 Hall & Fagan, 3 Waelchli, 5 Mesarović = system₁, 8 Gaines, 10 Abbot & van Ness) are restatements of others and are not entries.
 
 PARTS, NOT ENTRIES. Definitions 19 (cardinal distinction: "a constraint₂ which creates a system₁", p. 95) and 20 (dimensional distinction, p. 95) define the definition's two primitives and enter the scheme with those sentences.
 
@@ -192,19 +192,96 @@ S′ := ⟨S, E⟩
 be the metasystem, with parts S and E, generated contingently on S.""" ;
     atlas:displayContext """In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.""" ;
     atlas:authorCaveat """(where E is understood to be similar to the constraint₁ C)""" ;
-    atlas:speciesOf entry:joslyn-1995-system ;
-    atlas:kindRestriction "metasystem: the pair ⟨S, E⟩ of a system₁ and its environment, generated contingently on S; genus word in the passage: system₁ — the catalogue points at Definition 21, the paper's synthetic definition proper, as the genus entry" ;
+    atlas:speciesOf entry:mesarovic-takahara-1975-general-system ;
+    atlas:kindRestriction "metasystem: the pair ⟨S, E⟩ of a system₁ and its environment, generated contingently on S; genus word in the passage: system₁ = Definition 5 (p. 89), which the author adopts from the Mesarović school (graded a restatement of entry 008), so the genus pointer is Mesarović's Definition 1.1" ;
     atlas:invokesPrimitive prim:system-1 ,
                            prim:environment ,
                            prim:constraint-1 ,
                            prim:part ,
                            prim:generated-contingently-on ,
                            prim:metasystem ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 99 (PDF page 13) by Shingai Thornton 2026-09-14: Def 21 sentence, the ₁ subscripts on system and constraint, S′ and the angle brackets, and \"generated contingently on S\" all confirmed" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
     rdfs:comment """WHY IT IS AN ENTRY AND A SPECIES. A metasystem is a system (it has parts S and E) of a stated kind: formed from a system and its environment. It is the form Definition 25 later takes as given ("Given a metasystem CS := ⟨C, O⟩"), so it is the genus of the control entries and a species of Definition 21. The species chain the catalogue records is 009 (control₂) → 013 (metasystem) → 012 (system).
 
-GENUS WORD. The passage says system₁, the subscripted classical sense, not the synthetic "system" of Definition 21. The pointer to 012 is the catalogue's choice (Definition 21 is the definition proper the author arrives at); if Definition 4 or 9 is later accessioned as system₁ the pointer should move. Recorded so the choice is visible, not silent.
+GENUS WORD (corrected 2026-09-14 against the p. 89 page image). The passage says system₁. In this paper system₁ is Definition 5 (p. 89): "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", introduced with "the Mesarovic school ... from which the following definition is adopted" — a restatement of Mesarović & Takahara 1975 Def 1.1, entry 008 (scan candidate 4, graded PROP). The pointer therefore goes to 008, in the author's own words; it is not a lineage claim by the catalogue. The author's OWN definitions are Definition 4 (system_J, entry 014), Definition 9 (system₂, entry 015) and the synthetic Definition 21 (entry 012); none of them is the genus word of this passage.
 
 PRIMITIVES. environment, constraint-1 and part are reused (same words as existing entries); system-1 and metasystem are new. DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."""@en .
+
+
+##############################################################################
+# Entries 014 and 015 — the author's two senses: system_J (Definition 4) and
+# system₂ (Definition 9). Accessioned 2026-09-14 at MDU on Shingai Thornton's
+# ruling; verbatims from the page images (pp. 89, 91), the pipeline's OCR
+# verbatims having carried "System.)", "5 is", "resultsfromthe", "¿5".
+##############################################################################
+
+entry:joslyn-1995-system-j
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §2.1.1, Definition 4 (System_J), p. 89"@en ;
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:sourceLocation """§2.1.1 The Classical or Structuralist View, Definition 4, p. 89 (page-image transcription section)""" ;
+    atlas:verbatim """To these I will add my own natural language definition:
+
+Definition 4 (System_J) A system_J S is an entity which results from the entering into relation of multiple entities, called parts, to form the new whole entity S with new properties at a level hierarchically distinct from those parts.""" ;
+    atlas:displayForm """A system_J S is an entity which results from the entering into relation of multiple entities, called parts, to form the new whole entity S with new properties at a level hierarchically distinct from those parts.""" ;
+    atlas:displayContext """To these I will add my own natural language definition:""" ;
+    atlas:authorCaveat """To these I will add my own natural language definition:""" ;
+    atlas:invokesPrimitive prim:entity ,
+                           prim:relation ,
+                           prim:part ,
+                           prim:whole ,
+                           prim:property ,
+                           prim:level ;
+    atlas:admits case:joslyn-machines-and-organisms ,
+                 case:joslyn-lever ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    rdfs:comment """SCOPE. The author's own natural-language definition, subscript J, offered after Webster (Def. 1), Hall & Fagan (Def. 2) and Waelchli (Def. 3) and before the Mesarović-school system₁ (Def. 5) he adopts. Admitted on the Bertalanffy-1972 precedent (entry 004): prose, but sorted (parts, whole entity) with a fixed constitutive relation (entering into relation) and a condition (new properties at a hierarchically distinct level). The caveat is the author's own word "natural language".
+
+CASES. Two admitted, from the paragraph that follows: "machines and organisms" as classical exemplars, and the lever (a board and a rock so positioned that the rock is a fulcrum), with the author's own reason — the lifting force "does not follow from considering the rock and board simply together as a collection." The collection-without-arrangement is NOT encoded as a refusal: he does not say it is not a system, only that the lever's properties do not follow from it.
+
+DELIBERATELY NOT ASSERTED. No cco is-about. Primitives are lexical; "relation" and "part" reuse existing slugs because the words are the same."""@en .
+
+case:joslyn-machines-and-organisms
+    a atlas:Example ;
+    rdfs:label "machines and organisms (Joslyn 1995, classical exemplars)"@en ;
+    atlas:verbatim "Classical exemplars of systems are machines and organisms." ;
+    atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date .
+
+case:joslyn-lever
+    a atlas:Example ;
+    rdfs:label "the lever: a board and a rock positioned so the rock is a fulcrum (Joslyn 1995)"@en ;
+    atlas:verbatim "But when they are so positioned that the rock acts as a fulcrum to the board, then together they form a greater whole machine, a lever, which has properties at a hierarchically distinct level, here lifting force." ;
+    atlas:sourceLocation "§2.1.1, p. 89, paragraph following Definition 4" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-fable-5-1 from the page image, 2026-09-14" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date .
+
+entry:joslyn-1995-system-2
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §2.1.2, Definition 9 (System₂), p. 91"@en ;
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:sourceLocation """§2.1.2 The Constructivist or Functionalist View, Definition 9, p. 91 (page-image transcription section)""" ;
+    atlas:verbatim """I offer the following definition.
+
+Definition 9 (System₂) A system₂ is a bounded region of some (perhaps abstract) space which functionally and uniquely distinguishes it.""" ;
+    atlas:displayForm """A system₂ is a bounded region of some (perhaps abstract) space which functionally and uniquely distinguishes it.""" ;
+    atlas:displayContext """I offer the following definition.""" ;
+    atlas:invokesPrimitive prim:region ,
+                           prim:space ,
+                           prim:bounded ,
+                           prim:distinguishes ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    rdfs:comment """SCOPE. The author's own constructivist-sense definition, offered after Gaines (Def. 8, "[that which] is distinguished as a system") and before Abbot & van Ness (Def. 10). Sorts: region, space; constraint: the boundary functionally and uniquely distinguishes the region. The paragraph before it fixes the sense of "functionally": "the act of drawing a distinction must necessarily be made with reference to and in the context of the system which makes or draws the distinction, usually a human subject. What that system chooses as significant can be called the function of the distinction." That is the observer's act stated inside the definition; a stance assertion (constitutive, in Gaines's and Klir's sense) is a candidate for the guided pass, not asserted here.
+
+CASES. None ruled at this locus; the lever recurs as an illustration of the functional distinction ("all those entities which can act as levers") but is not offered as a system₂.
+
+DELIBERATELY NOT ASSERTED. No cco is-about."""@en .

@@ -768,7 +768,7 @@ prim:system-1 a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:broader role:sort ;
     skos:prefLabel "system₁"@en ;
-    skos:scopeNote """Joslyn 1995's subscripted first sense of system (the classical, part-whole sense; Definition 4 p. 89 is the natural-language form and Definition 19 says a cardinal distinction "creates a system₁"). Definition 22 is stated over a system₁. [MDU; role proposal: sort]"""@en .
+    skos:scopeNote """Joslyn 1995's subscripted classical sense: Definition 5 (p. 89), "a system₁ S is any relation in X, so that S ⊆ X, S ≠ ∅", adopted from the Mesarović school (a restatement of entry 008). Definition 19 says a cardinal distinction "creates a system₁"; Definition 22 is stated over a system₁. Not the author's own system_J (Definition 4). [MDU; role proposal: sort]"""@en .
 
 prim:generated-contingently-on a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -781,6 +781,56 @@ prim:metasystem a skos:Concept ;
     skos:broader role:sort ;
     skos:prefLabel "metasystem"@en ;
     skos:scopeNote """Joslyn 1995 Definition 22: S′ := ⟨S, E⟩, "the metasystem, with parts S and E, generated contingently on S". Also the genus word of Definition 25 ("Given a metasystem CS := ⟨C, O⟩"). [MDU; role proposal: sort]"""@en .
+
+
+# Joslyn 1995, Definitions 4 and 9 — minted 2026-09-14 at MDU; roles are proposals.
+prim:entity a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "entity"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 4: a system_J "is an entity which results from the entering into relation of multiple entities, called parts" — the sort of both the whole and the parts. [MDU; role proposal: sort]"""@en .
+
+prim:whole a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "whole"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 4: "the new whole entity S". [MDU; role proposal: sort]"""@en .
+
+prim:property a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "property"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 4: "new properties at a level hierarchically distinct from those parts". [MDU; role proposal: sort]"""@en .
+
+prim:level a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "level"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 4: "a level hierarchically distinct from those parts". Kept distinct from prim:level-of-organization (Mobus's word). [MDU; role proposal: sort]"""@en .
+
+prim:region a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "region"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 9: a system₂ "is a bounded region of some (perhaps abstract) space". [MDU; role proposal: sort]"""@en .
+
+prim:space a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "space"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 9: "some (perhaps abstract) space" the region is bounded in. [MDU; role proposal: sort]"""@en .
+
+prim:bounded a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:relation ;
+    skos:prefLabel "bounded"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 9: "a bounded region" — the boundary that the distinguishing act draws. [MDU; role proposal: relation]"""@en .
+
+prim:distinguishes a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:relation ;
+    skos:prefLabel "distinguishes"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 9: the space "functionally and uniquely distinguishes" the region; "functionally" fixed on the same page as: what the distinguishing system "chooses as significant can be called the function of the distinction". [MDU; role proposal: relation]"""@en .
 
 
 ##############################################################################
