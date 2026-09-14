@@ -794,6 +794,13 @@ atlas:constitutive a skos:Concept ;
     skos:prefLabel "constitutive"@en ;
     skos:scopeNote "Distinguishing is necessary and sufficient for systemhood. Klir's criterion: an object is a system iff it CAN BE DESCRIBED in a form conforming to eq. (1.1)."@en .
 
+# Minted 2026-09-14 with its first user (Rosen 1978, entry 010), per the rule
+# that values enter only with a user.
+atlas:interactional a skos:Concept ;
+    skos:inScheme atlas:ObserverRoleScheme ;
+    skos:prefLabel "interactional"@en ;
+    skos:scopeNote "The observer's act is a physical interaction — a meter is a system the observed system induces a dynamics in — and the interaction DETERMINES which observables and which analytic units are visible; they do not pre-exist it. Rosen 1978 §5.1 (p. 95): each mode of interaction 'and each set of meters chosen for observing it, determines a set of corresponding \"natural\" analytic units'. Not constitutive: the natural system is prior and undefined, so the act confers no systemhood. Not merely selective: it does not pick a system already cut. Both of those read as special cases — a descriptive interaction (Klir), a designating one (Mobus)."@en .
+
 
 ##############################################################################
 # Mapping claims — the relation vocabulary, minted 2026-08-07 from the pattern

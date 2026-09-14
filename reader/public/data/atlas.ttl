@@ -546,7 +546,8 @@ The verbatim follows the human-flagged page-image transcription of book p. 54 (s
     atlas:evidenceCode atlas:MDHC ;
     atlas:floorDependency prim:real-valued-mapping ;
     atlas:floorPosition prim:set ;
-    atlas:hasStance stance:rosen-1978-ontic ;
+    atlas:hasStance stance:rosen-1978-observer,
+        stance:rosen-1978-ontic ;
     atlas:invokesPrimitive prim:element,
         prim:family,
         prim:observable,
@@ -743,10 +744,6 @@ obo:BFO_0000040 a owl:Class ;
     rdfs:label "material entity"@en ;
     rdfs:subClassOf obo:BFO_0000004 ;
     skos:definition "(Elucidation) A material entity is an independent continuant has some portion of matter as continuant part"@en .
-
-atlas:ObserverRoleScheme a skos:ConceptScheme ;
-    rdfs:label "The observer's act"@en ;
-    skos:definition "What drawing the boundary does, on the entry's own account. NOT a proxy for the ontic axis: Klir's act is constitutive because of his ontology, but Mobus's is selective while his ontology is realist, so the second column cannot be read off the first."@en .
 
 atlas:RetiredTerm a owl:Class ;
     rdfs:label "Retired Term"@en ;
@@ -1042,6 +1039,11 @@ phrasings of one claim and must not be merged."""@en ;
     atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
     atlas:verbatim "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things." .
 
+atlas:interactional a skos:Concept ;
+    skos:inScheme atlas:ObserverRoleScheme ;
+    skos:prefLabel "interactional"@en ;
+    skos:scopeNote "The observer's act is a physical interaction — a meter is a system the observed system induces a dynamics in — and the interaction DETERMINES which observables and which analytic units are visible; they do not pre-exist it. Rosen 1978 §5.1 (p. 95): each mode of interaction 'and each set of meters chosen for observing it, determines a set of corresponding \"natural\" analytic units'. Not constitutive: the natural system is prior and undefined, so the act confers no systemhood. Not merely selective: it does not pick a system already cut. Both of those read as special cases — a descriptive interaction (Klir), a designating one (Mobus)."@en .
+
 atlas:no-faithful-embedding-into a skos:Concept ;
     skos:inScheme atlas:RelationScheme ;
     skos:prefLabel "admits no faithful embedding into"@en ;
@@ -1259,6 +1261,15 @@ source."""@en ;
     atlas:stanceValue atlas:constructivist-about-systemhood ;
     atlas:verbatim "we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities" .
 
+stance:rosen-1978-observer a atlas:StanceAssertion ;
+    rdfs:comment "THE VALUE WAS MINTED FOR THIS ENTRY (2026-09-14). Neither existing value fit, and the reason is in the text: the act is an interaction, and the interaction determines the analytic units rather than conferring systemhood (Klir) or selecting a pre-cut system (Mobus). Same sentence continues: \"Results of this type are of great significance in physics and biology, for they directly contradict the prevailing reductionistic ideas that there do exist universal analytic units\". Read with the ontic assertion above: perspectivist on what exists, interactional on what the observer's act does — the cell Bertalanffy's row still leaves empty on the second axis, filled here by an author who names the act as physical."@en ;
+    atlas:encodedBy "claude-fable-5-1, 2026-09-14, on Shingai Thornton's ruling to mint the value; verbatim page-image read by Claude only" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:sourceLocation "§5.1, book p. 95 (scan page 113)" ;
+    atlas:stanceValue atlas:interactional ;
+    atlas:verbatim "each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding “natural” analytic units" .
+
 stance:rosen-1978-ontic a atlas:StanceAssertion ;
     rdfs:comment """WHY PERSPECTIVIST AND NOT REALIST OR CONSTRUCTIVIST. Both halves of the scheme's scope note are in the text. Reality is real: §2.1 (p. 26, page-verified) glosses the undefined term system as "some part of the real world which comprises our object of study", and the Introduction (p. xii) says "all observables possess the same degree of physical reality". Access is perspectival and no perspective is privileged: the quoted conclusion, and p. xii, "what you see depends on how you look at things". The 1986 paper (IJGS 13; Facets reprint) adds that systemhood is "an independent category", reducible neither to thinghood nor to set-ness, and rejects reductionism and holism together — a foundations claim, not a retraction of Definition 2.9.1, which scopes itself to the FORMAL system ("A system (or formal system)"; "observables of the formal system") while the natural system stays undefined.
 
@@ -1288,6 +1299,10 @@ obo:BFO_0000002 a owl:Class ;
     rdfs:label "continuant"@en ;
     rdfs:subClassOf obo:BFO_0000001 ;
     skos:definition "(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity"@en .
+
+atlas:ObserverRoleScheme a skos:ConceptScheme ;
+    rdfs:label "The observer's act"@en ;
+    skos:definition "What drawing the boundary does, on the entry's own account. NOT a proxy for the ontic axis: Klir's act is constitutive because of his ontology, but Mobus's is selective while his ontology is realist, so the second column cannot be read off the first."@en .
 
 atlas:OnticStanceScheme a skos:ConceptScheme ;
     rdfs:label "Ontic stance"@en ;

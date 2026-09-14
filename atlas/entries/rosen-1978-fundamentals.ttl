@@ -130,7 +130,7 @@ CASES. None offered, none refused."""@en .
 
 @prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
 
-entry:rosen-1978-formal-system atlas:hasStance stance:rosen-1978-ontic .
+entry:rosen-1978-formal-system atlas:hasStance stance:rosen-1978-ontic , stance:rosen-1978-observer .
 
 stance:rosen-1978-ontic
     a atlas:StanceAssertion ;
@@ -147,3 +147,14 @@ HOW IT DIFFERS FROM BERTALANFFY'S CELL. Bertalanffy locates the perspective in a
 OBSERVER AXIS — QUEUED, NOT ASSERTED. Neither existing value fits. Not constitutive (Klir): describability does not confer systemhood; the natural system is prior and undefined. Not merely selective (Mobus): the meter's interaction does not pick a pre-cut system, it determines which observables and which analytic units are visible ("each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding 'natural' analytic units", §5.1 p. 95, page-verified). A value such as "interactional" or "revelatory" would be a new concept in ObserverRoleScheme and needs a ruling before minting, per the scheme's rule that values enter only with a user.
 
 Reading is Claude's, from the sources named; Shingai Thornton's stated position (2026-09-13) is that this placement matters for the census because his own scientific stance is Bertalanffian rather than Klirian."""@en .
+
+stance:rosen-1978-observer
+    a atlas:StanceAssertion ;
+    atlas:stanceValue atlas:interactional ;
+    atlas:verbatim "each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding “natural” analytic units" ;
+    atlas:sourceLocation "§5.1, book p. 95 (scan page 113)" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-fable-5-1, 2026-09-14, on Shingai Thornton's ruling to mint the value; verbatim page-image read by Claude only" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    rdfs:comment """THE VALUE WAS MINTED FOR THIS ENTRY (2026-09-14). Neither existing value fit, and the reason is in the text: the act is an interaction, and the interaction determines the analytic units rather than conferring systemhood (Klir) or selecting a pre-cut system (Mobus). Same sentence continues: "Results of this type are of great significance in physics and biology, for they directly contradict the prevailing reductionistic ideas that there do exist universal analytic units". Read with the ontic assertion above: perspectivist on what exists, interactional on what the observer's act does — the cell Bertalanffy's row still leaves empty on the second axis, filled here by an author who names the act as physical."""@en .
+
