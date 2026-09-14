@@ -110,3 +110,29 @@ prim:reduced-state a skos:Concept ;
     skos:broader role:sort ;
     skos:prefLabel "reduced state"@en ;
     skos:scopeNote """Used in the immediate gloss: to each formal system is uniquely associated "a set of reduced states S/R_F", carried over from the preceding sections. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+
+
+##############################################################################
+# Stance (P3). MDU draft, 2026-09-13. One assertion on the ontic axis; the
+# observer axis is a queued ruling, not an assertion (see comment).
+##############################################################################
+
+@prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
+
+entry:rosen-1978-formal-system atlas:hasStance stance:rosen-1978-ontic .
+
+stance:rosen-1978-ontic
+    a atlas:StanceAssertion ;
+    atlas:stanceValue atlas:perspectivist ;
+    atlas:verbatim "there exists no universal family of analytic units appropriate for the treatment of all interactions; (2) there are on the contrary many such families of analytic units, all of which are equally “real” and entitled to be treated on the same footing" ;
+    atlas:sourceLocation "Introduction, book p. xvii (scan page 16), the four stated conclusions" ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-fable-5-1, drafted 2026-09-13 from the full 1978 read plus Anticipatory Systems §2.1–2.3 (OCR) and the 1986 IJGS paper — UNCHECKED; the verbatim is OCR text not yet read against the page image" ;
+    atlas:encodedOn "2026-09-13"^^xsd:date ;
+    rdfs:comment """WHY PERSPECTIVIST AND NOT REALIST OR CONSTRUCTIVIST. Both halves of the scheme's scope note are in the text. Reality is real: §2.1 (p. 26, page-verified) glosses the undefined term system as "some part of the real world which comprises our object of study", and the Introduction (p. xii) says "all observables possess the same degree of physical reality". Access is perspectival and no perspective is privileged: the quoted conclusion, and p. xii, "what you see depends on how you look at things". The 1986 paper (IJGS 13; Facets reprint) adds that systemhood is "an independent category", reducible neither to thinghood nor to set-ness, and rejects reductionism and holism together — a foundations claim, not a retraction of Definition 2.9.1, which scopes itself to the FORMAL system ("A system (or formal system)"; "observables of the formal system") while the natural system stays undefined.
+
+HOW IT DIFFERS FROM BERTALANFFY'S CELL. Bertalanffy locates the perspective in an organism's evolved categories of experience (GST ch. 10: the a priori forms are "organic functions, based upon corporeal and even machine-like structures of the sense organs and the nervous system"), isomorphic to reality within tolerance. Rosen locates it in ANY interaction: a perspective is a meter, and a meter is any system in which the observed system induces a dynamics (§2.2; Introduction p. xii, the second cell "looking at the first through quite different eyes"). Bertalanffy's categories are a special case of Rosen's meters. Same ontic value, wider carrier; recorded here so the census can see the difference rather than the label.
+
+OBSERVER AXIS — QUEUED, NOT ASSERTED. Neither existing value fits. Not constitutive (Klir): describability does not confer systemhood; the natural system is prior and undefined. Not merely selective (Mobus): the meter's interaction does not pick a pre-cut system, it determines which observables and which analytic units are visible ("each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding 'natural' analytic units", §5.1 p. 95, page-verified). A value such as "interactional" or "revelatory" would be a new concept in ObserverRoleScheme and needs a ruling before minting, per the scheme's rule that values enter only with a user.
+
+Reading is Claude's, from the sources named; Shingai Thornton's stated position (2026-09-13) is that this placement matters for the census because his own scientific stance is Bertalanffian rather than Klirian."""@en .
