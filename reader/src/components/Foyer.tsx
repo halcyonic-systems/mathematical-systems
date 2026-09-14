@@ -206,6 +206,13 @@ export function Shelf({
                   {year && defs.length > 1 && (
                     <span className="shelf-def-year eyebrow">{year}</span>
                   )}
+                  {e.kindRestriction && (
+                    // A species is never shown as a genus: the mark is the held
+                    // ruling's second condition, made visible where the quote is.
+                    <span className="shelf-def-kind eyebrow" title={e.kindRestriction}>
+                      a kind of system
+                    </span>
+                  )}
                   <blockquote className={displayClass(display)}>
                     {display ?? "No verbatim recorded."}
                   </blockquote>

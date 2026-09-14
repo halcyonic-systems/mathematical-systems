@@ -203,6 +203,12 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
         }
       >
         <Passage text={entry.verbatim} />
+        {entry.kindRestriction && (
+          <Note kind="finding" title="Defines a kind of system, not system">
+            {entry.kindRestriction +
+              (entry.speciesOf ? ` Genus entry: ${entry.speciesOf.split("/").pop()}.` : "")}
+          </Note>
+        )}
         {entry.authorCaveat && (
           <Note kind="finding" title="The author's own caveat">
             {entry.authorCaveat}

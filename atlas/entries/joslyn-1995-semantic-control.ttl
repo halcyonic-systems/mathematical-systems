@@ -67,11 +67,13 @@ entry:joslyn-1995-control2
                  case:boiling-liquid ,
                  case:spinning-top ;
     atlas:formalisedAs "Systems/Category/ShapeJoslyn.lean#JoslynShape" ;
+    atlas:speciesOf entry:joslyn-1995-contingent-metasystem ;
+    atlas:kindRestriction "control₂ system: a control₁ system (Def. 25, Turchin's) whose induced constraint₁ is itself constrained₂; genus word in the passage: control₁ system, which Def. 25 states over a metasystem ⟨C, O⟩" ;
     atlas:evidenceCode atlas:MDHC ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-27" ;
     atlas:encodedOn "2026-08-27"^^xsd:date ;
 
-    rdfs:comment """DEFINIENDUM (recorded 2026-09-14, Shingai Thornton's observation). Definition 28 defines a KIND of system, control₂, not "system". It is stated over a control₁ system (Definition 25), which is itself stated over "a metasystem CS := ⟨C, O⟩" (p. 101) taken from Turchin and left primitive: the paper defines no system concept of its own and does not claim to. The entry is therefore in the catalogue under the spec's qualified-variant clause (a term the author treats as their system concept), and its floor position is control-1-system for exactly this reason — the definition's thing-side role is a prior system, not things. Any mapping from this entry to a definition of "system" (Klir, Bunge, Rosen) compares a definition of a system-kind with a definition of system, and must say so. The author's own 1986-adjacent point (Rosen; Penland 2026 in conversation) that "system" is rarely used without an adjective applies here in his favour: control₂ is the adjective.
+    rdfs:comment """DEFINIENDUM (recorded 2026-09-14, Shingai Thornton's observation; corrected the same evening). Definition 28 defines a KIND of system, control₂, not "system". It is stated over a control₁ system (Definition 25, itself Turchin's), which is stated over "a metasystem CS := ⟨C, O⟩" (p. 101). The paper DOES define system — Definition 21 (p. 99), "A system is a cardinal distinction on a variety of dimensional distinctions", now entry 012 — and the metasystem, Definition 22 (p. 99), now entry 013. For eighteen days the catalogue carried the species and not the genus, which is exactly the misrepresentation the spec's held ruling of 2026-08-21 (kind-of-system definitions admitted only with a pointer to the genus) exists to prevent. Repaired: this entry now carries atlas:speciesOf → entry 013 and atlas:kindRestriction, the shelf marks it as a kind, and its floor position control-1-system is read as what it always was — a prior system as the thing-side role. Any mapping from this entry to a definition of "system" compares a species with a genus and must say so.
 
 GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction, and REMAIN MDU: the operator verified the definition pages, not the three case pages. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
 
@@ -144,3 +146,65 @@ case:spinning-top
     atlas:evidenceCode atlas:MDU ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
     atlas:encodedOn "2026-08-26"^^xsd:date .
+
+
+##############################################################################
+# Entries 012 and 013 — the genus (Definition 21) and the metasystem (Definition 22),
+# accessioned 2026-09-14 at MDU. Drafted by the P5 pipeline; verbatims replaced by
+# the page-image transcription (p. 99, image read by Claude the same day; the
+# pipeline's OCR-body verbatims carried "systemj", "constraint¡", "(S, E)").
+##############################################################################
+
+entry:joslyn-1995-system
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §2.6, Definition 21 (System), p. 99"@en ;
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:sourceLocation """§2.6 The Synthetic View, Definition 21, p. 99 (page-image transcription section)""" ;
+    atlas:verbatim """Thus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint.
+
+Definition 21 (System) A system is a cardinal distinction on a variety of dimensional distinctions.""" ;
+    atlas:displayForm """A system is a cardinal distinction on a variety of dimensional distinctions.""" ;
+    atlas:displayContext """Thus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint.""" ;
+    atlas:invokesPrimitive prim:cardinal-distinction ,
+                           prim:dimensional-distinction ,
+                           prim:variety ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    rdfs:comment """WHY THIS IS THE GENUS ENTRY. The paper offers several system definitions: Definition 4 (p. 89, "my own natural language definition": an entity resulting from parts entering into relation, at a hierarchically distinct level), Definition 9 (p. 91, system₂: a bounded region of a space functionally and uniquely distinguished), and Definition 21, which the author introduces as the point he "arrives at" — "a synthetic definition of system in terms of distinctions, variety, and constraint." The catalogue takes the author's own word "synthetic" and the position of the definition (the close of §2, before control is introduced) as marking it the definition proper. Definitions 4 and 9 are include-graded candidates (scan candidates 3 and 6) still to be ruled on at the guided pass: one entry per distinct definitional claim may yet make them entries 014/015.
+
+PARTS, NOT ENTRIES. Definitions 19 (cardinal distinction: "a constraint₂ which creates a system₁", p. 95) and 20 (dimensional distinction, p. 95) define the definition's two primitives and enter the scheme with those sentences.
+
+DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."""@en .
+
+entry:joslyn-1995-contingent-metasystem
+    a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §2.7.1, Definition 22 (Contingent Metasystem), p. 99"@en ;
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:sourceLocation """§2.7.1 Contingent Metasystems, Definition 22, p. 99 (page-image transcription section)""" ;
+    atlas:verbatim """Definition 22 (Contingent Metasystem) Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let
+S′ := ⟨S, E⟩
+be the metasystem, with parts S and E, generated contingently on S.
+
+This point is driven home particularly in the case of simple distinctions, but it also holds in general. In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.""" ;
+    atlas:displayForm """Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let
+S′ := ⟨S, E⟩
+be the metasystem, with parts S and E, generated contingently on S.""" ;
+    atlas:displayContext """In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.""" ;
+    atlas:authorCaveat """(where E is understood to be similar to the constraint₁ C)""" ;
+    atlas:speciesOf entry:joslyn-1995-system ;
+    atlas:kindRestriction "metasystem: the pair ⟨S, E⟩ of a system₁ and its environment, generated contingently on S; genus word in the passage: system₁ — the catalogue points at Definition 21, the paper's synthetic definition proper, as the genus entry" ;
+    atlas:invokesPrimitive prim:system-1 ,
+                           prim:environment ,
+                           prim:constraint-1 ,
+                           prim:part ,
+                           prim:generated-contingently-on ,
+                           prim:metasystem ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    rdfs:comment """WHY IT IS AN ENTRY AND A SPECIES. A metasystem is a system (it has parts S and E) of a stated kind: formed from a system and its environment. It is the form Definition 25 later takes as given ("Given a metasystem CS := ⟨C, O⟩"), so it is the genus of the control entries and a species of Definition 21. The species chain the catalogue records is 009 (control₂) → 013 (metasystem) → 012 (system).
+
+GENUS WORD. The passage says system₁, the subscripted classical sense, not the synthetic "system" of Definition 21. The pointer to 012 is the catalogue's choice (Definition 21 is the definition proper the author arrives at); if Definition 4 or 9 is later accessioned as system₁ the pointer should move. Recorded so the choice is visible, not silent.
+
+PRIMITIVES. environment, constraint-1 and part are reused (same words as existing entries); system-1 and metasystem are new. DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."""@en .

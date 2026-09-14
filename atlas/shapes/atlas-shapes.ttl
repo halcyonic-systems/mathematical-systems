@@ -341,3 +341,21 @@ atlas:MappingClaimShape
         sh:in ( atlas:HVP atlas:MDHC atlas:MDU atlas:PROP ) ;
         sh:message "Every mapping claim carries exactly one evidence code of its own." ;
     ] .
+
+##############################################################################
+# Species entries (spec §5, held 2026-08-21; implemented 2026-09-14): a kind-of-
+# system definition must point at the entry standing for its genus. A kind
+# restriction without a genus pointer is the state entry 009 was in for
+# eighteen days — a species displayed as a genus — and is refused.
+##############################################################################
+atlas:SpeciesEntryShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf atlas:kindRestriction ;
+    sh:class atlas:FormalSystemDefinition ;
+    sh:property [
+        sh:path atlas:speciesOf ;
+        sh:minCount 1 ;
+        sh:class atlas:FormalSystemDefinition ;
+        sh:message "An entry that declares a kind restriction must name the entry standing for its genus (atlas:speciesOf). A species shown without its genus reads as a definition of system, which is the misrepresentation the held ruling exists to prevent." ;
+    ] .
+

@@ -116,3 +116,22 @@ entry:rosen-1978-formal-system
 entry:rosen-1978-system-triple
     atlas:floorPosition   prim:state ;
     atlas:floorDependency prim:observable .
+
+# ---- Joslyn 1995, Definition 21 (System) --------------------------------------
+# "a cardinal distinction ON a variety of dimensional distinctions": the
+# dimensional distinctions are the position (the universe of discourse the
+# system is made on), the cardinal distinction the dependency (made on them).
+# Declared 2026-09-14 with the entry at MDU; re-examine at the guided pass.
+entry:joslyn-1995-system
+    atlas:floorPosition   prim:dimensional-distinction ;
+    atlas:floorDependency prim:cardinal-distinction .
+
+# ---- Joslyn 1995, Definition 22 (Contingent Metasystem) ------------------------
+# The pair ⟨S, E⟩: position = the system₁ (the thing the metasystem is generated
+# contingently on); the dependency is the passage's own phrase, "generated
+# contingently on S", minted as a lexical primitive rather than declared
+# shape-level (no ShapeJoslynMeta.lean exists to bridge to).
+entry:joslyn-1995-contingent-metasystem
+    atlas:floorPosition   prim:system-1 ;
+    atlas:floorDependency prim:generated-contingently-on .
+

@@ -259,6 +259,17 @@ atlas:encodedOn
     a owl:AnnotationProperty ;
     rdfs:label "encoded on"@en .
 
+
+atlas:speciesOf
+    a owl:ObjectProperty ;
+    rdfs:label "species of"@en ;
+    skos:definition "This entry defines a KIND of system (a species) over a genus that another entry defines. Implements the spec §5 held ruling of 2026-08-21 (kind-of-system definitions admitted as precursor entries with a pointer to the genus). The pointer is the catalogue's choice of which entry stands for the genus, recorded with the passage's own genus word in atlas:kindRestriction; it is not a lineage claim."@en .
+
+atlas:kindRestriction
+    a owl:AnnotationProperty ;
+    rdfs:label "kind restriction"@en ;
+    skos:definition "For a species entry: the species word, the genus word the passage itself uses, and the restriction, in one line — e.g. 'control₂ system, over a control₁ system, over a metasystem ⟨C, O⟩; genus word: metasystem'. The build reads it; the shelf marks the entry as a kind."@en .
+
 atlas:formalisedAs
     a owl:AnnotationProperty ;
     rdfs:label "formalised as"@en ;
@@ -731,6 +742,45 @@ prim:triple a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "triple"@en ;
     skos:scopeNote """The composite form the author gives the system in this passage: a three-component object assembled from S, O and 𝒟. [MDU — drafted, unchecked; role proposal: unassigned]"""@en .
+
+
+# Joslyn 1995, Definitions 21 and 22 — minted 2026-09-14 at MDU by the P5 draft;
+# roles are proposals until the guided pass.
+prim:cardinal-distinction a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:relation ;
+    skos:prefLabel "cardinal distinction"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 19 (p. 95): "A cardinal distinction is a constraint₂ which creates a system₁" — the distinction made ON an existing universe of discourse; Definition 21 makes a system one such distinction. [MDU — harvested from the page-image transcription; role proposal: relation]"""@en .
+
+prim:dimensional-distinction a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "dimensional distinction"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 20 (p. 95): "the recognition or designation of some property or entity irrespective of other existing dimensional distinctions" — the qualitative parts a cardinal distinction is made on. [MDU; role proposal: sort]"""@en .
+
+prim:variety a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "variety"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 21: "a variety of dimensional distinctions" — the collection (Ashby's word) the cardinal distinction is made on. Kept distinct from prim:variation (Def 28's word). [MDU; role proposal: sort]"""@en .
+
+prim:system-1 a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "system₁"@en ;
+    skos:scopeNote """Joslyn 1995's subscripted first sense of system (the classical, part-whole sense; Definition 4 p. 89 is the natural-language form and Definition 19 says a cardinal distinction "creates a system₁"). Definition 22 is stated over a system₁. [MDU; role proposal: sort]"""@en .
+
+prim:generated-contingently-on a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:relation ;
+    skos:prefLabel "generated contingently on"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 22: the metasystem S′ = ⟨S, E⟩ is "generated contingently on S" — the passage's own word for how the pair depends on the system it is formed around; the dependency of the floor arrow for entry 013, lexical. [MDU; role proposal: relation]"""@en .
+
+prim:metasystem a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "metasystem"@en ;
+    skos:scopeNote """Joslyn 1995 Definition 22: S′ := ⟨S, E⟩, "the metasystem, with parts S and E, generated contingently on S". Also the genus word of Definition 25 ("Given a metasystem CS := ⟨C, O⟩"). [MDU; role proposal: sort]"""@en .
 
 
 ##############################################################################

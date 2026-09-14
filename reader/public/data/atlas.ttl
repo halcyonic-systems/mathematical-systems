@@ -332,7 +332,9 @@ catalogue.""" ;
 
 entry:joslyn-1995-control2 a atlas:FormalSystemDefinition ;
     rdfs:label "Joslyn (1995), Semantic Control Systems, §3.3, Definition 28 (Control₂)"@en ;
-    rdfs:comment """GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction, and REMAIN MDU: the operator verified the definition pages, not the three case pages. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
+    rdfs:comment """DEFINIENDUM (recorded 2026-09-14, Shingai Thornton's observation; corrected the same evening). Definition 28 defines a KIND of system, control₂, not "system". It is stated over a control₁ system (Definition 25, itself Turchin's), which is stated over "a metasystem CS := ⟨C, O⟩" (p. 101). The paper DOES define system — Definition 21 (p. 99), "A system is a cardinal distinction on a variety of dimensional distinctions", now entry 012 — and the metasystem, Definition 22 (p. 99), now entry 013. For eighteen days the catalogue carried the species and not the genus, which is exactly the misrepresentation the spec's held ruling of 2026-08-21 (kind-of-system definitions admitted only with a pointer to the genus) exists to prevent. Repaired: this entry now carries atlas:speciesOf → entry 013 and atlas:kindRestriction, the shelf marks it as a kind, and its floor position control-1-system is read as what it always was — a prior system as the thing-side role. Any mapping from this entry to a definition of "system" compares a species with a genus and must say so.
+
+GUIDED PASS (2026-08-27, Shingai Thornton). Steps 1-3: the Def 28 verbatim confirmed character-for-character against the page image (angle brackets; the constraint₁/constrained₂ subscript placement; "induced by C's variation"); the Turchin restatement sentence confirmed, so the Def-25-grades-PROP finding is human-verified; the p. 102 gloss mark ruled a comma, not a prime. Cases re-transcribed clean from the page images at the operator's direction, and REMAIN MDU: the operator verified the definition pages, not the three case pages. Rulings: the spinning-top counterfactual CLEARS the ledger's explicitness bar as a refusal (the surrounding sentence states the perturbation succeeds; ruled a refusal, first counterfactual precedent for the ledger); candidate 9 (Def 22, contingent metasystem) DEFERRED, not refused; the five primitive roles confirmed provisionally, with the operator recording that the author's own ruling is wanted — which is exactly what SSF#50 asks of him.
 
 DELIBERATELY NOT ASSERTED
 No cco is-about relation is asserted between this entry and any subject matter, in keeping with the catalogue's neutrality invariant: the entry records that Joslyn writes this definition at this locus, not that the definition is about control, systems, or any worldly phenomenon.
@@ -359,10 +361,12 @@ None recorded: Joslyn qualifies the whole enterprise as semiformal and deliberat
         prim:control-1-system,
         prim:control-2-system,
         prim:variation ;
+    atlas:kindRestriction "control₂ system: a control₁ system (Def. 25, Turchin's) whose induced constraint₁ is itself constrained₂; genus word in the passage: control₁ system, which Def. 25 states over a metasystem ⟨C, O⟩" ;
     atlas:refuses case:boiling-liquid,
         case:damped-spring-stable-equilibrium,
         case:spinning-top ;
     atlas:sourceLocation "§3.3 Control Theory, Definition 28, p. 103 (from the 2026-08-27 page-image transcription section)" ;
+    atlas:speciesOf entry:joslyn-1995-contingent-metasystem ;
     atlas:statedIn bearer:joslyn-1995-semantic-control ;
     atlas:verbatim "Definition 28 (Control₂) A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂." .
 
@@ -655,6 +659,10 @@ atlas:invokesPrimitive a owl:ObjectProperty ;
     rdfs:range skos:Concept ;
     skos:definition "Relates a definition to a term it uses as a primitive. The census payload: which primitives recur across definitions, and which are unique to one."@en .
 
+atlas:kindRestriction a owl:AnnotationProperty ;
+    rdfs:label "kind restriction"@en ;
+    skos:definition "For a species entry: the species word, the genus word the passage itself uses, and the restriction, in one line — e.g. 'control₂ system, over a control₁ system, over a metasystem ⟨C, O⟩; genus word: metasystem'. The build reads it; the shelf marks the entry as a kind."@en .
+
 <https://w3id.org/mathematical-systems/atlas/mappings/claims> rdfs:label "Atlas mapping claims"@en ;
     rdfs:comment """The RDF layer of the mapping documents — minted 2026-08-07 when the
 pattern across mappings 001–003 became clear, per the rule in README.md. Each claim is a
@@ -702,6 +710,10 @@ the loss catalogue comes from."""@en .
 atlas:sourceLocation a owl:AnnotationProperty ;
     rdfs:label "source location"@en ;
     skos:definition "Where in the bearer the verbatim text appears — equation number, page, section."@en .
+
+atlas:speciesOf a owl:ObjectProperty ;
+    rdfs:label "species of"@en ;
+    skos:definition "This entry defines a KIND of system (a species) over a genus that another entry defines. Implements the spec §5 held ruling of 2026-08-21 (kind-of-system definitions admitted as precursor entries with a pointer to the genus). The pointer is the catalogue's choice of which entry stands for the genus, recorded with the passage's own genus word in atlas:kindRestriction; it is not a lineage claim."@en .
 
 atlas:stanceValue a owl:ObjectProperty ;
     rdfs:label "stance value"@en ;
@@ -795,14 +807,6 @@ bearer:bertalanffy-1972-amj a cco:ont00000253 ;
     dcterms:identifier "doi:10.2307/255139",
         "https://www.jstor.org/stable/255139" ;
     atlas:authoredBy author:ludwig-von-bertalanffy .
-
-bearer:joslyn-1995-semantic-control a cco:ont00000253 ;
-    rdfs:label "Joslyn, C. — Semantic Control Systems (World Futures 45, 1995)"@en ;
-    dcterms:creator "Cliff Joslyn" ;
-    dcterms:date "1995"^^xsd:gYear ;
-    dcterms:identifier "World Futures 45, pp. 87-123",
-        "doi:10.1080/02604027.1995.9972556" ;
-    atlas:authoredBy author:cliff-joslyn .
 
 bearer:klir-2001-facets a cco:ont00000253 ;
     rdfs:label "Klir, G. J. — Facets of Systems Science, 2nd ed. (Springer, 2001)"@en ;
@@ -1040,6 +1044,62 @@ phrasings of one claim and must not be merged."""@en ;
     atlas:statedIn bearer:bunge-1979-treatise-vol4 ;
     atlas:verbatim "DEFINITION 1.1 An object is a concrete system iff it is composed of at least two different connected things." .
 
+entry:joslyn-1995-contingent-metasystem a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §2.7.1, Definition 22 (Contingent Metasystem), p. 99"@en ;
+    rdfs:comment """WHY IT IS AN ENTRY AND A SPECIES. A metasystem is a system (it has parts S and E) of a stated kind: formed from a system and its environment. It is the form Definition 25 later takes as given ("Given a metasystem CS := ⟨C, O⟩"), so it is the genus of the control entries and a species of Definition 21. The species chain the catalogue records is 009 (control₂) → 013 (metasystem) → 012 (system).
+
+GENUS WORD. The passage says system₁, the subscripted classical sense, not the synthetic "system" of Definition 21. The pointer to 012 is the catalogue's choice (Definition 21 is the definition proper the author arrives at); if Definition 4 or 9 is later accessioned as system₁ the pointer should move. Recorded so the choice is visible, not silent.
+
+PRIMITIVES. environment, constraint-1 and part are reused (same words as existing entries); system-1 and metasystem are new. DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."""@en ;
+    atlas:authorCaveat "(where E is understood to be similar to the constraint₁ C)" ;
+    atlas:displayContext "In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities." ;
+    atlas:displayForm """Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let
+S′ := ⟨S, E⟩
+be the metasystem, with parts S and E, generated contingently on S.""" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:floorDependency prim:generated-contingently-on ;
+    atlas:floorPosition prim:system-1 ;
+    atlas:invokesPrimitive prim:constraint-1,
+        prim:environment,
+        prim:generated-contingently-on,
+        prim:metasystem,
+        prim:part,
+        prim:system-1 ;
+    atlas:kindRestriction "metasystem: the pair ⟨S, E⟩ of a system₁ and its environment, generated contingently on S; genus word in the passage: system₁ — the catalogue points at Definition 21, the paper's synthetic definition proper, as the genus entry" ;
+    atlas:sourceLocation "§2.7.1 Contingent Metasystems, Definition 22, p. 99 (page-image transcription section)" ;
+    atlas:speciesOf entry:joslyn-1995-system ;
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:verbatim """Definition 22 (Contingent Metasystem) Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let
+S′ := ⟨S, E⟩
+be the metasystem, with parts S and E, generated contingently on S.
+
+This point is driven home particularly in the case of simple distinctions, but it also holds in general. In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.""" .
+
+entry:joslyn-1995-system a atlas:FormalSystemDefinition ;
+    rdfs:label "Joslyn (1995), Semantic Control Systems, §2.6, Definition 21 (System), p. 99"@en ;
+    rdfs:comment """WHY THIS IS THE GENUS ENTRY. The paper offers several system definitions: Definition 4 (p. 89, "my own natural language definition": an entity resulting from parts entering into relation, at a hierarchically distinct level), Definition 9 (p. 91, system₂: a bounded region of a space functionally and uniquely distinguished), and Definition 21, which the author introduces as the point he "arrives at" — "a synthetic definition of system in terms of distinctions, variety, and constraint." The catalogue takes the author's own word "synthetic" and the position of the definition (the close of §2, before control is introduced) as marking it the definition proper. Definitions 4 and 9 are include-graded candidates (scan candidates 3 and 6) still to be ruled on at the guided pass: one entry per distinct definitional claim may yet make them entries 014/015.
+
+PARTS, NOT ENTRIES. Definitions 19 (cardinal distinction: "a constraint₂ which creates a system₁", p. 95) and 20 (dimensional distinction, p. 95) define the definition's two primitives and enter the scheme with those sentences.
+
+DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."""@en ;
+    atlas:displayContext "Thus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint." ;
+    atlas:displayForm "A system is a cardinal distinction on a variety of dimensional distinctions." ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read" ;
+    atlas:encodedOn "2026-09-14"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:floorDependency prim:cardinal-distinction ;
+    atlas:floorPosition prim:dimensional-distinction ;
+    atlas:invokesPrimitive prim:cardinal-distinction,
+        prim:dimensional-distinction,
+        prim:variety ;
+    atlas:sourceLocation "§2.6 The Synthetic View, Definition 21, p. 99 (page-image transcription section)" ;
+    atlas:statedIn bearer:joslyn-1995-semantic-control ;
+    atlas:verbatim """Thus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint.
+
+Definition 21 (System) A system is a cardinal distinction on a variety of dimensional distinctions.""" .
+
 atlas:interactional a skos:Concept ;
     skos:inScheme atlas:ObserverRoleScheme ;
     skos:prefLabel "interactional"@en ;
@@ -1092,12 +1152,6 @@ prim:constrained-2 a skos:Concept ;
     skos:prefLabel "constrained₂"@en ;
     skos:scopeNote "The author's word, the participial form of constraint₂ (Definition 15, the reduction of some variety), predicated here of the second-order variation in the constraint₁ on O. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
-prim:constraint-1 a skos:Concept ;
-    skos:broader role:operation ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "constraint₁"@en ;
-    skos:scopeNote "The author's word, carried into this definition, for the systemic constraint C := X − S of Definition 6; here it is what C places on O and what may itself vary. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
-
 prim:control-2-system a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1128,6 +1182,12 @@ prim:memory a skos:Concept ;
     skos:prefLabel "memory"@en ;
     skos:scopeNote "Mobus's H: 'H in very complex systems could be a super complex object that records the history of the system, or its record of state transitions, especially as it develops or evolves' (§4.3.3.5)."@en .
 
+prim:metasystem a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "metasystem"@en ;
+    skos:scopeNote "Joslyn 1995 Definition 22: S′ := ⟨S, E⟩, \"the metasystem, with parts S and E, generated contingently on S\". Also the genus word of Definition 25 (\"Given a metasystem CS := ⟨C, O⟩\"). [MDU; role proposal: sort]"@en .
+
 prim:milieu a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1139,12 +1199,6 @@ prim:pair a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "pair"@en ;
     skos:scopeNote "The form of the system object itself: a system \"shall consist of a pair (S, F)\". Rosen takes the pairing as given. [MDU — drafted, unchecked; role proposal: sort]"@en .
-
-prim:part a skos:Concept ;
-    skos:broader role:relation ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "part"@en ;
-    skos:scopeNote "Bunge's part-of relation, written x [ y."@en .
 
 prim:reduced-state a skos:Concept ;
     skos:broader role:sort ;
@@ -1203,6 +1257,12 @@ prim:variation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "variation"@en ;
     skos:scopeNote "The author's word for the varying of a component or of a constraint over its state space; used here at two levels (C's variation, and the variation in the constraint₁ on O) without further formal analysis in the definition itself. [Unassigned verdict confirmed at the guided pass, 2026-08-27 — provisionally, author review invited via SSF#50.]"@en .
+
+prim:variety a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "variety"@en ;
+    skos:scopeNote "Joslyn 1995 Definition 21: \"a variety of dimensional distinctions\" — the collection (Ashby's word) the cardinal distinction is made on. Kept distinct from prim:variation (Def 28's word). [MDU; role proposal: sort]"@en .
 
 stance:bertalanffy-1968-ontic a atlas:StanceAssertion ;
     rdfs:comment """His own word — the chapter title names the position — which is why the
@@ -1468,17 +1528,35 @@ prim:bond a skos:Concept ;
     skos:prefLabel "bond"@en ;
     skos:scopeNote "A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing."@en .
 
+prim:cardinal-distinction a skos:Concept ;
+    skos:broader role:relation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "cardinal distinction"@en ;
+    skos:scopeNote "Joslyn 1995 Definition 19 (p. 95): \"A cardinal distinction is a constraint₂ which creates a system₁\" — the distinction made ON an existing universe of discourse; Definition 21 makes a system one such distinction. [MDU — harvested from the page-image transcription; role proposal: relation]"@en .
+
 prim:component a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "component"@en ;
     skos:scopeNote "Mobus's C: 'C is a set of components and their \"type\" along with membership functions in the event the set is fuzzy, that is, the components may have partial inclusion' (§4.3.3.1)."@en .
 
+prim:constraint-1 a skos:Concept ;
+    skos:broader role:operation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "constraint₁"@en ;
+    skos:scopeNote "The author's word, carried into this definition, for the systemic constraint C := X − S of Definition 6; here it is what C places on O and what may itself vary. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
+
 prim:control-1-system a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "control₁ system"@en ;
     skos:scopeNote "Joslyn's word for the metasystem CS = ⟨C, O⟩ of Definition 25, in which the actions of the controller C result in a constraint₂ on the freedom of the object of control O; it is the antecedent kind on which control₂ is predicated. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
+
+prim:dimensional-distinction a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "dimensional distinction"@en ;
+    skos:scopeNote "Joslyn 1995 Definition 20 (p. 95): \"the recognition or designation of some property or entity irrespective of other existing dimensional distinctions\" — the qualitative parts a cardinal distinction is made on. [MDU; role proposal: sort]"@en .
 
 prim:family a skos:Concept ;
     skos:broader role:sort ;
@@ -1491,6 +1569,12 @@ prim:flow-network a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "flow network"@en ;
     skos:scopeNote "Mobus's N: 'N is generally a flow network through which real substances are moving from one node (component) to the next with causal influence' (§4.3.3.2.1)."@en .
+
+prim:generated-contingently-on a skos:Concept ;
+    skos:broader role:relation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "generated contingently on"@en ;
+    skos:scopeNote "Joslyn 1995 Definition 22: the metasystem S′ = ⟨S, E⟩ is \"generated contingently on S\" — the passage's own word for how the pair depends on the system it is formed around; the dependency of the floor arrow for entry 013, lexical. [MDU; role proposal: relation]"@en .
 
 prim:hierarchy a skos:Concept ;
     skos:broader role:relation ;
@@ -1510,6 +1594,12 @@ prim:object a skos:Concept ;
     skos:prefLabel "object"@en ;
     skos:scopeNote "Mobus's O, 'standing for \"objects\" in the environment that are sources and sinks in a unified set' (revisions manuscript, eq. 1)."@en .
 
+prim:part a skos:Concept ;
+    skos:broader role:relation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "part"@en ;
+    skos:scopeNote "Bunge's part-of relation, written x [ y."@en .
+
 prim:real-valued-mapping a skos:Concept ;
     skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1521,6 +1611,12 @@ prim:state a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "state"@en ;
     skos:scopeNote "Rosen's word for what the first component of the triple collects: the set S is a set of states, states being one of his three basic undefined terms. [MDU — drafted, unchecked; role proposal: sort]"@en .
+
+prim:system-1 a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "system₁"@en ;
+    skos:scopeNote "Joslyn 1995's subscripted first sense of system (the classical, part-whole sense; Definition 4 p. 89 is the natural-language form and Definition 19 says a cardinal distinction \"creates a system₁\"). Definition 22 is stated over a system₁. [MDU; role proposal: sort]"@en .
 
 prim:system-object a skos:Concept ;
     skos:broader role:sort ;
@@ -1541,6 +1637,14 @@ atlas:weakly-encompasses a skos:Concept ;
 atlas:MappingClaim a owl:Class ;
     rdfs:label "Mapping Claim"@en ;
     skos:definition "A reified relation between two entries, asserted by a mapping document. Carries its own evidence code and points at the argument; a claim of preservation owes a theorem name, a claim of loss owes a witness."@en .
+
+bearer:joslyn-1995-semantic-control a cco:ont00000253 ;
+    rdfs:label "Joslyn, C. — Semantic Control Systems (World Futures 45, 1995)"@en ;
+    dcterms:creator "Cliff Joslyn" ;
+    dcterms:date "1995"^^xsd:gYear ;
+    dcterms:identifier "World Futures 45, pp. 87-123",
+        "doi:10.1080/02604027.1995.9972556" ;
+    atlas:authoredBy author:cliff-joslyn .
 
 entry:klir-2001-eq-1-1 a atlas:FormalSystemDefinition ;
     rdfs:label "Klir (2001), Facets of Systems Science, eq. (1.1)"@en ;
@@ -1603,12 +1707,6 @@ checked against each other before either is cited."""@en ;
 
 where S, T, R denote, respectively, a system, a set of things distinguished within S, and a relation (or, possibly, a set of relations) defined on T. Clearly, the thinghood and systemhood properties of S reside in T and R, respectively.""" .
 
-prim:environment a skos:Concept ;
-    skos:broader role:sort ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "environment"@en ;
-    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components. Mobus's revised tuple (entry 007) also carries an E — absent from his published 2022 seven-tuple, which is why the row lights up only on the revisions entry: the difference records the revision."@en .
-
 prim:observable a skos:Concept ;
     skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1629,6 +1727,12 @@ atlas:SignatureRoleScheme a skos:ConceptScheme ;
     rdfs:label "Signature roles"@en ;
     skos:definition "Model theory's signature vocabulary, fixed prior to and independent of the corpus. What slot a primitive's word fills in a formal statement — checkable against the formula, unlike meaning."@en .
 
+prim:environment a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "environment"@en ;
+    skos:scopeNote "Bunge's E. Things outside the composition that act on, or are acted on by, components. Mobus's revised tuple (entry 007) also carries an E — absent from his published 2022 seven-tuple, which is why the row lights up only on the revisions entry: the difference records the revision."@en .
+
 atlas:StanceAssertion a owl:Class ;
     rdfs:label "Stance Assertion"@en ;
     skos:definition "A reified reading of what an entry's definition is doing — one value on one axis, carried by the entry, graded by its own evidence code, licensed by its own verbatim."@en .
@@ -1646,10 +1750,6 @@ prim:thing a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 prim:relation a skos:Concept ;
     skos:broader role:relation ;
@@ -1677,6 +1777,10 @@ atlas:statedIn precedent: declared plainly now rather than asserted wrongly."""@
 only: a name that several works share, so that "Bertalanffy 1968" and "Bertalanffy 1972" can be
 recognised as one person revising rather than two people agreeing."""@en .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 prim:set a skos:Concept ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1696,6 +1800,10 @@ atlas:MDHC a atlas:EvidenceCode ;
     rdfs:label "model-drafted, human-checked"@en ;
     skos:definition "A model produced the encoding; a human checked it against the verbatim text."@en .
 
+atlas:HVP a atlas:EvidenceCode ;
+    rdfs:label "human-verified against primary text"@en ;
+    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
+
 atlas:FormalSystemDefinition a owl:Class ;
     rdfs:label "Formal System Definition"@en ;
     rdfs:comment "Inclusion criteria are stated in the spec, §5. Borderline cases are adjudicated there, not here."@en ;
@@ -1704,10 +1812,6 @@ atlas:FormalSystemDefinition a owl:Class ;
 term "system" formally: it introduces named components with types or sorts, and
 fixes at least one relation, function, or constraint among them, in symbols or in
 prose precise enough to be transcribed to symbols without adding content."""@en .
-
-atlas:HVP a atlas:EvidenceCode ;
-    rdfs:label "human-verified against primary text"@en ;
-    skos:definition "A human read the primary source and confirmed the verbatim text and the encoding against it."@en .
 
 atlas:Example a owl:Class ;
     rdfs:label "Example"@en ;

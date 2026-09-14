@@ -173,6 +173,8 @@ ACCESSION = [
     "joslyn-1995-control2",
     "rosen-1978-formal-system",
     "rosen-1978-system-triple",
+    "joslyn-1995-system",
+    "joslyn-1995-contingent-metasystem",
 ]
 
 
@@ -203,6 +205,10 @@ def extract_entries(g):
                 "encodedBy": one(g, s, ATLAS.encodedBy),
                 "encodedOn": one(g, s, ATLAS.encodedOn),
                 "formalisedAs": one(g, s, ATLAS.formalisedAs),
+                # Species entries (spec §5 held ruling, implemented 2026-09-14): a kind of
+                # system, pointing at the entry standing for its genus.
+                "kindRestriction": one(g, s, ATLAS.kindRestriction),
+                "speciesOf": str(next(g.objects(s, ATLAS.speciesOf), "")) or None,
                 "annotation": split_annotation(one(g, s, RDFS.comment)),
             }
         )

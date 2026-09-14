@@ -237,8 +237,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "ff3ada7+",
-    "repoCommit": "ff3ada7+"
+    "atlasCommit": "4b65855+",
+    "repoCommit": "4b65855+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -563,6 +563,12 @@
     },
     "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple": {
       "status": "none"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system": {
+      "status": "none"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem": {
+      "status": "none"
     }
   },
   "transcription": {
@@ -716,7 +722,7 @@
       "matchedChars": 169,
       "verbatimChars": 169,
       "context": {
-        "before": "Formula-bearing quotes\nmust come from this section, not the body below. To be verified against the page at the guided\npass. Subscripts written with Unicode subscript digits and E/I for the component subscripts.\n\np. 101 (§3.1, General Control):\n\nDefinition 25 (Control₁) Given a metasystem CS := ⟨C, O⟩ consisting of a controller C and an object of control O, then CS is a control₁ system, and the relation between C and O is a control₁ relation, if the actions of C result in a constraint₂ on the freedom of O.\n\np. 102 (the immediate gloss):\n\nA control₁ system is a metasystem of two subsystems: C, as the environment of O, manifests a constraint₂ on O.\n\np. 103 (§3.3, Control Theory):",
+        "before": "This point is driven home particularly in the case of simple distinctions, but it also holds in general. In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.\n\np. 101 (§3.1, General Control):\n\nDefinition 25 (Control₁) Given a metasystem CS := ⟨C, O⟩ consisting of a controller C and an object of control O, then CS is a control₁ system, and the relation between C and O is a control₁ relation, if the actions of C result in a constraint₂ on the freedom of O.\n\np. 102 (the immediate gloss):\n\nA control₁ system is a metasystem of two subsystems: C, as the environment of O, manifests a constraint₂ on O.\n\np. 103 (§3.3, Control Theory):",
         "match": "Definition 28 (Control₂) A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂.",
         "after": "p. 106 (§3.4, State Systems):\n\nProposition 29 Given a control₂ system CS = ⟨C, O⟩, then O is itself a control₁ system\nO = ⟨O E, O I⟩,\nwhere O E is O's external component which exercises additional constraint₁ over the stable internal component O I.\n\nCS is now expressed according to the formula\nCS = ⟨C, O = ⟨O E, O I⟩⟩. (30)\n\nCase passages (page-imaged 2026-08-27 at Shingai's direction, replacing the damaged body layer for the entry's five case rulings):\n\np. 104: That is, as C's temperature changed, O's envelope of variation remained constant. Under these conditions, CS is now a control₂ system.\n\np. 104: It is clear that a system governed only by a stable equilibrium, as in (26), is not a control₂ system: a variation of the free parameters causes a corresponding variation of the constraint₁ on O, and thus of x."
       },
@@ -757,6 +763,42 @@
         "after": "An observable Φ imposed on a class of systems is in fact imposed on such a set of triples. Let us observe now that:\n1. The set S and the observables in O define a set of reduced states S/R O, which we employ to label the states of S.\n\n## OCR text (tesseract, unverified)\n\n<!-- scan page 0 (book p. i) -->\nFundamentals of\nMeasurement\nand Representation\nof Natural Systems\n\nRobert Rosen\n\n<!-- scan page 1 (book p. ii) -->\nBOOKS BY ROBERT ROSEN:\n(Partial listing)\n\nThe following are out-of-print monographs that are currently being republished\nand can be ordered via the website at www.rosen-enterprises.com :\n\nOptimality Principles in Biology\n\nDynamical System Theory in Biology\n\nFoundations of Mathematical Biology. Volumes I. I, and III\n\nFundamentals of Measurement and Representation of Natural Sys"
       },
       "source": "rosen-1978-fundamentals-measurement.md"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 201,
+      "verbatimChars": 201,
+      "context": {
+        "before": "87–123; PDF page = book\npage − 86) by Claude, per the Mesarović precedent: the PDF's own text layer carries systematic\nligature/subscript damage (\"¿5\" for \"is\", \"controlj\" for \"control₁\", \"constrain^\" with lost\nsubscripts) and flattens the printed angle brackets ⟨ ⟩ to parentheses. Formula-bearing quotes\nmust come from this section, not the body below. To be verified against the page at the guided\npass. Subscripts written with Unicode subscript digits and E/I for the component subscripts.\n\np. 99 (§2.6, The Synthetic View; §2.7.1, Contingent Metasystems) — transcribed from the page image 2026-09-14:",
+        "match": "Thus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint.\n\nDefinition 21 (System) A system is a cardinal distinction on a variety of dimensional distinctions.",
+        "after": "Definition 22 (Contingent Metasystem) Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let\nS′ := ⟨S, E⟩\nbe the metasystem, with parts S and E, generated contingently on S.\n\nThis point is driven home particularly in the case of simple distinctions, but it also holds in general. In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.\n\np. 101 (§3.1, General Control):\n\nDefinition 25 (Control₁) Given a metasystem CS := ⟨C, O⟩ consisting of a controller C and an object of control O, then CS is a control₁ system, and the relation between C and O is a control₁ relation, if the actions of C result in a constraint₂ on the freedom of O.\n\np. 102 (the immediate gloss):\n\nA control₁ system is a metasystem of two subsystems: C, as the environment of O, manifests a constraint₂ on O."
+      },
+      "source": "joslyn-1995-semantic-control-systems.md"
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem": {
+      "status": "located",
+      "normalisations": [
+        "LaTeX math in source rendered to Unicode",
+        "running heads / page numbers removed",
+        "words broken by a hyphen at a line end rejoined",
+        "set/grouping braces ignored",
+        "whitespace around operators ignored"
+      ],
+      "matchedChars": 482,
+      "verbatimChars": 482,
+      "context": {
+        "before": "Formula-bearing quotes\nmust come from this section, not the body below. To be verified against the page at the guided\npass. Subscripts written with Unicode subscript digits and E/I for the component subscripts.\n\np. 99 (§2.6, The Synthetic View; §2.7.1, Contingent Metasystems) — transcribed from the page image 2026-09-14:\n\nThus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint.\n\nDefinition 21 (System) A system is a cardinal distinction on a variety of dimensional distinctions.",
+        "match": "Definition 22 (Contingent Metasystem) Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let\nS′ := ⟨S, E⟩\nbe the metasystem, with parts S and E, generated contingently on S.\n\nThis point is driven home particularly in the case of simple distinctions, but it also holds in general. In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.",
+        "after": "p. 101 (§3.1, General Control):\n\nDefinition 25 (Control₁) Given a metasystem CS := ⟨C, O⟩ consisting of a controller C and an object of control O, then CS is a control₁ system, and the relation between C and O is a control₁ relation, if the actions of C result in a constraint₂ on the freedom of O.\n\np. 102 (the immediate gloss):\n\nA control₁ system is a metasystem of two subsystems: C, as the environment of O, manifests a constraint₂ on O.\n\np. 103 (§3.3, Control Theory):\n\nDefinition 28 (Control₂) A control₁ system CS = ⟨C, O⟩ is also a control₂ system if the variation in the constraint₁ on O, induced by C's variation, is itself constrained₂.\n\np. 106 (§3.4, State Systems):\n\nProposition 29 Given a control₂ system CS = ⟨C, O⟩, then O is itself a control₁ system\nO = ⟨O E, O I⟩,\nwhere O E is O's external component which exercises additional constraint₁ over the stable internal component O I."
+      },
+      "source": "joslyn-1995-semantic-control-systems.md"
     }
   },
   "source": {
@@ -791,6 +833,8 @@
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
       "formalisedAs": "Systems/Category/ShapeKlir.lean#KlirShape",
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "section",
@@ -851,6 +895,8 @@
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
       "formalisedAs": "Systems/Category/ShapeBunge.lean#BungeShape",
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "flag",
@@ -905,6 +951,8 @@
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
       "formalisedAs": null,
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "flag",
@@ -946,6 +994,8 @@
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-05",
       "formalisedAs": "Systems/Category/ShapeBertalanffy.lean#Bertalanffy72Shape",
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "prose",
@@ -998,6 +1048,8 @@
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-07",
       "formalisedAs": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "section",
@@ -1054,6 +1106,8 @@
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)",
       "encodedOn": "2026-08-18",
       "formalisedAs": null,
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "section",
@@ -1113,6 +1167,8 @@
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)",
       "encodedOn": "2026-08-18",
       "formalisedAs": "Systems/Category/ShapeMobus.lean#MobusShape",
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "section",
@@ -1176,6 +1232,8 @@
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-26",
       "encodedOn": "2026-08-25",
       "formalisedAs": null,
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "section",
@@ -1235,7 +1293,14 @@
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-27",
       "encodedOn": "2026-08-27",
       "formalisedAs": "Systems/Category/ShapeJoslyn.lean#JoslynShape",
+      "kindRestriction": "control₂ system: a control₁ system (Def. 25, Turchin's) whose induced constraint₁ is itself constrained₂; genus word in the passage: control₁ system, which Def. 25 states over a metasystem ⟨C, O⟩",
+      "speciesOf": "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem",
       "annotation": [
+        {
+          "kind": "section",
+          "title": "DEFINIENDUM",
+          "body": "(recorded 2026-09-14, Shingai Thornton's observation; corrected the same evening). Definition 28 defines a KIND of system, control₂, not \"system\". It is stated over a control₁ system (Definition 25, itself Turchin's), which is stated over \"a metasystem CS := ⟨C, O⟩\" (p. 101). The paper DOES define system — Definition 21 (p. 99), \"A system is a cardinal distinction on a variety of dimensional distinctions\", now entry 012 — and the metasystem, Definition 22 (p. 99), now entry 013. For eighteen days the catalogue carried the species and not the genus, which is exactly the misrepresentation the spec's held ruling of 2026-08-21 (kind-of-system definitions admitted only with a pointer to the genus) exists to prevent. Repaired: this entry now carries atlas:speciesOf → entry 013 and atlas:kindRestriction, the shelf marks it as a kind, and its floor position control-1-system is read as what it always was — a prior system as the thing-side role. Any mapping from this entry to a definition of \"system\" compares a species with a genus and must say so."
+        },
         {
           "kind": "section",
           "title": "GUIDED PASS",
@@ -1289,6 +1354,8 @@
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim read against scan page 72 (book p. 54) by Shingai Thornton 2026-09-14",
       "encodedOn": "2026-09-13",
       "formalisedAs": "Systems/Category/ShapeRosen.lean#RosenShape",
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "section",
@@ -1347,6 +1414,8 @@
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry and verbatim read against book p. 128 (scan page 146) by Shingai Thornton 2026-09-14",
       "encodedOn": "2026-09-13",
       "formalisedAs": null,
+      "kindRestriction": null,
+      "speciesOf": null,
       "annotation": [
         {
           "kind": "section",
@@ -1375,6 +1444,93 @@
         }
       ],
       "number": "011"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system",
+      "id": "joslyn-1995-system",
+      "label": "Joslyn (1995), Semantic Control Systems, §2.6, Definition 21 (System), p. 99",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/joslyn-1995-semantic-control",
+      "sourceLocation": "§2.6 The Synthetic View, Definition 21, p. 99 (page-image transcription section)",
+      "verbatim": "Thus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint.\n\nDefinition 21 (System) A system is a cardinal distinction on a variety of dimensional distinctions.",
+      "displayForm": "A system is a cardinal distinction on a variety of dimensional distinctions.",
+      "displayContext": "Thus we arrive at a synthetic definition of system in terms of distinctions, variety, and constraint.",
+      "authorCaveat": null,
+      "admits": [],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/cardinal-distinction",
+        "https://w3id.org/mathematical-systems/atlas/primitive/dimensional-distinction",
+        "https://w3id.org/mathematical-systems/atlas/primitive/variety"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read",
+      "encodedOn": "2026-09-14",
+      "formalisedAs": null,
+      "kindRestriction": null,
+      "speciesOf": null,
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "WHY THIS IS THE GENUS ENTRY",
+          "body": "The paper offers several system definitions: Definition 4 (p. 89, \"my own natural language definition\": an entity resulting from parts entering into relation, at a hierarchically distinct level), Definition 9 (p. 91, system₂: a bounded region of a space functionally and uniquely distinguished), and Definition 21, which the author introduces as the point he \"arrives at\" — \"a synthetic definition of system in terms of distinctions, variety, and constraint.\" The catalogue takes the author's own word \"synthetic\" and the position of the definition (the close of §2, before control is introduced) as marking it the definition proper. Definitions 4 and 9 are include-graded candidates (scan candidates 3 and 6) still to be ruled on at the guided pass: one entry per distinct definitional claim may yet make them entries 014/015."
+        },
+        {
+          "kind": "section",
+          "title": "PARTS, NOT ENTRIES",
+          "body": "Definitions 19 (cardinal distinction: \"a constraint₂ which creates a system₁\", p. 95) and 20 (dimensional distinction, p. 95) define the definition's two primitives and enter the scheme with those sentences."
+        },
+        {
+          "kind": "section",
+          "title": "DELIBERATELY NOT ASSERTED",
+          "body": "No cco is-about. CASES: none at this locus."
+        }
+      ],
+      "number": "012"
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem",
+      "id": "joslyn-1995-contingent-metasystem",
+      "label": "Joslyn (1995), Semantic Control Systems, §2.7.1, Definition 22 (Contingent Metasystem), p. 99",
+      "statedIn": "https://w3id.org/mathematical-systems/atlas/bearer/joslyn-1995-semantic-control",
+      "sourceLocation": "§2.7.1 Contingent Metasystems, Definition 22, p. 99 (page-image transcription section)",
+      "verbatim": "Definition 22 (Contingent Metasystem) Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let\nS′ := ⟨S, E⟩\nbe the metasystem, with parts S and E, generated contingently on S.\n\nThis point is driven home particularly in the case of simple distinctions, but it also holds in general. In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.",
+      "displayForm": "Given a system₁ S with environment E (where E is understood to be similar to the constraint₁ C), then let\nS′ := ⟨S, E⟩\nbe the metasystem, with parts S and E, generated contingently on S.",
+      "displayContext": "In the creation of any system₁ S, another metasystem S′ is identifiable contingent on considering S and its environment together as new, distinct entities.",
+      "authorCaveat": "(where E is understood to be similar to the constraint₁ C)",
+      "admits": [],
+      "refuses": [],
+      "primitives": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/constraint-1",
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/generated-contingently-on",
+        "https://w3id.org/mathematical-systems/atlas/primitive/metasystem",
+        "https://w3id.org/mathematical-systems/atlas/primitive/part",
+        "https://w3id.org/mathematical-systems/atlas/primitive/system-1"
+      ],
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 — not yet human-read",
+      "encodedOn": "2026-09-14",
+      "formalisedAs": null,
+      "kindRestriction": "metasystem: the pair ⟨S, E⟩ of a system₁ and its environment, generated contingently on S; genus word in the passage: system₁ — the catalogue points at Definition 21, the paper's synthetic definition proper, as the genus entry",
+      "speciesOf": "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system",
+      "annotation": [
+        {
+          "kind": "section",
+          "title": "WHY IT IS AN ENTRY AND A SPECIES",
+          "body": "A metasystem is a system (it has parts S and E) of a stated kind: formed from a system and its environment. It is the form Definition 25 later takes as given (\"Given a metasystem CS := ⟨C, O⟩\"), so it is the genus of the control entries and a species of Definition 21. The species chain the catalogue records is 009 (control₂) → 013 (metasystem) → 012 (system)."
+        },
+        {
+          "kind": "section",
+          "title": "GENUS WORD",
+          "body": "The passage says system₁, the subscripted classical sense, not the synthetic \"system\" of Definition 21. The pointer to 012 is the catalogue's choice (Definition 21 is the definition proper the author arrives at); if Definition 4 or 9 is later accessioned as system₁ the pointer should move. Recorded so the choice is visible, not silent."
+        },
+        {
+          "kind": "section",
+          "title": "PRIMITIVES",
+          "body": "environment, constraint-1 and part are reused (same words as existing entries); system-1 and metasystem are new. DELIBERATELY NOT ASSERTED. No cco is-about. CASES: none at this locus."
+        }
+      ],
+      "number": "013"
     }
   ],
   "floor": {
@@ -1493,6 +1649,25 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/dynamics",
         "https://w3id.org/mathematical-systems/atlas/primitive/family",
         "https://w3id.org/mathematical-systems/atlas/primitive/triple"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/dimensional-distinction",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/cardinal-distinction",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/variety"
+      ]
+    },
+    "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem": {
+      "position": "https://w3id.org/mathematical-systems/atlas/primitive/system-1",
+      "dependency": "https://w3id.org/mathematical-systems/atlas/primitive/generated-contingently-on",
+      "dependencyShapeLevel": false,
+      "adds": [
+        "https://w3id.org/mathematical-systems/atlas/primitive/constraint-1",
+        "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+        "https://w3id.org/mathematical-systems/atlas/primitive/metasystem",
+        "https://w3id.org/mathematical-systems/atlas/primitive/part"
       ]
     }
   },
@@ -1667,7 +1842,9 @@
       "id": "cliff-joslyn",
       "label": "Cliff Joslyn",
       "entries": [
-        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2"
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2",
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system",
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem"
       ]
     },
     {
@@ -1696,6 +1873,17 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
+      "label": "environment",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem",
+        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/relation",
       "label": "relation",
       "role": "relation",
@@ -1717,16 +1905,6 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/environment",
-      "label": "environment",
-      "role": "sort",
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation",
-        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
-        "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
-      ]
-    },
-    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/thing",
       "label": "thing",
       "role": "sort",
@@ -1744,6 +1922,15 @@
         "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple",
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/constraint-1",
+      "label": "constraint₁",
+      "role": "operation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem",
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2"
       ]
     },
     {
@@ -1780,6 +1967,15 @@
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system",
         "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/part",
+      "label": "part",
+      "role": "relation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem"
       ]
     },
     {
@@ -1823,6 +2019,14 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/cardinal-distinction",
+      "label": "cardinal distinction",
+      "role": "relation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/component",
       "label": "component",
       "role": "sort",
@@ -1855,14 +2059,6 @@
       ]
     },
     {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/constraint-1",
-      "label": "constraint₁",
-      "role": "operation",
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2"
-      ]
-    },
-    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/control-1-system",
       "label": "control₁ system",
       "role": "sort",
@@ -1879,6 +2075,14 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/dimensional-distinction",
+      "label": "dimensional distinction",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/dynamics",
       "label": "dynamics",
       "role": "operation",
@@ -1892,6 +2096,14 @@
       "role": "relation",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/generated-contingently-on",
+      "label": "generated contingently on",
+      "role": "relation",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem"
       ]
     },
     {
@@ -1919,6 +2131,14 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/metasystem",
+      "label": "metasystem",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/milieu",
       "label": "milieu",
       "role": "sort",
@@ -1940,14 +2160,6 @@
       "role": "sort",
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system"
-      ]
-    },
-    {
-      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/part",
-      "label": "part",
-      "role": "relation",
-      "usedBy": [
-        "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1"
       ]
     },
     {
@@ -2015,6 +2227,14 @@
       ]
     },
     {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/system-1",
+      "label": "system₁",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem"
+      ]
+    },
+    {
       "iri": "https://w3id.org/mathematical-systems/atlas/primitive/thinghood",
       "label": "thinghood",
       "role": null,
@@ -2052,6 +2272,14 @@
       "role": null,
       "usedBy": [
         "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2"
+      ]
+    },
+    {
+      "iri": "https://w3id.org/mathematical-systems/atlas/primitive/variety",
+      "label": "variety",
+      "role": "sort",
+      "usedBy": [
+        "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system"
       ]
     }
   ],
