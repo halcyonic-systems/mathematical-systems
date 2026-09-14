@@ -91,3 +91,17 @@ entry:mesarovic-takahara-1975-general-system
 entry:joslyn-1995-control2
     atlas:floorPosition prim:control-1-system ;
     atlas:floorDependencyShapeLevel true .
+
+# ---- Rosen 1978, Definition 2.9.1, (S, F) -----------------------------------
+# The passage's own words: "S is a set and F is a family of real-valued
+# mappings defined on S". The position is the bare set — Rosen names no
+# thing-word at all (the gloss says "reduced states", the definition says
+# "set") — and the dependency is the mapping "defined on S". FIRST ENTRY
+# WHOSE POSITION IS THE SUBSTRATE WORD: that is not a defect of the row,
+# it is the finding the row records — Rosen's relata are states of one
+# system, not things composing it, so any view of 2.9.1 from the kernel
+# pays the cost "states stand in for things" (mapping rosen-arrow.md).
+# Declared 2026-09-13 with the entry at MDU; re-examine at the guided pass.
+entry:rosen-1978-formal-system
+    atlas:floorPosition   prim:set ;
+    atlas:floorDependency prim:real-valued-mapping .

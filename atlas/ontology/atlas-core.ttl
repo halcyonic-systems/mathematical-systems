@@ -680,6 +680,39 @@ author:robert-rosen
     rdfs:label "Robert Rosen"@en .
 
 
+# Rosen 1978, Definition 2.9.1 — minted 2026-09-13 at MDU by the P5 draft;
+# roles are proposals until the guided pass.
+prim:pair a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "pair"@en ;
+    skos:scopeNote """The form of the system object itself: a system "shall consist of a pair (S, F)". Rosen takes the pairing as given. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+
+prim:family a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "family"@en ;
+    skos:scopeNote """The second component F is "a family of real-valued mappings defined on S"; the word is used without further explication. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+
+prim:real-valued-mapping a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:operation ;
+    skos:prefLabel "real-valued mapping"@en ;
+    skos:scopeNote """The members of F: mappings defined on S taking values in the real numbers. Rosen uses the phrase as a primitive ingredient of the pair. [MDU — drafted, unchecked; role proposal: operation]"""@en .
+
+prim:observable a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:operation ;
+    skos:prefLabel "observable"@en ;
+    skos:scopeNote """The author's name for the elements of F. Elsewhere in the work Rosen lists "observable" among three basic undefined terms; here it is stipulated as the label for the members of F. [MDU — drafted, unchecked; role proposal: operation]"""@en .
+
+prim:reduced-state a skos:Concept ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:broader role:sort ;
+    skos:prefLabel "reduced state"@en ;
+    skos:scopeNote """Used in the immediate gloss: to each formal system is uniquely associated "a set of reduced states S/R_F", carried over from the preceding sections. [MDU — drafted, unchecked; role proposal: sort]"""@en .
+
+
 ##############################################################################
 # Stance — P3 minted, 2026-08-07. Two axes, not one: what an author takes to
 # exist is a different commitment from what the observer's act contributes,

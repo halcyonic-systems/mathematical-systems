@@ -55,9 +55,6 @@ Tier 1 (dependency quiver) and above are not yet modelled here.
 Spec: strategy/phd/definition-atlas-spec.md in the Halcyonic vault."""@en ;
     owl:versionIRI <https://w3id.org/mathematical-systems/atlas/2026-08-01/atlas-core> .
 
-author:robert-rosen a atlas:Author ;
-    rdfs:label "Robert Rosen"@en .
-
 atlas:authorCaveat a owl:AnnotationProperty ;
     rdfs:label "author caveat"@en ;
     skos:definition "A qualification the AUTHOR places on their own definition — that it is provisional, not a definition proper, too general, or holds only under stated conditions. Recorded verbatim. Suppressing these is how a catalogue starts misrepresenting its sources."@en .
@@ -218,6 +215,15 @@ seven-tuple (entry 006) revised to an oct-tuple with the environment E first-cla
 entry through the P5 pipeline, promoted by guided pass 2026-08-18. The manuscript also
 REPRODUCES the original Eq. 4.1 before revising it — the scan graded that reproduction PROP
 (a restatement of entry 006), which is why it is not a third entry."""@en .
+
+<https://w3id.org/mathematical-systems/atlas/entries/rosen-1978-fundamentals> rdfs:label "Atlas entry — Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
+    rdfs:comment """Drafted 2026-09-13 by the P5 pipeline; accessioned at MDU the same day
+(precedent: entry 009). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
+the verbatim's primes (S′, F′), the subscript R_F, the ≠ sign and the "(or formal system)"
+parenthetical all match the printed page; no correction needed. This is not a human check —
+the evidence code stays MDU until Shingai Thornton reads the same page. The five minted
+primitives were moved into atlas-core's scheme at the same grade. Stance assertion (ontic:
+perspectivist) carried below at MDU; the observer axis is a queued ruling."""@en .
 
 entry:bertalanffy-1968-eq-3-1 a atlas:FormalSystemDefinition ;
     rdfs:label "Bertalanffy (1968), General System Theory, eq. (3.1)"@en ;
@@ -513,6 +519,40 @@ Sᵢ,ₗ=⟨C,N,E,G,B,T,H,Δt⟩ᵢ,ₗ (1)
 In what follows, the subscript indexes, i, for index number in the set, and l, for level in the complexity/organization hierarchy will be dropped for simplicity.
 S is now given as an oct-tuple with new member E containing the set, O, (standing for "objects" in the environment that are sources and sinks in a unified set) and a new object, M, containing the non-point source/sink variables constituting the interacting milieu around the system.""" .
 
+entry:rosen-1978-formal-system a atlas:FormalSystemDefinition ;
+    rdfs:label "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
+    rdfs:comment """DELIBERATELY NOT ASSERTED
+This entry records only that the passage states a definition of "system" at the given locus. No cco is-about relation is asserted between this entry and any subject matter, discipline, or other atlas entry; the catalogue's neutrality invariant forbids inferring topical aboutness from the presence of a definition.
+
+WHAT THE ENCODING LEAVES OUT
+The locus is embedded in a longer formal development that the entry does not carry: Definition 2.9.2 (subsystem and extension, S′ ⊆ S and F′ ⊆ F), the remarks that (S, F) is a subsystem of (S, H(S, R)) and that no formal system is a subsystem of (S, ∅), Definition 2.9.3 (morphism as a pair (φ, ψ)), and the closing note that "the class of formal systems becomes a category". Also left out is §2.1's declaration that system, observable and state are three basic undefined terms, together with Propositions 1 and 2, on which Rosen's notion of observable rests; the reduced-state construction S/R_F named in the gloss is developed in earlier sections and is not reproduced here.
+
+CASES
+No admits or refuses are recorded: at this locus Rosen offers no example as a system and refuses none. The nearby remark about (S, H(S, R)) and (S, ∅) rules on the subsystem relation, not on systemhood, and so was not treated as a case.
+
+SOURCE FIDELITY
+The verbatim follows the human-flagged page-image transcription of book p. 54 (scan page 72), not the tesseract OCR body, which mangles subscripts and set-inclusion signs. The transcription itself is marked "Not yet verified by a human against the page"; the subscripted R_F, the primes on S′ and F′, and the ≠ sign in particular should be checked against the page image at review."""@en ;
+    atlas:displayContext "To each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment." ;
+    atlas:displayForm "A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system." ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedOn "2026-09-13"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:floorDependency prim:real-valued-mapping ;
+    atlas:floorPosition prim:set ;
+    atlas:hasStance stance:rosen-1978-ontic ;
+    atlas:invokesPrimitive prim:element,
+        prim:family,
+        prim:observable,
+        prim:pair,
+        prim:real-valued-mapping,
+        prim:reduced-state,
+        prim:set ;
+    atlas:sourceLocation "§2.9 Appendix, DEFINITION 2.9.1, book p. 54 (scan page 72)" ;
+    atlas:statedIn bearer:rosen-1978-fundamentals ;
+    atlas:verbatim """DEFINITION 2.9.1 A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system.
+To each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment.
+Notice that we consider two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′.""" .
+
 atlas:evidenceCode a owl:AnnotationProperty ;
     rdfs:label "evidence code"@en ;
     skos:definition "Which atlas:EvidenceCode individual applies to this encoding."@en .
@@ -699,6 +739,9 @@ author:mario-bunge a atlas:Author ;
 author:mihajlo-mesarovic a atlas:Author ;
     rdfs:label "Mihajlo D. Mesarović"@en .
 
+author:robert-rosen a atlas:Author ;
+    rdfs:label "Robert Rosen"@en .
+
 author:yasuhiko-takahara a atlas:Author ;
     rdfs:label "Yasuhiko Takahara"@en .
 
@@ -758,6 +801,14 @@ bearer:mobus-book-revisions a cco:ont00000253 ;
     dcterms:date "2025"^^xsd:gYear ;
     rdfs:comment "Quoted with the author's permission, granted 2026-08-19 (video call)."@en ;
     atlas:authoredBy author:george-mobus .
+
+bearer:rosen-1978-fundamentals a cco:ont00000253 ;
+    rdfs:label "Rosen, R. — Fundamentals of Measurement and Representation of Natural Systems (Elsevier North-Holland, 1978)"@en ;
+    dcterms:creator "Robert Rosen" ;
+    dcterms:date "1978"^^xsd:gYear ;
+    dcterms:identifier "General Systems Research Series v. 1",
+        "ISBN 0-444-00261-8" ;
+    atlas:authoredBy author:robert-rosen .
 
 case:bertalanffy-organism a atlas:Example ;
     rdfs:label "an organism"@en ;
@@ -967,11 +1018,6 @@ atlas:no-faithful-embedding-into a skos:Concept ;
     skos:prefLabel "admits no faithful embedding into"@en ;
     skos:scopeNote "No encoding of the source into the target preserves what the source asserts, using only what the target asserts. The strong reading's failure mode: a claim here owes either a machine-checked obstruction (001: infinite hom-set into finite) or a collapse witness (003: two source systems, one target image)."@en .
 
-atlas:perspectivist a skos:Concept ;
-    skos:inScheme atlas:OnticStanceScheme ;
-    skos:prefLabel "perspectivist"@en ;
-    skos:scopeNote "Bertalanffy's own word (GST ch. 10, 'The Perspectivistic View'). Reality is real, access is perspectival, and the perspective is not free: categories 'must, with a certain tolerance allowed, be isomorphic' to the nexus of real events. Constrained, unlike Nietzschean perspectivism; nearest neighbour is Giere's perspectival realism."@en .
-
 prim:action a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1026,6 +1072,12 @@ prim:control-2-system a skos:Concept ;
     skos:prefLabel "control₂ system"@en ;
     skos:scopeNote "Joslyn's word for the kind of system defined here: a control₁ system whose second-order variation in the constraint₁ on O, induced by C's variation, is itself constrained₂. [Role confirmed at the guided pass, 2026-08-27 — provisionally: the operator records that this material is dense enough that the author's own ruling is wanted; SSF#50 invites it.]"@en .
 
+prim:family a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "family"@en ;
+    skos:scopeNote "The second component F is \"a family of real-valued mappings defined on S\"; the word is used without further explication. [MDU — drafted, unchecked; role proposal: sort]"@en .
+
 prim:index-set a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1050,11 +1102,29 @@ prim:milieu a skos:Concept ;
     skos:prefLabel "milieu"@en ;
     skos:scopeNote "Mobus's M, 'the non-point source/sink variables constituting the interacting milieu around the system' (revisions manuscript, eq. 1)."@en .
 
+prim:observable a skos:Concept ;
+    skos:broader role:operation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "observable"@en ;
+    skos:scopeNote "The author's name for the elements of F. Elsewhere in the work Rosen lists \"observable\" among three basic undefined terms; here it is stipulated as the label for the members of F. [MDU — drafted, unchecked; role proposal: operation]"@en .
+
+prim:pair a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "pair"@en ;
+    skos:scopeNote "The form of the system object itself: a system \"shall consist of a pair (S, F)\". Rosen takes the pairing as given. [MDU — drafted, unchecked; role proposal: sort]"@en .
+
 prim:part a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "part"@en ;
     skos:scopeNote "Bunge's part-of relation, written x [ y."@en .
+
+prim:reduced-state a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "reduced state"@en ;
+    skos:scopeNote "Used in the immediate gloss: to each formal system is uniquely associated \"a set of reduced states S/R_F\", carried over from the preceding sections. [MDU — drafted, unchecked; role proposal: sort]"@en .
 
 prim:structure a skos:Concept ;
     skos:broader role:relation ;
@@ -1160,6 +1230,21 @@ source."""@en ;
     atlas:sourceLocation "§2.3, p. 21" ;
     atlas:stanceValue atlas:constructivist-about-systemhood ;
     atlas:verbatim "we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities" .
+
+stance:rosen-1978-ontic a atlas:StanceAssertion ;
+    rdfs:comment """WHY PERSPECTIVIST AND NOT REALIST OR CONSTRUCTIVIST. Both halves of the scheme's scope note are in the text. Reality is real: §2.1 (p. 26, page-verified) glosses the undefined term system as "some part of the real world which comprises our object of study", and the Introduction (p. xii) says "all observables possess the same degree of physical reality". Access is perspectival and no perspective is privileged: the quoted conclusion, and p. xii, "what you see depends on how you look at things". The 1986 paper (IJGS 13; Facets reprint) adds that systemhood is "an independent category", reducible neither to thinghood nor to set-ness, and rejects reductionism and holism together — a foundations claim, not a retraction of Definition 2.9.1, which scopes itself to the FORMAL system ("A system (or formal system)"; "observables of the formal system") while the natural system stays undefined.
+
+HOW IT DIFFERS FROM BERTALANFFY'S CELL. Bertalanffy locates the perspective in an organism's evolved categories of experience (GST ch. 10: the a priori forms are "organic functions, based upon corporeal and even machine-like structures of the sense organs and the nervous system"), isomorphic to reality within tolerance. Rosen locates it in ANY interaction: a perspective is a meter, and a meter is any system in which the observed system induces a dynamics (§2.2; Introduction p. xii, the second cell "looking at the first through quite different eyes"). Bertalanffy's categories are a special case of Rosen's meters. Same ontic value, wider carrier; recorded here so the census can see the difference rather than the label.
+
+OBSERVER AXIS — QUEUED, NOT ASSERTED. Neither existing value fits. Not constitutive (Klir): describability does not confer systemhood; the natural system is prior and undefined. Not merely selective (Mobus): the meter's interaction does not pick a pre-cut system, it determines which observables and which analytic units are visible ("each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding 'natural' analytic units", §5.1 p. 95, page-verified). A value such as "interactional" or "revelatory" would be a new concept in ObserverRoleScheme and needs a ruling before minting, per the scheme's rule that values enter only with a user.
+
+Reading is Claude's, from the sources named; Shingai Thornton's stated position (2026-09-13) is that this placement matters for the census because his own scientific stance is Bertalanffian rather than Klirian."""@en ;
+    atlas:encodedBy "claude-fable-5-1, drafted 2026-09-13 from the full 1978 read plus Anticipatory Systems §2.1–2.3 (OCR) and the 1986 IJGS paper — UNCHECKED; the verbatim is OCR text not yet read against the page image" ;
+    atlas:encodedOn "2026-09-13"^^xsd:date ;
+    atlas:evidenceCode atlas:MDU ;
+    atlas:sourceLocation "Introduction, book p. xvii (scan page 16), the four stated conclusions" ;
+    atlas:stanceValue atlas:perspectivist ;
+    atlas:verbatim "there exists no universal family of analytic units appropriate for the treatment of all interactions; (2) there are on the contrary many such families of analytic units, all of which are equally “real” and entitled to be treated on the same footing" .
 
 cco:ont00000853 a owl:Class ;
     rdfs:label "Descriptive Information Content Entity"@en ;
@@ -1320,6 +1405,11 @@ the reply that he was only excluding events."""@en ;
     atlas:encodedOn "2026-08-05"^^xsd:date ;
     atlas:evidenceCode atlas:HVP .
 
+atlas:perspectivist a skos:Concept ;
+    skos:inScheme atlas:OnticStanceScheme ;
+    skos:prefLabel "perspectivist"@en ;
+    skos:scopeNote "Bertalanffy's own word (GST ch. 10, 'The Perspectivistic View'). Reality is real, access is perspectival, and the perspective is not free: categories 'must, with a certain tolerance allowed, be isomorphic' to the nexus of real events. Constrained, unlike Nietzschean perspectivism; nearest neighbour is Giere's perspectival realism."@en .
+
 prim:bond a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1362,6 +1452,12 @@ prim:object a skos:Concept ;
     skos:prefLabel "object"@en ;
     skos:scopeNote "Mobus's O, 'standing for \"objects\" in the environment that are sources and sinks in a unified set' (revisions manuscript, eq. 1)."@en .
 
+prim:real-valued-mapping a skos:Concept ;
+    skos:broader role:operation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "real-valued mapping"@en ;
+    skos:scopeNote "The members of F: mappings defined on S taking values in the real numbers. Rosen uses the phrase as a primitive ingredient of the pair. [MDU — drafted, unchecked; role proposal: operation]"@en .
+
 prim:system-object a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1381,10 +1477,6 @@ atlas:weakly-encompasses a skos:Concept ;
 atlas:MappingClaim a owl:Class ;
     rdfs:label "Mapping Claim"@en ;
     skos:definition "A reified relation between two entries, asserted by a mapping document. Carries its own evidence code and points at the argument; a claim of preservation owes a theorem name, a claim of loss owes a witness."@en .
-
-atlas:StanceAssertion a owl:Class ;
-    rdfs:label "Stance Assertion"@en ;
-    skos:definition "A reified reading of what an entry's definition is doing — one value on one axis, carried by the entry, graded by its own evidence code, licensed by its own verbatim."@en .
 
 entry:klir-2001-eq-1-1 a atlas:FormalSystemDefinition ;
     rdfs:label "Klir (2001), Facets of Systems Science, eq. (1.1)"@en ;
@@ -1467,10 +1559,23 @@ atlas:SignatureRoleScheme a skos:ConceptScheme ;
     rdfs:label "Signature roles"@en ;
     skos:definition "Model theory's signature vocabulary, fixed prior to and independent of the corpus. What slot a primitive's word fills in a formal statement — checkable against the formula, unlike meaning."@en .
 
+atlas:StanceAssertion a owl:Class ;
+    rdfs:label "Stance Assertion"@en ;
+    skos:definition "A reified reading of what an entry's definition is doing — one value on one axis, carried by the entry, graded by its own evidence code, licensed by its own verbatim."@en .
+
 prim:element a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "element"@en .
+
+skos:ConceptScheme a owl:Class ;
+    rdfs:label "Concept Scheme"@en ;
+    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+
+prim:thing a skos:Concept ;
+    skos:broader role:sort ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "thing"@en .
 
 atlas:MDU a atlas:EvidenceCode ;
     rdfs:label "model-drafted, unchecked"@en ;
@@ -1481,24 +1586,15 @@ role:operation a skos:Concept ;
     skos:inScheme atlas:SignatureRoleScheme ;
     skos:prefLabel "operation"@en .
 
-skos:ConceptScheme a owl:Class ;
-    rdfs:label "Concept Scheme"@en ;
-    skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
+prim:relation a skos:Concept ;
+    skos:broader role:relation ;
+    skos:inScheme atlas:PrimitiveScheme ;
+    skos:prefLabel "relation"@en .
 
 prim:set a skos:Concept ;
     rdfs:comment "Signature role (D1, 2026-08-18): deliberately unassigned — ambient set theory — the metalanguage the definitions are written in, not a symbol of any signature. Not a gap; a verdict."@en ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "set"@en .
-
-prim:thing a skos:Concept ;
-    skos:broader role:sort ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "thing"@en .
-
-prim:relation a skos:Concept ;
-    skos:broader role:relation ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:prefLabel "relation"@en .
 
 atlas:Author a owl:Class ;
     rdfs:label "Author"@en ;

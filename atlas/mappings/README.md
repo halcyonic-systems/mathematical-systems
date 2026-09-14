@@ -37,6 +37,7 @@ step where a reader has to reconstruct your path and may not.
 | [`mobus-revision.md`](mobus-revision.md) | Mobus 2022 → 2025 — **the revision's content is exactly one coordinate (E first-class, derived from the census by design); every larger reading of the diff is a passage-scope artifact.** Embedding claim recorded as a debt (006 shapeless by design) |
 | [`mesarovic-klir.md`](mesarovic-klir.md) | Mesarović 1975 ↔ Klir 2001 — **one shared content word (relation), shared floor arrow, shape embedding machine-checked faithful (`klirToMesarovic_faithful`) — with the forced-assignment caution; what separates them is stance (observer, object-exclusion), not structure** |
 | [`rosen-mesarovic.md`](rosen-mesarovic.md) | The set-theoretic definition and its critics — **the confrontation was never staged by Rosen or answered by Mesarović, but Bunge staged it once (1979 §1.8): "a system is a binary relation — again a conceptual object."** Concept-vs-thing, not structure. Argued, not derived; candidate test object deferred to a human minting decision |
+| [`rosen-arrow.md`](rosen-arrow.md) | Rosen 1978 Def 2.9.1 ↔ the K≅2 walking arrow — **NOT YET TESTED**: four claims stated so they can fail (shape iso; `Kernel.toRosen` at the cost "states stand in for things"; the bond is lost, witness owed; conjugacy is a groupoid inside C^→). Prepared 2026-09-13; Lean targets named, none built |
 
 ## The RDF layer (`claims.ttl`)
 

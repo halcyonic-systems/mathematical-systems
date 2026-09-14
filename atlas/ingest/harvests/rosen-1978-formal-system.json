@@ -1,0 +1,47 @@
+[
+  {
+    "symbol": "S",
+    "slug": "set",
+    "pref_label": "set",
+    "verbatim": "Let us suppose that we are given an abstract set S, which will represent the set of states of some system of interest. We shall suppose further that our only access to the individual states s in S is through a single observable.",
+    "source_location": "§2.3 Description by a Single Observable, book p. 30 (scan page 47), opening paragraph",
+    "role": "sort",
+    "new": false
+  },
+  {
+    "symbol": "F",
+    "slug": "family",
+    "pref_label": "family",
+    "verbatim": "(2) given a set F of observables; i.e., real-valued maps from S into R, we assumed in terms of which we could impute structure to S by constructing a set S/R_F of reduced states.",
+    "source_location": "§2.9 Appendix, book p. 54 (scan page 72), paragraph immediately preceding Definition 2.9.1 (page-image transcription)",
+    "role": "sort",
+    "new": false
+  },
+  {
+    "symbol": "f ∈ F",
+    "slug": "observable",
+    "pref_label": "observable",
+    "verbatim": "We shall call such a mapping an observable defined on the set of states in question. Thus, every meter defines an observable; conversely, for every observable we suppose that there exists a meter in terms of which it could be defined.",
+    "source_location": "§2.2 Meters and Observables, book p. 28 (scan page 45)",
+    "role": "operation",
+    "new": false
+  },
+  {
+    "symbol": "f: S → R",
+    "slug": "real-valued-mapping",
+    "pref_label": "real-valued mapping",
+    "verbatim": "Every observable can be regarded as a mapping from states to real numbers.",
+    "source_location": "§2.1 Introduction, PROPOSITION 2, book p. 26 (scan page 43/44, page-image transcription)",
+    "role": "operation",
+    "new": false
+  },
+  {
+    "symbol": "S/R_F",
+    "slug": "reduced-state",
+    "pref_label": "reduced state",
+    "verbatim": "The set S and the observables in O define a set of reduced states S/R_O, which we employ to label the states of S.",
+    "source_location": "§5.8 Models as Linkages: Prediction, book p. 128 (scan page 146), page-image transcription",
+    "role": "sort",
+    "new": false
+  }
+]

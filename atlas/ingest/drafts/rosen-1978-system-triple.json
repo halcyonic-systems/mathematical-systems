@@ -1,0 +1,56 @@
+{
+  "entry_slug": "rosen-1978-system-triple",
+  "label": "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §5.8, book p. 128",
+  "source_location": "§5.8, book p. 128 (scan page 146)",
+  "verbatim": "Let us recall that, according to Section 5.1, a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system.",
+  "display_form": "a system can be regarded as a triple: a set of states S, a set of observables O defined on those states and a family 𝒟 of dynamics imposed on the system",
+  "display_context": null,
+  "author_caveat": null,
+  "primitives": [
+    {
+      "slug": "state",
+      "pref_label": "state",
+      "scope_note": "Rosen's word for what the first component of the triple collects: the set S is a set of states, states being one of his three basic undefined terms.",
+      "role": "sort",
+      "new": true
+    },
+    {
+      "slug": "observable",
+      "pref_label": "observable",
+      "scope_note": "Used here for the members of the second component O, the observables defined on the states in S.",
+      "role": null,
+      "new": false
+    },
+    {
+      "slug": "dynamics",
+      "pref_label": "dynamics",
+      "scope_note": "Used here for the members of the third component: the family 𝒟 of dynamics imposed on the system, each dynamics acting on the states.",
+      "role": "operation",
+      "new": true
+    },
+    {
+      "slug": "triple",
+      "pref_label": "triple",
+      "scope_note": "The composite form the author gives the system in this passage: a three-component object assembled from S, O and 𝒟.",
+      "role": "unassigned",
+      "new": true
+    },
+    {
+      "slug": "set",
+      "pref_label": "set",
+      "scope_note": "Used here for the first two components: a set of states S and a set of observables O.",
+      "role": null,
+      "new": false
+    },
+    {
+      "slug": "family",
+      "pref_label": "family",
+      "scope_note": "Used here for the third component: a family 𝒟 of dynamics imposed on the system.",
+      "role": null,
+      "new": false
+    }
+  ],
+  "admits": [],
+  "refuses": [],
+  "comment": "DELIBERATELY NOT ASSERTED\nThis entry does not assert cco is-about between the passage, its primitives, and any extra-textual subject matter; the catalogue's neutrality invariant applies. Recording that Rosen uses the words \"state\", \"observable\" and \"dynamics\" as primitives here is a lexical fact about this passage only, and carries no claim that his \"observable\" is the same item as any other author's, nor that the triple denotes anything in the world.\n\nLEFT OUT BY THIS ENCODING\nThe entry captures only the recapitulating sentence at §5.8. It does not encode the earlier and formally distinct Definition 2.9.1 (\"A system (or formal system) shall consist of a pair (S, F)\"), nor the relation between that pair-form and this triple-form; a reviewer may wish a separate entry and a cross-reference rather than a merge, since the author gives no reconciliation. Also left out: the §5.1 material this sentence recalls, where the three components are used to define S-, O- and D-subsystems; and the numbered points that follow the quoted sentence, which develop the reduced-state labelling rather than glossing the definition. No display_context is supplied because the author offers no plain reading adjacent to the statement — the only neighbouring sentence turns immediately to an observable Φ imposed on a class of such triples.\n\nFIDELITY NOTES\nThe author's hedge \"can be regarded as\" is retained inside the formal statement rather than split off as a caveat, since it is not detachable from the sentence. The script letter is rendered 𝒟 following the page-image transcription; the OCR body of this source is explicitly unreliable for notation, and the transcription itself is marked \"Not yet verified by a human against the page\", so the verbatim above should be checked against the scan at page 146 before the MDU stamp is cleared.\n\nNO CASES\nThe passage offers no examples and refuses none; admits and refuses are therefore empty. Nothing in the surrounding sections rules explicitly on whether a named thing is or is not a system on this definition."
+}

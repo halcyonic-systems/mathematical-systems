@@ -171,6 +171,7 @@ ACCESSION = [
     "mobus-revisions-oct-tuple",
     "mesarovic-takahara-1975-general-system",
     "joslyn-1995-control2",
+    "rosen-1978-formal-system",
 ]
 
 
@@ -566,6 +567,9 @@ BEARER_SOURCES = {
     ),
     "https://w3id.org/mathematical-systems/atlas/bearer/mesarovic-takahara-1975-gst": (
         "mesarovic/mesarovic-takahara-1975-ch2.md"
+    ),
+    "https://w3id.org/mathematical-systems/atlas/bearer/rosen-1978-fundamentals": (
+        "rosen/rosen-1978-fundamentals-measurement.md"
     ),
     "https://w3id.org/mathematical-systems/atlas/bearer/bertalanffy-1968-gst": (
         "bertalanffy/gst-1968-full-text.md"

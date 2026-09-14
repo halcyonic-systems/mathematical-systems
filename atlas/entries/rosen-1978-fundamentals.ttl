@@ -15,10 +15,14 @@
 <https://w3id.org/mathematical-systems/atlas/entries/rosen-1978-fundamentals>
     a owl:Ontology ;
     owl:imports <https://w3id.org/mathematical-systems/atlas/atlas-core> ;
-    rdfs:label "Atlas entry — Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54) (DRAFT)"@en ;
-    rdfs:comment """MDU DRAFT, staged in ingest/drafts/ — not part of the catalogue until a
-human has read it against the source, corrected it, assigned an accession number, and
-promoted its evidence codes. Drafted 2026-09-13 by the P5 pipeline."""@en .
+    rdfs:label "Atlas entry — Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
+    rdfs:comment """Drafted 2026-09-13 by the P5 pipeline; accessioned at MDU the same day
+(precedent: entry 009). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
+the verbatim's primes (S′, F′), the subscript R_F, the ≠ sign and the "(or formal system)"
+parenthetical all match the printed page; no correction needed. This is not a human check —
+the evidence code stays MDU until Shingai Thornton reads the same page. The five minted
+primitives were moved into atlas-core's scheme at the same grade. Stance assertion (ontic:
+perspectivist) carried below at MDU; the observer axis is a queued ruling."""@en .
 
 
 ##############################################################################
@@ -73,43 +77,6 @@ No admits or refuses are recorded: at this locus Rosen offers no example as a sy
 
 SOURCE FIDELITY
 The verbatim follows the human-flagged page-image transcription of book p. 54 (scan page 72), not the tesseract OCR body, which mangles subscripts and set-inclusion signs. The transcription itself is marked "Not yet verified by a human against the page"; the subscripted R_F, the primes on S′ and F′, and the ≠ sign in particular should be checked against the page image at review."""@en .
-
-
-##############################################################################
-# New primitives proposed by this draft — declared here so the draft parses
-# standalone; on promotion they move into atlas-core's primitive vocabulary,
-# where the scheme's scope notes govern them.
-##############################################################################
-
-prim:pair a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:sort ;
-    skos:prefLabel "pair"@en ;
-    skos:scopeNote """The form of the system object itself: a system "shall consist of a pair (S, F)". Rosen takes the pairing as given. [MDU — drafted, unchecked; role proposal: sort]"""@en .
-
-prim:family a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:sort ;
-    skos:prefLabel "family"@en ;
-    skos:scopeNote """The second component F is "a family of real-valued mappings defined on S"; the word is used without further explication. [MDU — drafted, unchecked; role proposal: sort]"""@en .
-
-prim:real-valued-mapping a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:operation ;
-    skos:prefLabel "real-valued mapping"@en ;
-    skos:scopeNote """The members of F: mappings defined on S taking values in the real numbers. Rosen uses the phrase as a primitive ingredient of the pair. [MDU — drafted, unchecked; role proposal: operation]"""@en .
-
-prim:observable a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:operation ;
-    skos:prefLabel "observable"@en ;
-    skos:scopeNote """The author's name for the elements of F. Elsewhere in the work Rosen lists "observable" among three basic undefined terms; here it is stipulated as the label for the members of F. [MDU — drafted, unchecked; role proposal: operation]"""@en .
-
-prim:reduced-state a skos:Concept ;
-    skos:inScheme atlas:PrimitiveScheme ;
-    skos:broader role:sort ;
-    skos:prefLabel "reduced state"@en ;
-    skos:scopeNote """Used in the immediate gloss: to each formal system is uniquely associated "a set of reduced states S/R_F", carried over from the preceding sections. [MDU — drafted, unchecked; role proposal: sort]"""@en .
 
 
 ##############################################################################
