@@ -237,8 +237,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "4a80a4f+",
-    "repoCommit": "4a80a4f+"
+    "atlasCommit": "a17320e+",
+    "repoCommit": "a17320e+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -1236,11 +1236,16 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/reduced-state",
         "https://w3id.org/mathematical-systems/atlas/primitive/set"
       ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
-      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim read against scan page 72 (book p. 54) by Shingai Thornton 2026-09-14",
       "encodedOn": "2026-09-13",
       "formalisedAs": null,
       "annotation": [
+        {
+          "kind": "section",
+          "title": "HUMAN CHECK",
+          "body": "(2026-09-14, Shingai Thornton, reading the PDF page). Confirmed against the page: the definition sentence as printed, and the identity criterion sentence — \"two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′\" — including the primes and the ≠ signs. The subscript in the gloss's S/R_F was model-read only (Claude, 200 dpi page image, 2026-09-13) and is not recorded as human-confirmed. Promoted MDU → MDHC on the definition; the five primitives keep their MDU-tagged scope notes until the guided pass; the stance assertion below stays MDU (its verbatim is on book p. xvii, not yet read by a human)."
+        },
         {
           "kind": "prose",
           "title": null,

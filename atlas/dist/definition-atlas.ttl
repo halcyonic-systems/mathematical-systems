@@ -218,7 +218,8 @@ REPRODUCES the original Eq. 4.1 before revising it — the scan graded that repr
 
 <https://w3id.org/mathematical-systems/atlas/entries/rosen-1978-fundamentals> rdfs:label "Atlas entry — Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
     rdfs:comment """Drafted 2026-09-13 by the P5 pipeline; accessioned at MDU the same day
-(precedent: entry 009). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
+(precedent: entry 009); promoted to MDHC 2026-09-14 after Shingai Thornton read the verbatim
+against the page (see the HUMAN CHECK block on the entry). MODEL-SIDE PAGE READ, 2026-09-13 (Claude, scan page 72 at 200 dpi):
 the verbatim's primes (S′, F′), the subscript R_F, the ≠ sign and the "(or formal system)"
 parenthetical all match the printed page; no correction needed. This is not a human check —
 the evidence code stays MDU until Shingai Thornton reads the same page. The five minted
@@ -521,7 +522,9 @@ S is now given as an oct-tuple with new member E containing the set, O, (standin
 
 entry:rosen-1978-formal-system a atlas:FormalSystemDefinition ;
     rdfs:label "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
-    rdfs:comment """DELIBERATELY NOT ASSERTED
+    rdfs:comment """HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF page). Confirmed against the page: the definition sentence as printed, and the identity criterion sentence — "two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′" — including the primes and the ≠ signs. The subscript in the gloss's S/R_F was model-read only (Claude, 200 dpi page image, 2026-09-13) and is not recorded as human-confirmed. Promoted MDU → MDHC on the definition; the five primitives keep their MDU-tagged scope notes until the guided pass; the stance assertion below stays MDU (its verbatim is on book p. xvii, not yet read by a human).
+
+DELIBERATELY NOT ASSERTED
 This entry records only that the passage states a definition of "system" at the given locus. No cco is-about relation is asserted between this entry and any subject matter, discipline, or other atlas entry; the catalogue's neutrality invariant forbids inferring topical aboutness from the presence of a definition.
 
 WHAT THE ENCODING LEAVES OUT
@@ -534,9 +537,9 @@ SOURCE FIDELITY
 The verbatim follows the human-flagged page-image transcription of book p. 54 (scan page 72), not the tesseract OCR body, which mangles subscripts and set-inclusion signs. The transcription itself is marked "Not yet verified by a human against the page"; the subscripted R_F, the primes on S′ and F′, and the ≠ sign in particular should be checked against the page image at review."""@en ;
     atlas:displayContext "To each formal system defined as above, we can uniquely associate a set of reduced states S/R_F in the fashion we have described in the previous sections; all of the properties we have developed will be meaningful in the context of these formal systems, and we shall use them without further comment." ;
     atlas:displayForm "A system (or formal system) shall consist of a pair (S, F), where S is a set and F is a family of real-valued mappings defined on S. The elements of F will be called the observables of the formal system." ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py — UNCHECKED" ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim read against scan page 72 (book p. 54) by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-13"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:floorDependency prim:real-valued-mapping ;
     atlas:floorPosition prim:set ;
     atlas:hasStance stance:rosen-1978-ontic ;
@@ -1572,14 +1575,14 @@ skos:ConceptScheme a owl:Class ;
     rdfs:label "Concept Scheme"@en ;
     skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts."@en .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 prim:thing a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "thing"@en .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 role:operation a skos:Concept ;
     skos:definition "A function symbol: maps arguments to a value (transfer functions, Bunge's composition-at-a-time)."@en ;
