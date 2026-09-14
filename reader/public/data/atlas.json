@@ -237,8 +237,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "6f7fd87+",
-    "repoCommit": "6f7fd87+"
+    "atlasCommit": "b800bd8+",
+    "repoCommit": "b800bd8+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -1315,8 +1315,8 @@
         "https://w3id.org/mathematical-systems/atlas/primitive/state",
         "https://w3id.org/mathematical-systems/atlas/primitive/triple"
       ],
-      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDU",
-      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry by Shingai Thornton 2026-09-14; verbatim not yet human-read",
+      "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+      "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry and verbatim read against book p. 128 (scan page 146) by Shingai Thornton 2026-09-14",
       "encodedOn": "2026-09-13",
       "formalisedAs": null,
       "annotation": [
@@ -1333,7 +1333,7 @@
         {
           "kind": "section",
           "title": "TRANSCRIPTION",
-          "body": "Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). The script letter is rendered 𝒟. Not yet read against the page by a human: MDU."
+          "body": "Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF at printed p. 128): confirmed (1) the sentence wording as carried, (2) the observables symbol is a plain O, not O_I, (3) the dynamics symbol is a script letter, rendered 𝒟, (4) \"imposed on the system\", not \"on the states\". Promoted MDU → MDHC on the definition; the three minted primitives keep their MDU-tagged scope notes until the guided pass."
         },
         {
           "kind": "section",

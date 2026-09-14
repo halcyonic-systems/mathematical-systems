@@ -105,8 +105,8 @@ entry:rosen-1978-system-triple
                            prim:triple ,
                            prim:set ,
                            prim:family ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry by Shingai Thornton 2026-09-14; verbatim not yet human-read" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry and verbatim read against book p. 128 (scan page 146) by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-13"^^xsd:date ;
 
     rdfs:comment """SCOPE OF THE ENTRY. The recapitulating sentence at §5.8 (book p. 128) alone: system as a triple of states, observables defined on the states, and dynamics imposed on the system. The numbered points that follow it (reduced-state labelling, dynamics as reduced states of interacting systems) are not carried. The §5.1 material it recalls (p. 96: "The three basic features of natural systems with which we have been concerned are: states, observables and interactions (dynamics)", followed by the S-, O- and D-subsystem definitions) is not carried either; see RELATION TO §5.1 below.
@@ -116,7 +116,7 @@ RULED A SECOND ENTRY, NOT A RESTATEMENT (2026-09-14, Shingai Thornton; handled a
   (2) SELF-ATTRIBUTED TO §5.1, WHICH STATES NO TRIPLE. §5.1 names the three features and builds subsystem notions from each; the triple as an object is first written here. The atlas records the sentence where the form is stated, not where the author says he stated it.
   (3) NO MORPHISM FOR 𝒟. Definition 2.9.3 gives morphisms for the pair only; nothing in the text says what a map of dynamics is. The categorical apparatus of ch. 2 and §7.10 is built on the pair. Any mapping from this entry to a dynamical tradition (Mobus T/Δt, Wymore) inherits this gap.
 
-TRANSCRIPTION. Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). The script letter is rendered 𝒟. Not yet read against the page by a human: MDU.
+TRANSCRIPTION. Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF at printed p. 128): confirmed (1) the sentence wording as carried, (2) the observables symbol is a plain O, not O_I, (3) the dynamics symbol is a script letter, rendered 𝒟, (4) "imposed on the system", not "on the states". Promoted MDU → MDHC on the definition; the three minted primitives keep their MDU-tagged scope notes until the guided pass.
 
 DELIBERATELY NOT ASSERTED. No cco is-about relation. Recording that Rosen uses "state", "observable" and "dynamics" here is a lexical fact about this passage; "observable" is the same word as in entry 010 and reuses its primitive, per the lexical rule.
 
