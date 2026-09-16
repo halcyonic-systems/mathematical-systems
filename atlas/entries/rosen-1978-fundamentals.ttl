@@ -23,8 +23,8 @@ against the page (see the HUMAN CHECK block on the entry). Second entry, the §5
 the verbatim's primes (S′, F′), the subscript R_F, the ≠ sign and the "(or formal system)"
 parenthetical all match the printed page; no correction needed. This is not a human check —
 the evidence code stays MDU until Shingai Thornton reads the same page. The five minted
-primitives were moved into atlas-core's scheme at the same grade. Stance assertion (ontic:
-perspectivist) carried below at MDU; the observer axis is a queued ruling."""@en .
+primitives were moved into atlas-core's scheme at the same grade. Stance assertions (ontic:
+perspectivist; observer: interactional) carried below, both MDHC since 2026-09-16."""@en .
 
 
 ##############################################################################
@@ -70,7 +70,7 @@ Notice that we consider two formal systems (S, F) and (S′, F′) as different 
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim read against scan page 72 (book p. 54) by Shingai Thornton 2026-09-14" ;
     atlas:encodedOn "2026-09-13"^^xsd:date ;
 
-    rdfs:comment """HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF page). Confirmed against the page: the definition sentence as printed, and the identity criterion sentence — "two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′" — including the primes and the ≠ signs. The subscript in the gloss's S/R_F was model-read only (Claude, 200 dpi page image, 2026-09-13) and is not recorded as human-confirmed. Promoted MDU → MDHC on the definition; the five primitives' roles were ruled at the guided pass of 2026-09-16 (see atlas-core); the stance assertion below stays MDU (its verbatim is on book p. xvii, not yet read by a human).
+    rdfs:comment """HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF page). Confirmed against the page: the definition sentence as printed, and the identity criterion sentence — "two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′" — including the primes and the ≠ signs. The subscript in the gloss's S/R_F was model-read only (Claude, 200 dpi page image, 2026-09-13) and is not recorded as human-confirmed. Promoted MDU → MDHC on the definition; the five primitives' roles were ruled at the guided pass of 2026-09-16 (see atlas-core); the stance assertions below were promoted to MDHC on 2026-09-16 (pp. xvii and 95 read by Shingai Thornton).
 
 CANDIDATE 1 RULED (2026-09-14, Shingai Thornton): PROPOSITIONS 1 AND 2 ARE A CAVEAT, NOT AN ENTRY. Book p. 26 (scan page 44), page-verified: "PROPOSITION 1 The only meaningful physical events which occur in the world are those represented by the evaluation of observables on states. PROPOSITION 2 Every observable can be regarded as a mapping from states to real numbers." Rosen takes them "as axiomatic in all of what follows". They characterise no system; they fix the relation between two of the three terms he declares undefined on the same page (observable, state). Under the parts-definitions rule Proposition 2 is the defining sentence of prim:real-valued-mapping (harvested 2026-09-13); Proposition 1 is recorded here because it is what makes the formal system's observables the ONLY physical events, the premise any mapping to a things-first tradition (Bunge, Mobus) will have to cross. The undefined-terms passage that precedes them is carried as atlas:authorCaveat: it is the caveat that scopes Definition 2.9.1 to the FORMAL system and leaves the natural system undefined — the hinge on which the 1978/1986 reading turns (see the stance block). Ruled important enough to be read first by anyone citing this entry.
 
@@ -125,8 +125,7 @@ CASES. None offered, none refused."""@en .
 
 
 ##############################################################################
-# Stance (P3). MDU draft, 2026-09-13. One assertion on the ontic axis; the
-# observer axis is a queued ruling, not an assertion (see comment).
+# Stance (P3). Drafted 2026-09-13; both axes asserted; both MDHC 2026-09-16.
 ##############################################################################
 
 @prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
@@ -138,10 +137,12 @@ stance:rosen-1978-ontic
     atlas:stanceValue atlas:perspectivist ;
     atlas:verbatim "there exists no universal family of analytic units appropriate for the treatment of all interactions; (2) there are on the contrary many such families of analytic units, all of which are equally “real” and entitled to be treated on the same footing" ;
     atlas:sourceLocation "Introduction, book p. xvii (scan page 16), the four stated conclusions" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-fable-5-1, drafted 2026-09-13 from the full 1978 read plus Anticipatory Systems §2.1–2.3 (OCR) and the 1986 IJGS paper — UNCHECKED; the verbatim is OCR text not yet read against the page image" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-fable-5-1, drafted 2026-09-13 from the full 1978 read plus Anticipatory Systems §2.1–2.3 (OCR) and the 1986 IJGS paper; verbatim read against scan page 16 (book p. xvii) by Shingai Thornton 2026-09-16" ;
     atlas:encodedOn "2026-09-13"^^xsd:date ;
-    rdfs:comment """WHY PERSPECTIVIST AND NOT REALIST OR CONSTRUCTIVIST. Both halves of the scheme's scope note are in the text. Reality is real: §2.1 (p. 26, page-verified) glosses the undefined term system as "some part of the real world which comprises our object of study", and the Introduction (p. xii) says "all observables possess the same degree of physical reality". Access is perspectival and no perspective is privileged: the quoted conclusion, and p. xii, "what you see depends on how you look at things". The 1986 paper (IJGS 13; Facets reprint) adds that systemhood is "an independent category", reducible neither to thinghood nor to set-ness, and rejects reductionism and holism together — a foundations claim, not a retraction of Definition 2.9.1, which scopes itself to the FORMAL system ("A system (or formal system)"; "observables of the formal system") while the natural system stays undefined.
+    rdfs:comment """HUMAN CHECK (2026-09-16, Shingai Thornton, reading scan page 16 = book p. xvii). Confirmed: the two clauses are conclusions (1) and (2) of the Introduction's four numbered conclusions; "real" is printed in quotation marks; the phrase is "on the same footing". Promoted MDU → MDHC.
+
+WHY PERSPECTIVIST AND NOT REALIST OR CONSTRUCTIVIST. Both halves of the scheme's scope note are in the text. Reality is real: §2.1 (p. 26, page-verified) glosses the undefined term system as "some part of the real world which comprises our object of study", and the Introduction (p. xii) says "all observables possess the same degree of physical reality". Access is perspectival and no perspective is privileged: the quoted conclusion, and p. xii, "what you see depends on how you look at things". The 1986 paper (IJGS 13; Facets reprint) adds that systemhood is "an independent category", reducible neither to thinghood nor to set-ness, and rejects reductionism and holism together — a foundations claim, not a retraction of Definition 2.9.1, which scopes itself to the FORMAL system ("A system (or formal system)"; "observables of the formal system") while the natural system stays undefined.
 
 HOW IT DIFFERS FROM BERTALANFFY'S CELL. Bertalanffy locates the perspective in an organism's evolved categories of experience (GST ch. 10: the a priori forms are "organic functions, based upon corporeal and even machine-like structures of the sense organs and the nervous system"), isomorphic to reality within tolerance. Rosen locates it in ANY interaction: a perspective is a meter, and a meter is any system in which the observed system induces a dynamics (§2.2; Introduction p. xii, the second cell "looking at the first through quite different eyes"). Bertalanffy's categories are a special case of Rosen's meters. Same ontic value, wider carrier; recorded here so the census can see the difference rather than the label.
 
@@ -154,8 +155,10 @@ stance:rosen-1978-observer
     atlas:stanceValue atlas:interactional ;
     atlas:verbatim "each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding “natural” analytic units" ;
     atlas:sourceLocation "§5.1, book p. 95 (scan page 113)" ;
-    atlas:evidenceCode atlas:MDU ;
-    atlas:encodedBy "claude-fable-5-1, 2026-09-14, on Shingai Thornton's ruling to mint the value; verbatim page-image read by Claude only" ;
+    atlas:evidenceCode atlas:MDHC ;
+    atlas:encodedBy "claude-fable-5-1, 2026-09-14, on Shingai Thornton's ruling to mint the value; verbatim read against scan page 113 (book p. 95) by Shingai Thornton 2026-09-16" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
-    rdfs:comment """THE VALUE WAS MINTED FOR THIS ENTRY (2026-09-14). Neither existing value fit, and the reason is in the text: the act is an interaction, and the interaction determines the analytic units rather than conferring systemhood (Klir) or selecting a pre-cut system (Mobus). Same sentence continues: "Results of this type are of great significance in physics and biology, for they directly contradict the prevailing reductionistic ideas that there do exist universal analytic units". Read with the ontic assertion above: perspectivist on what exists, interactional on what the observer's act does — the cell Bertalanffy's row still leaves empty on the second axis, filled here by an author who names the act as physical."""@en .
+    rdfs:comment """HUMAN CHECK (2026-09-16, Shingai Thornton, reading scan page 113 = book p. 95). Confirmed: the sentence opens "Our thrust will be that there is no one mode of analysis which is universally valid"; "natural" is in quotation marks; the verb is the singular "determines"; the following sentence has "directly contradict the prevailing reductionistic ideas". Promoted MDU → MDHC.
+
+THE VALUE WAS MINTED FOR THIS ENTRY (2026-09-14). Neither existing value fit, and the reason is in the text: the act is an interaction, and the interaction determines the analytic units rather than conferring systemhood (Klir) or selecting a pre-cut system (Mobus). Same sentence continues: "Results of this type are of great significance in physics and biology, for they directly contradict the prevailing reductionistic ideas that there do exist universal analytic units". Read with the ontic assertion above: perspectivist on what exists, interactional on what the observer's act does — the cell Bertalanffy's row still leaves empty on the second axis, filled here by an author who names the act as physical."""@en .
 
