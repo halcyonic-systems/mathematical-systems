@@ -1,6 +1,6 @@
 # Mapping 008 — Rosen 1978 and the walking arrow: is Definition 2.9.1 a view of the kernel?
 
-**Verdict: all four claims MACHINE-CHECKED (claim 1 2026-09-14; claims 2–4 2026-09-16). Claim 2 holds with a different cost than predicted; claim 4 holds in the form its own failure clause predicted.** On the encoding
+**Verdict (2026-09-16, ruled by Shingai Thornton): claim 1 MACHINE-CHECKED (2026-09-14); claim 2 FAILED AS STATED and REPAIRED, the repair machine-checked; claim 3 WITNESSED; claim 4 MACHINE-CHECKED in the form its own failure clause anticipated.** On the encoding
 that makes ℝ the substrate, Rosen's (S, F) shape is *isomorphic* to the walking arrow:
 `rosenKlirEquiv : Paths RosenPosition ≌ Paths KlirPosition` with both round trips literally
 the identity functor (`klirToRosen_rosenToKlir`, `rosenToKlir_klirToRosen`, SSF
@@ -29,7 +29,12 @@ tradition should be a *generated view* of the kernel at a statable cost, never a
    a span or a cospan, not the arrow, and the claim drops to "admits the walking arrow", which
    the common-core theorem already gives for free and which would be vacuous here.
 
-2. **View generation — MACHINE-CHECKED 2026-09-16, WITH A CORRECTION TO THE COST.**
+2. **View generation — FAILED AS STATED, REPAIRED 2026-09-16.** The pre-registered
+   reading ("the kernel's dependency Prop is read as 'F is defined on S'") does not
+   round-trip: at data level the dependency is a relation on things, and "defined on" is a
+   fact about F and S with no relation in it. The claim's own first failure condition
+   ("no such reading round-trips") fired. THE REPAIR: read the dependency as Rosen's R_F,
+   the one relation a pair (S, F) determines on its states. On that reading
    `Kernel.toRosen` exists (SSF `Systems/Klir/ViewGeneration.lean`) with round trip
    `Kernel.toRosen_toKlir` through Rosen's own S/R_F projection and faithfulness
    `Kernel.toRosen_injective`. The precondition is `Kernel.IsIndist`: the dependency must
@@ -38,7 +43,9 @@ tradition should be a *generated view* of the kernel at a statable cost, never a
    symmetric. "States stand in for things" is therefore not itself the precondition; it
    is what the precondition means. The real line was not the obstacle (it enters only as
    the {0, 1} codomain witness). What is lost is a theorem: `rosen_no_view_of_asymmetric`
-   — a kernel with a one-way dependency has no Rosen view whatever. Original statement: In `Systems/Klir/ViewGeneration.lean`
+   — a kernel with a one-way dependency has no Rosen view whatever. Scored as a failure
+   because pre-registration is worthless if a repaired claim is scored as the original; the
+   repaired claim is the stronger result and stands on its own. Original statement: In `Systems/Klir/ViewGeneration.lean`
    the Klir, Bunge and Mobus views are generated from `Kernel α` with identity round trips,
    and each costs a precondition (Bunge: `HasBond`; Mobus: irreflexivity). Claim: a
    `Kernel.toRosen` exists with a round trip, at the cost **"states stand in for things"** —

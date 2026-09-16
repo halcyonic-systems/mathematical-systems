@@ -16,6 +16,10 @@
 @prefix stance: <https://w3id.org/mathematical-systems/atlas/stance/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+atlas:MDU a atlas:EvidenceCode ;
+    rdfs:label "model-drafted, unchecked"@en ;
+    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
+
 atlas:PROP a atlas:EvidenceCode ;
     rdfs:label "propagated from another entry"@en ;
     skos:definition "Asserted because a cited source restates another entry's definition. Inherits the strength of its source, never exceeds it."@en .
@@ -224,8 +228,8 @@ against the page (see the HUMAN CHECK block on the entry). Second entry, the §5
 the verbatim's primes (S′, F′), the subscript R_F, the ≠ sign and the "(or formal system)"
 parenthetical all match the printed page; no correction needed. This is not a human check —
 the evidence code stays MDU until Shingai Thornton reads the same page. The five minted
-primitives were moved into atlas-core's scheme at the same grade. Stance assertion (ontic:
-perspectivist) carried below at MDU; the observer axis is a queued ruling."""@en .
+primitives were moved into atlas-core's scheme at the same grade. Stance assertions (ontic:
+perspectivist; observer: interactional) carried below, both MDHC since 2026-09-16."""@en .
 
 entry:bertalanffy-1968-eq-3-1 a atlas:FormalSystemDefinition ;
     rdfs:label "Bertalanffy (1968), General System Theory, eq. (3.1)"@en ;
@@ -571,7 +575,7 @@ S is now given as an oct-tuple with new member E containing the set, O, (standin
 
 entry:rosen-1978-formal-system a atlas:FormalSystemDefinition ;
     rdfs:label "Rosen (1978), Fundamentals of Measurement and Representation of Natural Systems, §2.9 Appendix, Definition 2.9.1 (book p. 54)"@en ;
-    rdfs:comment """HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF page). Confirmed against the page: the definition sentence as printed, and the identity criterion sentence — "two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′" — including the primes and the ≠ signs. The subscript in the gloss's S/R_F was model-read only (Claude, 200 dpi page image, 2026-09-13) and is not recorded as human-confirmed. Promoted MDU → MDHC on the definition; the five primitives keep their MDU-tagged scope notes until the guided pass; the stance assertion below stays MDU (its verbatim is on book p. xvii, not yet read by a human).
+    rdfs:comment """HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF page). Confirmed against the page: the definition sentence as printed, and the identity criterion sentence — "two formal systems (S, F) and (S′, F′) as different if S ≠ S′ and/or F ≠ F′" — including the primes and the ≠ signs. The subscript in the gloss's S/R_F was model-read only (Claude, 200 dpi page image, 2026-09-13) and is not recorded as human-confirmed. Promoted MDU → MDHC on the definition; the five primitives' roles were ruled at the guided pass of 2026-09-16 (see atlas-core); the stance assertions below were promoted to MDHC on 2026-09-16 (pp. xvii and 95 read by Shingai Thornton).
 
 CANDIDATE 1 RULED (2026-09-14, Shingai Thornton): PROPOSITIONS 1 AND 2 ARE A CAVEAT, NOT AN ENTRY. Book p. 26 (scan page 44), page-verified: "PROPOSITION 1 The only meaningful physical events which occur in the world are those represented by the evaluation of observables on states. PROPOSITION 2 Every observable can be regarded as a mapping from states to real numbers." Rosen takes them "as axiomatic in all of what follows". They characterise no system; they fix the relation between two of the three terms he declares undefined on the same page (observable, state). Under the parts-definitions rule Proposition 2 is the defining sentence of prim:real-valued-mapping (harvested 2026-09-13); Proposition 1 is recorded here because it is what makes the formal system's observables the ONLY physical events, the premise any mapping to a things-first tradition (Bunge, Mobus) will have to cross. The undefined-terms passage that precedes them is carried as atlas:authorCaveat: it is the caveat that scopes Definition 2.9.1 to the FORMAL system and leaves the natural system undefined — the hinge on which the 1978/1986 reading turns (see the stance block). Ruled important enough to be read first by anyone citing this entry.
 
@@ -579,7 +583,7 @@ DELIBERATELY NOT ASSERTED
 This entry records only that the passage states a definition of "system" at the given locus. No cco is-about relation is asserted between this entry and any subject matter, discipline, or other atlas entry; the catalogue's neutrality invariant forbids inferring topical aboutness from the presence of a definition.
 
 WHAT THE ENCODING LEAVES OUT
-The locus is embedded in a longer formal development that the entry does not carry: Definition 2.9.2 (subsystem and extension, S′ ⊆ S and F′ ⊆ F), the remarks that (S, F) is a subsystem of (S, H(S, R)) and that no formal system is a subsystem of (S, ∅), Definition 2.9.3 (morphism as a pair (φ, ψ)), and the closing note that "the class of formal systems becomes a category". Also left out is §2.1's declaration that system, observable and state are three basic undefined terms, together with Propositions 1 and 2, on which Rosen's notion of observable rests; the reduced-state construction S/R_F named in the gloss is developed in earlier sections and is not reproduced here.
+The locus is embedded in a longer formal development that the entry does not carry: Definition 2.9.2 (subsystem and extension, S′ ⊆ S and F′ ⊆ F), the remarks that (S, F) is a subsystem of (S, H(S, R)) and that no formal system is a subsystem of (S, ∅), Definition 2.9.3 (morphism as a pair (φ, ψ)), and the closing note that "the class of formal systems becomes a category". RULED 2026-09-16 (Shingai Thornton, guided pass): 2.9.2 and 2.9.3 are DEFINED terms of the appendix, built from the pair, not primitives of 2.9.1 — no primitive rows are minted for them and Mobus's prim:subsystem (an undefined index there) is not reused. Where they work formally is downstream: subsystem carries §5.1's S-/O-/D-subsystems, §5.2's abstraction and the shared-subsystem test of §5.6–5.7; morphism is what makes the class of formal systems a category and so the setting of ch. 7's similarity and §7.10's conjugacy — the object of mapping 008, claim 4. Also left out is §2.1's declaration that system, observable and state are three basic undefined terms, together with Propositions 1 and 2, on which Rosen's notion of observable rests; the reduced-state construction S/R_F named in the gloss is developed in earlier sections and is not reproduced here.
 
 CASES
 No admits or refuses are recorded: at this locus Rosen offers no example as a system and refuses none. The nearby remark about (S, H(S, R)) and (S, ∅) rules on the subsystem relation, not on systemhood, and so was not treated as a case.
@@ -619,7 +623,7 @@ RULED A SECOND ENTRY, NOT A RESTATEMENT (2026-09-14, Shingai Thornton; handled a
   (2) SELF-ATTRIBUTED TO §5.1, WHICH STATES NO TRIPLE. §5.1 names the three features and builds subsystem notions from each; the triple as an object is first written here. The atlas records the sentence where the form is stated, not where the author says he stated it.
   (3) NO MORPHISM FOR 𝒟. Definition 2.9.3 gives morphisms for the pair only; nothing in the text says what a map of dynamics is. The categorical apparatus of ch. 2 and §7.10 is built on the pair. Any mapping from this entry to a dynamical tradition (Mobus T/Δt, Wymore) inherits this gap.
 
-TRANSCRIPTION. Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF at printed p. 128): confirmed (1) the sentence wording as carried, (2) the observables symbol is a plain O, not O_I, (3) the dynamics symbol is a script letter, rendered 𝒟, (4) "imposed on the system", not "on the states". Promoted MDU → MDHC on the definition; the three minted primitives keep their MDU-tagged scope notes until the guided pass.
+TRANSCRIPTION. Verbatim follows the page-image transcription of scan page 146 (Claude, 2026-09-13; the OCR body is unreliable for notation). HUMAN CHECK (2026-09-14, Shingai Thornton, reading the PDF at printed p. 128): confirmed (1) the sentence wording as carried, (2) the observables symbol is a plain O, not O_I, (3) the dynamics symbol is a script letter, rendered 𝒟, (4) "imposed on the system", not "on the states". Promoted MDU → MDHC on the definition; the three minted primitives' roles were ruled at the guided pass of 2026-09-16 (see atlas-core).
 
 DELIBERATELY NOT ASSERTED. No cco is-about relation. Recording that Rosen uses "state", "observable" and "dynamics" here is a lexical fact about this passage; "observable" is the same word as in entry 010 and reuses its primitive, per the lexical rule.
 
@@ -1239,7 +1243,7 @@ prim:dynamics a skos:Concept ;
     skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "dynamics"@en ;
-    skos:scopeNote "Used here for the members of the third component: the family 𝒟 of dynamics imposed on the system, each dynamics acting on the states. [MDU — drafted, unchecked; role proposal: operation]"@en .
+    skos:scopeNote "Used here for the members of the third component: the family 𝒟 of dynamics imposed on the system, dynamics \"imposed on the system\" (p. 128, human-checked wording), not on the states. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; operation: §5.1 pp. 96–97 has a dynamics \"imposed on the system (through interaction with the states of other systems)\" and causing \"transitions between … states\" — what acts on S, a map; the alternative reading (relation, from \"interactions (dynamics)\") was considered and set aside on the grammar of the acting map.]"@en .
 
 prim:entity a skos:Concept ;
     skos:broader role:sort ;
@@ -1287,7 +1291,7 @@ prim:pair a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "pair"@en ;
-    skos:scopeNote "The form of the system object itself: a system \"shall consist of a pair (S, F)\". Rosen takes the pairing as given. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "The form of the system object itself: a system \"shall consist of a pair (S, F)\". Rosen takes the pairing as given. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; sort: \"shall consist of a pair (S, F)\" — the thing systemhood is predicated of, and the carrier that 2.9.2's ⊆ and 2.9.3's morphism are made upon; the same call as Joslyn's metasystem ⟨S, E⟩.]"@en .
 
 prim:property a skos:Concept ;
     skos:broader role:sort ;
@@ -1299,7 +1303,7 @@ prim:reduced-state a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "reduced state"@en ;
-    skos:scopeNote "Used in the immediate gloss: to each formal system is uniquely associated \"a set of reduced states S/R_F\", carried over from the preceding sections. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "Used in the immediate gloss: to each formal system is uniquely associated \"a set of reduced states S/R_F\", carried over from the preceding sections. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; sort: \"a set of reduced states S/R_F\" — the passage names the quotient as a set the properties hold on, not the act of forming it (which would be an operation).]"@en .
 
 prim:space a skos:Concept ;
     skos:broader role:sort ;
@@ -1350,9 +1354,10 @@ prim:transformation-rule a skos:Concept ;
     skos:scopeNote "Mobus's T: 'T is the set of transformation rules for the subsystems in S' (§4.3.3.4). Hand-recovered after the model's wider span failed to locate — the passage is set in display-math wrappers the digitisation mangles."@en .
 
 prim:triple a skos:Concept ;
+    skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "triple"@en ;
-    skos:scopeNote "The composite form the author gives the system in this passage: a three-component object assembled from S, O and 𝒟. [MDU — drafted, unchecked; role proposal: unassigned]"@en .
+    skos:scopeNote "The composite form the author gives the system in this passage: a three-component object assembled from S, O and 𝒟. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; sort: \"a system can be regarded as a triple\" — the three-component object named as the thing; the same call as prim:pair.]"@en .
 
 prim:variation a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
@@ -1430,25 +1435,29 @@ source."""@en ;
     atlas:verbatim "we should recognize that systems originate with us, human beings. We construct them by making appropriate distinctions, be they made in the real world by our perceptual capabilities or conceived in the world of ideas by our mental capabilities" .
 
 stance:rosen-1978-observer a atlas:StanceAssertion ;
-    rdfs:comment "THE VALUE WAS MINTED FOR THIS ENTRY (2026-09-14). Neither existing value fit, and the reason is in the text: the act is an interaction, and the interaction determines the analytic units rather than conferring systemhood (Klir) or selecting a pre-cut system (Mobus). Same sentence continues: \"Results of this type are of great significance in physics and biology, for they directly contradict the prevailing reductionistic ideas that there do exist universal analytic units\". Read with the ontic assertion above: perspectivist on what exists, interactional on what the observer's act does — the cell Bertalanffy's row still leaves empty on the second axis, filled here by an author who names the act as physical."@en ;
-    atlas:encodedBy "claude-fable-5-1, 2026-09-14, on Shingai Thornton's ruling to mint the value; verbatim page-image read by Claude only" ;
+    rdfs:comment """HUMAN CHECK (2026-09-16, Shingai Thornton, reading scan page 113 = book p. 95). Confirmed: the sentence opens "Our thrust will be that there is no one mode of analysis which is universally valid"; "natural" is in quotation marks; the verb is the singular "determines"; the following sentence has "directly contradict the prevailing reductionistic ideas". Promoted MDU → MDHC.
+
+THE VALUE WAS MINTED FOR THIS ENTRY (2026-09-14). Neither existing value fit, and the reason is in the text: the act is an interaction, and the interaction determines the analytic units rather than conferring systemhood (Klir) or selecting a pre-cut system (Mobus). Same sentence continues: "Results of this type are of great significance in physics and biology, for they directly contradict the prevailing reductionistic ideas that there do exist universal analytic units". Read with the ontic assertion above: perspectivist on what exists, interactional on what the observer's act does — the cell Bertalanffy's row still leaves empty on the second axis, filled here by an author who names the act as physical."""@en ;
+    atlas:encodedBy "claude-fable-5-1, 2026-09-14, on Shingai Thornton's ruling to mint the value; verbatim read against scan page 113 (book p. 95) by Shingai Thornton 2026-09-16" ;
     atlas:encodedOn "2026-09-14"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:sourceLocation "§5.1, book p. 95 (scan page 113)" ;
     atlas:stanceValue atlas:interactional ;
     atlas:verbatim "each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding “natural” analytic units" .
 
 stance:rosen-1978-ontic a atlas:StanceAssertion ;
-    rdfs:comment """WHY PERSPECTIVIST AND NOT REALIST OR CONSTRUCTIVIST. Both halves of the scheme's scope note are in the text. Reality is real: §2.1 (p. 26, page-verified) glosses the undefined term system as "some part of the real world which comprises our object of study", and the Introduction (p. xii) says "all observables possess the same degree of physical reality". Access is perspectival and no perspective is privileged: the quoted conclusion, and p. xii, "what you see depends on how you look at things". The 1986 paper (IJGS 13; Facets reprint) adds that systemhood is "an independent category", reducible neither to thinghood nor to set-ness, and rejects reductionism and holism together — a foundations claim, not a retraction of Definition 2.9.1, which scopes itself to the FORMAL system ("A system (or formal system)"; "observables of the formal system") while the natural system stays undefined.
+    rdfs:comment """HUMAN CHECK (2026-09-16, Shingai Thornton, reading scan page 16 = book p. xvii). Confirmed: the two clauses are conclusions (1) and (2) of the Introduction's four numbered conclusions; "real" is printed in quotation marks; the phrase is "on the same footing". Promoted MDU → MDHC.
+
+WHY PERSPECTIVIST AND NOT REALIST OR CONSTRUCTIVIST. Both halves of the scheme's scope note are in the text. Reality is real: §2.1 (p. 26, page-verified) glosses the undefined term system as "some part of the real world which comprises our object of study", and the Introduction (p. xii) says "all observables possess the same degree of physical reality". Access is perspectival and no perspective is privileged: the quoted conclusion, and p. xii, "what you see depends on how you look at things". The 1986 paper (IJGS 13; Facets reprint) adds that systemhood is "an independent category", reducible neither to thinghood nor to set-ness, and rejects reductionism and holism together — a foundations claim, not a retraction of Definition 2.9.1, which scopes itself to the FORMAL system ("A system (or formal system)"; "observables of the formal system") while the natural system stays undefined.
 
 HOW IT DIFFERS FROM BERTALANFFY'S CELL. Bertalanffy locates the perspective in an organism's evolved categories of experience (GST ch. 10: the a priori forms are "organic functions, based upon corporeal and even machine-like structures of the sense organs and the nervous system"), isomorphic to reality within tolerance. Rosen locates it in ANY interaction: a perspective is a meter, and a meter is any system in which the observed system induces a dynamics (§2.2; Introduction p. xii, the second cell "looking at the first through quite different eyes"). Bertalanffy's categories are a special case of Rosen's meters. Same ontic value, wider carrier; recorded here so the census can see the difference rather than the label.
 
 OBSERVER AXIS — QUEUED, NOT ASSERTED. Neither existing value fits. Not constitutive (Klir): describability does not confer systemhood; the natural system is prior and undefined. Not merely selective (Mobus): the meter's interaction does not pick a pre-cut system, it determines which observables and which analytic units are visible ("each mode of interaction, and each set of meters chosen for observing it, determines a set of corresponding 'natural' analytic units", §5.1 p. 95, page-verified). A value such as "interactional" or "revelatory" would be a new concept in ObserverRoleScheme and needs a ruling before minting, per the scheme's rule that values enter only with a user.
 
 Reading is Claude's, from the sources named; Shingai Thornton's stated position (2026-09-13) is that this placement matters for the census because his own scientific stance is Bertalanffian rather than Klirian."""@en ;
-    atlas:encodedBy "claude-fable-5-1, drafted 2026-09-13 from the full 1978 read plus Anticipatory Systems §2.1–2.3 (OCR) and the 1986 IJGS paper — UNCHECKED; the verbatim is OCR text not yet read against the page image" ;
+    atlas:encodedBy "claude-fable-5-1, drafted 2026-09-13 from the full 1978 read plus Anticipatory Systems §2.1–2.3 (OCR) and the 1986 IJGS paper; verbatim read against scan page 16 (book p. xvii) by Shingai Thornton 2026-09-16" ;
     atlas:encodedOn "2026-09-13"^^xsd:date ;
-    atlas:evidenceCode atlas:MDU ;
+    atlas:evidenceCode atlas:MDHC ;
     atlas:sourceLocation "Introduction, book p. xvii (scan page 16), the four stated conclusions" ;
     atlas:stanceValue atlas:perspectivist ;
     atlas:verbatim "there exists no universal family of analytic units appropriate for the treatment of all interactions; (2) there are on the contrary many such families of analytic units, all of which are equally “real” and entitled to be treated on the same footing" .
@@ -1467,10 +1476,6 @@ obo:BFO_0000002 a owl:Class ;
     rdfs:label "continuant"@en ;
     rdfs:subClassOf obo:BFO_0000001 ;
     skos:definition "(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity"@en .
-
-atlas:MDU a atlas:EvidenceCode ;
-    rdfs:label "model-drafted, unchecked"@en ;
-    skos:definition "A model produced the encoding and no human has checked it. MUST NOT be cited in any claim. Present so that coverage figures stay honest."@en .
 
 atlas:ObserverRoleScheme a skos:ConceptScheme ;
     rdfs:label "The observer's act"@en ;
@@ -1679,7 +1684,7 @@ prim:family a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "family"@en ;
-    skos:scopeNote "The second component F is \"a family of real-valued mappings defined on S\"; the word is used without further explication. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "The second component F is \"a family of real-valued mappings defined on S\"; the word is used without further explication. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; sort: \"F is a family of real-valued mappings\" — the collection that F′ ⊆ F is predicated of (2.9.2) and that ψ: F → F′ maps between (2.9.3); unlike prim:set, the definition names F as the slot, so it is not the metalanguage.]"@en .
 
 prim:flow-network a skos:Concept ;
     skos:broader role:relation ;
@@ -1715,7 +1720,7 @@ prim:real-valued-mapping a skos:Concept ;
     skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "real-valued mapping"@en ;
-    skos:scopeNote "The members of F: mappings defined on S taking values in the real numbers. Rosen uses the phrase as a primitive ingredient of the pair. [MDU — drafted, unchecked; role proposal: operation]"@en .
+    skos:scopeNote "The members of F: mappings defined on S taking values in the real numbers. Rosen uses the phrase as a primitive ingredient of the pair. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; operation: Proposition 2 (p. 26) fixes it as \"a mapping from states to real numbers\", f: S → ℝ, a function symbol.]"@en .
 
 prim:region a skos:Concept ;
     skos:broader role:sort ;
@@ -1727,7 +1732,7 @@ prim:state a skos:Concept ;
     skos:broader role:sort ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "state"@en ;
-    skos:scopeNote "Rosen's word for what the first component of the triple collects: the set S is a set of states, states being one of his three basic undefined terms. [MDU — drafted, unchecked; role proposal: sort]"@en .
+    skos:scopeNote "Rosen's word for what the first component of the triple collects: the set S is a set of states, states being one of his three basic undefined terms. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; sort: \"a set of states S\" — the elements of the first carrier, the arguments every observable is evaluated on.]"@en .
 
 prim:system-1 a skos:Concept ;
     skos:broader role:sort ;
@@ -1820,7 +1825,7 @@ prim:observable a skos:Concept ;
     skos:broader role:operation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "observable"@en ;
-    skos:scopeNote "The author's name for the elements of F. Elsewhere in the work Rosen lists \"observable\" among three basic undefined terms; here it is stipulated as the label for the members of F. [MDU — drafted, unchecked; role proposal: operation]"@en .
+    skos:scopeNote "The author's name for the elements of F. Elsewhere in the work Rosen lists \"observable\" among three basic undefined terms; here it is stipulated as the label for the members of F. [Role ruled 2026-09-16 by Shingai Thornton at the guided pass on the eight Rosen primitives; operation: \"the elements of F will be called the observables\" — a name for the members of F, so it inherits their role; the §2.1 undefined-term status lives in the entry's authorCaveat, not in the role.]"@en .
 
 prim:time a skos:Concept ;
     skos:broader role:sort ;
