@@ -6,7 +6,7 @@ that makes ℝ the substrate, Rosen's (S, F) shape is *isomorphic* to the walkin
 the identity functor (`klirToRosen_rosenToKlir`, `rosenToKlir_klirToRosen`, SSF
 `Systems/Category/RosenKlirIso.lean`; shape in `ShapeRosen.lean`; axioms propext, choice,
 Quot.sound; thinness `rosen_path_subsingleton` axiom-free). Prepared 2026-09-13; claims 2–4
-remain as stated. **Graded `MDU` as a document** — no human has read this memo against the sources.
+remain as stated. **Every source verbatim this memo relies on has been human-read (pp. 54, 56, 128, 182–186; Shingai Thornton, 2026-09-14/16); the memo's own arguments remain the author's.**
 
 **Why this mapping exists.** Rosen 1978 §7.10 (book pp. 182–183) takes a category with two
 objects and one map A₁ → A₂, forms the functor category of diagrams over it, and says it
@@ -103,7 +103,10 @@ tradition should be a *generated view* of the kernel at a statable cost, never a
   Thornton 2026-09-16: the conjugacy definition and the equivalence-relation sentence
   confirmed as quoted in the Lean module docstring; the THEOREM's displayed equation
   confirmed only from a cropped enlargement. pp. 182–183 (the functor-category setup,
-  scan 200–201) remain model-read only.
+  scan 200–201) read by Shingai Thornton the same day: the observable-as-mapping opening,
+  the Grothendieck 1957 attribution with both clauses, example 2 (two objects, the two
+  identities and one f, "all the mappings in 𝔅"), diagram (7.10.1) and "the category of
+  diagrams over 𝒞" all confirmed. No §7.10 verbatim in this memo is model-read only.
 - Atlas Lean pin still at the pre-Rosen SSF commit; bump after the SSF push.
 
 ## Presentation
