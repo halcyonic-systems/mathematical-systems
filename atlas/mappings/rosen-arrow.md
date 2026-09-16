@@ -99,9 +99,11 @@ tradition should be a *generated view* of the kernel at a statable cost, never a
   alternative (ℝ as a position) is named there as the presentation on which claim 1 fails.
 - ~~`Kernel.toRosen` does not exist.~~ Built 2026-09-16; cost corrected to `IsIndist`.
 - ~~The Bunge witness for claim 3 is not constructed.~~ Built 2026-09-16, two faces.
-- Verbatims for §7.10 (pp. 182–186, scan pages 200–204) are page-image read by Claude
-  (2026-09-13 and 2026-09-16) but not human-read; the conjugacy definition on p. 185 and
-  the equivalence-relation sentence on p. 186 are quoted in the Lean module docstring.
+- ~~Verbatims for §7.10 not human-read.~~ pp. 185–186 (scan 203–204) read by Shingai
+  Thornton 2026-09-16: the conjugacy definition and the equivalence-relation sentence
+  confirmed as quoted in the Lean module docstring; the THEOREM's displayed equation
+  confirmed only from a cropped enlargement. pp. 182–183 (the functor-category setup,
+  scan 200–201) remain model-read only.
 - Atlas Lean pin still at the pre-Rosen SSF commit; bump after the SSF push.
 
 ## Presentation
