@@ -1189,7 +1189,7 @@ prim:action a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "action"@en ;
-    skos:scopeNote "Bunge's acts-on relation, written x |> y."@en .
+    skos:scopeNote "Bunge's acts-on relation, written x |> y (x ▷ y): x modifies y's 'behavior line, or trajectory, or history' (Bunge 1979, §1.2). Primitive here and in Lean (Systems/Core/Bond.lean, class ActsOn: an uninterpreted relation each model supplies). The trajectory-difference reading is cited in the Lean docstring, not formalized, so bond results hold relative to the action relation a model declares."@en .
 
 prim:bipartite-flow-graph a skos:Concept ;
     skos:broader role:relation ;
@@ -1642,7 +1642,7 @@ prim:bond a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "bond"@en ;
-    skos:scopeNote "A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing."@en .
+    skos:scopeNote "Bunge 1979, §1.2: two things are bonded (connected, coupled, linked) iff at least one acts on the other: Bonded(a, b) iff a ▷ b or b ▷ a (see prim:action). A nonbonding relation, such as 'being older', makes no difference to its relata. Bunge requires the bonding set to be nonempty (Def. 1.1); this is the primitive that does the refusing. Lean: Systems/Core/Bond.lean (Bonded) and Systems/Core/System.lean (ConcreteSystem.bondage_nonempty) in systems-science-foundations at the atlas Lean pin (atlas/lean-pin)."@en .
 
 prim:cardinal-distinction a skos:Concept ;
     skos:broader role:relation ;
