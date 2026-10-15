@@ -427,13 +427,13 @@ prim:structure a skos:Concept ;
 prim:bond a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "bond"@en ;
-    skos:scopeNote "A bonding relation, as opposed to a merely nonbonding one. Bunge requires the bonding set to be nonempty; this is the primitive that does the refusing."@en ;
+    skos:scopeNote """Bunge 1979, §1.2: two things are bonded (connected, coupled, linked) iff at least one acts on the other: Bonded(a, b) iff a ▷ b or b ▷ a (see prim:action). A nonbonding relation, such as 'being older', makes no difference to its relata. Bunge requires the bonding set to be nonempty (Def. 1.1); this is the primitive that does the refusing. Lean: Systems/Core/Bond.lean (Bonded) and Systems/Core/System.lean (ConcreteSystem.bondage_nonempty) in systems-science-foundations at the atlas Lean pin (atlas/lean-pin)."""@en ;
     skos:broader role:relation .
 
 prim:action a skos:Concept ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "action"@en ;
-    skos:scopeNote "Bunge's acts-on relation, written x |> y."@en ;
+    skos:scopeNote """Bunge's acts-on relation, written x |> y (x ▷ y): x modifies y's 'behavior line, or trajectory, or history' (Bunge 1979, §1.2). Primitive here and in Lean (Systems/Core/Bond.lean, class ActsOn: an uninterpreted relation each model supplies). Bunge makes it precise in Ontology I (1977, Def. 5.31): the action of x on y is the difference between y's forced history h(y | x) and its free history h(y), a counterfactual comparison, so a static connection (e.g. exerting pressure) acts without any flow. That reading is cited in the Lean docstring, not formalized, so bond results hold relative to the action relation a model declares."""@en ;
     skos:broader role:relation .
 
 prim:part a skos:Concept ;
