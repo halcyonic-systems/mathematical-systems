@@ -1,0 +1,344 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{tikz-cd}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\K}{\mathbf{K}}
+\newcommand{\Kp}{\mathbf{K}^{+}}
+\newcommand{\KP}{\mathbf{K}_{\Pi}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\Mo}{\mathbf{M}^{\circ}}
+\newcommand{\acts}{\mathrel{\triangleright}}
+\newcommand{\Bonded}{\mathrm{Bonded}}
+\newcommand{\lean}[1]{\texttt{#1}}
+\newcommand{\status}[1]{\hfill\textsf{\small[#1]}}
+\newcommand{\pBK}{\pi_{BK}}
+\newcommand{\pMB}{\pi_{MB}}
+\newcommand{\pMK}{\pi_{MK}}
+
+\title{Six maps between three definitions of system:\\ Klir, Bunge and Mobus}
+\author{Shingai Thornton}
+\date{Working note, 15 October 2026}
+
+\setlength{\emergencystretch}{3em}
+\begin{document}
+\maketitle
+
+\section*{Orientation}
+
+Klir, Bunge and Mobus each define \emph{system} formally. For three definitions there are six ordered pairs, and for each pair we ask: is there a map from the systems of one kind to the systems of the other, and does it lose information? This note answers all six under one reading of Klir, and sketches what changes under the other.
+
+\textbf{Two readings of Klir.} Klir's Eq.~(1.1) \cite{klir2001} defines $S=(T,R)$ with $T$ ``a set of things'' and $R$ ``a relation (or, possibly, a set of relations) defined on $T$.'' His own examples in Chapter~2 use this in two incompatible senses (\S\ref{sec:readings}). We fix the \emph{relational reading} ($R\subseteq T\times T$) for \S\S\ref{sec:defs}--\ref{sec:lossless} and return to the \emph{product reading} ($R\subseteq\prod_i X_i$) in \S\ref{sec:product}.
+
+\textbf{Status tags.} Every result carries one: \textsf{[Lean]} names a theorem in the Lean library \cite{ssf}; \textsf{[proof here]} means the proof is given in this note and is not yet in Lean; \textsf{[open]} means no proof exists.
+
+\textbf{The answer in one paragraph.} The three downward maps (Mobus $\to$ Bunge $\to$ Klir, and Mobus $\to$ Klir) exist, commute, and are not injective. More strongly, \emph{no} map that keeps the things a system is made of can be injective (Theorem~\ref{thm:nolossless}). The three upward directions exist only on exactly characterized subclasses (Propositions~\ref{prop:KB}--\ref{prop:BM}): Klir $\to$ Bunge needs a bond, Klir $\to$ Mobus needs irreflexivity, Bunge $\to$ Mobus needs four conditions. Where they exist they are sections: projecting back recovers the original exactly.
+
+% ------------------------------------------------------------------
+\section{The two readings of Klir's definition}\label{sec:readings}
+
+Klir's Chapter~2 examples split as follows.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Example (Klir 2001, Ch.~2) & $T$ & $R$\\
+\midrule
+Students, \S2.2 & the students & $R\subseteq T\times T$\\
+Rectangle, Fig.~2.1 & $\{A_x,A_y\}$, two intervals & $R\subseteq A_x\times A_y$\\
+Random variable & $\{V,[0,1]\}$ & $R\subseteq V\times[0,1]$\\
+Finite-state machine & $\{X,Y,Z\}$, state sets & $R\subseteq X\times Z\times Y\times Z$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Only the students example is a relation \emph{on $T$}. In the other three, $T$ is a family of sets and $R$ is a subset of the product of its members. That second form is the definition of Mesarovi\'c, as stated by Joslyn \cite[Def.~5]{joslyn1995}: given sets $X_1,\dots,X_n$, a system is any nonempty $S\subseteq\prod_i X_i$.
+
+\begin{example}[Two things]\label{ex:AB}
+Let $T=\{A,B\}$ where $A$ and $B$ are sets of states.
+\begin{itemize}[nosep]
+\item Product reading: $R\subseteq A\times B$, a constraint on joint states. There are $2^{|A|\cdot|B|}$ of these.
+\item Relational reading: $R\subseteq T\times T=\{\langle A,A\rangle,\langle A,B\rangle,\langle B,A\rangle,\langle B,B\rangle\}$. There are $2^4=16$ of these, whatever $A$ and $B$ are.
+\end{itemize}
+With $|T|=1$, $T=\{A\}$, the relational reading allows only $R=\varnothing$ or $R=\{\langle A,A\rangle\}$, while the product reading allows any $R\subseteq A$.
+\end{example}
+
+\begin{example}[Three things]\label{ex:ODM}
+Let $U=\{O,D,M\}$. The relational reading relates the three things: $R\subseteq U\times U$, a directed graph on $U$; an undirected graph is a set of $2$-subsets, $G\subseteq\binom{U}{2}\subseteq 2^{U}$. The product reading constrains their states: $R\subseteq O\times D\times M$. For a single thing, $U=\{M\}$, the set $U\times U=\{\langle M,M\rangle\}$ is not $M\times M$.
+\end{example}
+
+The rest of the note keeps the two apart. $\K$ denotes the relational reading and $\KP$ the product reading.
+
+% ------------------------------------------------------------------
+\section{Definitions}\label{sec:defs}
+
+Fix a set $\alpha$ of things and a relation ${\acts}\subseteq\alpha\times\alpha$, read ``acts on.''
+
+\begin{definition}[Bond; Bunge 1979, \S1.2]
+Things $a,b$ are \emph{bonded}, $\Bonded(a,b)$, iff $a\acts b$ or $b\acts a$.
+\end{definition}
+
+The relation $\acts$ is primitive here, as in Lean (\lean{ActsOn}). Bunge gives it content in \cite[Def.~5.31]{bunge1977}: the action of $x$ on $y$ is the difference between $y$'s history when acted on by $x$ and its free history. That reading is not formalized.
+
+\begin{definition}[Klir, relational reading]
+$\K$ is the set of pairs $(T,R)$ with $T\subseteq\alpha$ and $R\subseteq T\times T$, ordered by $(T_1,R_1)\le(T_2,R_2)$ iff $T_1\subseteq T_2$ and $R_1\subseteq R_2$. We write $\Kp\supseteq\K$ for pairs with $R\subseteq\alpha\times\alpha$ unconstrained.
+\end{definition}
+\noindent Lean: $\K$ is \lean{Kernel} (the constraint is \lean{dep\_on}); $\Kp$ is \lean{KlirSystem}.
+
+\begin{definition}[Bunge; 1979, Def.~1.1--1.2]
+$\B$ is the set of triples $\sigma=\langle C,E,S\rangle$ with $C,E\subseteq\alpha$, $C\cap E=\varnothing$, $S\subseteq(C\cup E)^2$, and distinct $a,b\in C$ with $\Bonded(a,b)$. The order is the subsystem order: $\sigma_1\le\sigma_2$ iff $C_1\subseteq C_2$, $E_2\subseteq E_1$ and $S_1\subseteq S_2$.
+\end{definition}
+\noindent Lean: \lean{ConcreteSystem}, \lean{Subsystem}, preorder \lean{instPreorderConcreteSystem}. The bonded pair need not lie in $S$.
+
+\begin{definition}[Mobus; 2022, revised 2025]
+Fix types $\kappa,\mu,\pi,\tau,\eta,\delta$ (capacities, milieu, boundary properties, transforms, history, time scale). A \emph{flow network} on $\alpha$ is a set of nodes and a set of edges $(s,t,k)\in\alpha\times\alpha\times\kappa$ between nodes, with $s\neq t$ for every edge. $\M$ is the set of tuples $\langle C,N,E,G,B,T,H,\Delta t\rangle$ with
+\begin{itemize}[nosep]
+\item $C\subseteq\alpha$; $N$ a flow network with node set $C$;
+\item $E=\langle O,m\rangle$ with $O\subseteq\alpha$, $O\cap C=\varnothing$, $m\in\mu$;
+\item $B=\langle p,I\rangle$ with $p\in\pi$, $I\subseteq C$;
+\item $G$ a flow network whose nodes lie in $O\cup I$ and whose every edge runs between $O$ and $I$ (either way), with every $i\in I$ on some edge of $G$;
+\item $T\in\tau$, $H\in\eta$, $\Delta t\in\delta$.
+\end{itemize}
+Write $\rho(N)\subseteq\alpha^2$ for the pairs underlying $N$'s edges, and $\rho(S)=\rho(N)\cup\rho(G)$ for the \emph{total relation}. The order: $S_1\le S_2$ iff $C_1\subseteq C_2$, $O_2\subseteq O_1$, $\rho(S_1)\subseteq\rho(S_2)$.
+\end{definition}
+\noindent Lean: \lean{MobusSystem}, \lean{FlowNetwork.no\_self\_loops}, \lean{IsBipartiteFlow}, \lean{InterfacesCarryFlow}, \lean{MobusSystem.totalRelation}, \lean{MobusSubsystem}.
+
+All three orders are preorders, so each kind of system forms a thin category; a monotone map is a functor. On $\M$ the order is not antisymmetric: systems differing only in $\mu,\pi,\tau,\eta,\delta$ or capacities are $\le$ each other.
+
+% ------------------------------------------------------------------
+\section{The three downward maps}\label{sec:down}
+
+\begin{definition}
+$\pBK:\B\to\Kp$, $\langle C,E,S\rangle\mapsto(C,S)$.\quad
+$\pMK:\M\to\Kp$, $S\mapsto(C,\rho(S))$.\quad
+$\pMB:\Mo\to\B$, $S\mapsto\langle C,O,\rho(S)\rangle$, where $\Mo\subseteq\M$ is the set of systems with $N$ nonempty and $s\acts t$ for every edge $(s,t,k)$ of $N$.
+\end{definition}
+\noindent Lean: \lean{ConcreteSystem.toKlir}, \lean{MobusSystem.toKlir}, \lean{MobusSystem.toBunge} (hypotheses \lean{FlowInducesAction}, nonempty edges).
+
+\begin{remark}\label{rem:target}
+$\pBK$ and $\pMK$ land in $\Kp$, not $\K$: $S$ may contain pairs with an endpoint in $E$, and $\rho(G)$ always has an endpoint in $O$. They land in $\K$ exactly when $S\subseteq C^2$ (resp.\ when $G$ has no edges). This is a defect of the current encoding, not of the three authors: the Klir side of the triangle should be $(C\cup E,S)$, or the internal part $(C,S\cap C^2)$. Every non-injectivity result below holds for all three choices.
+\end{remark}
+
+\begin{proposition}[The triangle]\label{prop:triangle}
+On $\Mo$, $\pBK\circ\pMB=\pMK$.\status{Lean: \lean{triangle\_commutes}, by \lean{rfl}}
+\[\begin{tikzcd}[column sep=large]
+\Mo \arrow[r,"\pMB"] \arrow[dr,"\pMK"'] & \B \arrow[d,"\pBK"]\\
+& \Kp
+\end{tikzcd}\]
+\end{proposition}
+
+\begin{proposition}[Mobus $\to$ Bunge]\label{prop:MB}\leavevmode
+\begin{enumerate}[label=(\alph*),nosep]
+\item $\pMB$ is monotone.\status{Lean: \lean{toBunge\_preserves\_subsystem}}
+\item $\pMB(S)$ depends only on $(C,O,\rho(S))$.\status{Lean: \lean{toBunge\_eq\_of\_structural\_eq}}
+\item If any of $\mu,\pi,\tau,\eta,\delta$ has two elements, $\pMB$ is not injective.\status{proof here}
+\item If $\kappa,\mu,\pi,\tau,\eta,\delta$ are singletons, $\pMB$ is injective on systems whose $G$ has no node outside the endpoints of its edges.\status{proof here}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(c) Take $S\in\Mo$ and change only the milieu $m$ (or $p$, $T$, $H$, $\Delta t$) to a different element. Both are in $\Mo$ and have the same $(C,O,\rho(S))$, so by (b) the same image.
+
+(d) Let $\pMB(S)=\langle C,E,R\rangle$. Then $C$ and $O=E$ are given. Every pair in $\rho(G)$ has an endpoint in $O$, and $O\cap C=\varnothing$, so $\rho(N)=R\cap C^2$ and $\rho(G)=R\setminus C^2$. With $\kappa$ a singleton, an edge set is determined by its pairs, so $N$ and the edges of $G$ are determined; the nodes of $N$ are $C$, and the nodes of $G$ are its endpoints by assumption. By bipartiteness every edge of $G$ has an endpoint in $I$, and every element of $I$ lies on an edge, so $I=C\cap\{\text{endpoints of }G\}$. The remaining coordinates are the unique elements of singleton types.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:MB}(d) says what Mobus $\to$ Bunge loses: exactly the parametric slots (milieu, boundary properties, transforms, history, time scale, capacities), plus the bookkeeping of isolated nodes of $G$. The split of $S$ into internal and external flows, and the interfaces, are recoverable.
+\end{remark}
+
+\begin{proposition}[Bunge $\to$ Klir]\label{prop:BK}\leavevmode
+\begin{enumerate}[label=(\alph*),nosep]
+\item $\pBK$ is monotone.\status{proof here}
+\item $\pBK(\sigma)$ depends only on $(C,S)$.\status{Lean: \lean{toKlir\_eq\_of\_composition\_structure\_eq}}
+\item If some $\sigma=\langle C,E,S\rangle$ has $\alpha\setminus(C\cup E)\neq\varnothing$, $\pBK$ is not injective.\status{proof here}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) $\sigma_1\le\sigma_2$ gives $C_1\subseteq C_2$ and $S_1\subseteq S_2$. (c) Pick $e\in\alpha\setminus(C\cup E)$. Then $\langle C,E\cup\{e\},S\rangle\in\B$ (disjointness holds, $S\subseteq(C\cup E)^2\subseteq(C\cup E\cup\{e\})^2$, the bonded pair is unchanged) and has the same image as $\sigma$.
+\end{proof}
+
+\begin{proposition}[Mobus $\to$ Klir]\label{prop:MK}
+$\pMK$ is monotone and depends only on $(C,\rho(S))$. If some $S\in\M$ has $\alpha\setminus(C\cup O)\ne\varnothing$, or any parametric type has two elements, $\pMK$ is not injective.\status{proof here}
+\end{proposition}
+\begin{proof}
+Monotone: by definition of the order. Adding an environment object $o\notin C\cup O$ that no flow touches, or changing a parametric coordinate, gives a different system with the same $(C,\rho(S))$.
+\end{proof}
+
+% ------------------------------------------------------------------
+\section{The three upward directions}\label{sec:up}
+
+An upward translation should be a \emph{section}: a richer system that projects back to the given one. The question for each pair is exactly when one exists.
+
+\begin{proposition}[Klir $\to$ Bunge]\label{prop:KB}
+For $(T,R)\in\K$ there is $\sigma\in\B$ with $\pBK(\sigma)=(T,R)$ iff $T$ contains distinct $a,b$ with $\Bonded(a,b)$.\status{proof here}
+\end{proposition}
+\begin{proof}
+($\Leftarrow$) $\sigma=\langle T,\varnothing,R\rangle$: disjointness is trivial, $R\subseteq T^2=(T\cup\varnothing)^2$, and $a,b$ give the bond. ($\Rightarrow$) $\pBK(\sigma)=(T,R)$ forces $C=T$, and the bond condition of $\B$ gives distinct bonded $a,b\in T$.
+\end{proof}
+
+\begin{remark}
+Lean proves ($\Leftarrow$) under a stronger hypothesis, that the bonded pair lies in $R$ (\lean{Kernel.HasBond}, \lean{Kernel.toBunge}), together with $\pBK\circ s=\mathrm{id}$ (\lean{Kernel.toBunge\_toKlir}) and injectivity of $s$ (\lean{Kernel.toBunge\_injective}). The section $s(T,R)=\langle T,\varnothing,R\rangle$ is monotone and is the least section: any other adds environment.
+\end{remark}
+
+\begin{proposition}[Klir $\to$ Mobus]\label{prop:KM}
+Suppose $\kappa,\mu,\pi,\tau,\eta,\delta$ are inhabited. For $(T,R)\in\K$ there is $S\in\M$ with $\pMK(S)=(T,R)$ iff $R$ is irreflexive.\status{$\Leftarrow$ Lean; $\Rightarrow$ proof here}
+\end{proposition}
+\begin{proof}
+($\Rightarrow$) $\rho(S)=\rho(N)\cup\rho(G)$, and $N$ and $G$ are both flow networks, so neither contains a pair $(t,t)$. ($\Leftarrow$) Take $C=T$, $N$ the edges of $R$ with any capacity, $O=\varnothing$, $G$ and $I$ empty, any parametric values. Lean builds this for singleton parameter types: \lean{Kernel.toMobus}, with \lean{Kernel.toMobus\_toKlir} and \lean{Kernel.toMobus\_injective}.
+\end{proof}
+
+\begin{proposition}[Bunge $\to$ Mobus]\label{prop:BM}
+Suppose the parametric types and $\kappa$ are inhabited. For $\sigma=\langle C,E,S\rangle\in\B$ there is $S'\in\Mo$ with $\pMB(S')=\sigma$ iff
+\begin{enumerate}[label=(\roman*),nosep]
+\item $S$ is irreflexive;
+\item no pair of $S$ has both endpoints in $E$;
+\item $a\acts b$ for every $(a,b)\in S\cap C^2$;
+\item $S\cap C^2\neq\varnothing$.
+\end{enumerate}\status{proof here}
+\end{proposition}
+\begin{proof}
+($\Rightarrow$) $S=\rho(N)\cup\rho(G)$. Flow networks have no self-loops, giving (i). Pairs of $\rho(N)$ lie in $C^2$; pairs of $\rho(G)$ join $O=E$ to $I\subseteq C$; so none lies in $E^2$, giving (ii), and $\rho(N)=S\cap C^2$. Membership in $\Mo$ gives (iii) and (iv).
+($\Leftarrow$) Let $N$ have node set $C$ and one edge per pair of $S\cap C^2$; it has no self-loops by (i). Let $G$ have one edge per pair of $S\setminus C^2$; by (ii) and $S\subseteq(C\cup E)^2$ each joins $E$ and $C$; its nodes are its endpoints. Let $I$ be the endpoints of $G$ in $C$, and $O=E$. All Mobus conditions hold, $\rho(N)\cup\rho(G)=S$, and (iii)--(iv) put the system in $\Mo$.
+\end{proof}
+
+\begin{remark}
+Each condition marks a real difference. (i): Bunge allows self-action (his coupling matrices have a diagonal, 1979 \S2.1); Mobus forbids it (Eq.~4.4, $k\neq o$). (ii): Bunge's structure may relate two environment things; Mobus's flows always touch the system. (iii): Bunge's structure may contain mere, non-bonding relations; an internal Mobus flow, read into Bunge, is an action. (iv): Bunge requires a bond, which in Mobus must be a flow.
+\end{remark}
+
+% ------------------------------------------------------------------
+\section{No lossless translation}\label{sec:lossless}
+
+``Lossless'' must be defined with care. Between bare sets of the same size there are always bijections, so ``no injective map exists'' is false in general. The right requirement is that a translation keep what the system is made of.
+
+\begin{definition}
+A map $\Phi$ from $\B$ (resp.\ $\M$) to $\K$ or $\Kp$ is \emph{thing-preserving} if the $T$ of $\Phi(\sigma)$ is the $C$ of $\sigma$. A map $\B\to\M$ or $\M\to\B$ is thing-preserving if it keeps $C$.
+\end{definition}
+
+All of $\pBK,\pMK,\pMB$ are thing-preserving.
+
+\begin{theorem}[No lossless thing-preserving map into Klir]\label{thm:nolossless}
+Suppose $|\alpha|\ge 7$, and for (b) that $\mu,\pi,\tau,\eta,\delta$ are inhabited.
+\begin{enumerate}[label=(\alph*),nosep]
+\item If $\alpha$ contains a bonded pair $a\neq b$, no thing-preserving $\Phi:\B\to\K$ is injective.
+\item No thing-preserving $\Phi:\M\to\K$ is injective.
+\end{enumerate}\status{proof here}
+\end{theorem}
+\begin{proof}
+Fix $T=\{a,b\}$. Elements of $\K$ with this $T$ are the subsets of $T^2$, so there are $2^4=16$. (a) For every $E\subseteq\alpha\setminus T$, $\langle T,E,\varnothing\rangle\in\B$ (the bond does not need to lie in $S$). These are $2^{|\alpha|-2}\ge 32$ distinct systems, all sent to one of 16 elements. (b) For every $O\subseteq\alpha\setminus T$, the Mobus system with $C=T$, environment objects $O$, and $N$, $G$, $I$ empty is in $\M$; again $2^{|\alpha|-2}>16$.
+\end{proof}
+
+\begin{remark}
+The theorem needs the relational reading $R\subseteq T\times T$, and it fails for the unconstrained $\Kp$ used in Lean: there the fibre over $T$ has $2^{|\alpha|^2}$ elements, enough room to encode the environment in extra pairs. So the encoding Klir is given decides whether ``Mobus cannot be translated losslessly into Klir'' is provable. For $\Kp$ and $\M$, the same count works with the milieu once $|\mu|>2^{|\alpha|^2}$.
+\end{remark}
+
+\begin{theorem}[Mobus $\to$ Bunge]\label{thm:MBloss}
+If $|\mu|>2^{|\alpha|}\cdot 2^{|\alpha|^2}$, no thing-preserving $\M\to\B$ is injective. If the parametric types and $\kappa$ are singletons, $\pMB$ is injective on systems with tight $G$ (Proposition~\ref{prop:MB}(d)).\status{proof here}
+\end{theorem}
+\begin{proof}
+For fixed $C$, Bunge systems are determined by $E\subseteq\alpha$ and $S\subseteq\alpha^2$, so there are at most $2^{|\alpha|}\cdot 2^{|\alpha|^2}$. Varying the milieu gives $|\mu|$ distinct Mobus systems with the same $C$.
+\end{proof}
+
+\noindent So the loss from Mobus to Bunge is exactly the parametric content, while the loss from Bunge or Mobus to relational Klir is forced by structure alone.
+
+% ------------------------------------------------------------------
+\section{Summary of the six}\label{sec:summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{6.3cm}>{\raggedright\arraybackslash}p{4.4cm}@{}}
+\toprule
+Direction & Result & Status\\
+\midrule
+Mobus $\to$ Bunge & $\pMB$ on $\Mo$, monotone; loses exactly the parametric slots (Prop.~\ref{prop:MB}, Thm.~\ref{thm:MBloss}) & (a),(b) Lean; rest proof here\\
+Bunge $\to$ Klir & $\pBK$, monotone, not injective; no thing-preserving map into $\K$ is injective (Prop.~\ref{prop:BK}, Thm.~\ref{thm:nolossless}) & (b) Lean; rest proof here\\
+Mobus $\to$ Klir & $\pMK=\pBK\circ\pMB$; no thing-preserving map into $\K$ is injective (Prop.~\ref{prop:MK}, Thm.~\ref{thm:nolossless}) & triangle Lean; rest proof here\\
+Klir $\to$ Bunge & section iff $T$ has a bonded pair (Prop.~\ref{prop:KB}) & $\Leftarrow$ Lean (stronger hypothesis); iff proof here\\
+Klir $\to$ Mobus & section iff $R$ irreflexive (Prop.~\ref{prop:KM}) & $\Leftarrow$ Lean; $\Rightarrow$ proof here\\
+Bunge $\to$ Mobus & section iff (i)--(iv) (Prop.~\ref{prop:BM}) & proof here\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For every upward direction, section followed by projection is the identity, while projection followed by the least section is not (it empties the environment, the boundary and the parametric slots).
+
+% ------------------------------------------------------------------
+\section{The product reading}\label{sec:product}
+
+\begin{definition}[Klir, product reading; Mesarovi\'c, Joslyn 1995 Def.~5]
+$\KP$ is the set of pairs $(X,R)$ where $X=(X_i)_{i\in I}$ is a family of sets and $\varnothing\neq R\subseteq\prod_{i\in I}X_i$. The \emph{constraint} is $\prod_i X_i\setminus R$.
+\end{definition}
+
+A natural map to the relational reading sends a constraint to its pairwise dependency graph:
+\[
+\gamma:\KP\to\K,\qquad (X,R)\mapsto\bigl(I,\ \{(i,j): i\neq j,\ R_{ij}\neq R_i\times R_j\}\bigr),
+\]
+where $R_i$ and $R_{ij}$ are the projections of $R$ to $X_i$ and to $X_i\times X_j$.
+
+\begin{proposition}\label{prop:xor}
+$\gamma$ is not injective, and it does not detect all constraint: there is $R\neq\prod_i X_i$ with $\gamma(X,R)$ having no pairs.\status{proof here}
+\end{proposition}
+\begin{proof}
+Let $I=\{1,2,3\}$, $X_i=\{0,1\}$, and $R=\{x: x_1\oplus x_2\oplus x_3=0\}$, four of the eight states. Each pairwise projection $R_{ij}$ is all of $\{0,1\}^2$, since for any values of two coordinates the third can be chosen. So $\gamma(X,R)=(I,\varnothing)=\gamma(X,\prod_iX_i)$, while $R\neq\prod_iX_i$.
+\end{proof}
+
+So a three-way constraint can be invisible to every relation among things. This is the precise sense in which the two readings of Klir differ.
+
+\textbf{Open.} \textsf{[open]}
+\begin{itemize}[nosep]
+\item The six maps under the product reading. Bunge's state-space representation (1979, \S2.2) is a $\KP$ object: properties $F_i$ with values in $V_i$, and a lawful state space properly inside $\prod_iV_i$ because ``the components of $\mathbb F$ are lawfully interrelated.'' A map $\B\to\KP$ therefore needs Bunge's state functions, which $\B$ as encoded does not carry.
+\item Whether Bunge's state-space criterion for an aggregate (\lean{IsProductAggregate}) is the statement that the lawful state set is the product of its one-coordinate projections, i.e.\ carries no constraint in Joslyn's sense.
+\item A Lean encoding of $\KP$, and of the propositions marked \textsf{[proof here]}.
+\end{itemize}
+
+% ------------------------------------------------------------------
+\section*{Notation}
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{6.6cm}>{\raggedright\arraybackslash}p{4.2cm}@{}}
+\toprule
+Symbol & Meaning & Lean\\
+\midrule
+$\alpha$ & the set of things & $\alpha$ (type)\\
+$a\acts b$ & $a$ acts on $b$ (primitive) & \lean{ActsOn}\\
+$\Bonded(a,b)$ & $a\acts b$ or $b\acts a$ & \lean{Bonded}\\
+$\K$ & Klir, relational reading: $(T,R)$, $R\subseteq T^2$ & \lean{Kernel}\\
+$\Kp$ & as $\K$ with $R\subseteq\alpha^2$ unconstrained & \lean{KlirSystem}\\
+$\KP$ & Klir, product reading: $\varnothing\ne R\subseteq\prod_iX_i$ & none\\
+$\B$ & Bunge systems $\langle C,E,S\rangle$ & \lean{ConcreteSystem}\\
+$\M$ & Mobus systems $\langle C,N,E,G,B,T,H,\Delta t\rangle$ & \lean{MobusSystem}\\
+$\Mo$ & Mobus systems with nonempty $N$ whose flows are actions & hypotheses of \lean{toBunge}\\
+$C,E,S$ & composition, environment, structure & \\
+$N,G$ & internal and external flow networks & \lean{internalNetwork}, \lean{externalFlows}\\
+$O,m$ & environment objects, milieu & \lean{environment}\\
+$p,I$ & boundary properties, interfaces & \lean{boundary}\\
+$\kappa,\mu,\pi,\tau,\eta,\delta$ & types of capacities, milieu, boundary properties, transforms, history, time scale & type parameters\\
+$\rho(S)$ & total relation $\rho(N)\cup\rho(G)$ & \lean{totalRelation}\\
+$\pBK,\pMK,\pMB$ & the three projections & \lean{toKlir}, \lean{toBunge}\\
+$\gamma$ & pairwise dependency graph of a product-reading system & none\\
+$\le$ & subsystem order on each kind & \lean{Subsystem}, \lean{MobusSubsystem}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{9}\small
+\bibitem{bunge1977} M. Bunge, \emph{Ontology I: The Furniture of the World}, Treatise on Basic Philosophy Vol.~3, Reidel, 1977.
+\bibitem{bunge1979} M. Bunge, \emph{Ontology II: A World of Systems}, Treatise on Basic Philosophy Vol.~4, Reidel, 1979.
+\bibitem{joslyn1995} C. Joslyn, Semantic control systems, \emph{World Futures} 45 (1995) 87--123.
+\bibitem{klir2001} G.\,J. Klir, \emph{Facets of Systems Science}, 2nd ed., Kluwer/Plenum, 2001.
+\bibitem{mobus2022} G.\,E. Mobus, \emph{Systems Science: Theory, Analysis, Modeling, and Design}, Springer, 2022; revisions manuscript 2025.
+\bibitem{ssf} \texttt{systems-science-foundations}, Lean~4 library, commit \texttt{6ab7aba} (2026-10-10).
+\end{thebibliography}
+\end{document}
