@@ -44,6 +44,8 @@ Klir, Bunge and Mobus each define \emph{system} formally. For three definitions 
 
 \textbf{Two readings of Klir.} Klir's Eq.~(1.1) \cite{klir2001} defines $S=(T,R)$ with $T$ ``a set of things'' and $R$ ``a relation (or, possibly, a set of relations) defined on $T$.'' His own examples in Chapter~2 use this in two incompatible senses (\S\ref{sec:readings}). We fix the \emph{relational reading} ($R\subseteq T\times T$) for \S\S\ref{sec:defs}--\ref{sec:lossless} and return to the \emph{product reading} ($R\subseteq\prod_i X_i$) in \S\ref{sec:product}.
 
+\textbf{Method and purpose.} The note compares the definitions as mathematical objects. Two of the three authors say their definitions are not mathematics for its own sake, and \S\ref{sec:purpose} records what each says the definition is for. Whether a map loses information is relative to what that purpose requires it to keep (Proposition~\ref{prop:purpose}).
+
 \textbf{Status tags.} Every result carries one: \textsf{[Lean]} names a theorem in the Lean library \cite{ssf}; \textsf{[proof here]} means the proof is given in this note and is not yet in Lean; \textsf{[open]} means no proof exists.
 
 \textbf{The answer in one paragraph.} The three downward maps (Mobus $\to$ Bunge $\to$ Klir, and Mobus $\to$ Klir) exist, commute, and are not injective. More strongly, \emph{no} map that keeps the things a system is made of can be injective (Theorem~\ref{thm:nolossless}). The three upward directions exist only on exactly characterized subclasses (Propositions~\ref{prop:KB}--\ref{prop:BM}): Klir $\to$ Bunge needs a bond, Klir $\to$ Mobus needs irreflexivity, Bunge $\to$ Mobus needs four conditions. Where they exist they are sections: projecting back recovers the original exactly.
@@ -115,7 +117,7 @@ Fix types $\kappa,\mu,\pi,\tau,\eta,\delta$ (capacities, milieu, boundary proper
 \end{itemize}
 Write $\rho(N)\subseteq\alpha^2$ for the pairs underlying $N$'s edges, and $\rho(S)=\rho(N)\cup\rho(G)$ for the \emph{total relation}. The order: $S_1\le S_2$ iff $C_1\subseteq C_2$, $O_2\subseteq O_1$, $\rho(S_1)\subseteq\rho(S_2)$.
 \end{definition}
-\noindent Lean: \lean{MobusSystem}, \lean{FlowNetwork.no\_self\_loops}, \lean{IsBipartiteFlow}, \lean{InterfacesCarryFlow}, \lean{MobusSystem.totalRelation}, \lean{MobusSubsystem}.
+\noindent The book's Eq.~4.1 is a 7-tuple without $E$; the environment $E=\langle O,M\rangle$ is added in Mobus's revisions manuscript. Lean: \lean{MobusSystem}, \lean{FlowNetwork.no\_self\_loops}, \lean{IsBipartiteFlow}, \lean{InterfacesCarryFlow}, \lean{MobusSystem.totalRelation}, \lean{MobusSubsystem}.
 
 All three orders are preorders, so each kind of system forms a thin category; a monotone map is a functor. On $\M$ the order is not antisymmetric: systems differing only in $\mu,\pi,\tau,\eta,\delta$ or capacities are $\le$ each other.
 
@@ -304,6 +306,68 @@ So a three-way constraint can be invisible to every relation among things. This 
 \end{itemize}
 
 % ------------------------------------------------------------------
+\section{What each definition is for}\label{sec:purpose}
+
+The results so far compare the three definitions as mathematical objects. That is the method of this note, not the authors' account of their definitions, and two of them say so explicitly. This section records what each author says the definition is for, and restates the losslessness results relative to those purposes. Section numbers are the authors'.
+
+\subsection{Stated purposes}
+
+\textbf{Klir.} A system is a construct: ``Every system is a construction based upon some world of experiences, and these, in turn, are expressed in terms of purposeful distinctions made either in the real world or in the world of ideas'' \cite[\S2.3]{klir2001}. The stance is about knowledge and is neutral about what exists: constructivism ``is not an ontological view (concerned with the existence and ultimate nature of reality), but an epistemological view'' (\S2.3). Eq.~(1.1) itself ``is weak because it is too general and, consequently, of little pragmatic value. It is strong because it encompasses all other, more specific definitions of systems'' (Ch.~1). What the abstraction buys is method: ``the abstraction from thinghood properties is useful. It leads to the development of methods that have broad, cross-disciplinary applicability'' (\S5.1). Klir separates this from mathematics: ``the primacy of problems in systems methodology is in sharp contrast with the primacy of methods in applied mathematics'' (\S6.1). Theorems belong to ``the various mathematical systems theories, each applicable to some class of systems'' (\S7.1).
+
+\textbf{Mesarovi\'c and Takahara.} The mathematical program in the strict sense: ``The interest in the present volume is strictly in the mathematical aspects of the theory'' \cite[Preface]{mesarovic1975}, and its aim is to establish ``the minimal set of assumptions needed in order that a given property or relationship holds'' (Ch.~1). This is the product reading of \S\ref{sec:product}. Klir treats it as the same definition as his own: ``a system is a family of sets and a relation defined on the sets'' \cite[\S3.3]{klir2001}.
+
+\textbf{Bunge.} Ontology is assigned ``the task of constructing the most general theories concerning such and only such [concrete] objects'' \cite[Intro.\ \S2]{bunge1977}. It is meant to be exact, its theories having ``a definite mathematical structure'' (Preface), and it proves theorems about the general scheme, such as \cite[Thm.~1.1]{bunge1979}: ``(i) There are concrete systems. (ii) Every thing is a component of at least one system.'' Mathematics is a tool: ``not the world but some of our ideas about the world are mathematical'' \cite[Ch.~3 \S1.3]{bunge1977}. His criterion for a lossless representation is strict, and he says it is never met: a representation is \emph{accurate} iff it is bijective and every representing statement is true \cite[Def.~3.3]{bunge1974a}, and ``As a matter of fact there are no accurate theoretical representations of real systems: every theory misses some possible states, or it includes some impossible states, or the formulas of it are only approximately true'' (Ch.~3). What he rejects is identifying a thing with a structure, not representing it by one: ``things can only be represented (or misrepresented), and occasionally also manipulated. But the mistake is harmless if we are aware of it'' (Ch.~3 \S1.4). Accordingly $\langle C,E,S\rangle$ ``is (or represents) a system'' \cite[\S1.1]{bunge1979}, and is its ``minimal model'', which ``will not suffice for quantitative purposes'' (\S1.2).
+
+\textbf{Mobus.} ``We will not be doing math, in the sense of proving theorems or the like'' \cite[\S1.3.5]{mobus2022}. The definition ``will be used to guide analysis of systems, since the definition tells us what we should be looking for, and to build models of systems at various levels of abstraction'' (\S4.3), and it is the schema of a knowledgebase (\S8.1). He names the difference from Klir and Wymore as one of purpose: ``Both of their works were, however, devoted to a purely mathematical approach to defining system and then using the definition and the math to explore the mathematical implications. However, the approach taken in this book is quite different in purpose'' (\S4.3.3). Proof by others is not excluded: treating his principles ``as true axioms is not precluded (indeed it is expected)'' (\S3.2, n.~13).
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{3.6cm}@{}}
+\toprule
+ & A system is & The definition is for & A faithful map keeps\\
+\midrule
+Klir & a construct of an investigator & methods that apply whatever the things are & systemhood, up to isomorphism (\S2.4)\\
+Mesarovi\'c & a mathematical object & theorems from minimal assumptions & what the theorem uses\\
+Bunge & a concrete thing, which the triple represents & the most general theory of concrete things & $C$, $E$ and $S$ (the minimal model)\\
+Mobus & a physical thing, whose description the tuple holds & analysis, models, a knowledgebase & what the model's purpose needs (\S10.1)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Mobus states the last entry directly: ``if our major interest is in predicting some future state of the system, any model that captures the main variables and transition functions may serve. But, at the same time, if our intent is to deeply understand how these transitions and behaviors are accomplished, then it might be necessary to include more details than are necessary for mere prediction'' \cite[\S10.1]{mobus2022}.
+
+All three keep the formal object apart from the concrete one. Klir: ``the homomorphism cannot be defined mathematically since reality, or any aspect of it, is not a mathematical object'' \cite[\S5.3]{klir2001}. Bunge: ``a real system is not a mathematical object'' \cite[Ch.~6 \S1]{bunge1974b}. Mobus: ``The model is not the system'' \cite[\S8.4]{mobus2022}. Every map in this note is therefore a map between representations.
+
+\subsection{Lossless relative to an invariant}
+
+\begin{definition}
+Let $X,Y$ be classes of systems and $\iota:X\to V$ any function, the \emph{invariant}. A map $\Phi:X\to Y$ is \emph{lossless for $\iota$} if $\iota=\iota'\circ\Phi$ for some $\iota':Y\to V$; equivalently, $\Phi(x)=\Phi(x')$ implies $\iota(x)=\iota(x')$. Injectivity is losslessness for the identity.
+\end{definition}
+
+Each purpose in the table names an invariant: on $\K$ and $\Kp$, the isomorphism class $[T,R]$ (Klir's general system, \S2.4); on $\B$ and $\M$, the identity, since the minimal model is already minimal; on $\KP$, the constraint $c(X,R)=\prod_iX_i\setminus R$.
+
+\begin{proposition}[Losslessness depends on the purpose]\label{prop:purpose}
+\begin{enumerate}[label=(\alph*),nosep]
+\item For $\sigma\in\Mo$, Klir's invariant is the same computed directly or through Bunge: $[\pMK(\sigma)]=[\pBK(\pMB(\sigma))]$.
+\item Under the hypotheses of Theorems~\ref{thm:nolossless} and~\ref{thm:MBloss}, no thing-preserving map $\B\to\K$ or $\M\to\K$, and no thing-preserving map $\M\to\B$, is lossless for the identity on its source.
+\item No map out of $\KP$ that factors through $\gamma$ is lossless for $c$.
+\end{enumerate}\status{(a) Lean; (b), (c) proof here}
+\end{proposition}
+\begin{proof}
+(a) is the commuting triangle (Proposition~\ref{prop:triangle}). (b) restates the two theorems. (c) If $\Phi=\Psi\circ\gamma$, take $R$ the parity relation of Proposition~\ref{prop:xor}: $\Phi(X,R)=\Phi(X,\prod_iX_i)$, while $c(X,\prod_iX_i)=\varnothing\neq c(X,R)$.
+\end{proof}
+
+Read with the table: (b) says the realist's content does not survive the passage to a relation on things; (c) says the constraint the product reading is built to study does not survive the passage to relations among things, which is how Bunge's structure and Mobus's flows are encoded here. Neither direction is lossless outright. ``Which definition is more general'' has an answer only once a purpose fixes the invariant.
+
+\begin{remark}
+Klir's own vocabulary has the shape of \S\S\ref{sec:down}--\ref{sec:up}: ``The isomorphic transformation from an interpreted system into the corresponding general system, which may be called an abstraction, is always possible. The inverse transformation, which may be called an interpretation, is not guaranteed and must be properly justified in each case'' \cite[\S2.4]{klir2001}. The projections are always defined; the sections exist only on the subclasses characterized in Propositions~\ref{prop:KB}--\ref{prop:BM}.
+\end{remark}
+
+\begin{remark}
+Part (c) depends on the binary encodings. Bunge's $S$ is ``a nonempty set of relations on the union of $C$ and $E$'' \cite[\S1.1]{bunge1979}, which admits relations of any arity, and his state-space representation (\S2.2) carries the lawful state set directly. An encoding of $\B$ with either would not factor through $\gamma$. \textsf{[open]}
+\end{remark}
+
+% ------------------------------------------------------------------
 \section*{Notation}
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
@@ -333,11 +397,14 @@ $\le$ & subsystem order on each kind & \lean{Subsystem}, \lean{MobusSubsystem}\\
 \end{tabular}
 \end{center}
 
-\begin{thebibliography}{9}\small
+\begin{thebibliography}{99}\small
+\bibitem{bunge1974a} M. Bunge, \emph{Semantics I: Sense and Reference}, Treatise on Basic Philosophy Vol.~1, Reidel, 1974.
+\bibitem{bunge1974b} M. Bunge, \emph{Semantics II: Interpretation and Truth}, Treatise on Basic Philosophy Vol.~2, Reidel, 1974.
 \bibitem{bunge1977} M. Bunge, \emph{Ontology I: The Furniture of the World}, Treatise on Basic Philosophy Vol.~3, Reidel, 1977.
 \bibitem{bunge1979} M. Bunge, \emph{Ontology II: A World of Systems}, Treatise on Basic Philosophy Vol.~4, Reidel, 1979.
 \bibitem{joslyn1995} C. Joslyn, Semantic control systems, \emph{World Futures} 45 (1995) 87--123.
 \bibitem{klir2001} G.\,J. Klir, \emph{Facets of Systems Science}, 2nd ed., Kluwer/Plenum, 2001.
+\bibitem{mesarovic1975} M.\,D. Mesarovi\'c and Y. Takahara, \emph{General Systems Theory: Mathematical Foundations}, Academic Press, 1975.
 \bibitem{mobus2022} G.\,E. Mobus, \emph{Systems Science: Theory, Analysis, Modeling, and Design}, Springer, 2022; revisions manuscript 2025.
 \bibitem{ssf} \texttt{systems-science-foundations}, Lean~4 library, commit \texttt{6ab7aba} (2026-10-10).
 \end{thebibliography}
