@@ -1189,7 +1189,7 @@ prim:action a skos:Concept ;
     skos:broader role:relation ;
     skos:inScheme atlas:PrimitiveScheme ;
     skos:prefLabel "action"@en ;
-    skos:scopeNote "Bunge's acts-on relation, written x |> y (x ▷ y): x modifies y's 'behavior line, or trajectory, or history' (Bunge 1979, §1.2). Primitive here and in Lean (Systems/Core/Bond.lean, class ActsOn: an uninterpreted relation each model supplies). The trajectory-difference reading is cited in the Lean docstring, not formalized, so bond results hold relative to the action relation a model declares."@en .
+    skos:scopeNote "Bunge's acts-on relation, written x |> y (x ▷ y): x modifies y's 'behavior line, or trajectory, or history' (Bunge 1979, §1.2). Primitive here and in Lean (Systems/Core/Bond.lean, class ActsOn: an uninterpreted relation each model supplies). Bunge makes it precise in Ontology I (1977, Def. 5.31): the action of x on y is the difference between y's forced history h(y | x) and its free history h(y), a counterfactual comparison, so a static connection (e.g. exerting pressure) acts without any flow. That reading is cited in the Lean docstring, not formalized, so bond results hold relative to the action relation a model declares."@en .
 
 prim:bipartite-flow-graph a skos:Concept ;
     skos:broader role:relation ;
