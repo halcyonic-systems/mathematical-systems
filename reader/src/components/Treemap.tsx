@@ -15,7 +15,7 @@
 import { hierarchy, treemap, treemapSquarify, type HierarchyRectangularNode } from "d3-hierarchy";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { kind as kindColor, kindGroup } from "../tokens";
-import type { LeanDecl, LeanDump } from "../types";
+import type { Atlas, LeanDecl, LeanDump } from "../types";
 
 export const TRADITIONS = [
   "Klir", "Bunge", "Mobus", "Joslyn", "Mesarovic", "Myers", "Wymore",
@@ -26,9 +26,11 @@ export const TRADITIONS = [
  * Which tradition a declaration belongs to, read mechanically from its module
  * and its name. A name is not a claim of membership: `Systems.Klir.*` and
  * `ShapeKlir` are Klir's because the development's own folders and prefixes
- * say so, and a declaration naming no tradition is "shared", which is most of
- * Core, Principles and Dynamics. The atlas tag (`@[atlas]`) is the narrow,
- * asserted link; this is the wide, derived one, and they are kept apart.
+ * say so, and a declaration naming no tradition is shared: it keeps its own
+ * folder as its group (Core, Principles, Category, Dynamics), so the shared
+ * development reads as the few parts it has rather than one undivided mass.
+ * The atlas tag (`@[atlas]`) is the narrow, asserted link; this is the wide,
+ * derived one, and they are kept apart.
  */
 export function traditionOf(d: LeanDecl): string {
   const parts = d.module.split(".");
@@ -36,7 +38,26 @@ export function traditionOf(d: LeanDecl): string {
   if ((TRADITIONS as readonly string[]).includes(folder)) return folder;
   const tail = parts.slice(2).join(".") + " " + d.name;
   const hit = TRADITIONS.find((t) => new RegExp(`(^|[^A-Za-z])${t}|Shape${t}|${t}(Position|Arrow|Shape|System|Witness)`).test(tail));
-  return hit ?? "Shared";
+  return hit ?? (parts.length >= 3 ? folder : "Root");
+}
+
+/** A door: an atlas entry's tagged declaration, the way in from the map to the concept. */
+export type Door = { entry: string; number: string; label: string; decl: string | null };
+
+/** Short form of an entry's label: its number and the author-and-year head, "003 Bunge (1979)". */
+const doorLabel = (number: string, label: string | null) => `${number} ${(label ?? "").split(",")[0]}`;
+
+/**
+ * The atlas's entries as doors, in accession order. An entry with no tagged
+ * declaration is still a door, with no cell: the legend shows it faded, which
+ * is the honest state ("nothing formalises this yet").
+ */
+export function doorsOf(atlas: Atlas): Door[] {
+  return atlas.entries.map((e) => {
+    const shape = atlas.shapes[e.iri];
+    const tagged = shape && shape.status === "resolved" ? shape.tagged ?? [] : [];
+    return { entry: e.id, number: e.number, label: doorLabel(e.number, e.label), decl: tagged[0] ?? null };
+  });
 }
 
 type Cell = { d: LeanDecl; x: number; y: number; s: number };
@@ -100,9 +121,12 @@ export function Treemap({
   onBy,
   focus,
   onFocus,
+  doors = [],
   compact = false,
 }: {
   lean: LeanDump;
+  /** The atlas entries, drawn as rings on their tagged cells and listed as a legend. */
+  doors?: Door[];
   by: "module" | "tradition";
   selected: string | null;
   onSelect: (name: string | null) => void;
@@ -192,6 +216,23 @@ export function Treemap({
       ctx.fillRect(cell.x + 0.5, cell.y + 0.5, cell.s - 1, cell.s - 1);
     }
     ctx.globalAlpha = 1;
+    // Doors: a ring on every entry's tagged cell, sized so it reads at any
+    // zoom, and the entry's short label once the cell is big enough on screen.
+    for (const door of doors) {
+      const c = door.decl ? cells.get(door.decl) : undefined; if (!c) continue;
+      const cx = c.x + c.s / 2, cy = c.y + c.s / 2, r = Math.max(c.s * 0.85, 7 / k);
+      ctx.strokeStyle = css("--accent-strong"); ctx.lineWidth = 1.6 / k;
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
+      // Labels only once a cell is big enough on screen: on the compact strip
+      // the doors cluster and their labels would collide, so the ring alone marks them.
+      if (c.s * k >= 14 && !compact) {
+        const fs = 10 / Math.max(k, 0.6); ctx.font = `600 ${fs}px ${body}`; ctx.textBaseline = "bottom";
+        const tw = ctx.measureText(door.label).width;
+        ctx.fillStyle = css("--bg-primary"); ctx.globalAlpha = 0.85; ctx.fillRect(cx - tw / 2 - 2 / k, cy - r - fs - 3 / k, tw + 4 / k, fs + 2 / k); ctx.globalAlpha = 1;
+        ctx.fillStyle = css("--accent-strong"); ctx.fillText(door.label, cx - tw / 2, cy - r - 1 / k);
+        ctx.textBaseline = "top";
+      }
+    }
     const now = performance.now();
     const visible = (n: string) => { const c = cells.get(n); return c && !hidden.has(kindGroup(c.d.kind)) ? c : undefined; };
     /** Edges of `name`, grown to fraction `p` from their origin, at `alpha`. */
@@ -271,7 +312,8 @@ export function Treemap({
   }, [lean, selected, hover, reduced]);
   useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current); }, []);
   // Filters change what is drawn, never the layout.
-  useEffect(() => { draw(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [showUses, showUsedBy, hidden]);
+  useEffect(() => { draw(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [showUses, showUsedBy, hidden, doors]);
+  const doorOf = useMemo(() => new Map(doors.filter((d) => d.decl).map((d) => [d.decl!, d])), [doors]);
 
   const toWorld = (e: { clientX: number; clientY: number }): [number, number] => {
     const r = canvasRef.current!.getBoundingClientRect(); const { tx, ty, k } = view.current;
@@ -385,13 +427,33 @@ export function Treemap({
           {edgeToggle(showUsedBy, setShowUsedBy, "used by", "var(--accent-slate)")}
         </span>
         <span className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
-          {hover ? `${hover} · ${byName.get(hover)?.kind}` : "click a cell · click a tile to zoom in · drag to pan · wheel to zoom"}
+          {hover ? `${hover} · ${byName.get(hover)?.kind}${doorOf.has(hover) ? ` · entry ${doorOf.get(hover)!.label}` : ""}` : "click a cell · click a tile to zoom in · drag to pan · wheel to zoom"}
         </span>
       </div>}
       {!compact && by === "tradition" && (
         <p className="text-xs m-0 mb-2" style={{ color: "var(--text-muted)" }}>
-          Grouped by a mechanical reading of folder and name prefixes; “Shared” is every declaration naming no tradition. The asserted link is the atlas tag on a declaration's page.
+          Grouped by a mechanical reading of folder and name prefixes; Core, Principles, Category and Dynamics are the shared development, naming no tradition. The asserted link is the atlas tag on a declaration's page.
         </p>
+      )}
+      {!compact && doors.length > 0 && (
+        <nav aria-label="Entries on the map" className="flex flex-wrap gap-x-3 gap-y-1 mb-2 text-xs" style={{ fontFamily: "var(--font-mono)" }}>
+          <span style={{ color: "var(--text-muted)" }}>doors</span>
+          {doors.map((d) => (
+            <button
+              key={d.entry}
+              type="button"
+              disabled={!d.decl}
+              aria-pressed={!!d.decl && d.decl === selected}
+              onClick={() => d.decl && onSelect(d.decl)}
+              title={d.decl ? `${d.decl} · select on the map` : "no Lean counterpart yet"}
+              className="bg-transparent border-0 p-0"
+              style={{ color: d.decl ? (d.decl === selected ? "var(--accent-strong)" : "var(--text-secondary)") : "var(--text-muted)", cursor: d.decl ? "pointer" : "default", opacity: d.decl ? 1 : 0.55 }}
+            >
+              <i aria-hidden style={{ display: "inline-block", width: 8, height: 8, marginRight: 4, verticalAlign: -1, border: `1.5px solid ${d.decl ? "var(--accent-strong)" : "var(--text-muted)"}`, borderRadius: "50%" }} />
+              {d.label}
+            </button>
+          ))}
+        </nav>
       )}
       <div style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", overflow: "hidden" }}>
         <canvas

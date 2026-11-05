@@ -4,7 +4,7 @@
  * carry no layout of their own (scripts/check-tokens.mjs).
  */
 import { useEffect, useMemo } from "react";
-import { Absence, DeclCard, DeclList, DevNav, Section, Treemap } from "./components";
+import { Absence, DeclCard, DeclList, DevNav, Section, Treemap, doorsOf } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
@@ -33,6 +33,7 @@ export function GraphView({ atlas }: { atlas: Atlas }) {
   if (!lean) return loading;
   const selected = decl && lean.declarations.find((d) => d.name === decl);
   const tagged = lean.declarations.filter((d) => d.atlas.length).length;
+  const doors = doorsOf(atlas);
   return (
     <>
       <DevNav active="graph" onOpen={setView} />
@@ -41,7 +42,7 @@ export function GraphView({ atlas }: { atlas: Atlas }) {
         warrant="derived"
         note={`${lean.declarations.length.toLocaleString()} declarations · ${lean.modules.length} modules · ${tagged} tagged · commit ${lean.commit.slice(0, 12)} · ${lean.toolchain.replace("leanprover/", "")}`}
       >
-        <Treemap lean={lean} by={by} selected={decl} onSelect={selectDecl} onBy={setBy} focus={focus} onFocus={setFocus} />
+        <Treemap lean={lean} by={by} selected={decl} onSelect={selectDecl} onBy={setBy} focus={focus} onFocus={setFocus} doors={doors} />
       </Section>
       {selected ? (
         <Section

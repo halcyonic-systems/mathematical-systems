@@ -13,7 +13,7 @@
  * and the trust line renders the transcription census.
  */
 import { useEffect, useRef } from "react";
-import { ConflictLine, DevStats, FloorLede, Shelf, Treemap } from "./components";
+import { ConflictLine, DevStats, FloorLede, Shelf, Treemap, doorsOf } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
@@ -53,6 +53,7 @@ function DevelopmentStrip({ atlas }: { atlas: Atlas }) {
           onBy={() => undefined}
           focus={null}
           onFocus={(name) => openAt({ view: "graph", focus: name ?? undefined })}
+          doors={doorsOf(atlas)}
           compact
         />
       )}
