@@ -141,6 +141,29 @@ export type Shape = {
   error?: string;
 };
 
+export type MappingClaim = {
+  iri: string;
+  id: string;
+  relation: string | null;
+  relationLabel: string | null;
+  relationNote: string | null;
+  source: string;
+  target: string;
+  sourceKnown: boolean;
+  targetKnown: boolean;
+  arguedIn: string | null;
+  evidenceCode: string | null;
+  encodedBy: string | null;
+  encodedOn: string | null;
+  comment: string | null;
+  theoremName: string | null;
+  /** The dump declaration the theorem name resolves to; the edge is machine-checked when set. */
+  theorem: string | null;
+  /** A loss claim with no theorem: owed, by the vocabulary's own rule. */
+  owes: boolean;
+};
+export type MappingDoc = { file: string; title: string; verdict: string | null; cites: string[] };
+
 /** The Lean development as `lake exe dump` writes it (SSF Systems/Tools/SCHEMA.md). */
 export type LeanCtor = { name: string; doc: string | null; type: string; args: string[] };
 export type LeanDecl = {
@@ -183,6 +206,8 @@ export type Atlas = {
   openDecisions: OpenDecision[];
   provenance: { atlasCommit: string | null; repoCommit: string | null };
   shapes: Record<string, Shape>;
+  /** The mapping layer: reified claims between entries, and the documents that argue them. */
+  mappings: { claims: MappingClaim[]; documents: MappingDoc[] };
   /** The Lean development as the dump reports it; the full dump is lean.json beside this file. */
   lean: { commit: string; toolchain: string; declarations: number; modules: number; tagged: number };
   transcription: Record<string, Transcription>;

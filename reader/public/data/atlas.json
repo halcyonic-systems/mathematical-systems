@@ -261,8 +261,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "6ceecd6+",
-    "repoCommit": "6ceecd6+"
+    "atlasCommit": "cd52a88",
+    "repoCommit": "cd52a88+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -683,6 +683,146 @@
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system-2": {
       "status": "none"
     }
+  },
+  "mappings": {
+    "claims": [
+      {
+        "iri": "https://w3id.org/mathematical-systems/atlas/claim/bunge-ces-no-faithful-embedding-into-klir",
+        "id": "bunge-ces-no-faithful-embedding-into-klir",
+        "relation": "https://w3id.org/mathematical-systems/atlas/no-faithful-embedding-into",
+        "relationLabel": "admits no faithful embedding into",
+        "relationNote": "No encoding of the source into the target preserves what the source asserts, using only what the target asserts. The strong reading's failure mode: a claim here owes either a machine-checked obstruction (001: infinite hom-set into finite) or a collapse witness (003: two source systems, one target image).",
+        "source": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "target": "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
+        "sourceKnown": true,
+        "targetKnown": true,
+        "arguedIn": "mappings/environment-channel.md",
+        "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+        "encodedBy": "Shingai Thornton (Claude-drafted from mapping 003, claim b)",
+        "encodedOn": "2026-08-07",
+        "comment": "The collapse witness: σ₁ = ⟨{a,b,c}, ∅, S⟩ and σ₂ = ⟨{a,b}, {c}, S⟩ are\ndistinct systems by entry 002 and flatten to the single Klir pair ({a,b,c}, S). The datum\nerased is the C/E partition — the environment channel of mapping 003.\n\nNO atlas:theoremName YET, and its absence is a debt, not a licence: the Lean declaration\n(the forgetful map from the Bunge shape is not injective, witnessed by σ₁, σ₂) is owed to\nsystems-science-foundations, and the P2 test object that would let the build derive the\ncollapse is owed to this catalogue. Until one lands, this claim is asserted.",
+        "theoremName": null,
+        "theorem": null,
+        "owes": true
+      },
+      {
+        "iri": "https://w3id.org/mathematical-systems/atlas/claim/klir-weakly-encompasses-bunge-ces",
+        "id": "klir-weakly-encompasses-bunge-ces",
+        "relation": "https://w3id.org/mathematical-systems/atlas/weakly-encompasses",
+        "relationLabel": "weakly encompasses",
+        "relationNote": "The source's form can redescribe the target; nothing need be preserved. Vacuously satisfiable by design — mapping 001 shows every catalogued definition passes, and that the constraints distinguishing the target are exactly what redescription is permitted to discard. A claim in this relation is deliberately weak evidence of anything.",
+        "source": "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
+        "target": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple",
+        "sourceKnown": true,
+        "targetKnown": true,
+        "arguedIn": "mappings/klir-encompassing.md",
+        "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+        "encodedBy": "Shingai Thornton (Claude-drafted from mapping 001, Test 1)",
+        "encodedOn": "2026-08-07",
+        "comment": "The redescription: T := C ∪ E, R := S — Bunge's own formulation already\nsays S is a set of relations on C ∪ E. What the redescription is permitted to discard is\nexactly what distinguishes Bunge: the C/E partition, disjointness, bonding, the time index.\nThe flattening this claim asserts is the same one whose loss claim:bunge-ces-no-faithful-embedding-into-klir\nrecords — the two are one finding read from its two sides.",
+        "theoremName": null,
+        "theorem": null,
+        "owes": false
+      },
+      {
+        "iri": "https://w3id.org/mathematical-systems/atlas/claim/klir-weakly-encompasses-bunge-def-1-1",
+        "id": "klir-weakly-encompasses-bunge-def-1-1",
+        "relation": "https://w3id.org/mathematical-systems/atlas/weakly-encompasses",
+        "relationLabel": "weakly encompasses",
+        "relationNote": "The source's form can redescribe the target; nothing need be preserved. Vacuously satisfiable by design — mapping 001 shows every catalogued definition passes, and that the constraints distinguishing the target are exactly what redescription is permitted to discard. A claim in this relation is deliberately weak evidence of anything.",
+        "source": "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1",
+        "target": "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1",
+        "sourceKnown": true,
+        "targetKnown": true,
+        "arguedIn": "mappings/klir-encompassing.md",
+        "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
+        "encodedBy": "Shingai Thornton (Claude-drafted from mapping 001, Test 1)",
+        "encodedOn": "2026-08-07",
+        "comment": "The redescription: T := the connected things, R := the connection\nrelation. What it discards is that the relation must be a CONNECTION — the bonding requirement\nthat does Bunge's refusing (see obj:ordered-non-bonding).",
+        "theoremName": null,
+        "theorem": null,
+        "owes": false
+      }
+    ],
+    "documents": [
+      {
+        "file": "mappings/environment-channel.md",
+        "title": "Mapping 003 — Which definitions carry an environment channel?",
+        "verdict": "Which definitions carry an environment channel — **every bearer except Klir, and Klir's absence is a stance, not a gap**: Bunge's E is ontic, Bertalanffy's constitutive, Klir's epistemic (the outside of the describer's distinction). Collapse witness (two Bunge triples, one Klir pair) asserted, not yet derived",
+        "cites": []
+      },
+      {
+        "file": "mappings/klir-encompassing.md",
+        "title": "Mapping 001 — Does Klir's (T, R) encompass all other definitions?",
+        "verdict": "Klir's claim that (T,R) \"encompasses all other, more specific definitions\" — **true and vacuous on his own reading; false on the reading that would make it informative**",
+        "cites": [
+          "KlirShape",
+          "joslyn_no_faithful_functor",
+          "klirHomSubsingleton"
+        ]
+      },
+      {
+        "file": "mappings/mesarovic-klir.md",
+        "title": "Mapping 006 — Mesarović 1975 ↔ Klir 2001: the ancestry, measured",
+        "verdict": "Mesarović 1975 ↔ Klir 2001 — **one shared content word (relation), shared floor arrow, shape embedding machine-checked faithful (`klirToMesarovic_faithful`) — with the forced-assignment caution; what separates them is stance (observer, object-exclusion), not structure**",
+        "cites": [
+          "klirToMesarovic_faithful",
+          "klirToMesarovic_obj_injective"
+        ]
+      },
+      {
+        "file": "mappings/mobus-revision.md",
+        "title": "Mapping 005 — Mobus 2022 → 2025: the revision arc, read precisely",
+        "verdict": "Mobus 2022 → 2025 — **the revision's content is exactly one coordinate (E first-class, derived from the census by design); every larger reading of the diff is a passage-scope artifact.** Embedding claim recorded as a debt (006 shapeless by design)",
+        "cites": [
+          "Systems.FlowEdge.source",
+          "environment_is_new"
+        ]
+      },
+      {
+        "file": "mappings/ordered-collection.md",
+        "title": "Mapping 002 — Do Klir and Bunge disagree about ordered collections?",
+        "verdict": "Klir and Bunge on a collection ordered by a non-bonding relation — **they disagree, and about bonding rather than about ordering.** Both witnesses in the catalogue as of 2026-08-03; still asserted rather than derived, pending a test-object vocabulary",
+        "cites": [
+          "KlirArrow"
+        ]
+      },
+      {
+        "file": "mappings/rosen-arrow.md",
+        "title": "Mapping 008 — Rosen 1978 and the walking arrow: is Definition 2.9.1 a view of the kernel?",
+        "verdict": "Rosen 1978 Def 2.9.1 ↔ the K≅2 walking arrow — **claim 1 machine-checked (`rosenKlirEquiv`, an isomorphism of the free categories, 2026-09-14) on the ℝ-as-substrate encoding**; claims 2–4 (`Kernel.toRosen` at the cost \"states stand in for things\"; the bond is lost, witness owed; conjugacy is a groupoid inside C^→) stated, not tested",
+        "cites": [
+          "KlirShape",
+          "Systems.Kernel",
+          "Systems.Kernel.HasBond",
+          "Systems.Kernel.IsIndist",
+          "Systems.Kernel.toRosen",
+          "Systems.Kernel.toRosen_injective",
+          "Systems.Kernel.toRosen_toKlir",
+          "Systems.Rosen.conjugate_equivalence",
+          "Systems.Rosen.conjugate_iff_iso",
+          "Systems.Rosen.square_not_conjugate",
+          "Systems.RosenSystem.indist_symm",
+          "Systems.RosenSystem.observables",
+          "Systems.RosenWitness.directedPair",
+          "Systems.RosenWitness.directedPair_has_no_rosen_view",
+          "Systems.RosenWitness.mutualKernel",
+          "Systems.RosenWitness.mutualRosen_indist_false_true",
+          "Systems.RosenWitness.mutualRosen_observables",
+          "Systems.rosen_no_view_of_asymmetric",
+          "klirToRosen_rosenToKlir",
+          "rosenKlirEquiv",
+          "rosenToKlir_klirToRosen",
+          "rosen_path_subsingleton"
+        ]
+      },
+      {
+        "file": "mappings/rosen-mesarovic.md",
+        "title": "Mapping 004 — The set-theoretic definition and its critics: Mesarović, Bunge, Rosen",
+        "verdict": "The set-theoretic definition and its critics — **the confrontation was never staged by Rosen or answered by Mesarović, but Bunge staged it once (1979 §1.8): \"a system is a binary relation — again a conceptual object.\"** Concept-vs-thing, not structure. Argued, not derived; candidate test object deferred to a human minting decision",
+        "cites": []
+      }
+    ]
   },
   "lean": {
     "commit": "e7e01162dd92e8655a926dff727b4091a81421f6",

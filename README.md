@@ -60,8 +60,9 @@ transcription {'located': 15}  gate-can-fail=True    every registered verbatim f
 display spans verbatim  gate-can-fail=True           every front-page excerpt is a substring of its verbatim
 lean pin      pinned=e7068103d846 checkout=e7068103d846 dirty=False
 lean dump     1630 declarations, 84 modules, commit e7068103d846   `lake exe dump` at the pinned checkout
-lean tags     7 tags → 7/15 entries, 0 unknown ids  gate-can-fail=True   every @[atlas] names an entry
+lean tags     9 tags → 9/15 entries, 0 unknown ids  gate-can-fail=True   every @[atlas] names an entry
 served       lean.json (1630 declarations with source)
+mappings      3 claims (0 machine-checked), 7 documents citing 30 declarations  gate-can-fail=True   a theorem a claim names must exist
 author coverage 8 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
 floor roles   12 lexical + 3 shape-level dependencies, adds computed  gate-can-fail=True
 retired IRIs excluded  gate-can-fail=True            no tombstone served as live data

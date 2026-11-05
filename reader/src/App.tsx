@@ -6,6 +6,7 @@ import { FrontMatter } from "./FrontMatter";
 import { AboutView } from "./About";
 import { ApparatusView, CensusView, CommitmentsView, CompareView, FloorView, LedgerView, ReadView } from "./views";
 import { DeclView, GraphView } from "./Lean";
+import { MappingsView } from "./Mappings";
 
 /**
  * Labels name what a view holds, not what you do to it. "Read" and "Census"
@@ -71,6 +72,11 @@ const INSTRUMENTS: { id: View; label: string; about: string }[] = [
     about: "What each author says is a system and what they say is not — their own examples, in their own words. Where two definitions rule differently on one case, that is a finding.",
   },
   {
+    id: "mappings",
+    label: "Mappings",
+    about: "What one definition does to another — each claim between two entries, the document that argues it, and whether a Lean theorem backs it.",
+  },
+  {
     id: "commitments",
     label: "Entailments",
     about: "What the entries are logically committed to by the ontology they are aligned with — and how that changes when the imported axiom set widens.",
@@ -90,7 +96,7 @@ const META_TABS: { id: View; label: string; about: string }[] = [
  * Entries are documents; comparisons are instruments. Same eight primitives,
  * different density, set once here rather than threaded through every part.
  */
-const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", apparatus: "generous", about: "generous", graph: "dense", lean: "generous" } as const;
+const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", apparatus: "generous", about: "generous", graph: "dense", lean: "generous", mappings: "dense" } as const;
 
 /** Every view's label and orientation line, tabbed or not — titles and the
     view-about strip must survive a view leaving the tab row. */
@@ -221,6 +227,7 @@ export default function App() {
               {view === "floor" && <FloorView atlas={atlas} />}
               {view === "graph" && <GraphView atlas={atlas} />}
               {view === "lean" && <DeclView />}
+              {view === "mappings" && <MappingsView atlas={atlas} />}
               {view === "apparatus" && (
                 <ApparatusView instruments={INSTRUMENTS} />
               )}

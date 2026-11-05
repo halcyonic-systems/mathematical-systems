@@ -41,6 +41,7 @@ const SEGMENT: Record<View, string> = {
   about: "about",
   graph: "graph",
   lean: "lean",
+  mappings: "mappings",
 };
 
 const VIEW_OF = Object.fromEntries(Object.entries(SEGMENT).map(([v, s]) => [s, v as View])) as Record<string, View>;

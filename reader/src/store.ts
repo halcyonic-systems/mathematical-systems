@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { BASE, go, href, parse, type Route } from "./route";
 import type { Atlas, LeanDump, Reasoning } from "./types";
 
-export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments" | "floor" | "apparatus" | "about" | "graph" | "lean";
+export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments" | "floor" | "apparatus" | "about" | "graph" | "lean" | "mappings";
 
 type State = {
   atlas: Atlas | null;

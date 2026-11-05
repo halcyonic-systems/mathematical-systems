@@ -39,6 +39,7 @@ import warnings
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from lean_dump import load_dump, resolve_shapes, check_tags, prove_tag_gate_can_fail  # noqa: E402
+from mappings import extract_claims, extract_mapping_docs, check_claims, prove_claim_gate_can_fail  # noqa: E402
 from transcription import PUBLISHABLE_CONTEXT, locate  # noqa: E402
 
 from rdflib import Graph, Namespace, OWL, RDF, RDFS, URIRef
@@ -1011,6 +1012,15 @@ def main():
     # pages read it, and the source text in it is what lets a reader audit a
     # block without opening the repository. All T0: the repository is public.
     (args.out / "lean.json").write_text(json.dumps(dump, ensure_ascii=False))
+    claims = extract_claims(atlas_root, entries, dump)
+    claim_problems = check_claims(claims, entries)
+    claim_live = prove_claim_gate_can_fail()
+    if claim_problems:
+        raise SystemExit("MAPPING CLAIM GATE FAILED:\n  " + "\n  ".join(claim_problems))
+    docs = extract_mapping_docs(atlas_root, dump)
+    with_theorem = sum(1 for c in claims if c["theorem"])
+    cited = sum(len(d["cites"]) for d in docs)
+    print(f"mappings      {len(claims)} claims ({with_theorem} machine-checked), {len(docs)} documents citing {cited} declarations  gate-can-fail={claim_live}")
     print(f"served       lean.json ({len(dump['declarations'])} declarations with source)")
 
     cases = extract_cases(g)
@@ -1037,6 +1047,7 @@ def main():
         "publishable": publishable,
         "contextChars": args.context,
         "shapes": shapes,
+        "mappings": {"claims": claims, "documents": docs},
         "lean": {
             "commit": dump["commit"],
             "toolchain": dump["toolchain"],

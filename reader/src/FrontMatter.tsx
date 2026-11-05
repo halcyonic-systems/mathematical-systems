@@ -25,6 +25,11 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
   const allLocated = verified === entries.length;
   const caseCount = Object.keys(atlas.cases).length;
 
+  const openGraph = (ev: React.MouseEvent) => {
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+    ev.preventDefault();
+    setView("graph");
+  };
   const openCases = (ev: React.MouseEvent) => {
     if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
     ev.preventDefault();
@@ -70,8 +75,12 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
           : `${verified} of ${entries.length} passages located in their primary text at build time.`}{" "}
         Floor shape machine-checked (Lean).{" "}
         <span className="trust-counts">
-          {atlas.authors.length} authors · {entries.length} entries · {caseCount} cases ·
+          {atlas.authors.length} authors · {entries.length} entries · {caseCount} cases ·{" "}
+          {atlas.lean.declarations.toLocaleString()} Lean declarations · {atlas.lean.tagged} formalised entries ·
         </span>{" "}
+        <a className="disclosure" href={href({ view: "graph" })} onClick={openGraph}>
+          the development →
+        </a>{" "}
         <button
           onClick={() => setView("about")}
           className="disclosure cursor-pointer bg-transparent border-0 p-0 text-sm"
