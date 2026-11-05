@@ -32,6 +32,7 @@ export { Quiver } from "./Quiver";
 export { Treemap, traditionOf } from "./Treemap";
 export { DeclCard } from "./Lean";
 export { ClaimRows, DocRows } from "./Mappings";
+export { DeclList, DevNav } from "./Library";
 export { Leaf } from "./Leaf";
 export { RecordStrip, RecordField } from "./RecordStrip";
 export const localName = (iri: string | null) => (iri ?? "").split("/").pop() ?? "";

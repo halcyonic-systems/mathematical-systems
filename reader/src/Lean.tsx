@@ -4,7 +4,7 @@
  * carry no layout of their own (scripts/check-tokens.mjs).
  */
 import { useEffect, useMemo } from "react";
-import { Absence, DeclCard, Section, Treemap } from "./components";
+import { Absence, DeclCard, DeclList, DevNav, Section, Treemap } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
@@ -27,7 +27,7 @@ function Loading() {
 }
 
 export function GraphView({ atlas }: { atlas: Atlas }) {
-  const { lean, decl, by, focus, selectDecl, setBy, setFocus, openDecl, openAt } = useStore();
+  const { lean, decl, by, focus, selectDecl, setBy, setFocus, openDecl, openAt, setView } = useStore();
   const usedBy = useUsedBy();
   const loading = <Loading />;
   if (!lean) return loading;
@@ -35,6 +35,7 @@ export function GraphView({ atlas }: { atlas: Atlas }) {
   const tagged = lean.declarations.filter((d) => d.atlas.length).length;
   return (
     <>
+      <DevNav active="graph" onOpen={setView} />
       <Section
         title="The development as a map"
         warrant="derived"
@@ -63,6 +64,25 @@ export function GraphView({ atlas }: { atlas: Atlas }) {
       ) : (
         <p className="w-open">Select a cell for its source, what it uses and what uses it. {atlas.entries.length} atlas entries, {tagged} of them formalised by a tagged declaration.</p>
       )}
+    </>
+  );
+}
+
+export function LibraryView() {
+  const { lean, openDecl, setView } = useStore();
+  const loading = <Loading />;
+  if (!lean) return loading;
+  const tagged = lean.declarations.filter((d) => d.atlas.length).length;
+  return (
+    <>
+      <DevNav active="library" onOpen={setView} />
+      <Section
+        title="Every declaration"
+        warrant="derived"
+        note={`${lean.declarations.length.toLocaleString()} declarations · ${tagged} tagged · commit ${lean.commit.slice(0, 12)}`}
+      >
+        <DeclList lean={lean} onOpen={openDecl} />
+      </Section>
     </>
   );
 }

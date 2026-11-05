@@ -5,7 +5,7 @@ import { useStore, type View } from "./store";
 import { FrontMatter } from "./FrontMatter";
 import { AboutView } from "./About";
 import { ApparatusView, CensusView, CommitmentsView, CompareView, FloorView, LedgerView, ReadView } from "./views";
-import { DeclView, GraphView } from "./Lean";
+import { DeclView, GraphView, LibraryView } from "./Lean";
 import { MappingsView } from "./Mappings";
 
 /**
@@ -96,15 +96,29 @@ const META_TABS: { id: View; label: string; about: string }[] = [
  * Entries are documents; comparisons are instruments. Same eight primitives,
  * different density, set once here rather than threaded through every part.
  */
-const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", apparatus: "generous", about: "generous", graph: "dense", lean: "generous", mappings: "dense" } as const;
+const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", apparatus: "generous", about: "generous", graph: "dense", lean: "generous", mappings: "dense", library: "dense" } as const;
+
+/** The development's other doors, lit under The Development tab. */
+const DEV_VIEWS: { id: View; label: string; about: string }[] = [
+  {
+    id: "library",
+    label: "Library",
+    about: "Every declaration of the Lean development as a list: search by name or docstring, filter by kind, group, tradition, or tag.",
+  },
+  {
+    id: "lean",
+    label: "Declaration",
+    about: "One declaration of the Lean development, whole: its signature, the Lean block itself, what it uses, what uses it, and the axioms it rests on.",
+  },
+];
 
 /** Every view's label and orientation line, tabbed or not — titles and the
     view-about strip must survive a view leaving the tab row. */
-const ALL_VIEWS = [...TABS, ...INSTRUMENTS, ...META_TABS];
+const ALL_VIEWS = [...TABS, ...INSTRUMENTS, ...META_TABS, ...DEV_VIEWS];
 
 /** The tab that reads active for a view: an instrument lights the Apparatus
     tab, so the reader always knows which door they came through. */
-const tabOf = (v: View): View => (INSTRUMENTS.some((i) => i.id === v) ? "apparatus" : v === "lean" ? "graph" : v);
+const tabOf = (v: View): View => (INSTRUMENTS.some((i) => i.id === v) ? "apparatus" : v === "lean" || v === "library" ? "graph" : v);
 
 export default function App() {
   const { atlas, reasoning, error, view, setView, load, syncFromPath, reading, read, decl } = useStore();
@@ -227,6 +241,7 @@ export default function App() {
               {view === "floor" && <FloorView atlas={atlas} />}
               {view === "graph" && <GraphView atlas={atlas} />}
               {view === "lean" && <DeclView />}
+              {view === "library" && <LibraryView />}
               {view === "mappings" && <MappingsView atlas={atlas} />}
               {view === "apparatus" && (
                 <ApparatusView instruments={INSTRUMENTS} />
