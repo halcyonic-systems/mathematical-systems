@@ -123,6 +123,15 @@ export function Treemap({
   const [showUses, setShowUses] = useState(true);
   const [showUsedBy, setShowUsedBy] = useState(true);
   const [hidden, setHidden] = useState<Set<keyof typeof kindColor>>(new Set());
+  // Motion. Edges grow out from a selection over GROW_MS and a ring pulses
+  // once; while nothing is selected or hovered, an idle tour draws one random
+  // theorem's edges faintly every few seconds, the way Stacks' graph does.
+  // Both are off under prefers-reduced-motion: the map is complete without them.
+  const GROW_MS = 420, PULSE_MS = 700, TOUR_EVERY_MS = 3200;
+  const reduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const anim = useRef<{ start: number; name: string } | null>(null);
+  const tour = useRef<{ start: number; name: string } | null>(null);
+  const raf = useRef<number | null>(null);
   const H = heightFor(compact);
   const { root, cells, bands, rects } = useMemo(() => layout(lean, by, H), [lean, by, H]);
   const byName = useMemo(() => new Map(lean.declarations.map((d) => [d.name, d])), [lean]);
@@ -180,15 +189,43 @@ export function Treemap({
       ctx.fillRect(cell.x + 0.5, cell.y + 0.5, cell.s - 1, cell.s - 1);
     }
     ctx.globalAlpha = 1;
+    const now = performance.now();
+    const visible = (n: string) => { const c = cells.get(n); return c && !hidden.has(kindGroup(c.d.kind)) ? c : undefined; };
+    /** Edges of `name`, grown to fraction `p` from their origin, at `alpha`. */
+    const edgesOf = (name: string, p: number, alpha: number) => {
+      const a = cells.get(name); if (!a) return;
+      const ac: [number, number] = [a.x + a.s / 2, a.y + a.s / 2];
+      ctx.globalAlpha = alpha; ctx.lineWidth = 1.2 / k;
+      const grow = (from: [number, number], to: [number, number], col: string) => {
+        ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(...from);
+        ctx.lineTo(from[0] + (to[0] - from[0]) * p, from[1] + (to[1] - from[1]) * p); ctx.stroke();
+      };
+      if (showUses) for (const u of byName.get(name)!.uses) { const b = visible(u); if (b) grow(ac, [b.x + b.s / 2, b.y + b.s / 2], css("--accent-strong")); }
+      if (showUsedBy) for (const u of usedBy.get(name) ?? []) { const b = visible(u); if (b) grow([b.x + b.s / 2, b.y + b.s / 2], ac, css("--accent-slate")); }
+      ctx.globalAlpha = 1;
+    };
+    let again = false;
     if (selected && cells.has(selected)) {
-      const a = cells.get(selected)!; const ac: [number, number] = [a.x + a.s / 2, a.y + a.s / 2];
-      ctx.lineWidth = 1.2 / k;
-      const line = (p: [number, number], q: [number, number], col: string) => { ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(...p); ctx.lineTo(...q); ctx.stroke(); };
-      const visible = (n: string) => { const c = cells.get(n); return c && !hidden.has(kindGroup(c.d.kind)) ? c : undefined; };
-      if (showUses) for (const u of byName.get(selected)!.uses) { const b = visible(u); if (b) line(ac, [b.x + b.s / 2, b.y + b.s / 2], css("--accent-strong")); }
-      if (showUsedBy) for (const u of usedBy.get(selected) ?? []) { const b = visible(u); if (b) line([b.x + b.s / 2, b.y + b.s / 2], ac, css("--accent-slate")); }
+      const a = cells.get(selected)!;
+      const t = anim.current && anim.current.name === selected && !reduced ? Math.min(1, (now - anim.current.start) / GROW_MS) : 1;
+      edgesOf(selected, t, 1);
       ctx.strokeStyle = css("--text-primary"); ctx.lineWidth = 2 / k; ctx.strokeRect(a.x - 1, a.y - 1, a.s + 2, a.s + 2);
+      // One ring, widening and fading: the eye finds the cell before the edges arrive.
+      const pt = anim.current && anim.current.name === selected && !reduced ? (now - anim.current.start) / PULSE_MS : 1;
+      if (pt < 1) {
+        ctx.globalAlpha = 1 - pt; ctx.strokeStyle = css("--accent-strong"); ctx.lineWidth = 1.5 / k;
+        const r = a.s * (0.8 + pt * 2.2);
+        ctx.beginPath(); ctx.arc(a.x + a.s / 2, a.y + a.s / 2, r, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1;
+      }
+      if (t < 1 || pt < 1) again = true;
+    } else if (tour.current && !reduced && !hover) {
+      const t = Math.min(1, (now - tour.current.start) / GROW_MS);
+      edgesOf(tour.current.name, t, 0.45);
+      const c = cells.get(tour.current.name);
+      if (c) { ctx.globalAlpha = 0.6; ctx.strokeStyle = css("--text-secondary"); ctx.lineWidth = 1.5 / k; ctx.strokeRect(c.x - 1, c.y - 1, c.s + 2, c.s + 2); ctx.globalAlpha = 1; }
+      if (t < 1) again = true;
     }
+    if (again) { if (raf.current) cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw); }
     if (hover && cells.has(hover) && hover !== selected) {
       const h = cells.get(hover)!; ctx.strokeStyle = css("--accent-strong"); ctx.lineWidth = 1.5 / k; ctx.strokeRect(h.x - 0.5, h.y - 0.5, h.s + 1, h.s + 1);
     }
@@ -209,6 +246,23 @@ export function Treemap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [root]);
   useEffect(draw);
+  // A new selection starts the growth and the pulse.
+  useEffect(() => { if (selected) { anim.current = { start: performance.now(), name: selected }; tour.current = null; } /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [selected]);
+  // The idle tour: a random theorem with a few edges, every few seconds, while nothing is selected.
+  useEffect(() => {
+    if (reduced) return;
+    const candidates = lean.declarations.filter((d) => d.kind === "theorem" && d.uses.length >= 3);
+    const tick = () => {
+      if (selected || hover || drag.current || candidates.length === 0) return;
+      tour.current = { start: performance.now(), name: candidates[Math.floor(Math.random() * candidates.length)].name };
+      draw();
+    };
+    const id = window.setInterval(tick, TOUR_EVERY_MS);
+    const first = window.setTimeout(tick, 900);
+    return () => { window.clearInterval(id); window.clearTimeout(first); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lean, selected, hover, reduced]);
+  useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current); }, []);
   // Filters change what is drawn, never the layout.
   useEffect(() => { draw(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [showUses, showUsedBy, hidden]);
 
