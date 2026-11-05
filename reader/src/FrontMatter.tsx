@@ -13,39 +13,32 @@
  * and the trust line renders the transcription census.
  */
 import { useEffect, useRef } from "react";
-import { ConflictLine, DevStats, FloorLede, MapFoyer, Shelf } from "./components";
+import { ConflictLine, FloorLede, MapHero, Shelf } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
 
 /**
- * The development on the front page: three counts and the map itself, small.
- * The map needs lean.json (ten times the catalogue), so it is fetched only
- * when this strip scrolls into view; until then the counts, which come from
- * the catalogue, stand alone. On the Stacks pattern: the hero is the graph.
+ * The development on the front page: the map itself, as the hero, with a
+ * reading block beneath it. The map needs lean.json (ten times the catalogue),
+ * so it is fetched when this strip scrolls into view; until then the strip
+ * holds the map's height so nothing below it jumps when it arrives. On the
+ * Stacks pattern: the hero is the graph.
  */
-function DevelopmentStrip({ atlas }: { atlas: Atlas }) {
+function DevelopmentHero({ atlas }: { atlas: Atlas }) {
   const { lean, loadLean, setView, openAt, read, openDecl } = useStore();
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el || lean) return;
-    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { void loadLean(); io.disconnect(); } }, { rootMargin: "200px" });
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { void loadLean(); io.disconnect(); } }, { rootMargin: "400px" });
     io.observe(el);
     return () => io.disconnect();
   }, [lean, loadLean]);
-  const theorems = lean ? lean.declarations.filter((d) => d.kind === "theorem").length : null;
   return (
     <div ref={ref} className="development-strip">
-      <DevStats
-        stats={[
-          { value: atlas.entries.length, label: "definitions, verbatim", href: href({ view: "read", entry: atlas.entries[0]?.id }), open: () => setView("read") },
-          { value: atlas.lean.declarations, label: "Lean declarations", href: href({ view: "library" }), open: () => setView("library") },
-          { value: theorems ?? atlas.lean.tagged, label: theorems === null ? "entries formalised" : "machine-checked theorems", href: href({ view: "graph" }), open: () => setView("graph") },
-        ]}
-      />
-      {lean && (
-        <MapFoyer
+      {lean ? (
+        <MapHero
           atlas={atlas}
           lean={lean}
           onRead={read}
@@ -55,6 +48,8 @@ function DevelopmentStrip({ atlas }: { atlas: Atlas }) {
           onMappings={() => setView("mappings")}
           onLibrary={() => setView("library")}
         />
+      ) : (
+        <p className="w-open m-0 text-sm">Loading the development…</p>
       )}
     </div>
   );
@@ -85,7 +80,7 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
         Formal definitions of “system,” and the maps between them.
       </p>
 
-      <DevelopmentStrip atlas={atlas} />
+      <DevelopmentHero atlas={atlas} />
 
       <FloorLede href={href({ view: "floor" })} onOpen={() => setView("floor")} />
 

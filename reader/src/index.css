@@ -786,7 +786,10 @@ body {
   line-height: 1.4;
   color: var(--text-primary);
   max-width: 40rem;
-  margin: 1.5rem 0 2rem;
+  /* Centred: the hero map beneath is wider than the prose measure, and a
+     left-flushed line above a centred map read as two pages. */
+  margin: 1.5rem auto 2rem;
+  text-align: center;
 }
 /* The shelf: each definition is a source-warrant object — same left accent rule
    and ground as the passage register — that happens to be a door. Hover answers
@@ -1433,12 +1436,14 @@ body {
   color: var(--text-primary);
 }
 
-/* The front door: the map with its panel beside it. Below a comfortable
-   width the panel drops under the map; the map keeps its aspect either way. */
-.map-foyer { display: grid; grid-template-columns: minmax(0, 7fr) minmax(16rem, 4fr); gap: 1.25rem; align-items: start; }
-.map-foyer-map { min-width: 0; }
-.map-foyer-panel { position: sticky; top: 1rem; min-width: 0; padding: 1rem 1.25rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); }
-@media (max-width: 64rem) {
-  .map-foyer { grid-template-columns: minmax(0, 1fr); }
-  .map-foyer-panel { position: static; }
+/* The front door. The map breaks out of the prose measure to the width the
+   wide views use, and holds still; the reading block beneath it changes with
+   the selection and fades in, nothing above it reflows. */
+.map-hero { width: min(100%, 90rem); margin-bottom: 3.5rem; }
+@media (min-width: 72rem) {
+  .map-hero { width: min(calc(100vw - 4rem), 90rem); margin-inline: calc(50% - min(50vw - 2rem, 45rem)); }
 }
+.map-reading { max-width: 44rem; margin: 1.5rem auto 0; animation: map-reading-in 320ms ease-out; }
+.map-reading-caption { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.5; color: var(--text-secondary); margin: 0; }
+@keyframes map-reading-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .map-reading { animation: none; } }

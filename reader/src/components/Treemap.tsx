@@ -123,7 +123,6 @@ export function Treemap({
   onFocus,
   doors = [],
   compact = false,
-  legend: showDoors = false,
   aspect,
 }: {
   lean: LeanDump;
@@ -138,8 +137,6 @@ export function Treemap({
   onFocus: (name: string | null) => void;
   /** The front page's version: no toolbar, a shorter canvas, a door to /graph. */
   compact?: boolean;
-  /** Show the doors legend even when compact. */
-  legend?: boolean;
   /** Height as a fraction of width; overrides the compact and full defaults. */
   aspect?: number;
 }) {
@@ -217,27 +214,40 @@ export function Treemap({
     }
     for (const [name, cell] of cells) {
       const kg = kindGroup(cell.d.kind);
-      ctx.globalAlpha = hidden.has(kg) ? 0.08 : selected && !related.has(name) ? 0.22 : 1;
+      // The hero dims less on a selection: it is the page's picture, and a
+      // picture that goes pale on every click reads as broken rather than focused.
+      ctx.globalAlpha = hidden.has(kg) ? 0.08 : selected && !related.has(name) ? (compact ? 0.45 : 0.22) : 1;
       ctx.fillStyle = kindColor[kg];
       ctx.fillRect(cell.x + 0.5, cell.y + 0.5, cell.s - 1, cell.s - 1);
     }
     ctx.globalAlpha = 1;
     // Doors: a ring on every entry's tagged cell, sized so it reads at any
     // zoom, and the entry's short label once the cell is big enough on screen.
+    /** A small label on a pale pad, centred above (cx, top), in world units. */
+    const labelAbove = (text: string, cx: number, top: number, col: string) => {
+      const fs = 10 / Math.max(k, 0.6); ctx.font = `600 ${fs}px ${body}`; ctx.textBaseline = "bottom";
+      const tw = ctx.measureText(text).width;
+      ctx.fillStyle = css("--bg-primary"); ctx.globalAlpha = 0.92; ctx.fillRect(cx - tw / 2 - 3 / k, top - fs - 4 / k, tw + 6 / k, fs + 3 / k); ctx.globalAlpha = 1;
+      ctx.fillStyle = col; ctx.fillText(text, cx - tw / 2, top - 1.5 / k);
+      ctx.textBaseline = "top";
+    };
     for (const door of doors) {
       const c = door.decl ? cells.get(door.decl) : undefined; if (!c) continue;
       const cx = c.x + c.s / 2, cy = c.y + c.s / 2, r = Math.max(c.s * 0.85, 7 / k);
-      ctx.strokeStyle = css("--accent-strong"); ctx.lineWidth = 1.6 / k;
-      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
-      // Labels only once a cell is big enough on screen: on the compact strip
-      // the doors cluster and their labels would collide, so the ring alone marks them.
-      if (c.s * k >= 14 && !compact) {
-        const fs = 10 / Math.max(k, 0.6); ctx.font = `600 ${fs}px ${body}`; ctx.textBaseline = "bottom";
-        const tw = ctx.measureText(door.label).width;
-        ctx.fillStyle = css("--bg-primary"); ctx.globalAlpha = 0.85; ctx.fillRect(cx - tw / 2 - 2 / k, cy - r - fs - 3 / k, tw + 4 / k, fs + 2 / k); ctx.globalAlpha = 1;
-        ctx.fillStyle = css("--accent-strong"); ctx.fillText(door.label, cx - tw / 2, cy - r - 1 / k);
-        ctx.textBaseline = "top";
-      }
+      // A pale halo under the ring so it reads on every tile colour.
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = css("--bg-primary"); ctx.lineWidth = 4 / k; ctx.stroke();
+      ctx.strokeStyle = css("--accent-strong"); ctx.lineWidth = 1.8 / k; ctx.stroke();
+      // Labels only once a cell is big enough on screen: on the hero the doors
+      // cluster and their labels would collide, so the ring alone marks them.
+      if (c.s * k >= 14 && !compact) labelAbove(door.label, cx, cy - r, css("--accent-strong"));
+    }
+    // On the hero, the pointer's cell names itself on the canvas: no native
+    // tooltip, no status line, nothing that moves the page.
+    if (compact && hover && cells.has(hover)) {
+      const c = cells.get(hover)!; const door = doors.find((d) => d.decl === hover);
+      const text = door ? door.label : hover.split(".").slice(-2).join(".");
+      labelAbove(text, c.x + c.s / 2, c.y - 2 / k, door ? css("--accent-strong") : css("--text-primary"));
     }
     const now = performance.now();
     const visible = (n: string) => { const c = cells.get(n); return c && !hidden.has(kindGroup(c.d.kind)) ? c : undefined; };
@@ -304,7 +314,8 @@ export function Treemap({
   useEffect(() => { if (selected) { anim.current = { start: performance.now(), name: selected }; tour.current = null; } /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [selected]);
   // The idle tour: a random theorem with a few edges, every few seconds, while nothing is selected.
   useEffect(() => {
-    if (reduced) return;
+    // The front page's hero holds still: the tour belongs to the full map.
+    if (reduced || compact) return;
     const candidates = lean.declarations.filter((d) => d.kind === "theorem" && d.uses.length >= 3);
     const tick = () => {
       if (selected || hover || drag.current || candidates.length === 0) return;
@@ -441,7 +452,7 @@ export function Treemap({
           Grouped by a mechanical reading of folder and name prefixes; Core, Principles, Category and Dynamics are the shared development, naming no tradition. The asserted link is the atlas tag on a declaration's page.
         </p>
       )}
-      {(!compact || showDoors) && doors.length > 0 && (
+      {!compact && doors.length > 0 && (
         <nav aria-label="Entries on the map" className="flex flex-wrap gap-x-3 gap-y-1 mb-2 text-xs" style={{ fontFamily: "var(--font-mono)" }}>
           <span style={{ color: "var(--text-muted)" }}>doors</span>
           {doors.map((d) => (
@@ -487,7 +498,7 @@ export function Treemap({
             else onSelect(null);
           }}
           onMouseLeave={() => { drag.current = null; setHover(null); }}
-          title={compact ? (hover ?? "The development as a map · open") : undefined}
+
           onWheel={(e) => {
             if (compact) return;
             const [wx, wy] = toWorld(e); const r = canvasRef.current!.getBoundingClientRect();

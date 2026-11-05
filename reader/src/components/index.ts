@@ -31,7 +31,7 @@ export { Chip } from "./Chip";
 export { Quiver } from "./Quiver";
 export { Treemap, doorsOf, traditionOf } from "./Treemap";
 export type { Door } from "./Treemap";
-export { EntryPanel, MapFoyer } from "./Door";
+export { EntryPanel, MapHero } from "./Door";
 export { DeclCard, DevStats } from "./Lean";
 export { ClaimRows, DocRows } from "./Mappings";
 export { DeclList, DevNav } from "./Library";
