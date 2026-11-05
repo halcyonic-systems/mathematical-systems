@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { BASE, go, href, parse, type Route } from "./route";
-import type { Atlas, Reasoning } from "./types";
+import type { Atlas, LeanDump, Reasoning } from "./types";
 
-export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments" | "floor" | "apparatus" | "about";
+export type View = "overview" | "read" | "compare" | "census" | "ledger" | "commitments" | "floor" | "apparatus" | "about" | "graph" | "lean";
 
 type State = {
   atlas: Atlas | null;
@@ -20,7 +20,23 @@ type State = {
   compared: string[];
   /** Which import closure the entailments view is reporting on. */
   variant: "shipped" | "full";
+  /** The Lean development, loaded on first need: lean.json is ten times the
+      catalogue and only the map and the declaration pages read it. */
+  lean: LeanDump | null;
+  leanError: string | null;
+  /** The declaration selected on the map or open at /lean/<name>. */
+  decl: string | null;
+  /** How the map groups: by module (the folder tree, every declaration has
+      one) or by tradition (a mechanical reading of names; see traditionOf). */
+  by: "module" | "tradition";
   load: () => Promise<void>;
+  loadLean: () => Promise<void>;
+  /** Open a declaration's page. */
+  openDecl: (name: string) => void;
+  /** Select a declaration on the map; null clears. Replaces the URL: a
+      selection is a glance, not a step in history. */
+  selectDecl: (name: string | null) => void;
+  setBy: (by: "module" | "tradition") => void;
   setView: (v: View) => void;
   read: (iri: string) => void;
   /** Open a view at a fragment — the cross-reference move. A primitive chip on
@@ -45,6 +61,8 @@ export const useStore = create<State>((set, get) => {
       entry: s.reading ? idOf(s.reading) : undefined,
       entries: s.compared.map(idOf),
       closure: s.variant,
+      decl: s.decl ?? undefined,
+      by: s.by,
       ...over,
     };
   };
@@ -65,6 +83,8 @@ export const useStore = create<State>((set, get) => {
       missing: r.entry && !hit ? r.entry : null,
       ...(compared?.length ? { compared } : {}),
       ...(r.closure ? { variant: r.closure } : {}),
+      ...(r.view === "lean" || r.view === "graph" ? { decl: r.decl ?? null } : {}),
+      ...(r.by ? { by: r.by } : {}),
     };
   };
 
@@ -77,6 +97,10 @@ export const useStore = create<State>((set, get) => {
     missing: null,
     compared: [],
     variant: "shipped",
+    lean: null,
+    leanError: null,
+    decl: null,
+    by: "module",
 
     load: async () => {
       try {
@@ -94,6 +118,7 @@ export const useStore = create<State>((set, get) => {
           compared: a.entries.map((e: { iri: string }) => e.iri),
           ...apply(parsed, a),
         });
+        if (parsed.view === "graph" || parsed.view === "lean") void get().loadLean();
       } catch (e) {
         set({ error: e instanceof Error ? e.message : String(e) });
       }
@@ -102,6 +127,33 @@ export const useStore = create<State>((set, get) => {
     setView: (view) => {
       set({ view });
       go(route({ view }));
+      if (view === "graph" || view === "lean") void get().loadLean();
+    },
+
+    loadLean: async () => {
+      if (get().lean || get().leanError) return;
+      try {
+        const lean = await fetch(`${BASE}data/lean.json`).then((x) => x.json());
+        set({ lean });
+      } catch (e) {
+        set({ leanError: e instanceof Error ? e.message : String(e) });
+      }
+    },
+
+    openDecl: (name) => {
+      set({ decl: name, view: "lean" });
+      go(route({ view: "lean", decl: name }));
+      void get().loadLean();
+    },
+
+    selectDecl: (name) => {
+      set({ decl: name });
+      go(route({ view: "graph", decl: name ?? undefined }), "replace");
+    },
+
+    setBy: (by) => {
+      set({ by });
+      go(route({ view: "graph", by }), "replace");
     },
 
     read: (iri) => {

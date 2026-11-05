@@ -119,6 +119,15 @@
   --border: #d3d7e2;
   --hairline: #e6e9f0;
 
+  /* GRAPH CHANNEL — declaration kind on the map of the Lean development.
+     Not reserved: read only in the development views, never beside the
+     three reserved channels. Mirrored in tokens.ts (`kind`). */
+  --kind-theorem: #3b4270;
+  --kind-def: #9a6b1c;
+  --kind-type: #2e7d5b;
+  --kind-instance: #7c4f8c;
+  --kind-field: #b9bdc9;
+
   /* Straight edges. 8px is the ceiling for anything; chips take 4px; blocks are
      square. Pill geometry is a different thing and stays allowed. */
   --radius-sm: 4px;

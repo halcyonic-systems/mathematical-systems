@@ -45,6 +45,28 @@ export const transcriptLabel: Record<TranscriptStatus, string> = {
   "no-verbatim": "No verbatim recorded",
 };
 
+/**
+ * Declaration kind, on the map of the Lean development. A fourth categorical
+ * channel, NOT reserved: it is read only in the development views, never
+ * beside evidence, proof or transcription, so it cannot collide with them.
+ * Theorem takes the accent-strong indigo because theorems are what the
+ * development is for; the rest are kept apart in hue and lower in chroma.
+ */
+export const kind = {
+  theorem: "#3b4270",
+  def: "#9a6b1c",
+  type: "#2e7d5b",
+  instance: "#7c4f8c",
+  field: "#b9bdc9",
+} as const;
+export type KindGroup = keyof typeof kind;
+export const kindGroup = (k: string): KindGroup =>
+  k === "theorem" ? "theorem"
+  : k === "def" ? "def"
+  : k === "instance" ? "instance"
+  : k === "field" ? "field"
+  : "type";
+
 export type EvidenceId = keyof typeof evidence;
 export type ProofStatus = "entailed" | "not-proven" | "refuted";
 

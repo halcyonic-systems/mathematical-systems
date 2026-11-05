@@ -150,6 +150,7 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
   const prims = byIri(atlas.primitives);
   const t = atlas.transcription[entry.iri];
   const shape = atlas.shapes[entry.iri];
+  const openDecl = useStore((s) => s.openDecl);
   const f = atlas.floor[entry.iri];
   const untyped = atlas.primitives.every((p) => !p.role);
 
@@ -268,7 +269,20 @@ export function ReadView({ atlas }: { atlas: Atlas }) {
       <Section
         title="As formalised"
         warrant="derived"
-        note={shape?.status === "resolved" ? `${shape.file} · ${shape.shape}` : undefined}
+        note={
+          shape?.status === "resolved" && shape.declaration ? (
+            <a
+              href={href({ view: "lean", decl: shape.declaration })}
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                e.preventDefault();
+                openDecl(shape.declaration!);
+              }}
+            >
+              {shape.file} · {shape.shape} · source, uses and axioms →
+            </a>
+          ) : undefined
+        }
       >
         {shape?.status === "resolved" ? (
           <Quiver shape={shape} />

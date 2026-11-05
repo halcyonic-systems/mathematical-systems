@@ -142,6 +142,33 @@ export type Shape = {
   error?: string;
 };
 
+/** The Lean development as `lake exe dump` writes it (SSF Systems/Tools/SCHEMA.md). */
+export type LeanCtor = { name: string; doc: string | null; type: string; args: string[] };
+export type LeanDecl = {
+  name: string;
+  kind: string;
+  module: string;
+  line: number;
+  endLine: number;
+  doc: string | null;
+  signature: string;
+  uses: string[];
+  axioms: string[];
+  atlas: string[];
+  source: string;
+  constructors: LeanCtor[];
+};
+export type LeanModule = { name: string; file: string; declarations: number; doc?: string };
+export type LeanDump = {
+  schema?: string;
+  project: string;
+  commit: string;
+  generatedAt: string;
+  toolchain: string;
+  modules: LeanModule[];
+  declarations: LeanDecl[];
+};
+
 export type OpenDecision = { title: string; blocking: boolean; problem: string; fix: string };
 
 export type Floor = {

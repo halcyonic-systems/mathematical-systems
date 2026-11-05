@@ -38,6 +38,11 @@ export function AboutView({ atlas, reasoning }: { atlas: Atlas; reasoning: Reaso
     <>
       <Section title="Where it stands" warrant="derived" note="counted from the catalogue, not written by hand">
         <Derivation
+          verdict="holds"
+          claim={`${atlas.lean.declarations.toLocaleString()} declarations in ${atlas.lean.modules} modules of the Lean development, ${atlas.lean.tagged} of them tagged as an entry's formal counterpart.`}
+          because={`Read from the development's own account of itself (lake exe dump) at commit ${atlas.lean.commit.slice(0, 12)}, ${atlas.lean.toolchain.replace("leanprover/", "")}. A tag is an attribute the compiler checks; the map and every declaration page read the same file.`}
+        />
+        <Derivation
           verdict={verified === entries.length ? "holds" : "bounded"}
           claim={`${verified} of ${entries.length} transcriptions located in their primary text.`}
           because="Every verbatim is searched for in the book it came from, at build time. The verdict travels with the catalogue; the book does not."

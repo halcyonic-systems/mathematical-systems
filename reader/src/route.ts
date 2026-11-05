@@ -22,6 +22,11 @@ export type Route = {
   /** Entry ids selected for comparison. */
   entries?: string[];
   closure?: "shipped" | "full";
+  /** A declaration of the Lean development: the page at /lean/<name>, or the
+      selection on the map at /graph?decl=<name>. */
+  decl?: string;
+  /** How the map groups its tiles. */
+  by?: "module" | "tradition";
 };
 
 const SEGMENT: Record<View, string> = {
@@ -34,6 +39,8 @@ const SEGMENT: Record<View, string> = {
   floor: "floor",
   apparatus: "apparatus",
   about: "about",
+  graph: "graph",
+  lean: "lean",
 };
 
 const VIEW_OF = Object.fromEntries(Object.entries(SEGMENT).map(([v, s]) => [s, v as View])) as Record<string, View>;
@@ -52,6 +59,8 @@ export function parse(url: URL = new URL(window.location.href)): Route {
     entry: view === "read" && tail ? decodeURIComponent(tail) : undefined,
     entries: q.get("entries")?.split(",").filter(Boolean),
     closure: q.get("closure") === "full" ? "full" : q.get("closure") === "shipped" ? "shipped" : undefined,
+    decl: view === "lean" && tail ? decodeURIComponent(tail) : q.get("decl") ?? undefined,
+    by: q.get("by") === "tradition" ? "tradition" : q.get("by") === "module" ? "module" : undefined,
   };
 }
 
@@ -60,6 +69,7 @@ export function href(r: Route): string {
   let path = `${BASE}${seg}`;
   if (r.view === "read") path = r.entry ? `${BASE}entry/${encodeURIComponent(r.entry)}` : BASE;
   if (r.view === "overview") path = BASE;
+  if (r.view === "lean") path = r.decl ? `${BASE}lean/${encodeURIComponent(r.decl)}` : `${BASE}graph`;
 
   // Only the parameters a view actually reads, so a shared link carries no noise
   // and two links to the same state are the same string. Built by hand rather
@@ -68,6 +78,8 @@ export function href(r: Route): string {
   const q: string[] = [];
   if (r.view === "compare" && r.entries?.length) q.push(`entries=${r.entries.map(encodeURIComponent).join(",")}`);
   if (r.view === "commitments" && r.closure) q.push(`closure=${r.closure}`);
+  if (r.view === "graph" && r.by === "tradition") q.push(`by=tradition`);
+  if (r.view === "graph" && r.decl) q.push(`decl=${encodeURIComponent(r.decl)}`);
   return q.length ? `${path}?${q.join("&")}` : path;
 }
 

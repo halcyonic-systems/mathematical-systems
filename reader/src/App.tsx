@@ -5,6 +5,7 @@ import { useStore, type View } from "./store";
 import { FrontMatter } from "./FrontMatter";
 import { AboutView } from "./About";
 import { ApparatusView, CensusView, CommitmentsView, CompareView, FloorView, LedgerView, ReadView } from "./views";
+import { DeclView, GraphView } from "./Lean";
 
 /**
  * Labels name what a view holds, not what you do to it. "Read" and "Census"
@@ -32,6 +33,11 @@ const TABS: { id: View; label: string; about: string }[] = [
     id: "floor",
     label: "The Floor",
     about: "The one dependency every encoded definition asserts — what it is, what it is not, and each entry's own words for its two ends.",
+  },
+  {
+    id: "graph",
+    label: "The Development",
+    about: "The Lean development as a map: every declaration a cell, grouped by module or by tradition. Select one for its source, what it uses and what uses it.",
   },
   {
     id: "apparatus",
@@ -84,7 +90,7 @@ const META_TABS: { id: View; label: string; about: string }[] = [
  * Entries are documents; comparisons are instruments. Same eight primitives,
  * different density, set once here rather than threaded through every part.
  */
-const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", apparatus: "generous", about: "generous" } as const;
+const DENSITY = { overview: "generous", read: "generous", compare: "dense", census: "dense", ledger: "dense", commitments: "generous", floor: "generous", apparatus: "generous", about: "generous", graph: "dense", lean: "generous" } as const;
 
 /** Every view's label and orientation line, tabbed or not — titles and the
     view-about strip must survive a view leaving the tab row. */
@@ -92,10 +98,10 @@ const ALL_VIEWS = [...TABS, ...INSTRUMENTS, ...META_TABS];
 
 /** The tab that reads active for a view: an instrument lights the Apparatus
     tab, so the reader always knows which door they came through. */
-const tabOf = (v: View): View => (INSTRUMENTS.some((i) => i.id === v) ? "apparatus" : v);
+const tabOf = (v: View): View => (INSTRUMENTS.some((i) => i.id === v) ? "apparatus" : v === "lean" ? "graph" : v);
 
 export default function App() {
-  const { atlas, reasoning, error, view, setView, load, syncFromPath, reading, read } = useStore();
+  const { atlas, reasoning, error, view, setView, load, syncFromPath, reading, read, decl } = useStore();
 
   useEffect(() => {
     void load();
@@ -140,8 +146,9 @@ export default function App() {
     document.title =
       view === "overview" ? base
       : view === "read" ? `${entry ?? "No such entry"} · ${base}`
+      : view === "lean" ? `${decl ?? "No such declaration"} · ${base}`
       : `${label} · ${base}`;
-  }, [view, reading, atlas]);
+  }, [view, reading, atlas, decl]);
 
   if (error)
     return (
@@ -212,6 +219,8 @@ export default function App() {
               {view === "ledger" && <LedgerView atlas={atlas} />}
               {view === "commitments" && <CommitmentsView reasoning={reasoning} />}
               {view === "floor" && <FloorView atlas={atlas} />}
+              {view === "graph" && <GraphView atlas={atlas} />}
+              {view === "lean" && <DeclView />}
               {view === "apparatus" && (
                 <ApparatusView instruments={INSTRUMENTS} />
               )}

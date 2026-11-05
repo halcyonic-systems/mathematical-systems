@@ -29,6 +29,8 @@ export { ReadingKey, type Tier } from "./ReadingKey";
 export { CaseItem, CaseList } from "./Case";
 export { Chip } from "./Chip";
 export { Quiver } from "./Quiver";
+export { Treemap, traditionOf } from "./Treemap";
+export { DeclCard } from "./Lean";
 export { Leaf } from "./Leaf";
 export { RecordStrip, RecordField } from "./RecordStrip";
 export const localName = (iri: string | null) => (iri ?? "").split("/").pop() ?? "";
