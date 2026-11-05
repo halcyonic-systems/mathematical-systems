@@ -206,7 +206,6 @@ def extract_entries(g):
                 "evidenceCode": str(next(g.objects(s, ATLAS.evidenceCode), "")) or None,
                 "encodedBy": one(g, s, ATLAS.encodedBy),
                 "encodedOn": one(g, s, ATLAS.encodedOn),
-                "formalisedAs": one(g, s, ATLAS.formalisedAs),
                 # Species entries (spec §5 held ruling, implemented 2026-09-14): a kind of
                 # system, pointing at the entry standing for its genus.
                 "kindRestriction": one(g, s, ATLAS.kindRestriction),
@@ -1003,16 +1002,9 @@ def main():
     if unknown:
         raise SystemExit(f"UNKNOWN ATLAS TAG — @[atlas] names no entry: {', '.join(unknown)}")
     shapes = resolve_shapes(entries, dump)
-    broken = {k: v["error"] for k, v in shapes.items() if v.get("error")}
     linked = sum(1 for v in shapes.values() if v["status"] == "resolved")
     tagged = sum(len(v.get("tagged", [])) for v in shapes.values())
-    print(f"lean tags     {tagged} tags → {linked}/{len(entries)} entries, 0 unknown ids, {len(broken)} disagree  gate-can-fail={tag_live}")
-    if broken:
-        # A tag and a legacy pointer that disagree assert two formalisations;
-        # one of them is wrong, and the build will not pick.
-        for iri, err in broken.items():
-            print(f"  {iri.rsplit('/', 1)[-1]}: {err}")
-        raise SystemExit("LEAN TAG DISAGREES WITH formalisedAs — fix one of them.")
+    print(f"lean tags     {tagged} tags → {linked}/{len(entries)} entries, 0 unknown ids  gate-can-fail={tag_live}")
     # The whole dump travels with the reader: the graph and the per-declaration
     # pages read it, and the source text in it is what lets a reader audit a
     # block without opening the repository. All T0: the repository is public.

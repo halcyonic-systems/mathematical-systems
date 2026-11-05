@@ -21,9 +21,10 @@ formal counterpart", and the compiler checks the declaration exists. Whether
 the quiver is FAITHFUL to the passage is a mapping-layer claim with its own
 evidence code; nothing here asserts it.
 
-Gates (each can fail, and `prove_tag_gate_can_fail` shows it): every tag id
-must name an entry the atlas has; a legacy `formalisedAs` pointer, while any
-remain, must agree with the tag.
+Gate (it can fail, and `prove_tag_gate_can_fail` shows it): every tag id must
+name an entry the atlas has. The tag is the only pointer: `atlas:formalisedAs`
+was retired on 2026-11-05 (atlas/docs/iri-policy.md), so there is no second
+copy to agree with.
 """
 
 import json
@@ -139,7 +140,7 @@ def shape_record(decl, dump, by_name, by_module, module_docs):
 
 
 def resolve_shapes(entries, dump):
-    """One record per entry: the tagged declaration's quiver, `none`, or why not.
+    """One record per entry: the tagged declaration's quiver, or `none`.
 
     An entry with no tag is reported as such rather than omitted: "nothing
     formalises this yet" is information.
@@ -153,19 +154,13 @@ def resolve_shapes(entries, dump):
     shapes = {}
     for e in entries:
         names = tags.get(e["id"], [])
-        legacy = e.get("formalisedAs")
         if not names:
-            shapes[e["iri"]] = (
-                {"status": "error", "error": f"formalisedAs names {legacy} but no declaration carries @[atlas \"{e['id']}\"]"}
-                if legacy else {"status": "none"}
-            )
+            shapes[e["iri"]] = {"status": "none"}
             continue
         # Prefer the shape; a tagged structure or definition is still a resolution.
         decl = next((by_name[n] for n in names if _short(n).endswith("Shape")), by_name[names[0]])
         rec = shape_record(decl, dump, by_name, by_module, module_docs)
         rec["tagged"] = names
-        if legacy and legacy.partition("#")[2] not in [_short(n) for n in names]:
-            rec["error"] = f"formalisedAs names {legacy}; the tag is on {', '.join(names)}"
-        rec["status"] = "error" if rec.get("error") else "resolved"
+        rec["status"] = "resolved"
         shapes[e["iri"]] = rec
     return shapes
