@@ -43,9 +43,12 @@ type Cell = { d: LeanDecl; x: number; y: number; s: number };
 type Leaf = { name: string; short: string; value: number; decls: LeanDecl[] };
 type Group = { name: string; children: Leaf[] };
 
-const W = 1600, H = 1000;
+const W = 1600;
 
-function layout(lean: LeanDump, by: "module" | "tradition") {
+/** World height for the map's aspect: the full map, or the front page's strip. */
+const heightFor = (compact: boolean) => (compact ? Math.round(W * 0.36) : 1000);
+
+function layout(lean: LeanDump, by: "module" | "tradition", H: number) {
   const groups = new Map<string, Map<string, Leaf>>();
   for (const d of lean.declarations) {
     const parts = d.module.split(".");
@@ -97,6 +100,7 @@ export function Treemap({
   onBy,
   focus,
   onFocus,
+  compact = false,
 }: {
   lean: LeanDump;
   by: "module" | "tradition";
@@ -106,6 +110,8 @@ export function Treemap({
   /** A group or module name the map is zoomed to; null for the whole. */
   focus: string | null;
   onFocus: (name: string | null) => void;
+  /** The front page's version: no toolbar, a shorter canvas, a door to /graph. */
+  compact?: boolean;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const view = useRef({ tx: 0, ty: 0, k: 1 });
@@ -117,7 +123,8 @@ export function Treemap({
   const [showUses, setShowUses] = useState(true);
   const [showUsedBy, setShowUsedBy] = useState(true);
   const [hidden, setHidden] = useState<Set<keyof typeof kindColor>>(new Set());
-  const { root, cells, bands, rects } = useMemo(() => layout(lean, by), [lean, by]);
+  const H = heightFor(compact);
+  const { root, cells, bands, rects } = useMemo(() => layout(lean, by, H), [lean, by, H]);
   const byName = useMemo(() => new Map(lean.declarations.map((d) => [d.name, d])), [lean]);
   const usedBy = useMemo(() => {
     const m = new Map<string, string[]>();
@@ -191,7 +198,7 @@ export function Treemap({
     const c = canvasRef.current; if (!c) return;
     const resize = () => {
       const r = c.parentElement!.getBoundingClientRect();
-      const h = Math.max(420, Math.round(r.width * (H / W)));
+      const h = Math.max(compact ? 220 : 420, Math.round(r.width * (H / W)));
       c.width = r.width * devicePixelRatio; c.height = h * devicePixelRatio;
       c.style.width = `${r.width}px`; c.style.height = `${h}px`;
       fit(); draw();
@@ -264,7 +271,7 @@ export function Treemap({
 
   return (
     <div className="instrument">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+      {!compact && <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
         <input
           type="search"
           placeholder="Find a declaration"
@@ -319,8 +326,8 @@ export function Treemap({
         <span className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
           {hover ? `${hover} · ${byName.get(hover)?.kind}` : "click a cell · click a tile to zoom in · drag to pan · wheel to zoom"}
         </span>
-      </div>
-      {by === "tradition" && (
+      </div>}
+      {!compact && by === "tradition" && (
         <p className="text-xs m-0 mb-2" style={{ color: "var(--text-muted)" }}>
           Grouped by a mechanical reading of folder and name prefixes; “Shared” is every declaration naming no tradition. The asserted link is the atlas tag on a declaration's page.
         </p>
@@ -351,7 +358,9 @@ export function Treemap({
             else onSelect(null);
           }}
           onMouseLeave={() => { drag.current = null; setHover(null); }}
+          title={compact ? (hover ?? "The development as a map · open") : undefined}
           onWheel={(e) => {
+            if (compact) return;
             const [wx, wy] = toWorld(e); const r = canvasRef.current!.getBoundingClientRect();
             const k = Math.max(0.2, Math.min(40, view.current.k * Math.exp(-e.deltaY * 0.0015)));
             view.current = { k, tx: e.clientX - r.left - wx * k, ty: e.clientY - r.top - wy * k }; draw();

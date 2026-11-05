@@ -30,7 +30,7 @@ export { CaseItem, CaseList } from "./Case";
 export { Chip } from "./Chip";
 export { Quiver } from "./Quiver";
 export { Treemap, traditionOf } from "./Treemap";
-export { DeclCard } from "./Lean";
+export { DeclCard, DevStats } from "./Lean";
 export { ClaimRows, DocRows } from "./Mappings";
 export { DeclList, DevNav } from "./Library";
 export { Leaf } from "./Leaf";

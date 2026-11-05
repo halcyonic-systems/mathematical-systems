@@ -12,10 +12,53 @@
  * the shelf renders the entries, the disagreement renders the derived conflict,
  * and the trust line renders the transcription census.
  */
-import { ConflictLine, FloorLede, Shelf } from "./components";
+import { useEffect, useRef } from "react";
+import { ConflictLine, DevStats, FloorLede, Shelf, Treemap } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
+
+/**
+ * The development on the front page: three counts and the map itself, small.
+ * The map needs lean.json (ten times the catalogue), so it is fetched only
+ * when this strip scrolls into view; until then the counts, which come from
+ * the catalogue, stand alone. On the Stacks pattern: the hero is the graph.
+ */
+function DevelopmentStrip({ atlas }: { atlas: Atlas }) {
+  const { lean, loadLean, setView, openAt } = useStore();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || lean) return;
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { void loadLean(); io.disconnect(); } }, { rootMargin: "200px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [lean, loadLean]);
+  const theorems = lean ? lean.declarations.filter((d) => d.kind === "theorem").length : null;
+  return (
+    <div ref={ref} className="development-strip">
+      <DevStats
+        stats={[
+          { value: atlas.entries.length, label: "definitions, verbatim", href: href({ view: "read", entry: atlas.entries[0]?.id }), open: () => setView("read") },
+          { value: atlas.lean.declarations, label: "Lean declarations", href: href({ view: "library" }), open: () => setView("library") },
+          { value: theorems ?? atlas.lean.tagged, label: theorems === null ? "entries formalised" : "machine-checked theorems", href: href({ view: "graph" }), open: () => setView("graph") },
+        ]}
+      />
+      {lean && (
+        <Treemap
+          lean={lean}
+          by="module"
+          selected={null}
+          onSelect={(name) => openAt({ view: "graph", decl: name ?? undefined })}
+          onBy={() => undefined}
+          focus={null}
+          onFocus={(name) => openAt({ view: "graph", focus: name ?? undefined })}
+          compact
+        />
+      )}
+    </div>
+  );
+}
 
 export function FrontMatter({ atlas }: { atlas: Atlas }) {
   const read = useStore((s) => s.read);
@@ -41,6 +84,8 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
       <p className="thesis">
         Formal definitions of “system,” and the maps between them.
       </p>
+
+      <DevelopmentStrip atlas={atlas} />
 
       <FloorLede href={href({ view: "floor" })} onOpen={() => setView("floor")} />
 

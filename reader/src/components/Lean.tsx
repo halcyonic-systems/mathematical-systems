@@ -96,6 +96,38 @@ export function LinkedSource({
 
 const REPO = "https://github.com/halcyonic-systems/systems-science-foundations";
 
+/**
+ * The front page's three numbers, in the display face like the masthead's
+ * count, each a door. Counted from the catalogue and the dump, never typed.
+ */
+export function DevStats({
+  stats,
+  onOpen,
+}: {
+  stats: { value: number; label: string; href: string; open: () => void }[];
+  onOpen?: never;
+}) {
+  void onOpen;
+  return (
+    <div className="flex flex-wrap gap-x-10 gap-y-3 my-6">
+      {stats.map((s) => (
+        <a
+          key={s.label}
+          href={s.href}
+          onClick={(e) => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return; e.preventDefault(); s.open(); }}
+          className="no-underline"
+          style={{ color: "var(--text-primary)" }}
+        >
+          <span className="block" style={{ fontFamily: "var(--font-display)", fontSize: "var(--display-5)", lineHeight: 1.1, fontVariantNumeric: "tabular-nums" }}>
+            {s.value.toLocaleString()}
+          </span>
+          <span className="block text-xs" style={{ color: "var(--text-muted)" }}>{s.label}</span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 const mono = { fontFamily: "var(--font-mono)" } as const;
 
 export function DeclCard({
