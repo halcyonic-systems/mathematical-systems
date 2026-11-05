@@ -38,10 +38,10 @@
         }
       ],
       "labels": {
-        "ont00000853": "Descriptive Information Content Entity",
         "BFO_0000001": "entity",
         "FormalSystemDefinition": "Formal System Definition",
-        "ont00000958": "Information Content Entity"
+        "ont00000958": "Information Content Entity",
+        "ont00000853": "Descriptive Information Content Entity"
       }
     },
     "full": {
@@ -82,11 +82,11 @@
         }
       ],
       "labels": {
-        "ont00000853": "Descriptive Information Content Entity",
-        "ont00001808": "is about",
         "BFO_0000001": "entity",
         "FormalSystemDefinition": "Formal System Definition",
         "ont00000958": "Information Content Entity",
+        "ont00000853": "Descriptive Information Content Entity",
+        "ont00001808": "is about",
         "ont00001982": "describes"
       }
     }
