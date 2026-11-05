@@ -261,8 +261,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "d417994+",
-    "repoCommit": "d417994+"
+    "atlasCommit": "6ceecd6+",
+    "repoCommit": "6ceecd6+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -360,7 +360,24 @@
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
-      "status": "none"
+      "spec": "Systems.ConcreteSystem",
+      "declaration": "Systems.ConcreteSystem",
+      "kind": "structure",
+      "module": "Systems.Core.System",
+      "file": "System.lean",
+      "line": 22,
+      "title": "# Concrete System (Bunge Def 1.1, 1.2)",
+      "moduleDoc": "## Concrete System (Bunge Def 1.1, 1.2) \n\n## Closed and Open Systems (Bunge Def 1.3) \n\n## Open with respect to a property (Bunge Def 1.4) \n\n## Internal and External Structure (Bunge Def 1.5) \n\n## Subsystem Relation (Bunge Def 1.6) \n\n## Corollary 1.1: The Universe \n\n## Nested Systems (Bunge Def 1.7) ",
+      "positionType": null,
+      "shape": null,
+      "declaredShapes": [],
+      "positions": [],
+      "arrows": [],
+      "arrowConvention": "",
+      "tagged": [
+        "Systems.ConcreteSystem"
+      ],
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation": {
       "spec": "Bertalanffy72Shape",
@@ -638,7 +655,24 @@
       "status": "none"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system": {
-      "status": "none"
+      "spec": "Systems.JoslynSystem.constraint",
+      "declaration": "Systems.JoslynSystem.constraint",
+      "kind": "def",
+      "module": "Systems.Joslyn.JoslynSystem",
+      "file": "JoslynSystem.lean",
+      "line": 58,
+      "title": "# Joslyn's System₁ (Def 5)",
+      "moduleDoc": "## Joslyn's System₁ (Def 5) \n\n## The constraint (Def 21)\n\n  Joslyn's synthetic definition: a system is a cardinal distinction on a\n  variety of dimensional distinctions — equivalently given by what it\n  EXCLUDES, the constraint `C = X − S`. \n\n## Projection to Klir (§4.3) — and the seam\n\n  The clean edge of the fourth vertex: flatten the carrier to T, the\n  constrained states to R. ",
+      "positionType": null,
+      "shape": null,
+      "declaredShapes": [],
+      "positions": [],
+      "arrows": [],
+      "arrowConvention": "",
+      "tagged": [
+        "Systems.JoslynSystem.constraint"
+      ],
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem": {
       "status": "none"
@@ -651,11 +685,11 @@
     }
   },
   "lean": {
-    "commit": "a2f410a9acc94d3a9ac0013e56bb8551d003a7d7",
+    "commit": "e7e01162dd92e8655a926dff727b4091a81421f6",
     "toolchain": "leanprover/lean4:v4.28.0",
     "declarations": 1630,
     "modules": 84,
-    "tagged": 7
+    "tagged": 9
   },
   "transcription": {
     "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
