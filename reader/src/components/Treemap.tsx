@@ -67,6 +67,13 @@ function layout(lean: LeanDump, by: "module" | "tradition") {
   treemap<{ name: string }>().size([W, H]).paddingOuter(6).paddingTop(22).paddingInner(3).tile(treemapSquarify.ratio(1.2)).round(true)(root);
   const cells = new Map<string, Cell>();
   const bands = new Map<string, number>();
+  // Rects a click can focus: every group and every module, by name.
+  const rects = new Map<string, { x0: number; y0: number; x1: number; y1: number; group?: string }>();
+  const laid = root as unknown as HierarchyRectangularNode<{ name: string }>;
+  for (const g of laid.children ?? []) {
+    rects.set(g.data.name, { x0: g.x0, y0: g.y0, x1: g.x1, y1: g.y1 });
+    for (const m of g.children ?? []) rects.set((m.data as Leaf).name, { x0: m.x0, y0: m.y0, x1: m.x1, y1: m.y1, group: g.data.name });
+  }
   for (const leaf of root.leaves() as unknown as HierarchyRectangularNode<Leaf>[]) {
     const band = leaf.y1 - leaf.y0 > 40 ? 14 : 0;
     bands.set(leaf.data.name, band);
@@ -79,7 +86,7 @@ function layout(lean: LeanDump, by: "module" | "tradition") {
     const ds = leaf.data.decls.slice().sort((a, b) => a.line - b.line);
     ds.forEach((d, i) => cells.set(d.name, { d, x: leaf.x0 + 2 + (i % cols) * s, y: leaf.y0 + 2 + band + Math.floor(i / cols) * s, s }));
   }
-  return { root: root as unknown as HierarchyRectangularNode<{ name: string }>, cells, bands };
+  return { root: root as unknown as HierarchyRectangularNode<{ name: string }>, cells, bands, rects };
 }
 
 export function Treemap({
@@ -88,18 +95,23 @@ export function Treemap({
   selected,
   onSelect,
   onBy,
+  focus,
+  onFocus,
 }: {
   lean: LeanDump;
   by: "module" | "tradition";
   selected: string | null;
   onSelect: (name: string | null) => void;
   onBy: (by: "module" | "tradition") => void;
+  /** A group or module name the map is zoomed to; null for the whole. */
+  focus: string | null;
+  onFocus: (name: string | null) => void;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const view = useRef({ tx: 0, ty: 0, k: 1 });
   const [hover, setHover] = useState<string | null>(null);
   const [query, setQuery] = useState("");
-  const { root, cells, bands } = useMemo(() => layout(lean, by), [lean, by]);
+  const { root, cells, bands, rects } = useMemo(() => layout(lean, by), [lean, by]);
   const byName = useMemo(() => new Map(lean.declarations.map((d) => [d.name, d])), [lean]);
   const usedBy = useMemo(() => {
     const m = new Map<string, string[]>();
@@ -109,12 +121,17 @@ export function Treemap({
 
   const css = (n: string) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
+  /** Fit the whole, or the focused rect with a margin. */
   const fit = () => {
     const c = canvasRef.current; if (!c) return;
     const cw = c.width / devicePixelRatio, ch = c.height / devicePixelRatio;
-    const k = Math.min(cw / W, ch / H) * 0.98;
-    view.current = { k, tx: (cw - W * k) / 2, ty: (ch - H * k) / 2 };
+    const r = (focus && rects.get(focus)) || { x0: 0, y0: 0, x1: W, y1: H };
+    const rw = r.x1 - r.x0, rh = r.y1 - r.y0;
+    const k = Math.min(cw / rw, ch / rh) * (focus ? 0.94 : 0.98);
+    view.current = { k, tx: (cw - rw * k) / 2 - r.x0 * k, ty: (ch - rh * k) / 2 - r.y0 * k };
   };
+  // A new focus refits; the user's own pan and zoom are kept otherwise.
+  useEffect(() => { fit(); draw(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [focus, rects]);
 
   const draw = () => {
     const c = canvasRef.current; if (!c) return;
@@ -186,6 +203,23 @@ export function Treemap({
     for (const [name, c] of cells) if (x >= c.x && x < c.x + c.s && y >= c.y && y < c.y + c.s) return name;
     return null;
   };
+  /** The tile under a point that missed every cell: a module first, else its group. */
+  const tileAt = ([x, y]: [number, number]) => {
+    let group: string | null = null;
+    for (const [name, r] of rects) {
+      if (x < r.x0 || x >= r.x1 || y < r.y0 || y >= r.y1) continue;
+      if (r.group) return name;
+      group = name;
+    }
+    return group;
+  };
+  const trail = (() => {
+    if (!focus) return [];
+    const r = rects.get(focus);
+    if (!r) return [];
+    return r.group ? [r.group, focus] : [focus];
+  })();
+  const shortOf = (name: string) => (rects.get(name)?.group ? name.split(".").slice(2).join(".") || name : name);
   const drag = useRef<{ x: number; y: number; tx: number; ty: number; moved: boolean } | null>(null);
 
   const search = (v: string) => {
@@ -231,12 +265,28 @@ export function Treemap({
             </button>
           ))}
         </span>
-        <button type="button" onClick={() => { fit(); draw(); }} className="text-xs px-2 py-1" style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", background: "var(--bg-secondary)", color: "var(--text-secondary)", cursor: "pointer" }}>
-          Fit
-        </button>
+        <nav aria-label="Focus" className="flex items-center gap-1 text-xs" style={{ fontFamily: "var(--font-mono)" }}>
+          {[null, ...trail].map((name, i) => (
+            <span key={name ?? "all"} className="flex items-center gap-1">
+              {i > 0 && <span aria-hidden style={{ color: "var(--text-muted)" }}>›</span>}
+              <button
+                type="button"
+                onClick={() => { onFocus(name); }}
+                aria-current={name === focus ? "location" : undefined}
+                className="px-2 py-1"
+                style={{
+                  border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", cursor: "pointer",
+                  background: name === focus ? "var(--accent-soft)" : "var(--bg-secondary)", color: name === focus ? "var(--accent-strong)" : "var(--text-secondary)",
+                }}
+              >
+                {name === null ? "All" : shortOf(name)}
+              </button>
+            </span>
+          ))}
+        </nav>
         <span className="flex gap-3">{legend}</span>
         <span className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
-          {hover ? `${hover} · ${byName.get(hover)?.kind}` : "click a cell · drag to pan · wheel to zoom"}
+          {hover ? `${hover} · ${byName.get(hover)?.kind}` : "click a cell · click a tile to zoom in · drag to pan · wheel to zoom"}
         </span>
       </div>
       {by === "tradition" && (
@@ -258,7 +308,17 @@ export function Treemap({
             }
             const h = hit(toWorld(e)); if (h !== hover) setHover(h);
           }}
-          onMouseUp={(e) => { const d = drag.current; drag.current = null; if (d && !d.moved) onSelect(hit(toWorld(e))); }}
+          onMouseUp={(e) => {
+            const d = drag.current; drag.current = null;
+            if (!d || d.moved) return;
+            const p = toWorld(e);
+            const cell = hit(p);
+            if (cell) { onSelect(cell); return; }
+            // A click on a tile, not a cell, focuses that tile; the same tile again clears.
+            const tile = tileAt(p);
+            if (tile) onFocus(tile === focus ? (rects.get(tile)?.group ?? null) : tile);
+            else onSelect(null);
+          }}
           onMouseLeave={() => { drag.current = null; setHover(null); }}
           onWheel={(e) => {
             const [wx, wy] = toWorld(e); const r = canvasRef.current!.getBoundingClientRect();

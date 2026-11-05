@@ -27,6 +27,8 @@ export type Route = {
   decl?: string;
   /** How the map groups its tiles. */
   by?: "module" | "tradition";
+  /** The group or module the map is zoomed to; absent means the whole. */
+  focus?: string;
 };
 
 const SEGMENT: Record<View, string> = {
@@ -62,6 +64,7 @@ export function parse(url: URL = new URL(window.location.href)): Route {
     closure: q.get("closure") === "full" ? "full" : q.get("closure") === "shipped" ? "shipped" : undefined,
     decl: view === "lean" && tail ? decodeURIComponent(tail) : q.get("decl") ?? undefined,
     by: q.get("by") === "tradition" ? "tradition" : q.get("by") === "module" ? "module" : undefined,
+    focus: q.get("focus") ?? undefined,
   };
 }
 
@@ -80,6 +83,7 @@ export function href(r: Route): string {
   if (r.view === "compare" && r.entries?.length) q.push(`entries=${r.entries.map(encodeURIComponent).join(",")}`);
   if (r.view === "commitments" && r.closure) q.push(`closure=${r.closure}`);
   if (r.view === "graph" && r.by === "tradition") q.push(`by=tradition`);
+  if (r.view === "graph" && r.focus) q.push(`focus=${encodeURIComponent(r.focus)}`);
   if (r.view === "graph" && r.decl) q.push(`decl=${encodeURIComponent(r.decl)}`);
   return q.length ? `${path}?${q.join("&")}` : path;
 }

@@ -27,7 +27,7 @@ function Loading() {
 }
 
 export function GraphView({ atlas }: { atlas: Atlas }) {
-  const { lean, decl, by, selectDecl, setBy, openDecl, openAt } = useStore();
+  const { lean, decl, by, focus, selectDecl, setBy, setFocus, openDecl, openAt } = useStore();
   const usedBy = useUsedBy();
   const loading = <Loading />;
   if (!lean) return loading;
@@ -40,7 +40,7 @@ export function GraphView({ atlas }: { atlas: Atlas }) {
         warrant="derived"
         note={`${lean.declarations.length.toLocaleString()} declarations · ${lean.modules.length} modules · ${tagged} tagged · commit ${lean.commit.slice(0, 12)} · ${lean.toolchain.replace("leanprover/", "")}`}
       >
-        <Treemap lean={lean} by={by} selected={decl} onSelect={selectDecl} onBy={setBy} />
+        <Treemap lean={lean} by={by} selected={decl} onSelect={selectDecl} onBy={setBy} focus={focus} onFocus={setFocus} />
       </Section>
       {selected ? (
         <Section

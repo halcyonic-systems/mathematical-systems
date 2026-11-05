@@ -29,6 +29,8 @@ type State = {
   /** How the map groups: by module (the folder tree, every declaration has
       one) or by tradition (a mechanical reading of names; see traditionOf). */
   by: "module" | "tradition";
+  /** The map's focus: a group or a module name, or null for the whole. */
+  focus: string | null;
   load: () => Promise<void>;
   loadLean: () => Promise<void>;
   /** Open a declaration's page. */
@@ -37,6 +39,7 @@ type State = {
       selection is a glance, not a step in history. */
   selectDecl: (name: string | null) => void;
   setBy: (by: "module" | "tradition") => void;
+  setFocus: (focus: string | null) => void;
   setView: (v: View) => void;
   read: (iri: string) => void;
   /** Open a view at a fragment — the cross-reference move. A primitive chip on
@@ -63,6 +66,7 @@ export const useStore = create<State>((set, get) => {
       closure: s.variant,
       decl: s.decl ?? undefined,
       by: s.by,
+      focus: s.focus ?? undefined,
       ...over,
     };
   };
@@ -85,6 +89,7 @@ export const useStore = create<State>((set, get) => {
       ...(r.closure ? { variant: r.closure } : {}),
       ...(r.view === "lean" || r.view === "graph" ? { decl: r.decl ?? null } : {}),
       ...(r.by ? { by: r.by } : {}),
+      ...(r.view === "graph" ? { focus: r.focus ?? null } : {}),
     };
   };
 
@@ -101,6 +106,7 @@ export const useStore = create<State>((set, get) => {
     leanError: null,
     decl: null,
     by: "module",
+    focus: null,
 
     load: async () => {
       try {
@@ -152,8 +158,14 @@ export const useStore = create<State>((set, get) => {
     },
 
     setBy: (by) => {
-      set({ by });
-      go(route({ view: "graph", by }), "replace");
+      // A grouping change invalidates the focus: the tile no longer exists.
+      set({ by, focus: null });
+      go(route({ view: "graph", by, focus: undefined }), "replace");
+    },
+
+    setFocus: (focus) => {
+      set({ focus });
+      go(route({ view: "graph", focus: focus ?? undefined }), "replace");
     },
 
     read: (iri) => {
