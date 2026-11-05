@@ -74,7 +74,8 @@ seriously as a **lane** rather than a confession:
   likely thing in the room to invent one.
 - **Mappings.** Every claim owes a proof or a witness (`mappings/README.md`).
 - **Stances.** Each owes its own verbatim and grade (P3).
-- **`formalisedAs` pointers.** Adjacent to a faithfulness judgment; human.
+- **The Lean pointer** (`@[atlas "entry-id"]` on the declaration in SSF; at the time, the
+  `formalisedAs` property, retired 2026-11-05). Adjacent to a faithfulness judgment; human.
 - **Accession numbers and IRIs.** Permanent (`iri-policy.md`); minted by a human who has read
   the policy.
 - **Evidence promotion.** Stated above; restated because it is the whole contract.

@@ -60,7 +60,7 @@ transcription {'located': 15}  gate-can-fail=True    every registered verbatim f
 display spans verbatim  gate-can-fail=True           every front-page excerpt is a substring of its verbatim
 lean pin      pinned=e7068103d846 checkout=e7068103d846 dirty=False
 lean dump     1630 declarations, 84 modules, commit e7068103d846   `lake exe dump` at the pinned checkout
-lean tags     7 tags → 7/15 entries, 0 unknown ids, 0 disagree  gate-can-fail=True   every @[atlas] names an entry
+lean tags     7 tags → 7/15 entries, 0 unknown ids  gate-can-fail=True   every @[atlas] names an entry
 served       lean.json (1630 declarations with source)
 author coverage 8 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
 floor roles   12 lexical + 3 shape-level dependencies, adds computed  gate-can-fail=True
@@ -182,8 +182,8 @@ Four gates, each with something that can actually fail it:
   corrupts a verified verbatim two ways and requires refusal of both.
 - **Lean tags.** The pointer from an entry to its formal counterpart lives in the Lean
   development as `@[atlas "entry-id"]`, checked by the compiler; the reader reads it from
-  `lake exe dump` at the pinned commit. A tag naming no entry fails the build, and so does
-  a legacy `formalisedAs` that disagrees with a tag.
+  `lake exe dump` at the pinned commit. A tag naming no entry fails the build. It is the only
+  pointer: the atlas-side `atlas:formalisedAs` was retired on 2026-11-05 under the IRI policy.
 - **SHACL.** A malformed entry fails `atlas/build.py`.
 - **Retired IRIs.** A term retired under the IRI policy (`atlas/docs/iri-policy.md`) must
   never reappear as live data — `check_no_retired_served` plants a synthetic leak to prove

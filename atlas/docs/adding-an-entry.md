@@ -105,6 +105,18 @@ uv run --with rdflib python build.py
 
 Rebuilds the vendored import closure, the Protégé catalog, and `dist/`. Then open `dist/definition-atlas.owl` in Protégé and confirm your entry appears under **Descriptive Information Content Entity** with a readable label.
 
+## 6b. Point the Lean counterpart at the entry
+
+If a shape category in `systems-science-foundations` encodes this definition, the pointer
+goes **on the Lean declaration, not in the entry file**: add `@[atlas "entry-id"]` to the
+declaration (`Systems/Tools/Atlas.lean` defines the attribute; `KlirShape` is the model),
+one or two per entry, on the declaration that *is* the counterpart. The compiler checks
+the declaration exists, `lake exe dump` exports the tag, and the reader resolves it at the
+commit in `atlas/lean-pin` (`npm run data` fails on a tag that names no entry). Bump the
+pin once the tagged commit is in. The old entry-side `atlas:formalisedAs` is retired
+(`docs/iri-policy.md`, 2026-11-05); do not add it. The tag is bibliographic only; whether
+the quiver is faithful to the passage is a mapping claim with its own evidence.
+
 ## 7. Capture what the author refuses
 
 `atlas:excludedExample` earns its place. Bunge's *"a collection of events, even if ordered"* set against Klir's ordered bookshelf is the sharpest datum in the catalogue, and it lives at **tier 0** — no quiver, no theorem, just two authors' own examples pointed at the same object.
