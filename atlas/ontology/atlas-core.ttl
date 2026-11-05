@@ -271,22 +271,24 @@ atlas:kindRestriction
     skos:definition "For a species entry: the species word, the genus word the passage itself uses, and the restriction, in one line — e.g. 'control₂ system, over a control₁ system, over a metasystem ⟨C, O⟩; genus word: metasystem'. The build reads it; the shelf marks the entry as a kind."@en .
 
 atlas:formalisedAs
-    a owl:AnnotationProperty ;
+    a atlas:RetiredTerm ;
+    owl:deprecated true ;
     rdfs:label "formalised as"@en ;
-    skos:definition """The shape category in systems-science-foundations that encodes this
-definition's dependency structure, as a path relative to that repository plus the
-declaration name: `Systems/Category/ShapeKlir.lean#KlirShape`."""@en ;
-    rdfs:comment """BIBLIOGRAPHIC, NOT A FAITHFULNESS CLAIM. This says only that a
-formalisation of this definition exists and where to find it. Whether the quiver
-is FAITHFUL to the passage -- which position encodes which primitive, which
-phrase licenses which arrow, and what the encoding is silent about -- is a
-mapping-layer claim and owes evidence like any other. Recording the pointer here
-and the judgement there keeps the two from being confused.
+    dcterms:isReplacedBy <https://github.com/halcyonic-systems/systems-science-foundations/blob/main/Systems/Tools/Atlas.lean> ;
+    rdfs:comment """Retired 2026-11-05. This annotation property held, on each entry, a hand-kept
+string pointer to the shape category in systems-science-foundations that encodes the
+definition (`Systems/Category/ShapeKlir.lean#KlirShape`). The pointer now lives with the
+proof instead: the Lean declaration carries `@[atlas "entry-id"]` (SSF
+`Systems/Tools/Atlas.lean`), the compiler checks that the declaration exists, `lake exe dump`
+exports the tag, and the reader resolves it at the pinned commit (`atlas/lean-pin`). Two
+copies of one pointer can drift; one copy, checked where the proof is, cannot. Retired
+under the D5 policy (docs/iri-policy.md); successor is the attribute's defining file.
 
-DELIBERATELY A STRING, NOT AN IRI. The foundations are a separate repository with
-its own release cadence; a resolvable IRI would pin this catalogue to a commit or
-a hosting arrangement neither artifact controls. The reader resolves the path
-against a configured checkout and fails the build if the declaration is absent."""@en .
+What the pointer meant still holds for the tag: BIBLIOGRAPHIC, NOT A FAITHFULNESS CLAIM. A
+tag says only that a formalisation of this definition exists and where. Whether the quiver
+is FAITHFUL to the passage -- which position encodes which primitive, which phrase licenses
+which arrow, what the encoding is silent about -- is a mapping-layer claim and owes evidence
+like any other."""@en .
 
 
 ##############################################################################

@@ -65,8 +65,6 @@ S is now given as an oct-tuple with new member E containing the set, O, (standin
                            prim:milieu ,
                            prim:time ;
 
-    atlas:formalisedAs "Systems/Category/ShapeMobus.lean#MobusShape" ;
-
     atlas:evidenceCode atlas:MDHC ;
     atlas:encodedBy "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)" ;
     atlas:encodedOn "2026-08-18"^^xsd:date ;

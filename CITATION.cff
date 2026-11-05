@@ -50,10 +50,11 @@ references:
         affiliation: Halcyonic Systems
     repository-code: https://github.com/halcyonic-systems/systems-science-foundations
     notes: >-
-      The formal counterpart. Entries carry an `atlas:formalisedAs` pointer to a
-      shape category there. That pointer is bibliographic: it records where a
-      formalisation lives, not that the formalisation is faithful to the passage.
-      Faithfulness is a mapping-layer claim and carries its own evidence.
+      The formal counterpart. A Lean declaration there that formalises an entry
+      carries `@[atlas "entry-id"]`, read by the reader at the pinned commit.
+      That tag is bibliographic: it records where a formalisation lives, not
+      that the formalisation is faithful to the passage. Faithfulness is a
+      mapping-layer claim and carries its own evidence.
   - type: generic
     title: Basic Formal Ontology and the Common Core Ontologies
     notes: >-
