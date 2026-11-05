@@ -72,7 +72,6 @@ entry:bertalanffy-1972-set-in-interrelation
     # environment", which is a third position and a second arrow; pointing this
     # entry at BertalanffyShape (two positions) would have claimed a formalisation
     # that omits the clause the 1972 restatement exists to add.
-    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#Bertalanffy72Shape" ;
 
     atlas:evidenceCode atlas:HVP ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;

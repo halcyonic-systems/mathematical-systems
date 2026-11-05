@@ -85,7 +85,6 @@ dQₙ/dt = fₙ(Q₁, Q₂, … Qₙ)""" ;
     # The 1968 shape — two positions, one arrow, proved isomorphic to Klir's.
     # This is the definition that shape was built to encode; entry 004 points at
     # Bertalanffy72Shape, which carries the environment position this one lacks.
-    atlas:formalisedAs "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape" ;
 
     atlas:evidenceCode atlas:HVP ;
     atlas:encodedBy "Shingai Thornton (Claude-assisted)" ;

@@ -66,7 +66,6 @@ entry:joslyn-1995-control2
     atlas:refuses case:damped-spring-stable-equilibrium ,
                  case:boiling-liquid ,
                  case:spinning-top ;
-    atlas:formalisedAs "Systems/Category/ShapeJoslyn.lean#JoslynShape" ;
     atlas:speciesOf entry:joslyn-1995-contingent-metasystem ;
     atlas:kindRestriction "control₂ system: a control₁ system (Def. 25, Turchin's) whose induced constraint₁ is itself constrained₂; genus word in the passage: control₁ system, which Def. 25 states over a metasystem ⟨C, O⟩" ;
     atlas:evidenceCode atlas:MDHC ;

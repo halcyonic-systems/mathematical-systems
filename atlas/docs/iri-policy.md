@@ -53,6 +53,7 @@ Nothing else is required, and nothing less is accepted.
 | date | retired | replaced by | why |
 |---|---|---|---|
 | 2026-08-05 | `case:bunge-molecule-reef-family-factory` | `case:bunge-molecule`, `case:bunge-reef`, `case:bunge-family`, `case:bunge-factory` | Four cases in one individual blocked per-case matching against other authors (P4 sign-off) |
+| 2026-11-05 | `atlas:formalisedAs` (annotation property) | the Lean attribute `@[atlas "entry-id"]` on the declaration (SSF `Systems/Tools/Atlas.lean`), exported by `lake exe dump` and read at the pinned commit | A hand-kept string pointer in the atlas duplicated what the Lean development now states and the compiler checks; two copies drift, and the reader's build had to gate their agreement |
 
 Add a row per retirement. The table is the catalogue's memory of its own corrections —
 archives are annotated, never rewritten.
