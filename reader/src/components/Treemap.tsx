@@ -111,6 +111,12 @@ export function Treemap({
   const view = useRef({ tx: 0, ty: 0, k: 1 });
   const [hover, setHover] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  // Filters, local to the map: which edge directions are drawn, which kinds
+  // are shown. A hidden kind stays on the map, faint, so the tiles keep their
+  // shape; filtering never re-lays the map out from under the reader.
+  const [showUses, setShowUses] = useState(true);
+  const [showUsedBy, setShowUsedBy] = useState(true);
+  const [hidden, setHidden] = useState<Set<keyof typeof kindColor>>(new Set());
   const { root, cells, bands, rects } = useMemo(() => layout(lean, by), [lean, by]);
   const byName = useMemo(() => new Map(lean.declarations.map((d) => [d.name, d])), [lean]);
   const usedBy = useMemo(() => {
@@ -157,12 +163,13 @@ export function Treemap({
     const related = new Set<string>();
     if (selected && byName.has(selected)) {
       related.add(selected);
-      for (const u of byName.get(selected)!.uses) related.add(u);
-      for (const u of usedBy.get(selected) ?? []) related.add(u);
+      if (showUses) for (const u of byName.get(selected)!.uses) related.add(u);
+      if (showUsedBy) for (const u of usedBy.get(selected) ?? []) related.add(u);
     }
     for (const [name, cell] of cells) {
-      ctx.globalAlpha = selected && !related.has(name) ? 0.22 : 1;
-      ctx.fillStyle = kindColor[kindGroup(cell.d.kind)];
+      const kg = kindGroup(cell.d.kind);
+      ctx.globalAlpha = hidden.has(kg) ? 0.08 : selected && !related.has(name) ? 0.22 : 1;
+      ctx.fillStyle = kindColor[kg];
       ctx.fillRect(cell.x + 0.5, cell.y + 0.5, cell.s - 1, cell.s - 1);
     }
     ctx.globalAlpha = 1;
@@ -170,8 +177,9 @@ export function Treemap({
       const a = cells.get(selected)!; const ac: [number, number] = [a.x + a.s / 2, a.y + a.s / 2];
       ctx.lineWidth = 1.2 / k;
       const line = (p: [number, number], q: [number, number], col: string) => { ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(...p); ctx.lineTo(...q); ctx.stroke(); };
-      for (const u of byName.get(selected)!.uses) { const b = cells.get(u); if (b) line(ac, [b.x + b.s / 2, b.y + b.s / 2], css("--accent-strong")); }
-      for (const u of usedBy.get(selected) ?? []) { const b = cells.get(u); if (b) line([b.x + b.s / 2, b.y + b.s / 2], ac, css("--accent-slate")); }
+      const visible = (n: string) => { const c = cells.get(n); return c && !hidden.has(kindGroup(c.d.kind)) ? c : undefined; };
+      if (showUses) for (const u of byName.get(selected)!.uses) { const b = visible(u); if (b) line(ac, [b.x + b.s / 2, b.y + b.s / 2], css("--accent-strong")); }
+      if (showUsedBy) for (const u of usedBy.get(selected) ?? []) { const b = visible(u); if (b) line([b.x + b.s / 2, b.y + b.s / 2], ac, css("--accent-slate")); }
       ctx.strokeStyle = css("--text-primary"); ctx.lineWidth = 2 / k; ctx.strokeRect(a.x - 1, a.y - 1, a.s + 2, a.s + 2);
     }
     if (hover && cells.has(hover) && hover !== selected) {
@@ -194,6 +202,8 @@ export function Treemap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [root]);
   useEffect(draw);
+  // Filters change what is drawn, never the layout.
+  useEffect(() => { draw(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [showUses, showUsedBy, hidden]);
 
   const toWorld = (e: { clientX: number; clientY: number }): [number, number] => {
     const r = canvasRef.current!.getBoundingClientRect(); const { tx, ty, k } = view.current;
@@ -228,12 +238,29 @@ export function Treemap({
     if (exact) onSelect(exact);
   };
 
+  const toggleKind = (k: keyof typeof kindColor) => setHidden((h) => { const n = new Set(h); if (n.has(k)) n.delete(k); else n.add(k); return n; });
+  // The legend is the kind filter: press a kind to fade it, press again to restore.
   const legend = (Object.keys(kindColor) as (keyof typeof kindColor)[]).map((k) => (
-    <span key={k} className="text-xs" style={{ color: "var(--text-secondary)" }}>
+    <button
+      key={k}
+      type="button"
+      aria-pressed={!hidden.has(k)}
+      onClick={() => toggleKind(k)}
+      className="text-xs bg-transparent border-0 p-0"
+      style={{ color: "var(--text-secondary)", cursor: "pointer", opacity: hidden.has(k) ? 0.4 : 1, textDecoration: hidden.has(k) ? "line-through" : "none" }}
+      title={hidden.has(k) ? `show ${k}` : `fade ${k}`}
+    >
       <i aria-hidden style={{ display: "inline-block", width: 9, height: 9, marginRight: 5, verticalAlign: -1, background: kindColor[k], borderRadius: 2 }} />
       {k}
-    </span>
+    </button>
   ));
+  const edgeToggle = (on: boolean, set: (v: boolean) => void, label: string, col: string) => (
+    <label className="text-xs flex items-center gap-1" style={{ color: "var(--text-secondary)", cursor: "pointer" }}>
+      <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} />
+      <i aria-hidden style={{ display: "inline-block", width: 14, height: 2, background: col, verticalAlign: 2 }} />
+      {label}
+    </label>
+  );
 
   return (
     <div className="instrument">
@@ -285,6 +312,10 @@ export function Treemap({
           ))}
         </nav>
         <span className="flex gap-3">{legend}</span>
+        <span className="flex gap-3">
+          {edgeToggle(showUses, setShowUses, "uses", "var(--accent-strong)")}
+          {edgeToggle(showUsedBy, setShowUsedBy, "used by", "var(--accent-slate)")}
+        </span>
         <span className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
           {hover ? `${hover} · ${byName.get(hover)?.kind}` : "click a cell · click a tile to zoom in · drag to pan · wheel to zoom"}
         </span>
