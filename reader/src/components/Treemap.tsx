@@ -159,8 +159,11 @@ export function Treemap({
     const c = canvasRef.current; if (!c) return;
     const ctx = c.getContext("2d"); if (!ctx) return;
     const { tx, ty, k } = view.current;
-    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    // Clear in device pixels, before any scaling: with the page zoomed out the
+    // ratio is below 1 and a scaled fill would leave the old frame at the edges.
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillStyle = css("--bg-primary"); ctx.fillRect(0, 0, c.width, c.height);
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     ctx.translate(tx, ty); ctx.scale(k, k);
     const body = css("--font-body") || "Inter, sans-serif";
     for (const g of root.children ?? []) {
@@ -242,7 +245,11 @@ export function Treemap({
     };
     resize();
     const ro = new ResizeObserver(resize); ro.observe(c.parentElement!);
-    return () => ro.disconnect();
+    // Browser zoom changes the pixel ratio without always changing the box.
+    let mq = matchMedia(`(resolution: ${devicePixelRatio}dppx)`);
+    const onRatio = () => { mq.removeEventListener("change", onRatio); mq = matchMedia(`(resolution: ${devicePixelRatio}dppx)`); mq.addEventListener("change", onRatio); resize(); };
+    mq.addEventListener("change", onRatio);
+    return () => { ro.disconnect(); mq.removeEventListener("change", onRatio); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [root]);
   useEffect(draw);
