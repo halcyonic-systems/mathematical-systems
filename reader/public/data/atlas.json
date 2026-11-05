@@ -261,8 +261,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "79f6e4e",
-    "repoCommit": "79f6e4e"
+    "atlasCommit": "27d63b7+",
+    "repoCommit": "27d63b7+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -468,7 +468,74 @@
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple": {
-      "status": "none"
+      "spec": "Mobus2022Shape",
+      "declaration": "Mobus2022Shape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeMobus2022",
+      "file": "ShapeMobus2022.lean",
+      "line": 91,
+      "title": "Shape Category for Mobus's published 7-Tuple (2022)",
+      "moduleDoc": "# Shape Category for Mobus's published 7-Tuple (2022)\n\nThe *shape category* `I_Mobus2022` encodes the dependency structure of the\nsystem definition Mobus publishes in *Systems Science: Theory, Analysis,\nModeling, and Design* (2022), ch. 4, §4.3.3, eq. (4.1), p. 191:\n\n> a system S is a 7-tuple: Sᵢ,ₗ = C, N, G, B, T, H, Δtᵢ,ₗ\n\nThere is no environment coordinate. The book revisions (2024, Eq. 1) add E\nas the eighth, and that revised tuple is what `ShapeMobus.lean` encodes\n(atlas entry `mobus-revisions-oct-tuple`). This file encodes the published\nseven, so the 2022 definition has its own counterpart (atlas entry\n`mobus-2022-seven-tuple`).\n\n## The owed debt (atlas mapping 005, `atlas/mappings/mobus-revision.md`)\n\nThe mapping records that \"the 7-tuple embeds in the 8-tuple\" had no theorem,\nbecause the 2022 tuple had no shape by design, and proposes the discharge:\nencode the 2022 tuple as its own shape and exhibit the inclusion functor\n`mobus2022ToMobus : Paths Mobus2022Position ⥤ Paths MobusPosition`. That is\nwhat this file does. The inclusion is injective on objects\n(`mobus2022ToMobus_obj_injective`), which is the formal content of the\nmapping's claim that nothing the 2022 definition asserts is withdrawn: every\nposition and every dependency of the seven survives in the eight.\n\n## Construction\n\nThe seven positions are the eight of `MobusPosition` minus `environment`.\nThe generating arrows are those of `MobusArrow` that touch neither end at\n`environment`: of the five revised arrows, `external_on_env` and\n`env_disjoint_comp` fall away, three remain. The provenance of each is as in\n`ShapeMobus.lean`; the coherence constraints they trace to (`network_components`,\n`interfaces_sub`, `externalFlows_nodes` on the boundary side) are stated\nwithout reference to E.\n\n## Isolated Vertices\n\n`transforms`, `history` and `timeScale`, as in the revised shape.\n",
+      "positionType": "Mobus2022Position",
+      "shape": "Mobus2022Shape",
+      "declaredShapes": [
+        "Mobus2022Shape"
+      ],
+      "positions": [
+        {
+          "name": "components",
+          "doc": "C — the set of active components"
+        },
+        {
+          "name": "internalNetwork",
+          "doc": "N — the directed graph of internal flows among components"
+        },
+        {
+          "name": "externalFlows",
+          "doc": "G — the bipartite flow graph crossing the boundary"
+        },
+        {
+          "name": "boundary",
+          "doc": "B — interface components and their properties"
+        },
+        {
+          "name": "transforms",
+          "doc": "T — domain-specific processing functions"
+        },
+        {
+          "name": "history",
+          "doc": "H — stored knowledge / memory"
+        },
+        {
+          "name": "timeScale",
+          "doc": "Δt — temporal resolution of observation"
+        }
+      ],
+      "arrows": [
+        {
+          "name": "network_on_components",
+          "from": "internalNetwork",
+          "to": "components",
+          "doc": "N depends on C (internal network nodes = components)"
+        },
+        {
+          "name": "interfaces_in_components",
+          "from": "boundary",
+          "to": "components",
+          "doc": "B depends on C (interface components ⊆ components)"
+        },
+        {
+          "name": "external_on_boundary",
+          "from": "externalFlows",
+          "to": "boundary",
+          "doc": "G depends on B (external flow nodes include boundary interfaces)"
+        }
+      ],
+      "arrowConvention": "",
+      "tagged": [
+        "Mobus2022Shape"
+      ],
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple": {
       "spec": "MobusShape",
@@ -557,7 +624,24 @@
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system": {
-      "status": "none"
+      "spec": "Systems.MesarovicSystem",
+      "declaration": "Systems.MesarovicSystem",
+      "kind": "structure",
+      "module": "Systems.Mesarovic.GeneralSystem",
+      "file": "GeneralSystem.lean",
+      "line": 30,
+      "title": "",
+      "moduleDoc": "",
+      "positionType": null,
+      "shape": null,
+      "declaredShapes": [],
+      "positions": [],
+      "arrows": [],
+      "arrowConvention": "",
+      "tagged": [
+        "Systems.MesarovicSystem"
+      ],
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2": {
       "spec": "JoslynShape",
@@ -652,7 +736,24 @@
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple": {
-      "status": "none"
+      "spec": "Systems.RosenTriple",
+      "declaration": "Systems.RosenTriple",
+      "kind": "structure",
+      "module": "Systems.Klir.RosenTriple",
+      "file": "RosenTriple.lean",
+      "line": 28,
+      "title": "",
+      "moduleDoc": "",
+      "positionType": null,
+      "shape": null,
+      "declaredShapes": [],
+      "positions": [],
+      "arrows": [],
+      "arrowConvention": "",
+      "tagged": [
+        "Systems.RosenTriple"
+      ],
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system": {
       "spec": "Systems.JoslynSystem.constraint",
@@ -660,9 +761,9 @@
       "kind": "def",
       "module": "Systems.Joslyn.JoslynSystem",
       "file": "JoslynSystem.lean",
-      "line": 58,
+      "line": 60,
       "title": "# Joslyn's System₁ (Def 5)",
-      "moduleDoc": "## Joslyn's System₁ (Def 5) \n\n## The constraint (Def 21)\n\n  Joslyn's synthetic definition: a system is a cardinal distinction on a\n  variety of dimensional distinctions — equivalently given by what it\n  EXCLUDES, the constraint `C = X − S`. \n\n## Projection to Klir (§4.3) — and the seam\n\n  The clean edge of the fourth vertex: flatten the carrier to T, the\n  constrained states to R. ",
+      "moduleDoc": "## Joslyn's System₁ (Def 5) \n\n## The constraint (Def 21)\n\n  Joslyn's synthetic definition: a system is a cardinal distinction on a\n  variety of dimensional distinctions — equivalently given by what it\n  EXCLUDES, the constraint `C = X − S`. \n\n## The contingent metasystem (Def 22)\n\n  Joslyn §2.7.1, Def 22 (p. 99): \"Given a system₁ S with environment E\n  (where E is understood to be similar to the constraint₁ C), then let\n  S′ := ⟨S, E⟩ be the metasystem, with parts S and E, generated\n  contingently on S.\" Atlas entry joslyn-1995-contingent-metasystem. \n\n## Projection to Klir (§4.3) — and the seam\n\n  The clean edge of the fourth vertex: flatten the carrier to T, the\n  constrained states to R. ",
       "positionType": null,
       "shape": null,
       "declaredShapes": [],
@@ -675,7 +776,24 @@
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem": {
-      "status": "none"
+      "spec": "Systems.JoslynSystem.Metasystem",
+      "declaration": "Systems.JoslynSystem.Metasystem",
+      "kind": "structure",
+      "module": "Systems.Joslyn.JoslynSystem",
+      "file": "JoslynSystem.lean",
+      "line": 100,
+      "title": "# Joslyn's System₁ (Def 5)",
+      "moduleDoc": "## Joslyn's System₁ (Def 5) \n\n## The constraint (Def 21)\n\n  Joslyn's synthetic definition: a system is a cardinal distinction on a\n  variety of dimensional distinctions — equivalently given by what it\n  EXCLUDES, the constraint `C = X − S`. \n\n## The contingent metasystem (Def 22)\n\n  Joslyn §2.7.1, Def 22 (p. 99): \"Given a system₁ S with environment E\n  (where E is understood to be similar to the constraint₁ C), then let\n  S′ := ⟨S, E⟩ be the metasystem, with parts S and E, generated\n  contingently on S.\" Atlas entry joslyn-1995-contingent-metasystem. \n\n## Projection to Klir (§4.3) — and the seam\n\n  The clean edge of the fourth vertex: flatten the carrier to T, the\n  constrained states to R. ",
+      "positionType": null,
+      "shape": null,
+      "declaredShapes": [],
+      "positions": [],
+      "arrows": [],
+      "arrowConvention": "",
+      "tagged": [
+        "Systems.JoslynSystem.Metasystem"
+      ],
+      "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system-j": {
       "status": "none"
@@ -825,11 +943,11 @@
     ]
   },
   "lean": {
-    "commit": "e7e01162dd92e8655a926dff727b4091a81421f6",
+    "commit": "b37408da04aba3a6106d9dcfea8bcdb5fa2758a1",
     "toolchain": "leanprover/lean4:v4.28.0",
-    "declarations": 1630,
-    "modules": 84,
-    "tagged": 9
+    "declarations": 1665,
+    "modules": 87,
+    "tagged": 13
   },
   "transcription": {
     "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {

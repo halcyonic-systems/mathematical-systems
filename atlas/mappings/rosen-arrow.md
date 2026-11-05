@@ -22,7 +22,7 @@ tradition should be a *generated view* of the kernel at a statable cost, never a
 ## The claims, stated so they could fail
 
 1. **Shape — MACHINE-CHECKED 2026-09-14 (`rosenKlirEquiv`).** Definition 2.9.1's dependency quiver has two positions,
-   `set` (S) and `observables` (F), and one generating arrow, `defined_on : observables → set`
+   `set` (S) and `RosenSystem.observables` (F), and one generating arrow, `defined_on : observables → set`
    ("a family of real-valued mappings defined on S"). Claim: `ShapeRosen` so encoded is
    isomorphic to `KlirShape` — not merely admits it. **Fails if** the encoding needs a third
    position (ℝ as a codomain object) or a second arrow (F → ℝ); on that encoding the shape is

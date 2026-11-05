@@ -41,6 +41,9 @@ def _resolve(name, dump_names, by_short):
     if n in dump_names:
         return n
     hits = by_short.get(n.rsplit(".", 1)[-1], [])
+    if "." in n:
+        # a qualified tail (`RosenSystem.observables`) picks among same-short-name hits
+        hits = [h for h in hits if h == n or h.endswith("." + n)]
     return hits[0] if len(hits) == 1 else None
 
 
