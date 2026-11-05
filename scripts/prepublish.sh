@@ -40,9 +40,22 @@ else
 fi
 # A whole book in the tree is the mistake this exists to prevent.
 big=$(git ls-files -z | xargs -0 -I{} sh -c 'test -f "{}" && wc -c <"{}" | tr -d " " | sed "s|$|	{}|"' 2>/dev/null \
-      | awk -F'\t' '$1 > 400000 && $2 !~ /imports\/full|package-lock|woff2/ {print $2}')
+      | awk -F'\t' '$1 > 400000 && $2 !~ /imports\/full|package-lock|woff2|data\/lean\.json/ {print $2}')
 [ -z "$big" ] && ok "no oversized tracked files outside vendored imports" \
   || bad "large tracked files — is a source text vendored? $big"
+# reader/public/data/lean.json is large by nature: the Lean development's own
+# source text, from a public repository (T0), as `lake exe dump` writes it.
+# It is exempt only while it is recognisably that: a dump header, no verbatim.
+lean=reader/public/data/lean.json
+if [ -f "$lean" ]; then
+  python3 - "$lean" <<'CHECK' && ok "lean.json is the dump (schema, commit), not a source text" \
+    || bad "lean.json is not recognisably the Lean dump — do not publish it"
+import json, sys
+d = json.load(open(sys.argv[1]))
+ok = isinstance(d.get("schema"), str) and len(d.get("commit", "")) == 40 and "declarations" in d and "verbatim" not in d
+sys.exit(0 if ok else 1)
+CHECK
+fi
 # Places a source title legitimately appears: the entries themselves, the merged
 # artifact generated from them, the mappings (where quotation IS the method), and
 # the notices. Anywhere else, a passage may have been pasted in without provenance.

@@ -10,9 +10,9 @@
  *   says a primitive records that an author uses a WORD. The scale forces the
  *   interface to admit in pixels what the ontology admits in prose.
  *
- *   "As formalised" is `derived` — the quiver is parsed from Lean — while the
- *   pointer to it is `decided`, which is exactly what atlas:formalisedAs
- *   documents about itself.
+ *   "As formalised" is `derived` — the quiver is read from the compiled Lean
+ *   environment — and the pointer to it is the `@[atlas]` tag on the
+ *   declaration, checked by the compiler.
  */
 import {
   Absence,

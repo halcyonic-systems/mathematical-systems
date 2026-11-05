@@ -261,8 +261,8 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "9d92f6c+",
-    "repoCommit": "9d92f6c+"
+    "atlasCommit": "d417994+",
+    "repoCommit": "d417994+"
   },
   "publishable": true,
   "contextChars": 800,
@@ -651,7 +651,7 @@
     }
   },
   "lean": {
-    "commit": "e7068103d846cb3f9473af2e8d47698374213e59",
+    "commit": "a2f410a9acc94d3a9ac0013e56bb8551d003a7d7",
     "toolchain": "leanprover/lean4:v4.28.0",
     "declarations": 1630,
     "modules": 84,
@@ -954,7 +954,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
-      "formalisedAs": "Systems/Category/ShapeKlir.lean#KlirShape",
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1016,7 +1015,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
-      "formalisedAs": "Systems/Category/ShapeBunge.lean#BungeShape",
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1072,7 +1070,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-01",
-      "formalisedAs": null,
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1115,7 +1112,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-05",
-      "formalisedAs": "Systems/Category/ShapeBertalanffy.lean#Bertalanffy72Shape",
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1169,7 +1165,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/HVP",
       "encodedBy": "Shingai Thornton (Claude-assisted)",
       "encodedOn": "2026-08-07",
-      "formalisedAs": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1227,7 +1222,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)",
       "encodedOn": "2026-08-18",
-      "formalisedAs": null,
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1288,7 +1282,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; checked by Shingai Thornton (guided pass)",
       "encodedOn": "2026-08-18",
-      "formalisedAs": "Systems/Category/ShapeMobus.lean#MobusShape",
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1353,7 +1346,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-26",
       "encodedOn": "2026-08-25",
-      "formalisedAs": null,
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1414,7 +1406,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim checked against the page image by Shingai Thornton 2026-08-27",
       "encodedOn": "2026-08-27",
-      "formalisedAs": "Systems/Category/ShapeJoslyn.lean#JoslynShape",
       "kindRestriction": "control₂ system: a control₁ system (Def. 25, Turchin's) whose induced constraint₁ is itself constrained₂; genus word in the passage: control₁ system, which Def. 25 states over a metasystem ⟨C, O⟩",
       "speciesOf": "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-contingent-metasystem",
       "annotation": [
@@ -1475,7 +1466,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim read against scan page 72 (book p. 54) by Shingai Thornton 2026-09-14",
       "encodedOn": "2026-09-13",
-      "formalisedAs": "Systems/Category/ShapeRosen.lean#RosenShape",
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1535,7 +1525,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; ruled a second entry and verbatim read against book p. 128 (scan page 146) by Shingai Thornton 2026-09-14",
       "encodedOn": "2026-09-13",
-      "formalisedAs": null,
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1587,7 +1576,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 99 (PDF page 13) by Shingai Thornton 2026-09-14: Def 21 sentence, the ₁ subscripts on system and constraint, S′ and the angle brackets, and \"generated contingently on S\" all confirmed",
       "encodedOn": "2026-09-14",
-      "formalisedAs": null,
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1632,7 +1620,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 99 (PDF page 13) by Shingai Thornton 2026-09-14: Def 21 sentence, the ₁ subscripts on system and constraint, S′ and the angle brackets, and \"generated contingently on S\" all confirmed",
       "encodedOn": "2026-09-14",
-      "formalisedAs": null,
       "kindRestriction": "metasystem: the pair ⟨S, E⟩ of a system₁ and its environment, generated contingently on S; genus word in the passage: system₁ = Definition 5 (p. 89), which the author adopts from the Mesarović school (graded a restatement of entry 008), so the genus pointer is Mesarović's Definition 1.1",
       "speciesOf": "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system",
       "annotation": [
@@ -1680,7 +1667,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 89 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 89 (PDF page 3) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed",
       "encodedOn": "2026-09-14",
-      "formalisedAs": null,
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [
@@ -1723,7 +1709,6 @@
       "evidenceCode": "https://w3id.org/mathematical-systems/atlas/MDHC",
       "encodedBy": "claude-opus-5 via atlas/ingest/draft_entry.py; verbatim re-transcribed from the p. 91 page image by claude-fable-5-1 2026-09-14 ; verbatim read against p. 91 (PDF page 5) by Shingai Thornton 2026-09-14: label subscript, sentence, and the introducing line confirmed",
       "encodedOn": "2026-09-14",
-      "formalisedAs": null,
       "kindRestriction": null,
       "speciesOf": null,
       "annotation": [

@@ -26,7 +26,6 @@ export type Entry = {
   evidenceCode: string | null;
   encodedBy: string | null;
   encodedOn: string | null;
-  formalisedAs: string | null;
   /** Species entries: this definition defines a KIND of system; `speciesOf` is the IRI of
       the entry standing for its genus (spec §5 held ruling, 2026-08-21). */
   kindRestriction: string | null;
