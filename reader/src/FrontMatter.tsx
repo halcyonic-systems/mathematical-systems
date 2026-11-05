@@ -13,7 +13,7 @@
  * and the trust line renders the transcription census.
  */
 import { useEffect, useRef } from "react";
-import { ConflictLine, DevStats, FloorLede, Shelf, Treemap, doorsOf } from "./components";
+import { ConflictLine, DevStats, FloorLede, MapFoyer, Shelf } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
@@ -25,7 +25,7 @@ import type { Atlas } from "./types";
  * the catalogue, stand alone. On the Stacks pattern: the hero is the graph.
  */
 function DevelopmentStrip({ atlas }: { atlas: Atlas }) {
-  const { lean, loadLean, setView, openAt } = useStore();
+  const { lean, loadLean, setView, openAt, read, openDecl } = useStore();
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -45,16 +45,15 @@ function DevelopmentStrip({ atlas }: { atlas: Atlas }) {
         ]}
       />
       {lean && (
-        <Treemap
+        <MapFoyer
+          atlas={atlas}
           lean={lean}
-          by="module"
-          selected={null}
-          onSelect={(name) => openAt({ view: "graph", decl: name ?? undefined })}
-          onBy={() => undefined}
-          focus={null}
-          onFocus={(name) => openAt({ view: "graph", focus: name ?? undefined })}
-          doors={doorsOf(atlas)}
-          compact
+          onRead={read}
+          onDecl={openDecl}
+          onMap={(name) => openAt({ view: "graph", decl: name })}
+          onFocus={(name) => openAt({ view: "graph", by: "tradition", focus: name ?? undefined })}
+          onMappings={() => setView("mappings")}
+          onLibrary={() => setView("library")}
         />
       )}
     </div>

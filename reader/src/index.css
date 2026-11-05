@@ -1432,3 +1432,13 @@ body {
   line-height: 1.4;
   color: var(--text-primary);
 }
+
+/* The front door: the map with its panel beside it. Below a comfortable
+   width the panel drops under the map; the map keeps its aspect either way. */
+.map-foyer { display: grid; grid-template-columns: minmax(0, 7fr) minmax(16rem, 4fr); gap: 1.25rem; align-items: start; }
+.map-foyer-map { min-width: 0; }
+.map-foyer-panel { position: sticky; top: 1rem; min-width: 0; padding: 1rem 1.25rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+@media (max-width: 64rem) {
+  .map-foyer { grid-template-columns: minmax(0, 1fr); }
+  .map-foyer-panel { position: static; }
+}

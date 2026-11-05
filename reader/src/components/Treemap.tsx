@@ -66,8 +66,8 @@ type Group = { name: string; children: Leaf[] };
 
 const W = 1600;
 
-/** World height for the map's aspect: the full map, or the front page's strip. */
-const heightFor = (compact: boolean) => (compact ? Math.round(W * 0.36) : 1000);
+/** World height for the map's aspect: the full map, the front page's strip, or a given ratio. */
+const heightFor = (compact: boolean, aspect?: number) => Math.round(W * (aspect ?? (compact ? 0.36 : 0.625)));
 
 function layout(lean: LeanDump, by: "module" | "tradition", H: number) {
   const groups = new Map<string, Map<string, Leaf>>();
@@ -123,6 +123,8 @@ export function Treemap({
   onFocus,
   doors = [],
   compact = false,
+  legend: showDoors = false,
+  aspect,
 }: {
   lean: LeanDump;
   /** The atlas entries, drawn as rings on their tagged cells and listed as a legend. */
@@ -136,6 +138,10 @@ export function Treemap({
   onFocus: (name: string | null) => void;
   /** The front page's version: no toolbar, a shorter canvas, a door to /graph. */
   compact?: boolean;
+  /** Show the doors legend even when compact. */
+  legend?: boolean;
+  /** Height as a fraction of width; overrides the compact and full defaults. */
+  aspect?: number;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const view = useRef({ tx: 0, ty: 0, k: 1 });
@@ -156,7 +162,7 @@ export function Treemap({
   const anim = useRef<{ start: number; name: string } | null>(null);
   const tour = useRef<{ start: number; name: string } | null>(null);
   const raf = useRef<number | null>(null);
-  const H = heightFor(compact);
+  const H = heightFor(compact, aspect);
   const { root, cells, bands, rects } = useMemo(() => layout(lean, by, H), [lean, by, H]);
   const byName = useMemo(() => new Map(lean.declarations.map((d) => [d.name, d])), [lean]);
   const usedBy = useMemo(() => {
@@ -435,7 +441,7 @@ export function Treemap({
           Grouped by a mechanical reading of folder and name prefixes; Core, Principles, Category and Dynamics are the shared development, naming no tradition. The asserted link is the atlas tag on a declaration's page.
         </p>
       )}
-      {!compact && doors.length > 0 && (
+      {(!compact || showDoors) && doors.length > 0 && (
         <nav aria-label="Entries on the map" className="flex flex-wrap gap-x-3 gap-y-1 mb-2 text-xs" style={{ fontFamily: "var(--font-mono)" }}>
           <span style={{ color: "var(--text-muted)" }}>doors</span>
           {doors.map((d) => (

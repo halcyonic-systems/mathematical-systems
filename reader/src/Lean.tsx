@@ -4,7 +4,7 @@
  * carry no layout of their own (scripts/check-tokens.mjs).
  */
 import { useEffect, useMemo } from "react";
-import { Absence, DeclCard, DeclList, DevNav, Section, Treemap, doorsOf } from "./components";
+import { Absence, DeclCard, DeclList, DevNav, EntryPanel, Section, Treemap, doorsOf } from "./components";
 import { href } from "./route";
 import { useStore } from "./store";
 import type { Atlas } from "./types";
@@ -27,13 +27,14 @@ function Loading() {
 }
 
 export function GraphView({ atlas }: { atlas: Atlas }) {
-  const { lean, decl, by, focus, selectDecl, setBy, setFocus, openDecl, openAt, setView } = useStore();
+  const { lean, decl, by, focus, selectDecl, setBy, setFocus, openDecl, openAt, setView, read } = useStore();
   const usedBy = useUsedBy();
   const loading = <Loading />;
   if (!lean) return loading;
   const selected = decl && lean.declarations.find((d) => d.name === decl);
   const tagged = lean.declarations.filter((d) => d.atlas.length).length;
   const doors = doorsOf(atlas);
+  const door = selected ? doors.find((d) => d.decl === selected.name) : undefined;
   return (
     <>
       <DevNav active="graph" onOpen={setView} />
@@ -54,6 +55,9 @@ export function GraphView({ atlas }: { atlas: Atlas }) {
             </a>
           }
         >
+          {door && (
+            <EntryPanel atlas={atlas} door={door} lean={lean} onRead={read} onDecl={openDecl} onMap={selectDecl} onMappings={() => setView("mappings")} before />
+          )}
           <DeclCard
             decl={selected}
             lean={lean}
