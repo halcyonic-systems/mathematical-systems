@@ -164,7 +164,9 @@ are not built yet.
 
 | view | what it is for |
 |---|---|
-| **Overview** | the landing page: what the catalogue is, what it has reached, what the build refuses, what is unsettled — all counted from the data, never written by hand |
+| **Overview** | the front door: the Lean development as a map, wide and still, with a reading block under it. Every entry is a ring on the map; click one and its passage, its transcription verdict, the declaration that formalises it and its mapping count appear beneath. Then the authors as a row, each a door, then the one derived disagreement and the trust line, all counted from the data |
+| **The Development** | the full map (`/graph`): every declaration a dot, grouped by module or by tradition, with a legend of the fifteen entries, kind and edge filters, zoom, focus levels, and a card for the selected declaration (source with identifiers as links, uses, used by, axioms). `/lean/<name>` is one declaration's page; `/library` lists them all |
+| **Mappings** | the claims between entries with their warrant, and the mapping documents with the declarations they cite |
 | **Definitions** | one entry as a critical edition — the passage, the passage *in the book*, what it posits, how it was formalised, what it admits and refuses, provenance, the encoder's apparatus |
 | **Compare** | definitions side by side, row-aligned. `S = (T, R)` beside `σ = ⟨C, E, S⟩` beside Def. 1.1 |
 | **Primitives** | entries × primitives. Lexical until primitives are typed — and it says so |

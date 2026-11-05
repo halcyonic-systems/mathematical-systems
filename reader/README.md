@@ -86,6 +86,24 @@ neutrality claim quietly becoming false again.
 | **Census** | Entries × primitives. Lexical until the atlas types primitives — and it says so. |
 | **Admits / Refuses** | Every recorded example, by stance. Derived conflicts separated from authored ones. |
 | **Commitments** | What the entries are entailed to, under each import closure, with the axiom chain. |
+| **The Development** | The Lean development as a map (`/graph`): every declaration a dot, grouped by module or by tradition; the fifteen entries as rings (doors); kind and edge filters; focus levels; zoom. A selected declaration's card: signature, source with identifiers as links, uses, used by, axioms. `/lean/<name>` and `/library` are the page and the list. |
+| **Mappings** | Claims between entries with their warrant (prose, Lean, or a theorem owed) and the documents that argue them, with the declarations they cite resolved against the dump. |
+
+### The front door
+
+The Overview opens on the map. Its drawing follows what made the Stacks project's
+dependency map legible: a group is a title on open ground and only a module has a box,
+a cell is a dot filling six tenths of its slot so a thousand cells read as a texture, and
+the kind hues carry chroma because a dot reads by hue where a block reads by mass. The
+hero holds still: no idle tour, the hovered cell names itself on the canvas, a selection
+dims the rest only gently. The reading block beneath it changes with the selection and
+nothing above it reflows.
+
+An entry's ring sits on its tagged declaration (`@[atlas id]` in the development). The
+atlas tag is the narrow, asserted link; the tradition grouping is the wide, derived one
+(`traditionOf` in `src/components/Treemap.tsx`), and the two are kept apart. Grouping by
+entry was tried and set aside: the tags sit on the comparison shapes, which are leaves of
+the uses graph, so their dependency cones hold under 300 of the 1,665 declarations.
 
 ## Two things the interface will not do
 
@@ -107,7 +125,9 @@ renderer. KaTeX is reserved for reasoner output, which is ours to typeset.
   The context view makes it *visible* regardless: Klir's ordered-books example sits four
   sentences past eq. (1.1) and is now readable in place, so the gap in the record is
   something you can see rather than something you have to be told.
-- Mapping layer (`mappings/*.md`) not yet rendered. Generic ingest, profile card, and graph
-  view not yet built.
+- No third map grouping yet. Module and tradition are both mechanical; a grouping by
+  *part* (a reading order the development declares, as the Stacks map groups chapters
+  under parts) would have to be declared in the development and carried in the dump.
+- The hero is not yet tuned for a phone.
 
 Design: `docs/design/visual-language.md`. Gate: `npm run check:tokens`.

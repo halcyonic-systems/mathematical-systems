@@ -120,6 +120,18 @@ card) is the tool when a section's box stops earning its border, and `RecordStri
    with the digitisation's markup cleaned off. Cleaning a *rendering* of the source is
    permitted; altering the *transcription* is not.
 
+7. **A fourth categorical channel, for the map only.** Declaration kind (`--kind-*`,
+   `tokens.kind`) is read on the development map and the declaration pages, never beside
+   evidence, proof or transcription, so it cannot collide with the reserved three. Its
+   chroma is higher than the page's: the cells are dots, and a dot reads by hue where a
+   block reads by mass. Drawn as blocks the same hues read as mud, which is how the first
+   version shipped.
+
+8. **The map's ground is the page.** A group is a title on open ground; only a module has
+   a box, pale with a hairline. Boxes inside boxes, each filled a shade darker, is what made
+   the first map heavy. An entry's door is a ring in `--accent-strong` over a pale halo so
+   it reads on any dot; the ring is sized in screen pixels so it holds at every zoom.
+
 ## Known gap — density
 
 Pages carry a lot of prose, and the Overview carries the most. Every section is legible on
