@@ -507,6 +507,23 @@ export function Treemap({
           ))}
         </nav>
       )}
+      {compact && (
+        // The hero's legend: one quiet line, not a toolbar. The ring is the
+        // one mark a visitor cannot guess, so it comes first and is spelled out.
+        <p className="text-xs m-0 mb-2 flex flex-wrap items-center gap-x-4 gap-y-1" style={{ color: "var(--text-secondary)" }}>
+          <span>
+            <i aria-hidden style={{ display: "inline-block", width: 10, height: 10, marginRight: 5, verticalAlign: -1, border: "1.8px solid var(--accent-strong)", borderRadius: "50%" }} />
+            one of the {doors.length} definitions, as formalised
+          </span>
+          {(Object.keys(kindColor) as (keyof typeof kindColor)[]).map((k) => (
+            <span key={k}>
+              <i aria-hidden style={{ display: "inline-block", width: 8, height: 8, marginRight: 5, verticalAlign: -1, background: kindColor[k], borderRadius: "50%" }} />
+              {k}
+            </span>
+          ))}
+          <span style={{ color: "var(--text-muted)" }}>a dot is a declaration · a box is a file</span>
+        </p>
+      )}
       <div style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", overflow: "hidden" }}>
         <canvas
           ref={canvasRef}
