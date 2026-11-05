@@ -88,7 +88,7 @@ function layout(lean: LeanDump, by: "module" | "tradition", H: number) {
   })
     .sum((n) => ("value" in n ? (n as Leaf).value : 0))
     .sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
-  treemap<{ name: string }>().size([W, H]).paddingOuter(6).paddingTop(22).paddingInner(3).tile(treemapSquarify.ratio(1.2)).round(true)(root);
+  treemap<{ name: string }>().size([W, H]).paddingOuter(8).paddingTop(24).paddingInner(4).tile(treemapSquarify.ratio(1.2)).round(true)(root);
   const cells = new Map<string, Cell>();
   const bands = new Map<string, number>();
   // Rects a click can focus: every group and every module, by name.
@@ -99,7 +99,7 @@ function layout(lean: LeanDump, by: "module" | "tradition", H: number) {
     for (const m of g.children ?? []) rects.set((m.data as Leaf).name, { x0: m.x0, y0: m.y0, x1: m.x1, y1: m.y1, group: g.data.name });
   }
   for (const leaf of root.leaves() as unknown as HierarchyRectangularNode<Leaf>[]) {
-    const band = leaf.y1 - leaf.y0 > 40 ? 14 : 0;
+    const band = leaf.y1 - leaf.y0 > 44 ? 17 : 0;
     bands.set(leaf.data.name, band);
     const w = leaf.x1 - leaf.x0 - 4, h = leaf.y1 - leaf.y0 - 4 - band, n = leaf.data.decls.length;
     if (n === 0 || w <= 0 || h <= 0) continue;
@@ -193,16 +193,23 @@ export function Treemap({
     ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     ctx.translate(tx, ty); ctx.scale(k, k);
     const body = css("--font-body") || "Inter, sans-serif";
+    // A group is a title on open ground; a module is a pale box with a hairline.
+    // Boxes inside boxes, each filled a little darker, was what made the first
+    // version heavy: here the ground is the page and only the module has an edge.
+    const fs = (px: number) => px / Math.max(k, 0.6);
     for (const g of root.children ?? []) {
-      ctx.fillStyle = css("--bg-surface"); ctx.fillRect(g.x0, g.y0, g.x1 - g.x0, g.y1 - g.y0);
-      ctx.fillStyle = css("--text-secondary"); ctx.font = `600 ${13 / Math.max(k, 0.6)}px ${body}`; ctx.textBaseline = "top";
-      ctx.fillText(g.data.name, g.x0 + 6, g.y0 + 5);
+      ctx.fillStyle = css("--text-primary"); ctx.font = `600 ${fs(13)}px ${body}`; ctx.textBaseline = "top";
+      ctx.fillText(g.data.name, g.x0 + 2, g.y0 + 4);
       for (const m of g.children ?? []) {
         ctx.fillStyle = css("--bg-secondary"); ctx.fillRect(m.x0, m.y0, m.x1 - m.x0, m.y1 - m.y0);
+        ctx.strokeStyle = css("--border"); ctx.lineWidth = 1 / k; ctx.strokeRect(m.x0 + 0.5 / k, m.y0 + 0.5 / k, m.x1 - m.x0 - 1 / k, m.y1 - m.y0 - 1 / k);
         const leaf = m.data as Leaf;
-        if (bands.get(leaf.name) && (m.x1 - m.x0) * k > 60) {
-          ctx.fillStyle = css("--text-muted"); ctx.font = `500 ${10 / Math.max(k, 0.6)}px ${body}`;
-          ctx.fillText(leaf.short, m.x0 + 4, m.y0 + 3, m.x1 - m.x0 - 8);
+        if (bands.get(leaf.name) && (m.x1 - m.x0) * k > 56) {
+          ctx.fillStyle = css("--text-primary"); ctx.font = `600 ${fs(10)}px ${body}`;
+          const name = leaf.short, count = String(leaf.decls.length);
+          const cw = (m.x1 - m.x0) * k > 110 ? ctx.measureText(count).width + fs(6) : 0;
+          ctx.fillText(name, m.x0 + 4, m.y0 + 4, m.x1 - m.x0 - 8 - cw);
+          if (cw) { ctx.fillStyle = css("--text-muted"); ctx.font = `500 ${fs(8.5)}px ${body}`; ctx.fillText(count, m.x1 - 4 - ctx.measureText(count).width, m.y0 + 5); }
         }
       }
     }
@@ -218,7 +225,10 @@ export function Treemap({
       // picture that goes pale on every click reads as broken rather than focused.
       ctx.globalAlpha = hidden.has(kg) ? 0.08 : selected && !related.has(name) ? (compact ? 0.45 : 0.22) : 1;
       ctx.fillStyle = kindColor[kg];
-      ctx.fillRect(cell.x + 0.5, cell.y + 0.5, cell.s - 1, cell.s - 1);
+      // A dot in its slot, not a block filling it: the gaps are what let a
+      // thousand cells read as a texture rather than a wall.
+      const dsz = cell.s * 0.6, off = (cell.s - dsz) / 2;
+      ctx.fillRect(cell.x + off, cell.y + off, dsz, dsz);
     }
     ctx.globalAlpha = 1;
     // Doors: a ring on every entry's tagged cell, sized so it reads at any
@@ -242,9 +252,9 @@ export function Treemap({
       // cluster and their labels would collide, so the ring alone marks them.
       if (c.s * k >= 14 && !compact) labelAbove(door.label, cx, cy - r, css("--accent-strong"));
     }
-    // On the hero, the pointer's cell names itself on the canvas: no native
-    // tooltip, no status line, nothing that moves the page.
-    if (compact && hover && cells.has(hover)) {
+    // The pointer's cell names itself on the canvas: no native tooltip,
+    // nothing that moves the page.
+    if (hover && cells.has(hover) && hover !== selected) {
       const c = cells.get(hover)!; const door = doors.find((d) => d.decl === hover);
       const text = door ? door.label : hover.split(".").slice(-2).join(".");
       labelAbove(text, c.x + c.s / 2, c.y - 2 / k, door ? css("--accent-strong") : css("--text-primary"));
@@ -255,13 +265,21 @@ export function Treemap({
     const edgesOf = (name: string, p: number, alpha: number) => {
       const a = cells.get(name); if (!a) return;
       const ac: [number, number] = [a.x + a.s / 2, a.y + a.s / 2];
-      ctx.globalAlpha = alpha; ctx.lineWidth = 1.2 / k;
+      ctx.globalAlpha = alpha; ctx.lineWidth = 1.5 / k;
       const grow = (from: [number, number], to: [number, number], col: string) => {
-        ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(...from);
-        ctx.lineTo(from[0] + (to[0] - from[0]) * p, from[1] + (to[1] - from[1]) * p); ctx.stroke();
+        const ex = from[0] + (to[0] - from[0]) * p, ey = from[1] + (to[1] - from[1]) * p;
+        ctx.strokeStyle = col; ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(...from); ctx.lineTo(ex, ey); ctx.stroke();
+        if (p >= 1) {
+          // A small head at the target: direction is the whole content of an edge.
+          const ang = Math.atan2(to[1] - from[1], to[0] - from[0]), hl = 5 / k;
+          ctx.beginPath(); ctx.moveTo(ex, ey);
+          ctx.lineTo(ex - hl * Math.cos(ang - 0.45), ey - hl * Math.sin(ang - 0.45));
+          ctx.lineTo(ex - hl * Math.cos(ang + 0.45), ey - hl * Math.sin(ang + 0.45));
+          ctx.closePath(); ctx.fill();
+        }
       };
       if (showUses) for (const u of byName.get(name)!.uses) { const b = visible(u); if (b) grow(ac, [b.x + b.s / 2, b.y + b.s / 2], css("--accent-strong")); }
-      if (showUsedBy) for (const u of usedBy.get(name) ?? []) { const b = visible(u); if (b) grow([b.x + b.s / 2, b.y + b.s / 2], ac, css("--accent-slate")); }
+      if (showUsedBy) for (const u of usedBy.get(name) ?? []) { const b = visible(u); if (b) grow([b.x + b.s / 2, b.y + b.s / 2], ac, css("--kind-def")); }
       ctx.globalAlpha = 1;
     };
     let again = false;
@@ -377,10 +395,24 @@ export function Treemap({
       style={{ color: "var(--text-secondary)", cursor: "pointer", opacity: hidden.has(k) ? 0.4 : 1, textDecoration: hidden.has(k) ? "line-through" : "none" }}
       title={hidden.has(k) ? `show ${k}` : `fade ${k}`}
     >
-      <i aria-hidden style={{ display: "inline-block", width: 9, height: 9, marginRight: 5, verticalAlign: -1, background: kindColor[k], borderRadius: 2 }} />
+      <i aria-hidden style={{ display: "inline-block", width: 8, height: 8, marginRight: 5, verticalAlign: -1, background: kindColor[k], borderRadius: "50%" }} />
       {k}
     </button>
   ));
+  /** Zoom about the canvas centre by a factor; 0 refits the whole or the focus. */
+  const zoomBy = (f: number) => {
+    const c = canvasRef.current; if (!c) return;
+    if (f === 0) { fit(); draw(); return; }
+    const cw = c.width / devicePixelRatio, ch = c.height / devicePixelRatio; const { tx, ty, k } = view.current;
+    const nk = Math.max(0.2, Math.min(40, k * f));
+    view.current = { k: nk, tx: cw / 2 - ((cw / 2 - tx) / k) * nk, ty: ch / 2 - ((ch / 2 - ty) / k) * nk }; draw();
+  };
+  const zoomButton = (label: string, f: number, title: string) => (
+    <button type="button" onClick={() => zoomBy(f)} title={title} aria-label={title} className="text-xs px-2 py-1"
+      style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", cursor: "pointer", background: "var(--bg-secondary)", color: "var(--text-secondary)", minWidth: "1.9rem" }}>
+      {label}
+    </button>
+  );
   const edgeToggle = (on: boolean, set: (v: boolean) => void, label: string, col: string) => (
     <label className="text-xs flex items-center gap-1" style={{ color: "var(--text-secondary)", cursor: "pointer" }}>
       <input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} />
@@ -438,10 +470,13 @@ export function Treemap({
             </span>
           ))}
         </nav>
+        <span role="group" aria-label="Zoom" className="flex gap-1">
+          {zoomButton("−", 1 / 1.4, "zoom out")}{zoomButton("Fit", 0, "fit")}{zoomButton("+", 1.4, "zoom in")}
+        </span>
         <span className="flex gap-3">{legend}</span>
         <span className="flex gap-3">
           {edgeToggle(showUses, setShowUses, "uses", "var(--accent-strong)")}
-          {edgeToggle(showUsedBy, setShowUsedBy, "used by", "var(--accent-slate)")}
+          {edgeToggle(showUsedBy, setShowUsedBy, "used by", "var(--kind-def)")}
         </span>
         <span className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
           {hover ? `${hover} · ${byName.get(hover)?.kind}${doorOf.has(hover) ? ` · entry ${doorOf.get(hover)!.label}` : ""}` : "click a cell · click a tile to zoom in · drag to pan · wheel to zoom"}

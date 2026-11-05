@@ -91,6 +91,7 @@ export function FrontMatter({ atlas }: { atlas: Atlas }) {
         transcription={atlas.transcription}
         hrefOf={(e) => href({ view: "read", entry: e.id })}
         onOpen={read}
+        compact
       />
 
       {atlas.conflicts.map((c) => (

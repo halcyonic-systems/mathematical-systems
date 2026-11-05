@@ -131,6 +131,7 @@ export function Shelf({
   transcription,
   hrefOf,
   onOpen,
+  compact = false,
 }: {
   authors: Author[];
   entries: Entry[];
@@ -138,12 +139,15 @@ export function Shelf({
   transcription: Record<string, Transcription>;
   hrefOf: (e: Entry) => string;
   onOpen: (iri: string) => void;
+  /** The row form: glyph and strip only, no quotes. For a page where the
+      passages are read elsewhere (the front page reads them under the map). */
+  compact?: boolean;
 }) {
   const byIri = new Map(entries.map((e) => [e.iri, e]));
   const addCount = (a: Author) =>
     new Set(a.entries.flatMap((iri) => floor[iri]?.adds ?? [])).size;
   return (
-    <div className="shelf shelf-rail">
+    <div className={`shelf shelf-rail${compact ? " shelf-compact" : ""}`}>
       {/* The rail: continuity whispered — a hairline behind the dot rows.
           The per-author arrows above it are the loud layer. */}
       <span className="shelf-rail-line" aria-hidden />
@@ -173,11 +177,18 @@ export function Shelf({
               <span className="shelf-glyph-count eyebrow">+{n} beyond the floor</span>
             </span>
             <div className="shelf-card" data-world={world}>
+            {compact ? (
+              <a className="shelf-strip shelf-strip-door" href={hrefOf(defs[0])} onClick={(ev: MouseEvent) => { if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return; ev.preventDefault(); onOpen(defs[0].iri); }}>
+                <span className="shelf-head">{a.label}</span>
+                <span className="shelf-tail">{armSpan(defs)}</span>
+              </a>
+            ) : (
             <span className="shelf-strip">
               <span className="shelf-head">{a.label}</span>
               <span className="shelf-tail">{armSpan(defs)}</span>
             </span>
-            {defs.map((e) => {
+            )}
+            {!compact && defs.map((e) => {
               const t = transcription[e.iri];
               const { display } = excerptOf(e);
               const year = yearOf(e.label);

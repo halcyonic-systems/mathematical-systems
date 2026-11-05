@@ -53,11 +53,13 @@ export const transcriptLabel: Record<TranscriptStatus, string> = {
  * development is for; the rest are kept apart in hue and lower in chroma.
  */
 export const kind = {
-  theorem: "#3b4270",
-  def: "#9a6b1c",
-  type: "#2e7d5b",
-  instance: "#7c4f8c",
-  field: "#b9bdc9",
+  // Drawn as small dots on near-white, so the chroma can be higher than a
+  // filled block could carry: a dot reads by hue, a block by mass.
+  theorem: "#3d4fa8",
+  def: "#c2851c",
+  type: "#2f9a63",
+  instance: "#8a56b8",
+  field: "#b8bdc8",
 } as const;
 export type KindGroup = keyof typeof kind;
 export const kindGroup = (k: string): KindGroup =>

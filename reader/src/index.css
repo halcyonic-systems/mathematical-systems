@@ -122,11 +122,11 @@
   /* GRAPH CHANNEL — declaration kind on the map of the Lean development.
      Not reserved: read only in the development views, never beside the
      three reserved channels. Mirrored in tokens.ts (`kind`). */
-  --kind-theorem: #3b4270;
-  --kind-def: #9a6b1c;
-  --kind-type: #2e7d5b;
-  --kind-instance: #7c4f8c;
-  --kind-field: #b9bdc9;
+  --kind-theorem: #3d4fa8;
+  --kind-def: #c2851c;
+  --kind-type: #2f9a63;
+  --kind-instance: #8a56b8;
+  --kind-field: #b8bdc8;
 
   /* Straight edges. 8px is the ceiling for anything; chips take 4px; blocks are
      square. Pill geometry is a different thing and stays allowed. */
@@ -1447,3 +1447,11 @@ body {
 .map-reading-caption { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.5; color: var(--text-secondary); margin: 0; }
 @keyframes map-reading-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .map-reading { animation: none; } }
+
+/* The shelf in row form: authors as doors, four to a row, no quotes. The
+   front page reads the passages under the map; here the authors are the
+   index, each wearing its world hue, each a door to its first entry. */
+.shelf-compact { grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1.25rem; }
+.shelf-compact .shelf-card { border-bottom: none; }
+.shelf-strip-door { display: block; text-decoration: none; color: inherit; }
+.shelf-strip-door:hover .shelf-head { text-decoration: underline; }
