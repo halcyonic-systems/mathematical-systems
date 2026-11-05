@@ -32,16 +32,60 @@ import pathlib
 import re
 import subprocess
 import tempfile
+import urllib.error
+import urllib.request
 
 # "- `name`: description" and bare "`name`: description" both appear across the
 # shape files' docstrings; both are read.
 BULLET = re.compile(r"^\s*(?:-\s*)?`([^`]+)`\s*[:—-]\s*(.*)$", re.M)
 
 
-def load_dump(foundations, path=None):
-    """The dump at the checkout, or a file already written by `lake exe dump`."""
+RELEASE_URL = "https://github.com/halcyonic-systems/systems-science-foundations/releases/download/dump-{sha}/decls.json"
+CACHE_DIR = pathlib.Path(__file__).resolve().parent.parent / "public" / ".build"  # gitignored
+
+
+def _checked(dump, sha, where):
+    """A dump claiming another commit than the pin is the wrong dump, loudly."""
+    if dump.get("commit") != sha:
+        raise SystemExit(
+            f"LEAN DUMP COMMIT MISMATCH — {where} says commit {dump.get('commit')}, "
+            f"atlas/lean-pin says {sha}.\n  delete the cached file if it is stale."
+        )
+    return dump
+
+
+def fetch_dump(sha):
+    """The dump SSF publishes for the pinned commit, or None when no such release exists.
+
+    SSF's CI attaches `decls.json` to a release tagged `dump-<sha>`; fetching it
+    means a reader build needs no Lean toolchain. Cached under public/.build so a
+    rebuild does not refetch; the commit field is checked on both paths.
+    """
+    cache = CACHE_DIR / f"lean-{sha}.json"
+    if cache.is_file():
+        return _checked(json.loads(cache.read_text()), sha, str(cache))
+    url = RELEASE_URL.format(sha=sha)
+    try:
+        with urllib.request.urlopen(url, timeout=20) as r:
+            raw = r.read()
+    except (urllib.error.URLError, TimeoutError, OSError):
+        return None
+    dump = _checked(json.loads(raw), sha, url)
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache.write_bytes(raw)
+    return dump
+
+
+def load_dump(foundations, path=None, sha=None):
+    """A file already written by `lake exe dump`; else the release asset for the
+    pinned commit; else `lake exe dump` run at the checkout."""
     if path:
         return json.loads(pathlib.Path(path).read_text())
+    if sha:
+        dump = fetch_dump(sha)
+        if dump is not None:
+            return dump
+        print(f"lean dump     no release asset dump-{sha[:12]}; running `lake exe dump` in {foundations}")
     with tempfile.TemporaryDirectory() as td:
         out = pathlib.Path(td) / "decls.json"
         r = subprocess.run(

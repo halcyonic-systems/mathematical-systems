@@ -684,6 +684,7 @@ def check_display_spans(entries):
 
 def check_lean_pin(atlas_root, foundations, allow_drift):
     """The lean bridge is checked against a pinned commit, not a moving checkout.
+    Returns the pinned sha, which load_dump uses to fetch SSF's published dump.
 
     Without a pin, "checked at build time" means checked against whatever state
     the local SSF working tree happens to be in: it tolerates silent drift and is
@@ -713,7 +714,7 @@ def check_lean_pin(atlas_root, foundations, allow_drift):
     print(f"lean pin      pinned={pinned[:12]} checkout={actual[:12]} dirty={dirty}")
 
     if allow_drift:
-        return
+        return pinned
 
     if actual != pinned:
         raise SystemExit(
@@ -725,6 +726,7 @@ def check_lean_pin(atlas_root, foundations, allow_drift):
             f"LEAN PIN MISMATCH — {foundations} has uncommitted changes.\n"
             "  commit or stash them, or pass --allow-drift for a local check."
         )
+    return pinned
 
 
 def read_open_decisions(atlas_root):
@@ -994,8 +996,8 @@ def main():
     print(f"display spans verbatim  gate-can-fail={spans_live}")
 
     foundations = args.foundations.expanduser().resolve()
-    check_lean_pin(atlas_root, foundations, args.allow_drift)
-    dump = load_dump(foundations, args.lean_dump)
+    pinned = check_lean_pin(atlas_root, foundations, args.allow_drift)
+    dump = load_dump(foundations, args.lean_dump, sha=pinned)
     print(f"lean dump     {len(dump['declarations'])} declarations, {len(dump['modules'])} modules, commit {dump['commit'][:12]}")
     unknown = check_tags(dump, entries)
     tag_live = prove_tag_gate_can_fail(entries)

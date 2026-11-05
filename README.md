@@ -182,7 +182,8 @@ Four gates, each with something that can actually fail it:
   corrupts a verified verbatim two ways and requires refusal of both.
 - **Lean tags.** The pointer from an entry to its formal counterpart lives in the Lean
   development as `@[atlas "entry-id"]`, checked by the compiler; the reader reads it from
-  `lake exe dump` at the pinned commit. A tag naming no entry fails the build. It is the only
+  `lake exe dump` at the pinned commit (the `dump-<sha>` release asset SSF publishes, or a
+  local run when no release exists). A tag naming no entry fails the build. It is the only
   pointer: the atlas-side `atlas:formalisedAs` was retired on 2026-11-05 under the IRI policy.
 - **SHACL.** A malformed entry fails `atlas/build.py`.
 - **Retired IRIs.** A term retired under the IRI policy (`atlas/docs/iri-policy.md`) must
