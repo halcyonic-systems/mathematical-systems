@@ -261,16 +261,21 @@
     }
   ],
   "provenance": {
-    "atlasCommit": "b4fffbf+",
-    "repoCommit": "b4fffbf+"
+    "atlasCommit": "9d92f6c+",
+    "repoCommit": "9d92f6c+"
   },
   "publishable": true,
   "contextChars": 800,
   "shapes": {
     "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {
+      "spec": "KlirShape",
+      "declaration": "KlirShape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeKlir",
       "file": "ShapeKlir.lean",
+      "line": 53,
       "title": "Shape Category for Klir's S = (T, R)",
-      "moduleDoc": "# Shape Category for Klir's S = (T, R)\n\nThe *shape category* `I_Klir` encodes the dependency structure of Klir's\nsystem definition S = (T, R) (Facets of Systems Science, 2001, Eq. 1.1).\n\nThis is the simplest non-discrete shape category in the landscape:\n2 objects and 1 generating arrow. It is the common ancestor of both\nBunge's CES triple and Mobus's 8-tuple — the `rfl` proofs of the\ncommuting triangle trace to both authors inheriting T as `Set α` and\nR as `Set (α × α)` from Klir without changing the mathematical type.\n\n## Construction\n\n- `things`: T — the set of things (thinghood)\n- `relation`: R — the set of relations on T (systemhood)\n- `relation_on_things`: R → T — R is defined over T\n\nA thing becomes a system when you specify which of its parts are related.\nThe single arrow captures this: the relation DEPENDS on the things.",
+      "moduleDoc": "# Shape Category for Klir's S = (T, R)\n\nThe *shape category* `I_Klir` encodes the dependency structure of Klir's\nsystem definition S = (T, R) (Facets of Systems Science, 2001, Eq. 1.1).\n\nThis is the simplest non-discrete shape category in the landscape:\n2 objects and 1 generating arrow. It is the common ancestor of both\nBunge's CES triple and Mobus's 8-tuple — the `rfl` proofs of the\ncommuting triangle trace to both authors inheriting T as `Set α` and\nR as `Set (α × α)` from Klir without changing the mathematical type.\n\n## Construction\n\n- `things`: T — the set of things (thinghood)\n- `relation`: R — the set of relations on T (systemhood)\n- `relation_on_things`: R → T — R is defined over T\n\nA thing becomes a system when you specify which of its parts are related.\nThe single arrow captures this: the relation DEPENDS on the things.\n",
       "positionType": "KlirPosition",
       "shape": "KlirShape",
       "declaredShapes": [
@@ -295,13 +300,20 @@
         }
       ],
       "arrowConvention": "",
-      "spec": "Systems/Category/ShapeKlir.lean#KlirShape",
+      "tagged": [
+        "KlirShape"
+      ],
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-ces-triple": {
+      "spec": "BungeShape",
+      "declaration": "BungeShape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeBunge",
       "file": "ShapeBunge.lean",
+      "line": 58,
       "title": "Shape Category for Bunge's CES Framework",
-      "moduleDoc": "# Shape Category for Bunge's CES Framework\n\nThe *shape category* `I_Bunge` encodes the dependency structure of Bunge's\nsystem definition σ = ⟨C, E, S⟩ (Treatise on Basic Philosophy Vol. 4, Def 1.2, 1979).\n\n## Construction\n\nWe define a quiver with 3 vertices (the tuple positions) and 3 generating arrows\n(the structural dependencies), then take the free category via `Paths`.\n\n## Arrow Direction Convention\n\nArrows point from the *dependent* to what it *depends on*. This makes a system-as-diagram\n(a functor from the shape category to a data category) covariant.\n\n- S → C: structure is defined over composition\n- S → E: structure is defined over environment\n- E → C: environment acts on composition (Bunge's interaction axiom)",
+      "moduleDoc": "# Shape Category for Bunge's CES Framework\n\nThe *shape category* `I_Bunge` encodes the dependency structure of Bunge's\nsystem definition σ = ⟨C, E, S⟩ (Treatise on Basic Philosophy Vol. 4, Def 1.2, 1979).\n\n## Construction\n\nWe define a quiver with 3 vertices (the tuple positions) and 3 generating arrows\n(the structural dependencies), then take the free category via `Paths`.\n\n## Arrow Direction Convention\n\nArrows point from the *dependent* to what it *depends on*. This makes a system-as-diagram\n(a functor from the shape category to a data category) covariant.\n\n- S → C: structure is defined over composition\n- S → E: structure is defined over environment\n- E → C: environment acts on composition (Bunge's interaction axiom)\n",
       "positionType": "BungePosition",
       "shape": "BungeShape",
       "declaredShapes": [
@@ -342,16 +354,23 @@
         }
       ],
       "arrowConvention": "Arrows point from the *dependent* to what it *depends on*. This makes a system-as-diagram",
-      "spec": "Systems/Category/ShapeBunge.lean#BungeShape",
+      "tagged": [
+        "BungeShape"
+      ],
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bunge-1979-def-1-1": {
       "status": "none"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1972-set-in-interrelation": {
+      "spec": "Bertalanffy72Shape",
+      "declaration": "Bertalanffy72Shape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeBertalanffy",
       "file": "ShapeBertalanffy.lean",
+      "line": 248,
       "title": "Shape Category for Bertalanffy's General System Theory",
-      "moduleDoc": "# Shape Category for Bertalanffy's General System Theory\n\nThe *shape category* `I_Bertalanffy` encodes the dependency structure of Bertalanffy's\nverbal definition of \"system\".\n\n## Source\n\nBertalanffy (1968), *General System Theory*, ch. 3 \"Some System Concepts\", p. 55:\n\n> \"A system can be defined as a complex of interacting elements. Interaction means that\n> elements, p, stand in relations, R, so that the behavior of an element p in R is different\n> from its behavior in another relation, R'.\"\n\nTwo positions are named in that sentence — the elements `p` and the relations `R` — and one\ndependency: the relations are *on* the elements.\n\n## Arrow direction — DECLARED, not assumed\n\n`interrelation_on_elements : interrelation ⟶ elements`, read aloud: **\"the interrelation\ndepends on the elements\"** — you cannot state R without already having the p's it holds\nbetween. This is the same convention as every other shape in this development (Klir's\n`relation_on_things`, Mobus's `network_on_components`): an arrow points from the dependent\nposition to the position it depends on. It is NOT a function arrow and NOT a flow arrow.\n\n## What this shape does NOT capture — the predicate gap\n\nBertalanffy's interaction clause carries a condition Klir's `S = (T, R)` does not: the\nbehaviour of an element **must differ** across relations. That is a predicate constraining\nwhich R qualify, not a position and not a dependency, so the quiver cannot express it and\n`bertalanffyToKlir` below discards it. The two definitions therefore have isomorphic shapes\n(`shapeIso`) while making *different* demands — the shape functor is not injective on\ndefinitional content.\n\nThis is a limit of the shape method, exhibited rather than asserted: `shapeIso` proves the\nstructures correspond, and this paragraph names exactly what survives the correspondence and\nwhat does not. Compare Bunge's near-identical difference-making test — \"unlike a mere\nrelation, a connection makes some difference to its relata\" (1979, ch. 1 §1.2) — which Bunge\n*does* promote to definitional force via the nonempty-bondage requirement, and which\n`ShapeBunge` likewise cannot see.\n\n## The 1972 restatement is a different shape\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417, adds a third position:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nThat definition would carry a second arrow (`interrelation ⟶ environment`) and is deliberately\nNOT encoded here — this file is the 1968 shape. The 1968 → 1972 pair is a definition revising\nitself, and the two shapes are the record of what the revision changed.",
+      "moduleDoc": "# Shape Category for Bertalanffy's General System Theory\n\nThe *shape category* `I_Bertalanffy` encodes the dependency structure of Bertalanffy's\nverbal definition of \"system\".\n\n## Source\n\nBertalanffy (1968), *General System Theory*, ch. 3 \"Some System Concepts\", p. 55:\n\n> \"A system can be defined as a complex of interacting elements. Interaction means that\n> elements, p, stand in relations, R, so that the behavior of an element p in R is different\n> from its behavior in another relation, R'.\"\n\nTwo positions are named in that sentence — the elements `p` and the relations `R` — and one\ndependency: the relations are *on* the elements.\n\n## Arrow direction — DECLARED, not assumed\n\n`interrelation_on_elements : interrelation ⟶ elements`, read aloud: **\"the interrelation\ndepends on the elements\"** — you cannot state R without already having the p's it holds\nbetween. This is the same convention as every other shape in this development (Klir's\n`relation_on_things`, Mobus's `network_on_components`): an arrow points from the dependent\nposition to the position it depends on. It is NOT a function arrow and NOT a flow arrow.\n\n## What this shape does NOT capture — the predicate gap\n\nBertalanffy's interaction clause carries a condition Klir's `S = (T, R)` does not: the\nbehaviour of an element **must differ** across relations. That is a predicate constraining\nwhich R qualify, not a position and not a dependency, so the quiver cannot express it and\n`bertalanffyToKlir` below discards it. The two definitions therefore have isomorphic shapes\n(`shapeIso`) while making *different* demands — the shape functor is not injective on\ndefinitional content.\n\nThis is a limit of the shape method, exhibited rather than asserted: `shapeIso` proves the\nstructures correspond, and this paragraph names exactly what survives the correspondence and\nwhat does not. Compare Bunge's near-identical difference-making test — \"unlike a mere\nrelation, a connection makes some difference to its relata\" (1979, ch. 1 §1.2) — which Bunge\n*does* promote to definitional force via the nonempty-bondage requirement, and which\n`ShapeBunge` likewise cannot see.\n\n## The 1972 restatement is a different shape\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417, adds a third position:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nThat definition would carry a second arrow (`interrelation ⟶ environment`) and is deliberately\nNOT encoded here — this file is the 1968 shape. The 1968 → 1972 pair is a definition revising\nitself, and the two shapes are the record of what the revision changed.\n\n\nKlir's `S = (T, R)` with `relation_on_things` and Bertalanffy's \"complex of interacting\nelements\" with `interrelation_on_elements` are the same quiver under the evident renaming.\nTwo traditions — analytic-biological organicism (1968) and information-theoretic systems\nscience (2001, itself descending from 1969) — arrived at the same minimal dependency\nstructure independently.\n\nRead the caveat above before quoting this: identical shape does NOT mean identical\ndefinition.\n\n\n`SharedPrimitive.connected_is_single_arrow` — the repaired, quiver-level replacement for the\nrefuted maximality claim — is **target-dependent**: it is forced by Q_Joslyn (no out-degree\ntwo) and Q_Willems (no in-degree two, no composable pair). Adding an entry can therefore\nweaken it if the new quiver is permissive enough to readmit a competitor, so a new entry owes\nan explicit check against the fork, cofork, and two-chain obstructions rather than an\nassurance of neutrality.\n\nQ_Bertalanffy is the most restrictive quiver that can appear: it *is* the shared primitive.\nAll four obstructions are proved below, so the entry cannot weaken the result — it has no\nroom to admit anything Q_Klir does not already admit.\n\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417 — human-verified against the page, 2026-08-05:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nFour years after the book, the environment is inside the definition rather than a distinction\nlayered on afterwards (1968 introduces open vs. closed systems separately, chs. 6–8). The\nrevision is visible in the shape: a third position and a second arrow. Encoding both versions\nis what makes \"the definition changed, and here is how\" a statement about mathematics rather\nthan about prose.\n\n\n### Obstruction audit for the 1972 shape\n\nUnlike Q_Bertalanffy (1968), **Q_Bertalanffy72 is permissive**: `interrelation` has out-degree\ntwo, so the quiver admits the fork. By the same reasoning recorded for Q_Spivak, this neither\nstrengthens nor breaks `SharedPrimitive.connected_is_single_arrow` — the repair is forced by\nQ_Joslyn (no out-degree two) and Q_Willems (no in-degree two, no composable pair), and a\npermissive entry simply does no work there. Stated explicitly rather than assumed, and the\nfork is proved present rather than asserted.\n",
       "positionType": "Bertalanffy72Position",
       "shape": "Bertalanffy72Shape",
       "declaredShapes": [
@@ -387,13 +406,20 @@
         }
       ],
       "arrowConvention": "",
-      "spec": "Systems/Category/ShapeBertalanffy.lean#Bertalanffy72Shape",
+      "tagged": [
+        "Bertalanffy72Shape"
+      ],
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/bertalanffy-1968-eq-3-1": {
+      "spec": "BertalanffyShape",
+      "declaration": "BertalanffyShape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeBertalanffy",
       "file": "ShapeBertalanffy.lean",
+      "line": 85,
       "title": "Shape Category for Bertalanffy's General System Theory",
-      "moduleDoc": "# Shape Category for Bertalanffy's General System Theory\n\nThe *shape category* `I_Bertalanffy` encodes the dependency structure of Bertalanffy's\nverbal definition of \"system\".\n\n## Source\n\nBertalanffy (1968), *General System Theory*, ch. 3 \"Some System Concepts\", p. 55:\n\n> \"A system can be defined as a complex of interacting elements. Interaction means that\n> elements, p, stand in relations, R, so that the behavior of an element p in R is different\n> from its behavior in another relation, R'.\"\n\nTwo positions are named in that sentence — the elements `p` and the relations `R` — and one\ndependency: the relations are *on* the elements.\n\n## Arrow direction — DECLARED, not assumed\n\n`interrelation_on_elements : interrelation ⟶ elements`, read aloud: **\"the interrelation\ndepends on the elements\"** — you cannot state R without already having the p's it holds\nbetween. This is the same convention as every other shape in this development (Klir's\n`relation_on_things`, Mobus's `network_on_components`): an arrow points from the dependent\nposition to the position it depends on. It is NOT a function arrow and NOT a flow arrow.\n\n## What this shape does NOT capture — the predicate gap\n\nBertalanffy's interaction clause carries a condition Klir's `S = (T, R)` does not: the\nbehaviour of an element **must differ** across relations. That is a predicate constraining\nwhich R qualify, not a position and not a dependency, so the quiver cannot express it and\n`bertalanffyToKlir` below discards it. The two definitions therefore have isomorphic shapes\n(`shapeIso`) while making *different* demands — the shape functor is not injective on\ndefinitional content.\n\nThis is a limit of the shape method, exhibited rather than asserted: `shapeIso` proves the\nstructures correspond, and this paragraph names exactly what survives the correspondence and\nwhat does not. Compare Bunge's near-identical difference-making test — \"unlike a mere\nrelation, a connection makes some difference to its relata\" (1979, ch. 1 §1.2) — which Bunge\n*does* promote to definitional force via the nonempty-bondage requirement, and which\n`ShapeBunge` likewise cannot see.\n\n## The 1972 restatement is a different shape\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417, adds a third position:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nThat definition would carry a second arrow (`interrelation ⟶ environment`) and is deliberately\nNOT encoded here — this file is the 1968 shape. The 1968 → 1972 pair is a definition revising\nitself, and the two shapes are the record of what the revision changed.",
+      "moduleDoc": "# Shape Category for Bertalanffy's General System Theory\n\nThe *shape category* `I_Bertalanffy` encodes the dependency structure of Bertalanffy's\nverbal definition of \"system\".\n\n## Source\n\nBertalanffy (1968), *General System Theory*, ch. 3 \"Some System Concepts\", p. 55:\n\n> \"A system can be defined as a complex of interacting elements. Interaction means that\n> elements, p, stand in relations, R, so that the behavior of an element p in R is different\n> from its behavior in another relation, R'.\"\n\nTwo positions are named in that sentence — the elements `p` and the relations `R` — and one\ndependency: the relations are *on* the elements.\n\n## Arrow direction — DECLARED, not assumed\n\n`interrelation_on_elements : interrelation ⟶ elements`, read aloud: **\"the interrelation\ndepends on the elements\"** — you cannot state R without already having the p's it holds\nbetween. This is the same convention as every other shape in this development (Klir's\n`relation_on_things`, Mobus's `network_on_components`): an arrow points from the dependent\nposition to the position it depends on. It is NOT a function arrow and NOT a flow arrow.\n\n## What this shape does NOT capture — the predicate gap\n\nBertalanffy's interaction clause carries a condition Klir's `S = (T, R)` does not: the\nbehaviour of an element **must differ** across relations. That is a predicate constraining\nwhich R qualify, not a position and not a dependency, so the quiver cannot express it and\n`bertalanffyToKlir` below discards it. The two definitions therefore have isomorphic shapes\n(`shapeIso`) while making *different* demands — the shape functor is not injective on\ndefinitional content.\n\nThis is a limit of the shape method, exhibited rather than asserted: `shapeIso` proves the\nstructures correspond, and this paragraph names exactly what survives the correspondence and\nwhat does not. Compare Bunge's near-identical difference-making test — \"unlike a mere\nrelation, a connection makes some difference to its relata\" (1979, ch. 1 §1.2) — which Bunge\n*does* promote to definitional force via the nonempty-bondage requirement, and which\n`ShapeBunge` likewise cannot see.\n\n## The 1972 restatement is a different shape\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417, adds a third position:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nThat definition would carry a second arrow (`interrelation ⟶ environment`) and is deliberately\nNOT encoded here — this file is the 1968 shape. The 1968 → 1972 pair is a definition revising\nitself, and the two shapes are the record of what the revision changed.\n\n\nKlir's `S = (T, R)` with `relation_on_things` and Bertalanffy's \"complex of interacting\nelements\" with `interrelation_on_elements` are the same quiver under the evident renaming.\nTwo traditions — analytic-biological organicism (1968) and information-theoretic systems\nscience (2001, itself descending from 1969) — arrived at the same minimal dependency\nstructure independently.\n\nRead the caveat above before quoting this: identical shape does NOT mean identical\ndefinition.\n\n\n`SharedPrimitive.connected_is_single_arrow` — the repaired, quiver-level replacement for the\nrefuted maximality claim — is **target-dependent**: it is forced by Q_Joslyn (no out-degree\ntwo) and Q_Willems (no in-degree two, no composable pair). Adding an entry can therefore\nweaken it if the new quiver is permissive enough to readmit a competitor, so a new entry owes\nan explicit check against the fork, cofork, and two-chain obstructions rather than an\nassurance of neutrality.\n\nQ_Bertalanffy is the most restrictive quiver that can appear: it *is* the shared primitive.\nAll four obstructions are proved below, so the entry cannot weaken the result — it has no\nroom to admit anything Q_Klir does not already admit.\n\n\nBertalanffy (1972), \"The History and Status of General Systems Theory\", *Academy of\nManagement Journal* 15(4), p. 417 — human-verified against the page, 2026-08-05:\n\n> \"A system may be defined as a set of elements standing in interrelation among themselves\n> **and with the environment**.\"\n\nFour years after the book, the environment is inside the definition rather than a distinction\nlayered on afterwards (1968 introduces open vs. closed systems separately, chs. 6–8). The\nrevision is visible in the shape: a third position and a second arrow. Encoding both versions\nis what makes \"the definition changed, and here is how\" a statement about mathematics rather\nthan about prose.\n\n\n### Obstruction audit for the 1972 shape\n\nUnlike Q_Bertalanffy (1968), **Q_Bertalanffy72 is permissive**: `interrelation` has out-degree\ntwo, so the quiver admits the fork. By the same reasoning recorded for Q_Spivak, this neither\nstrengthens nor breaks `SharedPrimitive.connected_is_single_arrow` — the repair is forced by\nQ_Joslyn (no out-degree two) and Q_Willems (no in-degree two, no composable pair), and a\npermissive entry simply does no work there. Stated explicitly rather than assumed, and the\nfork is proved present rather than asserted.\n",
       "positionType": "BertalanffyPosition",
       "shape": "BertalanffyShape",
       "declaredShapes": [
@@ -419,16 +445,23 @@
         }
       ],
       "arrowConvention": "",
-      "spec": "Systems/Category/ShapeBertalanffy.lean#BertalanffyShape",
+      "tagged": [
+        "BertalanffyShape"
+      ],
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mobus-2022-seven-tuple": {
       "status": "none"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mobus-revisions-oct-tuple": {
+      "spec": "MobusShape",
+      "declaration": "MobusShape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeMobus",
       "file": "ShapeMobus.lean",
+      "line": 77,
       "title": "Shape Category for Mobus's 8-Tuple Framework",
-      "moduleDoc": "# Shape Category for Mobus's 8-Tuple Framework\n\nThe *shape category* `I_Mobus` encodes the dependency structure of Mobus's\nsystem definition S = (C, N, E, G, B, T, H, Δt).\n\n## Construction\n\nWe define a quiver with 8 vertices (the tuple positions) and 5 generating arrows\n(derived from the coherence constraints in `MobusSystem`), then take the free category.\n\n## Arrow Provenance\n\nEach generating arrow traces to a specific coherence constraint:\n- `network_on_components` ← `network_components : N.nodes = C`\n- `interfaces_in_components` ← `interfaces_sub : B.interfaces ⊆ C`\n- `external_on_env` ← `externalFlows_nodes` (environment component)\n- `external_on_boundary` ← `externalFlows_nodes` (boundary component)\n- `env_disjoint_comp` ← `disjoint : C ∩ E.objects = ∅`\n\n## Isolated Vertices\n\n`transforms`, `history`, and `timeScale` have no generating arrows. They are\nparametric data with no structural role in the coherence constraints.",
+      "moduleDoc": "# Shape Category for Mobus's 8-Tuple Framework\n\nThe *shape category* `I_Mobus` encodes the dependency structure of Mobus's\nsystem definition S = (C, N, E, G, B, T, H, Δt).\n\n## Construction\n\nWe define a quiver with 8 vertices (the tuple positions) and 5 generating arrows\n(derived from the coherence constraints in `MobusSystem`), then take the free category.\n\n## Arrow Provenance\n\nEach generating arrow traces to a specific coherence constraint:\n- `network_on_components` ← `network_components : N.nodes = C`\n- `interfaces_in_components` ← `interfaces_sub : B.interfaces ⊆ C`\n- `external_on_env` ← `externalFlows_nodes` (environment component)\n- `external_on_boundary` ← `externalFlows_nodes` (boundary component)\n- `env_disjoint_comp` ← `disjoint : C ∩ E.objects = ∅`\n\n## Isolated Vertices\n\n`transforms`, `history`, and `timeScale` have no generating arrows. They are\nparametric data with no structural role in the coherence constraints.\n",
       "positionType": "MobusPosition",
       "shape": "MobusShape",
       "declaredShapes": [
@@ -501,16 +534,23 @@
         }
       ],
       "arrowConvention": "",
-      "spec": "Systems/Category/ShapeMobus.lean#MobusShape",
+      "tagged": [
+        "MobusShape"
+      ],
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/mesarovic-takahara-1975-general-system": {
       "status": "none"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-control2": {
+      "spec": "JoslynShape",
+      "declaration": "JoslynShape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeJoslyn",
       "file": "ShapeJoslyn.lean",
+      "line": 80,
       "title": "Shape Category for Joslyn's Semantic Control Systems",
-      "moduleDoc": "# Shape Category for Joslyn's Semantic Control Systems\n\nThe *shape category* `I_Joslyn` encodes the dependency structure of Joslyn's\ncontrol₂ system definition CS = (C, O_E, O_I) from \"Semantic Control Systems\"\n(*World Futures* 45:87-123, 1995). Defs 25, 28, Prop 29. Zotero key: JXTBBK89.\n\n## Construction\n\nWe define a quiver with 3 vertices (the tuple positions) and 3 generating arrows\n(the functional relations from Figure 1), then take the free category via `Paths`.\n\n## Arrow Direction Convention\n\nArrows point in the *functional direction* (same direction as the named function).\nThis encodes the causal/information flow structure of the control₂ system.\n\n- h: C → O_E (disturbance: environment acts on regulator)\n- g: O_E → O_I (efferent: regulator constrains controlled variables)\n- f: O_I → O_E (afferent: feedback from controlled variables to regulator)\n\n## Cyclic Structure\n\nThe feedback cycle (efferent ∘ afferent and afferent ∘ efferent) distinguishes this\nfrom ALL other shape categories in the landscape. Bunge, Mobus, Myers, and Wymore\nall have DAG-shaped quivers (no cycles). Joslyn's cycle encodes the FEEDBACK structure\nthat is definitional to cybernetic control systems.\n\nIn the free category, the cycle between `effector` and `controlled` generates\ninfinitely many morphisms (paths of alternating efferent and afferent arrows).\n\n## Proposition 29\n\nJoslyn's Proposition 29 establishes that control₂ REQUIRES the internal decomposition\nO = (O_E, O_I). The split is not optional but necessary for active feedback control.\nThis is the cybernetic analog of Mesarović's decomposition theorem.",
+      "moduleDoc": "# Shape Category for Joslyn's Semantic Control Systems\n\nThe *shape category* `I_Joslyn` encodes the dependency structure of Joslyn's\ncontrol₂ system definition CS = (C, O_E, O_I) from \"Semantic Control Systems\"\n(*World Futures* 45:87-123, 1995). Defs 25, 28, Prop 29. Zotero key: JXTBBK89.\n\n## Construction\n\nWe define a quiver with 3 vertices (the tuple positions) and 3 generating arrows\n(the functional relations from Figure 1), then take the free category via `Paths`.\n\n## Arrow Direction Convention\n\nArrows point in the *functional direction* (same direction as the named function).\nThis encodes the causal/information flow structure of the control₂ system.\n\n- h: C → O_E (disturbance: environment acts on regulator)\n- g: O_E → O_I (efferent: regulator constrains controlled variables)\n- f: O_I → O_E (afferent: feedback from controlled variables to regulator)\n\n## Cyclic Structure\n\nThe feedback cycle (efferent ∘ afferent and afferent ∘ efferent) distinguishes this\nfrom ALL other shape categories in the landscape. Bunge, Mobus, Myers, and Wymore\nall have DAG-shaped quivers (no cycles). Joslyn's cycle encodes the FEEDBACK structure\nthat is definitional to cybernetic control systems.\n\nIn the free category, the cycle between `effector` and `controlled` generates\ninfinitely many morphisms (paths of alternating efferent and afferent arrows).\n\n## Proposition 29\n\nJoslyn's Proposition 29 establishes that control₂ REQUIRES the internal decomposition\nO = (O_E, O_I). The split is not optional but necessary for active feedback control.\nThis is the cybernetic analog of Mesarović's decomposition theorem.\n",
       "positionType": "JoslynPosition",
       "shape": "JoslynShape",
       "declaredShapes": [
@@ -551,13 +591,20 @@
         }
       ],
       "arrowConvention": "Arrows point in the *functional direction* (same direction as the named function).",
-      "spec": "Systems/Category/ShapeJoslyn.lean#JoslynShape",
+      "tagged": [
+        "JoslynShape"
+      ],
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-formal-system": {
+      "spec": "RosenShape",
+      "declaration": "RosenShape",
+      "kind": "def",
+      "module": "Systems.Category.ShapeRosen",
       "file": "ShapeRosen.lean",
+      "line": 75,
       "title": "Shape Category for Rosen's formal system (S, F)",
-      "moduleDoc": "# Shape Category for Rosen's formal system (S, F)\n\nThe *shape category* `I_Rosen` encodes the dependency structure of Rosen's\nDefinition 2.9.1 (*Fundamentals of Measurement and Representation of Natural\nSystems*, Elsevier North-Holland 1978, book p. 54; atlas entry 010):\n\n> A system (or formal system) shall consist of a pair (S, F), where S is a set\n> and F is a family of real-valued mappings defined on S. The elements of F\n> will be called the observables of the formal system.\n\n## Construction\n\n- `states`: S — the set the definition calls \"a set\" and the gloss calls the\n  states (Rosen's own word for the elements of S throughout ch. 2).\n- `observables`: F — the family of observables.\n- `defined_on`: F → S — \"a family of real-valued mappings *defined on* S\".\n\n## The encoding decision (mapping 008, claim 1)\n\nThe real line is NOT a position. Proposition 2 (p. 26) fixes the codomain of\nevery observable as ℝ once and for all, so ℝ is part of the ambient substrate of\nthe definition, like `Set` for Klir, and not a relatum the definition varies\nover. On this encoding the quiver has 2 objects and 1 arrow: it is the walking\narrow, and `RosenKlirIso.lean` proves it is equivalent to `KlirShape`.\n\nThe alternative encoding — ℝ as a third position with a second arrow\nF → ℝ — gives a cospan `S ← F → ℝ`, not the arrow. That encoding is not\nbuilt here; mapping 008 records it as the presentation on which claim 1 would\nfail. The choice is a reading of the text (Proposition 2 makes ℝ fixed), and\nit is stated here so that the theorem downstream is read as relative to it.\n\n## Arrow direction convention\n\nArrows point in the direction of dependency, as in `ShapeKlir`: `defined_on`\nreads \"F depends on S\" (the observables are defined over the states). This is\nthe same convention as Klir's `relation_on_things` (\"R is defined over T\"),\nwhich is what makes the two shapes comparable position-for-position.\n\n## What the shape forgets\n\nThat the observables are real-valued (Proposition 2), that the states carry no\nstructure (\"no further structure was assumed\", p. 54), and the reduced-state\nconstruction S/R_F. A quiver records that a dependency exists, nothing more.",
+      "moduleDoc": "# Shape Category for Rosen's formal system (S, F)\n\nThe *shape category* `I_Rosen` encodes the dependency structure of Rosen's\nDefinition 2.9.1 (*Fundamentals of Measurement and Representation of Natural\nSystems*, Elsevier North-Holland 1978, book p. 54; atlas entry 010):\n\n> A system (or formal system) shall consist of a pair (S, F), where S is a set\n> and F is a family of real-valued mappings defined on S. The elements of F\n> will be called the observables of the formal system.\n\n## Construction\n\n- `states`: S — the set the definition calls \"a set\" and the gloss calls the\n  states (Rosen's own word for the elements of S throughout ch. 2).\n- `observables`: F — the family of observables.\n- `defined_on`: F → S — \"a family of real-valued mappings *defined on* S\".\n\n## The encoding decision (mapping 008, claim 1)\n\nThe real line is NOT a position. Proposition 2 (p. 26) fixes the codomain of\nevery observable as ℝ once and for all, so ℝ is part of the ambient substrate of\nthe definition, like `Set` for Klir, and not a relatum the definition varies\nover. On this encoding the quiver has 2 objects and 1 arrow: it is the walking\narrow, and `RosenKlirIso.lean` proves it is equivalent to `KlirShape`.\n\nThe alternative encoding — ℝ as a third position with a second arrow\nF → ℝ — gives a cospan `S ← F → ℝ`, not the arrow. That encoding is not\nbuilt here; mapping 008 records it as the presentation on which claim 1 would\nfail. The choice is a reading of the text (Proposition 2 makes ℝ fixed), and\nit is stated here so that the theorem downstream is read as relative to it.\n\n## Arrow direction convention\n\nArrows point in the direction of dependency, as in `ShapeKlir`: `defined_on`\nreads \"F depends on S\" (the observables are defined over the states). This is\nthe same convention as Klir's `relation_on_things` (\"R is defined over T\"),\nwhich is what makes the two shapes comparable position-for-position.\n\n## What the shape forgets\n\nThat the observables are real-valued (Proposition 2), that the states carry no\nstructure (\"no further structure was assumed\", p. 54), and the reduced-state\nconstruction S/R_F. A quiver records that a dependency exists, nothing more.\n\n\n## Thinness\n\nEvery hom-set of `I_Rosen` is a subsingleton, by the same case analysis as\n`I_Klir` (`CommonCore.lean`): `states` is a sink, nothing targets\n`observables`, and the one non-identity hom-set is the generating arrow. ",
       "positionType": "RosenPosition",
       "shape": "RosenShape",
       "declaredShapes": [
@@ -582,7 +629,9 @@
         }
       ],
       "arrowConvention": "Arrows point in the direction of dependency, as in `ShapeKlir`: `defined_on`",
-      "spec": "Systems/Category/ShapeRosen.lean#RosenShape",
+      "tagged": [
+        "RosenShape"
+      ],
       "status": "resolved"
     },
     "https://w3id.org/mathematical-systems/atlas/entry/rosen-1978-system-triple": {
@@ -600,6 +649,13 @@
     "https://w3id.org/mathematical-systems/atlas/entry/joslyn-1995-system-2": {
       "status": "none"
     }
+  },
+  "lean": {
+    "commit": "e7068103d846cb3f9473af2e8d47698374213e59",
+    "toolchain": "leanprover/lean4:v4.28.0",
+    "declarations": 1630,
+    "modules": 84,
+    "tagged": 7
   },
   "transcription": {
     "https://w3id.org/mathematical-systems/atlas/entry/klir-2001-eq-1-1": {

@@ -56,15 +56,18 @@ npm run dev           # http://localhost:5192
 `npm run data` prints one line per gate. This is what a good run looks like:
 
 ```
-transcription {'located': 7, 'no-source-registered': 1}  gate-can-fail=True    every registered verbatim found in its primary text
+transcription {'located': 15}  gate-can-fail=True    every registered verbatim found in its primary text
 display spans verbatim  gate-can-fail=True           every front-page excerpt is a substring of its verbatim
-lean bridge   5/8 entries linked, 0 broken           every formalisation pointer resolves
-author coverage 6 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
-floor roles   6 lexical + 2 shape-level dependencies, adds computed  gate-can-fail=True
+lean pin      pinned=e7068103d846 checkout=e7068103d846 dirty=False
+lean dump     1630 declarations, 84 modules, commit e7068103d846   `lake exe dump` at the pinned checkout
+lean tags     7 tags → 7/15 entries, 0 unknown ids, 0 disagree  gate-can-fail=True   every @[atlas] names an entry
+served       lean.json (1630 declarations with source)
+author coverage 8 authors, every entry reached  gate-can-fail=True    the by-author front page can hide no definition
+floor roles   12 lexical + 3 shape-level dependencies, adds computed  gate-can-fail=True
 retired IRIs excluded  gate-can-fail=True            no tombstone served as live data
 served       definition-atlas.ttl                    the catalogue as RDF, for content negotiation
 served       definition-atlas.owl
-atlas.json  8 entries, 6 authors, 7 bearers, 31 primitives, 1 conflicts
+atlas.json  15 entries, 8 authors, 9 bearers, 58 primitives, 1 conflicts
 shipped  {'is-about-entity': 'not-proven',  'describes-entity': 'not-proven'}
 full     {'is-about-entity': 'entailed',    'describes-entity': 'entailed'}
 ```
@@ -95,7 +98,7 @@ atlas/            the catalogue — a citable dataset
   build.py        merge → validate → dist/. migrate-iris.py stages the namespace move.
 
 reader/           the instrument that reads it
-  prepare/        build-data.py · transcription.py · lean_bridge.py
+  prepare/        build-data.py · transcription.py · lean_dump.py
   src/            Vite · React 19 · TypeScript · Zustand · Tailwind 4
   docs/design/    visual-language.md — the register, and the gate that holds it
 
@@ -177,8 +180,10 @@ Four gates, each with something that can actually fail it:
   says so rather than the claim quietly going false.
 - **Transcription.** Every verbatim located in the primary text. `prove_the_gate_can_fail()`
   corrupts a verified verbatim two ways and requires refusal of both.
-- **Lean pointers.** A `formalisedAs` that does not resolve fails the build. A broken link
-  into the formalisation is worse than no link.
+- **Lean tags.** The pointer from an entry to its formal counterpart lives in the Lean
+  development as `@[atlas "entry-id"]`, checked by the compiler; the reader reads it from
+  `lake exe dump` at the pinned commit. A tag naming no entry fails the build, and so does
+  a legacy `formalisedAs` that disagrees with a tag.
 - **SHACL.** A malformed entry fails `atlas/build.py`.
 - **Retired IRIs.** A term retired under the IRI policy (`atlas/docs/iri-policy.md`) must
   never reappear as live data — `check_no_retired_served` plants a synthetic leak to prove

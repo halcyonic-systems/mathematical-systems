@@ -38,7 +38,7 @@ import sys
 import warnings
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
-from lean_bridge import resolve as resolve_shape  # noqa: E402
+from lean_dump import load_dump, resolve_shapes, check_tags, prove_tag_gate_can_fail  # noqa: E402
 from transcription import PUBLISHABLE_CONTEXT, locate  # noqa: E402
 
 from rdflib import Graph, Namespace, OWL, RDF, RDFS, URIRef
@@ -728,26 +728,6 @@ def check_lean_pin(atlas_root, foundations, allow_drift):
         )
 
 
-def resolve_shapes(entries, foundations):
-    """Read each entry's shape category out of the Lean source.
-
-    An entry with no pointer is reported as such rather than omitted: "no shape
-    category formalises this" is information, and the catalogue has one such
-    entry today (Bunge Def. 1.1, whose formal counterpart is a structure, not a
-    quiver).
-    """
-    shapes = {}
-    for e in entries:
-        spec = e.get("formalisedAs")
-        if not spec:
-            shapes[e["iri"]] = {"status": "none"}
-            continue
-        result = resolve_shape(spec, foundations)
-        result["status"] = "error" if result.get("error") else "resolved"
-        shapes[e["iri"]] = result
-    return shapes
-
-
 def read_open_decisions(atlas_root):
     """The catalogue-wide open items, already cost-of-deferral ordered.
 
@@ -966,6 +946,13 @@ def main():
     )
     ap.add_argument("--skip-reasoning", action="store_true")
     ap.add_argument(
+        "--lean-dump",
+        type=pathlib.Path,
+        default=None,
+        help="a decls.json already written by `lake exe dump`, instead of running it at "
+        "--foundations (which takes ~25 s and needs a built checkout).",
+    )
+    ap.add_argument(
         "--allow-drift",
         action="store_true",
         help="skip the lean-pin check (atlas/lean-pin vs --foundations HEAD). For local "
@@ -1009,16 +996,28 @@ def main():
 
     foundations = args.foundations.expanduser().resolve()
     check_lean_pin(atlas_root, foundations, args.allow_drift)
-    shapes = resolve_shapes(entries, foundations)
+    dump = load_dump(foundations, args.lean_dump)
+    print(f"lean dump     {len(dump['declarations'])} declarations, {len(dump['modules'])} modules, commit {dump['commit'][:12]}")
+    unknown = check_tags(dump, entries)
+    tag_live = prove_tag_gate_can_fail(entries)
+    if unknown:
+        raise SystemExit(f"UNKNOWN ATLAS TAG — @[atlas] names no entry: {', '.join(unknown)}")
+    shapes = resolve_shapes(entries, dump)
     broken = {k: v["error"] for k, v in shapes.items() if v.get("error")}
     linked = sum(1 for v in shapes.values() if v["status"] == "resolved")
-    print(f"lean bridge   {linked}/{len(entries)} entries linked, {len(broken)} broken")
+    tagged = sum(len(v.get("tagged", [])) for v in shapes.values())
+    print(f"lean tags     {tagged} tags → {linked}/{len(entries)} entries, 0 unknown ids, {len(broken)} disagree  gate-can-fail={tag_live}")
     if broken:
-        # A pointer into the formalisation that does not resolve is worse than no
-        # pointer: it asserts a formalisation exists and sends the reader nowhere.
+        # A tag and a legacy pointer that disagree assert two formalisations;
+        # one of them is wrong, and the build will not pick.
         for iri, err in broken.items():
             print(f"  {iri.rsplit('/', 1)[-1]}: {err}")
-        raise SystemExit("BROKEN LEAN POINTER — fix the spec or the checkout (--foundations).")
+        raise SystemExit("LEAN TAG DISAGREES WITH formalisedAs — fix one of them.")
+    # The whole dump travels with the reader: the graph and the per-declaration
+    # pages read it, and the source text in it is what lets a reader audit a
+    # block without opening the repository. All T0: the repository is public.
+    (args.out / "lean.json").write_text(json.dumps(dump, ensure_ascii=False))
+    print(f"served       lean.json ({len(dump['declarations'])} declarations with source)")
 
     cases = extract_cases(g)
     objects = extract_test_objects(g)
@@ -1044,6 +1043,13 @@ def main():
         "publishable": publishable,
         "contextChars": args.context,
         "shapes": shapes,
+        "lean": {
+            "commit": dump["commit"],
+            "toolchain": dump["toolchain"],
+            "declarations": len(dump["declarations"]),
+            "modules": len(dump["modules"]),
+            "tagged": tagged,
+        },
         "transcription": transcription,
         "source": {"repo": atlas_root.name, "coreLabel": one(g, ATLAS["atlas-core"], RDFS.label)},
         "entries": entries,

@@ -126,7 +126,13 @@ export type Transcription = {
 
 export type Shape = {
   status: "resolved" | "error" | "none";
+  /** The tagged declaration (`@[atlas id]` in the Lean development). */
   spec?: string;
+  declaration?: string;
+  kind?: string;
+  module?: string;
+  line?: number;
+  tagged?: string[];
   file?: string;
   title?: string;
   shape?: string;
@@ -151,6 +157,8 @@ export type Atlas = {
   openDecisions: OpenDecision[];
   provenance: { atlasCommit: string | null; repoCommit: string | null };
   shapes: Record<string, Shape>;
+  /** The Lean development as the dump reports it; the full dump is lean.json beside this file. */
+  lean: { commit: string; toolchain: string; declarations: number; modules: number; tagged: number };
   transcription: Record<string, Transcription>;
   source: { repo: string; coreLabel: string | null };
   entries: Entry[];
